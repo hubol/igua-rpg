@@ -2,6 +2,7 @@ import {Key} from "./utils/key";
 import {Sprite, Container} from "pixi.js";
 import {app} from "./index";
 import {push} from "./walls";
+import {lerp} from "./utils/math";
 
 export function player()
 {
@@ -21,14 +22,24 @@ export function player()
     player.vspeed = 0;
     player.coyote = 0;
     player.trip = 0;
+    player.duckUnit = 0;
 
     const step = () => {
-        if (Key.isDown("ArrowRight"))
-            player.hspeed += 0.5;
-        if (Key.isDown("ArrowLeft"))
-            player.hspeed -= 0.5;
-        if (Key.isUp("ArrowRight") && Key.isUp("ArrowLeft"))
-            player.hspeed *= 0.8;
+        const isDucking = Key.isDown("ArrowDown") && player.coyote > 0;
+
+        if (isDucking)
+        {
+            player.hspeed *= 0.9;
+        }
+        else
+        {
+            if (Key.isDown("ArrowRight"))
+                player.hspeed += 0.5;
+            if (Key.isDown("ArrowLeft"))
+                player.hspeed -= 0.5;
+            if (Key.isUp("ArrowRight") && Key.isUp("ArrowLeft"))
+                player.hspeed *= 0.8;
+        }
 
         player.hspeed = Math.min(2.5, Math.abs(player.hspeed)) * Math.sign(player.hspeed);
 
@@ -41,22 +52,31 @@ export function player()
         if (player.vspeed !== 0 && barelyWalking)
             player.trip += 0.5;
 
-        if (barelyWalking && player.vspeed === 0)
-        {
-            body.position.set(0, 0);
-            backLeftFoot.position.set(0, 0);
-            backRightFoot.position.set(0, 0);
-            frontLeftFoot.position.set(0, 0);
-            frontRightFoot.position.set(0, 0);
-        }
-        else
+        body.position.set(0, 0);
+        backLeftFoot.position.set(0, 0);
+        backRightFoot.position.set(0, 0);
+        frontLeftFoot.position.set(0, 0);
+        frontRightFoot.position.set(0, 0);
+
+        if (!barelyWalking || player.vspeed !== 0)
         {
             const t = player.trip * 0.1;
-            body.position.set(0, Math.round(Math.sin(t + 2)));
-            backLeftFoot.position.set(0, Math.round(Math.abs(Math.sin(t + 1)) * -2));
-            backRightFoot.position.set(0, Math.round(Math.abs(Math.sin(t)) * -2));
-            frontLeftFoot.position.set(0, Math.round(Math.abs(Math.cos(t + 1)) * -2));
-            frontRightFoot.position.set(0, Math.round(Math.abs(Math.cos(t)) * -2));
+            body.position.y = Math.round(Math.sin(t + 2));
+            backLeftFoot.position.y = Math.round(Math.abs(Math.sin(t + 1)) * -2);
+            backRightFoot.position.y = Math.round(Math.abs(Math.sin(t)) * -2);
+            frontLeftFoot.position.y = Math.round(Math.abs(Math.cos(t + 1)) * -2);
+            frontRightFoot.position.y = Math.round(Math.abs(Math.cos(t)) * -2);
+        }
+
+        player.duckUnit = lerp(player.duckUnit, isDucking ? 1 : 0, 0.2);
+
+        if (player.duckUnit > 0.05)
+        {
+            body.position.y = Math.round(player.duckUnit * 4);
+            backLeftFoot.position.x -= Math.round(player.duckUnit);
+            backRightFoot.position.x -= Math.round(Math.pow(player.duckUnit, 2));
+            frontLeftFoot.position.x += Math.round(Math.pow(player.duckUnit, 2));
+            frontRightFoot.position.x += Math.round(player.duckUnit);
         }
 
         if (player.hspeed < 0)
