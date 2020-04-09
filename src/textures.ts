@@ -2,17 +2,24 @@ import * as PIXI from "pixi.js";
     
 // This file is generated. Do not touch.
 
+export let CharacterBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CharacterCrest: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterFootBackLeft: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterFootBackRight: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterFootFrontLeft: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterFootFrontRight: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterHead: PIXI.Texture = undefined as unknown as PIXI.Texture;
-export let CharacterIguaBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 
 
 export function loadTexturesAsync()
 {
     const loader = new PIXI.Loader();
+
+    const CharacterBodyPath = require("./images/character/body.png");
+    loader.add(CharacterBodyPath); 
+
+    const CharacterCrestPath = require("./images/character/crest.png");
+    loader.add(CharacterCrestPath); 
 
     const CharacterFootBackLeftPath = require("./images/character/foot back left.png");
     loader.add(CharacterFootBackLeftPath); 
@@ -29,19 +36,17 @@ export function loadTexturesAsync()
     const CharacterHeadPath = require("./images/character/head.png");
     loader.add(CharacterHeadPath); 
 
-    const CharacterIguaBodyPath = require("./images/character/igua body.png");
-    loader.add(CharacterIguaBodyPath); 
-
     
     return new Promise(resolve =>
     {
         loader.load((_, resources) => {
+            CharacterBody = resources[CharacterBodyPath]?.texture as PIXI.Texture;
+            CharacterCrest = resources[CharacterCrestPath]?.texture as PIXI.Texture;
             CharacterFootBackLeft = resources[CharacterFootBackLeftPath]?.texture as PIXI.Texture;
             CharacterFootBackRight = resources[CharacterFootBackRightPath]?.texture as PIXI.Texture;
             CharacterFootFrontLeft = resources[CharacterFootFrontLeftPath]?.texture as PIXI.Texture;
             CharacterFootFrontRight = resources[CharacterFootFrontRightPath]?.texture as PIXI.Texture;
             CharacterHead = resources[CharacterHeadPath]?.texture as PIXI.Texture;
-            CharacterIguaBody = resources[CharacterIguaBodyPath]?.texture as PIXI.Texture;
 
             resolve();
         });
