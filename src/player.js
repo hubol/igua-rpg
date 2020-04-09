@@ -107,19 +107,20 @@ export function player()
         }
 
         player.duckUnit = lerp(player.duckUnit, isDucking ? 1 : 0, 0.2);
+        const duckUnit = Math.round(player.duckUnit * 3) / 3;
 
-        if (player.duckUnit > 0.05)
+        if (duckUnit > 0.05)
         {
-            body.position.y = Math.round(player.duckUnit * 4);
-            backLeftFoot.position.x -= Math.round(player.duckUnit);
-            backRightFoot.position.x -= Math.round(Math.pow(player.duckUnit, 2));
-            frontLeftFoot.position.x += Math.round(Math.pow(player.duckUnit, 2));
-            frontRightFoot.position.x += Math.round(player.duckUnit);
+            body.position.y = Math.round(duckUnit * 4);
+            backLeftFoot.position.x -= Math.round(duckUnit);
+            backRightFoot.position.x -= Math.round(Math.pow(duckUnit, 2));
+            frontLeftFoot.position.x += Math.round(Math.pow(duckUnit, 2));
+            frontRightFoot.position.x += Math.round(duckUnit);
         }
 
-        crest.x = Math.round(player.duckUnit * 2);
-        crest.y = Math.round(player.duckUnit * -1);
-        head.y = Math.round(player.duckUnit * 2);
+        crest.x = Math.round(duckUnit * 2);
+        crest.y = Math.round(duckUnit * -1);
+        head.y = Math.round(duckUnit * 2);
 
         if (player.hspeed < 0)
             player.scale.x = -1;
