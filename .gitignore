@@ -1,3 +1,16 @@
+src/sound/
+
+.DS_Store
+
+.idea/
+.cache/
+.tscache/
+dist/
+tmp/
+espowered/
+
+node_modules/
+
 # Logs
 logs
 *.log
