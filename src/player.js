@@ -5,28 +5,35 @@ import {push} from "./walls";
 import {approachLinear, lerp} from "./utils/math";
 import {subimageTextures} from "./utils/simpleSpritesheet";
 import {
+    CharacterBody, CharacterCrest,
     CharacterFootBackLeft,
     CharacterFootBackRight,
     CharacterFootFrontLeft, CharacterFootFrontRight,
-    CharacterHead,
-    CharacterIguaBody
+    CharacterHead
 } from "./textures";
 
 export function player()
 {
-    const bodySprite = Sprite.from(CharacterIguaBody);
+    const bodySprite = Sprite.from(CharacterBody);
+    bodySprite.y = 5;
     const backLeftFoot = Sprite.from(CharacterFootBackLeft);
     const backRightFoot = Sprite.from(CharacterFootBackRight);
     const frontLeftFoot = Sprite.from(CharacterFootFrontLeft);
     const frontRightFoot = Sprite.from(CharacterFootFrontRight);
 
+    const crest = Sprite.from(CharacterCrest);
+    crest.pivot.set(3, 5);
+
     const headTextures = subimageTextures(CharacterHead, 4);
-    const head = Sprite.from(headTextures[0]);
-    head.x = 15;
-    head.y = 5;
-    head.isClosingEyes = false;
-    head.closedEyesUnit = 0;
-    head.ticksUntilBlink = 60;
+    const head = new Container();
+    head.pivot.set(-15, -5);
+
+    const headSprite = Sprite.from(headTextures[0]);
+    headSprite.isClosingEyes = false;
+    headSprite.closedEyesUnit = 0;
+    headSprite.ticksUntilBlink = 60;
+
+    head.addChild(crest, headSprite);
 
     const body = new Container();
     body.addChild(bodySprite, head);
@@ -47,16 +54,16 @@ export function player()
     const step = () => {
         const isDucking = Key.isDown("ArrowDown") && player.coyote > 0;
 
-        if (head.ticksUntilBlink-- <= 0)
+        if (headSprite.ticksUntilBlink-- <= 0)
         {
-            head.ticksUntilBlink = 120 + Math.random() * 120;
-            head.isClosingEyes = true;
+            headSprite.ticksUntilBlink = 120 + Math.random() * 120;
+            headSprite.isClosingEyes = true;
         }
 
-        head.closedEyesUnit = approachLinear(head.closedEyesUnit, head.isClosingEyes ? 1.3 : 0, 0.3);
-        if (head.closedEyesUnit > 1.2)
-            head.isClosingEyes = false;
-        head.texture = headTextures[Math.min(3, Math.round(head.closedEyesUnit * 3))];
+        headSprite.closedEyesUnit = approachLinear(headSprite.closedEyesUnit, headSprite.isClosingEyes ? 1.3 : 0, 0.3);
+        if (headSprite.closedEyesUnit > 1.2)
+            headSprite.isClosingEyes = false;
+        headSprite.texture = headTextures[Math.min(3, Math.round(headSprite.closedEyesUnit * 3))];
 
         if (isDucking)
         {
@@ -109,6 +116,10 @@ export function player()
             frontLeftFoot.position.x += Math.round(Math.pow(player.duckUnit, 2));
             frontRightFoot.position.x += Math.round(player.duckUnit);
         }
+
+        crest.x = Math.round(player.duckUnit * 2);
+        crest.y = Math.round(player.duckUnit * -1);
+        head.y = Math.round(player.duckUnit * 2);
 
         if (player.hspeed < 0)
             player.scale.x = -1;
