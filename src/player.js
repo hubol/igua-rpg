@@ -2,7 +2,7 @@ import {Key} from "./utils/key";
 import {Sprite, Container, Texture} from "pixi.js";
 import {app} from "./index";
 import {push} from "./walls";
-import {lerp} from "./utils/math";
+import {approachLinear, lerp} from "./utils/math";
 import {subimageTextures} from "./utils/simpleSpritesheet";
 import {
     CharacterFootBackLeft,
@@ -24,6 +24,9 @@ export function player()
     const head = Sprite.from(headTextures[0]);
     head.x = 15;
     head.y = 5;
+    head.isClosingEyes = false;
+    head.closedEyesUnit = 0;
+    head.ticksUntilBlink = 60;
 
     const body = new Container();
     body.addChild(bodySprite, head);
@@ -43,6 +46,17 @@ export function player()
 
     const step = () => {
         const isDucking = Key.isDown("ArrowDown") && player.coyote > 0;
+
+        if (head.ticksUntilBlink-- <= 0)
+        {
+            head.ticksUntilBlink = 120 + Math.random() * 120;
+            head.isClosingEyes = true;
+        }
+
+        head.closedEyesUnit = approachLinear(head.closedEyesUnit, head.isClosingEyes ? 1.3 : 0, 0.3);
+        if (head.closedEyesUnit > 1.2)
+            head.isClosingEyes = false;
+        head.texture = headTextures[Math.min(3, Math.round(head.closedEyesUnit * 3))];
 
         if (isDucking)
         {
