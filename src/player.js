@@ -1,16 +1,33 @@
 import {Key} from "./utils/key";
-import {Sprite, Container} from "pixi.js";
+import {Sprite, Container, Texture} from "pixi.js";
 import {app} from "./index";
 import {push} from "./walls";
 import {lerp} from "./utils/math";
+import {subimageTextures} from "./utils/simpleSpritesheet";
+import {
+    CharacterFootBackLeft,
+    CharacterFootBackRight,
+    CharacterFootFrontLeft, CharacterFootFrontRight,
+    CharacterHead,
+    CharacterIguaBody
+} from "./textures";
 
 export function player()
 {
-    const body = Sprite.from(require("./images/character/igua body.png"));
-    const backLeftFoot = Sprite.from(require("./images/character/foot back left.png"));
-    const backRightFoot = Sprite.from(require("./images/character/foot back right.png"));
-    const frontLeftFoot = Sprite.from(require("./images/character/foot front left.png"));
-    const frontRightFoot = Sprite.from(require("./images/character/foot front right.png"));
+    const bodySprite = Sprite.from(CharacterIguaBody);
+    const backLeftFoot = Sprite.from(CharacterFootBackLeft);
+    const backRightFoot = Sprite.from(CharacterFootBackRight);
+    const frontLeftFoot = Sprite.from(CharacterFootFrontLeft);
+    const frontRightFoot = Sprite.from(CharacterFootFrontRight);
+
+    const headTextures = subimageTextures(CharacterHead, 4);
+    const head = Sprite.from(headTextures[0]);
+    head.x = 15;
+    head.y = 5;
+
+    const body = new Container();
+    body.addChild(bodySprite, head);
+
     const player = new Container();
     player.addChild(backLeftFoot, frontLeftFoot, body, backRightFoot, frontRightFoot);
     player.pivot.set(11, 17);

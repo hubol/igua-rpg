@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"generate-howls assets-src/sound src/sound src/sounds.ts\" \"parcel src/index.html\"",
-    "build": "generate-howls assets-src/sound src/sound src/sounds.ts --build && parcel build --public-url ./ src/index.html"
+    "start": "concurrently \"generate-textures src/images src/textures.ts\" \"generate-howls assets-src/sound src/sound src/sounds.ts\" \"parcel src/index.html\"",
+    "build": "generate-howls assets-src/sound src/sound src/sounds.ts --build && generate-textures src/images src/textures.ts --build && parcel build --public-url ./ src/index.html"
   },
   "author": "Hubol",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "@types/webfontloader": "^1.6.29",
     "concurrently": "^5.1.0",
     "generate-howls": "^0.1.2",
+    "generate-textures": "^0.1.0",
     "parcel-bundler": "^1.12.4",
     "typescript": "^3.8.3"
   },
