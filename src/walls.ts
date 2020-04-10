@@ -1,10 +1,10 @@
 import {Graphics} from "pixi.js";
-import {distance, dot, normalize, perpendicular} from "./vector";
+import {distance, dot, normalize, perpendicular, Vector} from "./vector";
 
-const walls = [];
+const walls: Wall[] = [];
 
-export function push(xy, radius) {
-    const result = {};
+export function push(xy: Pushable, radius: number) {
+    const result: PushResult = {};
 
     walls.forEach(s => {
         const offset = {x: xy.x - s.x, y: xy.y - s.y};
@@ -25,8 +25,8 @@ export function push(xy, radius) {
                 if (s.isWall)
                     result.hitWall = true;
 
-                xy.x = s.x + s.forward.x * offsetDotForward + s.normal.x * radius;// * Math.sign(offsetDotNormal);
-                xy.y = s.y + s.forward.y * offsetDotForward + s.normal.y * radius;// * Math.sign(offsetDotNormal);
+                xy.x = s.x + s.forward.x * offsetDotForward + s.normal.x * radius;
+                xy.y = s.y + s.forward.y * offsetDotForward + s.normal.y * radius;
             }
         }
     });
@@ -34,7 +34,7 @@ export function push(xy, radius) {
     return result;
 }
 
-export function block(x0, y0, x1, y1)
+export function block(x0: number, y0: number, x1: number, y1: number)
 {
     const xmin = Math.min(x0, x1);
     const xmax = Math.max(x0, x1);
@@ -63,7 +63,7 @@ export function block(x0, y0, x1, y1)
     return graphics;
 }
 
-export function slope(x0, y0, x1, y1)
+export function slope(x0: number, y0: number, x1: number, y1: number)
 {
     const graphics = new Graphics();
     graphics.beginFill(0xFF3300);
@@ -114,4 +114,31 @@ function getSlopeNormal(x0, y0, x1, y1)
         perpendicularVector.y *= -1;
     }
     return normalize(perpendicularVector);
+}
+
+interface PushResult
+{
+    isOnGround?: boolean;
+    hitGround?: boolean;
+    hitCeiling?: boolean;
+    hitWall?: boolean;
+}
+
+interface Pushable
+{
+    x: number;
+    y: number;
+    vspeed?: number;
+}
+
+interface Wall
+{
+    x: number;
+    y: number;
+    forward: Vector;
+    normal: Vector;
+    length: number;
+    isGround?: boolean;
+    isCeiling?: boolean;
+    isWall?: boolean;
 }
