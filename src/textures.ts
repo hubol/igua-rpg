@@ -10,6 +10,8 @@ export let CharacterFootBackRight: PIXI.Texture = undefined as unknown as PIXI.T
 export let CharacterFootFrontLeft: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterFootFrontRight: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterHead: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let LockedDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let OpenDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OrangeValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Pipe: PIXI.Texture = undefined as unknown as PIXI.Texture;
 
@@ -42,6 +44,12 @@ export function loadTexturesAsync()
     const CharacterHeadPath = require("./images/character/head.png");
     loader.add(CharacterHeadPath); 
 
+    const LockedDoorPath = require("./images/locked door.png");
+    loader.add(LockedDoorPath); 
+
+    const OpenDoorPath = require("./images/open door.png");
+    loader.add(OpenDoorPath); 
+
     const OrangeValuablePath = require("./images/orange valuable.png");
     loader.add(OrangeValuablePath); 
 
@@ -60,6 +68,8 @@ export function loadTexturesAsync()
             CharacterFootFrontLeft = resources[CharacterFootFrontLeftPath]?.texture as PIXI.Texture;
             CharacterFootFrontRight = resources[CharacterFootFrontRightPath]?.texture as PIXI.Texture;
             CharacterHead = resources[CharacterHeadPath]?.texture as PIXI.Texture;
+            LockedDoor = resources[LockedDoorPath]?.texture as PIXI.Texture;
+            OpenDoor = resources[OpenDoorPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
 
