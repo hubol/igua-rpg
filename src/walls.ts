@@ -15,7 +15,7 @@ export function push(xy: Pushable, radius: number) {
         const absOffsetDotNormal = Math.abs(offsetDotNormal);
 
         const canCorrectPosition = !s.isPipe
-            || (xy.vspeed === undefined || (xy.vspeed >= 0 && offsetDotNormal >= 0)
+            || (xy.vspeed === undefined || (xy.vspeed >= 0 && offsetDotNormal >= 0))
             || (s.normal.x !== 0 && xy.hspeed !== undefined && (xy.hspeed !== 0 && Math.sign(s.normal.x) !== Math.sign(xy.hspeed)));
         const isGround = s.isGround && canCorrectPosition;
 
