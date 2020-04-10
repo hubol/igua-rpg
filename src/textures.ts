@@ -11,6 +11,7 @@ export let CharacterFootFrontLeft: PIXI.Texture = undefined as unknown as PIXI.T
 export let CharacterFootFrontRight: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterHead: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OrangeValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let Pipe: PIXI.Texture = undefined as unknown as PIXI.Texture;
 
 
 export function loadTexturesAsync()
@@ -44,6 +45,9 @@ export function loadTexturesAsync()
     const OrangeValuablePath = require("./images/orange valuable.png");
     loader.add(OrangeValuablePath); 
 
+    const PipePath = require("./images/pipe.png");
+    loader.add(PipePath); 
+
     
     return new Promise(resolve =>
     {
@@ -57,6 +61,7 @@ export function loadTexturesAsync()
             CharacterFootFrontRight = resources[CharacterFootFrontRightPath]?.texture as PIXI.Texture;
             CharacterHead = resources[CharacterHeadPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
+            Pipe = resources[PipePath]?.texture as PIXI.Texture;
 
             resolve();
         });

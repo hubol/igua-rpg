@@ -1,5 +1,6 @@
-import {Graphics} from "pixi.js";
+import {Graphics, SCALE_MODES, Matrix, SimpleMesh} from "pixi.js";
 import {distance, dot, normalize, perpendicular, Vector} from "./vector";
+import {Pipe} from "./textures";
 
 const walls: Wall[] = [];
 
@@ -11,14 +12,20 @@ export function push(xy: Pushable, radius: number) {
         const offsetDotNormal = dot(offset, s.normal);
         const offsetDotForward = dot(offset, s.forward);
         const alongForward = offsetDotForward > 0 && offsetDotForward < s.length;
+        const absOffsetDotNormal = Math.abs(offsetDotNormal);
 
-        if (alongForward && Math.abs(offsetDotNormal) === radius && s.isGround) {
+        const canCorrectPosition = !s.isPipe
+            || (xy.vspeed === undefined || (xy.vspeed >= 0 && offsetDotNormal >= 0)
+            || (s.normal.x !== 0 && xy.hspeed !== undefined && (xy.hspeed !== 0 && Math.sign(s.normal.x) !== Math.sign(xy.hspeed)));
+        const isGround = s.isGround && canCorrectPosition;
+
+        if (alongForward && absOffsetDotNormal === radius && isGround) {
             result.isOnGround = true;
         }
 
-        if (Math.abs(offsetDotNormal) < radius) {
+        if (canCorrectPosition && absOffsetDotNormal < radius) {
             if (alongForward) {
-                if (s.isGround)
+                if (isGround)
                     result.hitGround = true;
                 if (s.isCeiling)
                     result.hitCeiling = true;
@@ -65,6 +72,8 @@ export function block(x0: number, y0: number, x1: number, y1: number)
 
 export function slope(x0: number, y0: number, x1: number, y1: number)
 {
+    const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1);
+
     const graphics = new Graphics();
     graphics.beginFill(0xFF3300);
     graphics.lineStyle(4, 0xffd900, 1);
@@ -77,10 +86,6 @@ export function slope(x0: number, y0: number, x1: number, y1: number)
     graphics.lineTo(x1, y1);
     graphics.closePath();
     graphics.endFill();
-
-    const forward = getSlopeForward(x0, y0, x1, y1);
-    const normal = getSlopeNormal(x0, y0, x1, y1);
-    const length = distance({ x: x0, y: y0 }, { x: x1, y: y1 });
 
     const slopeWall = { x: x0, y: y0, forward, normal, length, isGround: true };
     const bottomWall = { x: Math.min(x0, x1), y: Math.max(y0, y1), forward: { x: 1, y: 0 }, normal: { x: 0, y: 1 }, length: Math.abs(x0 - x1), isCeiling: true};
@@ -95,6 +100,37 @@ export function slope(x0: number, y0: number, x1: number, y1: number)
     });
 
     return graphics;
+}
+
+export function pipe(x0: number, y0: number, x1: number, y1: number)
+{
+    const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1);
+
+    Pipe.baseTexture.scaleMode = SCALE_MODES.LINEAR;
+
+    const simpleMesh = new SimpleMesh(
+        Pipe,
+        new Float32Array([ x0, y0, x1, y1, x1, y1 + 16, x0, y0 + 16]),
+        new Float32Array([ 0, 0, 0, 0, 0, 1, 0, 1]),
+        new Uint16Array([ 0, 1, 3, 1, 2, 3 ]));
+
+    const slopeWall = { x: x0, y: y0, forward, normal, length, isGround: true, isPipe: true };
+
+    simpleMesh.on('added', () => walls.push(slopeWall));
+    simpleMesh.on('removed', () => {
+        // TODO
+    });
+
+    return simpleMesh;
+}
+
+function getSlopeWallProperties(x0: number, y0: number, x1: number, y1: number)
+{
+    return {
+        forward: getSlopeForward(x0, y0, x1, y1),
+        normal: getSlopeNormal(x0, y0, x1, y1),
+        length: distance({x: x0, y: y0}, {x: x1, y: y1}),
+    };
 }
 
 function getSlopeForward(x0, y0, x1, y1)
@@ -128,6 +164,7 @@ interface Pushable
 {
     x: number;
     y: number;
+    hspeed?: number;
     vspeed?: number;
 }
 
@@ -141,4 +178,5 @@ interface Wall
     isGround?: boolean;
     isCeiling?: boolean;
     isWall?: boolean;
+    isPipe?: boolean;
 }
