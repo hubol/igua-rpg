@@ -2,11 +2,15 @@ import {startApplication} from "./utils/pixiUtils";
 import {player} from "./player";
 import {block, pipe, slope} from "./walls";
 import {loadTexturesAsync} from "./textures";
+import {loadFontsAsync} from "./fonts";
 
 export const app = startApplication({ width: 256, height: 256, mode: "retro game", targetFps: 60 });
 
-function startGame()
+async function startGame()
 {
+    await loadTexturesAsync();
+    await loadFontsAsync();
+
     app.renderer.backgroundColor = 0x0000ff;
     app.stage.addChild(
         slope(16, 192 + 16, 128, 256),
@@ -20,5 +24,4 @@ function startGame()
         pipe(192, 64, 64, 192),
         player());
 }
-
-loadTexturesAsync().then(startGame);
+window.onload = startGame;

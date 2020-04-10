@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "browserslist": [ "last 31 Chrome versions" ],
   "scripts": {
     "start": "concurrently \"generate-textures src/images src/textures.ts\" \"generate-howls assets-src/sound src/sound src/sounds.ts\" \"parcel src/index.html\"",
     "build": "generate-howls assets-src/sound src/sound src/sounds.ts --build && generate-textures src/images src/textures.ts --build && parcel build --public-url ./ src/index.html"
