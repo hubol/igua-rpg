@@ -1,0 +1,75 @@
+{
+  "ogmoVersion": "3.3.0",
+  "width": 528,
+  "height": 320,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 66,
+      "gridCellsY": 40,
+      "entities": [
+        {"name": "SlopeRight", "id": 0, "_eid": "55824435", "x": 272, "y": 160, "width": 96, "height": 32, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 1, "_eid": "55823268", "x": 184, "y": 192, "width": 184, "height": 128, "originX": 0, "originY": 0},
+        {"name": "PipeLeft", "id": 2, "_eid": "55866573", "x": 128, "y": 160, "width": 88, "height": 32, "originX": 0, "originY": 0},
+        {"name": "PipeHorizontal", "id": 3, "_eid": "55841307", "x": 48, "y": 160, "width": 96, "originX": 0, "originY": 0},
+        {"name": "PipeRight", "id": 4, "_eid": "55859676", "x": 112, "y": 104, "width": 64, "height": 56, "originX": 0, "originY": 0},
+        {"name": "PipeHorizontal", "id": 5, "_eid": "55841307", "x": 176, "y": 104, "width": 32, "originX": 0, "originY": 0},
+        {"name": "SlopeRight", "id": 6, "_eid": "55824435", "x": 120, "y": 192, "width": 64, "height": 32, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 7, "_eid": "55823268", "x": 48, "y": 224, "width": 136, "height": 120, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 9, "_eid": "55823268", "x": 0, "y": 0, "width": 48, "height": 328, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 10, "_eid": "55823268", "x": 368, "y": 160, "width": 160, "height": 160, "originX": 0, "originY": 0},
+        {
+          "name": "Gate",
+          "id": 11,
+          "_eid": "55920197",
+          "x": 496,
+          "y": 128,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"map": "", "checkpointName": ""}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 12,
+          "_eid": "55940370",
+          "x": 480,
+          "y": 160,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": ""}
+        },
+        {
+          "name": "Door",
+          "id": 15,
+          "_eid": "55913988",
+          "x": 72,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"map": "", "checkpointName": ""}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 16,
+          "_eid": "55940370",
+          "x": 112,
+          "y": 224,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": ""}
+        },
+        {"name": "Player", "id": 17, "_eid": "55988047", "x": 256, "y": 112, "originX": 11, "originY": 27},
+        {"name": "ValuableBlue", "id": 18, "_eid": "55991906", "x": 192, "y": 104, "originX": 8, "originY": 14}
+      ]
+    }
+  ]
+}
