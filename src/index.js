@@ -6,10 +6,10 @@ import {app, startIguaApplication} from "./app";
 
 async function startGame()
 {
+    startIguaApplication();
+
     await loadTexturesAsync();
     await loadFontsAsync();
-
-    startIguaApplication();
 
     app.backgroundColor = 0x0000ff;
     app.stage.addChild(

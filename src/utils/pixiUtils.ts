@@ -6,11 +6,7 @@ import Container = PIXI.Container;
 export function startApplication(options)
 {
     if (options.mode === 'retro game')
-    {
-        // noinspection JSConstantReassignment
-        PIXI.settings.ROUND_PIXELS = true;
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-    }
 
     const app = createApplication(options);
 
