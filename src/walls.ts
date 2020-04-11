@@ -52,7 +52,7 @@ export function block(x0: number, y0: number, x1: number, y1: number)
     const height = ymax - ymin;
 
     const graphics = new Graphics();
-    graphics.beginFill(0xFF3300);
+    graphics.beginFill();
     graphics.drawRect(xmin, ymin, width, height);
     graphics.endFill();
 
@@ -74,7 +74,7 @@ export function slope(x0: number, y0: number, x1: number, y1: number)
     const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1);
 
     const graphics = new Graphics();
-    graphics.beginFill(0xFF3300);
+    graphics.beginFill();
     graphics.moveTo(x0, y0);
     if (y0 > y1)
         graphics.lineTo(x1, y0);
