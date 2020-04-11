@@ -2,23 +2,23 @@ import {player} from "./player";
 import {block, pipe, slope} from "./walls";
 import {HotTerrain, loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";
-import {app, startApp} from "./app";
+import {game, startGame} from "./game";
 import { TilingSprite } from "pixi.js";
 import {stepPlayerCamera} from "./playerCamera";
 
-async function startGame()
+async function initialize()
 {
-    startApp();
+    startGame();
 
     await loadTexturesAsync();
     await loadFontsAsync();
 
-    app.player = player();
-    app.ticker.add(stepPlayerCamera);
+    game.player = player();
+    game.ticker.add(stepPlayerCamera);
 
-    app.backgroundColor = 0x0000ff;
+    game.backgroundColor = 0x0000ff;
 
-    app.terrainStage.addChild(
+    game.terrainStage.addChild(
         slope(16, 192 + 16, 128, 256),
         slope(160, 160, 256, 96),
         slope(64, 256, 200 - 25, 200),
@@ -26,13 +26,13 @@ async function startGame()
         block(256, 256, 64, 250),
         block(256 - 25, 250, 200 - 25, 200));
 
-    app.terrainFill = new TilingSprite(HotTerrain, 256, 256);
+    game.terrainFill = new TilingSprite(HotTerrain, 256, 256);
 
-    app.pipeStage.addChild(
+    game.pipeStage.addChild(
         pipe(32, 32, 64, 64),
         pipe(256, 64, 64, 64),
         pipe(192, 64, 64, 192));
 
-    app.stage.addChild(app.player);
+    game.stage.addChild(game.player);
 }
-window.onload = startGame;
+window.onload = initialize;

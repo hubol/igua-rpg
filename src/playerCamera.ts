@@ -1,5 +1,5 @@
 import {session} from "./session";
-import {app} from "./app";
+import {game} from "./game";
 import {lerpVector} from "./utils/math";
 
 let target = { x: 0, y: 0 };
@@ -11,23 +11,23 @@ export function stepPlayerCamera()
 
     const margin = 80;
 
-    const x0 = app.camera.x + margin;
-    const y0 = app.camera.y + margin;
-    const x1 = app.camera.x + app.width - margin;
-    const y1 = app.camera.y + app.height - margin;
+    const x0 = game.camera.x + margin;
+    const y0 = game.camera.y + margin;
+    const x1 = game.camera.x + game.width - margin;
+    const y1 = game.camera.y + game.height - margin;
 
-    if (app.player.x - x0 < 0)
-        target.x = app.camera.x + app.player.x - x0;
-    else if (app.player.x - x1 > 0)
-        target.x = app.camera.x + app.player.x - x1;
+    if (game.player.x - x0 < 0)
+        target.x = game.camera.x + game.player.x - x0;
+    else if (game.player.x - x1 > 0)
+        target.x = game.camera.x + game.player.x - x1;
 
-    if (app.player.y - y0 < 0)
-        target.y = app.camera.y + app.player.y - y0;
-    else if (app.player.y - y1 > 0)
-        target.y = app.camera.y + app.player.y - y1;
+    if (game.player.y - y0 < 0)
+        target.y = game.camera.y + game.player.y - y0;
+    else if (game.player.y - y1 > 0)
+        target.y = game.camera.y + game.player.y - y1;
 
-    target.x = Math.min(app.level.width - app.width, Math.max(target.x, 0));
-    target.y = Math.min(app.level.height - app.height, Math.max(target.y, 0));
+    target.x = Math.min(game.level.width - game.width, Math.max(target.x, 0));
+    target.y = Math.min(game.level.height - game.height, Math.max(target.y, 0));
 
-    lerpVector(app.camera, target, 0.33);
+    lerpVector(game.camera, target, 0.33);
 }
