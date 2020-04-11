@@ -486,6 +486,82 @@
       "values": [],
       "texture": "preview-images/orange valuable.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAOCAYAAADJ7fe0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAArUlEQVQ4T4WTiw2AIAxEWdiJ3MBJ3EotpeV6HLEJIeXzuH5oDewxOw8faPflXuy532IkIu8wJAA2IwRAHbIAFCjWBGgPiJA4FITZ3jdayQFKxxzYxXGhzAM4Ifwy5kBBQJHnBCWaAhUCKqnnZ32pfA4S8Zf1UWZsk6koXlWQWbm1T4LWX2fp7EOjWcNJKyCEevJTwdKxTEs1CBGArZIMLZJLf4XV6HjwU/4ADPgCJ9F+/9ei3wwAAAAASUVORK5CYII="
+    },
+    {
+      "exportID": "63418353",
+      "name": "PipeRightEnd",
+      "limit": -1,
+      "size": {"x": 13, "y": 16},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": ["Terrain"],
+      "values": [],
+      "texture": "preview-images/rightPipeEnd.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4yMfEgaZUAAACFSURBVDhPldA9D0AwEIDhbsYz2mq0MdpqtDHaarTVaPPTz0WoOOJOk2dp+vbLrMuKEsNHmAP+ZcJE0Q/7oX70qBVv6QeKlGLU9R1qXVFLkVKMXONQ8vhyV1PEPBbxibIqkZOjgiJGjGxu8cvrBjajSCluACmgxu1EAIoO4lvOBZBQdNBGGxCN+zhxdbGSAAAAAElFTkSuQmCC"
+    },
+    {
+      "exportID": "63428932",
+      "name": "PipeLeftEnd",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 16, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": ["Terrain"],
+      "values": [],
+      "texture": "preview-images/leftPipeEnd.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4yMfEgaZUAAACFSURBVDhPpdAhD4AgEIZhmvGMNow2jTaMNow2jTaMNn76eSOcujHQk+3ZKN87hlK34w+PX/Hc7Q4l7g+I3t1G4YRsYFkXTMkHZgokJAN2spgTDdiRhi89AmYw+BUHTE9jAQ60XYsSV6ChgAAHdK1RIgR0RWOhEIASUEoB0PgH/gMoKCRwAqjyTwKP1PknAAAAAElFTkSuQmCC"
     }
   ],
   "tilesets": []
