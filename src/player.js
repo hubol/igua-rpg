@@ -11,6 +11,7 @@ import {
     CharacterHead
 } from "./textures";
 import {app} from "./app";
+import {session} from "./session";
 
 export function player()
 {
@@ -156,6 +157,32 @@ export function player()
         {
             player.x += Math.min(maxMotion, Math.abs(hsp)) * Math.sign(hsp);
             player.y += Math.min(maxMotion, Math.abs(vsp)) * Math.sign(vsp);
+
+            if (player.x < 20)
+            {
+                player.x = 20;
+                hsp = 0;
+                player.hspeed = 0;
+            }
+            else if (player.x > session.level.width - 20)
+            {
+                player.x = session.level.width - 20;
+                hsp = 0;
+                player.hspeed = 0;
+            }
+
+            if (player.y < 0)
+            {
+                player.y = 0;
+                vsp = Math.abs(vsp);
+                player.vspeed = Math.abs(player.vspeed);
+            }
+            else if (player.y > session.level.height)
+            {
+                player.y = session.level.height;
+                vsp = -Math.abs(vsp);
+                player.vspeed = -Math.abs(player.vspeed);
+            }
 
             hsp = Math.abs(hsp) < maxMotion ? 0 : ((Math.abs(hsp) - maxMotion) * Math.sign(hsp));
             vsp = Math.abs(vsp) < maxMotion ? 0 : ((Math.abs(vsp) - maxMotion) * Math.sign(vsp));
