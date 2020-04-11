@@ -3,5 +3,9 @@
 export const session = {
     control: {
         cameraFollowPlayer: true
+    },
+    level: {
+        width: 300,
+        height: 800
     }
 };
