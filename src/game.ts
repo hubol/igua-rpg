@@ -12,7 +12,7 @@ export function startGame()
     const terrainContainer = new Container();
     const pipeStage = new Container();
     const stage = new Container();
-    stage.addChild(terrainStage, terrainContainer, pipeStage);
+    stage.addChild(pipeStage, terrainStage, terrainContainer);
     application.stage.addChild(stage);
 
     game = {
