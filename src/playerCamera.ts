@@ -26,5 +26,8 @@ export function stepPlayerCamera()
     else if (app.player.y - y1 > 0)
         target.y = app.camera.y + app.player.y - y1;
 
+    target.x = Math.min(session.level.width - app.width, Math.max(target.x, 0));
+    target.y = Math.min(session.level.height - app.height, Math.max(target.y, 0));
+
     lerpVector(app.camera, target, 0.33);
 }
