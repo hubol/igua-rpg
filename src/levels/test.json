@@ -18,7 +18,7 @@
         {"name": "SlopeRight", "id": 0, "_eid": "55824435", "x": 272, "y": 160, "width": 96, "height": 32, "originX": 0, "originY": 0},
         {"name": "Block", "id": 1, "_eid": "55823268", "x": 184, "y": 192, "width": 184, "height": 128, "originX": 0, "originY": 0},
         {"name": "PipeLeft", "id": 2, "_eid": "55866573", "x": 128, "y": 160, "width": 88, "height": 32, "originX": 0, "originY": 0},
-        {"name": "PipeHorizontal", "id": 3, "_eid": "55841307", "x": 48, "y": 160, "width": 96, "originX": 0, "originY": 0},
+        {"name": "PipeHorizontal", "id": 3, "_eid": "55841307", "x": 72, "y": 160, "width": 56, "originX": 0, "originY": 0},
         {"name": "PipeRight", "id": 4, "_eid": "55859676", "x": 112, "y": 104, "width": 64, "height": 56, "originX": 0, "originY": 0},
         {"name": "PipeHorizontal", "id": 5, "_eid": "55841307", "x": 176, "y": 104, "width": 32, "originX": 0, "originY": 0},
         {"name": "SlopeRight", "id": 6, "_eid": "55824435", "x": 120, "y": 192, "width": 64, "height": 32, "originX": 0, "originY": 0},
@@ -35,7 +35,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"map": "", "checkpointName": ""}
+          "values": {"levelName": "", "checkpointName": ""}
         },
         {
           "name": "Checkpoint",
@@ -55,7 +55,7 @@
           "y": 192,
           "originX": 0,
           "originY": 0,
-          "values": {"map": "", "checkpointName": ""}
+          "values": {"levelName": "", "checkpointName": ""}
         },
         {
           "name": "Checkpoint",
@@ -67,8 +67,10 @@
           "originY": 12,
           "values": {"name": ""}
         },
-        {"name": "Player", "id": 17, "_eid": "55988047", "x": 256, "y": 112, "originX": 11, "originY": 27},
-        {"name": "ValuableBlue", "id": 18, "_eid": "55991906", "x": 192, "y": 104, "originX": 8, "originY": 14}
+        {"name": "Player", "id": 17, "_eid": "55988047", "x": 280, "y": 88, "originX": 11, "originY": 27},
+        {"name": "ValuableBlue", "id": 18, "_eid": "55991906", "x": 192, "y": 104, "originX": 8, "originY": 14},
+        {"name": "SlopeLeft", "id": 19, "_eid": "55845599", "x": 344, "y": 80, "width": 80, "height": 32, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 20, "_eid": "55823268", "x": 312, "y": 80, "width": 32, "height": 32, "originX": 0, "originY": 0}
       ]
     }
   ]

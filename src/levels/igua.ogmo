@@ -286,7 +286,7 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "map", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "levelName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "checkpointName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ],
       "texture": "preview-images/door.png",
@@ -327,7 +327,7 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "map", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "levelName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "checkpointName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ],
       "texture": "preview-images/gate.png",
