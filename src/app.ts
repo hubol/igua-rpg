@@ -2,9 +2,9 @@ import {startApplication} from "./utils/pixiUtils";
 import {Container, DisplayObject} from "pixi.js";
 import Ticker = PIXI.Ticker;
 
-export let app: IguaApplication;
+export let app: App;
 
-export function startIguaApplication()
+export function startApp()
 {
     const application = startApplication({ width: 256, height: 256, mode: "retro game", targetFps: 60 });
     const stage = new Container();
@@ -46,7 +46,7 @@ function createCamera(displayObject: DisplayObject)
     };
 }
 
-interface IguaApplication
+interface App
 {
     hudStage: Container;
     stage: Container;
