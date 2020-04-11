@@ -7,13 +7,19 @@ export let app: App;
 export function startApp()
 {
     const application = startApplication({ width: 256, height: 256, mode: "retro game", targetFps: 60 });
+    const terrainStage = new Container();
+
+    const terrainContainer = new Container();
+    const pipeStage = new Container();
     const stage = new Container();
-    application.stage.addChild(stage);
+    application.stage.addChild(terrainContainer, pipeStage, stage);
 
     app = {
         get hudStage() {
             return application.stage;
         },
+        terrainStage,
+        pipeStage,
         stage,
         get ticker() {
           return application.ticker;
@@ -24,6 +30,11 @@ export function startApp()
         },
         set backgroundColor(value) {
             application.renderer.backgroundColor = value;
+        },
+        set terrainFill(value) {
+            terrainContainer.removeChildren();
+            value.mask = terrainStage;
+            terrainContainer.addChild(value);
         }
     };
 }
@@ -49,10 +60,13 @@ function createCamera(displayObject: DisplayObject)
 interface App
 {
     hudStage: Container;
+    pipeStage: Container;
+    terrainStage: Container;
     stage: Container;
     ticker: Ticker;
     camera: Camera;
     backgroundColor: number;
+    terrainFill: DisplayObject;
 }
 
 interface Camera
