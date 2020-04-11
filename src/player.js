@@ -1,6 +1,5 @@
 import {Key} from "./utils/key";
-import {Sprite, Container, Texture} from "pixi.js";
-import {app} from "./index";
+import {Sprite, Container} from "pixi.js";
 import {push} from "./walls";
 import {approachLinear, lerp} from "./utils/math";
 import {subimageTextures} from "./utils/simpleSpritesheet";
@@ -11,6 +10,7 @@ import {
     CharacterFootFrontLeft, CharacterFootFrontRight,
     CharacterHead
 } from "./textures";
+import {app} from "./app";
 
 export function player()
 {

@@ -53,7 +53,6 @@ export function block(x0: number, y0: number, x1: number, y1: number)
 
     const graphics = new Graphics();
     graphics.beginFill(0xFF3300);
-    graphics.lineStyle(4, 0xffd900, 1);
     graphics.drawRect(xmin, ymin, width, height);
     graphics.endFill();
 
@@ -76,7 +75,6 @@ export function slope(x0: number, y0: number, x1: number, y1: number)
 
     const graphics = new Graphics();
     graphics.beginFill(0xFF3300);
-    graphics.lineStyle(4, 0xffd900, 1);
     graphics.moveTo(x0, y0);
     if (y0 > y1)
         graphics.lineTo(x1, y0);
