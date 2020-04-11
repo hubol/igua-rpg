@@ -44,6 +44,10 @@ export function startApp()
         get height() {
             return application.renderer.height;
         },
+        level: {
+            width: 300,
+            height: 800
+        }
     };
 }
 
@@ -78,6 +82,7 @@ interface App
     player: DisplayObject & any;
     width: number;
     height: number;
+    level: { width: number; height: number; }
 }
 
 interface Camera

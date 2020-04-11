@@ -11,7 +11,6 @@ import {
     CharacterHead
 } from "./textures";
 import {app} from "./app";
-import {session} from "./session";
 
 export function player()
 {
@@ -164,9 +163,9 @@ export function player()
                 hsp = 0;
                 player.hspeed = 0;
             }
-            else if (player.x > session.level.width - 20)
+            else if (player.x > app.level.width - 20)
             {
-                player.x = session.level.width - 20;
+                player.x = app.level.width - 20;
                 hsp = 0;
                 player.hspeed = 0;
             }
@@ -177,9 +176,9 @@ export function player()
                 vsp = Math.abs(vsp);
                 player.vspeed = Math.abs(player.vspeed);
             }
-            else if (player.y > session.level.height)
+            else if (player.y > app.level.height)
             {
-                player.y = session.level.height;
+                player.y = app.level.height;
                 vsp = -Math.abs(vsp);
                 player.vspeed = -Math.abs(player.vspeed);
             }
