@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+import {areRectanglesOverlapping} from "./math";
 
 // Move this Container by the given speed without touching any of the specified container(s). If a collision did not occur, the supplied speed will be modified with the remainder. Otherwise, the speed will have a length of 0.
 PIXI.Container.prototype.moveUntilCollides = function (speed, otherContainerOrContainers)
@@ -94,12 +95,4 @@ function collides(container, otherContainerOrContainers, offset)
     }
     const otherContainerBounds = otherContainerOrContainers.getBounds();
     return areRectanglesOverlapping(containerBounds, otherContainerBounds);
-}
-
-function areRectanglesOverlapping(a, b)
-{
-    return a.x + a.width > b.x
-        && a.x < b.x + b.width
-        && a.y + a.height > b.y
-        && a.y < b.y + b.height;
 }
