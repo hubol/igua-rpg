@@ -11,10 +11,12 @@ export let CharacterFootFrontLeft: PIXI.Texture = undefined as unknown as PIXI.T
 export let CharacterFootFrontRight: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterHead: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let HotTerrain: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let LeftPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LockedDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OpenDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OrangeValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Pipe: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let RightPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 
 
 export function loadTexturesAsync()
@@ -48,6 +50,9 @@ export function loadTexturesAsync()
     const HotTerrainPath = require("./images/hot terrain.png");
     loader.add(HotTerrainPath); 
 
+    const LeftPipeEndPath = require("./images/left pipe end.png");
+    loader.add(LeftPipeEndPath); 
+
     const LockedDoorPath = require("./images/locked door.png");
     loader.add(LockedDoorPath); 
 
@@ -59,6 +64,9 @@ export function loadTexturesAsync()
 
     const PipePath = require("./images/pipe.png");
     loader.add(PipePath); 
+
+    const RightPipeEndPath = require("./images/right pipe end.png");
+    loader.add(RightPipeEndPath); 
 
     
     return new Promise(resolve =>
@@ -73,10 +81,12 @@ export function loadTexturesAsync()
             CharacterFootFrontRight = resources[CharacterFootFrontRightPath]?.texture as PIXI.Texture;
             CharacterHead = resources[CharacterHeadPath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
+            LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
             LockedDoor = resources[LockedDoorPath]?.texture as PIXI.Texture;
             OpenDoor = resources[OpenDoorPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
+            RightPipeEnd = resources[RightPipeEndPath]?.texture as PIXI.Texture;
 
             resolve();
         });

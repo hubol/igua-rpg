@@ -1,7 +1,7 @@
 import {game} from "./game";
 import {block, pipe, slope} from "./walls";
-import {TilingSprite} from "pixi.js";
-import {HotTerrain} from "./textures";
+import {TilingSprite, Sprite} from "pixi.js";
+import {HotTerrain, LeftPipeEnd, RightPipeEnd} from "./textures";
 
 export function loadLevel(level: Ogmo.Level)
 {
@@ -39,6 +39,21 @@ export function loadLevel(level: Ogmo.Level)
         else if (entity.name === "PipeHorizontal")
         {
             game.pipeStage.addChild(pipe(entity.x, entity.y, entity.x + entity.width, entity.y));
+        }
+        else if (entity.name === "PipeRightEnd")
+        {
+            const sprite = Sprite.from(RightPipeEnd);
+            sprite.x = entity.x;
+            sprite.y = entity.y;
+            game.pipeStage.addChild(sprite);
+        }
+        else if (entity.name === "PipeLeftEnd")
+        {
+            const sprite = Sprite.from(LeftPipeEnd);
+            sprite.anchor.set(1, 0);
+            sprite.x = entity.x;
+            sprite.y = entity.y;
+            game.pipeStage.addChild(sprite);
         }
     }
 }

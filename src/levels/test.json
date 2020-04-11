@@ -70,7 +70,9 @@
         {"name": "Player", "id": 17, "_eid": "55988047", "x": 280, "y": 88, "originX": 11, "originY": 27},
         {"name": "ValuableBlue", "id": 18, "_eid": "55991906", "x": 192, "y": 104, "originX": 8, "originY": 14},
         {"name": "SlopeLeft", "id": 19, "_eid": "55845599", "x": 344, "y": 80, "width": 80, "height": 32, "originX": 0, "originY": 0},
-        {"name": "Block", "id": 20, "_eid": "55823268", "x": 312, "y": 80, "width": 32, "height": 32, "originX": 0, "originY": 0}
+        {"name": "Block", "id": 20, "_eid": "55823268", "x": 312, "y": 80, "width": 32, "height": 32, "originX": 0, "originY": 0},
+        {"name": "PipeRightEnd", "id": 21, "_eid": "63418353", "x": 208, "y": 104, "originX": 0, "originY": 0},
+        {"name": "PipeLeftEnd", "id": 22, "_eid": "63428932", "x": 72, "y": 160, "originX": 16, "originY": 0}
       ]
     }
   ]
