@@ -2,11 +2,11 @@ import {player} from "./player";
 import {block, pipe, slope} from "./walls";
 import {loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";
-import {app, startIguaApplication} from "./app";
+import {app, startApp} from "./app";
 
 async function startGame()
 {
-    startIguaApplication();
+    startApp();
 
     await loadTexturesAsync();
     await loadFontsAsync();
