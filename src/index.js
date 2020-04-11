@@ -1,17 +1,17 @@
-import {startApplication} from "./utils/pixiUtils";
 import {player} from "./player";
 import {block, pipe, slope} from "./walls";
 import {loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";
-
-export const app = startApplication({ width: 256, height: 256, mode: "retro game", targetFps: 60 });
+import {app, startIguaApplication} from "./app";
 
 async function startGame()
 {
     await loadTexturesAsync();
     await loadFontsAsync();
 
-    app.renderer.backgroundColor = 0x0000ff;
+    startIguaApplication();
+
+    app.backgroundColor = 0x0000ff;
     app.stage.addChild(
         slope(16, 192 + 16, 128, 256),
         slope(160, 160, 256, 96),
