@@ -10,7 +10,7 @@ import {
     CharacterFootFrontLeft, CharacterFootFrontRight,
     CharacterHead
 } from "./textures";
-import {app} from "./app";
+import {game} from "./game";
 
 export function player()
 {
@@ -163,9 +163,9 @@ export function player()
                 hsp = 0;
                 player.hspeed = 0;
             }
-            else if (player.x > app.level.width - 20)
+            else if (player.x > game.level.width - 20)
             {
-                player.x = app.level.width - 20;
+                player.x = game.level.width - 20;
                 hsp = 0;
                 player.hspeed = 0;
             }
@@ -176,9 +176,9 @@ export function player()
                 vsp = Math.abs(vsp);
                 player.vspeed = Math.abs(player.vspeed);
             }
-            else if (player.y > app.level.height)
+            else if (player.y > game.level.height)
             {
-                player.y = app.level.height;
+                player.y = game.level.height;
                 vsp = -Math.abs(vsp);
                 player.vspeed = -Math.abs(player.vspeed);
             }
@@ -213,8 +213,8 @@ export function player()
             player.coyote--;
     };
 
-    player.on('added', () => app.ticker.add(step));
-    player.on('removed', () => app.ticker.remove(step));
+    player.on('added', () => game.ticker.add(step));
+    player.on('removed', () => game.ticker.remove(step));
 
     return player;
 }

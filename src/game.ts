@@ -2,9 +2,9 @@ import {startApplication} from "./utils/pixiUtils";
 import {Container, DisplayObject} from "pixi.js";
 import Ticker = PIXI.Ticker;
 
-export let app: App;
+export let game: Game;
 
-export function startApp()
+export function startGame()
 {
     const application = startApplication({ width: 256, height: 256, mode: "retro game", targetFps: 60 });
     const terrainStage = new Container();
@@ -15,7 +15,7 @@ export function startApp()
     stage.addChild(terrainStage, terrainContainer, pipeStage);
     application.stage.addChild(stage);
 
-    app = {
+    game = {
         get hudStage() {
             return application.stage;
         },
@@ -69,7 +69,7 @@ function createCamera(displayObject: DisplayObject)
     };
 }
 
-interface App
+interface Game
 {
     hudStage: Container;
     pipeStage: Container;
