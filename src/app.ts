@@ -12,7 +12,8 @@ export function startApp()
     const terrainContainer = new Container();
     const pipeStage = new Container();
     const stage = new Container();
-    application.stage.addChild(terrainContainer, pipeStage, stage);
+    stage.addChild(terrainStage, terrainContainer, pipeStage);
+    application.stage.addChild(stage);
 
     app = {
         get hudStage() {
@@ -35,7 +36,14 @@ export function startApp()
             terrainContainer.removeChildren();
             value.mask = terrainStage;
             terrainContainer.addChild(value);
-        }
+        },
+        player: undefined,
+        get width() {
+            return application.renderer.width;
+        },
+        get height() {
+            return application.renderer.height;
+        },
     };
 }
 
@@ -52,7 +60,7 @@ function createCamera(displayObject: DisplayObject)
             displayObject.x = -value;
         },
         set y(value) {
-            displayObject.x = -value;
+            displayObject.y = -value;
         },
     };
 }
@@ -67,6 +75,9 @@ interface App
     camera: Camera;
     backgroundColor: number;
     terrainFill: DisplayObject;
+    player: DisplayObject & any;
+    width: number;
+    height: number;
 }
 
 interface Camera

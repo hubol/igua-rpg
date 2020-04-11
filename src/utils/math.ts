@@ -1,6 +1,15 @@
+import {Vector} from "../vector";
+
 export function lerp(a: number, b: number, factor: number)
 {
     return a * (1 - factor) + b * factor;
+}
+
+export function lerpVector(a: Vector, b: Vector, factor: number): Vector
+{
+    a.x = lerp(a.x, b.x, factor);
+    a.y = lerp(a.y, b.y, factor);
+    return a;
 }
 
 export function approachLinear(a: number, b: number, factor: number)

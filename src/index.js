@@ -4,6 +4,7 @@ import {HotTerrain, loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";
 import {app, startApp} from "./app";
 import { TilingSprite } from "pixi.js";
+import {stepPlayerCamera} from "./playerCamera";
 
 async function startGame()
 {
@@ -11,6 +12,9 @@ async function startGame()
 
     await loadTexturesAsync();
     await loadFontsAsync();
+
+    app.player = player();
+    app.ticker.add(stepPlayerCamera);
 
     app.backgroundColor = 0x0000ff;
 
@@ -29,6 +33,6 @@ async function startGame()
         pipe(256, 64, 64, 64),
         pipe(192, 64, 64, 192));
 
-    app.stage.addChild(player());
+    app.stage.addChild(app.player);
 }
 window.onload = startGame;
