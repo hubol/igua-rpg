@@ -1,3 +1,6 @@
+// noinspection ES6UnusedImports
+import * as _ from "./utils/arrayExtensions";
+
 import {player} from "./player";
 import {HotTerrain, loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";

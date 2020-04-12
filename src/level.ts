@@ -3,6 +3,12 @@ import {block, pipe, slope} from "./walls";
 import {TilingSprite, Sprite} from "pixi.js";
 import {HotTerrain, LeftPipeEnd, RightPipeEnd} from "./textures";
 
+export function unloadLevel()
+{
+    game.terrainStage.removeChildren();
+    game.pipeStage.removeChildren();
+}
+
 export function loadLevel(level: Ogmo.Level)
 {
     game.terrainFill = new TilingSprite(HotTerrain, level.width, level.height);

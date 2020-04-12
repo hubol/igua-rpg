@@ -1,4 +1,4 @@
-import {Graphics, SCALE_MODES, Matrix, SimpleMesh} from "pixi.js";
+import {Graphics, SCALE_MODES, SimpleMesh} from "pixi.js";
 import {distance, dot, normalize, perpendicular, Vector} from "./vector";
 import {Pipe} from "./textures";
 
@@ -62,9 +62,7 @@ export function block(x0: number, y0: number, x1: number, y1: number)
     const bottomWall = { x: xmin, y: ymax, forward: { x: 1, y: 0 }, normal: { x: 0, y: 1 }, length: width, isCeiling: true};
 
     graphics.on('added', () => walls.push(leftWall, rightWall, topWall, bottomWall));
-    graphics.on('removed', () => {
-        // TODO
-    });
+    graphics.on('removed', () => walls.remove(leftWall, rightWall, topWall, bottomWall));
 
     return graphics;
 }
@@ -93,9 +91,7 @@ export function slope(x0: number, y0: number, x1: number, y1: number)
     const sideWall = { x: sideWallX, y: Math.min(y0, y1), forward: { x: 0, y: 1 }, normal: { x: hasRightSideWall ? 1 : -1, y: 0 }, length: Math.abs(y0 - y1), isWall: true};
 
     graphics.on('added', () => walls.push(slopeWall, bottomWall, sideWall));
-    graphics.on('removed', () => {
-        // TODO
-    });
+    graphics.on('removed', () => walls.remove(slopeWall, bottomWall, sideWall));
 
     return graphics;
 }
@@ -115,9 +111,7 @@ export function pipe(x0: number, y0: number, x1: number, y1: number)
     const slopeWall = { x: x0, y: y0, forward, normal, length, isGround: true, isPipe: true };
 
     simpleMesh.on('added', () => walls.push(slopeWall));
-    simpleMesh.on('removed', () => {
-        // TODO
-    });
+    simpleMesh.on('removed', () => walls.remove(slopeWall));
 
     return simpleMesh;
 }
