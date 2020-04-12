@@ -11,6 +11,7 @@ export function unloadLevel()
 
 export function loadLevel(level: Ogmo.Level)
 {
+    game.backgroundColor = 0x0000ff;
     game.terrainFill = new TilingSprite(HotTerrain, level.width, level.height);
     game.level.width = level.width;
     game.level.height = level.height;
