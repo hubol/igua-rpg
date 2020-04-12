@@ -14,8 +14,7 @@ async function initialize()
 {
     startGame();
 
-    await loadTexturesAsync();
-    await loadFontsAsync();
+    await Promise.all([loadFontsAsync(), loadTexturesAsync()]);
 
     game.player = player();
     game.ticker.add(stepPlayerCamera);
