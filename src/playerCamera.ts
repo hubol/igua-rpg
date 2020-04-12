@@ -26,8 +26,22 @@ export function stepPlayerCamera()
     else if (game.player.y - y1 > 0)
         target.y = game.camera.y + game.player.y - y1;
 
+    clampCameraTarget();
+    lerpVector(game.camera, target, 0.33);
+}
+
+export function centerPlayerCamera()
+{
+    target.x = game.player.x - game.width / 2;
+    target.y = game.player.y - game.height / 2;
+    clampCameraTarget();
+
+    game.camera.x = target.x;
+    game.camera.y = target.y;
+}
+
+function clampCameraTarget()
+{
     target.x = Math.min(game.level.width - game.width, Math.max(target.x, 0));
     target.y = Math.min(game.level.height - game.height, Math.max(target.y, 0));
-
-    lerpVector(game.camera, target, 0.33);
 }
