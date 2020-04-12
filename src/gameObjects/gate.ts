@@ -9,7 +9,7 @@ export function gate(x, y, width, height, destination: { checkpointName, levelNa
     const bounds = { x, y, width, height };
 
     const step = () => {
-        if (areRectanglesOverlapping(game.player, bounds))
+        if (areRectanglesOverlapping(game.player.rectangle, bounds))
         {
             unloadLevel();
             loadLevel(require("../levels/right-test.json"));
