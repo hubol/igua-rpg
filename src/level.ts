@@ -4,6 +4,7 @@ import {Sprite} from "pixi.js";
 import {LeftPipeEnd, RightPipeEnd} from "./textures";
 import {applyLevelStyle} from "./style";
 import {gate} from "./gameObjects/gate";
+import {centerPlayerCamera} from "./playerCamera";
 
 export function unloadLevel()
 {
@@ -72,4 +73,6 @@ export function loadLevel(level: Ogmo.Level)
             game.terrainStage.addChild(gate(entity.x, entity.y, entity.width, entity.height, destination))
         }
     }
+
+    centerPlayerCamera();
 }
