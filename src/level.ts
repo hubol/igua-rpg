@@ -3,6 +3,7 @@ import {block, pipe, slope} from "./walls";
 import {Sprite} from "pixi.js";
 import {LeftPipeEnd, RightPipeEnd} from "./textures";
 import {applyLevelStyle} from "./style";
+import {gate} from "./gameObjects/gate";
 
 export function unloadLevel()
 {
@@ -61,6 +62,14 @@ export function loadLevel(level: Ogmo.Level)
             sprite.x = entity.x;
             sprite.y = entity.y;
             game.pipeStage.addChild(sprite);
+        }
+        else if (entity.name === "Gate")
+        {
+            const destination = {
+                levelName: entity.values.levelName,
+                checkpointName: entity.values.checkpointName,
+            };
+            game.terrainStage.addChild(gate(entity.x, entity.y, entity.width, entity.height, destination))
         }
     }
 }

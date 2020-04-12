@@ -1,5 +1,7 @@
 // noinspection ES6UnusedImports
 import * as _ from "./utils/arrayExtensions";
+// noinspection ES6UnusedImports
+import * as __ from "./utils/pixiExtensions";
 
 import {player} from "./player";
 import {loadTexturesAsync} from "./textures";

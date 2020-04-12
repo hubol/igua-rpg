@@ -11,7 +11,6 @@ import {
     CharacterHead
 } from "./textures";
 import {game} from "./game";
-import {unloadLevel} from "./level";
 
 export function player()
 {
@@ -143,9 +142,6 @@ export function player()
             else if (player.vspeed < 6)
                 player.vspeed -= 0.02;
         }
-
-        if (Key.justWentDown("Space"))
-            unloadLevel();
 
         if (!player.isOnGround)
             player.vspeed += 0.15;

@@ -42,11 +42,11 @@
           "name": "Checkpoint",
           "id": 12,
           "_eid": "55940370",
-          "x": 480,
+          "x": 456,
           "y": 160,
           "originX": 6,
           "originY": 12,
-          "values": {"name": ""}
+          "values": {"name": "FromRight"}
         },
         {
           "name": "Door",

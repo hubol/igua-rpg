@@ -1,26 +1,38 @@
-import * as PIXI from "pixi.js";
 import {areRectanglesOverlapping} from "./math";
+import {Vector} from "../vector";
+import * as PIXI from "pixi.js";
+
+declare global {
+    namespace PIXI {
+        export interface DisplayObject {
+            moveUntilCollides(speed: Vector, displayObjects: DisplayObject | DisplayObject[]);
+            collides(displayObjects: DisplayObject | DisplayObject[], offset?: Vector);
+            useLinearFiltering();
+            useNearestFiltering();
+        }
+    }
+}
 
 // Move this Container by the given speed without touching any of the specified container(s). If a collision did not occur, the supplied speed will be modified with the remainder. Otherwise, the speed will have a length of 0.
-PIXI.Container.prototype.moveUntilCollides = function (speed, otherContainerOrContainers)
+PIXI.DisplayObject.prototype.moveUntilCollides = function (speed, otherContainerOrContainers)
 {
     return moveUntilCollides(this, speed, otherContainerOrContainers);
 }
 
 // Test if this container collides with any of the specified containers taking into account the offset, if specified
-PIXI.Container.prototype.collides = function(otherContainerOrContainers, offset)
+PIXI.DisplayObject.prototype.collides = function(otherContainerOrContainers, offset)
 {
     return collides(this, otherContainerOrContainers, offset);
 }
 
 // Use linear filtering for this
-PIXI.Container.prototype.useLinearFiltering = function()
+PIXI.DisplayObject.prototype.useLinearFiltering = function()
 {
     useFiltering(this, PIXI.SCALE_MODES.LINEAR);
 }
 
 // Use nearest filtering for this
-PIXI.Container.prototype.useNearestFiltering = function()
+PIXI.DisplayObject.prototype.useNearestFiltering = function()
 {
     useFiltering(this, PIXI.SCALE_MODES.NEAREST);
 }
@@ -96,3 +108,5 @@ function collides(container, otherContainerOrContainers, offset)
     const otherContainerBounds = otherContainerOrContainers.getBounds();
     return areRectanglesOverlapping(containerBounds, otherContainerBounds);
 }
+
+export const noOneCares = 0;
