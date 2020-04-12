@@ -27,6 +27,6 @@ namespace Ogmo
         y: number;
         width: number;
         height: number;
-        values: object;
+        values: any;
     }
 }

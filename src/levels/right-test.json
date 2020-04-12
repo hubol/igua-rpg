@@ -1,0 +1,40 @@
+{
+  "ogmoVersion": "3.3.0",
+  "width": 528,
+  "height": 320,
+  "offsetX": 0,
+  "offsetY": 0,
+  "values": {"style": 1},
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 66,
+      "gridCellsY": 40,
+      "entities": [
+        {"name": "SlopeRight", "id": 0, "_eid": "55824435", "x": 272, "y": 160, "width": 96, "height": 32, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 1, "_eid": "55823268", "x": 184, "y": 192, "width": 184, "height": 128, "originX": 0, "originY": 0},
+        {"name": "SlopeRight", "id": 6, "_eid": "55824435", "x": 120, "y": 192, "width": 64, "height": 32, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 7, "_eid": "55823268", "x": 0, "y": 224, "width": 184, "height": 128, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 10, "_eid": "55823268", "x": 368, "y": 160, "width": 160, "height": 160, "originX": 0, "originY": 0},
+        {"name": "Player", "id": 17, "_eid": "55988047", "x": 80, "y": 224, "originX": 11, "originY": 27},
+        {
+          "name": "Gate",
+          "id": 23,
+          "_eid": "55920197",
+          "x": 0,
+          "y": 192,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "test", "checkpointName": "FromRight"}
+        }
+      ]
+    }
+  ]
+}
