@@ -5,6 +5,12 @@ namespace Ogmo
         width: number;
         height: number;
         layers: Layer[];
+        values: LevelValues;
+    }
+
+    export interface LevelValues
+    {
+        style: number;
     }
 
     interface Layer

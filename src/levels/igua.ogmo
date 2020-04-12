@@ -10,7 +10,9 @@
   "levelDefaultSize": {"x": 320, "y": 240},
   "levelMinSize": {"x": 128, "y": 128},
   "levelMaxSize": {"x": 4096, "y": 4096},
-  "levelValues": [],
+  "levelValues": [
+    {"name": "style", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100}
+  ],
   "defaultExportMode": ".json",
   "compactExport": false,
   "externalScript": "",

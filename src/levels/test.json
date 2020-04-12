@@ -4,6 +4,7 @@
   "height": 320,
   "offsetX": 0,
   "offsetY": 0,
+  "values": {"style": 0},
   "layers": [
     {
       "name": "Entities",
