@@ -32,7 +32,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "test", "checkpointName": "FromRight"}
+          "values": {"levelName": "Test", "checkpointName": "FromRight"}
         }
       ]
     }

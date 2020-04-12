@@ -9,6 +9,7 @@ import {loadFontsAsync} from "./fonts";
 import {game, startGame} from "./game";
 import {stepPlayerCamera} from "./playerCamera";
 import {loadLevel} from "./level";
+import {Test} from "./levels";
 
 async function initialize()
 {
@@ -19,7 +20,7 @@ async function initialize()
     game.player = player();
     game.ticker.add(stepPlayerCamera);
 
-    loadLevel(require("./levels/test.json"));
+    loadLevel(Test);
 
     game.stage.addChild(game.player);
 }
