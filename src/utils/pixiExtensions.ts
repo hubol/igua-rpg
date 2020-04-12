@@ -1,4 +1,4 @@
-import {areRectanglesOverlapping} from "./math";
+import {areRectanglesOverlapping, rectangle as createRectangle, normalizeRectangle} from "./math";
 import {Vector} from "../vector";
 import * as PIXI from "pixi.js";
 
@@ -9,9 +9,16 @@ declare global {
             collides(displayObjects: DisplayObject | DisplayObject[], offset?: Vector);
             useLinearFiltering();
             useNearestFiltering();
+            rectangle: Rectangle;
         }
     }
 }
+
+Object.defineProperty(PIXI.DisplayObject.prototype, "rectangle", {
+    get: function rectangle() {
+        return normalizeRectangle(createRectangle(this));
+    }
+});
 
 // Move this Container by the given speed without touching any of the specified container(s). If a collision did not occur, the supplied speed will be modified with the remainder. Otherwise, the speed will have a length of 0.
 PIXI.DisplayObject.prototype.moveUntilCollides = function (speed, otherContainerOrContainers)

@@ -29,6 +29,28 @@ export function areRectanglesOverlapping(a: Rectangle, b: Rectangle)
         && a.y < b.y + b.height;
 }
 
+export function normalizeRectangle(rectangle: Rectangle)
+{
+    if (rectangle.width < 0)
+    {
+        rectangle.x += rectangle.width;
+        rectangle.width *= -1;
+    }
+
+    if (rectangle.height < 0)
+    {
+        rectangle.y += rectangle.height;
+        rectangle.height *= -1;
+    }
+
+    return rectangle;
+}
+
+export function rectangle(rectangle: Rectangle)
+{
+    return { x: rectangle.x, y: rectangle.y, width: rectangle.width, height: rectangle.height };
+}
+
 interface Rectangle
 {
     x: number;
