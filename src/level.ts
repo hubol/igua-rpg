@@ -22,7 +22,7 @@ export function loadLevel(level: Ogmo.Level)
         if (entity.name === "Player")
         {
             game.player.x = entity.x;
-            game.player.y = entity.y - 27;
+            game.player.y = entity.y - 9;
         }
         else if (entity.name === "Block")
         {
