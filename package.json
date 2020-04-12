@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "browserslist": [ "last 31 Chrome versions" ],
+  "browserslist": [
+    "last 31 Chrome versions"
+  ],
   "scripts": {
-    "start": "concurrently \"generate-textures src/images src/textures.ts\" \"generate-howls assets-src/sound src/sound src/sounds.ts\" \"parcel src/index.html\"",
-    "build": "generate-howls assets-src/sound src/sound src/sounds.ts --build && generate-textures src/images src/textures.ts --build && parcel build --public-url ./ src/index.html"
+    "start": "concurrently \"generate-textures src/images src/textures.ts\" \"generate-howls assets-src/sound src/sound src/sounds.ts\" \"generate-json-exports src/levels src/levels.ts\" \"parcel src/index.html\"",
+    "build": "parcel build --public-url ./ src/index.html"
   },
   "author": "Hubol",
   "license": "ISC",
@@ -15,13 +17,13 @@
     "@types/webfontloader": "^1.6.29",
     "concurrently": "^5.1.0",
     "generate-howls": "^0.1.2",
+    "generate-json-exports": "^0.1.0",
     "generate-textures": "^0.1.0",
     "parcel-bundler": "^1.12.4",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "howler": "^2.1.3",
-    "images": "^3.0.2",
     "pixi.js": "^5.2.1",
     "webfontloader": "^1.6.28"
   }
