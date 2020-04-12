@@ -1,7 +1,8 @@
 import {game} from "./game";
 import {block, pipe, slope} from "./walls";
-import {TilingSprite, Sprite} from "pixi.js";
-import {HotTerrain, LeftPipeEnd, RightPipeEnd} from "./textures";
+import {Sprite} from "pixi.js";
+import {LeftPipeEnd, RightPipeEnd} from "./textures";
+import {applyLevelStyle} from "./style";
 
 export function unloadLevel()
 {
@@ -11,10 +12,9 @@ export function unloadLevel()
 
 export function loadLevel(level: Ogmo.Level)
 {
-    game.backgroundColor = 0x0000ff;
-    game.terrainFill = new TilingSprite(HotTerrain, level.width, level.height);
     game.level.width = level.width;
     game.level.height = level.height;
+    applyLevelStyle(level.values.style);
 
     for (const entity of level.layers[0].entities)
     {

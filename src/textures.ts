@@ -2,6 +2,7 @@ import * as PIXI from "pixi.js";
     
 // This file is generated. Do not touch.
 
+export let BlueGradient: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let BlueValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterCrest: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -17,11 +18,15 @@ export let OpenDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OrangeValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Pipe: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RightPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let RockCracks: PIXI.Texture = undefined as unknown as PIXI.Texture;
 
 
 export function loadTexturesAsync()
 {
     const loader = new PIXI.Loader();
+
+    const BlueGradientPath = require("./images/blue gradient.png");
+    loader.add(BlueGradientPath); 
 
     const BlueValuablePath = require("./images/blue valuable.png");
     loader.add(BlueValuablePath); 
@@ -68,10 +73,14 @@ export function loadTexturesAsync()
     const RightPipeEndPath = require("./images/right pipe end.png");
     loader.add(RightPipeEndPath); 
 
+    const RockCracksPath = require("./images/rock cracks.png");
+    loader.add(RockCracksPath); 
+
     
     return new Promise(resolve =>
     {
         loader.load((_, resources) => {
+            BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
             BlueValuable = resources[BlueValuablePath]?.texture as PIXI.Texture;
             CharacterBody = resources[CharacterBodyPath]?.texture as PIXI.Texture;
             CharacterCrest = resources[CharacterCrestPath]?.texture as PIXI.Texture;
@@ -87,6 +96,7 @@ export function loadTexturesAsync()
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
             RightPipeEnd = resources[RightPipeEndPath]?.texture as PIXI.Texture;
+            RockCracks = resources[RockCracksPath]?.texture as PIXI.Texture;
 
             resolve();
         });
