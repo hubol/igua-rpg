@@ -18,6 +18,9 @@ export function loadLevel(level: Ogmo.Level, checkpointName?: string)
     game.level.height = level.height;
     applyLevelStyle(level.values.style);
 
+    game.player.hspeed = 0;
+    game.player.vspeed = 0;
+
     const entities = level.layers[0].entities;
     for (const entity of entities)
     {
