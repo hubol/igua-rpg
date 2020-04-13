@@ -1,6 +1,7 @@
 declare global {
     interface Array<T> {
         remove(...T);
+        firstOrDefault(): T | undefined;
     }
 }
 
@@ -12,5 +13,11 @@ Array.prototype.remove = function(...args)
             this.splice(index, 1);
     });
 };
+
+Array.prototype.firstOrDefault = function () {
+    if (this.length === 0)
+        return undefined;
+    return this[0];
+}
 
 export const noOneCares = 0;

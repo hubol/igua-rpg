@@ -12,18 +12,18 @@ export function unloadLevel()
     game.pipeStage.removeChildren();
 }
 
-export function loadLevel(level: Ogmo.Level)
+export function loadLevel(level: Ogmo.Level, checkpointName?: string)
 {
     game.level.width = level.width;
     game.level.height = level.height;
     applyLevelStyle(level.values.style);
 
-    for (const entity of level.layers[0].entities)
+    const entities = level.layers[0].entities;
+    for (const entity of entities)
     {
         if (entity.name === "Player")
         {
-            game.player.x = entity.x;
-            game.player.y = entity.y - 9;
+            applyPlayerPosition(entity);
         }
         else if (entity.name === "Block")
         {
@@ -74,5 +74,17 @@ export function loadLevel(level: Ogmo.Level)
         }
     }
 
+    applyPlayerPosition(entities.filter(x => x.name === "Checkpoint" && checkpointName === x.values.name).firstOrDefault());
+
     centerPlayerCamera();
+}
+
+function applyPlayerPosition(entity)
+{
+    if (!entity)
+        return;
+
+    console.log(entity);
+    game.player.x = entity.x;
+    game.player.y = entity.y - 9;
 }
