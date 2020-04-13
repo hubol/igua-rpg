@@ -14,7 +14,7 @@ export function gate(x, y, width, height, destination: { checkpointName, levelNa
         if (areRectanglesOverlapping(game.player.rectangle, bounds))
         {
             unloadLevel();
-            loadLevel(getLevel(destination.levelName));
+            loadLevel(getLevel(destination.levelName), destination.checkpointName);
         }
     };
 
