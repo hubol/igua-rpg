@@ -1,6 +1,6 @@
 import {Container} from "pixi.js";
 import {game} from "../game";
-import {loadLevel, unloadLevel} from "../level";
+import {gotoLevel, loadLevel, unloadLevel} from "../level";
 import {areRectanglesOverlapping} from "../utils/math";
 import * as levels from "../levels";
 import {Test} from "../levels";
@@ -13,8 +13,7 @@ export function gate(x, y, width, height, destination: { checkpointName, levelNa
     const step = () => {
         if (areRectanglesOverlapping(game.player.rectangle, bounds))
         {
-            unloadLevel();
-            loadLevel(getLevel(destination.levelName), destination.checkpointName);
+            gotoLevel(getLevel(destination.levelName), destination.checkpointName);
         }
     };
 

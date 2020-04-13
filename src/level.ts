@@ -5,6 +5,16 @@ import {LeftPipeEnd, RightPipeEnd} from "./textures";
 import {applyLevelStyle} from "./style";
 import {gate} from "./gameObjects/gate";
 import {centerPlayerCamera} from "./playerCamera";
+import {sleep} from "./utils/sleep";
+
+export async function gotoLevel(level: Ogmo.Level, checkpointName?: string)
+{
+    game.ticker.stop();
+    await sleep(500);
+    unloadLevel();
+    loadLevel(level, checkpointName);
+    game.ticker.start();
+}
 
 export function unloadLevel()
 {
@@ -87,7 +97,6 @@ function applyPlayerPosition(entity)
     if (!entity)
         return;
 
-    console.log(entity);
     game.player.x = entity.x;
     game.player.y = entity.y - 9;
 }
