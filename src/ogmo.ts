@@ -23,6 +23,7 @@ namespace Ogmo
     {
         name: string;
         id: number;
+        _eid: string;
         x: number;
         y: number;
         width: number;

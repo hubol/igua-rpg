@@ -456,7 +456,7 @@
       "name": "ValuableOrange",
       "limit": -1,
       "size": {"x": 16, "y": 16},
-      "origin": {"x": 0, "y": 0},
+      "origin": {"x": 8, "y": 14},
       "originAnchored": true,
       "shape": {
         "label": "Rectangle",
