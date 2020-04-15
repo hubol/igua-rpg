@@ -22,6 +22,7 @@ export function unloadLevel()
 {
     game.terrainStage.removeChildren();
     game.pipeStage.removeChildren();
+    game.gameObjectStage.removeChildren();
 }
 
 export function loadLevel(level: Ogmo.Level, checkpointName?: string)
@@ -40,7 +41,7 @@ export function loadLevel(level: Ogmo.Level, checkpointName?: string)
         {
             const uid = entity._eid;
             if (!progress.gotLevelValuable.has(uid))
-                game.stage.addChild(valuable(entity.x, entity.y, uid, entity.name));
+                game.gameObjectStage.addChild(valuable(entity.x, entity.y, uid, entity.name));
         }
         else if (entity.name === "Player")
         {
@@ -91,7 +92,7 @@ export function loadLevel(level: Ogmo.Level, checkpointName?: string)
                 levelName: entity.values.levelName,
                 checkpointName: entity.values.checkpointName,
             };
-            game.terrainStage.addChild(gate(entity.x, entity.y, entity.width, entity.height, destination))
+            game.gameObjectStage.addChild(gate(entity.x, entity.y, entity.width, entity.height, destination));
         }
     }
 

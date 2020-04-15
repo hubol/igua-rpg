@@ -14,8 +14,9 @@ export function startGame()
 
     const terrainContainer = new Container();
     const pipeStage = new Container();
+    const gameObjectStage = new Container();
     const stage = new Container();
-    stage.addChild(pipeStage, terrainStage, terrainContainer);
+    stage.addChild(pipeStage, terrainStage, terrainContainer, gameObjectStage);
     application.stage.addChild(stage);
 
     game = {
@@ -24,6 +25,7 @@ export function startGame()
         },
         terrainStage,
         pipeStage,
+        gameObjectStage,
         stage,
         get ticker() {
           return application.ticker;
@@ -77,6 +79,7 @@ interface Game
     hudStage: Container;
     pipeStage: Container;
     terrainStage: Container;
+    gameObjectStage: Container;
     stage: Container;
     ticker: Ticker;
     camera: Camera;
