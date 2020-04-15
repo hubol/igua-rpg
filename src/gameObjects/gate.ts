@@ -4,6 +4,7 @@ import {gotoLevel} from "../level";
 import {areRectanglesOverlapping} from "../utils/math";
 import * as levels from "../levels";
 import {Test} from "../levels";
+import {EscapeTickerAndExecute} from "../iguaTicker";
 
 export function gate(x, y, width, height, destination: { checkpointName, levelName })
 {
@@ -14,7 +15,8 @@ export function gate(x, y, width, height, destination: { checkpointName, levelNa
     return container.withStep(() => {
         if (areRectanglesOverlapping(game.player.rectangle, bounds))
         {
-            gotoLevel(getLevel(destination.levelName), destination.checkpointName);
+            throw new EscapeTickerAndExecute(
+                () => gotoLevel(getLevel(destination.levelName), destination.checkpointName));
         }
     });
 }
