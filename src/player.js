@@ -4,10 +4,8 @@ import {push} from "./walls";
 import {approachLinear, lerp} from "./utils/math";
 import {subimageTextures} from "./utils/simpleSpritesheet";
 import {
-    CharacterBody, CharacterCrest,
-    CharacterFootBackLeft,
-    CharacterFootBackRight,
-    CharacterFootFrontLeft, CharacterFootFrontRight,
+    CharacterBody, CharacterCrest, CharacterFoot,
+    CharacterFootDark,
     CharacterHead
 } from "./textures";
 import {game} from "./game";
@@ -16,10 +14,16 @@ export function player()
 {
     const bodySprite = Sprite.from(CharacterBody);
     bodySprite.y = 5;
-    const backLeftFoot = Sprite.from(CharacterFootBackLeft);
-    const backRightFoot = Sprite.from(CharacterFootBackRight);
-    const frontLeftFoot = Sprite.from(CharacterFootFrontLeft);
-    const frontRightFoot = Sprite.from(CharacterFootFrontRight);
+
+    const backLeftFoot = Sprite.from(CharacterFootDark);
+    backLeftFoot.pivot.set(-6, -21);
+    const frontLeftFoot = Sprite.from(CharacterFootDark);
+    frontLeftFoot.pivot.set(-15, -21);
+
+    const backRightFoot = Sprite.from(CharacterFoot);
+    backRightFoot.pivot.set(-3, -21);
+    const frontRightFoot = Sprite.from(CharacterFoot);
+    frontRightFoot.pivot.set(-12, -21);
 
     const crest = Sprite.from(CharacterCrest);
     crest.pivot.set(3, 5);

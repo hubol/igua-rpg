@@ -6,10 +6,8 @@ export let BlueGradient: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let BlueValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterCrest: PIXI.Texture = undefined as unknown as PIXI.Texture;
-export let CharacterFootBackLeft: PIXI.Texture = undefined as unknown as PIXI.Texture;
-export let CharacterFootBackRight: PIXI.Texture = undefined as unknown as PIXI.Texture;
-export let CharacterFootFrontLeft: PIXI.Texture = undefined as unknown as PIXI.Texture;
-export let CharacterFootFrontRight: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CharacterFootDark: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CharacterFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterHead: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let HotTerrain: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -37,17 +35,11 @@ export function loadTexturesAsync()
     const CharacterCrestPath = require("./images/character/crest.png");
     loader.add(CharacterCrestPath); 
 
-    const CharacterFootBackLeftPath = require("./images/character/foot back left.png");
-    loader.add(CharacterFootBackLeftPath); 
+    const CharacterFootDarkPath = require("./images/character/foot dark.png");
+    loader.add(CharacterFootDarkPath); 
 
-    const CharacterFootBackRightPath = require("./images/character/foot back right.png");
-    loader.add(CharacterFootBackRightPath); 
-
-    const CharacterFootFrontLeftPath = require("./images/character/foot front left.png");
-    loader.add(CharacterFootFrontLeftPath); 
-
-    const CharacterFootFrontRightPath = require("./images/character/foot front right.png");
-    loader.add(CharacterFootFrontRightPath); 
+    const CharacterFootPath = require("./images/character/foot.png");
+    loader.add(CharacterFootPath); 
 
     const CharacterHeadPath = require("./images/character/head.png");
     loader.add(CharacterHeadPath); 
@@ -84,10 +76,8 @@ export function loadTexturesAsync()
             BlueValuable = resources[BlueValuablePath]?.texture as PIXI.Texture;
             CharacterBody = resources[CharacterBodyPath]?.texture as PIXI.Texture;
             CharacterCrest = resources[CharacterCrestPath]?.texture as PIXI.Texture;
-            CharacterFootBackLeft = resources[CharacterFootBackLeftPath]?.texture as PIXI.Texture;
-            CharacterFootBackRight = resources[CharacterFootBackRightPath]?.texture as PIXI.Texture;
-            CharacterFootFrontLeft = resources[CharacterFootFrontLeftPath]?.texture as PIXI.Texture;
-            CharacterFootFrontRight = resources[CharacterFootFrontRightPath]?.texture as PIXI.Texture;
+            CharacterFootDark = resources[CharacterFootDarkPath]?.texture as PIXI.Texture;
+            CharacterFoot = resources[CharacterFootPath]?.texture as PIXI.Texture;
             CharacterHead = resources[CharacterHeadPath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
