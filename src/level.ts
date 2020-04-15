@@ -6,6 +6,8 @@ import {applyLevelStyle} from "./style";
 import {gate} from "./gameObjects/gate";
 import {centerPlayerCamera} from "./playerCamera";
 import {sleep} from "./utils/sleep";
+import {valuable} from "./gameObjects/valuable";
+import {progress} from "./progress";
 
 export async function gotoLevel(level: Ogmo.Level, checkpointName?: string)
 {
@@ -34,7 +36,13 @@ export function loadLevel(level: Ogmo.Level, checkpointName?: string)
     const entities = level.layers[0].entities;
     for (const entity of entities)
     {
-        if (entity.name === "Player")
+        if (entity.name === "ValuableOrange" || entity.name === "ValuableBlue")
+        {
+            const uid = entity._eid;
+            if (!progress.gotLevelValuable.has(uid))
+                game.stage.addChild(valuable(entity.x, entity.y, uid, entity.name));
+        }
+        else if (entity.name === "Player")
         {
             applyPlayerPosition(entity);
         }
