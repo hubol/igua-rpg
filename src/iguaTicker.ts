@@ -1,5 +1,14 @@
 import {Ticker, settings} from "pixi.js";
 
+export class EscapeTickerAndExecute
+{
+    public readonly execute: () => void;
+
+    constructor(execute: () => void) {
+        this.execute = execute;
+    }
+}
+
 export class IguaTicker extends Ticker
 {
     update(currentTime?: number): void {
@@ -9,6 +18,10 @@ export class IguaTicker extends Ticker
         }
         catch (e)
         {
+            if (e instanceof EscapeTickerAndExecute) {
+                e.execute();
+                return;
+            }
             console.error(`Unhandled error in IguaTicker.update: ${e}`);
         }
     }
@@ -81,6 +94,8 @@ export class IguaTicker extends Ticker
                 }
                 catch (e)
                 {
+                    if (e instanceof EscapeTickerAndExecute)
+                        throw e;
                     console.error(`Unhandled error while emitting listener`, listener, e);
                     listener = listener.next;
                 }
