@@ -6,13 +6,14 @@ import * as __ from "./utils/pixiExtensions";
 import {loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";
 import {prepareGame} from "./igua/game";
-import {loadSoundsAsync} from "./loadSounds";
+import {loadHowlsAsync} from "./utils/loadHowls";
+import * as exportedSounds from "./sounds";
 
 async function initialize()
 {
     prepareGame();
-
-    await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadSoundsAsync()]);
+    const howls = Object.values(exportedSounds);
+    await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
     require("./startGame").startGame();
 }
 window.onload = initialize;
