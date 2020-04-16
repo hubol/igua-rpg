@@ -1,11 +1,10 @@
 import {startApplication} from "./utils/pixiUtils";
-import {Container, DisplayObject} from "pixi.js";
-import Ticker = PIXI.Ticker;
+import {Container, DisplayObject, Ticker} from "pixi.js";
 import {IguaTicker} from "./iguaTicker";
 
 export let game: Game;
 
-export function startGame()
+export function prepareGame()
 {
     const application = startApplication({ width: 256, height: 256, mode: "retro game", targetFps: 60 });
     application.ticker = new IguaTicker();
