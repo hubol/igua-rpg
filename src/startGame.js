@@ -1,7 +1,7 @@
-import {player} from "./player";
-import {game} from "./game";
-import {stepPlayerCamera} from "./playerCamera";
-import {loadLevel} from "./level";
+import {player} from "./gameObjects/player";
+import {game} from "./igua/game";
+import {stepPlayerCamera} from "./igua/playerCamera";
+import {loadLevel} from "./igua/level";
 import {Test} from "./levels";
 
 export function startGame()

@@ -1,7 +1,7 @@
 import {areRectanglesOverlapping, rectangle as createRectangle, normalizeRectangle} from "./math";
-import {Vector} from "../vector";
+import {Vector} from "./vector";
 import * as PIXI from "pixi.js";
-import {game} from "../game";
+import {game} from "../igua/game";
 
 declare global {
     namespace PIXI {

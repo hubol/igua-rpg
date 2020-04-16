@@ -1,6 +1,6 @@
-import {startApplication} from "./utils/pixiUtils";
+import {startApplication} from "../utils/pixiUtils";
 import {Container, DisplayObject, Ticker} from "pixi.js";
-import {IguaTicker} from "./iguaTicker";
+import {IguaTicker} from "../utils/iguaTicker";
 
 export let game: Game;
 

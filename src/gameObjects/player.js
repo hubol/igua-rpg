@@ -1,14 +1,14 @@
-import {Key} from "./utils/key";
+import {Key} from "../utils/key";
 import {Sprite, Container} from "pixi.js";
 import {push} from "./walls";
-import {approachLinear, lerp} from "./utils/math";
-import {subimageTextures} from "./utils/simpleSpritesheet";
+import {approachLinear, lerp} from "../utils/math";
+import {subimageTextures} from "../utils/simpleSpritesheet";
 import {
     CharacterBody, CharacterCrest, CharacterFoot,
     CharacterFootDark,
     CharacterHead
-} from "./textures";
-import {game} from "./game";
+} from "../textures";
+import {game} from "../igua/game";
 
 const headTextures = subimageTextures(CharacterHead, 4);
 

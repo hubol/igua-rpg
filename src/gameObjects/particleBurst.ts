@@ -1,6 +1,6 @@
 import {subimageTextures} from "../utils/simpleSpritesheet";
 import {Burst} from "../textures";
-import {game} from "../game";
+import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 
 const burstTextures = subimageTextures(Burst, 4);

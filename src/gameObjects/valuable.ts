@@ -1,7 +1,7 @@
 import { Sprite } from "pixi.js";
 import {BlueValuable, OrangeValuable} from "../textures";
-import {game} from "../game";
-import {progress} from "../progress";
+import {game} from "../igua/game";
+import {progress} from "../igua/progress";
 import {particleBurst} from "./particleBurst";
 
 type ValuableType = "ValuableBlue" | "ValuableOrange";

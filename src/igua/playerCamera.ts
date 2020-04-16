@@ -1,6 +1,6 @@
 import {session} from "./session";
 import {game} from "./game";
-import {lerpVector} from "./utils/math";
+import {lerpVector} from "../utils/math";
 
 let target = { x: 0, y: 0 };
 

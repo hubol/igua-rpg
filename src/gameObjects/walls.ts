@@ -1,6 +1,6 @@
 import {Graphics, SCALE_MODES, SimpleMesh} from "pixi.js";
-import {distance, dot, normalize, perpendicular, Vector} from "./vector";
-import {Pipe} from "./textures";
+import {distance, dot, normalize, perpendicular, Vector} from "../utils/vector";
+import {Pipe} from "../textures";
 
 const walls: Wall[] = [];
 
