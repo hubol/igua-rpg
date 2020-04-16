@@ -1,12 +1,12 @@
 import {game} from "./game";
-import {block, pipe, slope} from "./walls";
+import {block, pipe, slope} from "../gameObjects/walls";
 import {Sprite} from "pixi.js";
-import {LeftPipeEnd, RightPipeEnd} from "./textures";
+import {LeftPipeEnd, RightPipeEnd} from "../textures";
 import {applyLevelStyle} from "./style";
-import {gate} from "./gameObjects/gate";
+import {gate} from "../gameObjects/gate";
 import {centerPlayerCamera} from "./playerCamera";
-import {sleep} from "./utils/sleep";
-import {valuable} from "./gameObjects/valuable";
+import {sleep} from "../utils/sleep";
+import {valuable} from "../gameObjects/valuable";
 import {progress} from "./progress";
 
 export async function gotoLevel(level: Ogmo.Level, checkpointName?: string)

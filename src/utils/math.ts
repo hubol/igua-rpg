@@ -1,4 +1,4 @@
-import {Vector} from "../vector";
+import {Vector} from "./vector";
 
 export function lerp(a: number, b: number, factor: number)
 {

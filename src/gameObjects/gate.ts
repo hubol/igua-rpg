@@ -1,10 +1,10 @@
 import {Container} from "pixi.js";
-import {game} from "../game";
-import {gotoLevel} from "../level";
+import {game} from "../igua/game";
+import {gotoLevel} from "../igua/level";
 import {areRectanglesOverlapping} from "../utils/math";
 import * as levels from "../levels";
 import {Test} from "../levels";
-import {EscapeTickerAndExecute} from "../iguaTicker";
+import {EscapeTickerAndExecute} from "../utils/iguaTicker";
 
 export function gate(x, y, width, height, destination: { checkpointName, levelName })
 {

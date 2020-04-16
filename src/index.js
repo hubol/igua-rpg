@@ -5,7 +5,7 @@ import * as __ from "./utils/pixiExtensions";
 
 import {loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";
-import {prepareGame} from "./game";
+import {prepareGame} from "./igua/game";
 import {loadSoundsAsync} from "./loadSounds";
 
 async function initialize()
