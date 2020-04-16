@@ -2,6 +2,7 @@ import { Sprite } from "pixi.js";
 import {BlueValuable, OrangeValuable} from "../textures";
 import {game} from "../game";
 import {progress} from "../progress";
+import {particleBurst} from "./particleBurst";
 
 type ValuableType = "ValuableBlue" | "ValuableOrange";
 
@@ -14,6 +15,7 @@ export function valuable(x, y, uid, type: ValuableType)
     return sprite.withStep(() => {
         if (game.player.collides(sprite))
         {
+            particleBurst((game.player.x + sprite.x) / 2, (game.player.y + sprite.y) / 2 - 7, 0xffffff)
             progress.gotLevelValuable.add(uid);
             progress.valuables += getValue(type);
             sprite.destroy();
