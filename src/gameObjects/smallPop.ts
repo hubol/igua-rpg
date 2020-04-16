@@ -5,12 +5,10 @@ import {Sprite} from "pixi.js";
 
 const burstTextures = subimageTextures(Burst, 4);
 
-export function particleBurst(x, y, tint, container = game.gameObjectStage)
+export function smallPop(container = game.gameObjectStage)
 {
     const sprite = new Sprite(burstTextures[0]);
-    sprite.position.set(x, y);
     sprite.anchor.set(0.5, 0.5);
-    sprite.tint = tint;
 
     let life = 0;
     sprite.withStep(() => {
@@ -21,4 +19,5 @@ export function particleBurst(x, y, tint, container = game.gameObjectStage)
             sprite.texture = burstTextures[Math.floor(life * burstTextures.length)];
     });
     container.addChild(sprite);
+    return sprite;
 }

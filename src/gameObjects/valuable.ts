@@ -2,7 +2,7 @@ import { Sprite } from "pixi.js";
 import {BlueValuable, OrangeValuable} from "../textures";
 import {game} from "../igua/game";
 import {progress} from "../igua/progress";
-import {particleBurst} from "./particleBurst";
+import {smallPop} from "./smallPop";
 
 type ValuableType = "ValuableBlue" | "ValuableOrange";
 
@@ -15,7 +15,9 @@ export function valuable(x, y, uid, type: ValuableType)
     return sprite.withStep(() => {
         if (game.player.collides(sprite))
         {
-            particleBurst((game.player.x + sprite.x) / 2, (game.player.y + sprite.y) / 2 - 7, 0xffffff)
+            const particle = smallPop();
+            particle.position.set(sprite.x, sprite.y - 7);
+
             progress.gotLevelValuable.add(uid);
             progress.valuables += getValue(type);
             sprite.destroy();
