@@ -4,6 +4,7 @@ import * as PIXI from "pixi.js";
 
 export let BlueGradient: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let BlueValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let Burst: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterCrest: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterFootDark: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -28,6 +29,9 @@ export function loadTexturesAsync()
 
     const BlueValuablePath = require("./images/blue valuable.png");
     loader.add(BlueValuablePath); 
+
+    const BurstPath = require("./images/burst.png");
+    loader.add(BurstPath); 
 
     const CharacterBodyPath = require("./images/character/body.png");
     loader.add(CharacterBodyPath); 
@@ -74,6 +78,7 @@ export function loadTexturesAsync()
         loader.load((_, resources) => {
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
             BlueValuable = resources[BlueValuablePath]?.texture as PIXI.Texture;
+            Burst = resources[BurstPath]?.texture as PIXI.Texture;
             CharacterBody = resources[CharacterBodyPath]?.texture as PIXI.Texture;
             CharacterCrest = resources[CharacterCrestPath]?.texture as PIXI.Texture;
             CharacterFootDark = resources[CharacterFootDarkPath]?.texture as PIXI.Texture;
