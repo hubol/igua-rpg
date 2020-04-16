@@ -10,12 +10,13 @@ import {game, startGame} from "./game";
 import {stepPlayerCamera} from "./playerCamera";
 import {loadLevel} from "./level";
 import {Test} from "./levels";
+import {loadSoundsAsync} from "./loadSounds";
 
 async function initialize()
 {
     startGame();
 
-    await Promise.all([loadFontsAsync(), loadTexturesAsync()]);
+    await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadSoundsAsync()]);
 
     game.player = player();
     game.ticker.add(stepPlayerCamera);
