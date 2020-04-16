@@ -1,19 +1,16 @@
-// noinspection ES6UnusedImports
-import * as _ from "./utils/arrayExtensions";
-// noinspection ES6UnusedImports
-import * as __ from "./utils/pixiExtensions";
-
 import {loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";
-import {prepareGame} from "./igua/game";
 import {loadHowlsAsync} from "./utils/loadHowls";
 import * as exportedSounds from "./sounds";
+import * as PIXI from "pixi.js";
 
 async function initialize()
 {
-    prepareGame();
+    PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
     const howls = Object.values(exportedSounds);
     await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
-    require("./startGame").startGame();
+    require("./utils/arrayExtensions");
+    require("./utils/pixiExtensions");
+    require("./igua/game").startGame();
 }
 window.onload = initialize;
