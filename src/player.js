@@ -10,6 +10,8 @@ import {
 } from "./textures";
 import {game} from "./game";
 
+const headTextures = subimageTextures(CharacterHead, 4);
+
 export function player()
 {
     const bodySprite = Sprite.from(CharacterBody);
@@ -28,7 +30,6 @@ export function player()
     const crest = Sprite.from(CharacterCrest);
     crest.pivot.set(3, 5);
 
-    const headTextures = subimageTextures(CharacterHead, 4);
     const head = new Container();
     head.pivot.set(-15, -5);
 

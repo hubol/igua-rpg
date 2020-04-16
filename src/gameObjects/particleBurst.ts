@@ -3,10 +3,10 @@ import {Burst} from "../textures";
 import {game} from "../game";
 import {Sprite} from "pixi.js";
 
+const burstTextures = subimageTextures(Burst, 4);
+
 export function particleBurst(x, y, tint, container = game.gameObjectStage)
 {
-    const burstTextures = subimageTextures(Burst, 4);
-
     const sprite = new Sprite(burstTextures[0]);
     sprite.position.set(x, y);
     sprite.anchor.set(0.5, 0.5);
