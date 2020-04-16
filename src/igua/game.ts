@@ -1,12 +1,16 @@
 import {startApplication} from "../utils/pixiUtils";
 import {Container, DisplayObject, Ticker} from "pixi.js";
 import {IguaTicker} from "../utils/iguaTicker";
+import {stepPlayerCamera} from "./playerCamera";
+import {loadLevel} from "./level";
+import {Test} from "../levels";
+import {player} from "../gameObjects/player";
 
 export let game: Game;
 
-export function prepareGame()
+export function startGame()
 {
-    const application = startApplication({ width: 256, height: 256, mode: "retro game", targetFps: 60 });
+    const application = startApplication({ width: 256, height: 256, targetFps: 60 });
     application.ticker = new IguaTicker();
     application.ticker.autoStart = true;
     const terrainStage = new Container();
@@ -53,6 +57,13 @@ export function prepareGame()
             height: 800
         }
     };
+
+    game.player = player();
+    game.ticker.add(stepPlayerCamera);
+
+    loadLevel(Test as Ogmo.Level);
+
+    game.stage.addChild(game.player);
 }
 
 function createCamera(displayObject: DisplayObject)

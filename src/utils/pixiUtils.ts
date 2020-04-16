@@ -5,9 +5,6 @@ import Container = PIXI.Container;
 
 export function startApplication(options)
 {
-    if (options.mode === 'retro game')
-        PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-
     const app = createApplication(options);
 
     if (options.targetFps)
