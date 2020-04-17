@@ -4,7 +4,7 @@ import {push} from "./walls";
 import {subimageTextures} from "../utils/simpleSpritesheet";
 import {
     CharacterBody, CharacterCrest, CharacterEyes, CharacterFoot,
-    CharacterFootDark, CharacterHead, CharacterMouthV
+    CharacterHead, CharacterMouthV
 } from "../textures";
 import {game} from "../igua/game";
 import {iguanaPuppet} from "../igua/iguanaPuppet";
@@ -16,9 +16,11 @@ function playerPuppet()
     const body = Sprite.from(CharacterBody);
     body.y = 5;
 
-    const backLeftFoot = Sprite.from(CharacterFootDark);
+    const backLeftFoot = Sprite.from(CharacterFoot);
+    backLeftFoot.tint = 0xC7D7D7;
     backLeftFoot.pivot.set(-6, -21);
-    const frontLeftFoot = Sprite.from(CharacterFootDark);
+    const frontLeftFoot = Sprite.from(CharacterFoot);
+    frontLeftFoot.tint = 0xC7D7D7;
     frontLeftFoot.pivot.set(-15, -21);
 
     const backRightFoot = Sprite.from(CharacterFoot);
