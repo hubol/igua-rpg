@@ -1,8 +1,6 @@
-import {Container, Sprite} from "pixi.js";
-import {CharacterHead} from "../textures";
+import {Container} from "pixi.js";
 import {approachLinear, lerp} from "../utils/math";
 import {DisplayObject} from "pixi.js";
-import {subimageTextures} from "../utils/simpleSpritesheet";
 
 interface IguanaPuppetArgs
 {
@@ -11,25 +9,18 @@ interface IguanaPuppetArgs
     backRightFoot: DisplayObject;
     frontLeftFoot: DisplayObject;
     frontRightFoot: DisplayObject;
+    eyes: DisplayObject;
     crest: DisplayObject;
-    doesntBlink?: true;
 }
 
 export type IguanaPuppet = Container & { isDucking: boolean, hspeed: number, vspeed: number };
-
-const headTextures = subimageTextures(CharacterHead, 4);
 
 export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
 {
     const head = new Container();
     head.pivot.set(-15, -5);
 
-    const headSprite = Sprite.from(headTextures[0]) as any;
-    headSprite.isClosingEyes = false;
-    headSprite.closedEyesUnit = 0;
-    headSprite.ticksUntilBlink = 60;
-
-    head.addChild(args.crest, headSprite);
+    head.addChild(args.crest, args.eyes);
 
     const body = new Container();
     body.addChild(args.body, head);
@@ -42,18 +33,28 @@ export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
     player.hspeed = 0;
     player.vspeed = 0;
 
-    if (!args.doesntBlink)
+    const anyEyes = args.eyes as any;
+    const canBlink = anyEyes.textures !== undefined && anyEyes.texture !== undefined;
+
+    if (canBlink)
+    {
+        let isClosingEyes = false;
+        let closedEyesUnit = 0;
+        let ticksUntilBlink = 60;
+
         player.withStep(() => {
-            if (headSprite.ticksUntilBlink-- <= 0) {
-                headSprite.ticksUntilBlink = 120 + Math.random() * 120;
-                headSprite.isClosingEyes = true;
+            if (ticksUntilBlink-- <= 0) {
+                ticksUntilBlink = 120 + Math.random() * 120;
+                isClosingEyes = true;
             }
 
-            headSprite.closedEyesUnit = approachLinear(headSprite.closedEyesUnit, headSprite.isClosingEyes ? 1.3 : 0, 0.3);
-            if (headSprite.closedEyesUnit > 1.2)
-                headSprite.isClosingEyes = false;
-            headSprite.texture = headTextures[Math.min(headTextures.length - 1, Math.round(headSprite.closedEyesUnit * (headTextures.length - 1)))];
+            closedEyesUnit = approachLinear(closedEyesUnit, isClosingEyes ? 1.3 : 0, 0.3);
+            if (closedEyesUnit > 1.2)
+                isClosingEyes = false;
+            const maxTexturesIndex = anyEyes.textures.length - 1;
+            anyEyes.texture = anyEyes.textures[Math.min(maxTexturesIndex, Math.round(closedEyesUnit * maxTexturesIndex))];
         });
+    }
 
     let trip = 0;
     let duckUnit = 0;

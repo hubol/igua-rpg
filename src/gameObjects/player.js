@@ -1,7 +1,6 @@
 import {Key} from "../utils/key";
-import {Sprite, Container} from "pixi.js";
+import {Sprite, AnimatedSprite} from "pixi.js";
 import {push} from "./walls";
-import {approachLinear, lerp} from "../utils/math";
 import {subimageTextures} from "../utils/simpleSpritesheet";
 import {
     CharacterBody, CharacterCrest, CharacterFoot,
@@ -10,6 +9,8 @@ import {
 } from "../textures";
 import {game} from "../igua/game";
 import {iguanaPuppet} from "../igua/iguanaPuppet";
+
+const headTextures = subimageTextures(CharacterHead, 4);
 
 function playerPuppet()
 {
@@ -29,12 +30,15 @@ function playerPuppet()
     const crest = Sprite.from(CharacterCrest);
     crest.pivot.set(3, 5);
 
+    const eyes = new AnimatedSprite(headTextures, false);;
+
     return iguanaPuppet({
         backRightFoot,
         frontLeftFoot,
         backLeftFoot,
         body,
         crest,
+        eyes,
         frontRightFoot
     });
 }
