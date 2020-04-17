@@ -9,13 +9,12 @@ import {
     CharacterHead
 } from "../textures";
 import {game} from "../igua/game";
+import {iguanaPuppet} from "../igua/iguanaPuppet";
 
-const headTextures = subimageTextures(CharacterHead, 4);
-
-export function player()
+function playerPuppet()
 {
-    const bodySprite = Sprite.from(CharacterBody);
-    bodySprite.y = 5;
+    const body = Sprite.from(CharacterBody);
+    body.y = 5;
 
     const backLeftFoot = Sprite.from(CharacterFootDark);
     backLeftFoot.pivot.set(-6, -21);
@@ -30,47 +29,27 @@ export function player()
     const crest = Sprite.from(CharacterCrest);
     crest.pivot.set(3, 5);
 
-    const head = new Container();
-    head.pivot.set(-15, -5);
+    return iguanaPuppet({
+        backRightFoot,
+        frontLeftFoot,
+        backLeftFoot,
+        body,
+        crest,
+        frontRightFoot
+    });
+}
 
-    const headSprite = Sprite.from(headTextures[0]);
-    headSprite.isClosingEyes = false;
-    headSprite.closedEyesUnit = 0;
-    headSprite.ticksUntilBlink = 60;
+export function player()
+{
+    const player = playerPuppet();
 
-    head.addChild(crest, headSprite);
-
-    const body = new Container();
-    body.addChild(bodySprite, head);
-
-    const player = new Container();
-    player.addChild(backLeftFoot, frontLeftFoot, body, backRightFoot, frontRightFoot);
-    player.pivot.set(11, 17);
-
-    player.x = 80;
-    player.y = 80;
     player.isOnGround = false;
-    player.hspeed = 0;
-    player.vspeed = 0;
     player.coyote = 0;
-    player.trip = 0;
-    player.duckUnit = 0;
 
-    const step = () => {
-        const isDucking = Key.isDown("ArrowDown") && player.coyote > 0;
+    const physicsStep = () => {
+        player.isDucking = Key.isDown("ArrowDown") && player.coyote > 0;
 
-        if (headSprite.ticksUntilBlink-- <= 0)
-        {
-            headSprite.ticksUntilBlink = 120 + Math.random() * 120;
-            headSprite.isClosingEyes = true;
-        }
-
-        headSprite.closedEyesUnit = approachLinear(headSprite.closedEyesUnit, headSprite.isClosingEyes ? 1.3 : 0, 0.3);
-        if (headSprite.closedEyesUnit > 1.2)
-            headSprite.isClosingEyes = false;
-        headSprite.texture = headTextures[Math.min(3, Math.round(headSprite.closedEyesUnit * 3))];
-
-        if (isDucking)
+        if (player.isDucking)
         {
             player.hspeed *= 0.9;
         }
@@ -89,48 +68,6 @@ export function player()
         const barelyWalking = Math.abs(player.hspeed) < 0.1;
         if (barelyWalking)
             player.hspeed = 0;
-
-        player.trip += player.hspeed;
-
-        if (player.vspeed !== 0 && barelyWalking)
-            player.trip += 0.5;
-
-        body.position.set(0, 0);
-        backLeftFoot.position.set(0, 0);
-        backRightFoot.position.set(0, 0);
-        frontLeftFoot.position.set(0, 0);
-        frontRightFoot.position.set(0, 0);
-
-        if (!barelyWalking || player.vspeed !== 0)
-        {
-            const t = player.trip * 0.1;
-            body.position.y = Math.round(Math.sin(t + 2));
-            backLeftFoot.position.y = Math.round(Math.abs(Math.sin(t + 1)) * -2);
-            backRightFoot.position.y = Math.round(Math.abs(Math.sin(t)) * -2);
-            frontLeftFoot.position.y = Math.round(Math.abs(Math.cos(t + 1)) * -2);
-            frontRightFoot.position.y = Math.round(Math.abs(Math.cos(t)) * -2);
-        }
-
-        player.duckUnit = lerp(player.duckUnit, isDucking ? 1 : 0, 0.2);
-        const duckUnit = Math.round(player.duckUnit * 3) / 3;
-
-        if (duckUnit > 0.05)
-        {
-            body.position.y = Math.round(duckUnit * 4);
-            backLeftFoot.position.x -= Math.round(duckUnit);
-            backRightFoot.position.x -= Math.round(Math.pow(duckUnit, 2));
-            frontLeftFoot.position.x += Math.round(Math.pow(duckUnit, 2));
-            frontRightFoot.position.x += Math.round(duckUnit);
-        }
-
-        crest.x = Math.round(duckUnit * 2);
-        crest.y = Math.round(duckUnit * -1);
-        head.y = Math.round(duckUnit * 2);
-
-        if (player.hspeed < 0)
-            player.scale.x = -1;
-        else if (player.hspeed > 0)
-            player.scale.x = 1;
 
         if (player.coyote > 0 && Key.justWentDown("ArrowUp"))
         {
@@ -218,8 +155,7 @@ export function player()
             player.coyote--;
     };
 
-    player.on('added', () => game.ticker.add(step));
-    player.on('removed', () => game.ticker.remove(step));
+    player.withStep(physicsStep);
 
     return player;
 }
