@@ -8,7 +8,6 @@ export let Burst: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterCrest: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterEyes: PIXI.Texture = undefined as unknown as PIXI.Texture;
-export let CharacterFootDark: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterHead: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterMouthV: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -43,9 +42,6 @@ export function loadTexturesAsync()
 
     const CharacterEyesPath = require("./images/character/eyes.png");
     loader.add(CharacterEyesPath); 
-
-    const CharacterFootDarkPath = require("./images/character/foot dark.png");
-    loader.add(CharacterFootDarkPath); 
 
     const CharacterFootPath = require("./images/character/foot.png");
     loader.add(CharacterFootPath); 
@@ -90,7 +86,6 @@ export function loadTexturesAsync()
             CharacterBody = resources[CharacterBodyPath]?.texture as PIXI.Texture;
             CharacterCrest = resources[CharacterCrestPath]?.texture as PIXI.Texture;
             CharacterEyes = resources[CharacterEyesPath]?.texture as PIXI.Texture;
-            CharacterFootDark = resources[CharacterFootDarkPath]?.texture as PIXI.Texture;
             CharacterFoot = resources[CharacterFootPath]?.texture as PIXI.Texture;
             CharacterHead = resources[CharacterHeadPath]?.texture as PIXI.Texture;
             CharacterMouthV = resources[CharacterMouthVPath]?.texture as PIXI.Texture;
