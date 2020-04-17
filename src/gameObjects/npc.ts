@@ -20,7 +20,7 @@ export function npc(x, y)
     puppet.isDucking = true;
     puppet.duckUnit = 1;
     return puppet.withStep(() => {
-        puppet.isDucking = !(game.player.scale.x < 0 && game.player.x >= puppet.x + 16 && distance(game.player, puppet) < 64);
+        puppet.isDucking = !(game.player.scale.x < 0 && game.player.x >= puppet.x + 16 && distance(game.player, puppet) < 128);
     });
 }
 
