@@ -14,6 +14,7 @@ export let CharacterMouthV: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let HotTerrain: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LockedDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcWeirdBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OpenDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OrangeValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Pipe: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -61,6 +62,9 @@ export function loadTexturesAsync()
     const LockedDoorPath = require("./images/locked door.png");
     loader.add(LockedDoorPath); 
 
+    const NpcWeirdBodyPath = require("./images/npc/weird body.png");
+    loader.add(NpcWeirdBodyPath); 
+
     const OpenDoorPath = require("./images/open door.png");
     loader.add(OpenDoorPath); 
 
@@ -92,6 +96,7 @@ export function loadTexturesAsync()
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
             LockedDoor = resources[LockedDoorPath]?.texture as PIXI.Texture;
+            NpcWeirdBody = resources[NpcWeirdBodyPath]?.texture as PIXI.Texture;
             OpenDoor = resources[OpenDoorPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
             Pipe = resources[PipePath]?.texture as PIXI.Texture;

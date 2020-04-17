@@ -8,6 +8,7 @@ import {centerPlayerCamera} from "./playerCamera";
 import {sleep} from "../utils/sleep";
 import {valuable} from "../gameObjects/valuable";
 import {progress} from "./progress";
+import {npc} from "../gameObjects/npc";
 
 export async function gotoLevel(level: Ogmo.Level, checkpointName?: string)
 {
@@ -96,6 +97,7 @@ export function loadLevel(level: Ogmo.Level, checkpointName?: string)
         }
     }
 
+    game.gameObjectStage.addChild(npc(64, 256 - 32 - 8));
     applyPlayerPosition(entities.filter(x => x.name === "Checkpoint" && checkpointName === x.values.name).firstOrDefault());
 
     centerPlayerCamera();
