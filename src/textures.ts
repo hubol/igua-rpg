@@ -7,10 +7,11 @@ export let BlueValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Burst: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterCrest: PIXI.Texture = undefined as unknown as PIXI.Texture;
-export let CharacterEyes: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterHead: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterMouthV: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CharacterPupils: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CharacterWhites: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let HotTerrain: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LockedDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -41,9 +42,6 @@ export function loadTexturesAsync()
     const CharacterCrestPath = require("./images/character/crest.png");
     loader.add(CharacterCrestPath); 
 
-    const CharacterEyesPath = require("./images/character/eyes.png");
-    loader.add(CharacterEyesPath); 
-
     const CharacterFootPath = require("./images/character/foot.png");
     loader.add(CharacterFootPath); 
 
@@ -52,6 +50,12 @@ export function loadTexturesAsync()
 
     const CharacterMouthVPath = require("./images/character/mouth v.png");
     loader.add(CharacterMouthVPath); 
+
+    const CharacterPupilsPath = require("./images/character/pupils.png");
+    loader.add(CharacterPupilsPath); 
+
+    const CharacterWhitesPath = require("./images/character/whites.png");
+    loader.add(CharacterWhitesPath); 
 
     const HotTerrainPath = require("./images/hot terrain.png");
     loader.add(HotTerrainPath); 
@@ -89,10 +93,11 @@ export function loadTexturesAsync()
             Burst = resources[BurstPath]?.texture as PIXI.Texture;
             CharacterBody = resources[CharacterBodyPath]?.texture as PIXI.Texture;
             CharacterCrest = resources[CharacterCrestPath]?.texture as PIXI.Texture;
-            CharacterEyes = resources[CharacterEyesPath]?.texture as PIXI.Texture;
             CharacterFoot = resources[CharacterFootPath]?.texture as PIXI.Texture;
             CharacterHead = resources[CharacterHeadPath]?.texture as PIXI.Texture;
             CharacterMouthV = resources[CharacterMouthVPath]?.texture as PIXI.Texture;
+            CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
+            CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
             LockedDoor = resources[LockedDoorPath]?.texture as PIXI.Texture;
