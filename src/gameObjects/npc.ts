@@ -1,9 +1,8 @@
 import {Container, Sprite} from "pixi.js";
 import {
     CharacterCrest,
-    CharacterFoot,
     CharacterHead,
-    CharacterMouthV, CharacterPupils, CharacterWhites,
+    CharacterMouthV, CharacterPupils, CharacterWhites, NpcRedFoot, NpcRedFootRear,
     NpcWeirdBody
 } from "../textures";
 import {iguanaPuppet} from "../igua/iguanaPuppet";
@@ -30,13 +29,15 @@ function npcPuppet()
     body.pivot.y += 4;
     body.tint = 0xFF8A7C;
 
-    const backLeftFoot = Sprite.from(CharacterFoot);
-    backLeftFoot.tint = 0xC7D7D7;
-    const frontLeftFoot = Sprite.from(CharacterFoot);
+    const frontLeftFoot = Sprite.from(NpcRedFoot);
     frontLeftFoot.tint = 0xC7D7D7;
+    const frontRightFoot = Sprite.from(NpcRedFoot);
 
-    const backRightFoot = Sprite.from(CharacterFoot);
-    const frontRightFoot = Sprite.from(CharacterFoot);
+    const backLeftFoot = Sprite.from(NpcRedFootRear);
+    backLeftFoot.tint = 0xC7D7D7;
+    backLeftFoot.pivot.y = 1;
+    const backRightFoot = Sprite.from(NpcRedFootRear);
+    backRightFoot.pivot.y = 1;
 
     const crest = Sprite.from(CharacterCrest);
     crest.tint = 0x75CAFF;
