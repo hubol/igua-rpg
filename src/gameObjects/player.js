@@ -1,10 +1,10 @@
 import {Key} from "../utils/key";
-import {Sprite, AnimatedSprite} from "pixi.js";
+import {Sprite, AnimatedSprite, Container} from "pixi.js";
 import {push} from "./walls";
 import {subimageTextures} from "../utils/simpleSpritesheet";
 import {
     CharacterBody, CharacterCrest, CharacterEyes, CharacterFoot,
-    CharacterFootDark, CharacterHead
+    CharacterFootDark, CharacterHead, CharacterMouthV
 } from "../textures";
 import {game} from "../igua/game";
 import {iguanaPuppet} from "../igua/iguanaPuppet";
@@ -29,7 +29,12 @@ function playerPuppet()
     const crest = Sprite.from(CharacterCrest);
     crest.pivot.set(3, 5);
 
-    const head = Sprite.from(CharacterHead);
+    const head = new Container();
+    const headSprite = Sprite.from(CharacterHead);
+    const mouthSprite = Sprite.from(CharacterMouthV);
+    mouthSprite.pivot.set(-10, -11);
+    head.addChild(headSprite, mouthSprite);
+    head.cacheAsBitmap = true;
 
     const eyes = new AnimatedSprite(eyesTextures, false);
     eyes.pivot.set(-7, -3);
