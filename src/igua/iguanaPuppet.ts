@@ -1,6 +1,5 @@
-import {Container} from "pixi.js";
+import {Container, DisplayObject} from "pixi.js";
 import {approachLinear, lerp} from "../utils/math";
-import {DisplayObject} from "pixi.js";
 
 interface IguanaPuppetArgs
 {
@@ -9,6 +8,7 @@ interface IguanaPuppetArgs
     backRightFoot: DisplayObject;
     frontLeftFoot: DisplayObject;
     frontRightFoot: DisplayObject;
+    head: DisplayObject;
     eyes: DisplayObject;
     crest: DisplayObject;
 }
@@ -20,7 +20,7 @@ export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
     const head = new Container();
     head.pivot.set(-15, -5);
 
-    head.addChild(args.crest, args.eyes);
+    head.addChild(args.crest, args.head, args.eyes);
 
     const body = new Container();
     body.addChild(args.body, head);
