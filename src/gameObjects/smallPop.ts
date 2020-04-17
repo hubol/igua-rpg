@@ -1,13 +1,16 @@
 import {subimageTextures} from "../utils/simpleSpritesheet";
-import {Burst} from "../textures";
+import {Burst, Burst2} from "../textures";
 import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 
-const burstTextures = subimageTextures(Burst, 4);
+const burst8pxTextures = subimageTextures(Burst, 4);
+const burst12pxTextures = subimageTextures(Burst2, 4);
 
-export function smallPop(container = game.gameObjectStage)
+export function smallPop(size: 8 | 12 = 8, container = game.gameObjectStage)
 {
-    const sprite = new Sprite(burstTextures[0]);
+    const textures = size === 8 ? burst8pxTextures : burst12pxTextures;
+
+    const sprite = new Sprite(textures[0]);
     sprite.anchor.set(0.5, 0.5);
 
     let life = 0;
@@ -16,7 +19,7 @@ export function smallPop(container = game.gameObjectStage)
         if (life >= 1)
             sprite.destroy();
         else
-            sprite.texture = burstTextures[Math.floor(life * burstTextures.length)];
+            sprite.texture = textures[Math.floor(life * textures.length)];
     });
     container.addChild(sprite);
     return sprite;
