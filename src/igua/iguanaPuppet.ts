@@ -1,5 +1,6 @@
 import {Container, DisplayObject} from "pixi.js";
 import {approachLinear, lerp} from "../utils/math";
+import {IguanaEyes} from "./iguanaEyes";
 
 interface IguanaPuppetArgs
 {
@@ -9,7 +10,7 @@ interface IguanaPuppetArgs
     frontLeftFoot: DisplayObject;
     frontRightFoot: DisplayObject;
     head: DisplayObject;
-    eyes: DisplayObject;
+    eyes: IguanaEyes | DisplayObject;
     crest: DisplayObject;
 }
 
@@ -54,8 +55,7 @@ export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
     player.hspeed = 0;
     player.vspeed = 0;
 
-    const anyEyes = args.eyes as any;
-    const canBlink = anyEyes.textures !== undefined && anyEyes.texture !== undefined;
+    const canBlink = "closedUnit" in args.eyes;
 
     if (canBlink)
     {
@@ -72,8 +72,7 @@ export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
             closedEyesUnit = approachLinear(closedEyesUnit, isClosingEyes ? 1.3 : 0, 0.3);
             if (closedEyesUnit > 1.2)
                 isClosingEyes = false;
-            const maxTexturesIndex = anyEyes.textures.length - 1;
-            anyEyes.texture = anyEyes.textures[Math.min(maxTexturesIndex, Math.round(closedEyesUnit * maxTexturesIndex))];
+            (args.eyes as IguanaEyes).closedUnit = closedEyesUnit;
         });
     }
 

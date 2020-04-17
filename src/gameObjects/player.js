@@ -1,15 +1,13 @@
 import {Key} from "../utils/key";
-import {Sprite, AnimatedSprite, Container} from "pixi.js";
+import {Sprite, Container} from "pixi.js";
 import {push} from "./walls";
-import {subimageTextures} from "../utils/simpleSpritesheet";
 import {
-    CharacterBody, CharacterCrest, CharacterEyes, CharacterFoot,
-    CharacterHead, CharacterMouthV
+    CharacterBody, CharacterCrest, CharacterFoot,
+    CharacterHead, CharacterMouthV, CharacterPupils, CharacterWhites
 } from "../textures";
 import {game} from "../igua/game";
 import {iguanaPuppet} from "../igua/iguanaPuppet";
-
-const eyesTextures = subimageTextures(CharacterEyes, 4);
+import {iguanaEyes} from "../igua/iguanaEyes";
 
 function playerPuppet()
 {
@@ -36,7 +34,11 @@ function playerPuppet()
     head.addChild(headSprite, mouthSprite);
     head.cacheAsBitmap = true;
 
-    const eyes = new AnimatedSprite(eyesTextures, false);
+    const pupils = Sprite.from(CharacterPupils);
+    pupils.tint = 0x9957AF;
+    pupils.pivot.set(-2, -3);
+
+    const eyes = iguanaEyes({ eyelidColor: 0xB29400, pupils, eyeShape: Sprite.from(CharacterWhites) });
 
     return iguanaPuppet({
         backRightFoot,

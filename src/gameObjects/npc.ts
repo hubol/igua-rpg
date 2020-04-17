@@ -1,16 +1,15 @@
-import {AnimatedSprite, Container, Sprite} from "pixi.js";
+import {Container, Sprite} from "pixi.js";
 import {
     CharacterCrest,
-    CharacterEyes,
     CharacterFoot,
     CharacterHead,
-    CharacterMouthV,
+    CharacterMouthV, CharacterPupils, CharacterWhites,
     NpcWeirdBody
 } from "../textures";
 import {iguanaPuppet} from "../igua/iguanaPuppet";
-import {subimageTextures} from "../utils/simpleSpritesheet";
 import {game} from "../igua/game";
 import {distance} from "../utils/vector";
+import {iguanaEyes} from "../igua/iguanaEyes";
 
 export function npc(x, y)
 {
@@ -47,11 +46,15 @@ function npcPuppet()
     headSprite.tint = 0x73C88C;
     const mouthSprite = Sprite.from(CharacterMouthV);
     mouthSprite.pivot.set(-10, -11);
-    mouthSprite.tint = 0x9957AF;
+    mouthSprite.tint = 0xA83F2F;
     head.addChild(headSprite, mouthSprite);
     head.cacheAsBitmap = true;
 
-    const eyes = new AnimatedSprite(eyesTextures, false);
+    const pupils = Sprite.from(CharacterPupils);
+    pupils.tint = 0xA83F2F;
+    pupils.pivot.set(-2, -3);
+
+    const eyes = iguanaEyes({ eyelidColor: 0x5AA86E, pupils, eyeShape: Sprite.from(CharacterWhites) });
 
     return iguanaPuppet({
         backRightFoot,
@@ -64,5 +67,3 @@ function npcPuppet()
         frontRightFoot
     });
 }
-
-const eyesTextures = subimageTextures(CharacterEyes, 4);
