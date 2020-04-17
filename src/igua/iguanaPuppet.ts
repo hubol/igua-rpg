@@ -13,7 +13,7 @@ interface IguanaPuppetArgs
     crest: DisplayObject;
 }
 
-export type IguanaPuppet = Container & { isDucking: boolean, hspeed: number, vspeed: number };
+export type IguanaPuppet = Container & { isDucking: boolean, duckUnit: number, hspeed: number, vspeed: number };
 
 export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
 {
@@ -50,6 +50,7 @@ export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
     player.pivot.set(11, 17);
 
     player.isDucking = false;
+    player.duckUnit = 0;
     player.hspeed = 0;
     player.vspeed = 0;
 
@@ -77,7 +78,6 @@ export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
     }
 
     let trip = 0;
-    let duckUnit = 0;
 
     const puppetStep = () => {
         const barelyWalking = Math.abs(player.hspeed) < 0.1;
@@ -102,8 +102,8 @@ export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
             args.frontRightFoot.position.y = Math.round(Math.abs(Math.cos(t)) * -2);
         }
 
-        duckUnit = lerp(duckUnit, player.isDucking ? 1 : 0, 0.2);
-        const roundedDuckUnit = Math.round(duckUnit * 3) / 3;
+        player.duckUnit = lerp(player.duckUnit, player.isDucking ? 1 : 0, 0.2);
+        const roundedDuckUnit = Math.round(player.duckUnit * 3) / 3;
 
         if (roundedDuckUnit > 0.05) {
             body.position.y = Math.round(roundedDuckUnit * 4);
