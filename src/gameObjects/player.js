@@ -8,6 +8,14 @@ import {
 import {game} from "../igua/game";
 import {iguanaPuppet} from "../igua/iguanaPuppet";
 import {iguanaEyes} from "../igua/iguanaEyes";
+import {
+    CharacterHitCeiling,
+    CharacterLandOnGround,
+    CharacterStep,
+    CharacterStep2,
+    CharacterStep3,
+    CharacterStep4
+} from "../sounds";
 
 function playerPuppet()
 {
@@ -59,6 +67,8 @@ export function player()
     player.isOnGround = false;
     player.coyote = 0;
 
+    let pedometer = 0;
+
     const physicsStep = () => {
         player.isDucking = Key.isDown("ArrowDown") && player.coyote > 0;
 
@@ -80,7 +90,10 @@ export function player()
 
         const barelyWalking = Math.abs(player.hspeed) < 0.1;
         if (barelyWalking)
+        {
             player.hspeed = 0;
+            pedometer = 0;
+        }
 
         if (player.coyote > 0 && Key.justWentDown("ArrowUp"))
         {
@@ -106,6 +119,8 @@ export function player()
 
         const radius = 8;
         const maxMotion = Math.sqrt(radius);
+
+        const vspeedBeforePush = player.vspeed;
 
         while (Math.abs(hsp) > 0 || Math.abs(vsp) > 0)
         {
@@ -144,10 +159,19 @@ export function player()
             const result = push(player, radius);
             player.isOnGround = result.isOnGround;
 
-            if (result.hitCeiling)
+            if (result.hitCeiling && player.vspeed !== 0)
+            {
+                CharacterHitCeiling.volume(0.33 + Math.min(0.67, vspeedBeforePush * -0.06));
+                CharacterHitCeiling.play();
                 player.vspeed = 0;
+            }
             if (result.hitGround)
             {
+                if (player.coyote < 5)
+                {
+                    CharacterLandOnGround.volume(0.33 + Math.min(0.67, vspeedBeforePush * 0.06));
+                    CharacterLandOnGround.play();
+                }
                 player.vspeed = 0;
                 player.isOnGround = true;
             }
@@ -166,6 +190,33 @@ export function player()
             player.coyote = 25;
         else
             player.coyote--;
+
+        const lastPedometer = pedometer;
+
+        if (player.isOnGround || player.coyote > 15)
+            pedometer += Math.abs(player.hspeed);
+
+        if (pedometer > 24 && lastPedometer <= 24)
+        {
+            CharacterStep.volume(.8);
+            CharacterStep.play();
+        }
+        else if (pedometer > 44 && lastPedometer <= 44)
+        {
+            CharacterStep2.volume(.8);
+            CharacterStep2.play();
+        }
+        else if (pedometer > 62 && lastPedometer <= 62)
+        {
+            CharacterStep3.volume(.8);
+            CharacterStep3.play();
+        }
+        else if (pedometer > 82 && lastPedometer <= 82)
+        {
+            CharacterStep4.volume(.8);
+            CharacterStep4.play();
+            pedometer = 0;
+        }
     };
 
     player.withStep(physicsStep);
