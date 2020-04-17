@@ -3,6 +3,7 @@ import {BlueValuable, OrangeValuable} from "../textures";
 import {game} from "../igua/game";
 import {progress} from "../igua/progress";
 import {smallPop} from "./smallPop";
+import {CollectValuable, CollectValuableSmall} from "../sounds";
 
 type ValuableType = "ValuableBlue" | "ValuableOrange";
 
@@ -20,9 +21,22 @@ export function valuable(x, y, uid, type: ValuableType)
 
             progress.gotLevelValuable.add(uid);
             progress.valuables += getValue(type);
+            const sound = getSound(type);
+            sound.volume(0.5);
+            sound.play();
             sprite.destroy();
         }
     });
+}
+
+function getSound(type: ValuableType)
+{
+    switch (type) {
+        case "ValuableBlue":
+            return CollectValuable;
+        case "ValuableOrange":
+            return CollectValuableSmall;
+    }
 }
 
 function getTexture(type: ValuableType)
