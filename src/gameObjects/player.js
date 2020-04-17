@@ -14,32 +14,29 @@ const eyesTextures = subimageTextures(CharacterEyes, 4);
 function playerPuppet()
 {
     const body = Sprite.from(CharacterBody);
-    body.y = 5;
+    body.tint = 0xCC70BB;
 
     const backLeftFoot = Sprite.from(CharacterFoot);
     backLeftFoot.tint = 0xC7D7D7;
-    backLeftFoot.pivot.set(-6, -21);
     const frontLeftFoot = Sprite.from(CharacterFoot);
     frontLeftFoot.tint = 0xC7D7D7;
-    frontLeftFoot.pivot.set(-15, -21);
 
     const backRightFoot = Sprite.from(CharacterFoot);
-    backRightFoot.pivot.set(-3, -21);
     const frontRightFoot = Sprite.from(CharacterFoot);
-    frontRightFoot.pivot.set(-12, -21);
 
     const crest = Sprite.from(CharacterCrest);
-    crest.pivot.set(3, 5);
+    crest.tint = 0xCC2C42;
 
     const head = new Container();
     const headSprite = Sprite.from(CharacterHead);
+    headSprite.tint = 0xCCAE0A;
     const mouthSprite = Sprite.from(CharacterMouthV);
     mouthSprite.pivot.set(-10, -11);
+    mouthSprite.tint = 0x9957AF;
     head.addChild(headSprite, mouthSprite);
     head.cacheAsBitmap = true;
 
     const eyes = new AnimatedSprite(eyesTextures, false);
-    eyes.pivot.set(-7, -3);
 
     return iguanaPuppet({
         backRightFoot,

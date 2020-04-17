@@ -17,6 +17,26 @@ export type IguanaPuppet = Container & { isDucking: boolean, hspeed: number, vsp
 
 export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
 {
+    args.body.pivot.y -= 5;
+
+    args.backLeftFoot.pivot.x += -6;
+    args.backLeftFoot.pivot.y += -21;
+
+    args.frontLeftFoot.pivot.x += -15;
+    args.frontLeftFoot.pivot.y += -21;
+
+    args.backRightFoot.pivot.x += -3;
+    args.backRightFoot.pivot.y += -21;
+
+    args.frontRightFoot.pivot.x += -12;
+    args.frontRightFoot.pivot.y += -21;
+
+    args.crest.pivot.x += 3;
+    args.crest.pivot.y += 5;
+
+    args.eyes.pivot.x += -7;
+    args.eyes.pivot.y += -3;
+
     const head = new Container();
     head.pivot.set(-15, -5);
 
