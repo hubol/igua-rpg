@@ -1,6 +1,8 @@
 import {Container, DisplayObject} from "pixi.js";
 import {approachLinear, lerp} from "../utils/math";
 import {IguanaEyes} from "./iguanaEyes";
+import {IguanaBlink} from "../sounds";
+import {game} from "./game";
 
 interface IguanaPuppetArgs
 {
@@ -13,6 +15,8 @@ interface IguanaPuppetArgs
     eyes: IguanaEyes | DisplayObject;
     crest: DisplayObject;
 }
+
+IguanaBlink.volume(0.06);
 
 export type IguanaPuppet = Container & { isDucking: boolean, duckUnit: number, hspeed: number, vspeed: number };
 
@@ -70,8 +74,15 @@ export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
             }
 
             closedEyesUnit = approachLinear(closedEyesUnit, isClosingEyes ? 1.3 : 0, 0.3);
-            if (closedEyesUnit > 1.2)
+            if (closedEyesUnit > 1.2 && isClosingEyes)
+            {
                 isClosingEyes = false;
+
+                const bounds = player.getBounds();
+                if (bounds.x >= 0 && bounds.x <= game.width && bounds.y >= 0 && bounds.y <= game.height)
+                    IguanaBlink.play();
+            }
+
             (args.eyes as IguanaEyes).closedUnit = closedEyesUnit;
         });
     }
