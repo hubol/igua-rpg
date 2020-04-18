@@ -198,22 +198,22 @@ export function player()
 
         if (pedometer > 24 && lastPedometer <= 24)
         {
-            CharacterStep.volume(.8);
+            CharacterStep.volume(.4);
             CharacterStep.play();
         }
         else if (pedometer > 44 && lastPedometer <= 44)
         {
-            CharacterStep2.volume(.8);
+            CharacterStep2.volume(.4);
             CharacterStep2.play();
         }
         else if (pedometer > 62 && lastPedometer <= 62)
         {
-            CharacterStep3.volume(.8);
+            CharacterStep3.volume(.4);
             CharacterStep3.play();
         }
         else if (pedometer > 82 && lastPedometer <= 82)
         {
-            CharacterStep4.volume(.8);
+            CharacterStep4.volume(.4);
             CharacterStep4.play();
             pedometer = 0;
         }

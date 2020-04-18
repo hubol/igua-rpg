@@ -47,7 +47,7 @@ export const Gate = new Howl({
     
 });
 
-export const Hallelujah = new Howl({
-    src: [require("./sound/hallelujah.ogg"), require("./sound/hallelujah.mp3")],
+export const IguanaBlink = new Howl({
+    src: [require("./sound/iguana blink.ogg"), require("./sound/iguana blink.mp3")],
     
 });
