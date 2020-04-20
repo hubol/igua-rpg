@@ -16,7 +16,7 @@
     "@types/howler": "^2.1.2",
     "@types/webfontloader": "^1.6.29",
     "concurrently": "^5.1.0",
-    "generate-howls": "^0.2.0",
+    "generate-howls": "^0.2.1",
     "generate-json-exports": "^0.1.0",
     "generate-textures": "^0.1.0",
     "parcel-bundler": "^1.12.4",
