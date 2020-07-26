@@ -1,4 +1,4 @@
-import { Sprite } from "pixi.js";
+import { Sprite} from "pixi.js";
 import {BlueValuable, OrangeValuable} from "../textures";
 import {game} from "../igua/game";
 import {progress} from "../igua/progress";
@@ -9,7 +9,8 @@ type ValuableType = "ValuableBlue" | "ValuableOrange";
 
 export function valuable(x, y, uid, type: ValuableType)
 {
-    const sprite = Sprite.from(getTexture(type));
+    const valuableStyle = valuableStyles[type];
+    const sprite = Sprite.from(valuableStyle.texture);
     sprite.position.set(x, y);
     sprite.anchor.set(0.5, 1);
 
@@ -20,8 +21,8 @@ export function valuable(x, y, uid, type: ValuableType)
             particle.position.set(sprite.x, sprite.y - 7);
 
             progress.gotLevelValuable.add(uid);
-            progress.valuables += getValue(type);
-            const sound = getSound(type);
+            progress.valuables += valuableStyle.value;
+            const sound = valuableStyle.sound;
             sound.volume(0.5);
             sound.play();
             sprite.destroy();
@@ -29,34 +30,15 @@ export function valuable(x, y, uid, type: ValuableType)
     });
 }
 
-function getSound(type: ValuableType)
-{
-    switch (type) {
-        case "ValuableBlue":
-            return CollectValuable;
-        case "ValuableOrange":
-            return CollectValuableSmall;
-    }
-}
-
-function getTexture(type: ValuableType)
-{
-    switch (type) {
-        case "ValuableBlue":
-            return BlueValuable;
-        case "ValuableOrange":
-            return OrangeValuable;
-    }
-}
-
-function getValue(type: ValuableType)
-{
-    switch (type)
-    {
-        case "ValuableBlue":
-            return 15;
-        case "ValuableOrange":
-            return 5;
-
-    }
-}
+const valuableStyles = {
+    ValuableBlue: {
+        sound: CollectValuable,
+        texture: BlueValuable,
+        value: 15
+    },
+    ValuableOrange: {
+        sound: CollectValuableSmall,
+        texture: OrangeValuable,
+        value: 5
+    },
+};
