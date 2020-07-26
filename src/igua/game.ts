@@ -6,6 +6,7 @@ import {loadLevel} from "./level";
 import {Test} from "../levels";
 import {player} from "../gameObjects/player";
 import {advanceKeyListener, startKeyListener} from "../utils/key";
+import {IguanaPuppet} from "./iguanaPuppet";
 
 export let game: Game;
 
@@ -56,7 +57,7 @@ export function startGame()
             value.mask = terrainStage;
             terrainContainer.addChild(value);
         },
-        player: undefined,
+        player: {} as Player,
         get width() {
             return application.renderer.width;
         },
@@ -98,6 +99,8 @@ interface LevelInfo
     height: number;
 }
 
+type Player = DisplayObject & IguanaPuppet;
+
 interface Game
 {
     hudStage: Container;
@@ -110,7 +113,7 @@ interface Game
     camera: Camera;
     backgroundColor: number;
     terrainFill: DisplayObject;
-    player: DisplayObject & any;
+    player: Player;
     width: number;
     height: number;
     level: LevelInfo
