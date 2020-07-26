@@ -12,13 +12,27 @@ declare global {
             useNearestFiltering();
             rectangle: Rectangle;
             withStep(step: () => void): this;
+            at(x: number, y: number): this;
+            destroyed: boolean;
+        }
+
+        export interface Container {
+            removeAllChildren();
         }
     }
 }
 
 Object.defineProperty(PIXI.DisplayObject.prototype, "rectangle", {
     get: function rectangle() {
-        return normalizeRectangle(createRectangle(this));
+        if (!this.anchor)
+            return normalizeRectangle(createRectangle(this));
+        return normalizeRectangle({ x: this.x - this.width * this.anchor.x, y: this.y - this.height * this.anchor.y, width: this.width, height: this.height });
+    }
+});
+
+Object.defineProperty(PIXI.DisplayObject.prototype, "destroyed", {
+    get: function destroyed() {
+        return this._destroyed;
     }
 });
 
@@ -27,6 +41,22 @@ PIXI.DisplayObject.prototype.withStep = function(step)
     return this
         .on("added", () => game.ticker.add(step))
         .on("removed", () => game.ticker.remove(step));
+}
+
+PIXI.DisplayObject.prototype.at = function(x, y)
+{
+    this.position.set(x, y);
+    return this;
+}
+
+PIXI.Container.prototype.removeAllChildren = function ()
+{
+    this.children.forEach(x => {
+        if (x instanceof PIXI.Container)
+            x.removeAllChildren();
+    });
+
+    this.removeChildren();
 }
 
 // Move this Container by the given speed without touching any of the specified container(s). If a collision did not occur, the supplied speed will be modified with the remainder. Otherwise, the speed will have a length of 0.

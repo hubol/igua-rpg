@@ -52,7 +52,7 @@ export function startGame()
             application.renderer.backgroundColor = value;
         },
         set terrainFill(value) {
-            terrainContainer.removeChildren();
+            terrainContainer.removeAllChildren();
             value.mask = terrainStage;
             terrainContainer.addChild(value);
         },
