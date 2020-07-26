@@ -12,11 +12,11 @@ import {npc} from "../gameObjects/npc";
 
 export async function gotoLevel(level: Ogmo.Level, checkpointName?: string)
 {
-    game.ticker.stop();
+    game.applicationTicker.stop();
     await sleep(250);
     unloadLevel();
     loadLevel(level, checkpointName);
-    game.ticker.start();
+    game.applicationTicker.start();
 }
 
 export function unloadLevel()
