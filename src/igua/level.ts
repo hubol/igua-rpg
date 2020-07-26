@@ -21,9 +21,9 @@ export async function gotoLevel(level: Ogmo.Level, checkpointName?: string)
 
 export function unloadLevel()
 {
-    game.terrainStage.removeChildren();
-    game.pipeStage.removeChildren();
-    game.gameObjectStage.removeChildren();
+    game.terrainStage.removeAllChildren();
+    game.pipeStage.removeAllChildren();
+    game.gameObjectStage.removeAllChildren();
 }
 
 export function loadLevel(level: Ogmo.Level, checkpointName?: string)
