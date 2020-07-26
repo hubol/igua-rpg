@@ -5,14 +5,24 @@ import {stepPlayerCamera} from "./playerCamera";
 import {loadLevel} from "./level";
 import {Test} from "../levels";
 import {player} from "../gameObjects/player";
+import {advanceKeyListener, startKeyListener} from "../utils/key";
 
 export let game: Game;
 
 export function startGame()
 {
     const application = startApplication({ width: 256, height: 256, targetFps: 60 });
-    application.ticker = new IguaTicker();
-    application.ticker.autoStart = true;
+
+    application.ticker.maxFPS = 60;
+    application.ticker.start();
+
+    const iguaTicker = new IguaTicker();
+
+    startKeyListener();
+    iguaTicker.add(advanceKeyListener);
+
+    application.ticker.add(() => iguaTicker.update());
+
     const terrainStage = new Container();
 
     const terrainContainer = new Container();
@@ -30,9 +40,10 @@ export function startGame()
         pipeStage,
         gameObjectStage,
         stage,
-        get ticker() {
-          return application.ticker;
+        get applicationTicker() {
+            return application.ticker;
         },
+        ticker: iguaTicker,
         camera: createCamera(application.stage),
         get backgroundColor() {
             return application.renderer.backgroundColor;
@@ -52,10 +63,7 @@ export function startGame()
         get height() {
             return application.renderer.height;
         },
-        level: {
-            width: 300,
-            height: 800
-        }
+        level: {} as LevelInfo
     };
 
     game.player = player();
@@ -84,6 +92,12 @@ function createCamera(displayObject: DisplayObject)
     };
 }
 
+interface LevelInfo
+{
+    width: number;
+    height: number;
+}
+
 interface Game
 {
     hudStage: Container;
@@ -91,14 +105,15 @@ interface Game
     terrainStage: Container;
     gameObjectStage: Container;
     stage: Container;
-    ticker: Ticker;
+    ticker: IguaTicker;
+    applicationTicker: Ticker;
     camera: Camera;
     backgroundColor: number;
     terrainFill: DisplayObject;
     player: DisplayObject & any;
     width: number;
     height: number;
-    level: { width: number; height: number; }
+    level: LevelInfo
 }
 
 interface Camera
