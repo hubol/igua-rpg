@@ -1,34 +1,24 @@
 export const Key =
-{
-    isDown(key: KeyCode)
     {
-        return key in currentKeysState && currentKeysState[key];
-    },
-    isUp(key: KeyCode)
-    {
-        return !this.isDown(key);
-    },
-    justWentDown(key: KeyCode)
-    {
-        return previouslyUp(key) && this.isDown(key);
-    },
-    justWentUp(key: KeyCode)
-    {
-        return previouslyDown(key) && this.isUp(key);
-    }
-};
+        isDown(key: KeyCode)
+        {
+            return key in currentKeysState && (currentKeysState[key] & 0b010);
+        },
+        isUp(key: KeyCode)
+        {
+            return !this.isDown(key);
+        },
+        justWentDown(key: KeyCode)
+        {
+            return key in currentKeysState && (currentKeysState[key] & 0b100);
+        },
+        justWentUp(key: KeyCode)
+        {
+            return key in currentKeysState && (currentKeysState[key] & 0b001);
+        }
+    };
 
-function previouslyDown(key: KeyCode)
-{
-    return key in previousKeysState && previousKeysState[key];
-}
-
-function previouslyUp(key: KeyCode)
-{
-    return !previouslyDown(key);
-}
-
-type KeyCode =
+export type KeyCode =
     "ArrowUp"
     | "ArrowRight"
     | "ArrowDown"
@@ -38,21 +28,23 @@ type KeyCode =
 
 interface KeysState
 {
-    [index: string]: boolean;
+    [index: string]: number;
 }
 
-let previousKeysState: KeysState = { };
 let currentKeysState: KeysState = { };
 let workingKeysState: KeysState = { };
 
 function handleKeyDown(event: KeyboardEvent)
 {
-    workingKeysState[event.code] = true;
+    workingKeysState[event.code] = workingKeysState[event.code] ?? 0;
+    if ((workingKeysState[event.code] & 0b010) === 0b000)
+        workingKeysState[event.code] |= 0b100;
+    workingKeysState[event.code] |= 0b010;
 }
 
 function handleKeyUp(event: KeyboardEvent)
 {
-    workingKeysState[event.code] = false;
+    workingKeysState[event.code] = ((workingKeysState[event.code] ?? 0) | 0b001) & 0b101;
 }
 
 let startedKeyListener = false;
@@ -74,6 +66,9 @@ export function advanceKeyListener()
     if (!startedKeyListener)
         throw new Error("Key listener must be started to advance!");
 
-    previousKeysState = currentKeysState;
     currentKeysState = { ...workingKeysState };
+
+    const keys = Object.keys(workingKeysState);
+    for (const key of keys)
+        workingKeysState[key] &= 0b010;
 }

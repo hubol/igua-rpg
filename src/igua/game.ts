@@ -7,6 +7,7 @@ import {Test} from "../levels";
 import {player} from "../gameObjects/player";
 import {advanceKeyListener, startKeyListener} from "../utils/key";
 import {IguanaPuppet} from "./iguanaPuppet";
+import {CutscenePlayer} from "../cutscene/cutscene";
 
 export let game: Game;
 
@@ -45,7 +46,7 @@ export function startGame()
             return application.ticker;
         },
         ticker: iguaTicker,
-        camera: createCamera(application.stage),
+        camera: createCamera(stage),
         get backgroundColor() {
             return application.renderer.backgroundColor;
         },
@@ -64,7 +65,8 @@ export function startGame()
         get height() {
             return application.renderer.height;
         },
-        level: {} as LevelInfo
+        level: {} as LevelInfo,
+        cutscenePlayer: new CutscenePlayer()
     };
 
     game.player = player();
@@ -116,7 +118,8 @@ interface Game
     player: Player;
     width: number;
     height: number;
-    level: LevelInfo
+    level: LevelInfo;
+    cutscenePlayer: CutscenePlayer;
 }
 
 interface Camera
