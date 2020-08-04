@@ -45,17 +45,18 @@ npcStyles[0] = npcStyle(args => {
     mouthSprite.tint = 0xA83F2F;
     args.head.addChild(headSprite, mouthSprite);
 
-    const pupils = Sprite.from(CharacterPupils);
-    pupils.tint = 0xA83F2F;
-    pupils.pivot.set(-2, -3);
-
-    args.eyes = iguanaEyes({ eyelidColor: 0x5AA86E, pupils, eyeShape: Sprite.from(CharacterWhites) });
+    args.pupils.tint = 0xA83F2F;
+    args.eyelidColor = 0x5AA86E;
 });
 
 function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
 {
     return () => {
-        const args = { head: new Container() } as ConfigureNpcStyleArgs;
+
+        const pupils = Sprite.from(CharacterPupils);
+        pupils.pivot.set(-2, -3);
+
+        const args = {head: new Container(), pupils, eyeShape: Sprite.from(CharacterWhites)} as unknown as ConfigureNpcStyleArgs;
         configure(args);
 
         if (!args.frontLeftFoot)
@@ -71,6 +72,9 @@ function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
             args.backLeftFoot.pivot.copyFrom(args.backRightFoot.pivot);
         }
 
+        if (!args.eyes)
+            args.eyes = iguanaEyes(args as any);
+
         return iguanaPuppet(args as any);
     }
 }
@@ -83,6 +87,9 @@ interface ConfigureNpcStyleArgs
     frontLeftFoot?: Sprite;
     frontRightFoot: Sprite;
     head: Container;
-    eyes: IguanaEyes;
     crest: Sprite;
+    eyes?: IguanaEyes;
+    pupils: Sprite;
+    eyeShape: Container;
+    eyelidColor?: number;
 }
