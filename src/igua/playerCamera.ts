@@ -1,6 +1,7 @@
 import {session} from "./session";
 import {game} from "./game";
 import {lerpVector} from "../utils/math";
+import {distance} from "../utils/vector";
 
 let target = { x: 0, y: 0 };
 
@@ -28,6 +29,11 @@ export function stepPlayerCamera()
 
     clampCameraTarget();
     lerpVector(game.camera, target, 0.33);
+    if (distance(game.camera, target) < 1)
+    {
+        game.camera.x = Math.round(target.x);
+        game.camera.y = Math.round(target.y);
+    }
 }
 
 export function centerPlayerCamera()
