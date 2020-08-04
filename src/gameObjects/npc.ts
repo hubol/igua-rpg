@@ -1,4 +1,4 @@
-import {Container, Sprite} from "pixi.js";
+import {Container, Sprite, DisplayObject} from "pixi.js";
 import {
     CharacterHead,
     CharacterMouthV, CharacterPupils, CharacterWhites, NpcCurvedCrest, NpcRedFoot, NpcRedFootRear,
@@ -38,12 +38,8 @@ npcStyles[0] = npcStyle(args => {
     args.crest.pivot.set(-2, 2);
     args.crest.tint = 0x75CAFF;
 
-    const headSprite = Sprite.from(CharacterHead);
-    headSprite.tint = 0x73C88C;
-    const mouthSprite = Sprite.from(CharacterMouthV);
-    mouthSprite.pivot.set(-10, -11);
-    mouthSprite.tint = 0xA83F2F;
-    args.head.addChild(headSprite, mouthSprite);
+    args.headSprite.tint = 0x73C88C;
+    args.mouthSprite.tint = 0xA83F2F;
 
     args.pupils.tint = 0xA83F2F;
     args.eyelidColor = 0x5AA86E;
@@ -56,7 +52,10 @@ function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
         const pupils = Sprite.from(CharacterPupils);
         pupils.pivot.set(-2, -3);
 
-        const args = {head: new Container(), pupils, eyeShape: Sprite.from(CharacterWhites)} as unknown as ConfigureNpcStyleArgs;
+        const mouthSprite = Sprite.from(CharacterMouthV);
+        mouthSprite.pivot.set(-10, -11);
+
+        const args = {headSprite: Sprite.from(CharacterHead), mouthSprite, pupils, eyeShape: Sprite.from(CharacterWhites)} as unknown as ConfigureNpcStyleArgs;
         configure(args);
 
         if (!args.frontLeftFoot)
@@ -70,6 +69,13 @@ function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
             args.backLeftFoot = Sprite.from(args.backRightFoot.texture);
             args.backLeftFoot.tint = 0xC7D7D7;
             args.backLeftFoot.pivot.copyFrom(args.backRightFoot.pivot);
+        }
+
+        if (!args.head)
+        {
+            const container = new Container();
+            args.head = container;
+            container.addChild(args.headSprite, args.mouthSprite);
         }
 
         if (!args.eyes)
@@ -86,7 +92,9 @@ interface ConfigureNpcStyleArgs
     backRightFoot: Sprite;
     frontLeftFoot?: Sprite;
     frontRightFoot: Sprite;
-    head: Container;
+    head?: DisplayObject;
+    headSprite: Sprite;
+    mouthSprite: Sprite;
     crest: Sprite;
     eyes?: IguanaEyes;
     pupils: Sprite;
