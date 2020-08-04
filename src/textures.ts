@@ -16,7 +16,12 @@ export let CharacterWhites: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let HotTerrain: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LockedDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcBlueFootRear: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcBlueFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcCurvedCrest2: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcCurvedCrest: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcGreenPolkaBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcPupilsAngry: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcRedFootRear: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcRedFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcWeirdBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -73,8 +78,23 @@ export function loadTexturesAsync()
     const LockedDoorPath = require("./images/locked door.png");
     loader.add(LockedDoorPath); 
 
+    const NpcBlueFootRearPath = require("./images/npc/blue foot rear.png");
+    loader.add(NpcBlueFootRearPath); 
+
+    const NpcBlueFootPath = require("./images/npc/blue foot.png");
+    loader.add(NpcBlueFootPath); 
+
+    const NpcCurvedCrest2Path = require("./images/npc/curved crest 2.png");
+    loader.add(NpcCurvedCrest2Path); 
+
     const NpcCurvedCrestPath = require("./images/npc/curved crest.png");
     loader.add(NpcCurvedCrestPath); 
+
+    const NpcGreenPolkaBodyPath = require("./images/npc/green polka body.png");
+    loader.add(NpcGreenPolkaBodyPath); 
+
+    const NpcPupilsAngryPath = require("./images/npc/pupils angry.png");
+    loader.add(NpcPupilsAngryPath); 
 
     const NpcRedFootRearPath = require("./images/npc/red foot rear.png");
     loader.add(NpcRedFootRearPath); 
@@ -118,7 +138,12 @@ export function loadTexturesAsync()
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
             LockedDoor = resources[LockedDoorPath]?.texture as PIXI.Texture;
+            NpcBlueFootRear = resources[NpcBlueFootRearPath]?.texture as PIXI.Texture;
+            NpcBlueFoot = resources[NpcBlueFootPath]?.texture as PIXI.Texture;
+            NpcCurvedCrest2 = resources[NpcCurvedCrest2Path]?.texture as PIXI.Texture;
             NpcCurvedCrest = resources[NpcCurvedCrestPath]?.texture as PIXI.Texture;
+            NpcGreenPolkaBody = resources[NpcGreenPolkaBodyPath]?.texture as PIXI.Texture;
+            NpcPupilsAngry = resources[NpcPupilsAngryPath]?.texture as PIXI.Texture;
             NpcRedFootRear = resources[NpcRedFootRearPath]?.texture as PIXI.Texture;
             NpcRedFoot = resources[NpcRedFootPath]?.texture as PIXI.Texture;
             NpcWeirdBody = resources[NpcWeirdBodyPath]?.texture as PIXI.Texture;
