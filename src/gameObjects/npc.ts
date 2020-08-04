@@ -1,7 +1,14 @@
 import {Container, Sprite, DisplayObject} from "pixi.js";
 import {
     CharacterHead,
-    CharacterMouthV, CharacterPupils, CharacterWhites, NpcCurvedCrest, NpcRedFoot, NpcRedFootRear,
+    CharacterMouthV,
+    CharacterPupils,
+    CharacterWhites, NpcBlueFoot, NpcBlueFootRear,
+    NpcCurvedCrest,
+    NpcCurvedCrest2,
+    NpcGreenPolkaBody, NpcPupilsAngry,
+    NpcRedFoot,
+    NpcRedFootRear,
     NpcWeirdBody
 } from "../textures";
 import {IguanaPuppet, iguanaPuppet} from "../igua/iguanaPuppet";
@@ -11,7 +18,7 @@ import {IguanaEyes, iguanaEyes} from "../igua/iguanaEyes";
 
 export function npc(x, y)
 {
-    const puppet = npcStyles[0]();
+    const puppet = npcStyles[1]();
     puppet.x = x;
     puppet.y = y;
 
@@ -45,6 +52,30 @@ npcStyles[0] = npcStyle(args => {
     args.eyelidColor = 0x5AA86E;
 });
 
+npcStyles[1] = npcStyle(args => {
+    args.body = Sprite.from(NpcGreenPolkaBody);
+    args.body.tint = 0xD8D44E;
+    args.body.pivot.y += 3;
+
+    args.frontRightFoot = Sprite.from(NpcBlueFoot);
+    args.frontRightFoot.pivot.y = 2;
+
+    args.backRightFoot = Sprite.from(NpcBlueFootRear);
+    args.backRightFoot.pivot.y = 2;
+
+    args.crest = Sprite.from(NpcCurvedCrest2);
+    args.crest.pivot.set(-2, 2);
+    args.crest.tint = 0x198A96;
+
+    args.headSprite.tint = 0xFF8E7F;
+    args.mouthSprite.tint = 0x2A87A9;
+
+    args.pupils = Sprite.from(NpcPupilsAngry);
+    args.pupils.pivot.y -= 1;
+    args.pupils.tint = 0x2A87A9;
+    args.eyelidColor = 0xA9272C;
+});
+
 function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
 {
     return () => {
@@ -62,6 +93,7 @@ function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
         {
             args.frontLeftFoot = Sprite.from(args.frontRightFoot.texture);
             args.frontLeftFoot.tint = 0xC7D7D7;
+            args.frontLeftFoot.pivot.copyFrom(args.frontRightFoot.pivot);
         }
 
         if (!args.backLeftFoot)
