@@ -1,7 +1,7 @@
 import {show} from "./dialog";
 import {game} from "../igua/game";
 import {CancellationToken} from "../utils/cancellablePromise";
-import {makePromiseLibrary} from "./cutsceneProps";
+import {makePromiseLibrary} from "./promiseLibrary";
 
 export async function testCutscene()
 {
