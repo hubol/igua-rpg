@@ -1,5 +1,7 @@
 import {show} from "./dialog";
 import {game} from "../igua/game";
+import {CancellationToken} from "../utils/cancellablePromise";
+import {makePromiseLibrary} from "./cutsceneProps";
 
 export async function testCutscene()
 {
@@ -13,4 +15,16 @@ export async function testCutscene2()
 {
     await show("HEY!!!!!! We love it");
     throw new Error("help");
+}
+
+export async function testWithPromise(cancellationToken: CancellationToken)
+{
+    const {sleep} = makePromiseLibrary(cancellationToken);
+    let i = 0;
+
+    while (true)
+    {
+        console.log(i++);
+        await sleep(1000);
+    }
 }
