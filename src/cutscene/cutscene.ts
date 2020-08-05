@@ -7,7 +7,7 @@ export class CutscenePlayer
     public playCutscene(cutscene: Cutscene)
     {
         if (this._currentCutscene)
-            console.warn(`Playing cutscene ${cutscene} before cutscene ${this._currentCutscene} finished.`);
+            console.warn("Playing cutscene", cutscene, "before cutscene", this._currentCutscene, "finished.");
 
         this._currentCutscene = cutscene;
 
@@ -18,8 +18,7 @@ export class CutscenePlayer
             }
             catch (e)
             {
-                console.error(`Error while playing cutscene ${cutscene}:
-${e}`);
+                console.error("Error while playing cutscene", cutscene, e);
             }
             finally
             {
