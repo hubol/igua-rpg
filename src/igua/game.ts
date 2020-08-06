@@ -1,5 +1,5 @@
 import {startApplication} from "../utils/pixiUtils";
-import {Container, DisplayObject, Ticker} from "pixi.js";
+import {Container, DisplayObject} from "pixi.js";
 import {IguaTicker} from "../utils/iguaTicker";
 import {stepPlayerCamera} from "./playerCamera";
 import {loadLevel} from "./level";
@@ -9,11 +9,11 @@ import {advanceKeyListener, startKeyListener} from "../utils/key";
 import {IguanaPuppet} from "./iguanaPuppet";
 import {CutscenePlayer} from "../cutscene/cutscene";
 
-export let game: Game;
+export let game: ReturnType<typeof createGame>;
 
-export function startGame()
+function createGame()
 {
-    const application = startApplication({ width: 256, height: 256, targetFps: 60 });
+    const application = startApplication({width: 256, height: 256, targetFps: 60});
 
     application.ticker.maxFPS = 60;
     application.ticker.start();
@@ -34,7 +34,7 @@ export function startGame()
     stage.addChild(pipeStage, terrainStage, terrainContainer, gameObjectStage);
     application.stage.addChild(stage);
 
-    game = {
+    return {
         get hudStage() {
             return application.stage;
         },
@@ -68,6 +68,11 @@ export function startGame()
         level: {} as LevelInfo,
         cutscenePlayer: new CutscenePlayer()
     };
+}
+
+export function startGame()
+{
+    game = createGame();
 
     game.player = player();
     game.ticker.add(stepPlayerCamera);
@@ -102,28 +107,3 @@ interface LevelInfo
 }
 
 type Player = DisplayObject & IguanaPuppet;
-
-interface Game
-{
-    hudStage: Container;
-    pipeStage: Container;
-    terrainStage: Container;
-    gameObjectStage: Container;
-    stage: Container;
-    ticker: IguaTicker;
-    applicationTicker: Ticker;
-    camera: Camera;
-    backgroundColor: number;
-    terrainFill: DisplayObject;
-    player: Player;
-    width: number;
-    height: number;
-    level: LevelInfo;
-    cutscenePlayer: CutscenePlayer;
-}
-
-interface Camera
-{
-    x: number;
-    y: number;
-}

@@ -1,11 +1,4 @@
-export interface Progress
-{
-    valuables: number;
-    gotLevelValuable: Set<string>;
-}
-
-export const progress: Progress =
-{
+export const progress = {
     valuables: 0,
     gotLevelValuable: new Set<string>()
 };
