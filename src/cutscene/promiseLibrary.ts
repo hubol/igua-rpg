@@ -19,8 +19,11 @@ export function makePromiseLibrary(cancellationToken: CancellationToken): Promis
 
     function wrapPromise(promiseFactory): any
     {
-        return (a, b, c, d, e, f, g) => cancellablePromiseFactory(
-            async resolve => resolve(await promiseFactory(a, b, c, d, e, f, g)));
+        return function () {
+            const _arguments = arguments;
+            return cancellablePromiseFactory(
+                async resolve => resolve(await promiseFactory.apply(null, _arguments)));
+        };
     }
 
     const library = { sleep, wait, show };
