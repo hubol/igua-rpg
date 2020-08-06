@@ -1,6 +1,15 @@
-export function sleep(ms: number)
+import {CancellationToken} from "./cancellablePromise";
+
+export function sleep(ms: number, ct?: CancellationToken)
 {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve, reject) => {
+        ct?.rejectIfCancelled(reject);
+        setTimeout(() => {
+                ct?.rejectIfCancelled(reject);
+                resolve();
+            },
+            ms);
+    });
 }
 
 export function sleepUntilSync(targetTimeMilliseconds: number)

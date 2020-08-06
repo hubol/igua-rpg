@@ -3,8 +3,9 @@ import {Container, Sprite, BitmapText} from "pixi.js";
 import {MessageBox} from "../textures";
 import {AcrobatixFont} from "../fonts";
 import {waitForKey} from "./waitForKey";
+import {CancellationToken} from "../utils/cancellablePromise";
 
-export async function show(message: string)
+export async function show(message: string, ct?: CancellationToken)
 {
     const dialogContainer = new Container().at(24, 24);
     dialogContainer
@@ -12,6 +13,6 @@ export async function show(message: string)
 
     game.hudStage.addChild(dialogContainer);
 
-    await waitForKey("Space");
+    await waitForKey("Space", ct);
     dialogContainer.destroy();
 }

@@ -2,8 +2,9 @@ import {DisplayObject} from "pixi.js";
 import {game} from "../igua/game";
 import {Key, KeyCode} from "../utils/key";
 import {wait} from "../utils/wait";
+import {CancellationToken} from "../utils/cancellablePromise";
 
-export async function waitForKey(keyCode: KeyCode)
+export async function waitForKey(keyCode: KeyCode, ct?: CancellationToken)
 {
     let wasUp = false;
     let advance = false;
@@ -18,6 +19,6 @@ export async function waitForKey(keyCode: KeyCode)
     });
     game.stage.addChild(displayObject);
 
-    await wait(() => advance);
+    await wait(() => advance, ct);
     displayObject.destroy();
 }
