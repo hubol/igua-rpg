@@ -10,8 +10,15 @@ import {valuable} from "../gameObjects/valuable";
 import {progress} from "./progress";
 import {npc} from "../gameObjects/npc";
 import {AcrobatixFont} from "../fonts";
-import {testCutscene, testWithPromise} from "../cutscene/testScene";
-import {invisibleObject} from "../gameObjects/utils/invisibleObject";
+import {testCutscene, testLevel} from "../cutscene/testScene";
+import {RecycleablePromiseLibrary} from "../cutscene/recycleablePromiseLibrary";
+
+const levelRecycleablePromiseLibrary = new RecycleablePromiseLibrary();
+
+export function getLevelPromiseLibrary()
+{
+    return levelRecycleablePromiseLibrary.promiseLibrary;
+}
 
 export async function gotoLevel(level: Ogmo.Level, checkpointName?: string)
 {
@@ -27,6 +34,7 @@ export function unloadLevel()
     game.terrainStage.removeAllChildren();
     game.pipeStage.removeAllChildren();
     game.gameObjectStage.removeAllChildren();
+    levelRecycleablePromiseLibrary.recycle();
 }
 
 export function loadLevel(level: Ogmo.Level, checkpointName?: string)
@@ -100,7 +108,7 @@ export function loadLevel(level: Ogmo.Level, checkpointName?: string)
         }
     }
 
-    game.gameObjectStage.addChild(invisibleObject().withPromise(testWithPromise));
+    setTimeout(testLevel);
     game.gameObjectStage.addChild(npc(64, 256 - 32 - 8));
     game.gameObjectStage.addChild(new BitmapText("Stupid fuck", { fontName: AcrobatixFont.font }).at(128, 128));
     game.cutscenePlayer.playCutscene(testCutscene());
