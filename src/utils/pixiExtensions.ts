@@ -2,7 +2,6 @@ import {areRectanglesOverlapping, rectangle as createRectangle, normalizeRectang
 import {Vector} from "./vector";
 import * as PIXI from "pixi.js";
 import {game} from "../igua/game";
-import {CancellationToken} from "./cancellablePromise";
 
 declare global {
     namespace PIXI {
@@ -13,7 +12,6 @@ declare global {
             useNearestFiltering();
             rectangle: Rectangle;
             withStep(step: () => void): this;
-            withPromise(promiseFactory: (cancellationToken: CancellationToken) => Promise<void>): this;
             at(x: number, y: number): this;
             destroyed: boolean;
         }
@@ -43,15 +41,6 @@ PIXI.DisplayObject.prototype.withStep = function(step)
     return this
         .on("added", () => game.ticker.add(step))
         .on("removed", () => game.ticker.remove(step));
-}
-
-PIXI.DisplayObject.prototype.withPromise = function(promiseFactory)
-{
-    const cancellationToken = new CancellationToken();
-
-    return this
-        .on("added", () => setTimeout(async () => await promiseFactory(cancellationToken)))
-        .on("removed", () => cancellationToken.cancel());
 }
 
 PIXI.DisplayObject.prototype.at = function(x, y)

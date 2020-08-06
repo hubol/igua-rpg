@@ -1,7 +1,6 @@
 import {show} from "./dialog";
 import {game} from "../igua/game";
-import {CancellationToken} from "../utils/cancellablePromise";
-import {makePromiseLibrary} from "./promiseLibrary";
+import {getLevelPromiseLibrary} from "../igua/level";
 
 export async function testCutscene()
 {
@@ -17,9 +16,9 @@ export async function testCutscene2()
     throw new Error("help");
 }
 
-export async function testWithPromise(cancellationToken: CancellationToken)
+export async function testLevel()
 {
-    const {sleep} = makePromiseLibrary(cancellationToken);
+    const { sleep } = getLevelPromiseLibrary();
     let i = 0;
 
     while (true)
