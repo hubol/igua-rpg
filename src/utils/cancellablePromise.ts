@@ -2,7 +2,7 @@ export class CancellationToken
 {
     private static _counter = 0;
     private _isCancelled = false;
-    private _uid = CancellationToken._counter++;
+    private readonly _uid = CancellationToken._counter++;
 
     public cancel()
     {
@@ -13,18 +13,22 @@ export class CancellationToken
     {
         return this._isCancelled;
     }
+
+    public throwIfCancelled()
+    {
+        if (this.isCancelled)
+            throw { message: "Cancelled by token", cancellationToken: this };
+    }
 }
 
 export function makeCancellablePromiseFactory<T>(cancellationToken: CancellationToken): PromiseFactory<T>
 {
     return executor => new Promise<T>((resolve, reject) => {
-        if (cancellationToken.isCancelled)
-            reject({ message: "Cancelled by token", cancellationToken });
+        cancellationToken.throwIfCancelled();
         const resolve2 = () => {
-            if (cancellationToken.isCancelled)
-                reject({ message: "Cancelled by token", cancellationToken });
+            cancellationToken.throwIfCancelled();
             resolve();
-        }
+        };
         executor(resolve2, reject);
     });
 }
@@ -35,4 +39,12 @@ export type PromiseFactory<T> = (executor: PromiseExecutor<T>) => Promise<T>;
 export function getDefaultPromiseFactory<T>(): PromiseFactory<T>
 {
     return executor => new Promise<T>(executor);
+}
+
+export function handlePromiseCancellation(ev: PromiseRejectionEvent) {
+    if (!ev?.reason?.cancellationToken)
+        return;
+
+    console.log(ev.promise, "cancelled by", ev.reason.cancellationToken);
+    ev.preventDefault();
 }
