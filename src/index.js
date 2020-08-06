@@ -3,6 +3,7 @@ import {loadFontsAsync} from "./fonts";
 import {loadHowlsAsync} from "./utils/loadHowls";
 import * as exportedSounds from "./sounds";
 import * as PIXI from "pixi.js";
+import {handlePromiseCancellation} from "./utils/cancellablePromise";
 
 async function initialize()
 {
@@ -13,4 +14,6 @@ async function initialize()
     require("./utils/pixiExtensions");
     require("./igua/game").startGame();
 }
+
 window.onload = initialize;
+window.onunhandledrejection = handlePromiseCancellation;
