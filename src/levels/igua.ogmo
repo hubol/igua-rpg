@@ -15,7 +15,7 @@
   ],
   "defaultExportMode": ".json",
   "compactExport": false,
-  "externalScript": "",
+  "externalScript": "script\\iguaOgmo.js",
   "playCommand": "",
   "entityTags": ["Terrain"],
   "layers": [
