@@ -5,13 +5,13 @@ import {LeftPipeEnd, RightPipeEnd} from "../textures";
 import {applyLevelStyle} from "./style";
 import {gate} from "../gameObjects/gate";
 import {centerPlayerCamera} from "./playerCamera";
-import {sleep} from "../utils/sleep";
 import {valuable} from "../gameObjects/valuable";
 import {progress} from "./progress";
 import {npc} from "../gameObjects/npc";
 import {AcrobatixFont} from "../fonts";
 import {testCutscene, testLevel} from "../cutscene/testScene";
 import {RecycleablePromiseLibrary} from "../cutscene/recycleablePromiseLibrary";
+import {sleep} from "pissant";
 
 const levelRecycleablePromiseLibrary = new RecycleablePromiseLibrary();
 

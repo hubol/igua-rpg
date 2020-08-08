@@ -3,7 +3,7 @@ import {Container, Sprite, BitmapText} from "pixi.js";
 import {MessageBox} from "../textures";
 import {AcrobatixFont} from "../fonts";
 import {waitForKey} from "./waitForKey";
-import {CancellationToken} from "../utils/cancellablePromise";
+import {CancellationToken} from "pissant";
 
 export async function show(message: string, ct?: CancellationToken)
 {

@@ -1,5 +1,5 @@
-import {CancellationToken} from "../utils/cancellablePromise";
 import {makePromiseLibrary} from "./promiseLibrary";
+import {CancellationToken} from "pissant";
 
 export class RecycleablePromiseLibrary
 {

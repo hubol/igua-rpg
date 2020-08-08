@@ -3,7 +3,7 @@ import {loadFontsAsync} from "./fonts";
 import {loadHowlsAsync} from "./utils/loadHowls";
 import * as exportedSounds from "./sounds";
 import * as PIXI from "pixi.js";
-import {handlePromiseCancellation} from "./utils/cancellablePromise";
+import {handlePromiseCancellation} from "pissant";
 
 async function initialize()
 {

@@ -1,7 +1,5 @@
-import {CancellationToken} from "../utils/cancellablePromise";
-import {sleep} from "../utils/sleep";
-import {wait} from "../utils/wait";
 import {show} from "./dialog";
+import {CancellationToken, sleep, wait} from "pissant";
 
 const promiseLibrary = {
     sleep,

@@ -1,8 +1,7 @@
 import {game} from "../igua/game";
 import {Key, KeyCode} from "../utils/key";
-import {wait} from "../utils/wait";
-import {CancellationToken} from "../utils/cancellablePromise";
 import {invisibleObject} from "../gameObjects/utils/invisibleObject";
+import {CancellationToken, wait} from "pissant";
 
 export async function waitForKey(keyCode: KeyCode, ct?: CancellationToken)
 {

@@ -1,10 +1,9 @@
 import { Howl } from 'howler';
-import {sleep} from "./sleep";
+import {wait} from "pissant";
 
 export async function loadHowlsAsync(sounds: Howl[])
 {
-    while (true)
-    {
+    return wait(() => {
         let allLoaded = true;
 
         for (let sound of sounds)
@@ -18,12 +17,9 @@ export async function loadHowlsAsync(sounds: Howl[])
                 sound.load();
 
             allLoaded = false;
-            break;
         }
 
-        if (allLoaded)
-            return;
-
-        await sleep(167);
-    }
+        return allLoaded;
+    },
+    167);
 }
