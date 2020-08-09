@@ -1,15 +1,16 @@
-import {game} from "./game";
-import {applyLevelStyle} from "./style";
-import {progress} from "./progress";
-import {valuable} from "../gameObjects/valuable";
-import {block, pipe, slope} from "../gameObjects/walls";
+import {game} from "../game";
+import {applyLevelStyle} from "../style";
+import {progress} from "../progress";
+import {valuable} from "../../gameObjects/valuable";
+import {block, pipe, slope} from "../../gameObjects/walls";
 import {BitmapText, Sprite} from "pixi.js";
-import {LeftPipeEnd, RightPipeEnd} from "../textures";
-import {gate} from "../gameObjects/gate";
-import {testCutscene, testLevel} from "../cutscene/testScene";
-import {npc} from "../gameObjects/npc";
-import {AcrobatixFont} from "../fonts";
-import {centerPlayerCamera} from "./playerCamera";
+import {LeftPipeEnd, RightPipeEnd} from "../../textures";
+import {gate} from "../../gameObjects/gate";
+import {testCutscene, testLevel} from "../../cutscene/testScene";
+import {npc} from "../../gameObjects/npc";
+import {AcrobatixFont} from "../../fonts";
+import {centerPlayerCamera} from "../playerCamera";
+import {registerGameObjectResolvers} from "./registerGameObjectResolvers";
 
 interface LevelJson<T>
 {
@@ -31,7 +32,7 @@ type GameObjects<T> = {
     [key in keyof T]: GameObject & { source: Readonly<T[key]> }
 }
 
-interface GameObject
+export interface GameObject
 {
     x: number;
     y: number;
@@ -43,7 +44,7 @@ interface EntitiesCommon
     [index: string]: EntityCommon;
 }
 
-interface EntityCommon
+export interface EntityCommon
 {
     type: string;
     uid: string;
@@ -66,6 +67,8 @@ function cuckMerge<T, U>(src: T, dst: U): T & U
     return dst as T & U;
 }
 
+registerGameObjectResolvers();
+
 export function createGameObjects<T>(level: LevelJson<T>): GameObjects<T>
 {
     game.level.width = level.width;
@@ -87,7 +90,7 @@ export function createGameObjects<T>(level: LevelJson<T>): GameObjects<T>
                 y: -1,
                 destroy()
                 {
-                    console.trace(this, "was destroyed");
+                    console.debug(this, "was destroyed");
                 },
                 source: entity
             },
@@ -109,6 +112,7 @@ function createGameObject(entity: EntityCommon)
 {
     const anyEntity = entity as any;
 
+    // TODO create amazing resolvers
     if (entity.type === "ValuableOrange" || entity.type === "ValuableBlue")
     {
         const uid = entity.uid;
