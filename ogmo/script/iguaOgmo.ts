@@ -115,6 +115,7 @@ function makeEntitiesObject(entities: Entity[])
             y: entity.y,
             width: entity.width,
             height: entity.height,
+            uid: entity._eid,
             ...entity.values
         };
     }
