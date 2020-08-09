@@ -2,8 +2,8 @@ import {Container} from "pixi.js";
 import {game} from "../igua/game";
 import {gotoLevel} from "../igua/level";
 import {areRectanglesOverlapping} from "../utils/math";
-import * as levels from "../levels";
-import {Test} from "../levels";
+import * as levels from "../ogmoLevels";
+import {Test} from "../ogmoLevels";
 import {EscapeTickerAndExecute} from "../utils/iguaTicker";
 import {Gate} from "../sounds";
 
