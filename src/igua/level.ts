@@ -25,7 +25,7 @@ export async function gotoLevel(level: Ogmo.Level, checkpointName?: string)
     game.applicationTicker.stop();
     await sleep(250);
     unloadLevel();
-    loadLevel((level as any)._ogmo, checkpointName);
+    loadLevel(level, checkpointName);
     game.applicationTicker.start();
 }
 

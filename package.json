@@ -9,7 +9,11 @@
   "scripts": {
     "start": "concurrently \"generate-textures src/images src/textures.ts\" \"generate-howls assets-src/sound src/sound src/sounds.ts\" \"generate-howls assets-src/music src/music src/musics.ts --dontPreload\" \"generate-json-exports src/ogmoLevels src/ogmoLevels.ts\" \"parcel src/index.html\"",
     "build": "generate-howls assets-src/sound src/sound src/sounds.ts --build && generate-howls assets-src/music src/music src/musics.ts --dontPreload --build && parcel build --public-url ./ src/index.html",
-    "build-ogmo-script": "parcel build ogmo/script/iguaOgmo.ts -d ogmo/script --no-source-maps && echo ;window.stupidMotherFucker();>>ogmo/script/iguaOgmo.js"
+    "build-ogmo-script": "parcel build ogmo/script/iguaOgmo.ts -d ogmo/script --no-source-maps && echo ;window.stupidMotherFucker();>>ogmo/script/iguaOgmo.js",
+    "start-test-server": "parcel src/index.html --port 2456",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "test": "start-server-and-test start-test-server http://localhost:2456 cy:run"
   },
   "repository": {
     "type": "git",
@@ -20,11 +24,13 @@
   "devDependencies": {
     "@types/howler": "^2.1.2",
     "concurrently": "^5.1.0",
+    "cypress": "^4.12.1",
     "generate-howls": "^0.2.4",
     "generate-json-exports": "^0.1.0",
     "generate-textures": "^0.1.0",
     "parcel-bundler": "^1.12.4",
     "pissant-node": "^0.1.2",
+    "start-server-and-test": "^1.11.3",
     "typescript": "^3.8.3"
   },
   "dependencies": {
