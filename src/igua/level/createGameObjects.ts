@@ -10,7 +10,6 @@ import {testCutscene, testLevel} from "../../cutscene/testScene";
 import {npc} from "../../gameObjects/npc";
 import {AcrobatixFont} from "../../fonts";
 import {centerPlayerCamera} from "../playerCamera";
-import {registerGameObjectResolvers} from "./registerGameObjectResolvers";
 
 interface LevelJson<T>
 {
@@ -66,8 +65,6 @@ function cuckMerge<T, U>(src: T, dst: U): T & U
 
     return dst as T & U;
 }
-
-registerGameObjectResolvers();
 
 export function createGameObjects<T>(level: LevelJson<T>): GameObjects<T>
 {

@@ -1,13 +1,15 @@
 import {Graphics, SCALE_MODES, SimpleMesh} from "pixi.js";
 import {distance, dot, normalize, perpendicular, Vector} from "../utils/vector";
 import {Pipe} from "../textures";
-import {addGameObjectResolver} from "../igua/level/gameObjectResolvers";
 import {game} from "../igua/game";
+import {EntityCommon} from "../igua/level/createGameObjects";
 
 const walls: Wall[] = [];
 
-addGameObjectResolver("Block", e =>
-    game.terrainStage.addChild(block(e.x, e.y, e.x + e.width, e.y + e.height)));
+export function resolveBlock(e: EntityCommon)
+{
+    return game.terrainStage.addChild(block(e.x, e.y, e.x + e.width, e.y + e.height));
+}
 
 export function push(xy: Pushable, radius: number) {
     const result: PushResult = {};

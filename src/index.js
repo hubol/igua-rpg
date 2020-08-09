@@ -4,6 +4,7 @@ import {loadHowlsAsync} from "./utils/loadHowls";
 import * as exportedSounds from "./sounds";
 import * as PIXI from "pixi.js";
 import {handlePromiseCancellation} from "pissant";
+import {discoverGameObjectResolvers} from "./igua/level/discoverGameObjectResolvers";
 
 async function initialize()
 {
@@ -17,3 +18,4 @@ async function initialize()
 
 window.onload = initialize;
 window.onunhandledrejection = handlePromiseCancellation;
+localStorage.setItem("gameObjectResolvers", JSON.stringify(discoverGameObjectResolvers()));
