@@ -14,8 +14,8 @@ async function initialize()
     require("./utils/arrayExtensions");
     require("./utils/pixiExtensions");
     require("./igua/game").startGame();
+    localStorage.setItem("gameObjectResolvers", JSON.stringify(discoverGameObjectResolvers()));
 }
 
 window.onload = initialize;
 window.onunhandledrejection = handlePromiseCancellation;
-localStorage.setItem("gameObjectResolvers", JSON.stringify(discoverGameObjectResolvers()));

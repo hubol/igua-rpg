@@ -77,7 +77,7 @@ export function startGame()
     game.player = player();
     game.ticker.add(stepPlayerCamera);
 
-    loadLevel(Test._ogmo as Ogmo.Level);
+    loadLevel(Test as Ogmo.Level);
 
     game.stage.addChild(game.player);
 }
