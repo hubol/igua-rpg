@@ -1,109 +1,81 @@
 {
+  "ogmoVersion": "3.3.0",
   "width": 632,
   "height": 320,
-  "style": 0,
-  "entities": {
-    "SlopeRight": {"type": "SlopeRight", "x": 272, "y": 160, "width": 96, "height": 32, "uid": "55824435"},
-    "Block": {"type": "Block", "x": 184, "y": 192, "width": 184, "height": 128, "uid": "55823268"},
-    "PipeLeft": {"type": "PipeLeft", "x": 128, "y": 160, "width": 88, "height": 32, "uid": "55866573"},
-    "PipeHorizontal": {"type": "PipeHorizontal", "x": 72, "y": 160, "width": 56, "uid": "55841307"},
-    "PipeRight": {"type": "PipeRight", "x": 112, "y": 104, "width": 64, "height": 56, "uid": "55859676"},
-    "PipeHorizontal_1": {"type": "PipeHorizontal", "x": 176, "y": 104, "width": 32, "uid": "55841307"},
-    "SlopeRight_1": {"type": "SlopeRight", "x": 120, "y": 192, "width": 64, "height": 32, "uid": "55824435"},
-    "Block_1": {"type": "Block", "x": 48, "y": 224, "width": 136, "height": 120, "uid": "55823268"},
-    "Block_2": {"type": "Block", "x": 0, "y": 0, "width": 48, "height": 328, "uid": "55823268"},
-    "Block_3": {"type": "Block", "x": 368, "y": 160, "width": 264, "height": 160, "uid": "55823268"},
-    "Gate": {"type": "Gate", "x": 600, "y": 128, "width": 32, "height": 32, "uid": "55920197", "levelName": "RightTest", "checkpointName": ""},
-    "FromRight": {"type": "Checkpoint", "x": 560, "y": 160, "uid": "55940370", "name": "FromRight"},
-    "Door": {"type": "Door", "x": 72, "y": 192, "uid": "55913988", "levelName": "", "checkpointName": ""},
-    "Checkpoint": {"type": "Checkpoint", "x": 112, "y": 224, "uid": "55940370", "name": ""},
-    "Player": {"type": "Player", "x": 280, "y": 88, "uid": "55988047"},
-    "ValuableBlue": {"type": "ValuableBlue", "x": 192, "y": 104, "uid": "55991906"},
-    "SlopeLeft": {"type": "SlopeLeft", "x": 344, "y": 80, "width": 80, "height": 32, "uid": "55845599"},
-    "Block_4": {"type": "Block", "x": 312, "y": 80, "width": 32, "height": 32, "uid": "55823268"},
-    "PipeRightEnd": {"type": "PipeRightEnd", "x": 208, "y": 104, "uid": "63418353"},
-    "PipeLeftEnd": {"type": "PipeLeftEnd", "x": 72, "y": 160, "uid": "63428932"},
-    "ValuableOrange": {"type": "ValuableOrange", "x": 88, "y": 160, "uid": "56004563"}
-  },
-  "_ogmo": {
-    "ogmoVersion": "3.3.0",
-    "width": 632,
-    "height": 320,
-    "offsetX": 0,
-    "offsetY": 0,
-    "values": {"style": 0},
-    "layers": [
-      {
-        "name": "Entities",
-        "_eid": "55827504",
-        "offsetX": 0,
-        "offsetY": 0,
-        "gridCellWidth": 8,
-        "gridCellHeight": 8,
-        "gridCellsX": 79,
-        "gridCellsY": 40,
-        "entities": [
-          {"name": "SlopeRight", "id": 0, "_eid": "55824435", "x": 272, "y": 160, "width": 96, "height": 32, "originX": 0, "originY": 0},
-          {"name": "Block", "id": 1, "_eid": "55823268", "x": 184, "y": 192, "width": 184, "height": 128, "originX": 0, "originY": 0},
-          {"name": "PipeLeft", "id": 2, "_eid": "55866573", "x": 128, "y": 160, "width": 88, "height": 32, "originX": 0, "originY": 0},
-          {"name": "PipeHorizontal", "id": 3, "_eid": "55841307", "x": 72, "y": 160, "width": 56, "originX": 0, "originY": 0},
-          {"name": "PipeRight", "id": 4, "_eid": "55859676", "x": 112, "y": 104, "width": 64, "height": 56, "originX": 0, "originY": 0},
-          {"name": "PipeHorizontal", "id": 5, "_eid": "55841307", "x": 176, "y": 104, "width": 32, "originX": 0, "originY": 0},
-          {"name": "SlopeRight", "id": 6, "_eid": "55824435", "x": 120, "y": 192, "width": 64, "height": 32, "originX": 0, "originY": 0},
-          {"name": "Block", "id": 7, "_eid": "55823268", "x": 48, "y": 224, "width": 136, "height": 120, "originX": 0, "originY": 0},
-          {"name": "Block", "id": 9, "_eid": "55823268", "x": 0, "y": 0, "width": 48, "height": 328, "originX": 0, "originY": 0},
-          {"name": "Block", "id": 10, "_eid": "55823268", "x": 368, "y": 160, "width": 264, "height": 160, "originX": 0, "originY": 0},
-          {
-            "name": "Gate",
-            "id": 11,
-            "_eid": "55920197",
-            "x": 600,
-            "y": 128,
-            "width": 32,
-            "height": 32,
-            "originX": 0,
-            "originY": 0,
-            "values": {"levelName": "RightTest", "checkpointName": ""}
-          },
-          {
-            "name": "Checkpoint",
-            "id": 12,
-            "_eid": "55940370",
-            "x": 560,
-            "y": 160,
-            "originX": 6,
-            "originY": 12,
-            "values": {"name": "FromRight"}
-          },
-          {
-            "name": "Door",
-            "id": 15,
-            "_eid": "55913988",
-            "x": 72,
-            "y": 192,
-            "originX": 0,
-            "originY": 0,
-            "values": {"levelName": "", "checkpointName": ""}
-          },
-          {
-            "name": "Checkpoint",
-            "id": 16,
-            "_eid": "55940370",
-            "x": 112,
-            "y": 224,
-            "originX": 6,
-            "originY": 12,
-            "values": {"name": ""}
-          },
-          {"name": "Player", "id": 17, "_eid": "55988047", "x": 280, "y": 88, "originX": 11, "originY": 27},
-          {"name": "ValuableBlue", "id": 18, "_eid": "55991906", "x": 192, "y": 104, "originX": 8, "originY": 14},
-          {"name": "SlopeLeft", "id": 19, "_eid": "55845599", "x": 344, "y": 80, "width": 80, "height": 32, "originX": 0, "originY": 0},
-          {"name": "Block", "id": 20, "_eid": "55823268", "x": 312, "y": 80, "width": 32, "height": 32, "originX": 0, "originY": 0},
-          {"name": "PipeRightEnd", "id": 21, "_eid": "63418353", "x": 208, "y": 104, "originX": 0, "originY": 0},
-          {"name": "PipeLeftEnd", "id": 22, "_eid": "63428932", "x": 72, "y": 160, "originX": 16, "originY": 0},
-          {"name": "ValuableOrange", "id": 23, "_eid": "56004563", "x": 88, "y": 160, "originX": 8, "originY": 14}
-        ]
-      }
-    ]
-  }
+  "offsetX": 0,
+  "offsetY": 0,
+  "values": {"style": 0},
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 79,
+      "gridCellsY": 40,
+      "entities": [
+        {"name": "SlopeRight", "id": 0, "_eid": "55824435", "x": 272, "y": 160, "width": 96, "height": 32, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 1, "_eid": "55823268", "x": 184, "y": 192, "width": 184, "height": 128, "originX": 0, "originY": 0},
+        {"name": "PipeLeft", "id": 2, "_eid": "55866573", "x": 128, "y": 160, "width": 88, "height": 32, "originX": 0, "originY": 0},
+        {"name": "PipeHorizontal", "id": 3, "_eid": "55841307", "x": 72, "y": 160, "width": 56, "originX": 0, "originY": 0},
+        {"name": "PipeRight", "id": 4, "_eid": "55859676", "x": 112, "y": 104, "width": 64, "height": 56, "originX": 0, "originY": 0},
+        {"name": "PipeHorizontal", "id": 5, "_eid": "55841307", "x": 176, "y": 104, "width": 32, "originX": 0, "originY": 0},
+        {"name": "SlopeRight", "id": 6, "_eid": "55824435", "x": 120, "y": 192, "width": 64, "height": 32, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 7, "_eid": "55823268", "x": 48, "y": 224, "width": 136, "height": 120, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 9, "_eid": "55823268", "x": 0, "y": 0, "width": 48, "height": 328, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 10, "_eid": "55823268", "x": 368, "y": 160, "width": 264, "height": 160, "originX": 0, "originY": 0},
+        {
+          "name": "Gate",
+          "id": 11,
+          "_eid": "55920197",
+          "x": 600,
+          "y": 128,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "RightTest", "checkpointName": ""}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 12,
+          "_eid": "55940370",
+          "x": 560,
+          "y": 160,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromRight"}
+        },
+        {
+          "name": "Door",
+          "id": 15,
+          "_eid": "55913988",
+          "x": 72,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "", "checkpointName": ""}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 16,
+          "_eid": "55940370",
+          "x": 112,
+          "y": 224,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": ""}
+        },
+        {"name": "Player", "id": 17, "_eid": "55988047", "x": 280, "y": 88, "originX": 11, "originY": 27},
+        {"name": "ValuableBlue", "id": 18, "_eid": "55991906", "x": 192, "y": 104, "originX": 8, "originY": 14},
+        {"name": "SlopeLeft", "id": 19, "_eid": "55845599", "x": 344, "y": 80, "width": 80, "height": 32, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 20, "_eid": "55823268", "x": 312, "y": 80, "width": 32, "height": 32, "originX": 0, "originY": 0},
+        {"name": "PipeRightEnd", "id": 21, "_eid": "63418353", "x": 208, "y": 104, "originX": 0, "originY": 0},
+        {"name": "PipeLeftEnd", "id": 22, "_eid": "63428932", "x": 72, "y": 160, "originX": 16, "originY": 0},
+        {"name": "ValuableOrange", "id": 23, "_eid": "56004563", "x": 88, "y": 160, "originX": 8, "originY": 14}
+      ]
+    }
+  ]
 }

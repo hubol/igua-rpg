@@ -24,6 +24,7 @@
     "generate-json-exports": "^0.1.0",
     "generate-textures": "^0.1.0",
     "parcel-bundler": "^1.12.4",
+    "pissant-node": "^0.1.2",
     "typescript": "^3.8.3"
   },
   "dependencies": {
