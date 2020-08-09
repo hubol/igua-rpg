@@ -1,4 +1,4 @@
-import {createGameObjects} from "../igua/createGameObjects";
+import {createGameObjects} from "../igua/level/createGameObjects";
 import {Test} from "../ogmoLevels";
 
 export function testLevel()
