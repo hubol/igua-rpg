@@ -1,5 +1,5 @@
-import {Module} from "./module";
-import {ImportedFunction} from "./imported";
+import {Module} from "./components/module";
+import {ImportedFunction} from "./components/imported";
 
 export interface Import
 {
@@ -14,7 +14,7 @@ export function findImports(module: Module)
     while (next.length > 0)
         findImportsImpl(next.pop(), next, importJsons);
     const imports = Array.from(importJsons as any).map(x => JSON.parse(x as string) as Import);
-    console.info(module, "Found imports", imports);
+    console.info(module, "Found unique imports", imports);
     return imports;
 }
 
