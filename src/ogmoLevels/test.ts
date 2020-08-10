@@ -1,4 +1,5 @@
 import * as Village from "./RightTest.json";
+import { resolveBlock } from "../gameObjects/walls";
 
 type Fuck<T> = {
     [key in keyof T]: string

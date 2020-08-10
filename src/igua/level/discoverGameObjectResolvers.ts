@@ -3,16 +3,16 @@ import {EntityCommon} from "./createGameObjects";
 export function discoverGameObjectResolvers()
 {
     const gameObjectsModules = require("../../gameObjects/**/*.*");
-    const gameObjectResolvers = findResolvers(gameObjectsModules);
+    const gameObjectResolvers = findResolvers(gameObjectsModules, "src/gameObjects");
     console.debug("Discovered GameObjectResolvers", gameObjectResolvers);
     return gameObjectResolvers;
 }
 
-interface GameObjectResolver
+export interface GameObjectResolver
 {
     path: string;
     exportedName: string;
-    canResolve(entityCommon: EntityCommon): boolean;
+    resolvableEntityType: string;
 }
 
 interface ToProcess
@@ -22,9 +22,9 @@ interface ToProcess
     terminal: boolean;
 }
 
-function findResolvers(src: any)
+function findResolvers(src: any, path: string)
 {
-    const process: ToProcess[] = [{ path: "", object: src, terminal: false }];
+    const process: ToProcess[] = [{ path, object: src, terminal: false }];
     const resolvers: GameObjectResolver[] = [];
     while (process.length > 0)
     {
@@ -56,7 +56,7 @@ function findResolversImpl(processing: ToProcess, process: ToProcess[], resolver
                 resolvers.push({
                     exportedName: key,
                     path,
-                    canResolve: e => e.type === typeName
+                    resolvableEntityType: typeName
                 });
                 continue;
             }
