@@ -2,12 +2,12 @@ import {getRelativePath} from "pissant-node";
 
 export class ImportWriter
 {
-    public readonly currentFilePath: string;
+    public readonly currentDirectory: string;
     private readonly _imports: Import[] = [];
 
-    public constructor(currentFilePath: string)
+    public constructor(currentDirectory: string)
     {
-        this.currentFilePath = currentFilePath;
+        this.currentDirectory = currentDirectory;
     }
 
     public addImport(_import: Import): boolean
@@ -24,8 +24,10 @@ export class ImportWriter
     {
         let text = "";
         this._imports.forEach(x => {
-            const relativePath = getRelativePath(this.currentFilePath, x.filePath);
-            text += `import { ${x.exportedName}${x.asName ? ` as ${x.asName}` : ""} } from '${relativePath}'`;
+            const relativePath = getRelativePath(this.currentDirectory, x.filePath);
+            console.log(this.currentDirectory, x.filePath, getRelativePath(this.currentDirectory, x.filePath), relativePath);
+            text += `import { ${x.exportedName}${x.asName ? ` as ${x.asName}` : ""} } from '${relativePath}';
+`;
         });
         return text;
     }
