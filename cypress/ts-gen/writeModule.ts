@@ -1,8 +1,8 @@
-import {Module} from "./module";
+import {Module} from "./components/module";
 import {getRelativePath} from "pissant-node";
-import {Export} from "./export";
-import {AnonymousFunction} from "./function";
-import {Invocation} from "./invocation";
+import {Export} from "./components/export";
+import {AnonymousFunction} from "./components/function";
+import {Invocation} from "./components/invocation";
 import {findImports, Import} from "./findImports";
 
 export function writeModule(module: Module)
