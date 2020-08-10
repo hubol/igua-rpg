@@ -1,9 +1,9 @@
-import {OgmoLevelFile} from "../readOgmoLevelFile";
+import {OgmoLevelFile} from "./readOgmoLevelFile";
 import {toPascalCase} from "pissant";
-import {Ogmo} from "../../src/types/ogmo";
-import {ApplyOgmoLevelArgs} from "../../src/igua/level/applyOgmoLevelArgs";
+import {Ogmo} from "../src/types/ogmo";
+import {ApplyOgmoLevelArgs} from "../src/igua/level/applyOgmoLevelArgs";
 import {writeEntities} from "./writeEntities";
-import {GameObjectResolver} from "../../src/types/gameObjectResolver";
+import {GameObjectResolver} from "../src/types/gameObjectResolver";
 
 export function writeOgmoLevelFile(ogmoLevelFile: OgmoLevelFile, gameObjectResolvers: GameObjectResolver[])
 {
