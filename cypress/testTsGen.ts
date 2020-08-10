@@ -12,6 +12,7 @@ export function testTsGen()
             width: 69,
             height: 420,
             style: 300,
+            wtf: [0, "1", 2],
             entities: new AnonymousFunction(new Returns({
                 Block: new Invocation(new ImportedFunction("resolveBlock", "/src/gameObjects/walls"), { x: 0, y: 0, type: "Block" })
             }))
