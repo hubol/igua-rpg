@@ -6,7 +6,7 @@ export interface ApplyLevelArgs<T>
     readonly gameObjectsSupplier: () => GameObjects<T>;
 }
 
-type GameObjects<T> = {
+export type GameObjects<T> = {
     [key in keyof T]: T[key]
 }
 

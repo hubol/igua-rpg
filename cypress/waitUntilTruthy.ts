@@ -1,3 +1,5 @@
+import {sleep} from "pissant";
+
 export async function waitUntilTruthy<T>(supplier: () => T): Promise<T>
 {
     let value;
@@ -5,9 +7,4 @@ export async function waitUntilTruthy<T>(supplier: () => T): Promise<T>
         await sleep(33);
 
     return value;
-}
-
-export function sleep(ms: number)
-{
-    return new Promise<void>(resolve => setTimeout(resolve, ms))
 }
