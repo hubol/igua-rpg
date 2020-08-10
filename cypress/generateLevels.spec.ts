@@ -2,7 +2,8 @@ import {ImportWriter} from "./ts-gen/importWriter";
 import {getGameObjectResolvers} from "./getGameObjectResolvers";
 import {waitUntilTruthy} from "./promises";
 import {GameObjectResolver} from "../src/igua/level/discoverGameObjectResolvers";
-import {getAllFiles} from "pissant-node";
+import {OgmoLevelFile, readOgmoLevelFile} from "./readOgmoLevelFile";
+import {writeOgmoLevelFile} from "./ts-gen/writeOgmoLevelFile";
 
 describe("Let's generate the levels", () => {
     it("Visit", () => {
@@ -27,7 +28,27 @@ describe("Let's generate the levels", () => {
         cy.log(importText);
     });
 
-    it("Goes and fucks itself", () => {
-        cy.log(getAllFiles("./src/ogmoLevels") as unknown as string);
+    const ogmoLevelFiles: OgmoLevelFile[] = [];
+    it("Read ogmo level files", () => {
+        cy.task("getAllFiles", "./src/ogmoLevels").then(async x => {
+            const files = (x as unknown as string[]).filter(x => x.endsWith(".json"));
+            files.forEach(x => readOgmoLevelFile(x, ogmoLevelFiles));
+        });
+    });
+
+    const applyLevelArgsTexts: string[] = [];
+    it("Generate ApplyLevelArgs texts", () => {
+        for (const ogmoLevelFile of ogmoLevelFiles)
+        {
+            const text = writeOgmoLevelFile(ogmoLevelFile, gameObjectResolvers);
+            applyLevelArgsTexts.push(text);
+            cy.log(text);
+        }
+    });
+
+    it("Write it", () => {
+        cy.writeFile("./src/levels.ts", `${importText}
+
+${applyLevelArgsTexts.join("\n\n")}`);
     });
 })
