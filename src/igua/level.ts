@@ -12,6 +12,7 @@ import {AcrobatixFont} from "../fonts";
 import {testCutscene, testLevel} from "../cutscene/testScene";
 import {RecycleablePromiseLibrary} from "../cutscene/recycleablePromiseLibrary";
 import {sleep} from "pissant";
+import {Ogmo} from "../types/ogmo";
 
 const levelRecycleablePromiseLibrary = new RecycleablePromiseLibrary();
 

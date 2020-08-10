@@ -2,7 +2,7 @@
   "baseUrl": "http://localhost:2456",
   "integrationFolder": "cypress",
   "testFiles": "**/*.spec.*",
-  "pluginsFile": false,
+  "pluginsFile": "cypress/plugins.js",
   "supportFile": false,
   "fixturesFolder": false,
   "screenshotOnRunFailure": false,

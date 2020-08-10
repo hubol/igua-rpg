@@ -1,4 +1,4 @@
-namespace Ogmo
+export namespace Ogmo
 {
     export interface Level
     {
