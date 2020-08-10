@@ -1,5 +1,3 @@
-import {EntityCommon} from "./createGameObjects";
-
 export function discoverGameObjectResolvers()
 {
     const gameObjectsModules = require("../../gameObjects/**/*.*");
