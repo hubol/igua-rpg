@@ -1,8 +1,8 @@
 import {toPascalCase} from "pissant";
-import {Ogmo} from "../../src/types/ogmo";
+import {Ogmo} from "../src/types/ogmo";
 import Entity = Ogmo.Entity;
-import {GameObjectResolver} from "../../src/types/gameObjectResolver";
-import {EntityCommon} from "../../src/types/entityCommon";
+import {GameObjectResolver} from "../src/types/gameObjectResolver";
+import {EntityCommon} from "../src/types/entityCommon";
 
 export function writeEntities(entities: Entity[], gameObjectResolvers: GameObjectResolver[])
 {

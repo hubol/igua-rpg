@@ -1,7 +1,7 @@
-import {ImportWriter} from "./ts-gen/importWriter";
+import {ImportWriter} from "./importWriter";
 import {getGameObjectResolvers} from "./getGameObjectResolvers";
 import {OgmoLevelFile, readOgmoLevelFile} from "./readOgmoLevelFile";
-import {writeOgmoLevelFile} from "./ts-gen/writeOgmoLevelFile";
+import {writeOgmoLevelFile} from "./writeOgmoLevelFile";
 import {waitUntilTruthy} from "./waitUntilTruthy";
 import {GameObjectResolver} from "../src/types/gameObjectResolver";
 
