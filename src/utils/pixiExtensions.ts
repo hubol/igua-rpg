@@ -18,6 +18,7 @@ declare global {
 
         export interface Container {
             removeAllChildren();
+            addChild<T extends DisplayObject>(child: T): T;
         }
     }
 }
