@@ -1,9 +1,9 @@
 import {ImportWriter} from "./ts-gen/importWriter";
 import {getGameObjectResolvers} from "./getGameObjectResolvers";
-import {waitUntilTruthy} from "./promises";
 import {GameObjectResolver} from "../src/igua/level/discoverGameObjectResolvers";
 import {OgmoLevelFile, readOgmoLevelFile} from "./readOgmoLevelFile";
 import {writeOgmoLevelFile} from "./ts-gen/writeOgmoLevelFile";
+import {waitUntilTruthy} from "./waitUntilTruthy";
 
 describe("Let's generate the levels", () => {
     it("Visit", () => {
