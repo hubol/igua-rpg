@@ -2,12 +2,11 @@ import {startApplication} from "../utils/pixiUtils";
 import {Container, DisplayObject} from "pixi.js";
 import {IguaTicker} from "../utils/iguaTicker";
 import {stepPlayerCamera} from "./playerCamera";
-import {loadLevel} from "./level";
-import {Test} from "../ogmoLevels";
 import {player} from "../gameObjects/player";
 import {advanceKeyListener, startKeyListener} from "../utils/key";
 import {IguanaPuppet} from "./iguanaPuppet";
 import {CutscenePlayer} from "../cutscene/cutscene";
+import {Test} from "../levels/testLevel";
 
 export let game: ReturnType<typeof createGame>;
 
@@ -77,7 +76,7 @@ export function startGame()
     game.player = player();
     game.ticker.add(stepPlayerCamera);
 
-    loadLevel(Test as Ogmo.Level);
+    Test();
 
     game.stage.addChild(game.player);
 }

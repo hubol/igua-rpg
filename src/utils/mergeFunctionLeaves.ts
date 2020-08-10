@@ -14,7 +14,8 @@ function mergeFunctionLeavesImpl(current: any, result: any, next: any[])
     if (typeof current !== "object" || Array.isArray(current))
         return;
 
-    for (const key in current)
+    const keys = Object.keys(current);
+    for (const key of keys)
     {
         const value = current[key];
         if (typeof value === "function")

@@ -15,6 +15,7 @@ export function applyOgmoLevel<T>(args: ApplyOgmoLevelArgs<T>): GameObjects<T>
 
     game.player.hspeed = 0;
     game.player.vspeed = 0;
+    game.player.x = 100;
 
     const gameObjects = args.gameObjectsSupplier();
 

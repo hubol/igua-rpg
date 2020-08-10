@@ -23,7 +23,7 @@ export async function testLevel()
 
     while (true)
     {
-        console.log(i++);
+        // console.log(i++);
         await sleep(1000);
     }
 }
