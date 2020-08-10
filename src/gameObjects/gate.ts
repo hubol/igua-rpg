@@ -4,8 +4,8 @@ import {gotoLevel} from "../igua/level";
 import {areRectanglesOverlapping} from "../utils/math";
 import {EscapeTickerAndExecute} from "../utils/iguaTicker";
 import {Gate} from "../sounds";
-import {EntityCommon} from "../igua/level/createGameObjects";
 import {progress} from "../igua/progress";
+import {EntityCommon} from "../types/entityCommon";
 
 export function resolveGate(entity: EntityCommon)
 {

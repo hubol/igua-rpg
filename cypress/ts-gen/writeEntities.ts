@@ -1,8 +1,8 @@
-import {GameObjectResolver} from "../../src/igua/level/discoverGameObjectResolvers";
-import {EntityCommon} from "../../src/igua/level/createGameObjects";
 import {toPascalCase} from "pissant";
 import {Ogmo} from "../../src/types/ogmo";
 import Entity = Ogmo.Entity;
+import {GameObjectResolver} from "../../src/types/gameObjectResolver";
+import {EntityCommon} from "../../src/types/entityCommon";
 
 export function writeEntities(entities: Entity[], gameObjectResolvers: GameObjectResolver[])
 {

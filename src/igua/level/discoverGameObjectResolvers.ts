@@ -1,16 +1,11 @@
+import {GameObjectResolver} from "../../types/gameObjectResolver";
+
 export function discoverGameObjectResolvers()
 {
     const gameObjectsModules = require("../../gameObjects/**/*.*");
     const gameObjectResolvers = findResolvers(gameObjectsModules, "src/gameObjects");
     console.debug("Discovered GameObjectResolvers", gameObjectResolvers);
     return gameObjectResolvers;
-}
-
-export interface GameObjectResolver
-{
-    path: string;
-    exportedName: string;
-    resolvableEntityType: string;
 }
 
 interface ToProcess

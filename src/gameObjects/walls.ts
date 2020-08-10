@@ -2,7 +2,7 @@ import {Graphics, SCALE_MODES, SimpleMesh, Sprite} from "pixi.js";
 import {distance, dot, normalize, perpendicular, Vector} from "../utils/vector";
 import {LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
 import {game} from "../igua/game";
-import {EntityCommon} from "../igua/level/createGameObjects";
+import {EntityCommon} from "../types/entityCommon";
 
 const walls: Wall[] = [];
 

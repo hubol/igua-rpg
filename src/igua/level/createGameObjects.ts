@@ -10,6 +10,7 @@ import {testCutscene, testLevel} from "../../cutscene/testScene";
 import {npc} from "../../gameObjects/npc";
 import {AcrobatixFont} from "../../fonts";
 import {centerPlayerCamera} from "../playerCamera";
+import {EntityCommon} from "../../types/entityCommon";
 
 interface LevelJson<T>
 {
@@ -41,16 +42,6 @@ export interface GameObject
 interface EntitiesCommon
 {
     [index: string]: EntityCommon;
-}
-
-export interface EntityCommon
-{
-    type: string;
-    uid: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
 }
 
 function cuckMerge<T, U>(src: T, dst: U): T & U

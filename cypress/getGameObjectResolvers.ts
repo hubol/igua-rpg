@@ -1,4 +1,4 @@
-import {GameObjectResolver} from "../src/igua/level/discoverGameObjectResolvers";
+import {GameObjectResolver} from "../src/types/gameObjectResolver";
 
 export function getGameObjectResolvers(): GameObjectResolver[] | undefined
 {

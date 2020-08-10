@@ -4,7 +4,7 @@ import {game} from "../igua/game";
 import {progress} from "../igua/progress";
 import {smallPop} from "./smallPop";
 import {CollectValuable, CollectValuableSmall} from "../sounds";
-import {EntityCommon} from "../igua/level/createGameObjects";
+import {EntityCommon} from "../types/entityCommon";
 
 type ValuableType = keyof typeof valuableStyles;
 
