@@ -24,7 +24,10 @@ export function testTsGen()
             entities: new AnonymousFunction(new Returns({
                 Block: new Invocation(new ImportedFunction("resolveGate", "/src/gameObjects/gate"), { x: 0, y: 0, type: "Block" })
             }))
-        }))
+        })),
+        new Export(new Const("Stupid", new AnonymousFunction(new Returns(new Invocation(new ImportedFunction("fuckYou", "/src/fuckYou")).tsIgnore())))),
+        new Export(new Const("Stupid2", [ new Invocation(new ImportedFunction("resolveMe", "/src/stupid")).tsIgnore() ])),
+        new Export(new Const("Stupid3", new Invocation(new ImportedFunction("resolveMe", "/src/stupid")).tsIgnore()))
     ];
     return new Module("/src/hello", exports);
 }
