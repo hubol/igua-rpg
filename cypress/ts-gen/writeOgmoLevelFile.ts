@@ -8,7 +8,7 @@ import {writeEntities} from "./writeEntities";
 export function writeOgmoLevelFile(ogmoLevelFile: OgmoLevelFile, gameObjectResolvers: GameObjectResolver[])
 {
     const levelName = toPascalCase(trimExtension(getFileName(ogmoLevelFile.path)));
-    return `export const ${levelName} = ${writeLevel(ogmoLevelFile.level, gameObjectResolvers)};`;
+    return `export const ${levelName}Args = ${writeLevel(ogmoLevelFile.level, gameObjectResolvers)};`;
 }
 
 function writeLevel(level: Ogmo.Level, gameObjectResolvers: GameObjectResolver[])

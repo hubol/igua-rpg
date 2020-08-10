@@ -2,11 +2,10 @@ import {Container} from "pixi.js";
 import {game} from "../igua/game";
 import {gotoLevel} from "../igua/level";
 import {areRectanglesOverlapping} from "../utils/math";
-import * as levels from "../ogmoLevels";
-import {Test} from "../ogmoLevels";
 import {EscapeTickerAndExecute} from "../utils/iguaTicker";
 import {Gate} from "../sounds";
 import {EntityCommon} from "../igua/level/createGameObjects";
+import {progress} from "../igua/progress";
 
 export function resolveGate(entity: EntityCommon)
 {
@@ -31,14 +30,10 @@ export function gate(x, y, width, height, destination: { checkpointName, levelNa
             Gate.volume(0.4);
             Gate.play();
             throw new EscapeTickerAndExecute(
-                () => gotoLevel(getLevel(destination.levelName), destination.checkpointName));
+                () => {
+                    progress.checkpointName = destination.checkpointName;
+                    return gotoLevel(destination.levelName)
+                });
         }
     });
-}
-
-function getLevel(name)
-{
-    if (name in levels)
-        return levels[name];
-    return Test;
 }

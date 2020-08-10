@@ -47,7 +47,7 @@ describe("Let's generate the levels", () => {
     });
 
     it("Write it", () => {
-        cy.writeFile("./src/levels.ts", `${importText}
+        cy.writeFile("./src/levelArgs.ts", `${importText}
 
 ${applyLevelArgsTexts.join("\n\n")}`);
     });
