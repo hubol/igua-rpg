@@ -1,6 +1,6 @@
-import {Graphics, SCALE_MODES, SimpleMesh} from "pixi.js";
+import {Graphics, SCALE_MODES, SimpleMesh, Sprite} from "pixi.js";
 import {distance, dot, normalize, perpendicular, Vector} from "../utils/vector";
-import {Pipe} from "../textures";
+import {LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
 import {game} from "../igua/game";
 import {EntityCommon} from "../igua/level/createGameObjects";
 
@@ -9,6 +9,48 @@ const walls: Wall[] = [];
 export function resolveBlock(e: EntityCommon)
 {
     return game.terrainStage.addChild(block(e.x, e.y, e.x + e.width, e.y + e.height));
+}
+
+export function resolveSlopeRight(e: EntityCommon)
+{
+    return game.terrainStage.addChild(slope(e.x, e.y + e.height, e.x + e.width, e.y));
+}
+
+export function resolveSlopeLeft(e: EntityCommon)
+{
+    return game.terrainStage.addChild(slope(e.x, e.y, e.x + e.width, e.y + e.height));
+}
+
+export function resolvePipeRight(e: EntityCommon)
+{
+    return game.pipeStage.addChild(pipe(e.x, e.y + e.height, e.x + e.width, e.y));
+}
+
+export function resolvePipeLeft(e: EntityCommon)
+{
+    return game.pipeStage.addChild(pipe(e.x, e.y, e.x + e.width, e.y + e.height));
+}
+
+export function resolvePipeHorizontal(e: EntityCommon)
+{
+    return game.pipeStage.addChild(pipe(e.x, e.y, e.x + e.width, e.y));
+}
+
+export function resolvePipeRightEnd(e: EntityCommon)
+{
+    const sprite = Sprite.from(RightPipeEnd);
+    sprite.x = e.x;
+    sprite.y = e.y;
+    return game.pipeStage.addChild(sprite);
+}
+
+export function resolvePipeLeftEnd(e: EntityCommon)
+{
+    const sprite = Sprite.from(LeftPipeEnd);
+    sprite.anchor.set(1, 0);
+    sprite.x = e.x;
+    sprite.y = e.y;
+    return game.pipeStage.addChild(sprite);
 }
 
 export function push(xy: Pushable, radius: number) {
