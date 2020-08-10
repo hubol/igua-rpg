@@ -2,7 +2,7 @@ import {OgmoLevelFile} from "../readOgmoLevelFile";
 import {GameObjectResolver} from "../../src/igua/level/discoverGameObjectResolvers";
 import {toPascalCase} from "pissant";
 import {Ogmo} from "../../src/types/ogmo";
-import {ApplyLevelArgs} from "../../src/igua/level/applyLevelArgs";
+import {ApplyOgmoLevelArgs} from "../../src/igua/level/applyOgmoLevelArgs";
 import {writeEntities} from "./writeEntities";
 
 export function writeOgmoLevelFile(ogmoLevelFile: OgmoLevelFile, gameObjectResolvers: GameObjectResolver[])
@@ -15,7 +15,7 @@ function writeLevel(level: Ogmo.Level, gameObjectResolvers: GameObjectResolver[]
 {
     const replaceMe = ">>REPLACE_ME<<";
 
-    const applyLevelArgs: ApplyLevelArgs<unknown> = {
+    const applyLevelArgs: ApplyOgmoLevelArgs<unknown> = {
         width: level.width,
         height: level.height,
         ...level.values,

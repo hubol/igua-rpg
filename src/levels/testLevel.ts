@@ -1,8 +1,12 @@
-import {createGameObjects} from "../igua/level/createGameObjects";
-import {Test} from "../ogmoLevels";
+import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
+import {RightTest as RightTestArgs, Test as TestArgs} from "../levels";
 
-export function testLevel()
+export function Test()
 {
-    const gameObjects = createGameObjects(Test);
-    gameObjects.Block.destroy();
+    applyOgmoLevel(TestArgs);
+}
+
+export function RightTest()
+{
+    applyOgmoLevel(RightTestArgs);
 }

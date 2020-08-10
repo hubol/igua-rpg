@@ -1,4 +1,4 @@
-export interface ApplyLevelArgs<T>
+export interface ApplyOgmoLevelArgs<T>
 {
     readonly width: number;
     readonly height: number;

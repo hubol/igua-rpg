@@ -5,18 +5,18 @@ import {testCutscene, testLevel} from "../../cutscene/testScene";
 import {npc} from "../../gameObjects/npc";
 import {AcrobatixFont} from "../../fonts";
 import {centerPlayerCamera} from "../playerCamera";
-import {ApplyLevelArgs, GameObjects} from "./applyLevelArgs";
+import {ApplyOgmoLevelArgs, GameObjects} from "./applyOgmoLevelArgs";
 
-export function applyLevel<T>(applyLevelArgs: ApplyLevelArgs<T>): GameObjects<T>
+export function applyOgmoLevel<T>(args: ApplyOgmoLevelArgs<T>): GameObjects<T>
 {
-    game.level.width = applyLevelArgs.width;
-    game.level.height = applyLevelArgs.height;
-    applyLevelStyle(applyLevelArgs.style);
+    game.level.width = args.width;
+    game.level.height = args.height;
+    applyLevelStyle(args.style);
 
     game.player.hspeed = 0;
     game.player.vspeed = 0;
 
-    const gameObjects = applyLevelArgs.gameObjectsSupplier();
+    const gameObjects = args.gameObjectsSupplier();
 
     setTimeout(testLevel);
     game.gameObjectStage.addChild(npc(64, 256 - 32 - 8));
