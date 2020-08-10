@@ -17,5 +17,6 @@ export class Invocation
     public tsIgnore()
     {
         this.ignoreProblemsWithInvocation = true;
+        return this;
     }
 }

@@ -2,11 +2,8 @@ import {Module} from "./module";
 import {ImportedFunction} from "./imported";
 import {getRelativePath} from "pissant-node";
 import {Export} from "./export";
-import {Const} from "./const";
 import {AnonymousFunction} from "./function";
 import {Invocation} from "./invocation";
-import {resolveGate} from "../../src/gameObjects/gate";
-import {resolveBlock} from "../../src/gameObjects/walls";
 
 export function writeModule(module: Module)
 {
@@ -23,17 +20,9 @@ function writeImport(module: Module) {
     }
 }
 
-/*
-entities: new AnonymousFunction(new Returns({
-Block: new Invocation(new ImportedFunction("resolveBlock", "/src/gameObjects/walls"), { x: 0, y: 0, type: "Block" })
-}))
- */
-
 function writeExport(e: Export)
 {
-    if (e.member instanceof Const)
-        return `export const ${e.member.preferredName} = ${writeLiteral(e.member.value)};`;
-    throw { message: "Unsupported export member type", export: e };
+    return `export const ${e.member.preferredName} = ${writeLiteral(e.member.value)};`;
 }
 
 function writeLiteral(x: any): string
@@ -52,9 +41,27 @@ function writeLiteral(x: any): string
     }
     if (typeof x === "object")
         return `{
-    ${Object.keys(x).map(k => `${k}: ${writeLiteral(x[k])}`).join(",\n")}
+    ${Object.keys(x).map(writeKvPair(x)).join(",\n")}
 }`;
     return JSON.stringify(x);
+}
+
+function writeKvPair(object: any)
+{
+    return function(key: string)
+    {
+        const value = object[key];
+        const kvPair = `${key}: ${writeLiteral(value)}`;
+        if (suppressTypeScriptErrors(value))
+            return `// @ts-ignore
+${kvPair}`
+        return kvPair;
+    }
+}
+
+function suppressTypeScriptErrors(object: any)
+{
+    return object instanceof Invocation && object.ignoreProblemsWithInvocation;
 }
 
 interface Import
