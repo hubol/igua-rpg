@@ -1,3 +1,4 @@
+// This file is generated. Do not touch.
 import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
