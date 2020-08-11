@@ -30,7 +30,7 @@ describe("Let's generate the levels", () => {
 
     const ogmoLevelFiles: OgmoLevelFile[] = [];
     it("Read ogmo level files", () => {
-        cy.task("getAllFiles", "./src/ogmoLevels").then(async x => {
+        cy.task("getAllFiles", "./ogmo/levels").then(async x => {
             const files = (x as unknown as string[]).filter(x => x.endsWith(".json"));
             files.forEach(x => readOgmoLevelFile(x, ogmoLevelFiles));
         });

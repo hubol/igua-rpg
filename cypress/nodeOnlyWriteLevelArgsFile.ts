@@ -4,19 +4,20 @@ import {writeModule} from "./ts-gen/writeModule";
 import {OgmoLevelFile} from "./readOgmoLevelFile";
 import {WriteLevelArgsFileArgs} from "./writeLevelArgsFile";
 import {readFile} from "fs";
-import {getAllFiles, getDirectory} from "pissant-node";
+import {createOrUpdateFile, getAllFiles, getDirectory} from "pissant-node";
 
 export async function __nodeOnly__writeLevelArgsFile(
     { gameObjectResolvers, levelArgsFilePath, ogmoLevelsDirectoryPath }: WriteLevelArgsFileArgs)
 {
     const exports =
-        (await Promise.all(getAllFiles(ogmoLevelsDirectoryPath).map(getOgmoLevelFile)))
+        (await Promise.all(getAllFiles(ogmoLevelsDirectoryPath).filter(x => x.endsWith(".json")).map(readOgmoLevelFile)))
             .map(generateLevelArgsExport(gameObjectResolvers));
-    const module = new Module(getDirectory(levelArgsFilePath), exports);
-    console.log(writeModule(module));
+    const moduleTypescriptText = writeModule(new Module(getDirectory(levelArgsFilePath), exports));
+    console.log(moduleTypescriptText);
+    createOrUpdateFile(levelArgsFilePath, moduleTypescriptText);
 }
 
-async function getOgmoLevelFile(path: string): Promise<OgmoLevelFile>
+async function readOgmoLevelFile(path: string): Promise<OgmoLevelFile>
 {
     return {
         path,
