@@ -11,7 +11,8 @@ export async function __nodeOnly__writeLevelArgsFile(
     const exports =
         (await Promise.all(getAllFiles(ogmoLevelsDirectoryPath).filter(x => x.endsWith(".json")).map(readOgmoLevelFile)))
             .map(generateLevelArgsExport(gameObjectResolvers));
-    const moduleText = writeModule(new Module(getDirectory(levelArgsFilePath), exports));
+    const moduleText = `// This file is generated. Do not touch.
+${writeModule(new Module(getDirectory(levelArgsFilePath), exports))}`;
     console.log(moduleText);
     createOrUpdateFile(levelArgsFilePath, moduleText);
 }
