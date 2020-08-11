@@ -1,6 +1,6 @@
 import {generateLevelArgsExport} from "../../gen-levelargs/generateLevelArgsExport";
-import {Module} from "../../gen-ts/components/module";
-import {writeModule} from "../../gen-ts/writeModule";
+import {Module} from "../../gen-module/components/module";
+import {writeModule} from "../../gen-module/writeModule";
 import {WriteLevelArgsFileArgs} from "../tasks/writeLevelArgsFile";
 import {createOrUpdateFile, getAllFiles, getDirectory} from "pissant-node";
 import {__nodeOnly__readOgmoLevelFile as readOgmoLevelFile} from "./readOgmoLevelFile";
