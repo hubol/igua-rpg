@@ -1,4 +1,4 @@
-import {GameObjectResolver} from "../src/types/gameObjectResolver";
+import {GameObjectResolver} from "../../src/types/gameObjectResolver";
 
 export interface WriteLevelArgsFileArgs
 {
@@ -9,5 +9,5 @@ export interface WriteLevelArgsFileArgs
 
 export function writeLevelArgsFile(args: WriteLevelArgsFileArgs)
 {
-    cy.task("writeLevelArgsFile", args);
+    return cy.task("writeLevelArgsFile", args);
 }

@@ -1,9 +1,7 @@
-import {ImportWriter} from "./importWriter";
-import {getGameObjectResolvers} from "./getGameObjectResolvers";
-import {OgmoLevelFile, readOgmoLevelFile} from "./readOgmoLevelFile";
-import {writeOgmoLevelFile} from "./writeOgmoLevelFile";
-import {waitUntilTruthy} from "./waitUntilTruthy";
+import {getGameObjectResolvers} from "./utils/getGameObjectResolvers";
+import {waitUntilTruthy} from "./utils/waitUntilTruthy";
 import {GameObjectResolver} from "../src/types/gameObjectResolver";
+import {writeLevelArgsFile} from "./tasks/writeLevelArgsFile";
 
 describe("Let's generate the levels", () => {
     it("Visit", () => {
@@ -16,39 +14,7 @@ describe("Let's generate the levels", () => {
         cy.log(gameObjectResolvers as any);
     })
 
-    let importText: string;
-    it("Generate imports", () => {
-        const importWriter = new ImportWriter("src");
-        gameObjectResolvers.forEach(x => importWriter.addImport({
-            exportedName: x.exportedName,
-            filePath: x.path
-        }));
-
-        importText = importWriter.write();
-        cy.log(importText);
-    });
-
-    const ogmoLevelFiles: OgmoLevelFile[] = [];
-    it("Read ogmo level files", () => {
-        cy.task("getAllFiles", "./ogmo/levels").then(async x => {
-            const files = (x as unknown as string[]).filter(x => x.endsWith(".json"));
-            files.forEach(x => readOgmoLevelFile(x, ogmoLevelFiles));
-        });
-    });
-
-    const applyLevelArgsTexts: string[] = [];
-    it("Generate ApplyLevelArgs texts", () => {
-        for (const ogmoLevelFile of ogmoLevelFiles)
-        {
-            const text = writeOgmoLevelFile(ogmoLevelFile, gameObjectResolvers);
-            applyLevelArgsTexts.push(text);
-            cy.log(text);
-        }
-    });
-
-    it("Write it", () => {
-        cy.writeFile("./src/levelArgs.ts", `${importText}
-
-${applyLevelArgsTexts.join("\n\n")}`);
+    it("Do everything else", () => {
+        writeLevelArgsFile({ levelArgsFilePath: "./src/levelArgs2.ts", gameObjectResolvers, ogmoLevelsDirectoryPath: "./ogmo/levels" });
     });
 })
