@@ -1,14 +1,14 @@
-import {GameObjectResolver} from "../src/types/gameObjectResolver";
-import {OgmoLevelFile} from "./readOgmoLevelFile";
-import {Export} from "./ts-gen/components/export";
-import {Const} from "./ts-gen/components/const";
+import {GameObjectResolver} from "../../src/types/gameObjectResolver";
+import {Export} from "../ts-gen/components/export";
+import {Const} from "../ts-gen/components/const";
 import {toPascalCase} from "pissant";
-import {AnonymousFunction, Returns} from "./ts-gen/components/function";
-import {Ogmo} from "../src/types/ogmo";
-import {EntityCommon} from "../src/types/entityCommon";
+import {AnonymousFunction, Returns} from "../ts-gen/components/function";
+import {Ogmo} from "../../src/types/ogmo";
+import {EntityCommon} from "../../src/types/entityCommon";
 import Entity = Ogmo.Entity;
-import {Invocation} from "./ts-gen/components/invocation";
-import {ImportedFunction} from "./ts-gen/components/imported";
+import {Invocation} from "../ts-gen/components/invocation";
+import {ImportedFunction} from "../ts-gen/components/imported";
+import {OgmoLevelFile} from "../types/ogmoLevelFile";
 
 export function generateLevelArgsExport(gameObjectResolvers: GameObjectResolver[])
 {
