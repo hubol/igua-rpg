@@ -2,41 +2,41 @@ import {Graphics, SCALE_MODES, SimpleMesh, Sprite} from "pixi.js";
 import {distance, dot, normalize, perpendicular, Vector} from "../utils/vector";
 import {LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
 import {game} from "../igua/game";
-import {EntityCommon} from "../types/entityCommon";
+import {GameObjectArgs} from "../../gen-levelargs/types/gameObjectArgs";
 
 const walls: Wall[] = [];
 
-export function resolveBlock(e: EntityCommon)
+export function resolveBlock(e: GameObjectArgs)
 {
     return game.terrainStage.addChild(block(e.x, e.y, e.x + e.width, e.y + e.height));
 }
 
-export function resolveSlopeRight(e: EntityCommon)
+export function resolveSlopeRight(e: GameObjectArgs)
 {
     return game.terrainStage.addChild(slope(e.x, e.y + e.height, e.x + e.width, e.y));
 }
 
-export function resolveSlopeLeft(e: EntityCommon)
+export function resolveSlopeLeft(e: GameObjectArgs)
 {
     return game.terrainStage.addChild(slope(e.x, e.y, e.x + e.width, e.y + e.height));
 }
 
-export function resolvePipeRight(e: EntityCommon)
+export function resolvePipeRight(e: GameObjectArgs)
 {
     return game.pipeStage.addChild(pipe(e.x, e.y + e.height, e.x + e.width, e.y));
 }
 
-export function resolvePipeLeft(e: EntityCommon)
+export function resolvePipeLeft(e: GameObjectArgs)
 {
     return game.pipeStage.addChild(pipe(e.x, e.y, e.x + e.width, e.y + e.height));
 }
 
-export function resolvePipeHorizontal(e: EntityCommon)
+export function resolvePipeHorizontal(e: GameObjectArgs)
 {
     return game.pipeStage.addChild(pipe(e.x, e.y, e.x + e.width, e.y));
 }
 
-export function resolvePipeRightEnd(e: EntityCommon)
+export function resolvePipeRightEnd(e: GameObjectArgs)
 {
     const sprite = Sprite.from(RightPipeEnd);
     sprite.x = e.x;
@@ -44,7 +44,7 @@ export function resolvePipeRightEnd(e: EntityCommon)
     return game.pipeStage.addChild(sprite);
 }
 
-export function resolvePipeLeftEnd(e: EntityCommon)
+export function resolvePipeLeftEnd(e: GameObjectArgs)
 {
     const sprite = Sprite.from(LeftPipeEnd);
     sprite.anchor.set(1, 0);

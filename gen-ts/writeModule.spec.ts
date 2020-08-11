@@ -1,9 +1,9 @@
-import {Export} from "./ts-gen/components/export";
-import {Const} from "./ts-gen/components/const";
-import {AnonymousFunction, Returns} from "./ts-gen/components/function";
-import {Invocation} from "./ts-gen/components/invocation";
-import {ImportedFunction} from "./ts-gen/components/imported";
-import {Module} from "./ts-gen/components/module";
+import {Export} from "./components/export";
+import {Const} from "./components/const";
+import {AnonymousFunction, Returns} from "./components/function";
+import {Invocation} from "./components/invocation";
+import {ImportedFunction} from "./components/imported";
+import {Module} from "./components/module";
 
 export function testTsGen()
 {

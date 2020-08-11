@@ -4,7 +4,7 @@ import {game} from "../igua/game";
 import {progress} from "../igua/progress";
 import {smallPop} from "./smallPop";
 import {CollectValuable, CollectValuableSmall} from "../sounds";
-import {EntityCommon} from "../types/entityCommon";
+import {GameObjectArgs} from "../../gen-levelargs/types/gameObjectArgs";
 
 type ValuableType = keyof typeof valuableStyles;
 
@@ -34,7 +34,7 @@ export function valuable(x, y, uid, type: ValuableType)
 export const resolveValuableBlue = resolveValuable;
 export const resolveValuableOrange = resolveValuable;
 
-function resolveValuable(e: EntityCommon)
+function resolveValuable(e: GameObjectArgs)
 {
     if (e.type === "ValuableOrange" || e.type === "ValuableBlue")
     {

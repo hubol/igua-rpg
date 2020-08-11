@@ -1,4 +1,5 @@
-export interface EntityCommon {
+export interface GameObjectArgs
+{
     type: string;
     uid: string;
     x: number;

@@ -1,20 +1,19 @@
-import {GameObjectResolver} from "../../src/types/gameObjectResolver";
-import {Export} from "../ts-gen/components/export";
-import {Const} from "../ts-gen/components/const";
+import {GameObjectResolver} from "./types/gameObjectResolver";
+import {Export} from "../gen-ts/components/export";
+import {Const} from "../gen-ts/components/const";
 import {toPascalCase} from "pissant";
-import {AnonymousFunction, Returns} from "../ts-gen/components/function";
-import {Ogmo} from "../../src/types/ogmo";
-import {EntityCommon} from "../../src/types/entityCommon";
-import Entity = Ogmo.Entity;
-import {Invocation} from "../ts-gen/components/invocation";
-import {ImportedFunction} from "../ts-gen/components/imported";
-import {OgmoLevelFile} from "../types/ogmoLevelFile";
+import {AnonymousFunction, Returns} from "../gen-ts/components/function";
+import {Ogmo} from "./types/ogmo";
+import {GameObjectArgs} from "./types/gameObjectArgs";
+import {Invocation} from "../gen-ts/components/invocation";
+import {ImportedFunction} from "../gen-ts/components/imported";
+import {OgmoLevelFile} from "./types/ogmoLevelFile";
 
 export function generateLevelArgsExport(gameObjectResolvers: GameObjectResolver[])
 {
     return function({ path, level }: OgmoLevelFile)
     {
-        const entityArgsLibrary = makeEntityArgsLibrary(level.layers[0].entities);
+        const entityArgsLibrary = makeGameObjectArgsLibrary(level.layers[0].entities);
         return new Export(new Const(`${toPascalCase(trimExtension(getFileName(path)))}Args`,
             {
                 width: level.width,
@@ -26,7 +25,7 @@ export function generateLevelArgsExport(gameObjectResolvers: GameObjectResolver[
     }
 }
 
-function getGameObjectsSupplierReturnValue(gameObjectResolvers: GameObjectResolver[], entityArgsLibrary: EntityArgsLibrary)
+function getGameObjectsSupplierReturnValue(gameObjectResolvers: GameObjectResolver[], entityArgsLibrary: GameObjectArgsLibrary)
 {
     const result = {} as any;
 
@@ -49,18 +48,18 @@ function first<T>(array: T[])
         return array[0];
 }
 
-function getEntityKey(entity: Entity, retryCount: number)
+function getEntityKey(entity: Ogmo.Entity, retryCount: number)
 {
     const defaultName = entity?.values?.name ? entity?.values?.name :`${toPascalCase(entity.name)}`;
     return retryCount === 0 ? defaultName : `${defaultName}_${retryCount}`; // TODO use uid instead of retry count
 }
 
-interface EntityArgsLibrary
+interface GameObjectArgsLibrary
 {
-    [index: string]: EntityCommon;
+    [index: string]: GameObjectArgs;
 }
 
-function makeEntityArgsLibrary(entities: Entity[]): EntityArgsLibrary
+function makeGameObjectArgsLibrary(entities: Ogmo.Entity[]): GameObjectArgsLibrary
 {
     const object = {} as any;
     for (let i = 0; i < entities.length; i++)
