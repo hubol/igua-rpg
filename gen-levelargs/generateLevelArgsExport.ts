@@ -25,18 +25,18 @@ export function generateLevelArgsExport(gameObjectResolvers: GameObjectResolver[
     }
 }
 
-function getGameObjectsSupplierReturnValue(gameObjectResolvers: GameObjectResolver[], entityArgsLibrary: GameObjectArgsLibrary)
+function getGameObjectsSupplierReturnValue(gameObjectResolvers: GameObjectResolver[], gameObjectArgsLibrary: GameObjectArgsLibrary)
 {
     const result = {} as any;
 
-    for (const key in entityArgsLibrary)
+    for (const key in gameObjectArgsLibrary)
     {
-        const entity = entityArgsLibrary[key];
-        const matchedResolver = first(gameObjectResolvers.filter(x => x.resolvableEntityType === entity.type));
+        const gameObjectArgs = gameObjectArgsLibrary[key];
+        const matchedResolver = first(gameObjectResolvers.filter(x => x.resolvableEntityType === gameObjectArgs.type));
 
         result[key] = matchedResolver
-            ? new Invocation(new ImportedFunction(matchedResolver.exportedName, matchedResolver.path), entity).tsIgnore()
-            : entity;
+            ? new Invocation(new ImportedFunction(matchedResolver.exportedName, matchedResolver.path), gameObjectArgs).tsIgnore()
+            : gameObjectArgs;
     }
 
     return result;
