@@ -13,10 +13,9 @@ async function initialize()
     await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
     require("./utils/arrayExtensions");
     require("./utils/pixiExtensions");
-    // TODO switches
-    // if (window?.dev?.discoverGameObjectResolvers)
+    if (window?.dev?.discoverGameObjectResolvers)
         localStorage.setItem("gameObjectResolvers", JSON.stringify(discoverGameObjectResolvers()));
-    // if (!window?.dev?.dontStartGame)
+    else
         require("./igua/game").startGame();
 }
 
