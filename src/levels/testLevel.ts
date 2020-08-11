@@ -1,5 +1,10 @@
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
-import {RightTestArgs, TestArgs} from "../levelArgs2";
+import {RightTestArgs, TestArgs} from "../levelArgs";
+import {testCutscene, testLevel} from "../cutscene/testScene";
+import {game} from "../igua/game";
+import {npc} from "../gameObjects/npc";
+import {BitmapText} from "pixi.js";
+import {AcrobatixFont} from "../fonts";
 
 export function Test()
 {
@@ -9,4 +14,9 @@ export function Test()
 export function RightTest()
 {
     applyOgmoLevel(RightTestArgs);
+
+    setTimeout(testLevel);
+    game.gameObjectStage.addChild(npc(64, 256 - 32 - 8));
+    game.gameObjectStage.addChild(new BitmapText("Stupid fuck", { fontName: AcrobatixFont.font }).at(128, 128));
+    game.cutscenePlayer.playCutscene(testCutscene());
 }
