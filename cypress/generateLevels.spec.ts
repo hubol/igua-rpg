@@ -6,12 +6,12 @@ import {writeLevelArgsFile} from "./tasks/writeLevelArgsFile";
 describe("Let's generate the levels", () => {
     it("Visit with dev switches", () => {
         cy.visit("http://localhost:2456");
-
-        const anyWindow = window as any;
-        if (!anyWindow.dev)
-            anyWindow.dev = {};
-        anyWindow.dev.discoverGameObjectResolvers = true;
-        anyWindow.dev.dontStartGame = true;
+        cy.window().then(x => {
+            const anyWindow = x as any;
+            if (!anyWindow.dev)
+                anyWindow.dev = {};
+            anyWindow.dev.discoverGameObjectResolvers = true;
+        });
     })
 
     let gameObjectResolvers: GameObjectResolver[];
