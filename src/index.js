@@ -5,6 +5,7 @@ import * as exportedSounds from "./sounds";
 import * as PIXI from "pixi.js";
 import {handlePromiseCancellation} from "pissant";
 import {discoverGameObjectResolvers} from "./igua/level/discoverGameObjectResolvers";
+import {publishGameObjectResolvers} from "../cypress/utils/publishGameObjectResolvers";
 
 async function initialize()
 {
@@ -14,7 +15,7 @@ async function initialize()
     require("./utils/arrayExtensions");
     require("./utils/pixiExtensions");
     if (window?.dev?.discoverGameObjectResolvers)
-        localStorage.setItem("gameObjectResolvers", JSON.stringify(discoverGameObjectResolvers()));
+        publishGameObjectResolvers(discoverGameObjectResolvers());
     else
         require("./igua/game").startGame();
 }
