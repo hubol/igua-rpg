@@ -7,11 +7,8 @@ import {advanceKeyListener, startKeyListener} from "../utils/key";
 import {IguanaPuppet} from "./iguanaPuppet";
 import {CutscenePlayer} from "../cutscene/cutscene";
 import {Test} from "../levels/testLevel";
-import {testTsGen} from "../../cypress/testTsGen";
-import {writeModule} from "../../cypress/ts-gen/writeModule";
 
 export let game: ReturnType<typeof createGame>;
-console.log(writeModule(testTsGen()));
 function createGame()
 {
     const application = startApplication({width: 256, height: 256, targetFps: 60});

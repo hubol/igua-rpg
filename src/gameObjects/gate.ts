@@ -5,9 +5,9 @@ import {areRectanglesOverlapping} from "../utils/math";
 import {EscapeTickerAndExecute} from "../utils/iguaTicker";
 import {Gate} from "../sounds";
 import {progress} from "../igua/progress";
-import {EntityCommon} from "../types/entityCommon";
+import {GameObjectArgs} from "../../gen-levelargs/types/gameObjectArgs";
 
-export function resolveGate(entity: EntityCommon)
+export function resolveGate(entity: GameObjectArgs)
 {
     const anyEntity = entity as any;
 

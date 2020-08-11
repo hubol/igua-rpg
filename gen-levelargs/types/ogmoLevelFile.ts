@@ -1,4 +1,4 @@
-import {Ogmo} from "../../src/types/ogmo";
+import {Ogmo} from "./ogmo";
 
 export interface OgmoLevelFile
 {

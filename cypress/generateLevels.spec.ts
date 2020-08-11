@@ -1,6 +1,6 @@
 import {getGameObjectResolvers} from "./utils/getGameObjectResolvers";
 import {waitUntilTruthy} from "./utils/waitUntilTruthy";
-import {GameObjectResolver} from "../src/types/gameObjectResolver";
+import {GameObjectResolver} from "../gen-levelargs/types/gameObjectResolver";
 import {writeLevelArgsFile} from "./tasks/writeLevelArgsFile";
 
 describe("Let's generate the levels", () => {

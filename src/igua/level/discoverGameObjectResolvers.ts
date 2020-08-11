@@ -1,4 +1,4 @@
-import {GameObjectResolver} from "../../types/gameObjectResolver";
+import {GameObjectResolver} from "../../../gen-levelargs/types/gameObjectResolver";
 
 export function discoverGameObjectResolvers()
 {

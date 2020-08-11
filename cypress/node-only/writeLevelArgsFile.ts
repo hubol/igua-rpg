@@ -1,6 +1,6 @@
-import {generateLevelArgsExport} from "../utils/generateLevelArgsExport";
-import {Module} from "../ts-gen/components/module";
-import {writeModule} from "../ts-gen/writeModule";
+import {generateLevelArgsExport} from "../../gen-levelargs/generateLevelArgsExport";
+import {Module} from "../../gen-ts/components/module";
+import {writeModule} from "../../gen-ts/writeModule";
 import {WriteLevelArgsFileArgs} from "../tasks/writeLevelArgsFile";
 import {createOrUpdateFile, getAllFiles, getDirectory} from "pissant-node";
 import {__nodeOnly__readOgmoLevelFile as readOgmoLevelFile} from "./readOgmoLevelFile";
@@ -11,7 +11,7 @@ export async function __nodeOnly__writeLevelArgsFile(
     const exports =
         (await Promise.all(getAllFiles(ogmoLevelsDirectoryPath).filter(x => x.endsWith(".json")).map(readOgmoLevelFile)))
             .map(generateLevelArgsExport(gameObjectResolvers));
-    const moduleTypescriptText = writeModule(new Module(getDirectory(levelArgsFilePath), exports));
-    console.log(moduleTypescriptText);
-    createOrUpdateFile(levelArgsFilePath, moduleTypescriptText);
+    const moduleText = writeModule(new Module(getDirectory(levelArgsFilePath), exports));
+    console.log(moduleText);
+    createOrUpdateFile(levelArgsFilePath, moduleText);
 }
