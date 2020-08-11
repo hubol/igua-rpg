@@ -5,18 +5,17 @@ import {areRectanglesOverlapping} from "../utils/math";
 import {EscapeTickerAndExecute} from "../utils/iguaTicker";
 import {Gate} from "../sounds";
 import {progress} from "../igua/progress";
-import {GameObjectArgs} from "../../gen-levelargs/types/gameObjectArgs";
+import {resolveGameObject} from "../../gen-levelargs/resolveGameObject";
 
-export function resolveGate(entity: GameObjectArgs)
-{
-    const anyEntity = entity as any;
+export const resolveGate = resolveGameObject("Gate", args => {
+    const anyEntity = args as any;
 
     const destination = {
         levelName: anyEntity.levelName,
         checkpointName: anyEntity.checkpointName,
     };
-    return game.gameObjectStage.addChild(gate(entity.x, entity.y, entity.width, entity.height, destination));
-}
+    return game.gameObjectStage.addChild(gate(args.x, args.y, args.width, args.height, destination));
+});
 
 export function gate(x, y, width, height, destination: { checkpointName, levelName })
 {

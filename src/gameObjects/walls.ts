@@ -2,56 +2,42 @@ import {Graphics, SCALE_MODES, SimpleMesh, Sprite} from "pixi.js";
 import {distance, dot, normalize, perpendicular, Vector} from "../utils/vector";
 import {LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
 import {game} from "../igua/game";
-import {GameObjectArgs} from "../../gen-levelargs/types/gameObjectArgs";
+import {resolveGameObject} from "../../gen-levelargs/resolveGameObject";
 
 const walls: Wall[] = [];
 
-export function resolveBlock(e: GameObjectArgs)
-{
-    return game.terrainStage.addChild(block(e.x, e.y, e.x + e.width, e.y + e.height));
-}
+export const resolveBlock = resolveGameObject("Block", e =>
+    game.terrainStage.addChild(block(e.x, e.y, e.x + e.width, e.y + e.height)));
 
-export function resolveSlopeRight(e: GameObjectArgs)
-{
-    return game.terrainStage.addChild(slope(e.x, e.y + e.height, e.x + e.width, e.y));
-}
+export const resolveSlopeRight = resolveGameObject("SlopeRight", e =>
+    game.terrainStage.addChild(slope(e.x, e.y + e.height, e.x + e.width, e.y)));
 
-export function resolveSlopeLeft(e: GameObjectArgs)
-{
-    return game.terrainStage.addChild(slope(e.x, e.y, e.x + e.width, e.y + e.height));
-}
+export const resolveSlopeLeft = resolveGameObject("SlopeLeft", e =>
+    game.terrainStage.addChild(slope(e.x, e.y, e.x + e.width, e.y + e.height)));
 
-export function resolvePipeRight(e: GameObjectArgs)
-{
-    return game.pipeStage.addChild(pipe(e.x, e.y + e.height, e.x + e.width, e.y));
-}
+export const resolvePipeRight = resolveGameObject("PipeRight", e =>
+    game.pipeStage.addChild(pipe(e.x, e.y + e.height, e.x + e.width, e.y)));
 
-export function resolvePipeLeft(e: GameObjectArgs)
-{
-    return game.pipeStage.addChild(pipe(e.x, e.y, e.x + e.width, e.y + e.height));
-}
+export const resolvePipeLeft = resolveGameObject("PipeLeft", e =>
+    game.pipeStage.addChild(pipe(e.x, e.y, e.x + e.width, e.y + e.height)));
 
-export function resolvePipeHorizontal(e: GameObjectArgs)
-{
-    return game.pipeStage.addChild(pipe(e.x, e.y, e.x + e.width, e.y));
-}
+export const resolvePipeHorizontal = resolveGameObject("PipeHorizontal", e =>
+    game.pipeStage.addChild(pipe(e.x, e.y, e.x + e.width, e.y)));
 
-export function resolvePipeRightEnd(e: GameObjectArgs)
-{
+export const resolvePipeRightEnd = resolveGameObject("PipeRightEnd", e => {
     const sprite = Sprite.from(RightPipeEnd);
     sprite.x = e.x;
     sprite.y = e.y;
     return game.pipeStage.addChild(sprite);
-}
+});
 
-export function resolvePipeLeftEnd(e: GameObjectArgs)
-{
+export const resolvePipeLeftEnd = resolveGameObject("PipeLeftEnd", e => {
     const sprite = Sprite.from(LeftPipeEnd);
     sprite.anchor.set(1, 0);
     sprite.x = e.x;
     sprite.y = e.y;
     return game.pipeStage.addChild(sprite);
-}
+});
 
 export function push(xy: Pushable, radius: number) {
     const result: PushResult = {};

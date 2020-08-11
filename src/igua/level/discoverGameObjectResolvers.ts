@@ -1,4 +1,5 @@
 import {GameObjectResolver} from "../../../gen-levelargs/types/gameObjectResolver";
+import {getGameObjectResolverInfo, isGameObjectResolver} from "../../../gen-levelargs/resolveGameObject";
 
 export function discoverGameObjectResolvers()
 {
@@ -38,21 +39,14 @@ function findResolversImpl(processing: ToProcess, process: ToProcess[], resolver
     const keys = Object.keys(src);
     for (const key of keys)
     {
-        if (key.startsWith("resolve"))
+        const maybeResolver = src[key];
+        if (isGameObjectResolver(maybeResolver))
         {
-            const maybeResolver = src[key];
-            if (typeof maybeResolver === "function")
-            {
-                if (maybeResolver.length !== 1)
-                    console.debug(`Resolver ${key} accepts ${maybeResolver.length} arguments, but expected 1.`);
-                const typeName = key.substr(7);
-                resolvers.push({
-                    exportedName: key,
-                    path,
-                    resolvableEntityType: typeName
-                });
-                continue;
-            }
+            resolvers.push({
+                exportedName: key,
+                path,
+                resolvableEntityType: getGameObjectResolverInfo(maybeResolver).canResolveGameObjectArgsType
+            })
         }
 
         if (!terminal)
