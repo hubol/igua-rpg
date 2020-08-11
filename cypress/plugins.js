@@ -5,7 +5,8 @@ module.exports = (on, config) => {
             return require("pissant-node").getAllFiles(directoryPath);;
         },
         async writeLevelArgsFile (args) {
-            return await require("./nodeOnlyWriteLevelArgsFile").__nodeOnly__writeLevelArgsFile(args);
+            await require("./nodeOnlyWriteLevelArgsFile").__nodeOnly__writeLevelArgsFile(args);
+            return null;
         },
     })
 };
