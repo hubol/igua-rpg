@@ -1,5 +1,5 @@
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
-import {RightTestArgs, TestArgs} from "../levelArgs";
+import {RightTestArgs, TestArgs} from "../levelArgs2";
 
 export function Test()
 {
