@@ -17,6 +17,6 @@ describe("Let's generate the levels", () => {
     })
 
     it("Do everything else", () => {
-        writeLevelArgsFile({ levelArgsFilePath: "./src/levelArgs2.ts", gameObjectResolvers, ogmoLevelsDirectoryPath: "./ogmo/levels" });
+        writeLevelArgsFile({ levelArgsFilePath: "./src/levelArgs.ts", gameObjectResolvers, ogmoLevelsDirectoryPath: "./ogmo/levels" });
     });
 })

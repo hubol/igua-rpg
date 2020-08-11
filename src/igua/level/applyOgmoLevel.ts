@@ -1,11 +1,8 @@
 import {game} from "../game";
 import {applyLevelStyle} from "../style";
-import {BitmapText} from "pixi.js";
-import {testCutscene, testLevel} from "../../cutscene/testScene";
-import {npc} from "../../gameObjects/npc";
-import {AcrobatixFont} from "../../fonts";
 import {centerPlayerCamera} from "../playerCamera";
 import {ApplyOgmoLevelArgs, GameObjects} from "./applyOgmoLevelArgs";
+import {progress} from "../progress";
 
 export function applyOgmoLevel<T>(args: ApplyOgmoLevelArgs<T>): GameObjects<T>
 {
@@ -15,26 +12,24 @@ export function applyOgmoLevel<T>(args: ApplyOgmoLevelArgs<T>): GameObjects<T>
 
     game.player.hspeed = 0;
     game.player.vspeed = 0;
-    game.player.x = 100;
 
-    const gameObjects = args.gameObjectsSupplier();
+    const gameObjectsLibrary = args.gameObjectsSupplier();
 
-    setTimeout(testLevel);
-    game.gameObjectStage.addChild(npc(64, 256 - 32 - 8));
-    game.gameObjectStage.addChild(new BitmapText("Stupid fuck", { fontName: AcrobatixFont.font }).at(128, 128));
-    game.cutscenePlayer.playCutscene(testCutscene());
-    // TODO applyPlayerPosition(entities.filter(x => x.name === "Checkpoint" && checkpointName === x.values.name).firstOrDefault());
-
+    const gameObjects = Object.values(gameObjectsLibrary);
+    applyPlayerStartingPosition(gameObjects);
     centerPlayerCamera();
 
-    return gameObjects;
+    return gameObjectsLibrary;
 }
 
-function applyPlayerPosition(entity)
+function applyPlayerStartingPosition(gameObjects: any[])
 {
-    if (!entity)
-        return;
+    gameObjects.filter(x => x.type === "Player").forEach(setPlayerPosition);
+    gameObjects.filter(x => x.type === "Checkpoint" && progress.checkpointName === x.name).forEach(setPlayerPosition);
+}
 
-    game.player.x = entity.x;
-    game.player.y = entity.y - 9;
+function setPlayerPosition(vector)
+{
+    game.player.x = vector.x;
+    game.player.y = vector.y - 9;
 }
