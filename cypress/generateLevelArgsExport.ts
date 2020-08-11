@@ -36,7 +36,7 @@ function getGameObjectsSupplierReturnValue(gameObjectResolvers: GameObjectResolv
         const matchedResolver = first(gameObjectResolvers.filter(x => x.resolvableEntityType === entity.type));
 
         result[key] = matchedResolver
-            ? new Invocation(new ImportedFunction(matchedResolver.exportedName, matchedResolver.path), entity)
+            ? new Invocation(new ImportedFunction(matchedResolver.exportedName, matchedResolver.path), entity).tsIgnore()
             : entity;
     }
 
@@ -72,7 +72,7 @@ function makeEntityArgsLibrary(entities: Entity[]): EntityArgsLibrary
         while (key in object)
             key = getEntityKey(entity, ++retryCount);
 
-        object[key] = {
+        object[key] = JSON.parse(JSON.stringify({
             type: entity.name,
             x: entity.x,
             y: entity.y,
@@ -80,7 +80,7 @@ function makeEntityArgsLibrary(entities: Entity[]): EntityArgsLibrary
             height: entity.height,
             uid: entity._eid,
             ...entity.values
-        };
+        }));
     }
 
     return object;
