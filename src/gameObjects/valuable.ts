@@ -5,6 +5,7 @@ import {progress} from "../igua/progress";
 import {smallPop} from "./smallPop";
 import {CollectValuable, CollectValuableSmall} from "../sounds";
 import {GameObjectArgs} from "../../gen-levelargs/types/gameObjectArgs";
+import {resolveGameObject} from "../../gen-levelargs/resolveGameObject";
 
 type ValuableType = keyof typeof valuableStyles;
 
@@ -31,8 +32,8 @@ export function valuable(x, y, uid, type: ValuableType)
     });
 }
 
-export const resolveValuableBlue = resolveValuable;
-export const resolveValuableOrange = resolveValuable;
+export const resolveValuableBlue = resolveGameObject("ValuableBlue", resolveValuable);
+export const resolveValuableOrange = resolveGameObject("ValuableOrange", resolveValuable);
 
 function resolveValuable(e: GameObjectArgs)
 {
