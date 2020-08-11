@@ -4,8 +4,11 @@ import {loadHowlsAsync} from "./utils/loadHowls";
 import * as exportedSounds from "./sounds";
 import * as PIXI from "pixi.js";
 import {handlePromiseCancellation} from "pissant";
-import {discoverGameObjectResolvers} from "./igua/level/discoverGameObjectResolvers";
-import {publishGameObjectResolvers} from "../cypress/utils/publishGameObjectResolvers";
+import {discoverGameObjectResolvers} from "../gen-levelargs/discoverGameObjectResolvers";
+import {
+    publishGameObjectResolvers,
+    publishGameObjectResolversIsRequested
+} from "../cypress/utils/publishGameObjectResolvers";
 
 async function initialize()
 {
@@ -14,11 +17,19 @@ async function initialize()
     await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
     require("./utils/arrayExtensions");
     require("./utils/pixiExtensions");
-    if (window?.dev?.discoverGameObjectResolvers)
-        publishGameObjectResolvers(discoverGameObjectResolvers());
+    if (publishGameObjectResolversIsRequested())
+        discoverAndPublishGameObjectResolvers();
     else
         require("./igua/game").startGame();
 }
 
 window.onload = initialize;
 window.onunhandledrejection = handlePromiseCancellation;
+
+function discoverAndPublishGameObjectResolvers()
+{
+    publishGameObjectResolvers(discoverGameObjectResolvers([{
+        modules: require("./gameObjects/**/*.*"),
+        path: "src/gameObjects"
+    }]));
+}
