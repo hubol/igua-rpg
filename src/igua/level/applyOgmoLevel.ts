@@ -15,7 +15,7 @@ export function applyOgmoLevel<T>(args: ApplyOgmoLevelArgs<T>): GameObjects<T>
 
     const gameObjectsLibrary = args.gameObjectsSupplier();
 
-    const gameObjects = Object.values(gameObjectsLibrary);
+    const gameObjects = Object.values(gameObjectsLibrary).filter(x => !!x && typeof x === "object");
     applyPlayerStartingPosition(gameObjects);
     centerPlayerCamera();
 
