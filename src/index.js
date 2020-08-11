@@ -13,8 +13,11 @@ async function initialize()
     await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
     require("./utils/arrayExtensions");
     require("./utils/pixiExtensions");
-    require("./igua/game").startGame();
-    localStorage.setItem("gameObjectResolvers", JSON.stringify(discoverGameObjectResolvers()));
+    // TODO switches
+    // if (window?.dev?.discoverGameObjectResolvers)
+        localStorage.setItem("gameObjectResolvers", JSON.stringify(discoverGameObjectResolvers()));
+    // if (!window?.dev?.dontStartGame)
+        require("./igua/game").startGame();
 }
 
 window.onload = initialize;
