@@ -95,6 +95,7 @@ function createCamera(displayObject: DisplayObject)
         set y(value) {
             displayObject.y = -value;
         },
+        followPlayer: true
     };
 }
 
