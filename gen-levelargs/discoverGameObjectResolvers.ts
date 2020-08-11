@@ -1,10 +1,19 @@
-import {GameObjectResolver} from "../../../gen-levelargs/types/gameObjectResolver";
-import {getGameObjectResolverInfo, isGameObjectResolver} from "../../../gen-levelargs/resolveGameObject";
+import {GameObjectResolver} from "./types/gameObjectResolver";
+import {getGameObjectResolverInfo, isGameObjectResolver} from "./resolveGameObject";
 
-export function discoverGameObjectResolvers()
+interface ModulesToSearch
 {
-    const gameObjectsModules = require("../../gameObjects/**/*.*");
-    const gameObjectResolvers = findResolvers(gameObjectsModules, "src/gameObjects");
+    modules: any;
+    path: string;
+}
+
+export function discoverGameObjectResolvers(modulesToSearch: ModulesToSearch[])
+{
+    const gameObjectResolvers: GameObjectResolver[] = [];
+
+    for (const { modules, path } of modulesToSearch)
+        findResolvers(modules, path).forEach(x => gameObjectResolvers.push(x));
+
     console.debug("Discovered GameObjectResolvers", gameObjectResolvers);
     return gameObjectResolvers;
 }
