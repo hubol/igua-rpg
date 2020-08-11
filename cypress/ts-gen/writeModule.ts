@@ -4,13 +4,14 @@ import {Export} from "./components/export";
 import {AnonymousFunction} from "./components/function";
 import {Invocation} from "./components/invocation";
 import {findImports, Import} from "./findImports";
+import {isPojo} from "./isPojo";
 
 export function writeModule(module: Module)
 {
     const imports = findImports(module);
     return `${imports.map(writeImport(module)).join("\n")}
 
-${module.exports.map(writeExport).join("\n")}`;
+${module.exports.map(writeExport).join("\n\n")}`;
 }
 
 function writeImport(module: Module) {
@@ -42,7 +43,7 @@ ${writeSuppressingTypeScriptErrorsIfNecessary(value)(`  return ${writeLiteral(va
     {
         return `${x.invokable.exportedName}(${x.args.length === 0 ? "" : writeLiteral(x.args.length === 1 ? x.args[0] : x.args)})`;
     }
-    if (typeof x === "object")
+    if (typeof x === "object" && !isPojo(x))
         return `{
     ${Object.keys(x).map(writeKvPair(x)).join(",\n")}
 }`;
