@@ -1,4 +1,3 @@
-import {session} from "./session";
 import {game} from "./game";
 import {lerpVector} from "../utils/math";
 import {distance} from "../utils/vector";
@@ -7,7 +6,7 @@ let target = { x: 0, y: 0 };
 
 export function stepPlayerCamera()
 {
-    if (!session.control.cameraFollowPlayer)
+    if (!game.camera.followPlayer)
         return;
 
     const margin = 80;

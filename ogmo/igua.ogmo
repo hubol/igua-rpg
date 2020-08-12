@@ -1,7 +1,7 @@
 {
   "name": "IguaRPG",
   "ogmoVersion": "3.3.0",
-  "levelPaths": ["."],
+  "levelPaths": [".\\levels"],
   "backgroundColor": "#4074c4ff",
   "gridColor": "#3c4049cc",
   "anglesRadians": true,
