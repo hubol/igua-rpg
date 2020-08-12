@@ -16,7 +16,7 @@
     "gen:sounds": "generate-howls assets-src/sound src/sound src/sounds.ts",
     "gen:music": "generate-howls assets-src/music src/music src/musics.ts --dontPreload",
     "gen:levelargs": "start-server-and-test start-gameObjectResolver-server http://localhost:2456 cy:run",
-    "start-gameObjectResolver-server": "npm run serve -- --port 2456",
+    "start-gameObjectResolver-server": "npm run serve -- --port 2456 --cache-dir ./.cache2",
     "cy:run": "cypress run",
     "cy:open": "cypress open"
   },
@@ -37,7 +37,7 @@
     "parcel-bundler": "^1.12.4",
     "pissant-node": "^0.1.2",
     "start-server-and-test": "^1.11.3",
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.7",
     "watch": "^1.0.2"
   },
   "dependencies": {

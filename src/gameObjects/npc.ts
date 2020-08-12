@@ -16,6 +16,9 @@ import {game} from "../igua/game";
 import {distance} from "../utils/vector";
 import {IguanaEyes, iguanaEyes} from "../igua/iguanaEyes";
 import {resolveGameObject} from "../../gen-levelargs/resolveGameObject";
+import {Cutscene} from "../cutscene/cutscene";
+import {merge} from "../utils/merge";
+import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
 
 export const resolveNpc = resolveGameObject("NpcIguana", e => {
     const n = game.gameObjectStage.addChild(npc(e.x, e.y - 7, (e as any).style));
@@ -26,14 +29,20 @@ export const resolveNpc = resolveGameObject("NpcIguana", e => {
 
 export function npc(x, y, style: number = 0)
 {
-    const puppet = npcStyles[style]();
+    const puppet = merge(npcStyles[style](), {
+        cutscene: undefined as Cutscene | undefined
+    });
     puppet.x = x;
     puppet.y = y;
 
     puppet.isDucking = true;
     puppet.duckUnit = 1;
+
     return puppet.withStep(() => {
         puppet.isDucking = !(Math.sign(game.player.scale.x) !== Math.sign(puppet.scale.x) && ((puppet.scale.x > 0 && game.player.x >= puppet.x + 16) || (puppet.scale.x < 0 && game.player.x <= puppet.x - 16)) && distance(game.player, puppet) < 128);
+    }).withStep(() => {
+        if (puppet.cutscene && isPlayerInteractingWith(puppet))
+            game.cutscenePlayer.playCutscene(puppet.cutscene);
     });
 }
 

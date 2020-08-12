@@ -1,4 +1,3 @@
-import {Key} from "../utils/key";
 import {Sprite, Container} from "pixi.js";
 import {push} from "./walls";
 import {
@@ -16,6 +15,7 @@ import {
     CharacterStep3,
     CharacterStep4
 } from "../sounds";
+import {playerCharacterKey as playerKey} from "../igua/playerCharacterKey";
 
 function playerPuppet()
 {
@@ -70,7 +70,7 @@ export function player()
     let pedometer = 0;
 
     const physicsStep = () => {
-        player.isDucking = Key.isDown("ArrowDown") && player.coyote > 0;
+        player.isDucking = playerKey.isDown("ArrowDown") && player.coyote > 0;
 
         if (player.isDucking)
         {
@@ -78,11 +78,11 @@ export function player()
         }
         else
         {
-            if (Key.isDown("ArrowRight"))
+            if (playerKey.isDown("ArrowRight"))
                 player.hspeed += 0.5;
-            if (Key.isDown("ArrowLeft"))
+            if (playerKey.isDown("ArrowLeft"))
                 player.hspeed -= 0.5;
-            if (Key.isUp("ArrowRight") && Key.isUp("ArrowLeft"))
+            if (playerKey.isUp("ArrowRight") && playerKey.isUp("ArrowLeft"))
                 player.hspeed *= 0.8;
         }
 
@@ -95,13 +95,13 @@ export function player()
             pedometer = 0;
         }
 
-        if (player.coyote > 0 && Key.justWentDown("ArrowUp"))
+        if (player.coyote > 0 && playerKey.justWentDown("Space"))
         {
             player.coyote = 0;
             player.vspeed = -3;
             player.isOnGround = false;
         }
-        if (player.vspeed !== 0 && Key.isDown("ArrowUp"))
+        if (player.vspeed !== 0 && playerKey.isDown("Space"))
         {
             if (player.vspeed < 0)
                 player.vspeed -= 0.09;
