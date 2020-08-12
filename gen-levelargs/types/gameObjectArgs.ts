@@ -6,4 +6,6 @@ export interface GameObjectArgs
     y: number;
     width: number;
     height: number;
+    flippedX: boolean;
+    flippedY: boolean;
 }

@@ -28,6 +28,8 @@ export namespace Ogmo
         y: number;
         width: number;
         height: number;
+        flippedX?: boolean;
+        flippedY?: boolean;
         values: any;
     }
 }
