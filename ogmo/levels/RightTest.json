@@ -41,7 +41,19 @@
         {"name": "Block", "id": 30, "_eid": "55823268", "x": 304, "y": 224, "width": 56, "height": 224, "originX": 0, "originY": 0},
         {"name": "PipeHorizontal", "id": 31, "_eid": "55841307", "x": 544, "y": 184, "width": 48, "originX": 0, "originY": 0},
         {"name": "PipeHorizontal", "id": 33, "_eid": "55841307", "x": 544, "y": 248, "width": 48, "originX": 0, "originY": 0},
-        {"name": "PipeLeftEnd", "id": 35, "_eid": "63428932", "x": 544, "y": 248, "originX": 16, "originY": 0}
+        {"name": "PipeLeftEnd", "id": 35, "_eid": "63428932", "x": 544, "y": 248, "originX": 16, "originY": 0},
+        {"name": "Block", "id": 36, "_eid": "55823268", "x": 208, "y": 72, "width": 120, "height": 48, "originX": 0, "originY": 0},
+        {
+          "name": "NpcIguana",
+          "id": 38,
+          "_eid": "26367058",
+          "x": 232,
+          "y": 72,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": false,
+          "values": {"name": "Gamer", "style": 1}
+        }
       ]
     }
   ]

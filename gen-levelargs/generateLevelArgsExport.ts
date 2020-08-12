@@ -77,6 +77,8 @@ function makeGameObjectArgsLibrary(entities: Ogmo.Entity[]): GameObjectArgsLibra
             y: entity.y,
             width: entity.width,
             height: entity.height,
+            flippedX: !!entity.flippedX,
+            flippedY: !!entity.flippedY,
             uid: entity._eid,
             ...entity.values
         }));
