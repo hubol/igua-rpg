@@ -35,16 +35,33 @@ export function npc(x, y, style: number = 0)
     puppet.x = x;
     puppet.y = y;
 
-    puppet.isDucking = true;
-    puppet.duckUnit = 1;
-
     return puppet.withStep(() => {
-        puppet.isDucking = !(Math.sign(game.player.scale.x) !== Math.sign(puppet.scale.x) && ((puppet.scale.x > 0 && game.player.x >= puppet.x + 16) || (puppet.scale.x < 0 && game.player.x <= puppet.x - 16)) && distance(game.player, puppet) < 128);
-    }).withStep(() => {
         if (puppet.cutscene && isPlayerInteractingWith(puppet))
             game.cutscenePlayer.playCutscene(puppet.cutscene);
     });
 }
+
+function withBehavior<T extends IguanaPuppet>(behavior: (puppet: T) => unknown): (puppet: T) => T
+{
+    return puppet => {
+        behavior(puppet);
+        return puppet;
+    };
+}
+
+export const withLazyBehavior = withBehavior(puppet => puppet.withStep(() => {
+    puppet.isDucking = !(Math.sign(game.player.scale.x) !== Math.sign(puppet.scale.x)
+        && ((puppet.scale.x > 0 && game.player.x >= puppet.x + 16) || (puppet.scale.x < 0 && game.player.x <= puppet.x - 16))
+        && distance(game.player, puppet) < 128);
+}));
+
+export const withSleepyBehavior = withBehavior(puppet => {
+    puppet.isDucking = true;
+    puppet.duckUnit = 1;
+    puppet.canBlink = false;
+    puppet.isClosingEyes = true;
+    puppet.closedEyesUnit = 1;
+})
 
 let npcStyles: Array<() => IguanaPuppet> = [];
 

@@ -3,6 +3,7 @@ import {approachLinear, lerp} from "../utils/math";
 import {IguanaEyes} from "./iguanaEyes";
 import {IguanaBlink} from "../sounds";
 import {game} from "./game";
+import {merge} from "../utils/merge";
 
 interface IguanaPuppetArgs
 {
@@ -18,9 +19,9 @@ interface IguanaPuppetArgs
 
 IguanaBlink.volume(0.06);
 
-export type IguanaPuppet = Container & { isDucking: boolean, duckUnit: number, hspeed: number, vspeed: number };
+export type IguanaPuppet = ReturnType<typeof iguanaPuppet>;
 
-export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
+export function iguanaPuppet(args: IguanaPuppetArgs)
 {
     args.body.pivot.y -= 5;
 
@@ -50,40 +51,44 @@ export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
     const body = new Container();
     body.addChild(args.body, head);
 
-    const player = new Container() as IguanaPuppet;
+    const player = merge(new Container(), {
+        isDucking: false,
+        duckUnit: 0,
+        hspeed: 0,
+        vspeed: 0,
+        canBlink: true,
+        isClosingEyes: false,
+        closedEyesUnit: 0
+    });
     player.addChild(args.backLeftFoot, args.frontLeftFoot, body, args.backRightFoot, args.frontRightFoot);
     player.pivot.set(11, 17);
-
-    player.isDucking = false;
-    player.duckUnit = 0;
-    player.hspeed = 0;
-    player.vspeed = 0;
 
     const canBlink = "closedUnit" in args.eyes;
 
     if (canBlink)
     {
-        let isClosingEyes = false;
-        let closedEyesUnit = 0;
         let ticksUntilBlink = 60;
 
         player.withStep(() => {
-            if (ticksUntilBlink-- <= 0) {
-                ticksUntilBlink = 120 + Math.random() * 120;
-                isClosingEyes = true;
-            }
-
-            closedEyesUnit = approachLinear(closedEyesUnit, isClosingEyes ? 1.3 : 0, 0.3);
-            if (closedEyesUnit > 1.2 && isClosingEyes)
+            if (player.canBlink)
             {
-                isClosingEyes = false;
+                if (ticksUntilBlink-- <= 0) {
+                    ticksUntilBlink = 120 + Math.random() * 120;
+                    player.isClosingEyes = true;
+                }
 
-                const bounds = player.getBounds();
-                if (bounds.x >= 0 && bounds.x <= game.width && bounds.y >= 0 && bounds.y <= game.height)
-                    IguanaBlink.play();
+                player.closedEyesUnit = approachLinear(player.closedEyesUnit, player.isClosingEyes ? 1.3 : 0, 0.3);
+                if (player.closedEyesUnit > 1.2 && player.isClosingEyes)
+                {
+                    player.isClosingEyes = false;
+
+                    const bounds = player.getBounds();
+                    if (bounds.x >= 0 && bounds.x <= game.width && bounds.y >= 0 && bounds.y <= game.height)
+                        IguanaBlink.play();
+                }
             }
 
-            (args.eyes as IguanaEyes).closedUnit = closedEyesUnit;
+            (args.eyes as IguanaEyes).closedUnit = player.closedEyesUnit;
         });
     }
 
