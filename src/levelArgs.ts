@@ -86,7 +86,7 @@ Gate: resolveGate({"type":"Gate","x":600,"y":128,"width":32,"height":32,"flipped
 FromRight: {"type":"Checkpoint","x":560,"y":160,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromRight"},
 Door: {"type":"Door","x":72,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":""},
 Checkpoint: {"type":"Checkpoint","x":112,"y":224,"flippedX":false,"flippedY":false,"uid":"55940370","name":""},
-Player: {"type":"Player","x":280,"y":88,"flippedX":false,"flippedY":false,"uid":"55988047"},
+Player: {"type":"Player","x":280,"y":96,"flippedX":false,"flippedY":false,"uid":"55988047"},
 // @ts-ignore
 ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":192,"y":104,"flippedX":false,"flippedY":false,"uid":"55991906"}),
 // @ts-ignore
