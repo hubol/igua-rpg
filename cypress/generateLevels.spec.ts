@@ -1,5 +1,4 @@
-import {getGameObjectResolvers} from "./utils/getGameObjectResolvers";
-import {waitUntilTruthy} from "./utils/waitUntilTruthy";
+import {getGameObjectResolvers} from "./tasks/getGameObjectResolvers";
 import {GameObjectResolver} from "../gen-levelargs/types/gameObjectResolver";
 import {writeLevelArgsFile} from "./tasks/writeLevelArgsFile";
 import {requestPublishGameObjectResolvers} from "./tasks/requestPublishGameObjectResolvers";
@@ -11,9 +10,8 @@ describe("Let's generate the levels", () => {
     })
 
     let gameObjectResolvers: GameObjectResolver[];
-    it("Wait for GameObjectResolvers", async () => {
-        gameObjectResolvers = await waitUntilTruthy(getGameObjectResolvers) as any;
-        cy.log(gameObjectResolvers as any);
+    it("Wait for GameObjectResolvers", () => {
+        getGameObjectResolvers(x => gameObjectResolvers = x);
     })
 
     it("Do everything else", () => {
