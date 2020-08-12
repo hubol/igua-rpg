@@ -5,6 +5,7 @@ import {game} from "../igua/game";
 import {BitmapText} from "pixi.js";
 import {AcrobatixFont} from "../fonts";
 import {show} from "../cutscene/dialog";
+import {withSleepyBehavior} from "../gameObjects/npc";
 
 export function Test()
 {
@@ -17,7 +18,8 @@ export function Test()
 
 export function RightTest()
 {
-    applyOgmoLevel(RightTestArgs);
+    const level = applyOgmoLevel(RightTestArgs);
+    withSleepyBehavior(level.Gamer);
 
     setTimeout(testLevel);
     game.gameObjectStage.addChild(new BitmapText("Stupid fuck", { fontName: AcrobatixFont.font }).at(128, 128));
