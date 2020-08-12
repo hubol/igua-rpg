@@ -1,6 +1,6 @@
-import {game} from "./game";
+import {game} from "../game";
 import {Sprite, TilingSprite, SCALE_MODES, Container, BLEND_MODES} from "pixi.js";
-import {BlueGradient, HotTerrain, RockCracks} from "../textures";
+import {BlueGradient, HotTerrain, RockCracks} from "../../textures";
 
 export function applyLevelStyle(levelStyle: number)
 {

@@ -1,4 +1,4 @@
-namespace Ogmo
+export namespace Ogmo
 {
     export interface Level
     {
@@ -19,7 +19,7 @@ namespace Ogmo
         entities: Entity[];
     }
 
-    interface Entity
+    export interface Entity
     {
         name: string;
         id: number;

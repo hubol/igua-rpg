@@ -2,15 +2,13 @@ import {startApplication} from "../utils/pixiUtils";
 import {Container, DisplayObject} from "pixi.js";
 import {IguaTicker} from "../utils/iguaTicker";
 import {stepPlayerCamera} from "./playerCamera";
-import {loadLevel} from "./level";
-import {Test} from "../levels";
 import {player} from "../gameObjects/player";
 import {advanceKeyListener, startKeyListener} from "../utils/key";
 import {IguanaPuppet} from "./iguanaPuppet";
 import {CutscenePlayer} from "../cutscene/cutscene";
+import {Test} from "../levels/testLevel";
 
 export let game: ReturnType<typeof createGame>;
-
 function createGame()
 {
     const application = startApplication({width: 256, height: 256, targetFps: 60});
@@ -77,7 +75,7 @@ export function startGame()
     game.player = player();
     game.ticker.add(stepPlayerCamera);
 
-    loadLevel(Test as Ogmo.Level);
+    Test();
 
     game.stage.addChild(game.player);
 }
@@ -97,6 +95,7 @@ function createCamera(displayObject: DisplayObject)
         set y(value) {
             displayObject.y = -value;
         },
+        followPlayer: true
     };
 }
 

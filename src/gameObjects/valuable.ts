@@ -4,8 +4,10 @@ import {game} from "../igua/game";
 import {progress} from "../igua/progress";
 import {smallPop} from "./smallPop";
 import {CollectValuable, CollectValuableSmall} from "../sounds";
+import {GameObjectArgs} from "../../gen-levelargs/types/gameObjectArgs";
+import {resolveGameObject} from "../../gen-levelargs/resolveGameObject";
 
-type ValuableType = "ValuableBlue" | "ValuableOrange";
+type ValuableType = keyof typeof valuableStyles;
 
 export function valuable(x, y, uid, type: ValuableType)
 {
@@ -28,6 +30,19 @@ export function valuable(x, y, uid, type: ValuableType)
             sprite.destroy();
         }
     });
+}
+
+export const resolveValuableBlue = resolveGameObject("ValuableBlue", resolveValuable);
+export const resolveValuableOrange = resolveGameObject("ValuableOrange", resolveValuable);
+
+function resolveValuable(e: GameObjectArgs)
+{
+    if (e.type === "ValuableOrange" || e.type === "ValuableBlue")
+    {
+        const uid = e.uid;
+        if (!progress.gotLevelValuable.has(uid))
+            return game.gameObjectStage.addChild(valuable(e.x, e.y, uid, e.type));
+    }
 }
 
 const valuableStyles = {
