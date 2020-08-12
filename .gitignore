@@ -5,7 +5,7 @@ src/music/
 
 .idea/
 .cache/
-.cache2/
+.gen/
 .tscache/
 dist/
 tmp/
@@ -52,8 +52,6 @@ bower_components
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directories
-node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -97,8 +95,6 @@ typings/
 .nuxt
 dist
 
-# Gatsby files
-.cache/
 # Comment in the public line in if your project uses Gatsby and *not* Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
