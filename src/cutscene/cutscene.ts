@@ -1,4 +1,4 @@
-export type Cutscene = Promise<any>;
+export type Cutscene = Promise<any> | (() => Promise<any>);
 
 export class CutscenePlayer
 {
@@ -14,7 +14,10 @@ export class CutscenePlayer
         setTimeout(async () => {
             try
             {
-                await cutscene;
+                if (typeof cutscene === "function")
+                    await cutscene();
+                else
+                    await cutscene;
             }
             catch (e)
             {

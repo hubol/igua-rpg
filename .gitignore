@@ -5,6 +5,7 @@ src/music/
 
 .idea/
 .cache/
+.cache2/
 .tscache/
 dist/
 tmp/
