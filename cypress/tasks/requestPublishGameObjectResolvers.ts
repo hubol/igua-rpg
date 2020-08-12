@@ -1,9 +1,4 @@
 export function requestPublishGameObjectResolvers()
 {
-    cy.window().then(x => {
-        const anyWindow = x as any;
-        if (!anyWindow.dev)
-            anyWindow.dev = {};
-        anyWindow.dev.discoverGameObjectResolvers = true;
-    });
+    cy.window().then(x => (x as any).__publishGameObjectResolversIsRequested = true);
 }

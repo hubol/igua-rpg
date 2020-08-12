@@ -8,7 +8,7 @@ import {discoverGameObjectResolvers} from "../gen-levelargs/discoverGameObjectRe
 import {
     publishGameObjectResolvers,
     publishGameObjectResolversIsRequested
-} from "../cypress/utils/publishGameObjectResolvers";
+} from "../cypress/appOnly/publishGameObjectResolvers";
 
 async function initialize()
 {
