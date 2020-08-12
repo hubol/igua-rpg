@@ -13,6 +13,7 @@
     "start-gameObjectResolver-server": "npm run serve -- --port 2456",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
+    "watch-gen:levelargs": "watch \"npm run gen:levelargs\" ./ogmo/levels ./src/gameObjects",
     "gen:levelargs": "start-server-and-test start-gameObjectResolver-server http://localhost:2456 cy:run",
     "gen:textures": "generate-textures src/images src/textures.ts",
     "gen:sounds": "generate-howls assets-src/sound src/sound src/sounds.ts",
@@ -35,7 +36,8 @@
     "parcel-bundler": "^1.12.4",
     "pissant-node": "^0.1.2",
     "start-server-and-test": "^1.11.3",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "watch": "^1.0.2"
   },
   "dependencies": {
     "axios": "^0.19.2",
