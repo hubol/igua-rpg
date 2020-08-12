@@ -45,7 +45,9 @@ PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":544,"y":184,"
 // @ts-ignore
 PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":544,"y":248,"width":48,"uid":"55841307"}),
 // @ts-ignore
-PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":544,"y":248,"uid":"63428932"})
+PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":544,"y":248,"uid":"63428932"}),
+// @ts-ignore
+Block_7: resolveBlock({"type":"Block","x":208,"y":72,"width":120,"height":48,"uid":"55823268"})
 };
 }
 };
