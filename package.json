@@ -7,13 +7,16 @@
     "last 31 Chrome versions"
   ],
   "scripts": {
-    "start": "concurrently \"generate-textures src/images src/textures.ts\" \"generate-howls assets-src/sound src/sound src/sounds.ts\" \"generate-howls assets-src/music src/music src/musics.ts --dontPreload\" \"parcel src/index.html\"",
-    "build": "generate-howls assets-src/sound src/sound src/sounds.ts --build && generate-howls assets-src/music src/music src/musics.ts --dontPreload --build && parcel build --public-url ./ src/index.html",
-    "build-ogmo-script": "parcel build ogmo/script/iguaOgmo.ts -d ogmo/script --no-source-maps && echo ;window.stupidMotherFucker();>>ogmo/script/iguaOgmo.js",
-    "start-test-server": "parcel src/index.html --port 2456",
+    "serve": "parcel src/index.html",
+    "start": "concurrently \"npm run gen:textures\" \"npm run gen:sounds\" \"npm run gen:music\" \"npm run serve\"",
+    "build": "npm run gen:sounds -- --build && npm run gen:music -- --build && parcel build --public-url ./ src/index.html",
+    "start-gameObjectResolver-server": "npm run serve -- --port 2456",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "start-server-and-test start-test-server http://localhost:2456 cy:run"
+    "gen:levelargs": "start-server-and-test start-gameObjectResolver-server http://localhost:2456 cy:run",
+    "gen:textures": "generate-textures src/images src/textures.ts",
+    "gen:sounds": "generate-howls assets-src/sound src/sound src/sounds.ts",
+    "gen:music": "generate-howls assets-src/music src/music src/musics.ts --dontPreload"
   },
   "repository": {
     "type": "git",
