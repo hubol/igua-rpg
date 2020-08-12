@@ -71,7 +71,7 @@ function makeGameObjectArgsLibrary(entities: Ogmo.Entity[]): GameObjectArgsLibra
         while (key in object)
             key = getEntityKey(entity, ++retryCount);
 
-        object[key] = JSON.parse(JSON.stringify({
+        object[key] = {
             type: entity.name,
             x: entity.x,
             y: entity.y,
@@ -81,7 +81,7 @@ function makeGameObjectArgsLibrary(entities: Ogmo.Entity[]): GameObjectArgsLibra
             flippedY: !!entity.flippedY,
             uid: entity._eid,
             ...entity.values
-        }));
+        };
     }
 
     return object;
