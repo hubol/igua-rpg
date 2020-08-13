@@ -8,7 +8,7 @@ import {show} from "../cutscene/dialog";
 import {EscapeTickerAndExecute} from "../utils/iguaTicker";
 import {progress} from "../igua/progress";
 import {gotoLevel} from "../igua/level";
-import {resolveGameObject} from "../../gen-levelargs/resolveGameObject";
+import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 
 export const resolveDoor =
     resolveGameObject("Door", e => door(e, (e as any).levelName, (e as any).checkpointName));

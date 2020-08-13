@@ -14,10 +14,9 @@
     "gen:textures": "generate-textures src/images src/textures.ts",
     "gen:sounds": "generate-howls assets-src/sound src/sound src/sounds.ts",
     "gen:music": "generate-howls assets-src/music src/music src/musics.ts --dontPreload",
-    "gen:levelargs": "start-server-and-test start-gameObjectResolver-server http://localhost:2456 cy:run",
+    "gen:levelargs": "start-server-and-test start-gameObjectResolver-server http://localhost:2456 write-levelargs",
     "start-gameObjectResolver-server": "parcel build --public-url ./ src/index.html --out-dir ./.gen/dist --cache-dir ./.gen/cache --no-minify --no-content-hash --no-source-maps && http-server ./.gen/dist -p 2456",
-    "cy:run": "cypress run",
-    "cy:open": "cypress open"
+    "write-levelargs": "cypress run --config-file ./tools/write-levelargs/cypress.json"
   },
   "repository": {
     "type": "git",

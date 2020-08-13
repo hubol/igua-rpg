@@ -1,8 +1,8 @@
 {
   "baseUrl": "http://localhost:2456",
-  "integrationFolder": "cypress",
+  "integrationFolder": "./tools/write-levelargs",
   "testFiles": "**/*.spec.*",
-  "pluginsFile": "cypress/plugins.js",
+  "pluginsFile": "./tools/write-levelargs/plugins.js",
   "supportFile": false,
   "fixturesFolder": false,
   "screenshotOnRunFailure": false,

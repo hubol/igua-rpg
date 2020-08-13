@@ -4,11 +4,11 @@ import {loadHowlsAsync} from "./utils/loadHowls";
 import * as exportedSounds from "./sounds";
 import * as PIXI from "pixi.js";
 import {handlePromiseCancellation} from "pissant";
-import {discoverGameObjectResolvers} from "../gen-levelargs/discoverGameObjectResolvers";
+import {discoverGameObjectResolvers} from "../tools/gen-levelargs/discoverGameObjectResolvers";
 import {
     publishGameObjectResolvers,
     publishGameObjectResolversIsRequested
-} from "../cypress/appOnly/publishGameObjectResolvers";
+} from "../tools/write-levelargs/appOnly/publishGameObjectResolvers";
 
 async function initialize()
 {
