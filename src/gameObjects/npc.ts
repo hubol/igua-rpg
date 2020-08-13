@@ -22,7 +22,7 @@ import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
 import {AcrobatixFont} from "../fonts";
 
 export const resolveNpc = resolveGameObject("NpcIguana", e => {
-    const n = game.gameObjectStage.addChild(npc(e.x, e.y - 7, (e as any).style));
+    const n = game.gameObjectStage.addChild(npc(e.x, e.y - 8, (e as any).style));
     if (e.flippedX)
         n.scale.x *= -1;
     return n;
