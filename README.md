@@ -1,4 +1,4 @@
-# IguaRPG ![Iguana character](https://raw.githubusercontent.com/hubol/igua-rpg/master/src/levels/preview-images/iguana.png)
+# IguaRPG ![Iguana character](https://raw.githubusercontent.com/hubol/igua-rpg/master/ogmo/preview-images/iguana.png)
 ### A computer game of the ages
 This is a fangame of [Oddwarg Animal RPG](http://oddwarg.com/index.php?id=OARPG), a Game Maker game from 2003.
 
