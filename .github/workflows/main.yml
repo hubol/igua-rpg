@@ -8,7 +8,7 @@ jobs:
       - name: Build Dockerfile
         uses: ./
         with:
-          args: /github/workspace/dist
+          out-dir: /github/workspace/dist
       - run: pwd
       - run: ls
       - run: ls ./src
