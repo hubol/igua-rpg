@@ -4,8 +4,8 @@ import {game} from "../igua/game";
 import {progress} from "../igua/progress";
 import {smallPop} from "./smallPop";
 import {CollectValuable, CollectValuableSmall} from "../sounds";
-import {GameObjectArgs} from "../../gen-levelargs/types/gameObjectArgs";
-import {resolveGameObject} from "../../gen-levelargs/resolveGameObject";
+import {GameObjectArgs} from "../../tools/gen-levelargs/types/gameObjectArgs";
+import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 
 type ValuableType = keyof typeof valuableStyles;
 

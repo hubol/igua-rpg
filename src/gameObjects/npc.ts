@@ -15,7 +15,7 @@ import {IguanaPuppet, iguanaPuppet} from "../igua/iguanaPuppet";
 import {game} from "../igua/game";
 import {distance} from "../utils/vector";
 import {IguanaEyes, iguanaEyes} from "../igua/iguanaEyes";
-import {resolveGameObject} from "../../gen-levelargs/resolveGameObject";
+import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {Cutscene} from "../cutscene/cutscene";
 import {merge} from "../utils/merge";
 import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
