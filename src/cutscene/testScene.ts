@@ -1,6 +1,6 @@
 import {show} from "./dialog";
 import {game} from "../igua/game";
-import {getLevelPromiseLibrary} from "../igua/level";
+import {level} from "../igua/level/level";
 
 export async function testCutscene()
 {
@@ -18,7 +18,7 @@ export async function testCutscene2()
 
 export async function testLevel()
 {
-    const { sleep } = getLevelPromiseLibrary();
+    const { sleep } = level.promiseLibrary;
     let i = 0;
 
     while (true)
