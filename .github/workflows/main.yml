@@ -10,5 +10,5 @@ jobs:
       - name: Upload dist
         uses: actions/upload-artifact@v2
           with:
-          name: dist
-          path: src/dist
+            name: dist
+            path: src/dist
