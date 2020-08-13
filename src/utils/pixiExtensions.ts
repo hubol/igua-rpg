@@ -66,14 +66,14 @@ PIXI.DisplayObject.prototype.withAsync = function(promiseSupplier)
             }
             catch (e)
             {
-                console.error(e, "error occurred in withAsync", thisDisplayObject);
+                throw { ...e, thisDisplayObject };
             }
             finally
             {
                 cancellationToken.cancel();
             }
         }))
-        .on("removed", cancellationToken.cancel);
+        .on("removed", () => cancellationToken.cancel());
 }
 
 PIXI.DisplayObject.prototype.at = function(x, y)
