@@ -2,6 +2,8 @@ import {areRectanglesOverlapping, rectangle as createRectangle, normalizeRectang
 import {Vector} from "./vector";
 import * as PIXI from "pixi.js";
 import {game} from "../igua/game";
+import {makePromiseLibrary, PromiseLibrary} from "../cutscene/promiseLibrary";
+import {CancellationToken} from "pissant";
 
 declare global {
     namespace PIXI {
@@ -12,6 +14,7 @@ declare global {
             useNearestFiltering();
             rectangle: Rectangle;
             withStep(step: () => void): this;
+            withAsync(async: (p: PromiseLibrary) => Promise<unknown>): this;
             at(x: number, y: number): this;
             destroyed: boolean;
         }
@@ -37,11 +40,40 @@ Object.defineProperty(PIXI.DisplayObject.prototype, "destroyed", {
     }
 });
 
+function doNowOrOnAdded<T extends PIXI.DisplayObject>(displayObject: T, onAdded: () => void): T
+{
+    if (displayObject.parent)
+        onAdded();
+    return displayObject.on("added", onAdded);
+}
+
 PIXI.DisplayObject.prototype.withStep = function(step)
 {
-    return this
-        .on("added", () => game.ticker.add(step))
+    return doNowOrOnAdded(this, () => game.ticker.add(step))
         .on("removed", () => game.ticker.remove(step));
+}
+
+PIXI.DisplayObject.prototype.withAsync = function(promiseSupplier)
+{
+    const cancellationToken = new CancellationToken();
+    const promiseLibrary = makePromiseLibrary(cancellationToken);
+    const thisDisplayObject = this;
+
+    return doNowOrOnAdded(this, () => setTimeout(async () => {
+            try
+            {
+                await promiseSupplier(promiseLibrary);
+            }
+            catch (e)
+            {
+                console.error(e, "error occurred in withAsync", thisDisplayObject);
+            }
+            finally
+            {
+                cancellationToken.cancel();
+            }
+        }))
+        .on("removed", cancellationToken.cancel);
 }
 
 PIXI.DisplayObject.prototype.at = function(x, y)
