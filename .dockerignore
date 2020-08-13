@@ -1,0 +1,7 @@
+misc/
+.github/
+.idea/
+dist/
+.cache/
+.gen/
+node_modules/

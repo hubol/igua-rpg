@@ -1,0 +1,14 @@
+name: Push and deploy(?) IguaRPG
+on: [push]
+jobs:
+  push-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build Dockerfile
+        uses: ./
+      - name: Upload dist
+        uses: actions/upload-artifact@v2
+	  with:
+	    name: dist
+	    path: src/dist

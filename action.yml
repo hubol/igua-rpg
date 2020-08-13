@@ -1,0 +1,5 @@
+name: Build IguaRPG
+description: Build serveable version of IguaRPG
+runs:
+  using: docker
+  image: Dockerfile2
