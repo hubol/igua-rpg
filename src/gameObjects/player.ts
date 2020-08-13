@@ -16,6 +16,7 @@ import {
     CharacterStep4
 } from "../sounds";
 import {playerCharacterKey as playerKey} from "../igua/playerCharacterKey";
+import {merge} from "../utils/merge";
 
 function playerPuppet()
 {
@@ -62,10 +63,7 @@ function playerPuppet()
 
 export function player()
 {
-    const player = playerPuppet();
-
-    player.isOnGround = false;
-    player.coyote = 0;
+    const player = merge(playerPuppet(), { isOnGround: false, coyote: 0 });
 
     let pedometer = 0;
 
@@ -157,7 +155,7 @@ export function player()
             vsp = Math.abs(vsp) < maxMotion ? 0 : ((Math.abs(vsp) - maxMotion) * Math.sign(vsp));
 
             const result = push(player, radius);
-            player.isOnGround = result.isOnGround;
+            player.isOnGround = !!result.isOnGround;
 
             if (result.hitCeiling && player.vspeed !== 0)
             {

@@ -4,7 +4,6 @@ import {IguaTicker} from "../utils/iguaTicker";
 import {stepPlayerCamera} from "./playerCamera";
 import {player} from "../gameObjects/player";
 import {advanceKeyListener, startKeyListener} from "../utils/key";
-import {IguanaPuppet} from "./iguanaPuppet";
 import {CutscenePlayer} from "../cutscene/cutscene";
 import {Test} from "../levels/testLevel";
 
@@ -56,7 +55,7 @@ function createGame()
             value.mask = terrainStage;
             terrainContainer.addChild(value);
         },
-        player: {} as Player,
+        player: {} as ReturnType<typeof player>,
         get width() {
             return application.renderer.width;
         },
@@ -104,5 +103,3 @@ interface LevelInfo
     width: number;
     height: number;
 }
-
-type Player = DisplayObject & IguanaPuppet;

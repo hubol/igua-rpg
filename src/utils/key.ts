@@ -2,7 +2,7 @@ export const Key =
     {
         isDown(key: KeyCode)
         {
-            return key in currentKeysState && (currentKeysState[key] & 0b010);
+            return !!(key in currentKeysState && (currentKeysState[key] & 0b010));
         },
         isUp(key: KeyCode)
         {
@@ -10,11 +10,11 @@ export const Key =
         },
         justWentDown(key: KeyCode)
         {
-            return key in currentKeysState && (currentKeysState[key] & 0b100);
+            return !!(key in currentKeysState && (currentKeysState[key] & 0b100));
         },
         justWentUp(key: KeyCode)
         {
-            return key in currentKeysState && (currentKeysState[key] & 0b001);
+            return !!(key in currentKeysState && (currentKeysState[key] & 0b001));
         }
     };
 
