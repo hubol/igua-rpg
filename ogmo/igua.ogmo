@@ -289,7 +289,8 @@
       "tags": [],
       "values": [
         {"name": "levelName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
-        {"name": "checkpointName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
+        {"name": "checkpointName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "name", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ],
       "texture": "preview-images/door.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAgCAYAAAAFQMh/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAA8ElEQVRYR+WXSw7DIAwFfYpeoRfo/a/mikpBxPXn+bFIpCzYEMPEjIFEVFU6TUTUa505RiwM/bxfatt4AduHvgAE9qCjzwOPfgRegiNoBkbgKTjyifZnmYdgxOca0112F4wWEgKOlv0+YNRfN876/su4qlbk+aFg9Z6CvQGM72ieFX7K+BJw1xkbf2Q9M+4ei+hWsqt4DzB7HqM1YXfCvBZZX+y4CWZ9sXXxUDDraXsccvZGd+1ObcjzwNuugu/scl722kO8Zxp/jrsfdkhdVMfpdeDSBeuwGtfZi6hXRMVpqauJq+etJFrBzt8he0N9AfybAhPCmbJMAAAAAElFTkSuQmCC"

@@ -12,6 +12,7 @@ export function Test()
         await show("Hi, my name is Ronald.");
         await show("Welcome to IguaRPG.");
     };
+    level.SecretDoor.locked = true;
 }
 
 export function RightTest()

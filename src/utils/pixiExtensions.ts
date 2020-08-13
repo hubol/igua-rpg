@@ -15,6 +15,7 @@ declare global {
             rectangle: Rectangle;
             withStep(step: () => void): this;
             withAsync(async: (p: PromiseLibrary) => Promise<unknown>): this;
+            at(vector: Vector): this;
             at(x: number, y: number): this;
             destroyed: boolean;
         }
@@ -76,9 +77,12 @@ PIXI.DisplayObject.prototype.withAsync = function(promiseSupplier)
         .on("removed", () => cancellationToken.cancel());
 }
 
-PIXI.DisplayObject.prototype.at = function(x, y)
+PIXI.DisplayObject.prototype.at = function(x: Vector | number, y?: number)
 {
-    this.position.set(x, y);
+    if (typeof x === "number")
+        this.position.set(x, y);
+    else
+        this.position.set(x.x, x.y);
     return this;
 }
 

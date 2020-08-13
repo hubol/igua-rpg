@@ -6,6 +6,7 @@ import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { resolveBlock } from "./gameObjects/walls";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveValuableBlue } from "./gameObjects/valuable";
+import { resolveDoor } from "./gameObjects/door";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
@@ -84,7 +85,8 @@ Block_3: resolveBlock({"type":"Block","x":368,"y":160,"width":264,"height":160,"
 // @ts-ignore
 Gate: resolveGate({"type":"Gate","x":600,"y":128,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"RightTest","checkpointName":""}),
 FromRight: {"type":"Checkpoint","x":560,"y":160,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromRight"},
-Door: {"type":"Door","x":72,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":""},
+// @ts-ignore
+SecretDoor: resolveDoor({"type":"Door","x":72,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"SecretDoor"}),
 Checkpoint: {"type":"Checkpoint","x":112,"y":224,"flippedX":false,"flippedY":false,"uid":"55940370","name":""},
 Player: {"type":"Player","x":280,"y":88,"flippedX":false,"flippedY":false,"uid":"55988047"},
 // @ts-ignore
