@@ -7,7 +7,7 @@
     "last 31 Chrome versions"
   ],
   "scripts": {
-    "serve": "parcel src/index.html",
+    "serve": "parcel src/index.html --open",
     "build": "npm run gen:sounds -- --build && npm run gen:music -- --build && parcel build --public-url ./ src/index.html",
     "watch-gen:assets": "concurrently \"npm run gen:textures\" \"npm run gen:sounds\" \"npm run gen:music\"",
     "watch-gen:levelargs": "watch \"npm run gen:levelargs\" ./ogmo/levels ./src/gameObjects",
