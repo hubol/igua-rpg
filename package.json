@@ -10,7 +10,7 @@
     "serve": "parcel src/index.html --open",
     "build": "npm run gen:sounds -- --build && npm run gen:music -- --build && parcel build --public-url ./ src/index.html",
     "watch-gen:assets": "concurrently \"npm run gen:textures\" \"npm run gen:sounds\" \"npm run gen:music\"",
-    "watch-gen:levelargs": "watch \"npm run gen:levelargs\" ./ogmo/levels ./src/gameObjects --wait=10 --interval=10",
+    "watch-gen:levelargs": "watch \"npm run gen:levelargs\" ./raw/ogmo/levels ./src/gameObjects --wait=10 --interval=10",
     "gen:textures": "generate-textures src/images src/textures.ts",
     "gen:sounds": "generate-howls raw/sound src/sound src/sounds.ts",
     "gen:music": "generate-howls raw/music src/music src/musics.ts --dontPreload",
