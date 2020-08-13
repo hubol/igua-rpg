@@ -7,8 +7,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Build Dockerfile
         uses: ./
-        args:
-          - /github/workspace/dist
+        with:
+          out-dir: /github/workspace/dist
       - run: pwd
       - run: ls
       - run: ls ./src

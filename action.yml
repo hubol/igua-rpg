@@ -3,3 +3,5 @@ description: Build serveable version of IguaRPG
 runs:
   using: docker
   image: Dockerfile
+  args:
+    - ${{ inputs.out-dir }}
