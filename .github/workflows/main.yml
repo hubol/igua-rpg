@@ -6,12 +6,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Build Dockerfile
-        uses: ./
-        with:
-          out-dir: /github/workspace/FUCKYOU
+        uses: ./                            
       - run: pwd
-      - run: ls
-      - run: ls ./src
+      - run: ls      
       - name: Upload dist
         uses: actions/upload-artifact@v2
         with:

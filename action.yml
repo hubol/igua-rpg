@@ -1,11 +1,5 @@
 name: Build IguaRPG
 description: Build serveable version of IguaRPG
-inputs:
-  out-dir:
-    description: Output directory
-    required: true
 runs:
   using: docker
   image: Dockerfile        
-  args:
-    - ${{ inputs.out-dir }}
