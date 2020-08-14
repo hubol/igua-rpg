@@ -8,4 +8,4 @@ runs:
   using: docker
   image: Dockerfile        
   args:
-    - -- --outDir ${{ inputs.out-dir }}
+    - ${{ inputs.out-dir }}
