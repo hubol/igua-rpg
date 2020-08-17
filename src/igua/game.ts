@@ -6,6 +6,7 @@ import {player} from "../gameObjects/player";
 import {advanceKeyListener, startKeyListener} from "../utils/key";
 import {CutscenePlayer} from "../cutscene/cutscene";
 import {Test} from "../levels/testLevel";
+import {createDefaultHud} from "./createDefaultHud";
 
 export let game: ReturnType<typeof createGame>;
 function createGame()
@@ -73,6 +74,8 @@ export function startGame()
 
     game.player = player();
     game.ticker.add(stepPlayerCamera);
+
+    createDefaultHud();
 
     Test();
 
