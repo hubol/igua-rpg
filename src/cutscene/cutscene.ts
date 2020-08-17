@@ -1,4 +1,7 @@
-export type Cutscene = Promise<any> | (() => Promise<any>);
+import {makePromiseLibrary, PromiseLibrary} from "./promiseLibrary";
+import {CancellationToken} from "pissant";
+
+export type Cutscene = (p: PromiseLibrary) => Promise<any>;
 
 export class CutscenePlayer
 {
@@ -11,13 +14,12 @@ export class CutscenePlayer
 
         this._currentCutscene = cutscene;
 
+        const ct = new CancellationToken();
+
         setTimeout(async () => {
             try
             {
-                if (typeof cutscene === "function")
-                    await cutscene();
-                else
-                    await cutscene;
+                await cutscene(makePromiseLibrary(ct));
             }
             catch (e)
             {
@@ -25,6 +27,8 @@ export class CutscenePlayer
             }
             finally
             {
+                ct.cancel();
+
                 if (this._currentCutscene == cutscene)
                     this._currentCutscene = undefined;
             }

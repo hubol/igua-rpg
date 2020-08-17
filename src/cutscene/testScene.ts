@@ -7,7 +7,7 @@ export async function testCutscene()
     await show("Hi!!!");
     await show("Welcome to IguaRPG");
     await show("Very fun !!!");
-    game.cutscenePlayer.playCutscene(testCutscene2());
+    game.cutscenePlayer.playCutscene(testCutscene2);
 }
 
 export async function testCutscene2()
