@@ -23,5 +23,5 @@ export function RightTest()
 {
     const level = applyOgmoLevel(RightTestArgs);
     withSleepyBehavior(level.Gamer);
-    game.cutscenePlayer.playCutscene(testCutscene());
+    game.cutscenePlayer.playCutscene(testCutscene);
 }
