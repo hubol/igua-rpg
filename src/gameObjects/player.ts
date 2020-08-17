@@ -17,6 +17,7 @@ import {
 } from "../sounds";
 import {playerCharacterKey as playerKey} from "../igua/playerCharacterKey";
 import {merge} from "../utils/merge";
+import {progress} from "../igua/progress";
 
 function playerPuppet()
 {
@@ -63,11 +64,50 @@ function playerPuppet()
 
 export function player()
 {
-    const player = merge(playerPuppet(), { isOnGround: false, coyote: 0 });
+    const player = merge(playerPuppet(),
+        {
+            isOnGround: false,
+            coyote: 0,
+            invulnerableFrameCount: 0,
+            damage(health: number)
+            {
+                if (player.invulnerableFrameCount > 0)
+                {
+                    // TODO SFX
+                    player.invulnerableFrameCount -= 5;
+                    return;
+                }
+
+                if (player.isDucking)
+                {
+                    progress.health -= health * 0.8;
+                    player.invulnerableFrameCount = 30;
+                }
+                else
+                {
+                    progress.health -= health;
+                    player.invulnerableFrameCount = 60;
+                }
+
+                if (progress.health <= 0)
+                {
+                    // TODO DIE
+                }
+                // TODO SFX
+            }
+        });
 
     let pedometer = 0;
 
     const physicsStep = () => {
+        if (player.invulnerableFrameCount <= 0)
+            player.visible = true;
+        else
+        {
+            player.invulnerableFrameCount--;
+            player.visible = !player.visible;
+        }
+
         player.isDucking = playerKey.isDown("ArrowDown") && player.coyote > 0;
 
         if (player.isDucking)
