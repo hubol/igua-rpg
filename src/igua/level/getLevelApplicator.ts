@@ -12,7 +12,7 @@ export function getLevelApplicator(name: string)
 
 function getLevelApplicatorLibrary()
 {
-    const levelModules = require("./levels/**/*.*");
+    const levelModules = require("../../levels/**/*.*");
     console.debug("Got LevelEntrypoint modules", levelModules);
     const levelEntrypoints = mergeFunctionLeaves(levelModules);
     console.debug("Got LevelEntrypoints", levelEntrypoints)
