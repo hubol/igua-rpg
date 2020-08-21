@@ -87,6 +87,31 @@
           "values": {"name": "Ronald", "style": 0}
         }
       ]
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 79,
+      "gridCellsY": 40,
+      "decals": [
+        {
+          "x": 448,
+          "y": 152,
+          "texture": "blue valuable.png",
+          "values": {"name": "SuperAwesome"}
+        },
+        {
+          "x": 472,
+          "y": 144,
+          "texture": "character/foot.png",
+          "values": {"name": "values"}
+        }
+      ],
+      "folder": "..\\..\\src\\images"
     }
   ]
 }
