@@ -2,7 +2,7 @@ import {Export} from "./components/export";
 import {Const} from "./components/const";
 import {AnonymousFunction, Returns} from "./components/function";
 import {Invocation} from "./components/invocation";
-import {ImportedFunction} from "./components/imported";
+import {ImportedConst, ImportedFunction} from "./components/imported";
 import {Module} from "./components/module";
 
 export function testTsGen()
@@ -27,7 +27,11 @@ export function testTsGen()
         })),
         new Export(new Const("Stupid", new AnonymousFunction(new Returns(new Invocation(new ImportedFunction("fuckYou", "/src/fuckYou")).tsIgnore())))),
         new Export(new Const("Stupid2", [ new Invocation(new ImportedFunction("resolveMe", "/src/stupid")).tsIgnore() ])),
-        new Export(new Const("Stupid3", new Invocation(new ImportedFunction("resolveMe", "/src/stupid")).tsIgnore()))
+        new Export(new Const("Stupid3", new Invocation(new ImportedFunction("resolveMe", "/src/stupid")).tsIgnore())),
+        new Export(new Const("Ass", {
+            sexy: 100,
+            myObj: new ImportedConst("Steven", "/src/steven")
+        }))
     ];
     return new Module("/src/hello", exports);
 }
