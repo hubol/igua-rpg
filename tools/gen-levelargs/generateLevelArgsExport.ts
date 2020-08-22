@@ -6,8 +6,8 @@ import {AnonymousFunction, Returns} from "../gen-module/components/function";
 import {Ogmo} from "./types/ogmo";
 import {GameObjectArgs} from "./types/gameObjectArgs";
 import {Invocation} from "../gen-module/components/invocation";
-import {ImportedFunction} from "../gen-module/components/imported";
 import {OgmoLevelFile} from "./types/ogmoLevelFile";
+import {ImportedConst} from "../gen-module/components/imported";
 
 export function generateLevelArgsExport(gameObjectResolvers: GameObjectResolver[])
 {
@@ -35,7 +35,7 @@ function getGameObjectsSupplierReturnValue(gameObjectResolvers: GameObjectResolv
         const matchedResolver = first(gameObjectResolvers.filter(x => x.resolvableEntityType === gameObjectArgs.type));
 
         result[key] = matchedResolver
-            ? new Invocation(new ImportedFunction(matchedResolver.exportedName, matchedResolver.path), gameObjectArgs).tsIgnore()
+            ? new Invocation(new ImportedConst(matchedResolver.exportedName, matchedResolver.path), gameObjectArgs).tsIgnore()
             : gameObjectArgs;
     }
 

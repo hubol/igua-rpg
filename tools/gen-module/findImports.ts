@@ -1,5 +1,5 @@
 import {Module} from "./components/module";
-import {ImportedConst, ImportedFunction} from "./components/imported";
+import {ImportedConst} from "./components/imported";
 
 export interface Import
 {
@@ -32,7 +32,7 @@ function findImportsImpl(current: any, next: any[], importJsons: Set<string>)
     for (const key in current)
     {
         const value = current[key];
-        if (value instanceof ImportedFunction || value instanceof ImportedConst)
+        if (value instanceof ImportedConst)
             importJsons.add(JSON.stringify(value));
         else
             next.push(value);
