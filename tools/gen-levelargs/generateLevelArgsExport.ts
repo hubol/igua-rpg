@@ -8,19 +8,20 @@ import {GameObjectArgs} from "./types/gameObjectArgs";
 import {Invocation} from "../gen-module/components/invocation";
 import {OgmoLevelFile} from "./types/ogmoLevelFile";
 import {ImportedConst} from "../gen-module/components/imported";
+import {trimExtension} from "../shared-utils/trimExtension";
 
 export function generateLevelArgsExport(gameObjectResolvers: GameObjectResolver[])
 {
     return function({ path, level }: OgmoLevelFile)
     {
-        const entityArgsLibrary = makeGameObjectArgsLibrary(level.layers[0].entities);
+        const gameObjectArgsLibrary = makeGameObjectArgsLibrary(level.layers.flatMap(x => x.entities ?? []));
         return new Export(new Const(`${toPascalCase(trimExtension(getFileName(path)))}Args`,
             {
                 width: level.width,
                 height: level.height,
                 ...level.values,
                 gameObjectsSupplier: new AnonymousFunction(
-                    new Returns(getGameObjectsSupplierReturnValue(gameObjectResolvers, entityArgsLibrary)))
+                    new Returns(getGameObjectsSupplierReturnValue(gameObjectResolvers, gameObjectArgsLibrary)))
             }));
     }
 }
@@ -91,10 +92,4 @@ function getFileName(path: string)
 {
     const slash = path.lastIndexOf("\\");
     return path.substr(slash + 1);
-}
-
-function trimExtension(fileName: string)
-{
-    const dot = fileName.lastIndexOf(".");
-    return dot !== -1 ? fileName.substr(0, dot) : fileName;
 }
