@@ -34,8 +34,8 @@
       "exportID": "03531763",
       "folder": "..\\..\\src\\images",
       "includeImageSequence": true,
-      "scaleable": false,
-      "rotatable": false,
+      "scaleable": true,
+      "rotatable": true,
       "values": [
         {"name": "name", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ]

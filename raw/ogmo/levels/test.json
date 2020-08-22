@@ -101,14 +101,20 @@
         {
           "x": 448,
           "y": 152,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
           "texture": "blue valuable.png",
-          "values": {"name": "SuperAwesome"}
+          "values": {"name": ""}
         },
         {
           "x": 472,
           "y": 144,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
           "texture": "character/foot.png",
-          "values": {"name": "values"}
+          "values": {"name": ""}
         }
       ],
       "folder": "..\\..\\src\\images"
