@@ -25,17 +25,19 @@ function createGame()
 
     const terrainStage = new Container();
 
+    const backgroundGameObjectStage = new Container();
     const terrainContainer = new Container();
     const pipeStage = new Container();
     const gameObjectStage = new Container();
     const stage = new Container();
-    stage.addChild(pipeStage, terrainStage, terrainContainer, gameObjectStage);
+    stage.addChild(backgroundGameObjectStage, pipeStage, terrainStage, terrainContainer, gameObjectStage);
     application.stage.addChild(stage);
 
     return {
         get hudStage() {
             return application.stage;
         },
+        backgroundGameObjectStage,
         terrainStage,
         pipeStage,
         gameObjectStage,

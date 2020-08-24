@@ -99,22 +99,13 @@
       "gridCellsY": 40,
       "decals": [
         {
-          "x": 448,
-          "y": 152,
+          "x": 104,
+          "y": 184,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": 0,
-          "texture": "blue valuable.png",
-          "values": {"name": ""}
-        },
-        {
-          "x": 472,
-          "y": 144,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "character/foot.png",
-          "values": {"name": ""}
+          "texture": "crude house.png",
+          "values": {"name": "BottomLeftCrudeHouse"}
         }
       ],
       "folder": "..\\..\\src\\images"

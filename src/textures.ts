@@ -13,6 +13,7 @@ export let CharacterHead: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterMouthV: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterPupils: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterWhites: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CrudeHouse: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let HotTerrain: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LockedDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -69,6 +70,9 @@ export function loadTexturesAsync()
 
     const CharacterWhitesPath = require("./images/character/whites.png");
     loader.add(CharacterWhitesPath); 
+
+    const CrudeHousePath = require("./images/crude house.png");
+    loader.add(CrudeHousePath); 
 
     const HotTerrainPath = require("./images/hot terrain.png");
     loader.add(HotTerrainPath); 
@@ -139,6 +143,7 @@ export function loadTexturesAsync()
             CharacterMouthV = resources[CharacterMouthVPath]?.texture as PIXI.Texture;
             CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
+            CrudeHouse = resources[CrudeHousePath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
             LockedDoor = resources[LockedDoorPath]?.texture as PIXI.Texture;

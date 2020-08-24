@@ -17,6 +17,7 @@ export function Test()
         game.player.damage(20);
     };
     level.SecretDoor.locked = true;
+    level.BottomLeftCrudeHouse.tint = 0x8888aa;
 }
 
 export function RightTest()
