@@ -1,5 +1,6 @@
 import {AnonymousFunction} from "./components/function";
 import {Invocation} from "./components/invocation";
+import {ImportedConst} from "./components/imported";
 
 export function isPojo(o: any)
 {
@@ -21,7 +22,7 @@ function isPojoImpl(current: any, next: any[])
     for (const key in current)
     {
         const value = current[key];
-        if (value instanceof AnonymousFunction || value instanceof Invocation)
+        if (value instanceof AnonymousFunction || value instanceof Invocation || value instanceof ImportedConst)
             return false;
         if (typeof value === "object")
             next.push(value);

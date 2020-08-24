@@ -55,6 +55,18 @@
           "values": {"name": "Gamer", "style": 1}
         }
       ]
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 90,
+      "gridCellsY": 56,
+      "decals": [],
+      "folder": "..\\..\\src\\images"
     }
   ]
 }

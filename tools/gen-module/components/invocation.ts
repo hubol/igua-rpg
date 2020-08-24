@@ -1,6 +1,6 @@
-import {ImportedFunction} from "./imported";
+import {ImportedConst} from "./imported";
 
-export type Invokable = ImportedFunction;
+export type Invokable = ImportedConst;
 
 export class Invocation
 {

@@ -87,6 +87,28 @@
           "values": {"name": "Ronald", "style": 0}
         }
       ]
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 79,
+      "gridCellsY": 40,
+      "decals": [
+        {
+          "x": 104,
+          "y": 184,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crude house.png",
+          "values": {"name": "BottomLeftCrudeHouse"}
+        }
+      ],
+      "folder": "..\\..\\src\\images"
     }
   ]
 }
