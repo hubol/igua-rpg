@@ -26,6 +26,7 @@ function unloadLevel()
 {
     game.terrainStage.removeAllChildren();
     game.pipeStage.removeAllChildren();
+    game.backgroundGameObjectStage.removeAllChildren();
     game.gameObjectStage.removeAllChildren();
     levelRecycleablePromiseLibrary.recycle();
 }

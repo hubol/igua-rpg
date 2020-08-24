@@ -26,6 +26,19 @@
       "exportID": "55827504",
       "requiredTags": [],
       "excludedTags": []
+    },
+    {
+      "definition": "decal",
+      "name": "BackgroundDecals",
+      "gridSize": {"x": 8, "y": 8},
+      "exportID": "03531763",
+      "folder": "..\\..\\src\\images",
+      "includeImageSequence": true,
+      "scaleable": true,
+      "rotatable": true,
+      "values": [
+        {"name": "name", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ]
     }
   ],
   "entities": [

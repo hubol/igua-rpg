@@ -5,6 +5,7 @@ import {AnonymousFunction} from "./components/function";
 import {Invocation} from "./components/invocation";
 import {findImports, Import} from "./findImports";
 import {isPojo} from "./isPojo";
+import {ImportedConst} from "./components/imported";
 
 export function writeModule(module: Module)
 {
@@ -39,6 +40,8 @@ function writeLiteral(x: any): string
 ${writeSuppressingTypeScriptErrorsIfNecessary(value)(`  return ${writeLiteral(value)};`)}
 }`;
     }
+    if (x instanceof ImportedConst)
+        return x.exportedName;
     if (x instanceof Invocation)
     {
         return `${x.invokable.exportedName}(${x.args.length === 0 ? "" : writeLiteral(x.args.length === 1 ? x.args[0] : x.args)})`;

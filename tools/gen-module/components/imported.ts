@@ -1,4 +1,4 @@
-export class ImportedFunction
+export class ImportedConst
 {
     public readonly exportedName: string;
     public readonly modulePath: string;
