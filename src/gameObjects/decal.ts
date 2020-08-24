@@ -20,5 +20,5 @@ export function resolveDecalGameObject(args: DecalArgs)
     sprite.position.set(args.x, args.y);
     sprite.scale.set(args.scaleX, args.scaleY);
     sprite.rotation = args.rotation;
-    return game.gameObjectStage.addChild(sprite);
+    return game.backgroundGameObjectStage.addChild(sprite);
 }
