@@ -13,7 +13,7 @@ export namespace Ogmo
         style: number;
     }
 
-    interface Layer
+    export interface Layer
     {
         name: string;
         entities?: Entity[];
@@ -31,7 +31,7 @@ export namespace Ogmo
         height: number;
         flippedX?: boolean;
         flippedY?: boolean;
-        values: any;
+        values?: any;
     }
 
     export interface Decal
@@ -42,6 +42,6 @@ export namespace Ogmo
         scaleY: number;
         rotation: number;
         texture: string;
-        values: any;
+        values?: any;
     }
 }

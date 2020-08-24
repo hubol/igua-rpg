@@ -12,6 +12,9 @@ import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
 import { resolvePipeLeft } from "./gameObjects/walls";
+import { resolveDecalGameObject } from "./gameObjects/decal";
+import { CharacterFoot } from "./textures";
+import { BlueValuable } from "./textures";
 
 export const RightTestArgs = {
     width: 720,
@@ -62,7 +65,25 @@ height: 320,
 style: 0,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    BlueValuable: resolveDecalGameObject({
+    x: 448,
+y: 152,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: BlueValuable
+}),
+CharacterFoot: resolveDecalGameObject({
+    x: 472,
+y: 144,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: CharacterFoot
+}),
+// @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":272,"y":160,"width":96,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435"}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":184,"y":192,"width":184,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268"}),
