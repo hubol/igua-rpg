@@ -106,6 +106,24 @@
           "rotation": 0,
           "texture": "crude house.png",
           "values": {"name": "BottomLeftCrudeHouse"}
+        },
+        {
+          "x": 328,
+          "y": 72,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "burst.png",
+          "values": {"name": ""}
+        },
+        {
+          "x": 152,
+          "y": 80,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "burst.png",
+          "values": {"name": ""}
         }
       ],
       "folder": "..\\..\\src\\images"

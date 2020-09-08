@@ -13,6 +13,7 @@ import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolveDecalGameObject } from "./gameObjects/decal";
+import { Burst } from "./textures";
 import { CrudeHouse } from "./textures";
 
 export const RightTestArgs = {
@@ -72,6 +73,24 @@ scaleY: 1,
 rotation: 0,
 style: 0,
 texture: CrudeHouse
+}),
+Burst: resolveDecalGameObject({
+    x: 328,
+y: 72,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: Burst
+}),
+Burst_1: resolveDecalGameObject({
+    x: 152,
+y: 80,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: Burst
 }),
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":272,"y":160,"width":96,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435"}),
