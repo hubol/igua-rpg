@@ -43,6 +43,8 @@ function getDecalGameObjectValue(decal: Ogmo.Decal, style: DecalStyle)
         {
             x: decal.x,
             y: decal.y,
+            originX: decal.originX,
+            originY: decal.originY,
             scaleX: decal.scaleX,
             scaleY: decal.scaleY,
             rotation: decal.rotation,
