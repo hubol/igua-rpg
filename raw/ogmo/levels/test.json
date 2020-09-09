@@ -99,14 +99,14 @@
       "gridCellsY": 40,
       "decals": [
         {
-          "x": 104,
-          "y": 184,
+          "x": 48,
+          "y": 224,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": 0,
           "texture": "crude house.png",
-          "originX": 0.5,
-          "originY": 0.5,
+          "originX": 0,
+          "originY": 1,
           "values": {"name": "BottomLeftCrudeHouse"}
         },
         {

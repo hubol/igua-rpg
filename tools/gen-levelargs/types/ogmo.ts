@@ -40,6 +40,8 @@ export namespace Ogmo
         y: number;
         scaleX: number;
         scaleY: number;
+        originX: number;
+        originY: number;
         rotation: number;
         texture: string;
         values?: any;

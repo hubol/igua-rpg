@@ -6,6 +6,8 @@ export interface DecalArgs
 {
     x: number;
     y: number;
+    originX: number;
+    originY: number;
     scaleX: number;
     scaleY: number;
     rotation: number;
@@ -16,7 +18,7 @@ export interface DecalArgs
 export function resolveDecalGameObject(args: DecalArgs)
 {
     const sprite = Sprite.from(args.texture);
-    sprite.anchor.set(Math.round(sprite.width / 2) / sprite.width, Math.round(sprite.height / 2) / sprite.height);
+    sprite.anchor.set(Math.round(sprite.width * args.originX) / sprite.width, Math.round(sprite.height * args.originY) / sprite.height);
     sprite.position.set(args.x, args.y);
     sprite.scale.set(args.scaleX, args.scaleY);
     sprite.rotation = args.rotation;

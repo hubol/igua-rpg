@@ -66,8 +66,10 @@ style: 0,
 gameObjectsSupplier: () => {
   return {
     BottomLeftCrudeHouse: resolveDecalGameObject({
-    x: 104,
-y: 184,
+    x: 48,
+y: 224,
+originX: 0,
+originY: 1,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
@@ -77,6 +79,8 @@ texture: CrudeHouse
 Burst: resolveDecalGameObject({
     x: 328,
 y: 72,
+originX: 0.5,
+originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
@@ -86,6 +90,8 @@ texture: Burst
 Burst_1: resolveDecalGameObject({
     x: 152,
 y: 80,
+originX: 0.5,
+originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
