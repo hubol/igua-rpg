@@ -105,6 +105,8 @@
           "scaleY": 1,
           "rotation": 0,
           "texture": "crude house.png",
+          "originX": 0.5,
+          "originY": 0.5,
           "values": {"name": "BottomLeftCrudeHouse"}
         },
         {
@@ -114,6 +116,8 @@
           "scaleY": 1,
           "rotation": 0,
           "texture": "burst.png",
+          "originX": 0.5,
+          "originY": 0.5,
           "values": {"name": ""}
         },
         {
@@ -123,6 +127,8 @@
           "scaleY": 1,
           "rotation": 0,
           "texture": "burst.png",
+          "originX": 0.5,
+          "originY": 0.5,
           "values": {"name": ""}
         }
       ],
