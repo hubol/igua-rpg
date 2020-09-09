@@ -8,9 +8,12 @@
     image-rendering: optimize-contrast;
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
+
+    box-shadow: 3vmin 3vmin #006060;
 }
 
 body {
+    background-color: #008080;
     display: flex;
     justify-content: center;
     align-items: center;
