@@ -13,6 +13,7 @@ export let CharacterHead: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterMouthV: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterPupils: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterWhites: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CrudeHouseB: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrudeHouse: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let HotTerrain: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -32,6 +33,8 @@ export let OrangeValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Pipe: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RightPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RockCracks: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let SpikyBrushA: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let SpikyBrushB: PIXI.Texture = undefined as unknown as PIXI.Texture;
 
 
 export function loadTexturesAsync()
@@ -70,6 +73,9 @@ export function loadTexturesAsync()
 
     const CharacterWhitesPath = require("./images/character/whites.png");
     loader.add(CharacterWhitesPath); 
+
+    const CrudeHouseBPath = require("./images/crude house b.png");
+    loader.add(CrudeHouseBPath); 
 
     const CrudeHousePath = require("./images/crude house.png");
     loader.add(CrudeHousePath); 
@@ -128,6 +134,12 @@ export function loadTexturesAsync()
     const RockCracksPath = require("./images/rock cracks.png");
     loader.add(RockCracksPath); 
 
+    const SpikyBrushAPath = require("./images/spiky brush a.png");
+    loader.add(SpikyBrushAPath); 
+
+    const SpikyBrushBPath = require("./images/spiky brush b.png");
+    loader.add(SpikyBrushBPath); 
+
     
     return new Promise(resolve =>
     {
@@ -143,6 +155,7 @@ export function loadTexturesAsync()
             CharacterMouthV = resources[CharacterMouthVPath]?.texture as PIXI.Texture;
             CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
+            CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;
             CrudeHouse = resources[CrudeHousePath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
@@ -162,6 +175,8 @@ export function loadTexturesAsync()
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
             RightPipeEnd = resources[RightPipeEndPath]?.texture as PIXI.Texture;
             RockCracks = resources[RockCracksPath]?.texture as PIXI.Texture;
+            SpikyBrushA = resources[SpikyBrushAPath]?.texture as PIXI.Texture;
+            SpikyBrushB = resources[SpikyBrushBPath]?.texture as PIXI.Texture;
 
             resolve();
         });

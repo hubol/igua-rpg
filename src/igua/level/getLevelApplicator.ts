@@ -1,5 +1,4 @@
 import {mergeFunctionLeaves} from "../../utils/mergeFunctionLeaves";
-import {Test} from "../../levels/testLevel";
 
 let levelApplicatorLibrary;
 
@@ -7,7 +6,7 @@ export function getLevelApplicator(name: string)
 {
     if (!levelApplicatorLibrary)
         levelApplicatorLibrary = getLevelApplicatorLibrary();
-    return (levelApplicatorLibrary[name] ?? Test) as () => void;
+    return (levelApplicatorLibrary[name]) as () => void;
 }
 
 function getLevelApplicatorLibrary()

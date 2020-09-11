@@ -15,6 +15,141 @@ import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { Burst } from "./textures";
 import { CrudeHouse } from "./textures";
+import { SpikyBrushA } from "./textures";
+import { SpikyBrushB } from "./textures";
+import { CrudeHouseB } from "./textures";
+
+export const DesertTownArgs = {
+    width: 928,
+height: 432,
+style: 0,
+gameObjectsSupplier: () => {
+  return {
+    LeftHouse: resolveDecalGameObject({
+    x: 232,
+y: 208,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: CrudeHouseB
+}),
+RightHouse: resolveDecalGameObject({
+    x: 704,
+y: 304,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: CrudeHouse
+}),
+SpikyBrushA: resolveDecalGameObject({
+    x: 184,
+y: 208,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: SpikyBrushA
+}),
+SpikyBrushA_1: resolveDecalGameObject({
+    x: 212,
+y: 123,
+originX: 0.5,
+originY: 1,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: SpikyBrushA
+}),
+SpikyBrushB: resolveDecalGameObject({
+    x: 488,
+y: 260,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: SpikyBrushB
+}),
+SpikyBrushB_1: resolveDecalGameObject({
+    x: 460,
+y: 258,
+originX: 0.5,
+originY: 1,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: SpikyBrushB
+}),
+SpikyBrushA_2: resolveDecalGameObject({
+    x: 736,
+y: 304,
+originX: 0.5,
+originY: 1,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: SpikyBrushA
+}),
+SpikyBrushB_2: resolveDecalGameObject({
+    x: 752,
+y: 304,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 0,
+texture: SpikyBrushB
+}),
+SpikyBrushA_3: resolveDecalGameObject({
+    x: 116,
+y: 235,
+originX: 0.5,
+originY: 1,
+scaleX: -1,
+scaleY: 1,
+rotation: -0.3490658503988659,
+style: 0,
+texture: SpikyBrushA
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":240,"width":168,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":96,"y":208,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435"}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":168,"y":208,"width":128,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":296,"y":208,"width":72,"height":48,"flippedX":false,"flippedY":false,"uid":"55845599"}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":368,"y":256,"width":136,"height":176,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":504,"y":256,"width":96,"height":48,"flippedX":false,"flippedY":false,"uid":"55845599"}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":600,"y":304,"width":328,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":504,"y":304,"width":96,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":168,"y":256,"width":200,"height":176,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+// @ts-ignore
+LeftHouseDoor: resolveDoor({"type":"Door","x":248,"y":176,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"LeftHouseDoor"}),
+// @ts-ignore
+RightHouseDoor: resolveDoor({"type":"Door","x":672,"y":272,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"RightHouseDoor"}),
+Player: {"type":"Player","x":400,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047"}
+};
+}
+};
 
 export const RightTestArgs = {
     width: 720,

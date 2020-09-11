@@ -1,0 +1,164 @@
+{
+  "ogmoVersion": "3.3.0",
+  "width": 928,
+  "height": 432,
+  "offsetX": 0,
+  "offsetY": 0,
+  "values": {"style": 0},
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 116,
+      "gridCellsY": 54,
+      "entities": [
+        {"name": "Block", "id": 0, "_eid": "55823268", "x": 0, "y": 240, "width": 168, "height": 192, "originX": 0, "originY": 0},
+        {"name": "SlopeRight", "id": 1, "_eid": "55824435", "x": 96, "y": 208, "width": 72, "height": 32, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 2, "_eid": "55823268", "x": 168, "y": 208, "width": 128, "height": 48, "originX": 0, "originY": 0},
+        {"name": "SlopeLeft", "id": 3, "_eid": "55845599", "x": 296, "y": 208, "width": 72, "height": 48, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 4, "_eid": "55823268", "x": 368, "y": 256, "width": 136, "height": 176, "originX": 0, "originY": 0},
+        {"name": "SlopeLeft", "id": 5, "_eid": "55845599", "x": 504, "y": 256, "width": 96, "height": 48, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 6, "_eid": "55823268", "x": 600, "y": 304, "width": 328, "height": 136, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 7, "_eid": "55823268", "x": 504, "y": 304, "width": 96, "height": 128, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 8, "_eid": "55823268", "x": 168, "y": 256, "width": 200, "height": 176, "originX": 0, "originY": 0},
+        {
+          "name": "Door",
+          "id": 9,
+          "_eid": "55913988",
+          "x": 248,
+          "y": 176,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "", "checkpointName": "", "name": "LeftHouseDoor"}
+        },
+        {
+          "name": "Door",
+          "id": 10,
+          "_eid": "55913988",
+          "x": 672,
+          "y": 272,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "", "checkpointName": "", "name": "RightHouseDoor"}
+        },
+        {"name": "Player", "id": 11, "_eid": "55988047", "x": 400, "y": 256, "originX": 11, "originY": 27}
+      ]
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 116,
+      "gridCellsY": 54,
+      "decals": [
+        {
+          "x": 232,
+          "y": 208,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crude house b.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": "LeftHouse"}
+        },
+        {
+          "x": 704,
+          "y": 304,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crude house.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": "RightHouse"}
+        },
+        {
+          "x": 184,
+          "y": 208,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 212,
+          "y": 123,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 488,
+          "y": 260,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 460,
+          "y": 258,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 736,
+          "y": 304,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 752,
+          "y": 304,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 116,
+          "y": 235,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": -0.3490658503988659,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "..\\..\\src\\images"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ export function getInitialProgress()
         maxHealth: 100,
         valuables: 0,
         gotLevelValuable: new Set<string>(),
-        levelName: "Test",
+        levelName: "DesertTown",
         checkpointName: "none"
     };
 }
