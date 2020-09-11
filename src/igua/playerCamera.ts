@@ -9,12 +9,12 @@ export function stepPlayerCamera()
     if (!game.camera.followPlayer)
         return;
 
-    const margin = 80;
+    const padding = 112;
 
-    const x0 = game.camera.x + margin;
-    const y0 = game.camera.y + margin;
-    const x1 = game.camera.x + game.width - margin;
-    const y1 = game.camera.y + game.height - margin;
+    const x0 = game.camera.x + padding;
+    const y0 = game.camera.y + padding;
+    const x1 = game.camera.x + game.width - padding;
+    const y1 = game.camera.y + game.height - padding;
 
     if (game.player.x - x0 < 0)
         target.x = game.camera.x + game.player.x - x0;
