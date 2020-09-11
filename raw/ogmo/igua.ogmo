@@ -11,7 +11,7 @@
   "levelMinSize": {"x": 128, "y": 128},
   "levelMaxSize": {"x": 4096, "y": 4096},
   "levelValues": [
-    {"name": "style", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100}
+    {"name": "style", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": 0, "max": 100}
   ],
   "defaultExportMode": ".json",
   "compactExport": false,
@@ -37,7 +37,7 @@
       "scaleable": true,
       "rotatable": true,
       "values": [
-        {"name": "name", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ]
     }
   ],
@@ -301,9 +301,9 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "levelName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
-        {"name": "checkpointName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
-        {"name": "name", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
+        {"name": "levelName", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "checkpointName", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ],
       "texture": "preview-images/door.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAgCAYAAAAFQMh/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAA8ElEQVRYR+WXSw7DIAwFfYpeoRfo/a/mikpBxPXn+bFIpCzYEMPEjIFEVFU6TUTUa505RiwM/bxfatt4AduHvgAE9qCjzwOPfgRegiNoBkbgKTjyifZnmYdgxOca0112F4wWEgKOlv0+YNRfN876/su4qlbk+aFg9Z6CvQGM72ieFX7K+BJw1xkbf2Q9M+4ei+hWsqt4DzB7HqM1YXfCvBZZX+y4CWZ9sXXxUDDraXsccvZGd+1ObcjzwNuugu/scl722kO8Zxp/jrsfdkhdVMfpdeDSBeuwGtfZi6hXRMVpqauJq+etJFrBzt8he0N9AfybAhPCmbJMAAAAAElFTkSuQmCC"
@@ -343,8 +343,8 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "levelName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
-        {"name": "checkpointName", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
+        {"name": "levelName", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "checkpointName", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ],
       "texture": "preview-images/gate.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAB7UlEQVRIS32W61EEMQyDrxp+wQwdUAL9d0MW5eRvZWcZhttk/ZBl2dzr4/Pr++d3/a4HP7/+f9YxHpYZb+hFe9tc9oobbuuoWH7rowPZS/h471dXWKHwa8almxC4gvGoS4Vy1o1RZ2JRLOfgkWiYkjaVIDwDo3KMnmM1FdddJEYHot0pZe9BELCP+hBrVELkYN/03MlhD8qACZwmKrVnfwj23OHiVvDtScY7OcZ1IlPRbroXaitVCcYGnpRq4/DdfCjh2AMSwqw2DskfuxhLgnaMFRUEsWx70sB9wOiByFPqTCw9+l8VjxrlfIW0+gbsobl7ansYF3XVeehKZR0xHNdxlA3p9uaKPlPyMaEm86bGk+rHKeHcjBV4fvfEj7SMdLtnJ2UT0LwCTBon6LQkWIql4dm63p6icFmaYhv32TQHxLftY5q4OYTA67OYjX9brcDSjpL474OoIghLDNSMWV5dRf3GpfTFQGWz0P3dJGJFWbGFAuBp1DcIgiIJPeXQvbcDiWW+kmxohkNr8SklG/4gQm6zDYP+VHck8xpwdO+SztUVMxT90GpmctDOqoFuew5BQHhoidseumKfagN6lIKZeZO8b2dC3oN5U2qlwjdqVsqOidLeQ3ZCBhsBVyaNygKQ2WGzZFrkTgTL5g9qmUQeR2zflQAAAABJRU5ErkJggg=="
@@ -384,7 +384,7 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "name", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true}
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ],
       "texture": "preview-images/checkpoint.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAAu0lEQVQoU42R3Q2DIBSFHaW+Nj4wAukEdQOYpFgWcAQHqAkb+DMJGzDCLecmEGwM9SYE0PNdDoemKeo9PChuZfmttl7aW0vTpP9D82deYieSUpL3vg7ZwRqIjDGUSitdhcw4jtw9DZxWgwwE8A/AOccz6tTevu4s2NaNlFIUQsgA7mZfVh6CAAD/6IyThBA8d/cOQXAdIGzgN6XUP3u295t/oeNfeCz2DXtI7srjSVwS4BVx9hoX2fsZ+AVVspbP6vLm3gAAAABJRU5ErkJggg=="
@@ -614,11 +614,52 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "name", "definition": "String", "defaults": "", "maxLength": 0, "trimWhitespace": true},
-        {"name": "style", "definition": "Integer", "defaults": 0, "bounded": false, "min": 0, "max": 100}
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "style", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": 0, "max": 100}
       ],
       "texture": "preview-images/npcIguana.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAbCAYAAADyBeakAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4yMfEgaZUAAAFwSURBVEhLvZbBsQIxCIbTgWXZwDtpJ3bg4Z0924A9WII1eHK8vnueZPxXFiGQRHdnmDUJgS9AWFMaeDZ5lbkMmOrbKgEw7rPWscsCWAzEA1gE5OsQt/s2c9Ey5UGk62+uSi39EgBjuccsSM+5XJeGLYAoiHt6CxAgGgCHpPVaWjyA/Hy43myOjEfqwEojpaYGAWfc6dvcKEQLADknfe15i4QVfjUalWKEs8thnSEEwcdThLyirK1HItEM8Tit7BNlTPMQ0UdeayIqatgj6ZCOAMXh+Fz0ZqAeoM8By5w8GU6uvdW11iZlNS3WlKZ08Kho6ZgiEoCguuBRm42VpmTWhNHUzJqQqYJjE0DrF623xqsPXM9JT7vzrU7ND56XHu9P1CiIZz+8DpCcdrP60AC5zl/6UT90YcdSkYxDrOhwHQKAdDvlG7lx/JZOIjrdMJpxCRLRGUqNdJBO55IWeqf9sYQ8okO6H4lEcexAWDqtEP+PA+vserEObgAAAABJRU5ErkJggg=="
+    },
+    {
+      "exportID": "86706091",
+      "name": "Sign",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 14, "y": 18},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "title", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "message", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ],
+      "texture": "../../src/images/sign.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAASCAYAAABIB77kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAAT0lEQVRIS2M4sCDgPz0xAz0tA9k1aiHV43c0SEeDlOQQGE00JAcZoaKS4f///1jxggaD/zAMU7NjQQBO9SA12PSgmz9qIThYh1yQguIehgGM2VRw45NXhwAAAABJRU5ErkJggg=="
     }
   ],
   "tilesets": []

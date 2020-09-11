@@ -45,7 +45,17 @@
           "originY": 0,
           "values": {"levelName": "", "checkpointName": "", "name": "RightHouseDoor"}
         },
-        {"name": "Player", "id": 11, "_eid": "55988047", "x": 400, "y": 256, "originX": 11, "originY": 27}
+        {"name": "Player", "id": 11, "_eid": "55988047", "x": 400, "y": 256, "originX": 11, "originY": 27},
+        {
+          "name": "Sign",
+          "id": 12,
+          "_eid": "86706091",
+          "x": 472,
+          "y": 256,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "Town", "message": "Welcome to the desert town."}
+        }
       ]
     },
     {
