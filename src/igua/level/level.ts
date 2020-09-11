@@ -15,10 +15,14 @@ export const level = {
     {
         game.applicationTicker.stop();
         await sleep(250);
+        this.gotoSync(levelName);
+        game.applicationTicker.start();
+    },
+    gotoSync(levelName: string)
+    {
         this.clear();
         getLevelApplicator(levelName)();
         progress.levelName = levelName;
-        game.applicationTicker.start();
     },
     clear()
     {
