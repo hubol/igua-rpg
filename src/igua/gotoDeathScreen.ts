@@ -1,6 +1,6 @@
 import {level} from "./level/level";
-import {game, recreatePlayer} from "./game";
-import {Test} from "../levels/testLevel";
+import {game, loadSavedProgress, recreatePlayer} from "./game";
+import {progress} from "./progress";
 
 export function gotoDeathScreen()
 {
@@ -9,7 +9,8 @@ export function gotoDeathScreen()
     game.backgroundColor = 0x000000;
     setTimeout(() => {
         recreatePlayer();
-        level.gotoSync("Test");
+        loadSavedProgress();
+        level.gotoSync(progress.levelName);
     },
     4_000)
 }

@@ -83,22 +83,19 @@ export function player()
 
                 if (player.isDucking)
                 {
+                    CharacterHurtDefense.play();
                     progress.health -= health * 0.8;
                     player.invulnerableFrameCount = 30;
                 }
                 else
                 {
+                    CharacterHurt.play();
                     progress.health -= health;
                     player.invulnerableFrameCount = 60;
                 }
 
                 if (progress.health <= 0)
-                {
                     gotoDeathScreen();
-                    return;
-                }
-
-                (player.isDucking ? CharacterHurtDefense : CharacterHurt).play();
             }
         });
 

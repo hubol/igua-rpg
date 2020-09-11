@@ -5,9 +5,9 @@ import {stepPlayerCamera} from "./playerCamera";
 import {player} from "../gameObjects/player";
 import {advanceKeyListener, startKeyListener} from "../utils/key";
 import {CutscenePlayer} from "../cutscene/cutscene";
-import {Test} from "../levels/testLevel";
 import {createDefaultHud} from "./createDefaultHud";
 import {level} from "./level/level";
+import {getInitialProgress, progress, setProgress} from "./progress";
 
 export let game: ReturnType<typeof createGame>;
 function createGame()
@@ -80,7 +80,13 @@ export function startGame()
 
     createDefaultHud();
 
-    level.gotoSync("Test");
+    loadSavedProgress();
+    level.gotoSync(progress.levelName);
+}
+
+export function loadSavedProgress()
+{
+    setProgress(getInitialProgress()); // TODO read from localStorage
 }
 
 export function recreatePlayer()
