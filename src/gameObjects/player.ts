@@ -71,6 +71,7 @@ export function player()
             coyote: 0,
             invulnerableFrameCount: 0,
             isDead: false,
+            pedometer: 0,
             damage(health: number)
             {
                 if (player.invulnerableFrameCount > 0)
@@ -100,8 +101,6 @@ export function player()
                 (player.isDucking ? CharacterHurtDefense : CharacterHurt).play();
             }
         });
-
-    let pedometer = 0;
 
     const physicsStep = () => {
         if (player.invulnerableFrameCount <= 0)
@@ -142,7 +141,7 @@ export function player()
         if (barelyWalking)
         {
             player.hspeed = 0;
-            pedometer = 0;
+            player.pedometer = 0;
         }
 
         if (player.coyote > 0 && playerKey.justWentDown("Space"))
@@ -241,31 +240,31 @@ export function player()
         else
             player.coyote--;
 
-        const lastPedometer = pedometer;
+        const lastPedometer = player.pedometer;
 
         if (player.isOnGround || player.coyote > 15)
-            pedometer += Math.abs(player.hspeed);
+            player.pedometer += Math.abs(player.hspeed);
 
-        if (pedometer > 24 && lastPedometer <= 24)
+        if (player.pedometer > 24 && lastPedometer <= 24)
         {
             CharacterStep.volume(.4);
             CharacterStep.play();
         }
-        else if (pedometer > 44 && lastPedometer <= 44)
+        else if (player.pedometer > 44 && lastPedometer <= 44)
         {
             CharacterStep2.volume(.4);
             CharacterStep2.play();
         }
-        else if (pedometer > 62 && lastPedometer <= 62)
+        else if (player.pedometer > 62 && lastPedometer <= 62)
         {
             CharacterStep3.volume(.4);
             CharacterStep3.play();
         }
-        else if (pedometer > 82 && lastPedometer <= 82)
+        else if (player.pedometer > 82 && lastPedometer <= 82)
         {
             CharacterStep4.volume(.4);
             CharacterStep4.play();
-            pedometer = 0;
+            player.pedometer = 0;
         }
     };
 
