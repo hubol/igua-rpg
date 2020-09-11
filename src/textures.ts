@@ -33,6 +33,7 @@ export let OrangeValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Pipe: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RightPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RockCracks: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let Sign: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SpikyBrushA: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SpikyBrushB: PIXI.Texture = undefined as unknown as PIXI.Texture;
 
@@ -134,6 +135,9 @@ export function loadTexturesAsync()
     const RockCracksPath = require("./images/rock cracks.png");
     loader.add(RockCracksPath); 
 
+    const SignPath = require("./images/sign.png");
+    loader.add(SignPath); 
+
     const SpikyBrushAPath = require("./images/spiky brush a.png");
     loader.add(SpikyBrushAPath); 
 
@@ -175,6 +179,7 @@ export function loadTexturesAsync()
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
             RightPipeEnd = resources[RightPipeEndPath]?.texture as PIXI.Texture;
             RockCracks = resources[RockCracksPath]?.texture as PIXI.Texture;
+            Sign = resources[SignPath]?.texture as PIXI.Texture;
             SpikyBrushA = resources[SpikyBrushAPath]?.texture as PIXI.Texture;
             SpikyBrushB = resources[SpikyBrushBPath]?.texture as PIXI.Texture;
 
