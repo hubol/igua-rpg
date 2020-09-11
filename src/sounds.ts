@@ -7,6 +7,16 @@ export const CharacterHitCeiling = new Howl({
     
 });
 
+export const CharacterHurtDefense = new Howl({
+    src: [require("./sound/character hurt defense.ogg"), require("./sound/character hurt defense.mp3")],
+    
+});
+
+export const CharacterHurt = new Howl({
+    src: [require("./sound/character hurt.ogg"), require("./sound/character hurt.mp3")],
+    
+});
+
 export const CharacterLandOnGround = new Howl({
     src: [require("./sound/character land on ground.ogg"), require("./sound/character land on ground.mp3")],
     
