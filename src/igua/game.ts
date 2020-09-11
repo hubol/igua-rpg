@@ -7,6 +7,7 @@ import {advanceKeyListener, startKeyListener} from "../utils/key";
 import {CutscenePlayer} from "../cutscene/cutscene";
 import {Test} from "../levels/testLevel";
 import {createDefaultHud} from "./createDefaultHud";
+import {level} from "./level/level";
 
 export let game: ReturnType<typeof createGame>;
 function createGame()
@@ -74,13 +75,22 @@ export function startGame()
 {
     game = createGame();
 
-    game.player = player();
+    recreatePlayer();
     game.ticker.add(stepPlayerCamera);
 
     createDefaultHud();
 
-    Test();
+    level.gotoSync("Test");
+}
 
+export function recreatePlayer()
+{
+    if (game.player?.removeAllChildren)
+    {
+        game.player.removeAllChildren();
+        game.player.destroy();
+    }
+    game.player = player();
     game.stage.addChild(game.player);
 }
 
