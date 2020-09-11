@@ -1,13 +1,16 @@
 import {game} from "../game";
-import {Sprite, TilingSprite, SCALE_MODES, Container, BLEND_MODES} from "pixi.js";
+import {Sprite, TilingSprite, SCALE_MODES, Container, BLEND_MODES, Graphics} from "pixi.js";
 import {BlueGradient, HotTerrain, RockCracks} from "../../textures";
 
 export function applyLevelStyle(levelStyle: number)
 {
     if (levelStyle === 0)
     {
-        game.backgroundColor = 0x0000ff;
-        game.terrainFill = new TilingSprite(HotTerrain, game.level.width, game.level.height);
+        game.backgroundColor = 0xF0F0B0;
+        const graphics = new Graphics();
+        graphics.beginFill(0xE0D060);
+        graphics.drawRect(0, 0, game.level.width, game.level.height);
+        game.terrainFill = graphics;
     }
     else if (levelStyle === 1)
     {
