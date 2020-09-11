@@ -77,7 +77,6 @@ export function iguanaPuppet(args: IguanaPuppetArgs)
                     player.isClosingEyes = true;
                 }
 
-                player.closedEyesUnit = approachLinear(player.closedEyesUnit, player.isClosingEyes ? 1.3 : 0, 0.3);
                 if (player.closedEyesUnit > 1.2 && player.isClosingEyes)
                 {
                     player.isClosingEyes = false;
@@ -87,6 +86,7 @@ export function iguanaPuppet(args: IguanaPuppetArgs)
                         IguanaBlink.play();
                 }
             }
+            player.closedEyesUnit = approachLinear(player.closedEyesUnit, player.isClosingEyes ? 1.3 : 0, 0.3);
 
             (args.eyes as IguanaEyes).closedUnit = player.closedEyesUnit;
         });

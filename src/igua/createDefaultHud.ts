@@ -1,4 +1,4 @@
-import {Graphics} from "pixi.js";
+import {Container, Graphics} from "pixi.js";
 import {progress} from "./progress";
 import {game} from "./game";
 
@@ -13,5 +13,10 @@ export function createDefaultHud()
         healthbar.drawRect(0, 0, progress.health, 16);
     });
 
-    game.hudStage.addChild(healthbar);
+    const defaultHud = new Container()
+        .withStep(() => defaultHud.visible = !game.player.isDead);
+
+    defaultHud.addChild(healthbar);
+
+    game.hudStage.addChild(defaultHud);
 }
