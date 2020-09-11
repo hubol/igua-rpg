@@ -8,7 +8,7 @@ import {game} from "../igua/game";
 import {iguanaPuppet} from "../igua/iguanaPuppet";
 import {iguanaEyes} from "../igua/iguanaEyes";
 import {
-    CharacterHitCeiling,
+    CharacterHitCeiling, CharacterHurt, CharacterHurtDefense,
     CharacterLandOnGround,
     CharacterStep,
     CharacterStep2,
@@ -93,7 +93,8 @@ export function player()
                 {
                     // TODO DIE
                 }
-                // TODO SFX
+                else
+                    (player.isDucking ? CharacterHurtDefense : CharacterHurt).play();
             }
         });
 
