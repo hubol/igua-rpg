@@ -15,18 +15,17 @@ export const level = {
     {
         game.applicationTicker.stop();
         await sleep(250);
-        unloadLevel();
+        this.clear();
         getLevelApplicator(levelName)();
         progress.levelName = levelName;
         game.applicationTicker.start();
+    },
+    clear()
+    {
+        game.terrainStage.removeAllChildren();
+        game.pipeStage.removeAllChildren();
+        game.backgroundGameObjectStage.removeAllChildren();
+        game.gameObjectStage.removeAllChildren();
+        levelRecycleablePromiseLibrary.recycle();
     }
-}
-
-function unloadLevel()
-{
-    game.terrainStage.removeAllChildren();
-    game.pipeStage.removeAllChildren();
-    game.backgroundGameObjectStage.removeAllChildren();
-    game.gameObjectStage.removeAllChildren();
-    levelRecycleablePromiseLibrary.recycle();
 }

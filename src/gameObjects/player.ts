@@ -18,6 +18,7 @@ import {
 import {playerCharacterKey as playerKey} from "../igua/playerCharacterKey";
 import {merge} from "../utils/merge";
 import {progress} from "../igua/progress";
+import {gotoDeathScreen} from "../igua/gotoDeathScreen";
 
 function playerPuppet()
 {
@@ -69,6 +70,7 @@ export function player()
             isOnGround: false,
             coyote: 0,
             invulnerableFrameCount: 0,
+            isDead: false,
             damage(health: number)
             {
                 if (player.invulnerableFrameCount > 0)
@@ -91,10 +93,11 @@ export function player()
 
                 if (progress.health <= 0)
                 {
-                    // TODO DIE
+                    gotoDeathScreen();
+                    return;
                 }
-                else
-                    (player.isDucking ? CharacterHurtDefense : CharacterHurt).play();
+
+                (player.isDucking ? CharacterHurtDefense : CharacterHurt).play();
             }
         });
 
@@ -107,6 +110,14 @@ export function player()
         {
             player.invulnerableFrameCount--;
             player.visible = !player.visible;
+        }
+
+        if (player.isDead)
+        {
+            player.canBlink = false;
+            player.isClosingEyes = true;
+            player.isDucking = true;
+            return;
         }
 
         player.isDucking = playerKey.isDown("ArrowDown") && player.coyote > 0;
