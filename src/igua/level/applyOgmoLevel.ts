@@ -31,5 +31,5 @@ function applyPlayerStartingPosition(gameObjects: any[])
 function setPlayerPosition(vector)
 {
     game.player.x = vector.x;
-    game.player.y = vector.y - 9;
+    game.player.y = vector.y - 8;
 }
