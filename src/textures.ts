@@ -13,6 +13,7 @@ export let CharacterHead: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterMouthV: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterPupils: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterWhites: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CloudLong: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrudeHouseB: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrudeHouse: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let HotTerrain: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -74,6 +75,9 @@ export function loadTexturesAsync()
 
     const CharacterWhitesPath = require("./images/character/whites.png");
     loader.add(CharacterWhitesPath); 
+
+    const CloudLongPath = require("./images/cloud long.png");
+    loader.add(CloudLongPath); 
 
     const CrudeHouseBPath = require("./images/crude house b.png");
     loader.add(CrudeHouseBPath); 
@@ -159,6 +163,7 @@ export function loadTexturesAsync()
             CharacterMouthV = resources[CharacterMouthVPath]?.texture as PIXI.Texture;
             CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
+            CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
             CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;
             CrudeHouse = resources[CrudeHousePath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;

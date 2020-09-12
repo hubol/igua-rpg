@@ -16,6 +16,7 @@ import { resolveDecalGameObject } from "./gameObjects/decal";
 import { Burst } from "./textures";
 import { CrudeHouse } from "./textures";
 import { resolveSign } from "./gameObjects/sign";
+import { CloudLong } from "./textures";
 import { SpikyBrushA } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { CrudeHouseB } from "./textures";
@@ -124,6 +125,83 @@ scaleY: 1,
 rotation: -0.3490658503988659,
 style: 0,
 texture: SpikyBrushA
+}),
+CloudLong: resolveDecalGameObject({
+    x: 64,
+y: 136,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 1,
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 168,
+y: 88,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+style: 1,
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 356,
+y: 126,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 1,
+texture: CloudLong
+}),
+CloudLong_3: resolveDecalGameObject({
+    x: 320,
+y: 120,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 1,
+texture: CloudLong
+}),
+CloudLong_4: resolveDecalGameObject({
+    x: 568,
+y: 168,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+style: 1,
+texture: CloudLong
+}),
+CloudLong_5: resolveDecalGameObject({
+    x: 828,
+y: 175,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 1,
+texture: CloudLong
+}),
+CloudLong_6: resolveDecalGameObject({
+    x: 800,
+y: 168,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+style: 1,
+texture: CloudLong
 }),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":240,"width":168,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268"}),

@@ -39,6 +39,19 @@
       "values": [
         {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ]
+    },
+    {
+      "definition": "decal",
+      "name": "Parallax1Decals",
+      "gridSize": {"x": 8, "y": 8},
+      "exportID": "86920620",
+      "folder": "../../src/images",
+      "includeImageSequence": true,
+      "scaleable": true,
+      "rotatable": true,
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ]
     }
   ],
   "entities": [

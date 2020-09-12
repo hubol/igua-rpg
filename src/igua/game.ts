@@ -26,18 +26,20 @@ function createGame()
 
     const terrainStage = new Container();
 
+    const parallax1Stage = new Container();
     const backgroundGameObjectStage = new Container();
     const terrainContainer = new Container();
     const pipeStage = new Container();
     const gameObjectStage = new Container();
     const stage = new Container();
     stage.addChild(backgroundGameObjectStage, pipeStage, terrainStage, terrainContainer, gameObjectStage);
-    application.stage.addChild(stage);
+    application.stage.addChild(parallax1Stage, stage);
 
     return {
         get hudStage() {
             return application.stage;
         },
+        parallax1Stage,
         backgroundGameObjectStage,
         terrainStage,
         pipeStage,
@@ -111,9 +113,11 @@ function createCamera(displayObject: DisplayObject)
         },
         set x(value) {
             displayObject.x = -value;
+            game.parallax1Stage.x = Math.round(-value * 0.9);
         },
         set y(value) {
             displayObject.y = -value;
+            game.parallax1Stage.y = Math.round(-value * 0.9);
         },
         followPlayer: true
     };
