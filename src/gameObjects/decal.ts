@@ -22,5 +22,16 @@ export function resolveDecalGameObject(args: DecalArgs)
     sprite.position.set(args.x, args.y);
     sprite.scale.set(args.scaleX, args.scaleY);
     sprite.rotation = args.rotation;
-    return game.backgroundGameObjectStage.addChild(sprite);
+    return getStage(args.style).addChild(sprite);
+}
+
+function getStage(style: DecalStyle)
+{
+    switch (style)
+    {
+        case DecalStyle.Parallax1:
+            return game.parallax1Stage;
+        default:
+            return game.backgroundGameObjectStage;
+    }
 }

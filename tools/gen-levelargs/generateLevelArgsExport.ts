@@ -67,8 +67,8 @@ function getGameObjectsSupplierReturnValue(gameObjectResolvers: GameObjectResolv
 {
     const guardedDictionary = new GuardedDictionary();
 
-    for (const decal of layers.flatMap(x => x.decals ?? []))
-        guardedDictionary.add(getDecalGameObjectKey(decal), getDecalGameObjectValue(decal, DecalStyle.Background));
+    for (const { key, value } of layers.flatMap(x => (x.decals ?? []).map(getDecalGameObjectEntryForLayer(x))))
+        guardedDictionary.add(key, value);
 
     const gameObjectValue = getGameObjectValue(gameObjectResolvers);
 
@@ -76,6 +76,30 @@ function getGameObjectsSupplierReturnValue(gameObjectResolvers: GameObjectResolv
         guardedDictionary.add(getEntityKey(entity), gameObjectValue(getGameObjectArgs(entity)));
 
     return guardedDictionary.object;
+}
+
+function getDecalStyleForLayer(layer: Ogmo.Layer): DecalStyle
+{
+    switch (layer.name)
+    {
+        case "Parallax1Decals":
+            return DecalStyle.Parallax1;
+        default:
+            return DecalStyle.Background;
+    }
+}
+
+function getDecalGameObjectEntryForLayer(layer: Ogmo.Layer)
+{
+    const decalStyle = getDecalStyleForLayer(layer);
+
+    return function(decal: Ogmo.Decal)
+    {
+        return {
+            key: getDecalGameObjectKey(decal),
+            value: getDecalGameObjectValue(decal, decalStyle)
+        };
+    }
 }
 
 function getGameObjectValue(gameObjectResolvers: GameObjectResolver[])

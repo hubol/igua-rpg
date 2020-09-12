@@ -169,6 +169,96 @@
         }
       ],
       "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 116,
+      "gridCellsY": 54,
+      "decals": [
+        {
+          "x": 64,
+          "y": 136,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 168,
+          "y": 88,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 356,
+          "y": 126,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 320,
+          "y": 120,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 568,
+          "y": 168,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 828,
+          "y": 175,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 800,
+          "y": 168,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "../../src/images"
     }
   ]
 }

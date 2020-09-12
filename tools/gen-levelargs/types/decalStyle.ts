@@ -1,4 +1,5 @@
 export enum DecalStyle
 {
-    Background
+    Background,
+    Parallax1
 }
