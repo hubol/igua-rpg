@@ -79,11 +79,12 @@ class HowlsWarmer
             return;
         }
 
-        this.ensureAtLeastOneWarmedHowlsSlot();
+        this._warmedHowls.remove(howl);
+        this.unloadUntilAtLeastOneWarmedHowlsSlot();
         this._warmedHowls.unshift(howl);
     }
 
-    private ensureAtLeastOneWarmedHowlsSlot()
+    private unloadUntilAtLeastOneWarmedHowlsSlot()
     {
         while (this._warmedHowls.length > this._maxWarmedHowlsCount - 1)
         {
