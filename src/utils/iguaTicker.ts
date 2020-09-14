@@ -44,7 +44,7 @@ export class IguaTicker
     private updateImpl(): void
     {
         for (let i = 0, len = this._callbacksToRemove.length; i < len; i++)
-            this._callbacks.remove(this._callbacksToRemove[i]);
+            this._callbacks.removeFirst(this._callbacksToRemove[i]);
 
         for (let i = 0, len = this._callbacks.length; i < len; i++)
         {
