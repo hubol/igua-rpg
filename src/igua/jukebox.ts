@@ -34,7 +34,10 @@ class Jukebox
         {
             await loadHowlAsync(howl);
             if (this._currentHowl)
+            {
                 await this._howlsWarmer.warm(this._currentHowl);
+                this._currentHowl.stop();
+            }
             this._currentHowl = howl;
             howl.loop(true).play();
         }
