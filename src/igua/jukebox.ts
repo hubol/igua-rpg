@@ -23,6 +23,11 @@ class Jukebox
         return this;
     }
 
+    get currentSong()
+    {
+        return this._currentHowl;
+    }
+
     private _tryingToPlayHowl: boolean = false;
 
     async playAsync(howl: Howl)

@@ -1,7 +1,7 @@
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertTownArgs} from "../levelArgs";
 import {jukebox} from "../igua/jukebox";
-import {Country, Oracle} from "../musics";
+import {Country} from "../musics";
 
 export function DesertTown()
 {
@@ -11,5 +11,4 @@ export function DesertTown()
     level.LeftHouse.tint = 0xA0C0C0;
     level.LeftHouseDoor.locked = true;
     level.RightHouseDoor.locked = true;
-    level.Sign.cutscene = async () => jukebox.play(Oracle);
 }
