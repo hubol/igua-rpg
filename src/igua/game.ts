@@ -13,7 +13,7 @@ import {createApplication} from "../utils/createApplication";
 export let game: ReturnType<typeof createGame>;
 function createGame()
 {
-    const application = createApplication({width: 256, height: 256, targetFps: 60});
+    const application = createApplication({width: 256, height: 256, targetFps: 60, showCursor: false});
     addGameCanvasToDocument(application.canvasElement);
     upscaleGameCanvas(application.canvasElement);
 
