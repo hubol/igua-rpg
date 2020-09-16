@@ -1,7 +1,4 @@
 #gameCanvas {
-    width: 80vmin;
-    height: 80vmin;
-
     /* see: http://jsfiddle.net/namuol/VAXrL/1459/ */
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-optimize-contrast;

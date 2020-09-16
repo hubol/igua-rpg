@@ -8,6 +8,7 @@ import {CutscenePlayer} from "../cutscene/cutscene";
 import {createDefaultHud} from "./createDefaultHud";
 import {level} from "./level/level";
 import {getInitialProgress, progress, setProgress} from "./progress";
+import {upscaleGameCanvas} from "./upscaleGameCanvas";
 
 export let game: ReturnType<typeof createGame>;
 function createGame()
@@ -76,6 +77,7 @@ function createGame()
 export function startGame()
 {
     game = createGame();
+    upscaleGameCanvas("gameCanvas");
 
     recreatePlayer();
     game.ticker.add(stepPlayerCamera);
