@@ -59,8 +59,10 @@ async function askImpl<T extends Answer>(question: string, answers: T[], ct?: Ca
 
     game.hudStage.addChild(dialogContainer);
 
-    await new Promise(resolve => {
+    await new Promise((resolve, reject) => {
         const cursor = Sprite.from(Cursor).withStep(() => {
+            ct?.rejectIfCancelled(reject);
+
             const nothingSelected = selectedIndex === -1;
 
             if (Key.justWentDown("ArrowLeft") && (selectedIndex > 0 || nothingSelected))
