@@ -33,6 +33,10 @@ class Jukebox
     async playAsync(howl: Howl)
     {
         await wait(() => !this._tryingToPlayHowl);
+
+        if (howl === this._currentHowl)
+            return;
+
         this._tryingToPlayHowl = true;
 
         try
