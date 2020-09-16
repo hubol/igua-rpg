@@ -23,21 +23,51 @@ class Jukebox
         return this;
     }
 
+    stop()
+    {
+        setTimeout(async () => await this.stopAsync());
+        return this;
+    }
+
     get currentSong()
     {
         return this._currentHowl;
     }
 
-    private _tryingToPlayHowl: boolean = false;
+    private _tryingToChangeCurrentHowl: boolean = false;
+
+    async stopAsync()
+    {
+        await wait(() => !this._tryingToChangeCurrentHowl);
+
+        this._tryingToChangeCurrentHowl = true;
+        try
+        {
+            if (this._currentHowl)
+            {
+                this._currentHowl.stop();
+                await this._howlsWarmer.warm(this._currentHowl);
+            }
+            this._currentHowl = undefined;
+        }
+        catch (e)
+        {
+            console.error("Failed to stop", this._currentHowl, e);
+        }
+        finally
+        {
+            this._tryingToChangeCurrentHowl = false;
+        }
+    }
 
     async playAsync(howl: Howl)
     {
-        await wait(() => !this._tryingToPlayHowl);
+        await wait(() => !this._tryingToChangeCurrentHowl);
 
         if (howl === this._currentHowl)
             return;
 
-        this._tryingToPlayHowl = true;
+        this._tryingToChangeCurrentHowl = true;
 
         try
         {
@@ -56,7 +86,7 @@ class Jukebox
         }
         finally
         {
-            this._tryingToPlayHowl = false;
+            this._tryingToChangeCurrentHowl = false;
         }
     }
 }
