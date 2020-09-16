@@ -1,26 +1,19 @@
 import {viewport} from "../utils/viewport";
 import {onViewportResize} from "../utils/onViewportResize";
 
-export function upscaleGameCanvas(gameCanvasElementId: string)
+export function upscaleGameCanvas(gameCanvasElement: HTMLElement)
 {
-    const doUpscale = makeDoUpscale(gameCanvasElementId);
+    const doUpscale = makeDoUpscale(gameCanvasElement);
     doUpscale();
     onViewportResize(doUpscale);
 }
 
-function makeDoUpscale(gameCanvasElementId: string)
+function makeDoUpscale(element: HTMLElement)
 {
     let lastSeenViewportMin = -1;
 
     return function()
     {
-        const element = document.getElementById(gameCanvasElementId);
-        if (!element)
-        {
-            lastSeenViewportMin = -1;
-            return;
-        }
-
         if (viewport.min === lastSeenViewportMin)
             return;
 

@@ -1,4 +1,3 @@
-import {startApplication} from "../utils/pixiUtils";
 import {Container, DisplayObject} from "pixi.js";
 import {IguaTicker} from "../utils/iguaTicker";
 import {stepPlayerCamera} from "./playerCamera";
@@ -9,11 +8,15 @@ import {createDefaultHud} from "./createDefaultHud";
 import {level} from "./level/level";
 import {getInitialProgress, progress, setProgress} from "./progress";
 import {upscaleGameCanvas} from "./upscaleGameCanvas";
+import {createApplication} from "../utils/createApplication";
 
 export let game: ReturnType<typeof createGame>;
 function createGame()
 {
-    const application = startApplication({width: 256, height: 256, targetFps: 60});
+    const application = createApplication({width: 256, height: 256, targetFps: 60});
+    addGameCanvasToDocument(application.canvasElement);
+    upscaleGameCanvas(application.canvasElement);
+
     application.ticker.start();
 
     const iguaTicker = new IguaTicker();
@@ -72,10 +75,15 @@ function createGame()
     };
 }
 
+function addGameCanvasToDocument(element: HTMLElement)
+{
+    element.id = "gameCanvas";
+    document.body.appendChild(element);
+}
+
 export function startGame()
 {
     game = createGame();
-    upscaleGameCanvas("gameCanvas");
 
     recreatePlayer();
     game.ticker.add(stepPlayerCamera);
