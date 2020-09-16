@@ -28,6 +28,7 @@ export const level = {
     {
         game.terrainStage.removeAllChildren();
         game.pipeStage.removeAllChildren();
+        game.parallax1Stage.removeAllChildren();
         game.backgroundGameObjectStage.removeAllChildren();
         game.gameObjectStage.removeAllChildren();
         levelRecycleablePromiseLibrary.recycle();
