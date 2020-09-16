@@ -2,11 +2,13 @@ import {show} from "./dialog";
 import {CancellationToken, sleep, wait} from "pissant";
 import {tickerSleep} from "../utils/tickerSleep";
 import {tickerWait} from "../utils/tickerWait";
+import {ask} from "./ask";
 
 const promiseLibrary = {
     sleep: tickerSleep,
     wait: tickerWait,
     show,
+    ask,
     timeoutSleep: sleep,
     timeoutWait: wait
 };
