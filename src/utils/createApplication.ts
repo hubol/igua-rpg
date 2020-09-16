@@ -1,6 +1,6 @@
-import {Application} from "pixi.js";
+import {Application, InteractionManager} from "pixi.js";
 
-type ApplicationOptions = ConstructorParameters<typeof Application>[0] & { targetFps: number };
+type ApplicationOptions = ConstructorParameters<typeof Application>[0] & { targetFps?: number, showCursor?: boolean };
 
 export function createApplication(options: ApplicationOptions)
 {
@@ -8,6 +8,9 @@ export function createApplication(options: ApplicationOptions)
 
     if (options.targetFps)
         app.ticker.maxFPS = options.targetFps;
+
+    if (options.showCursor === false)
+        (app.renderer.plugins.interaction as InteractionManager).cursorStyles.default = "none";
 
     return {
         canvasElement: app.view,
