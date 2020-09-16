@@ -15,7 +15,7 @@ export const resolveDoor =
 
 function door(vector: Vector, levelName: string, checkpointName: string)
 {
-    const sprite = merge(Sprite.from(OpenDoor), { locked: false })
+    const sprite = merge(Sprite.from(OpenDoor), { locked: false, levelName, checkpointName })
         .at(vector)
         .withStep(() => {
             sprite.texture = sprite.locked ? LockedDoor : OpenDoor;
@@ -24,8 +24,8 @@ function door(vector: Vector, levelName: string, checkpointName: string)
                 if (!sprite.locked)
                     throw new EscapeTickerAndExecute(
                         () => {
-                            progress.checkpointName = checkpointName;
-                            return level.goto(levelName);
+                            progress.checkpointName = sprite.checkpointName;
+                            return level.goto(sprite.levelName);
                         });
 
                 game.cutscenePlayer.playCutscene(async () => await show("The door is locked."));
