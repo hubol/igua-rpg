@@ -10,5 +10,6 @@ export function DesertTown()
     level.RightHouse.tint = 0xE08060;
     level.LeftHouse.tint = 0xA0C0C0;
     level.LeftHouseDoor.locked = true;
-    level.RightHouseDoor.locked = true;
+    // level.RightHouseDoor.locked = true;
+    level.RightHouseDoor.levelName = "Test";
 }
