@@ -14,8 +14,6 @@ export let game: ReturnType<typeof createGame>;
 function createGame()
 {
     const application = startApplication({width: 256, height: 256, targetFps: 60});
-
-    application.ticker.maxFPS = 60;
     application.ticker.start();
 
     const iguaTicker = new IguaTicker();

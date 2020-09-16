@@ -1,10 +1,10 @@
-import * as PIXI from "pixi.js";
-import DisplayObject = PIXI.DisplayObject;
-import Container = PIXI.Container;
+import {Application} from "pixi.js";
 
-export function startApplication(options)
+type ApplicationOptions = ConstructorParameters<typeof Application>[0] & { targetFps: number };
+
+export function startApplication(options: ApplicationOptions)
 {
-    const app = createApplication(options);
+    const app = new Application(options);
 
     if (options.targetFps)
         app.ticker.maxFPS = options.targetFps;
@@ -12,32 +12,6 @@ export function startApplication(options)
     addApplicationToDocument(app);
     return app;
 }
-
-function getAllChildrenOfApplications()
-{
-    const list = [];
-    applications.forEach(x => getAllChildren(x.stage).forEach(x => list.push(x)));
-    return list as DisplayObject[];
-}
-
-function getAllChildren(container, list = [])
-{
-    // @ts-ignore
-    container.children.forEach(x => list.push(x));
-    if (container.children && Array.isArray(container.children))
-        container.children.forEach(x => getAllChildren(x as Container, list));
-
-    return list;
-}
-
-export function createApplication(options)
-{
-    const app = new PIXI.Application(options);
-    applications.push(app);
-    return app;
-}
-
-const applications: PIXI.Application[] = [];
 
 function addApplicationToDocument(app)
 {
