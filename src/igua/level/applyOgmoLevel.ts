@@ -28,8 +28,9 @@ function applyPlayerStartingPosition(gameObjects: any[])
     gameObjects.filter(x => x.type === "Checkpoint" && progress.checkpointName === x.name).forEach(setPlayerPosition);
 }
 
-function setPlayerPosition(vector)
+function setPlayerPosition(v: { x: number, y: number, faceRight: boolean | undefined })
 {
-    game.player.x = vector.x;
-    game.player.y = vector.y - 8;
+    game.player.x = v.x;
+    game.player.y = v.y - 8;
+    game.player.scale.x = v.faceRight ? 1 : -1;
 }

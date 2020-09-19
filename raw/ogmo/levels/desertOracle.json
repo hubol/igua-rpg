@@ -31,7 +31,16 @@
           "originY": 0,
           "values": {"levelName": "DesertTown", "checkpointName": "FromLeftHouse", "name": ""}
         },
-        {"name": "Player", "id": 6, "_eid": "55988047", "x": 80, "y": 152, "originX": 11, "originY": 27},
+        {
+          "name": "Player",
+          "id": 6,
+          "_eid": "55988047",
+          "x": 80,
+          "y": 152,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": true}
+        },
         {"name": "PipeLeft", "id": 7, "_eid": "55866573", "x": 176, "y": 64, "width": 56, "height": 40, "originX": 0, "originY": 0},
         {"name": "PipeHorizontal", "id": 8, "_eid": "55841307", "x": 144, "y": 64, "width": 32, "originX": 0, "originY": 0},
         {"name": "PipeLeftEnd", "id": 9, "_eid": "63428932", "x": 144, "y": 64, "originX": 16, "originY": 0},
