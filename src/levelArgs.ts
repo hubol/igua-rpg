@@ -274,10 +274,10 @@ Block_5: resolveBlock({"type":"Block","x":168,"y":256,"width":200,"height":176,"
 LeftHouseDoor: resolveDoor({"type":"Door","x":248,"y":176,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"DesertOracle","checkpointName":"","name":"LeftHouseDoor"}),
 // @ts-ignore
 RightHouseDoor: resolveDoor({"type":"Door","x":672,"y":272,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"RightHouseDoor"}),
-Player: {"type":"Player","x":400,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047"},
+Player: {"type":"Player","x":400,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":false},
 // @ts-ignore
 Sign: resolveSign({"type":"Sign","x":472,"y":256,"flippedX":false,"flippedY":false,"uid":"86706091","title":"Town","message":"Welcome to the desert town."}),
-FromLeftHouse: {"type":"Checkpoint","x":288,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromLeftHouse","faceRight":true}
+FromLeftHouse: {"type":"Checkpoint","x":292,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromLeftHouse","faceRight":true}
 };
 }
 };

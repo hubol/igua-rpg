@@ -45,7 +45,16 @@
           "originY": 0,
           "values": {"levelName": "", "checkpointName": "", "name": "RightHouseDoor"}
         },
-        {"name": "Player", "id": 11, "_eid": "55988047", "x": 400, "y": 256, "originX": 11, "originY": 27},
+        {
+          "name": "Player",
+          "id": 11,
+          "_eid": "55988047",
+          "x": 400,
+          "y": 256,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": false}
+        },
         {
           "name": "Sign",
           "id": 12,
@@ -60,7 +69,7 @@
           "name": "Checkpoint",
           "id": 13,
           "_eid": "55940370",
-          "x": 288,
+          "x": 292,
           "y": 208,
           "originX": 6,
           "originY": 12,
