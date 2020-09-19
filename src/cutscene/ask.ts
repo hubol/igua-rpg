@@ -41,7 +41,7 @@ async function askImpl<T extends Answer>(question: string, answers: T[], ct?: Ca
 {
     const dialogContainer = new Container().at(24, 24);
     dialogContainer
-        .addChild(Sprite.from(MessageBox), new BitmapText(question, { fontName: AcrobatixFont.font, maxWidth: 148 }).at(6, 6));
+        .addChild(Sprite.from(MessageBox), new BitmapText(question, { fontName: AcrobatixFont.font, maxWidth: 196 }).at(6, 6));
 
     const answerGameObjectXCoordinates = getAnswerXUnitCoordinates(answers.length).map(x => x * 208);
 
