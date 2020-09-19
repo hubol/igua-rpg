@@ -9,6 +9,7 @@ import {
     publishGameObjectResolvers,
     publishGameObjectResolversIsRequested
 } from "../tools/write-levelargs/appOnly/publishGameObjectResolvers";
+import {environment} from "./igua/environment";
 
 async function initialize()
 {
@@ -23,7 +24,11 @@ async function initialize()
         require("./igua/game").startGame();
 }
 
-window.onload = initialize;
+if (environment.isProduction)
+    document.body.appendChild(createStartGameButtonElement());
+else
+    window.onload = initialize;
+
 window.onunhandledrejection = handlePromiseCancellation;
 
 function discoverAndPublishGameObjectResolvers()
@@ -32,4 +37,16 @@ function discoverAndPublishGameObjectResolvers()
         modules: require("./gameObjects/**/*.*"),
         path: "src/gameObjects"
     }]));
+}
+
+function createStartGameButtonElement()
+{
+    const buttonElement = document.createElement("button");
+    buttonElement.id = "startButton";
+    buttonElement.textContent = "Start game";
+    buttonElement.onclick = () => {
+        document.body.removeChild(buttonElement);
+        setTimeout(initialize);
+    };
+    return buttonElement;
 }

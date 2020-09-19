@@ -9,6 +9,34 @@
     box-shadow: 3vmin 3vmin #006060;
 }
 
+#startButton {
+    background-color: #C0C0C0;
+    appearance: unset;
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: bold;
+    max-width: 80vw;
+    font-size: 8vmin;
+    padding: .25em .33em;
+    cursor: pointer;
+    border: 0.1875em outset #E0E0E0;
+    outline: 0;
+
+    box-shadow: 3vmin 3vmin #006060;
+}
+
+#startButton:hover {
+    filter: brightness(1.025);
+}
+
+#startButton:active {
+    filter: none;
+    border-style: inset;
+    text-indent: 0.1em;
+    box-shadow: 1.5vmin 1.5vmin #006060;
+    transform: translate(1.5vmin, 1.5vmin);
+}
+
 body {
     background-color: #008080;
     display: flex;
