@@ -64,7 +64,7 @@
           "y": 208,
           "originX": 6,
           "originY": 12,
-          "values": {"name": "FromLeftHouse"}
+          "values": {"name": "FromLeftHouse", "faceRight": true}
         }
       ]
     },

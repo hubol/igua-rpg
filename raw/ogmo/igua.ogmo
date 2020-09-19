@@ -397,7 +397,8 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "faceRight", "definition": "Boolean", "display": 0, "defaults": false}
       ],
       "texture": "preview-images/checkpoint.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAAu0lEQVQoU42R3Q2DIBSFHaW+Nj4wAukEdQOYpFgWcAQHqAkb+DMJGzDCLecmEGwM9SYE0PNdDoemKeo9PChuZfmttl7aW0vTpP9D82deYieSUpL3vg7ZwRqIjDGUSitdhcw4jtw9DZxWgwwE8A/AOccz6tTevu4s2NaNlFIUQsgA7mZfVh6CAAD/6IyThBA8d/cOQXAdIGzgN6XUP3u295t/oeNfeCz2DXtI7srjSVwS4BVx9hoX2fsZ+AVVspbP6vLm3gAAAABJRU5ErkJggg=="
@@ -436,7 +437,9 @@
       "nodeDisplay": 0,
       "nodeGhost": true,
       "tags": [],
-      "values": [],
+      "values": [
+        {"name": "faceRight", "definition": "Boolean", "display": 0, "defaults": false}
+      ],
       "texture": "preview-images/iguana.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAbCAYAAADyBeakAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAABRUlEQVRIS9WWOw7CMAyGOyM2rtGNGzCzcw3EUbpxB0QlVq6QOwU5wpXr2onjlEpEstq0fnz9nabtuoYR+lOk1pDKF8oBcO7L5ojSADYDKQFsAvJziHB9R2pSp4oQz10MGct2nwPgnAepEIXiHGwBowGYQSoBEGgCkQAoJdzPtqUAEL+DKkGvpdyWdaD1MbUmA4HFaFF+rR2iAgCKA7A0Fkpo8ostMUDcL2NEAwg6RyARorRQp/v/AkHlr2rHGkrwgtLbgeukrR2wwzr3CNNesZYauBgpLCzOBYS0X5ghjGpgYRWgGaISBFQQN8CqJ2df21lsy1d0DTUcP2lyCD7V/hxm/xaSUtSn6x+yxF4ySI6mtYn6JAA0b1EaR5PjOS9i8XGzSMk5iMWnqTW8wPA6prbA8TYckuQWn+TrHbQAFC5BaD61EB8Fye3VQQj6XgAAAABJRU5ErkJggg=="
     },
