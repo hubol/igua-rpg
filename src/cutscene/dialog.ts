@@ -9,7 +9,7 @@ export async function show(message: string, ct?: CancellationToken)
 {
     const dialogContainer = new Container().at(24, 24);
     dialogContainer
-        .addChild(Sprite.from(MessageBox), new BitmapText(message, { fontName: AcrobatixFont.font, maxWidth: 148 }).at(6, 6));
+        .addChild(Sprite.from(MessageBox), new BitmapText(message, { fontName: AcrobatixFont.font, maxWidth: 196 }).at(6, 6));
 
     game.hudStage.addChild(dialogContainer);
 
