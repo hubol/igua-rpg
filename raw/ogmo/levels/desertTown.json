@@ -33,7 +33,7 @@
           "y": 176,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "LeftHouseDoor"}
+          "values": {"levelName": "DesertOracle", "checkpointName": "", "name": "LeftHouseDoor"}
         },
         {
           "name": "Door",
@@ -55,6 +55,16 @@
           "originX": 14,
           "originY": 18,
           "values": {"title": "Town", "message": "Welcome to the desert town."}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 13,
+          "_eid": "55940370",
+          "x": 288,
+          "y": 208,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromLeftHouse"}
         }
       ]
     },
