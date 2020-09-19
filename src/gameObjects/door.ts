@@ -25,7 +25,7 @@ function door(vector: Vector, levelName: string, checkpointName: string)
                     throw new EscapeTickerAndExecute(
                         () => {
                             progress.checkpointName = sprite.checkpointName;
-                            return level.goto(sprite.levelName);
+                            level.gotoSync(sprite.levelName);
                         });
 
                 game.cutscenePlayer.playCutscene(async () => await show("The door is locked."));
