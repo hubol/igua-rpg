@@ -39,7 +39,7 @@ export function ask()
 
 async function askImpl<T extends Answer>(question: string, answers: T[], ct?: CancellationToken): Promise<T>
 {
-    const dialogContainer = new Container().at(24, 24);
+    const dialogContainer = new Container().at(24, 27);
     dialogContainer
         .addChild(Sprite.from(MessageBox), new BitmapText(question, { fontName: AcrobatixFont.font, maxWidth: 196 }).at(6, 6));
 

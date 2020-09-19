@@ -7,7 +7,7 @@ import {CancellationToken} from "pissant";
 
 export async function show(message: string, ct?: CancellationToken)
 {
-    const dialogContainer = new Container().at(24, 24);
+    const dialogContainer = new Container().at(24, 27);
     dialogContainer
         .addChild(Sprite.from(MessageBox), new BitmapText(message, { fontName: AcrobatixFont.font, maxWidth: 196 }).at(6, 6));
 
