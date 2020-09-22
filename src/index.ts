@@ -1,7 +1,6 @@
 import {loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";
 import {loadHowlsAsync} from "./utils/loadHowls";
-import * as exportedSounds from "./sounds";
 import * as PIXI from "pixi.js";
 import {handlePromiseCancellation} from "pissant";
 import {discoverGameObjectResolvers} from "../tools/gen-levelargs/discoverGameObjectResolvers";
@@ -14,7 +13,7 @@ import {environment} from "./igua/environment";
 async function initialize()
 {
     PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-    const howls = Object.values(exportedSounds);
+    const howls = Object.values(require("./sounds")) as Howl[];
     await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
     require("./utils/arrayExtensions");
     require("./utils/pixiExtensions");
