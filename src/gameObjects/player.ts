@@ -205,7 +205,7 @@ export function player()
             const result = push(player, radius);
             player.isOnGround = !!result.isOnGround;
 
-            if (result.hitCeiling && player.vspeed !== 0)
+            if (result.hitCeiling && player.vspeed < 0)
             {
                 CharacterHitCeiling.volume(0.33 + Math.min(0.67, vspeedBeforePush * -0.06));
                 CharacterHitCeiling.play();

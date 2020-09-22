@@ -36,8 +36,6 @@ Block_2: resolveBlock({"type":"Block","x":0,"y":32,"width":24,"height":504,"flip
 // @ts-ignore
 Block_3: resolveBlock({"type":"Block","x":232,"y":32,"width":32,"height":504,"flippedX":false,"flippedY":false,"uid":"55823268"}),
 // @ts-ignore
-Block_4: resolveBlock({"type":"Block","x":24,"y":152,"width":96,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268"}),
-// @ts-ignore
 Door: resolveDoor({"type":"Door","x":32,"y":120,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"DesertTown","checkpointName":"FromLeftHouse","name":""}),
 Player: {"type":"Player","x":80,"y":152,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true},
 // @ts-ignore
@@ -65,7 +63,9 @@ PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":136,"y":208
 // @ts-ignore
 PipeLeftEnd_1: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":136,"y":208,"flippedX":false,"flippedY":false,"uid":"63428932"}),
 // @ts-ignore
-Oracle: resolveNpc({"type":"NpcIguana","x":48,"y":536,"flippedX":false,"flippedY":false,"uid":"26367058","name":"Oracle","style":0})
+Oracle: resolveNpc({"type":"NpcIguana","x":48,"y":536,"flippedX":false,"flippedY":false,"uid":"26367058","name":"Oracle","style":0}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":24,"y":152,"width":96,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599"})
 };
 }
 };
@@ -294,7 +294,7 @@ Block: resolveBlock({"type":"Block","x":184,"y":192,"width":120,"height":256,"fl
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":120,"y":192,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435"}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":0,"y":224,"width":184,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268"}),
-Player: {"type":"Player","x":80,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047"},
+Player: {"type":"Player","x":80,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":false},
 // @ts-ignore
 Gate: resolveGate({"type":"Gate","x":0,"y":192,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"Test","checkpointName":"FromRight"}),
 // @ts-ignore
@@ -386,11 +386,11 @@ Block_2: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":328,"flipp
 Block_3: resolveBlock({"type":"Block","x":368,"y":160,"width":264,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268"}),
 // @ts-ignore
 Gate: resolveGate({"type":"Gate","x":600,"y":128,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"RightTest","checkpointName":""}),
-FromRight: {"type":"Checkpoint","x":560,"y":160,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromRight"},
+FromRight: {"type":"Checkpoint","x":560,"y":160,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromRight","faceRight":false},
 // @ts-ignore
 SecretDoor: resolveDoor({"type":"Door","x":72,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"SecretDoor"}),
-Checkpoint: {"type":"Checkpoint","x":112,"y":224,"flippedX":false,"flippedY":false,"uid":"55940370","name":""},
-Player: {"type":"Player","x":280,"y":88,"flippedX":false,"flippedY":false,"uid":"55988047"},
+Checkpoint: {"type":"Checkpoint","x":112,"y":224,"flippedX":false,"flippedY":false,"uid":"55940370","name":"","faceRight":false},
+Player: {"type":"Player","x":280,"y":88,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":false},
 // @ts-ignore
 ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":192,"y":104,"flippedX":false,"flippedY":false,"uid":"55991906"}),
 // @ts-ignore

@@ -9,11 +9,19 @@ const walls: Wall[] = [];
 export const resolveBlock = resolveGameObject("Block", e =>
     game.terrainStage.addChild(block(e.x, e.y, e.x + e.width, e.y + e.height)));
 
-export const resolveSlopeRight = resolveGameObject("SlopeRight", e =>
-    game.terrainStage.addChild(slope(e.x, e.y + e.height, e.x + e.width, e.y)));
+export const resolveSlopeRight = resolveGameObject("SlopeRight", e => {
+    const s = e.flippedY
+        ? slope(e.x, e.y, e.x + e.width, e.y + e.height, false)
+        : slope(e.x, e.y + e.height, e.x + e.width, e.y, true);
+    return game.terrainStage.addChild(s);
+});
 
-export const resolveSlopeLeft = resolveGameObject("SlopeLeft", e =>
-    game.terrainStage.addChild(slope(e.x, e.y, e.x + e.width, e.y + e.height)));
+export const resolveSlopeLeft = resolveGameObject("SlopeLeft", e => {
+    const s = e.flippedY
+        ? slope(e.x, e.y + e.height, e.x + e.width, e.y, false)
+        : slope(e.x, e.y, e.x + e.width, e.y + e.height, true);
+    return game.terrainStage.addChild(s);
+});
 
 export const resolvePipeRight = resolveGameObject("PipeRight", e =>
     game.pipeStage.addChild(pipe(e.x, e.y + e.height, e.x + e.width, e.y)));
@@ -102,26 +110,30 @@ export function block(x0: number, y0: number, x1: number, y1: number)
     return graphics;
 }
 
-export function slope(x0: number, y0: number, x1: number, y1: number)
+export function slope(x0: number, y0: number, x1: number, y1: number, isGround: boolean)
 {
-    const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1);
+    const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1, isGround);
 
     const graphics = new Graphics();
     graphics.beginFill();
     graphics.moveTo(x0, y0);
-    if (y0 > y1)
+
+    if ((isGround && y0 > y1) || (!isGround && y0 < y1))
         graphics.lineTo(x1, y0);
     else
         graphics.lineTo(x0, y1);
 
     graphics.lineTo(x1, y1);
+
     graphics.closePath();
     graphics.endFill();
 
-    const slopeWall = { x: x0, y: y0, forward, normal, length, isGround: true };
-    const bottomWall = { x: Math.min(x0, x1), y: Math.max(y0, y1), forward: { x: 1, y: 0 }, normal: { x: 0, y: 1 }, length: Math.abs(x0 - x1), isCeiling: true};
+    const slopeWall = { x: x0, y: y0, forward, normal, length, isGround, isCeiling: !isGround };
+    const bottomWall = isGround
+        ? { x: Math.min(x0, x1), y: Math.max(y0, y1), forward: { x: 1, y: 0 }, normal: { x: 0, y: 1 }, length: Math.abs(x0 - x1), isCeiling: true}
+        : { x: Math.min(x0, x1), y: Math.min(y0, y1), forward: { x: 1, y: 0 }, normal: { x: 0, y: -1 }, length: Math.abs(x0 - x1), isGround: true};
 
-    const sideWallX = y0 < y1 ? x0 : x1;
+    const sideWallX = ((isGround && y0 < y1) || (!isGround && y0 > y1)) ? x0 : x1;
     const hasRightSideWall = sideWallX === Math.max(x0, x1);
     const sideWall = { x: sideWallX, y: Math.min(y0, y1), forward: { x: 0, y: 1 }, normal: { x: hasRightSideWall ? 1 : -1, y: 0 }, length: Math.abs(y0 - y1), isWall: true};
 
@@ -133,7 +145,7 @@ export function slope(x0: number, y0: number, x1: number, y1: number)
 
 export function pipe(x0: number, y0: number, x1: number, y1: number)
 {
-    const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1);
+    const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1, true);
 
     Pipe.baseTexture.scaleMode = SCALE_MODES.LINEAR;
 
@@ -151,11 +163,11 @@ export function pipe(x0: number, y0: number, x1: number, y1: number)
     return simpleMesh;
 }
 
-function getSlopeWallProperties(x0: number, y0: number, x1: number, y1: number)
+function getSlopeWallProperties(x0: number, y0: number, x1: number, y1: number, isGround: boolean)
 {
     return {
         forward: getSlopeForward(x0, y0, x1, y1),
-        normal: getSlopeNormal(x0, y0, x1, y1),
+        normal: getSlopeNormal(x0, y0, x1, y1, isGround),
         length: distance({x: x0, y: y0}, {x: x1, y: y1}),
     };
 }
@@ -165,13 +177,13 @@ function getSlopeForward(x0, y0, x1, y1)
     return normalize({ x: x1 - x0, y: y1 - y0 });
 }
 
-function getSlopeNormal(x0, y0, x1, y1)
+function getSlopeNormal(x0, y0, x1, y1, isGround: boolean)
 {
     const vector = y0 < y1
         ? { x: x1 - x0, y: y1 - y0 }
         : { x: x0 - x1, y: y0 - y1 };
     const perpendicularVector = perpendicular(vector);
-    if (perpendicularVector.y > 0)
+    if ((isGround && perpendicularVector.y > 0) || (!isGround && perpendicularVector.y < 0))
     {
         perpendicularVector.x *= -1;
         perpendicularVector.y *= -1;
