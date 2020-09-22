@@ -1,5 +1,4 @@
 import {Sprite, Texture} from "pixi.js";
-import {DecalStyle} from "../../tools/gen-levelargs/types/decalStyle";
 import {game} from "../igua/game";
 
 export interface DecalArgs
@@ -12,7 +11,7 @@ export interface DecalArgs
     scaleY: number;
     rotation: number;
     texture: Texture;
-    style: DecalStyle;
+    layerName: string;
 }
 
 export function resolveDecalGameObject(args: DecalArgs)
@@ -22,14 +21,14 @@ export function resolveDecalGameObject(args: DecalArgs)
     sprite.position.set(args.x, args.y);
     sprite.scale.set(args.scaleX, args.scaleY);
     sprite.rotation = args.rotation;
-    return getStage(args.style).addChild(sprite);
+    return getStage(args.layerName).addChild(sprite);
 }
 
-function getStage(style: DecalStyle)
+function getStage(layerName: string)
 {
-    switch (style)
+    switch (layerName)
     {
-        case DecalStyle.Parallax1:
+        case "Parallax1Decals":
             return game.parallax1Stage;
         default:
             return game.backgroundGameObjectStage;
