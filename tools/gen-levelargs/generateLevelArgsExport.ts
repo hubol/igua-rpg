@@ -9,7 +9,6 @@ import {Invocation} from "../gen-module/components/invocation";
 import {OgmoLevelFile} from "./types/ogmoLevelFile";
 import {ImportedConst} from "../gen-module/components/imported";
 import {trimExtension} from "../shared-utils/trimExtension";
-import {DecalStyle} from "./types/decalStyle";
 import {GuardedDictionary} from "./guardedDictionary";
 
 export function generateLevelArgsExport(gameObjectResolvers: GameObjectResolver[])
@@ -36,7 +35,7 @@ function getDecalGameObjectKey(decal: Ogmo.Decal)
     }
 }
 
-function getDecalGameObjectValue(decal: Ogmo.Decal, style: DecalStyle)
+function getDecalGameObjectValue(decal: Ogmo.Decal, layerName: string)
 {
     return new Invocation(
         new ImportedConst("resolveDecalGameObject", "src\\gameObjects\\decal"),
@@ -48,7 +47,7 @@ function getDecalGameObjectValue(decal: Ogmo.Decal, style: DecalStyle)
             scaleX: decal.scaleX,
             scaleY: decal.scaleY,
             rotation: decal.rotation,
-            style,
+            layerName,
             texture: getTextureImportedConst(decal.texture)
         });
 }
@@ -78,26 +77,13 @@ function getGameObjectsSupplierReturnValue(gameObjectResolvers: GameObjectResolv
     return guardedDictionary.object;
 }
 
-function getDecalStyleForLayer(layer: Ogmo.Layer): DecalStyle
-{
-    switch (layer.name)
-    {
-        case "Parallax1Decals":
-            return DecalStyle.Parallax1;
-        default:
-            return DecalStyle.Background;
-    }
-}
-
 function getDecalGameObjectEntryForLayer(layer: Ogmo.Layer)
 {
-    const decalStyle = getDecalStyleForLayer(layer);
-
     return function(decal: Ogmo.Decal)
     {
         return {
             key: getDecalGameObjectKey(decal),
-            value: getDecalGameObjectValue(decal, decalStyle)
+            value: getDecalGameObjectValue(decal, layer.name)
         };
     }
 }

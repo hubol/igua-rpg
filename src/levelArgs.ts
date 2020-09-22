@@ -84,7 +84,7 @@ originY: 1,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: CrudeHouseB
 }),
 RightHouse: resolveDecalGameObject({
@@ -95,7 +95,7 @@ originY: 1,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: CrudeHouse
 }),
 SpikyBrushA: resolveDecalGameObject({
@@ -106,7 +106,7 @@ originY: 1,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
 SpikyBrushA_1: resolveDecalGameObject({
@@ -117,7 +117,7 @@ originY: 1,
 scaleX: -1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
 SpikyBrushB: resolveDecalGameObject({
@@ -128,7 +128,7 @@ originY: 1,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
 SpikyBrushB_1: resolveDecalGameObject({
@@ -139,7 +139,7 @@ originY: 1,
 scaleX: -1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
 SpikyBrushA_2: resolveDecalGameObject({
@@ -150,7 +150,7 @@ originY: 1,
 scaleX: -1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
 SpikyBrushB_2: resolveDecalGameObject({
@@ -161,7 +161,7 @@ originY: 1,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
 SpikyBrushA_3: resolveDecalGameObject({
@@ -172,7 +172,7 @@ originY: 1,
 scaleX: -1,
 scaleY: 1,
 rotation: -0.3490658503988659,
-style: 0,
+layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
 CloudLong: resolveDecalGameObject({
@@ -183,7 +183,7 @@ originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 1,
+layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_1: resolveDecalGameObject({
@@ -194,7 +194,7 @@ originY: 0.5,
 scaleX: -1,
 scaleY: 1,
 rotation: 0,
-style: 1,
+layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_2: resolveDecalGameObject({
@@ -205,7 +205,7 @@ originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 1,
+layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_3: resolveDecalGameObject({
@@ -216,7 +216,7 @@ originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 1,
+layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_4: resolveDecalGameObject({
@@ -227,7 +227,7 @@ originY: 0.5,
 scaleX: -1,
 scaleY: 1,
 rotation: 0,
-style: 1,
+layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_5: resolveDecalGameObject({
@@ -238,7 +238,7 @@ originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 1,
+layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_6: resolveDecalGameObject({
@@ -249,7 +249,7 @@ originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 1,
+layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 // @ts-ignore
@@ -339,7 +339,7 @@ originY: 1,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: CrudeHouse
 }),
 Burst: resolveDecalGameObject({
@@ -350,7 +350,7 @@ originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: Burst
 }),
 Burst_1: resolveDecalGameObject({
@@ -361,7 +361,7 @@ originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-style: 0,
+layerName: "BackgroundDecals",
 texture: Burst
 }),
 // @ts-ignore
