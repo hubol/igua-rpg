@@ -7,16 +7,11 @@ import {CutscenePlayer} from "../cutscene/cutscene";
 import {createDefaultHud} from "./createDefaultHud";
 import {level} from "./level/level";
 import {getInitialProgress, progress, setProgress} from "./progress";
-import {upscaleGameCanvas} from "./upscaleGameCanvas";
-import {createApplication} from "../utils/createApplication";
+import {AsshatApplication} from "../utils/createApplication";
 
 export let game: ReturnType<typeof createGame>;
-function createGame()
+function createGame(application: AsshatApplication)
 {
-    const application = createApplication({width: 256, height: 256, targetFps: 60, showCursor: false});
-    addGameCanvasToDocument(application.canvasElement);
-    upscaleGameCanvas(application.canvasElement);
-
     application.ticker.start();
 
     const iguaTicker = new IguaTicker();
@@ -75,15 +70,9 @@ function createGame()
     };
 }
 
-function addGameCanvasToDocument(element: HTMLElement)
+export function startGame(application: AsshatApplication)
 {
-    element.id = "gameCanvas";
-    document.body.appendChild(element);
-}
-
-export function startGame()
-{
-    game = createGame();
+    game = createGame(application);
 
     recreatePlayer();
     game.ticker.add(stepPlayerCamera);

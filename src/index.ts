@@ -9,10 +9,17 @@ import {
     publishGameObjectResolversIsRequested
 } from "../tools/write-levelargs/appOnly/publishGameObjectResolvers";
 import {environment} from "./igua/environment";
+import {createApplication} from "./utils/createApplication";
+import {upscaleGameCanvas} from "./igua/upscaleGameCanvas";
+
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+const application = createApplication({width: 256, height: 256, targetFps: 60, showCursor: false});
 
 async function initialize()
 {
-    PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+    addGameCanvasToDocument(application.canvasElement);
+    upscaleGameCanvas(application.canvasElement);
+
     const howls = Object.values(require("./sounds")) as Howl[];
     await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
     require("./utils/arrayExtensions");
@@ -20,7 +27,7 @@ async function initialize()
     if (publishGameObjectResolversIsRequested())
         discoverAndPublishGameObjectResolvers();
     else
-        require("./igua/game").startGame();
+        require("./igua/game").startGame(application);
 }
 
 if (environment.isProduction)
@@ -48,4 +55,10 @@ function createStartGameButtonElement()
         setTimeout(initialize);
     };
     return buttonElement;
+}
+
+function addGameCanvasToDocument(element: HTMLElement)
+{
+    element.id = "gameCanvas";
+    document.body.appendChild(element);
 }

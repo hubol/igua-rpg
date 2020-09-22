@@ -2,6 +2,8 @@ import {Application, InteractionManager} from "pixi.js";
 
 type ApplicationOptions = ConstructorParameters<typeof Application>[0] & { targetFps?: number, showCursor?: boolean };
 
+export type AsshatApplication = ReturnType<typeof createApplication>;
+
 export function createApplication(options: ApplicationOptions)
 {
     const app = new Application(options);
