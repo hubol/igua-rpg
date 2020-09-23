@@ -31,7 +31,11 @@ export const resolveNpc = resolveGameObject("NpcIguana", e => {
 export function npc(x, y, style: number = 0)
 {
     const puppet = merge(npcStyles[style](), {
-        cutscene: undefined as Cutscene | undefined
+        cutscene: undefined as Cutscene | undefined,
+        get isCutscenePlaying()
+        {
+            return this.cutscene && this.cutscene === game.cutscenePlayer.currentCutscene;
+        }
     });
     puppet.x = x;
     puppet.y = y;
