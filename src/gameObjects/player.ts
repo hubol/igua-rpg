@@ -1,24 +1,18 @@
 import {Sprite, Container} from "pixi.js";
-import {push} from "./walls";
 import {
     CharacterBody, CharacterCrest, CharacterFoot,
     CharacterHead, CharacterMouthV, CharacterPupils, CharacterWhites
 } from "../textures";
-import {game} from "../igua/game";
 import {iguanaPuppet} from "../igua/iguanaPuppet";
 import {iguanaEyes} from "../igua/iguanaEyes";
 import {
-    CharacterHitCeiling, CharacterHurt, CharacterHurtDefense,
-    CharacterLandOnGround,
-    CharacterStep,
-    CharacterStep2,
-    CharacterStep3,
-    CharacterStep4
+    CharacterHurt, CharacterHurtDefense
 } from "../sounds";
 import {playerCharacterKey as playerKey} from "../igua/playerCharacterKey";
 import {merge} from "../utils/merge";
 import {progress} from "../igua/progress";
 import {gotoDeathScreen} from "../igua/gotoDeathScreen";
+import {makeIguanaEngine} from "../igua/puppet/makeIguanaEngine";
 
 function playerPuppet()
 {
@@ -67,11 +61,8 @@ export function player()
 {
     const player = merge(playerPuppet(),
         {
-            isOnGround: false,
-            coyote: 0,
             invulnerableFrameCount: 0,
             isDead: false,
-            pedometer: 0,
             damage(health: number)
             {
                 if (player.invulnerableFrameCount > 0)
@@ -99,7 +90,9 @@ export function player()
             }
         });
 
-    const physicsStep = () => {
+    const engine = makeIguanaEngine(player);
+
+    const step = () => {
         if (player.invulnerableFrameCount <= 0)
             player.visible = true;
         else
@@ -113,16 +106,13 @@ export function player()
             player.canBlink = false;
             player.isClosingEyes = true;
             player.isDucking = true;
+            engine.on = false;
             return;
         }
 
-        player.isDucking = playerKey.isDown("ArrowDown") && player.coyote > 0;
+        player.isDucking = playerKey.isDown("ArrowDown") && engine.coyote > 0;
 
-        if (player.isDucking)
-        {
-            player.hspeed *= 0.9;
-        }
-        else
+        if (!player.isDucking)
         {
             if (playerKey.isDown("ArrowRight"))
                 player.hspeed += 0.5;
@@ -132,20 +122,11 @@ export function player()
                 player.hspeed *= 0.8;
         }
 
-        player.hspeed = Math.min(2.5, Math.abs(player.hspeed)) * Math.sign(player.hspeed);
-
-        const barelyWalking = Math.abs(player.hspeed) < 0.1;
-        if (barelyWalking)
+        if (engine.coyote > 0 && playerKey.justWentDown("Space"))
         {
-            player.hspeed = 0;
-            player.pedometer = 0;
-        }
-
-        if (player.coyote > 0 && playerKey.justWentDown("Space"))
-        {
-            player.coyote = 0;
+            engine.coyote = 0;
             player.vspeed = -3;
-            player.isOnGround = false;
+            engine.isOnGround = false;
         }
         if (player.vspeed !== 0 && playerKey.isDown("Space"))
         {
@@ -156,116 +137,11 @@ export function player()
             else if (player.vspeed < 6)
                 player.vspeed -= 0.02;
         }
-
-        if (!player.isOnGround)
-            player.vspeed += 0.15;
-
-        let hsp = player.hspeed;
-        let vsp = player.vspeed;
-
-        const radius = 8;
-        const maxMotion = Math.sqrt(radius);
-
-        const vspeedBeforePush = player.vspeed;
-
-        while (Math.abs(hsp) > 0 || Math.abs(vsp) > 0)
-        {
-            player.x += Math.min(maxMotion, Math.abs(hsp)) * Math.sign(hsp);
-            player.y += Math.min(maxMotion, Math.abs(vsp)) * Math.sign(vsp);
-
-            if (player.x < 20)
-            {
-                player.x = 20;
-                hsp = 0;
-                player.hspeed = 0;
-            }
-            else if (player.x > game.level.width - 20)
-            {
-                player.x = game.level.width - 20;
-                hsp = 0;
-                player.hspeed = 0;
-            }
-
-            if (player.y < 0)
-            {
-                player.y = 0;
-                vsp = Math.abs(vsp);
-                player.vspeed = Math.abs(player.vspeed);
-            }
-            else if (player.y > game.level.height)
-            {
-                player.y = game.level.height;
-                vsp = -Math.abs(vsp);
-                player.vspeed = -Math.abs(player.vspeed);
-            }
-
-            hsp = Math.abs(hsp) < maxMotion ? 0 : ((Math.abs(hsp) - maxMotion) * Math.sign(hsp));
-            vsp = Math.abs(vsp) < maxMotion ? 0 : ((Math.abs(vsp) - maxMotion) * Math.sign(vsp));
-
-            const result = push(player, radius);
-            player.isOnGround = !!result.isOnGround;
-
-            if (result.hitCeiling && player.vspeed < 0)
-            {
-                CharacterHitCeiling.volume(0.33 + Math.min(0.67, vspeedBeforePush * -0.06));
-                CharacterHitCeiling.play();
-                player.vspeed = 0;
-            }
-            if (result.hitGround)
-            {
-                if (player.coyote < 5)
-                {
-                    CharacterLandOnGround.volume(0.33 + Math.min(0.67, vspeedBeforePush * 0.06));
-                    CharacterLandOnGround.play();
-                }
-                player.vspeed = 0;
-                player.isOnGround = true;
-            }
-
-            if (result.hitWall)
-            {
-                player.hspeed = 0;
-                hsp = 0;
-            }
-
-            if (player.isOnGround)
-                player.coyote = 25;
-        }
-
-        if (player.isOnGround)
-            player.coyote = 25;
-        else
-            player.coyote--;
-
-        const lastPedometer = player.pedometer;
-
-        if (player.isOnGround || player.coyote > 15)
-            player.pedometer += Math.abs(player.hspeed);
-
-        if (player.pedometer > 24 && lastPedometer <= 24)
-        {
-            CharacterStep.volume(.4);
-            CharacterStep.play();
-        }
-        else if (player.pedometer > 44 && lastPedometer <= 44)
-        {
-            CharacterStep2.volume(.4);
-            CharacterStep2.play();
-        }
-        else if (player.pedometer > 62 && lastPedometer <= 62)
-        {
-            CharacterStep3.volume(.4);
-            CharacterStep3.play();
-        }
-        else if (player.pedometer > 82 && lastPedometer <= 82)
-        {
-            CharacterStep4.volume(.4);
-            CharacterStep4.play();
-            player.pedometer = 0;
-        }
     };
 
-    player.withStep(physicsStep);
+    player
+        .withStep(step)
+        .withStep(() => engine.step());
 
     return player;
 }
