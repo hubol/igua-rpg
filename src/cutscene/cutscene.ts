@@ -7,7 +7,7 @@ export class CutscenePlayer
 {
     private _currentCutscene: Cutscene | undefined = undefined;
 
-    public playCutscene(cutscene: Cutscene)
+    playCutscene(cutscene: Cutscene)
     {
         if (this._currentCutscene)
             console.warn("Playing cutscene", cutscene, "before cutscene", this._currentCutscene, "finished.");
@@ -35,8 +35,13 @@ export class CutscenePlayer
         });
     }
 
-    public get isPlayingCutscene()
+    get isPlayingCutscene()
     {
         return !!this._currentCutscene;
+    }
+
+    get currentCutscene()
+    {
+        return this._currentCutscene;
     }
 }
