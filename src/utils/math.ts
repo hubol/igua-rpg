@@ -21,6 +21,11 @@ export function approachLinear(a: number, b: number, factor: number)
     return b;
 }
 
+export function rectangleContainsVector(r: Rectangle, v: Vector)
+{
+    return v.x >= r.x && v.y >= r.y && v.x < r.x + r.width && v.y < r.y + r.height;
+}
+
 export function areRectanglesOverlapping(a: Rectangle, b: Rectangle)
 {
     return a.x + a.width > b.x

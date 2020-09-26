@@ -9,6 +9,7 @@ import {
     CharacterStep3,
     CharacterStep4
 } from "../../sounds";
+import {rectangleContainsVector} from "../../utils/math";
 
 CharacterStep.volume(.4);
 CharacterStep2.volume(.4);
@@ -51,6 +52,8 @@ export function makeIguanaEngine(puppet: IguanaPuppet)
 
             const vspeedBeforePush = puppet.vspeed;
 
+            const canPlaySounds = rectangleContainsVector(game.camera, puppet);
+
             while (Math.abs(hsp) > 0 || Math.abs(vsp) > 0)
             {
                 puppet.x += Math.min(maxMotion, Math.abs(hsp)) * Math.sign(hsp);
@@ -90,14 +93,17 @@ export function makeIguanaEngine(puppet: IguanaPuppet)
 
                 if (result.hitCeiling && puppet.vspeed < 0)
                 {
-                    CharacterHitCeiling.volume(0.33 + Math.min(0.67, vspeedBeforePush * -0.06));
-                    CharacterHitCeiling.play();
+                    if (canPlaySounds)
+                    {
+                        CharacterHitCeiling.volume(0.33 + Math.min(0.67, vspeedBeforePush * -0.06));
+                        CharacterHitCeiling.play();
+                    }
 
                     puppet.vspeed = 0;
                 }
                 if (result.hitGround)
                 {
-                    if (this.coyote < 5)
+                    if (this.coyote < 5 && canPlaySounds)
                     {
                         CharacterLandOnGround.volume(0.33 + Math.min(0.67, vspeedBeforePush * 0.06));
                         CharacterLandOnGround.play();
@@ -120,6 +126,9 @@ export function makeIguanaEngine(puppet: IguanaPuppet)
                 this.coyote = 25;
             else
                 this.coyote--;
+
+            if (!canPlaySounds)
+                return;
 
             const lastPedometer = pedometer;
 

@@ -122,6 +122,8 @@ function createCamera(displayObject: DisplayObject)
             displayObject.y = -value;
             game.parallax1Stage.y = Math.round(-value * 0.9);
         },
+        width: 256,
+        height: 256,
         followPlayer: true
     };
 }
