@@ -22,4 +22,16 @@ export function DesertOracle()
         else
             await p.show("That is okay.");
     };
+
+    level.Oracle.withAsync(async p => {
+        while (true)
+        {
+            await p.sleep(3_000);
+            await level.Oracle.walkTo(92);
+            await p.sleep(3_000);
+            await level.Oracle.walkTo(50);
+            await p.sleep(3_000);
+            level.Oracle.scale.x = 1;
+        }
+    });
 }
