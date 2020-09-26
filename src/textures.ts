@@ -33,6 +33,8 @@ export let NpcWeirdBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OpenDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OrangeValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Pipe: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let PotteryOrangeDamaged: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let PotteryOrange: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RightPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RockCracks: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Sign: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -137,6 +139,12 @@ export function loadTexturesAsync()
     const PipePath = require("./images/pipe.png");
     loader.add(PipePath); 
 
+    const PotteryOrangeDamagedPath = require("./images/pottery orange damaged.png");
+    loader.add(PotteryOrangeDamagedPath); 
+
+    const PotteryOrangePath = require("./images/pottery orange.png");
+    loader.add(PotteryOrangePath); 
+
     const RightPipeEndPath = require("./images/right pipe end.png");
     loader.add(RightPipeEndPath); 
 
@@ -187,6 +195,8 @@ export function loadTexturesAsync()
             OpenDoor = resources[OpenDoorPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
+            PotteryOrangeDamaged = resources[PotteryOrangeDamagedPath]?.texture as PIXI.Texture;
+            PotteryOrange = resources[PotteryOrangePath]?.texture as PIXI.Texture;
             RightPipeEnd = resources[RightPipeEndPath]?.texture as PIXI.Texture;
             RockCracks = resources[RockCracksPath]?.texture as PIXI.Texture;
             Sign = resources[SignPath]?.texture as PIXI.Texture;
