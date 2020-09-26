@@ -10,7 +10,7 @@ export namespace Ogmo
 
     export interface LevelValues
     {
-        style: number;
+
     }
 
     export interface Layer
