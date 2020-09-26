@@ -11,6 +11,7 @@ import {
 import {environment} from "./igua/environment";
 import {createApplication} from "./utils/createApplication";
 import {upscaleGameCanvas} from "./igua/upscaleGameCanvas";
+import {devMute} from "./igua/devMute";
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 const application = createApplication({width: 256, height: 256, targetFps: 60, showCursor: false});
@@ -19,6 +20,9 @@ async function initialize()
 {
     addGameCanvasToDocument(application.canvasElement);
     upscaleGameCanvas(application.canvasElement);
+
+    if (!environment.isProduction)
+        devMute();
 
     const howls = Object.values(require("./sounds")) as Howl[];
     await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
