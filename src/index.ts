@@ -12,6 +12,7 @@ import {environment} from "./igua/environment";
 import {createApplication} from "./utils/createApplication";
 import {upscaleGameCanvas} from "./igua/upscaleGameCanvas";
 import {devMute} from "./igua/devMute";
+import {handleIguaPromiseRejection} from "./utils/rejection";
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 const application = createApplication({width: 256, height: 256, targetFps: 60, showCursor: false});
@@ -39,7 +40,8 @@ if (environment.isProduction)
 else
     window.onload = initialize;
 
-window.onunhandledrejection = handlePromiseCancellation;
+window.addEventListener("unhandledrejection", handleIguaPromiseRejection);
+window.addEventListener("unhandledrejection", handlePromiseCancellation);
 
 function discoverAndPublishGameObjectResolvers()
 {

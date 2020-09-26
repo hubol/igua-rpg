@@ -20,6 +20,8 @@ import {Cutscene} from "../cutscene/cutscene";
 import {merge} from "../utils/merge";
 import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
 import {AcrobatixFont} from "../fonts";
+import {makeIguanaEngine} from "../igua/puppet/makeIguanaEngine";
+import {rejection} from "../utils/rejection";
 
 export const resolveNpc = resolveGameObject("NpcIguana", e => {
     const n = game.gameObjectStage.addChild(npc(e.x, e.y - 8, (e as any).style));
@@ -40,10 +42,65 @@ export function npc(x, y, style: number = 0)
     puppet.x = x;
     puppet.y = y;
 
-    return puppet.withStep(() => {
+    const engine = makeIguanaEngine(puppet);
+
+    return merge(puppet, driver(puppet)).withStep(() => {
         if (puppet.cutscene && isPlayerInteractingWith(puppet))
             game.cutscenePlayer.playCutscene(puppet.cutscene);
+        engine.step();
     });
+}
+
+function driver(puppet: IguanaPuppet)
+{
+    interface WalkPromise
+    {
+        x: number,
+        resolve(),
+        reject()
+    }
+
+    const next: WalkPromise[] = [];
+    let current: WalkPromise | null;
+
+    puppet.withStep(() => {
+        while (true)
+        {
+            if (current)
+            {
+                const difference = puppet.x - current.x;
+                const distance = Math.abs(difference);
+                if (distance === 0 || (distance < 5 && Math.sign(difference) === Math.sign(puppet.hspeed)))
+                {
+                    puppet.hspeed = 0;
+                    current.resolve();
+                    current = null;
+                }
+                else
+                {
+                    puppet.hspeed = -Math.sign(difference) * 3;
+                    break;
+                }
+            }
+
+            if (next.length === 0)
+                break;
+
+            current = next.shift() as WalkPromise;
+        }
+    })
+        .on("removed", () => {
+            current?.reject();
+            next.forEach(x => x.reject());
+        });
+
+    return {
+        walkTo(x: number)
+        {
+            return new Promise<void>((resolve, reject) =>
+                next.push({ x, resolve, reject: () => reject(rejection("walkTo Promise rejected due to iguana puppet DisplayObject removal")) }))
+        }
+    };
 }
 
 function withBehavior<T extends IguanaPuppet>(behavior: (puppet: T) => unknown): (puppet: T) => T
