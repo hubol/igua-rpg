@@ -24,7 +24,6 @@ import { CrudeHouseB } from "./textures";
 export const DesertOracleArgs = {
     width: 256,
 height: 568,
-style: 0,
 gameObjectsSupplier: () => {
   return {
     // @ts-ignore
@@ -73,7 +72,6 @@ SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":24,"y":152,"width":96,"heigh
 export const DesertTownArgs = {
     width: 928,
 height: 432,
-style: 0,
 gameObjectsSupplier: () => {
   return {
     LeftHouse: resolveDecalGameObject({
@@ -285,7 +283,6 @@ FromLeftHouse: {"type":"Checkpoint","x":292,"y":208,"flippedX":false,"flippedY":
 export const RightTestArgs = {
     width: 720,
 height: 448,
-style: 1,
 gameObjectsSupplier: () => {
   return {
     // @ts-ignore
@@ -328,7 +325,6 @@ Gamer: resolveNpc({"type":"NpcIguana","x":232,"y":72,"flippedX":false,"flippedY"
 export const TestArgs = {
     width: 632,
 height: 320,
-style: 0,
 gameObjectsSupplier: () => {
   return {
     BottomLeftCrudeHouse: resolveDecalGameObject({
