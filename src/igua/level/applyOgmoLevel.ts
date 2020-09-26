@@ -2,13 +2,11 @@ import {game} from "../game";
 import {centerPlayerCamera} from "../playerCamera";
 import {ApplyOgmoLevelArgs, GameObjects} from "./applyOgmoLevelArgs";
 import {progress} from "../progress";
-import {applyLevelStyle} from "./applyLevelStyle";
 
 export function applyOgmoLevel<T>(args: ApplyOgmoLevelArgs<T>): GameObjects<T>
 {
     game.level.width = args.width;
     game.level.height = args.height;
-    applyLevelStyle(args.style);
 
     game.player.hspeed = 0;
     game.player.vspeed = 0;

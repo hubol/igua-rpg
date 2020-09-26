@@ -2,7 +2,6 @@ export interface ApplyOgmoLevelArgs<T>
 {
     readonly width: number;
     readonly height: number;
-    readonly style: number;
     readonly gameObjectsSupplier: () => GameObjects<T>;
 }
 

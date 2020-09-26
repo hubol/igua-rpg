@@ -1,4 +1,4 @@
-import {Container, DisplayObject} from "pixi.js";
+import {Container, DisplayObject, Graphics} from "pixi.js";
 import {IguaTicker} from "../utils/iguaTicker";
 import {stepPlayerCamera} from "./playerCamera";
 import {player} from "../gameObjects/player";
@@ -53,10 +53,16 @@ function createGame(application: AsshatApplication)
         set backgroundColor(value) {
             application.renderer.backgroundColor = value;
         },
-        set terrainFill(value) {
+        set terrainFill(value: DisplayObject) {
             terrainContainer.removeAllChildren();
             value.mask = terrainStage;
             terrainContainer.addChild(value);
+        },
+        set terrainColor(color: number) {
+            const graphics = new Graphics();
+            graphics.beginFill(color);
+            graphics.drawRect(0, 0, game.level.width, game.level.height);
+            this.terrainFill = graphics;
         },
         player: {} as ReturnType<typeof player>,
         get width() {

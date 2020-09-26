@@ -2,11 +2,14 @@ import {jukebox} from "../igua/jukebox";
 import {Oracle} from "../musics";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertOracleArgs} from "../levelArgs";
+import {game} from "../igua/game";
 
 export function DesertOracle()
 {
     jukebox.play(Oracle);
     const level = applyOgmoLevel(DesertOracleArgs);
+    game.backgroundColor = 0x609090;
+    game.terrainColor = 0x204040;
 
     let talkedAlready = false;
 
