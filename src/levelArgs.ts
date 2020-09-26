@@ -20,13 +20,81 @@ import { CloudLong } from "./textures";
 import { SpikyBrushA } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { CrudeHouseB } from "./textures";
+import { PotteryOrangeDamaged } from "./textures";
+import { PotteryOrange } from "./textures";
 
 export const DesertOracleArgs = {
     width: 256,
 height: 568,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    PotteryOrange: resolveDecalGameObject({
+    x: 96,
+y: 320,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: PotteryOrange
+}),
+PotteryOrange_1: resolveDecalGameObject({
+    x: 126,
+y: 530,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: PotteryOrange
+}),
+PotteryOrangeDamaged: resolveDecalGameObject({
+    x: 104,
+y: 536,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: PotteryOrangeDamaged
+}),
+PotteryOrange_2: resolveDecalGameObject({
+    x: 32,
+y: 536,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: PotteryOrange
+}),
+PotteryOrangeDamaged_1: resolveDecalGameObject({
+    x: 40,
+y: 64,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: PotteryOrangeDamaged
+}),
+PotteryOrangeDamaged_2: resolveDecalGameObject({
+    x: 64,
+y: 400,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: PotteryOrangeDamaged
+}),
+// @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":-16,"width":256,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268"}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":0,"y":536,"width":256,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268"}),
@@ -64,7 +132,17 @@ PipeLeftEnd_1: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":136,"y":208,"flipped
 // @ts-ignore
 Oracle: resolveNpc({"type":"NpcIguana","x":48,"y":536,"flippedX":false,"flippedY":false,"uid":"26367058","name":"Oracle","style":0}),
 // @ts-ignore
-SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":24,"y":152,"width":96,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599"})
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":24,"y":152,"width":96,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599"}),
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":80,"y":320,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307"}),
+// @ts-ignore
+PipeLeftEnd_2: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":80,"y":320,"flippedX":false,"flippedY":false,"uid":"63428932"}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":24,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599"}),
+// @ts-ignore
+SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":80,"y":400,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599"}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":48,"y":400,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435"})
 };
 }
 };
