@@ -24,6 +24,7 @@ export function makeIguanaEngine(puppet: IguanaPuppet)
         isOnGround: false,
         coyote: 0,
         on: true,
+        walkSpeed: 2.5,
         step()
         {
             if (!this.on)
@@ -32,7 +33,7 @@ export function makeIguanaEngine(puppet: IguanaPuppet)
             if (puppet.isDucking)
                 puppet.hspeed *= 0.9;
 
-            puppet.hspeed = Math.min(2.5, Math.abs(puppet.hspeed)) * Math.sign(puppet.hspeed);
+            puppet.hspeed = Math.min(this.walkSpeed, Math.abs(puppet.hspeed)) * Math.sign(puppet.hspeed);
 
             const barelyWalking = Math.abs(puppet.hspeed) < 0.1;
             if (barelyWalking)

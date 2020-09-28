@@ -17,8 +17,9 @@ import { Burst } from "./textures";
 import { CrudeHouse } from "./textures";
 import { resolveSign } from "./gameObjects/sign";
 import { CloudLong } from "./textures";
-import { SpikyBrushA } from "./textures";
 import { SpikyBrushB } from "./textures";
+import { SpikyBrushA } from "./textures";
+import { CrateWooden } from "./textures";
 import { CrudeHouseB } from "./textures";
 import { PotteryOrangeDamaged } from "./textures";
 import { PotteryOrange } from "./textures";
@@ -148,7 +149,7 @@ SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":48,"y":400,"width":32,"
 };
 
 export const DesertTownArgs = {
-    width: 928,
+    width: 1344,
 height: 432,
 gameObjectsSupplier: () => {
   return {
@@ -251,6 +252,149 @@ rotation: -0.3490658503988659,
 layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
+Crate9: resolveDecalGameObject({
+    x: 1124,
+y: 248,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+Crate8: resolveDecalGameObject({
+    x: 1152,
+y: 248,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+Crate6: resolveDecalGameObject({
+    x: 1182,
+y: 248,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+Crate4: resolveDecalGameObject({
+    x: 1210,
+y: 248,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+Crate7: resolveDecalGameObject({
+    x: 1138,
+y: 224,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+Crate3: resolveDecalGameObject({
+    x: 1196,
+y: 224,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+Crate5: resolveDecalGameObject({
+    x: 1167,
+y: 224,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+Crate2: resolveDecalGameObject({
+    x: 1152,
+y: 200,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+Crate1: resolveDecalGameObject({
+    x: 1182,
+y: 200,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+Crate0: resolveDecalGameObject({
+    x: 1167,
+y: 176,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+SpikyBrushA_4: resolveDecalGameObject({
+    x: 1112,
+y: 264,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
+SpikyBrushB_3: resolveDecalGameObject({
+    x: 1240,
+y: 264,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+SpikyBrushB_4: resolveDecalGameObject({
+    x: 952,
+y: 288,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: -0.17453292519943295,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
 CloudLong: resolveDecalGameObject({
     x: 64,
 y: 136,
@@ -328,6 +472,61 @@ rotation: 0,
 layerName: "Parallax1Decals",
 texture: CloudLong
 }),
+CloudLong_7: resolveDecalGameObject({
+    x: 1012,
+y: 183,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_8: resolveDecalGameObject({
+    x: 1052,
+y: 191,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_9: resolveDecalGameObject({
+    x: 924,
+y: 111,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_10: resolveDecalGameObject({
+    x: 1244,
+y: 159,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_11: resolveDecalGameObject({
+    x: 1276,
+y: 167,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":240,"width":168,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268"}),
 // @ts-ignore
@@ -341,7 +540,7 @@ Block_2: resolveBlock({"type":"Block","x":368,"y":256,"width":136,"height":176,"
 // @ts-ignore
 SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":504,"y":256,"width":96,"height":48,"flippedX":false,"flippedY":false,"uid":"55845599"}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":600,"y":304,"width":328,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+Block_3: resolveBlock({"type":"Block","x":600,"y":304,"width":424,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268"}),
 // @ts-ignore
 Block_4: resolveBlock({"type":"Block","x":504,"y":304,"width":96,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268"}),
 // @ts-ignore
@@ -353,7 +552,16 @@ RightHouseDoor: resolveDoor({"type":"Door","x":672,"y":272,"flippedX":false,"fli
 Player: {"type":"Player","x":400,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":false},
 // @ts-ignore
 Sign: resolveSign({"type":"Sign","x":472,"y":256,"flippedX":false,"flippedY":false,"uid":"86706091","title":"Town","message":"Welcome to the desert town."}),
-FromLeftHouse: {"type":"Checkpoint","x":292,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromLeftHouse","faceRight":true}
+FromLeftHouse: {"type":"Checkpoint","x":292,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromLeftHouse","faceRight":true},
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":928,"y":272,"width":96,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435"}),
+// @ts-ignore
+Block_6: resolveBlock({"type":"Block","x":1024,"y":272,"width":320,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+// @ts-ignore
+Stacker: resolveNpc({"type":"NpcIguana","x":1040,"y":272,"flippedX":false,"flippedY":false,"uid":"26367058","name":"Stacker","style":1}),
+PickupCratesRegion: {"type":"Region","x":1128,"y":256,"width":104,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607","name":"PickupCratesRegion"},
+DropCrateAnchor: {"type":"Anchor","x":800,"y":280,"flippedX":false,"flippedY":false,"uid":"25979726","name":"DropCrateAnchor"},
+DropCrateRegion: {"type":"Region","x":792,"y":288,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607","name":"DropCrateRegion"}
 };
 }
 };

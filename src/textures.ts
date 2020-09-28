@@ -2,6 +2,7 @@ import * as PIXI from "pixi.js";
     
 // This file is generated. Do not touch.
 
+export let Anchor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let BlueGradient: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let BlueValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Burst: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -14,6 +15,7 @@ export let CharacterMouthV: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterPupils: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterWhites: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CloudLong: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CrateWooden: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrudeHouseB: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrudeHouse: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Cursor: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -45,6 +47,9 @@ export let SpikyBrushB: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export function loadTexturesAsync()
 {
     const loader = new PIXI.Loader();
+
+    const AnchorPath = require("./images/anchor.png");
+    loader.add(AnchorPath); 
 
     const BlueGradientPath = require("./images/blue gradient.png");
     loader.add(BlueGradientPath); 
@@ -81,6 +86,9 @@ export function loadTexturesAsync()
 
     const CloudLongPath = require("./images/cloud long.png");
     loader.add(CloudLongPath); 
+
+    const CrateWoodenPath = require("./images/crate wooden.png");
+    loader.add(CrateWoodenPath); 
 
     const CrudeHouseBPath = require("./images/crude house b.png");
     loader.add(CrudeHouseBPath); 
@@ -164,6 +172,7 @@ export function loadTexturesAsync()
     return new Promise(resolve =>
     {
         loader.load((_, resources) => {
+            Anchor = resources[AnchorPath]?.texture as PIXI.Texture;
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
             BlueValuable = resources[BlueValuablePath]?.texture as PIXI.Texture;
             Burst = resources[BurstPath]?.texture as PIXI.Texture;
@@ -176,6 +185,7 @@ export function loadTexturesAsync()
             CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
             CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
+            CrateWooden = resources[CrateWoodenPath]?.texture as PIXI.Texture;
             CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;
             CrudeHouse = resources[CrudeHousePath]?.texture as PIXI.Texture;
             Cursor = resources[CursorPath]?.texture as PIXI.Texture;
