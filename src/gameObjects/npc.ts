@@ -30,28 +30,32 @@ export const resolveNpc = resolveGameObject("NpcIguana", e => {
     return n;
 });
 
+function makeCutscenePuppet(style: number) {
+    return merge(npcStyles[style](), {
+        cutscene: undefined as Cutscene | undefined,
+        get isCutscenePlaying() {
+            return this.cutscene && this.cutscene === game.cutscenePlayer.currentCutscene;
+        },
+        canWalkWhileCutsceneIsPlaying: false
+    });
+}
+
 export function npc(x, y, style: number = 0)
 {
-    const puppet = merge(npcStyles[style](), {
-        cutscene: undefined as Cutscene | undefined,
-        get isCutscenePlaying()
-        {
-            return this.cutscene && this.cutscene === game.cutscenePlayer.currentCutscene;
-        }
-    });
+    const puppet = makeCutscenePuppet(style);
     puppet.x = x;
     puppet.y = y;
 
     const engine = makeIguanaEngine(puppet);
 
-    return merge(puppet, driver(puppet)).withStep(() => {
+    return merge(puppet, makeDriver(puppet)).withStep(() => {
         if (puppet.cutscene && isPlayerInteractingWith(puppet))
             game.cutscenePlayer.playCutscene(puppet.cutscene);
         engine.step();
     });
 }
 
-function driver(puppet: IguanaPuppet)
+function makeDriver(puppet: ReturnType<typeof makeCutscenePuppet>)
 {
     interface WalkPromise
     {
@@ -64,6 +68,12 @@ function driver(puppet: IguanaPuppet)
     let current: WalkPromise | null;
 
     puppet.withStep(() => {
+        if (!puppet.canWalkWhileCutsceneIsPlaying && puppet.isCutscenePlaying)
+        {
+            puppet.hspeed = 0;
+            return;
+        }
+
         while (true)
         {
             if (current)
