@@ -31,12 +31,14 @@ export const resolveNpc = resolveGameObject("NpcIguana", e => {
 });
 
 function makeCutscenePuppet(style: number) {
-    return merge(npcStyles[style](), {
+    const puppet = npcStyles[style]();
+    return merge(puppet, {
         cutscene: undefined as Cutscene | undefined,
         get isCutscenePlaying() {
             return this.cutscene && this.cutscene === game.cutscenePlayer.currentCutscene;
         },
-        canWalkWhileCutsceneIsPlaying: false
+        canWalkWhileCutsceneIsPlaying: false,
+        engine: makeIguanaEngine(puppet)
     });
 }
 
@@ -46,12 +48,10 @@ export function npc(x, y, style: number = 0)
     puppet.x = x;
     puppet.y = y;
 
-    const engine = makeIguanaEngine(puppet);
-
     return merge(puppet, makeDriver(puppet)).withStep(() => {
         if (puppet.cutscene && isPlayerInteractingWith(puppet))
             game.cutscenePlayer.playCutscene(puppet.cutscene);
-        engine.step();
+        puppet.engine.step();
     });
 }
 
@@ -88,7 +88,7 @@ function makeDriver(puppet: ReturnType<typeof makeCutscenePuppet>)
                 }
                 else
                 {
-                    puppet.hspeed = -Math.sign(difference) * 3;
+                    puppet.hspeed = -Math.sign(difference) * puppet.engine.walkSpeed;
                     break;
                 }
             }

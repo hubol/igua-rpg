@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.3.0",
-  "width": 928,
+  "width": 1344,
   "height": 432,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,7 +12,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 116,
+      "gridCellsX": 168,
       "gridCellsY": 54,
       "entities": [
         {"name": "Block", "id": 0, "_eid": "55823268", "x": 0, "y": 240, "width": 168, "height": 192, "originX": 0, "originY": 0},
@@ -21,7 +21,7 @@
         {"name": "SlopeLeft", "id": 3, "_eid": "55845599", "x": 296, "y": 208, "width": 72, "height": 48, "originX": 0, "originY": 0, "flippedY": false},
         {"name": "Block", "id": 4, "_eid": "55823268", "x": 368, "y": 256, "width": 136, "height": 176, "originX": 0, "originY": 0},
         {"name": "SlopeLeft", "id": 5, "_eid": "55845599", "x": 504, "y": 256, "width": 96, "height": 48, "originX": 0, "originY": 0, "flippedY": false},
-        {"name": "Block", "id": 6, "_eid": "55823268", "x": 600, "y": 304, "width": 328, "height": 136, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 6, "_eid": "55823268", "x": 600, "y": 304, "width": 424, "height": 136, "originX": 0, "originY": 0},
         {"name": "Block", "id": 7, "_eid": "55823268", "x": 504, "y": 304, "width": 96, "height": 128, "originX": 0, "originY": 0},
         {"name": "Block", "id": 8, "_eid": "55823268", "x": 168, "y": 256, "width": 200, "height": 176, "originX": 0, "originY": 0},
         {
@@ -73,6 +73,53 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromLeftHouse", "faceRight": true}
+        },
+        {"name": "SlopeRight", "id": 14, "_eid": "55824435", "x": 928, "y": 272, "width": 96, "height": 32, "originX": 0, "originY": 0, "flippedY": false},
+        {"name": "Block", "id": 15, "_eid": "55823268", "x": 1024, "y": 272, "width": 320, "height": 160, "originX": 0, "originY": 0},
+        {
+          "name": "NpcIguana",
+          "id": 17,
+          "_eid": "26367058",
+          "x": 1040,
+          "y": 272,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": false,
+          "values": {"name": "Stacker", "style": 1}
+        },
+        {
+          "name": "Region",
+          "id": 18,
+          "_eid": "25971607",
+          "x": 1128,
+          "y": 256,
+          "width": 104,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "PickupCratesRegion"}
+        },
+        {
+          "name": "Anchor",
+          "id": 20,
+          "_eid": "25979726",
+          "x": 800,
+          "y": 280,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "DropCrateAnchor"}
+        },
+        {
+          "name": "Region",
+          "id": 21,
+          "_eid": "25971607",
+          "x": 792,
+          "y": 288,
+          "width": 40,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "DropCrateRegion"}
         }
       ]
     },
@@ -83,7 +130,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 116,
+      "gridCellsX": 168,
       "gridCellsY": 54,
       "decals": [
         {
@@ -184,6 +231,149 @@
           "originX": 0.5,
           "originY": 1,
           "values": {"name": ""}
+        },
+        {
+          "x": 1124,
+          "y": 248,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Crate9"}
+        },
+        {
+          "x": 1152,
+          "y": 248,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Crate8"}
+        },
+        {
+          "x": 1182,
+          "y": 248,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Crate6"}
+        },
+        {
+          "x": 1210,
+          "y": 248,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Crate4"}
+        },
+        {
+          "x": 1138,
+          "y": 224,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Crate7"}
+        },
+        {
+          "x": 1196,
+          "y": 224,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Crate3"}
+        },
+        {
+          "x": 1167,
+          "y": 224,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Crate5"}
+        },
+        {
+          "x": 1152,
+          "y": 200,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Crate2"}
+        },
+        {
+          "x": 1182,
+          "y": 200,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Crate1"}
+        },
+        {
+          "x": 1167,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Crate0"}
+        },
+        {
+          "x": 1112,
+          "y": 264,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1240,
+          "y": 264,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 952,
+          "y": 288,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": -0.17453292519943295,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "..\\..\\src\\images"
@@ -195,7 +385,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 116,
+      "gridCellsX": 168,
       "gridCellsY": 54,
       "decals": [
         {
@@ -269,6 +459,61 @@
           "y": 168,
           "scaleX": 1,
           "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1012,
+          "y": 183,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1052,
+          "y": 191,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 924,
+          "y": 111,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1244,
+          "y": 159,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1276,
+          "y": 167,
+          "scaleX": 1,
+          "scaleY": -1,
           "rotation": 0,
           "texture": "cloud long.png",
           "originX": 0.5,
