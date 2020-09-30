@@ -1,3 +1,5 @@
+import {getInitialFlags} from "./flags";
+
 export function getInitialProgress()
 {
     return {
@@ -5,6 +7,7 @@ export function getInitialProgress()
         maxHealth: 100,
         valuables: 0,
         gotLevelValuable: new Set<string>(),
+        flags: getInitialFlags(),
         levelName: "DesertTown",
         checkpointName: "none"
     };
