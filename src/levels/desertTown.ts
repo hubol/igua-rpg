@@ -6,6 +6,7 @@ import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 import {CrateWooden} from "../textures";
 import {isOnScreen} from "../igua/isOnScreen";
+import { CratePickup, CratePlace } from "../sounds";
 
 export function DesertTown()
 {
@@ -29,6 +30,20 @@ export function DesertTown()
                 : level.DropCrateAnchor);
         game.backgroundGameObjectStage.addChild(nextCrate);
         lastStackedCrate = nextCrate;
+        if (isOnScreen(level.DropCrateAnchor))
+            CratePlace.play();
+    }
+
+    function pickupCrate()
+    {
+        const crate = crates.shift();
+        if (!crate)
+            return false;
+
+        if (isOnScreen(level.PickupCratesRegion))
+            CratePickup.play();
+        crate.destroy();
+        return true;
     }
 
     let tiredOfWorking = false;
@@ -42,14 +57,13 @@ export function DesertTown()
     level.Stacker.engine.walkSpeed = 1;
     level.Stacker.withAsync(async p => {
         await p.wait(() => isOnScreen(level.Stacker));
-        while (crates.length > 8)
+        while (crates.length > 2)
         {
             await level.Stacker.walkTo(crates[0].x);
             await p.sleep(500);
-            const crate = crates.shift();
-            if (!crate)
+            if (!pickupCrate())
                 continue;
-            crate.destroy();
+
             await p.sleep(500);
             await level.Stacker.walkTo(level.DropCrateAnchor.x + 32);
             await p.sleep(500);
