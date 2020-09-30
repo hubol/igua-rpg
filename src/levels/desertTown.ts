@@ -5,7 +5,7 @@ import {Country, Oracle} from "../musics";
 import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 import {CrateWooden} from "../textures";
-import {rectangleContainsVector} from "../utils/math";
+import {isOnScreen} from "../igua/isOnScreen";
 
 export function DesertTown()
 {
@@ -41,8 +41,8 @@ export function DesertTown()
     };
     level.Stacker.engine.walkSpeed = 1;
     level.Stacker.withAsync(async p => {
-        await p.wait(() => rectangleContainsVector(game.camera, level.Stacker));
-        while (crates.length > 2)
+        await p.wait(() => isOnScreen(level.Stacker));
+        while (crates.length > 8)
         {
             await level.Stacker.walkTo(crates[0].x);
             await p.sleep(500);
@@ -56,6 +56,8 @@ export function DesertTown()
             stackCrate();
             await p.sleep(500);
         }
+
+        await level.Stacker.walkTo(level.DropCrateAnchor.x + 96);
         level.Stacker.isDucking = true;
         tiredOfWorking = true;
     });

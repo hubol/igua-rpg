@@ -56,7 +56,7 @@ export function rectangle(rectangle: Rectangle)
     return { x: rectangle.x, y: rectangle.y, width: rectangle.width, height: rectangle.height };
 }
 
-interface Rectangle
+export interface Rectangle
 {
     x: number;
     y: number;
