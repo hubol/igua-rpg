@@ -52,6 +52,16 @@ export const CollectValuable = new Howl({
     
 });
 
+export const CratePickup = new Howl({
+    src: [require("./sound/crate pickup.ogg"), require("./sound/crate pickup.mp3")],
+    
+});
+
+export const CratePlace = new Howl({
+    src: [require("./sound/crate place.ogg"), require("./sound/crate place.mp3")],
+    
+});
+
 export const Gate = new Howl({
     src: [require("./sound/gate.ogg"), require("./sound/gate.mp3")],
     
