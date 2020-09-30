@@ -9,7 +9,7 @@ import {
     CharacterStep3,
     CharacterStep4
 } from "../../sounds";
-import {rectangleContainsVector} from "../../utils/math";
+import {isOnScreen} from "../isOnScreen";
 
 CharacterStep.volume(.4);
 CharacterStep2.volume(.4);
@@ -53,7 +53,7 @@ export function makeIguanaEngine(puppet: IguanaPuppet)
 
             const vspeedBeforePush = puppet.vspeed;
 
-            const canPlaySounds = rectangleContainsVector(game.camera, puppet);
+            const canPlaySounds = isOnScreen(puppet);
 
             while (Math.abs(hsp) > 0 || Math.abs(vsp) > 0)
             {
