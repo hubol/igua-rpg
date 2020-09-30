@@ -8,10 +8,17 @@ import {CrateWooden} from "../textures";
 import {isOnScreen} from "../igua/isOnScreen";
 import { CratePickup, CratePlace } from "../sounds";
 
+function getDesertTownLevel()
+{
+    return applyOgmoLevel(DesertTownArgs);
+}
+
+type DesertTownLevel = ReturnType<typeof getDesertTownLevel>;
+
 export function DesertTown()
 {
     jukebox.play(Country).warm(Oracle);
-    const level = applyOgmoLevel(DesertTownArgs);
+    const level = getDesertTownLevel();
     game.backgroundColor = 0xF0F0B0;
     game.terrainColor = 0xE0D060;
 
@@ -19,6 +26,11 @@ export function DesertTown()
     level.LeftHouse.tint = 0xA0C0C0;
     level.RightHouseDoor.locked = true;
 
+    enhanceCrateStacker(level);
+}
+
+function enhanceCrateStacker(level: DesertTownLevel)
+{
     const crates = [ level.Crate0, level.Crate1, level.Crate2, level.Crate3, level.Crate4, level.Crate5, level.Crate6, level.Crate7, level.Crate8, level.Crate9 ];
 
     let lastStackedCrate: Sprite | null;
@@ -83,13 +95,13 @@ export function DesertTown()
             return;
 
         game.cutscenePlayer.playCutscene(async p => {
-           if (playerHasCrate)
-               await p.show("You are already carrying a crate.");
-           else if (pickupCrate())
-           {
-               playerHasCrate = true;
-               await p.show("Picked up a crate.");
-           }
+            if (playerHasCrate)
+                await p.show("You are already carrying a crate.");
+            else if (pickupCrate())
+            {
+                playerHasCrate = true;
+                await p.show("Picked up a crate.");
+            }
         });
     });
 
