@@ -15,6 +15,7 @@ import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { Burst } from "./textures";
 import { CrudeHouse } from "./textures";
+import { resolveRegion } from "./gameObjects/region";
 import { resolveSign } from "./gameObjects/sign";
 import { CloudLong } from "./textures";
 import { SpikyBrushB } from "./textures";
@@ -559,9 +560,11 @@ SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":928,"y":272,"width":96,
 Block_6: resolveBlock({"type":"Block","x":1024,"y":272,"width":320,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268"}),
 // @ts-ignore
 Stacker: resolveNpc({"type":"NpcIguana","x":1040,"y":272,"flippedX":false,"flippedY":false,"uid":"26367058","name":"Stacker","style":1}),
-PickupCratesRegion: {"type":"Region","x":1128,"y":256,"width":104,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607","name":"PickupCratesRegion"},
+// @ts-ignore
+PickupCratesRegion: resolveRegion({"type":"Region","x":1128,"y":256,"width":104,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607","name":"PickupCratesRegion"}),
 DropCrateAnchor: {"type":"Anchor","x":800,"y":280,"flippedX":false,"flippedY":false,"uid":"25979726","name":"DropCrateAnchor"},
-DropCrateRegion: {"type":"Region","x":792,"y":288,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607","name":"DropCrateRegion"}
+// @ts-ignore
+DropCrateRegion: resolveRegion({"type":"Region","x":792,"y":288,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607","name":"DropCrateRegion"})
 };
 }
 };

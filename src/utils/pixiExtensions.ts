@@ -4,6 +4,8 @@ import * as PIXI from "pixi.js";
 import {game} from "../igua/game";
 import {makePromiseLibrary, PromiseLibrary} from "../cutscene/promiseLibrary";
 import {CancellationToken} from "pissant";
+import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
+import {Container} from "pixi.js";
 
 declare global {
     namespace PIXI {
@@ -15,6 +17,7 @@ declare global {
             rectangle: Rectangle;
             withStep(step: () => void): this;
             withAsync(async: (p: PromiseLibrary) => Promise<unknown>): this;
+            withInteraction(interaction: () => void): this;
             at(vector: Vector): this;
             at(x: number, y: number): this;
             destroyed: boolean;
@@ -52,6 +55,14 @@ PIXI.DisplayObject.prototype.withStep = function(step)
 {
     return doNowOrOnAdded(this, () => game.ticker.add(step))
         .on("removed", () => game.ticker.remove(step));
+}
+
+PIXI.DisplayObject.prototype.withInteraction = function(interaction)
+{
+    return this.withStep(() => {
+        if (isPlayerInteractingWith(this))
+            interaction();
+    })
 }
 
 PIXI.DisplayObject.prototype.withAsync = function(promiseSupplier)
