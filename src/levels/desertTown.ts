@@ -75,4 +75,32 @@ export function DesertTown()
         level.Stacker.isDucking = true;
         tiredOfWorking = true;
     });
+
+    let playerHasCrate = false;
+
+    level.PickupCratesRegion.withInteraction(() => {
+        if (crates.length < 1)
+            return;
+
+        game.cutscenePlayer.playCutscene(async p => {
+           if (playerHasCrate)
+               await p.show("You are already carrying a crate.");
+           else if (pickupCrate())
+           {
+               playerHasCrate = true;
+               await p.show("Picked up a crate.");
+           }
+        });
+    });
+
+    level.DropCrateRegion.withInteraction(() => {
+        if (!playerHasCrate)
+            return;
+
+        playerHasCrate = false;
+        stackCrate();
+        game.cutscenePlayer.playCutscene(async p => {
+            await p.show("You placed the crate.");
+        });
+    });
 }
