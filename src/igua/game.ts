@@ -21,6 +21,7 @@ function createGame(application: AsshatApplication)
 
     application.ticker.add(() => iguaTicker.update());
 
+    const backgroundGraphics = new Graphics();
     const terrainStage = new Container();
 
     const parallax1Stage = new Container();
@@ -30,7 +31,7 @@ function createGame(application: AsshatApplication)
     const gameObjectStage = new Container();
     const stage = new Container();
     stage.addChild(backgroundGameObjectStage, pipeStage, terrainStage, terrainContainer, gameObjectStage);
-    application.stage.addChild(parallax1Stage, stage);
+    application.stage.addChild(backgroundGraphics, parallax1Stage, stage);
 
     return {
         get hudStage() {
@@ -47,11 +48,10 @@ function createGame(application: AsshatApplication)
         },
         ticker: iguaTicker,
         camera: createCamera(stage),
-        get backgroundColor() {
-            return application.renderer.backgroundColor;
-        },
-        set backgroundColor(value) {
-            application.renderer.backgroundColor = value;
+        set backgroundColor(value: number) {
+            backgroundGraphics.clear();
+            backgroundGraphics.beginFill(value);
+            backgroundGraphics.drawRect(0, 0, 256, 256);
         },
         set terrainFill(value: DisplayObject) {
             terrainContainer.removeAllChildren();
