@@ -13,14 +13,14 @@ import {createApplication} from "./utils/createApplication";
 import {upscaleGameCanvas} from "./igua/upscaleGameCanvas";
 import {devMute} from "./igua/devMute";
 import {handleIguaPromiseRejection} from "./utils/rejection";
+import {make2dCanvasSink} from "./utils/make2dCanvasSink";
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 const application = createApplication({width: 256, height: 256, targetFps: 60, showCursor: false});
 
 async function initialize()
 {
-    addGameCanvasToDocument(application.canvasElement);
-    upscaleGameCanvas(application.canvasElement);
+    upscaleGameCanvas(addGameCanvasToDocument(application.canvasElement));
 
     if (!environment.isProduction)
         devMute();
@@ -63,8 +63,13 @@ function createStartGameButtonElement()
     return buttonElement;
 }
 
-function addGameCanvasToDocument(element: HTMLElement)
+function addGameCanvasToDocument(element: HTMLCanvasElement)
 {
+    if (environment.isSafari)
+        element = make2dCanvasSink(element);
+
     element.id = "gameCanvas";
     document.body.appendChild(element);
+
+    return element;
 }
