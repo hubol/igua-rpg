@@ -8,6 +8,7 @@ import {CrateWooden} from "../textures";
 import {isOnScreen} from "../igua/isOnScreen";
 import { CratePickup, CratePlace } from "../sounds";
 import {progress} from "../igua/progress";
+import {Sleepy} from "../gameObjects/npcMods";
 
 function getDesertTownLevel()
 {
@@ -70,13 +71,15 @@ function enhanceCrateStacker(level: DesertTownLevel)
             stackCrate(false);
 
         level.Stacker.at(896, 296);
-        level.Stacker.duckUnit = 1;
-        level.Stacker.isDucking = true;
+        level.Stacker.duckImmediately();
+        level.Stacker.closeEyesImmediately();
+        level.Stacker.mods.add(Sleepy);
     }
 
     let tiredOfWorking = progress.flags.stackedAllCrates;
 
     level.Stacker.cutscene = async p => {
+        level.Stacker.mods.remove(Sleepy);
         if (progress.flags.stackedAllCrates && !progress.flags.thankedByCrateStacker)
         {
             await p.show("Thank you for your help.");
