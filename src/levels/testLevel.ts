@@ -3,8 +3,8 @@ import {RightTestArgs, TestArgs} from "../levelArgs";
 import {testCutscene} from "../cutscene/testScene";
 import {game} from "../igua/game";
 import {show} from "../cutscene/dialog";
-import {withSleepyBehavior} from "../gameObjects/npc";
 import {tickerSleep} from "../utils/tickerSleep";
+import {Sleepy} from "../gameObjects/npcMods";
 
 export function Test()
 {
@@ -31,6 +31,6 @@ export function Test()
 export function RightTest()
 {
     const level = applyOgmoLevel(RightTestArgs);
-    withSleepyBehavior(level.Gamer);
+    level.Gamer.mods.add(Sleepy);
     game.cutscenePlayer.playCutscene(testCutscene);
 }

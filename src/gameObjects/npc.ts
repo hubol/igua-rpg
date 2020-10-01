@@ -1,4 +1,4 @@
-import {Container, Sprite, DisplayObject, BitmapText} from "pixi.js";
+import {Container, Sprite, DisplayObject} from "pixi.js";
 import {
     CharacterHead,
     CharacterMouthV,
@@ -13,15 +13,14 @@ import {
 } from "../textures";
 import {IguanaPuppet, iguanaPuppet} from "../igua/iguanaPuppet";
 import {game} from "../igua/game";
-import {distance} from "../utils/vector";
 import {IguanaEyes, iguanaEyes} from "../igua/iguanaEyes";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {Cutscene} from "../cutscene/cutscene";
 import {merge} from "../utils/merge";
 import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
-import {AcrobatixFont} from "../fonts";
 import {makeIguanaEngine} from "../igua/puppet/makeIguanaEngine";
 import {rejection} from "../utils/rejection";
+import {NpcMod} from "./npcMods";
 
 export const resolveNpc = resolveGameObject("NpcIguana", e => {
     const n = game.gameObjectStage.addChild(npc(e.x, e.y - 8, (e as any).style));
@@ -30,7 +29,43 @@ export const resolveNpc = resolveGameObject("NpcIguana", e => {
     return n;
 });
 
-function makeCutscenePuppet(style: number) {
+function makeNpcMods(npc: Npc)
+{
+    const currentMods = {} as any;
+
+    return {
+        has(mod: NpcMod)
+        {
+            return !!currentMods[mod as any];
+        },
+        add(mod: NpcMod)
+        {
+            if (this.has(mod))
+                this.remove(mod);
+
+            const displayObject = mod(npc);
+            currentMods[mod as any] = displayObject;
+            npc.addChild(displayObject);
+        },
+        remove(mod: NpcMod)
+        {
+            if (!this.has(mod))
+                return;
+            currentMods[mod as any]?.destroy();
+            currentMods[mod as any] = null;
+        },
+        toggle(mod: NpcMod)
+        {
+            if (this.has(mod))
+                this.remove(mod);
+            else
+                this.add(mod);
+        }
+    }
+}
+
+function makeCutscenePuppet(style: number)
+{
     const puppet = npcStyles[style]();
     return merge(puppet, {
         cutscene: undefined as Cutscene | undefined,
@@ -38,13 +73,26 @@ function makeCutscenePuppet(style: number) {
             return this.cutscene && this.cutscene === game.cutscenePlayer.currentCutscene;
         },
         canWalkWhileCutsceneIsPlaying: false,
-        engine: makeIguanaEngine(puppet)
+        engine: makeIguanaEngine(puppet),
+        duckImmediately()
+        {
+            puppet.isDucking = true;
+            puppet.duckUnit = 1;
+        },
+        closeEyesImmediately()
+        {
+            puppet.isClosingEyes = true;
+            puppet.closedEyesUnit = 1;
+        }
     });
 }
 
+export type Npc = ReturnType<typeof makeCutscenePuppet>;
+
 export function npc(x, y, style: number = 0)
 {
-    const puppet = makeCutscenePuppet(style);
+    const cutscenePuppet = makeCutscenePuppet(style);
+    const puppet = merge(cutscenePuppet, { mods: makeNpcMods(cutscenePuppet) });
     puppet.x = x;
     puppet.y = y;
 
@@ -112,48 +160,6 @@ function makeDriver(puppet: ReturnType<typeof makeCutscenePuppet>)
         }
     };
 }
-
-function withBehavior<T extends IguanaPuppet>(behavior: (puppet: T) => unknown): (puppet: T) => T
-{
-    return puppet => {
-        behavior(puppet);
-        return puppet;
-    };
-}
-
-export const withLazyBehavior = withBehavior(puppet => puppet.withStep(() => {
-    puppet.isDucking = !(Math.sign(game.player.scale.x) !== Math.sign(puppet.scale.x)
-        && ((puppet.scale.x > 0 && game.player.x >= puppet.x + 16) || (puppet.scale.x < 0 && game.player.x <= puppet.x - 16))
-        && distance(game.player, puppet) < 128);
-}));
-
-export const withSleepyBehavior = withBehavior(puppet => {
-    puppet.isDucking = true;
-    puppet.duckUnit = 1;
-    puppet.canBlink = false;
-    puppet.isClosingEyes = true;
-    puppet.closedEyesUnit = 1;
-    puppet.withAsync(async p => {
-        while (true)
-        {
-            await p.sleep(1500);
-            const bitmapText = new BitmapText(
-                Math.random() > 0.5 ? "z" : "Z",
-                { fontName: AcrobatixFont.font, tint: 0x222288 })
-                .at(puppet.x + Math.sign(puppet.scale.x) * 20, puppet.y - 16)
-                .withAsync(async p => {
-                    for (let i = 0; i < 10; i++)
-                    {
-                        await p.sleep(300);
-                        bitmapText.x += Math.random() * 8 - 4;
-                        bitmapText.y += Math.random() * -8;
-                    }
-                    bitmapText.destroy();
-                });
-            game.gameObjectStage.addChild(bitmapText);
-        }
-    });
-})
 
 let npcStyles: Array<() => IguanaPuppet> = [];
 
