@@ -10,6 +10,7 @@ export const environment = {
     },
     get isSafari()
     {
+        // https://stackoverflow.com/a/7768006
         return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     }
 };
