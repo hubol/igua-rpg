@@ -35,7 +35,7 @@ async function initialize()
         require("./igua/game").startGame(application);
 }
 
-if (environment.isProduction)
+if (environment.isProduction && !environment.isElectron)
     document.body.appendChild(createStartGameButtonElement());
 else
     window.onload = initialize;
