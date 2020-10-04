@@ -9,6 +9,7 @@ import {isOnScreen} from "../igua/isOnScreen";
 import { CratePickup, CratePlace } from "../sounds";
 import {progress} from "../igua/progress";
 import {Sleepy} from "../gameObjects/npcMods";
+import {npc} from "../gameObjects/npc";
 
 function getDesertTownLevel()
 {
@@ -28,7 +29,36 @@ export function DesertTown()
     level.LeftHouse.tint = 0xA0C0C0;
     level.RightHouseDoor.locked = true;
 
+    if (!progress.flags.heardIntroduction)
+    {
+        addIntroduction(level);
+        progress.flags.heardIntroduction = true;
+    }
+
     enhanceCrateStacker(level);
+}
+
+function addIntroduction(level: DesertTownLevel)
+{
+    const lizard = game.gameObjectStage.addChild(npc(level.LeftHouseDoor.x - 32, level.LeftHouseDoor.y + 32, 2));
+    lizard.engine.walkSpeed = 2;
+    game.cutscenePlayer.playCutscene(async p => {
+        game.camera.followPlayer = false;
+
+        await p.sleep(1_000);
+        await lizard.walkTo(level.LeftHouseDoor.x + 32);
+        await p.sleep(1_000);
+        await p.move(game.camera).to(Math.round((lizard.x + game.player.x) / 2) - 128, lizard.y - 128).over(1_000);
+        await p.sleep(1_000);
+        await p.show("A great evil has entered the world.");
+        await p.show("You are the one who must stop the evil.");
+        await p.show("You can walk with left and right arrows and jump with space bar.");
+        await p.show("In the town there is an oracle if you need advice. Good luck.");
+        await lizard.walkTo(level.LeftHouseDoor.x - 128);
+        lizard.destroy();
+
+        game.camera.followPlayer = true;
+    });
 }
 
 function enhanceCrateStacker(level: DesertTownLevel)

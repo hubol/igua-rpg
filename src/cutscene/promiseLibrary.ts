@@ -3,6 +3,7 @@ import {CancellationToken, sleep, wait} from "pissant";
 import {tickerSleep} from "../utils/tickerSleep";
 import {tickerWait} from "../utils/tickerWait";
 import {ask} from "./ask";
+import {move} from "./move";
 
 const promiseLibrary = {
     sleep: tickerSleep,
@@ -10,7 +11,8 @@ const promiseLibrary = {
     show,
     ask,
     timeoutSleep: sleep,
-    timeoutWait: wait
+    timeoutWait: wait,
+    move
 };
 
 export type PromiseLibrary = typeof promiseLibrary;
