@@ -28,9 +28,13 @@ export let NpcBlueFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcCurvedCrest2: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcCurvedCrest: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcGreenPolkaBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcPinkFootRear: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcPinkFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcPupilsAngry: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcPupilsCartoonish: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcRedFootRear: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcRedFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcStrangeBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcWeirdBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OpenDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OrangeValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -126,14 +130,26 @@ export function loadTexturesAsync()
     const NpcGreenPolkaBodyPath = require("./images/npc/green polka body.png");
     loader.add(NpcGreenPolkaBodyPath); 
 
+    const NpcPinkFootRearPath = require("./images/npc/pink foot rear.png");
+    loader.add(NpcPinkFootRearPath); 
+
+    const NpcPinkFootPath = require("./images/npc/pink foot.png");
+    loader.add(NpcPinkFootPath); 
+
     const NpcPupilsAngryPath = require("./images/npc/pupils angry.png");
     loader.add(NpcPupilsAngryPath); 
+
+    const NpcPupilsCartoonishPath = require("./images/npc/pupils cartoonish.png");
+    loader.add(NpcPupilsCartoonishPath); 
 
     const NpcRedFootRearPath = require("./images/npc/red foot rear.png");
     loader.add(NpcRedFootRearPath); 
 
     const NpcRedFootPath = require("./images/npc/red foot.png");
     loader.add(NpcRedFootPath); 
+
+    const NpcStrangeBodyPath = require("./images/npc/strange body.png");
+    loader.add(NpcStrangeBodyPath); 
 
     const NpcWeirdBodyPath = require("./images/npc/weird body.png");
     loader.add(NpcWeirdBodyPath); 
@@ -198,9 +214,13 @@ export function loadTexturesAsync()
             NpcCurvedCrest2 = resources[NpcCurvedCrest2Path]?.texture as PIXI.Texture;
             NpcCurvedCrest = resources[NpcCurvedCrestPath]?.texture as PIXI.Texture;
             NpcGreenPolkaBody = resources[NpcGreenPolkaBodyPath]?.texture as PIXI.Texture;
+            NpcPinkFootRear = resources[NpcPinkFootRearPath]?.texture as PIXI.Texture;
+            NpcPinkFoot = resources[NpcPinkFootPath]?.texture as PIXI.Texture;
             NpcPupilsAngry = resources[NpcPupilsAngryPath]?.texture as PIXI.Texture;
+            NpcPupilsCartoonish = resources[NpcPupilsCartoonishPath]?.texture as PIXI.Texture;
             NpcRedFootRear = resources[NpcRedFootRearPath]?.texture as PIXI.Texture;
             NpcRedFoot = resources[NpcRedFootPath]?.texture as PIXI.Texture;
+            NpcStrangeBody = resources[NpcStrangeBodyPath]?.texture as PIXI.Texture;
             NpcWeirdBody = resources[NpcWeirdBodyPath]?.texture as PIXI.Texture;
             OpenDoor = resources[OpenDoorPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
