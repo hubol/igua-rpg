@@ -1,0 +1,43 @@
+Information about object: object522
+
+Sprite: sprite320
+Solid: false
+Visible: true
+Depth: 1
+Persistent: false
+Parent: <no parent>
+Mask: <same as sprite>
+
+Create Event:
+if expression global.set>0 is true
+      destroy yourself
+set alarm0 to 30
+
+Alarm Event for alarm 0:
+show message: A great evil has entered the world.
+show message: You are the one who must stop the evil.
+show message: If you need the information I give you later, press F1 and a help-window will open.
+show message: You can walk with left and right arrows and jump with space bar.
+set alarm1 to 90
+
+Alarm Event for alarm 1:
+show message: To interact with object or another animal, press up arrow.
+show message: To enter a building, press up arrow. To exit, press down arrow.
+show message: You have a supply of potions and medicine. To use something or just check your supply, press U. The nunber of items is shown as a number right of the name.
+show message: If you want to buy something, go to the bar or a shop.
+show message: Potion gives you more health.
+show message: Full health gives you full health.
+show message: Increase Max Health does not give health, but you can get more health than before.
+show message: Extra stength increases your claw level, your attack becomes more dangerous.
+show message: There is no point in carrying IncreaseMaxHealth or ExtraStrength. Use them after you buy them.
+show message: Cure sickness cures poison. If you are poisioned you will be alerted.
+show message: Poison poisons you. When you are poisoned you will loose health, but run a little faster.
+set alarm2 to 90
+
+Alarm Event for alarm 2:
+show message: During the game you will get a lot of other items. To look at your items press W.
+show message: You can press D to view a map over places you have been.
+show message: If you are totally stuck inside a wall or whatever, try pressing Q.
+show message: You can quick save with F5 and quick load with F6.
+show message: If you press F7, you can save in three different files. Load one of them with F8.
+show message: In the town there is an oracle if you need advise. Good luck.

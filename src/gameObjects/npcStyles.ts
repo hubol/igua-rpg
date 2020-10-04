@@ -76,7 +76,7 @@ npcStyles[2] = npcStyle(args => {
     args.crest = Sprite.from(NpcCurvedCrest2);
     args.crest.scale.x *= -1;
     args.crest.pivot.set(8, 4);
-    args.crest.tint = 0x198A96;
+    args.crest.tint = 0x6060A0;
 
     args.headSprite.tint = 0xF0E050;
     args.mouthSprite.tint = 0xE04040;
