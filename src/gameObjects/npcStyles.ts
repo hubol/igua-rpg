@@ -10,7 +10,11 @@ import {
     NpcGreenPolkaBody, NpcPupilsAngry,
     NpcRedFoot,
     NpcRedFootRear,
-    NpcWeirdBody
+    NpcWeirdBody,
+    NpcStrangeBody,
+    NpcPinkFoot,
+    NpcPinkFootRear,
+    NpcPupilsCartoonish
 } from "../textures";
 import {IguanaEyes, iguanaEyes} from "../igua/iguanaEyes";
 
@@ -59,6 +63,28 @@ npcStyles[1] = npcStyle(args => {
     args.pupils.pivot.y -= 1;
     args.pupils.tint = 0x2A87A9;
     args.eyelidColor = 0xA9272C;
+});
+
+npcStyles[2] = npcStyle(args => {
+    args.body = Sprite.from(NpcStrangeBody);
+
+    args.frontRightFoot = Sprite.from(NpcPinkFoot);
+
+    args.backRightFoot = Sprite.from(NpcPinkFootRear);
+    args.backRightFoot.pivot.y = 1;
+
+    args.crest = Sprite.from(NpcCurvedCrest2);
+    args.crest.scale.x *= -1;
+    args.crest.pivot.set(8, 4);
+    args.crest.tint = 0x198A96;
+
+    args.headSprite.tint = 0xF0E050;
+    args.mouthSprite.tint = 0xE04040;
+
+    args.pupils = Sprite.from(NpcPupilsCartoonish);
+    args.pupils.pivot.y -= 1;
+    args.pupils.tint = 0xE04040;
+    args.eyelidColor = 0xF0E050;
 });
 
 function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
