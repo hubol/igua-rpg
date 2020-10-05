@@ -20,14 +20,20 @@ type DesertTownLevel = ReturnType<typeof getDesertTownLevel>;
 
 export function DesertTown()
 {
+    // TODO need to figure out dev mode flags
+    // progress.flags.heardIntroduction = true;
     jukebox.play(Country).warm(Oracle);
     const level = getDesertTownLevel();
     game.backgroundColor = 0xF0F0B0;
     game.terrainColor = 0xE0D060;
 
+    level.BarBuilding.tint = 0xA0C0C0;
+    level.InnBuilding.tint = 0xE08060;
     level.RightHouse.tint = 0xE08060;
     level.LeftHouse.tint = 0xA0C0C0;
     level.RightHouseDoor.locked = true;
+    level.BarDoor.locked = true;
+    level.InnDoor.locked = true;
 
     if (!progress.flags.heardIntroduction)
     {
