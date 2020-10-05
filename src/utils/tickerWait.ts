@@ -1,17 +1,16 @@
-import {CancellationToken} from "pissant";
-import {game} from "../igua/game";
+import {IguaPromiseConfig} from "../cutscene/iguaPromiseConfig";
 
 type Predicate = () => boolean;
 
-export function tickerWait(predicate: Predicate, ct?: CancellationToken)
+export function tickerWait(predicate: Predicate, config?: IguaPromiseConfig)
 {
     let fn: () => void;
 
     return new Promise((resolve, reject) => {
         fn = () => {
-            if (ct?.isCancelled)
+            if (config?.cancellationToken.isCancelled)
             {
-                ct?.rejectIfCancelled(reject);
+                config.cancellationToken.rejectIfCancelled(reject);
                 return;
             }
 
@@ -19,7 +18,7 @@ export function tickerWait(predicate: Predicate, ct?: CancellationToken)
                 resolve();
         };
 
-        game.ticker.add(fn);
+        config?.ticker.add(fn);
     })
-    .finally(() => game.ticker.remove(fn));
+    .finally(() => config?.ticker.remove(fn));
 }

@@ -1,12 +1,12 @@
-import {CancellationToken} from "pissant";
 import {Vector} from "../utils/vector";
 import {tickerWait} from "../utils/tickerWait";
 import {game} from "../igua/game";
 import {lerpVector} from "../utils/math";
+import {IguaPromiseConfig} from "./iguaPromiseConfig";
 
-export function move(vector: Vector, ct?: CancellationToken)
+export function move(vector: Vector, config?: IguaPromiseConfig)
 {
-    return new Move(vector, ct);
+    return new Move(vector, config);
 }
 
 function moveOver(doMove: (ms: number) => Promise<any>)
@@ -24,12 +24,12 @@ type MoveTime = ReturnType<typeof moveOver>;
 class Move
 {
     private readonly _vector: Vector;
-    private readonly _cancellationToken?: CancellationToken;
+    private readonly _config?: IguaPromiseConfig;
 
-    constructor(vector: Vector, cancellationToken?: CancellationToken)
+    constructor(vector: Vector, config?: IguaPromiseConfig)
     {
         this._vector = vector;
-        this._cancellationToken = cancellationToken;
+        this._config = config;
     }
 
     by(speed: Vector): MoveTime;
@@ -46,7 +46,7 @@ class Move
                     this._vector.y += speed.y;
                     return --ticksUntilResolve <= 0;
                 },
-                this._cancellationToken);
+                this._config);
         });
     }
 
@@ -71,7 +71,7 @@ class Move
 
                     return factor >= 1;
                 },
-                this._cancellationToken);
+                this._config);
         });
     }
 }

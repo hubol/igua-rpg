@@ -1,25 +1,25 @@
-import {CancellationToken} from "pissant";
 import {BitmapText, Container, Sprite} from "pixi.js";
 import {MessageBox, Cursor} from "../textures";
 import {AcrobatixFont} from "../fonts";
 import {game} from "../igua/game";
 import {waitForKey} from "./waitForKey";
 import {Key} from "../utils/key";
+import {IguaPromiseConfig} from "./iguaPromiseConfig";
 
 type Answer = string;
 
-export async function ask(question: string, ct?: CancellationToken): Promise<boolean>;
-export async function ask<T extends Answer>(question: string, answers: [T], ct?: CancellationToken): Promise<T>;
-export async function ask<T extends Answer>(question: string, answers: [T, T], ct?: CancellationToken): Promise<T>;
-export async function ask<T extends Answer>(question: string, answers: [T, T, T], ct?: CancellationToken): Promise<T>;
+export async function ask(question: string, config?: IguaPromiseConfig): Promise<boolean>;
+export async function ask<T extends Answer>(question: string, answers: [T], config?: IguaPromiseConfig): Promise<T>;
+export async function ask<T extends Answer>(question: string, answers: [T, T], config?: IguaPromiseConfig): Promise<T>;
+export async function ask<T extends Answer>(question: string, answers: [T, T, T], config?: IguaPromiseConfig): Promise<T>;
 
 export function ask()
 {
-    let ct: CancellationToken | undefined = undefined;
+    let config: IguaPromiseConfig | undefined = undefined;
 
     const lastArgument = arguments[arguments.length - 1];
-    if (lastArgument instanceof CancellationToken)
-        ct = lastArgument;
+    if (lastArgument instanceof IguaPromiseConfig)
+        config = lastArgument;
 
     let returnBool = true;
     let answers: any[] = ["Yes", "No"];
@@ -30,14 +30,14 @@ export function ask()
         returnBool = false;
     }
 
-    const promise = askImpl(arguments[0] as string, answers, ct);
+    const promise = askImpl(arguments[0] as string, answers, config);
     if (returnBool)
         return promise.then(x => x === "Yes");
 
     return promise;
 }
 
-async function askImpl<T extends Answer>(question: string, answers: T[], ct?: CancellationToken): Promise<T>
+async function askImpl<T extends Answer>(question: string, answers: T[], config?: IguaPromiseConfig): Promise<T>
 {
     const dialogContainer = new Container().at(24, 27);
     dialogContainer
@@ -61,7 +61,7 @@ async function askImpl<T extends Answer>(question: string, answers: T[], ct?: Ca
 
     await new Promise((resolve, reject) => {
         const cursor = Sprite.from(Cursor).withStep(() => {
-            ct?.rejectIfCancelled(reject);
+            config?.cancellationToken.rejectIfCancelled(reject);
 
             const nothingSelected = selectedIndex === -1;
 
@@ -92,8 +92,13 @@ async function askImpl<T extends Answer>(question: string, answers: T[], ct?: Ca
         });
         cursor.anchor.set(1, 0.6);
         dialogContainer.addChild(cursor);
+    })
+    .catch(e => {
+        dialogContainer.destroy();
+        throw e;
     });
-    await waitForKey("Space", ct);
+
+    await waitForKey("Space", config);
     dialogContainer.destroy();
 
     return answers[selectedIndex];

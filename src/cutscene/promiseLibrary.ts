@@ -1,9 +1,9 @@
 import {show} from "./dialog";
-import {CancellationToken} from "pissant";
 import {tickerSleep} from "../utils/tickerSleep";
 import {tickerWait} from "../utils/tickerWait";
 import {ask} from "./ask";
 import {move} from "./move";
+import {IguaPromiseConfig} from "./iguaPromiseConfig";
 
 const promiseLibrary = {
     sleep: tickerSleep,
@@ -15,13 +15,13 @@ const promiseLibrary = {
 
 export type PromiseLibrary = typeof promiseLibrary;
 
-export function makePromiseLibrary(cancellationToken: CancellationToken): PromiseLibrary
+export function makePromiseLibrary(config: IguaPromiseConfig): PromiseLibrary
 {
     function wrapPromise(promiseFactory): any
     {
         return function () {
             const augmentedArguments = Array.prototype.slice.call(arguments);
-            augmentedArguments.push(cancellationToken);
+            augmentedArguments.push(config);
             return promiseFactory.apply(null, augmentedArguments);
         };
     }

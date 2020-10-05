@@ -6,6 +6,7 @@ import {makePromiseLibrary, PromiseLibrary} from "../cutscene/promiseLibrary";
 import {CancellationToken} from "pissant";
 import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
 import {Container} from "pixi.js";
+import {IguaPromiseConfig} from "../cutscene/iguaPromiseConfig";
 
 declare global {
     namespace PIXI {
@@ -68,7 +69,7 @@ PIXI.DisplayObject.prototype.withInteraction = function(interaction)
 PIXI.DisplayObject.prototype.withAsync = function(promiseSupplier)
 {
     const cancellationToken = new CancellationToken();
-    const promiseLibrary = makePromiseLibrary(cancellationToken);
+    const promiseLibrary = makePromiseLibrary(new IguaPromiseConfig(game.ticker, cancellationToken));
     const thisDisplayObject = this;
 
     return doNowOrOnAdded(this, () => setTimeout(async () => {
