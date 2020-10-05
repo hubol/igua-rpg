@@ -20,8 +20,6 @@ type DesertTownLevel = ReturnType<typeof getDesertTownLevel>;
 
 export function DesertTown()
 {
-    // TODO need to figure out dev mode flags
-    // progress.flags.heardIntroduction = true;
     jukebox.play(Country).warm(Oracle);
     const level = getDesertTownLevel();
     game.backgroundColor = 0xF0F0B0;

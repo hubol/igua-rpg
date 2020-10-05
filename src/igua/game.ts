@@ -8,6 +8,8 @@ import {createDefaultHud} from "./createDefaultHud";
 import {level} from "./level/level";
 import {getInitialProgress, progress, setProgress} from "./progress";
 import {AsshatApplication} from "../utils/createApplication";
+import {environment} from "./environment";
+import {devProgress} from "./devProgress";
 
 export let game: ReturnType<typeof createGame>;
 function createGame(application: AsshatApplication)
@@ -92,6 +94,8 @@ export function startGame(application: AsshatApplication)
 export function loadSavedProgress()
 {
     setProgress(getInitialProgress()); // TODO read from localStorage
+    if (!environment.isProduction)
+        devProgress();
 }
 
 export function recreatePlayer()
