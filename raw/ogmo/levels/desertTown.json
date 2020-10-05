@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.3.0",
-  "width": 1344,
+  "width": 2040,
   "height": 432,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,23 +12,23 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 168,
+      "gridCellsX": 255,
       "gridCellsY": 54,
       "entities": [
-        {"name": "Block", "id": 0, "_eid": "55823268", "x": 0, "y": 240, "width": 168, "height": 192, "originX": 0, "originY": 0},
-        {"name": "SlopeRight", "id": 1, "_eid": "55824435", "x": 96, "y": 208, "width": 72, "height": 32, "originX": 0, "originY": 0, "flippedY": false},
-        {"name": "Block", "id": 2, "_eid": "55823268", "x": 168, "y": 208, "width": 128, "height": 48, "originX": 0, "originY": 0},
-        {"name": "SlopeLeft", "id": 3, "_eid": "55845599", "x": 296, "y": 208, "width": 72, "height": 48, "originX": 0, "originY": 0, "flippedY": false},
-        {"name": "Block", "id": 4, "_eid": "55823268", "x": 368, "y": 256, "width": 136, "height": 176, "originX": 0, "originY": 0},
-        {"name": "SlopeLeft", "id": 5, "_eid": "55845599", "x": 504, "y": 256, "width": 96, "height": 48, "originX": 0, "originY": 0, "flippedY": false},
-        {"name": "Block", "id": 6, "_eid": "55823268", "x": 600, "y": 304, "width": 424, "height": 136, "originX": 0, "originY": 0},
-        {"name": "Block", "id": 7, "_eid": "55823268", "x": 504, "y": 304, "width": 96, "height": 128, "originX": 0, "originY": 0},
-        {"name": "Block", "id": 8, "_eid": "55823268", "x": 168, "y": 256, "width": 200, "height": 176, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 0, "_eid": "55823268", "x": 0, "y": 240, "width": 752, "height": 208, "originX": 0, "originY": 0},
+        {"name": "SlopeRight", "id": 1, "_eid": "55824435", "x": 680, "y": 208, "width": 72, "height": 32, "originX": 0, "originY": 0, "flippedY": false},
+        {"name": "Block", "id": 2, "_eid": "55823268", "x": 752, "y": 208, "width": 128, "height": 48, "originX": 0, "originY": 0},
+        {"name": "SlopeLeft", "id": 3, "_eid": "55845599", "x": 880, "y": 208, "width": 72, "height": 48, "originX": 0, "originY": 0, "flippedY": false},
+        {"name": "Block", "id": 4, "_eid": "55823268", "x": 952, "y": 256, "width": 136, "height": 176, "originX": 0, "originY": 0},
+        {"name": "SlopeLeft", "id": 5, "_eid": "55845599", "x": 1088, "y": 256, "width": 96, "height": 48, "originX": 0, "originY": 0, "flippedY": false},
+        {"name": "Block", "id": 6, "_eid": "55823268", "x": 1184, "y": 304, "width": 424, "height": 136, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 7, "_eid": "55823268", "x": 1088, "y": 304, "width": 96, "height": 128, "originX": 0, "originY": 0},
+        {"name": "Block", "id": 8, "_eid": "55823268", "x": 752, "y": 256, "width": 200, "height": 176, "originX": 0, "originY": 0},
         {
           "name": "Door",
           "id": 9,
           "_eid": "55913988",
-          "x": 248,
+          "x": 832,
           "y": 176,
           "originX": 0,
           "originY": 0,
@@ -38,7 +38,7 @@
           "name": "Door",
           "id": 10,
           "_eid": "55913988",
-          "x": 672,
+          "x": 1256,
           "y": 272,
           "originX": 0,
           "originY": 0,
@@ -48,7 +48,7 @@
           "name": "Player",
           "id": 11,
           "_eid": "55988047",
-          "x": 400,
+          "x": 984,
           "y": 256,
           "originX": 11,
           "originY": 27,
@@ -58,7 +58,7 @@
           "name": "Sign",
           "id": 12,
           "_eid": "86706091",
-          "x": 472,
+          "x": 1056,
           "y": 256,
           "originX": 14,
           "originY": 18,
@@ -68,19 +68,19 @@
           "name": "Checkpoint",
           "id": 13,
           "_eid": "55940370",
-          "x": 292,
+          "x": 876,
           "y": 208,
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromLeftHouse", "faceRight": true}
         },
-        {"name": "SlopeRight", "id": 14, "_eid": "55824435", "x": 928, "y": 272, "width": 96, "height": 32, "originX": 0, "originY": 0, "flippedY": false},
-        {"name": "Block", "id": 15, "_eid": "55823268", "x": 1024, "y": 272, "width": 320, "height": 160, "originX": 0, "originY": 0},
+        {"name": "SlopeRight", "id": 14, "_eid": "55824435", "x": 1512, "y": 272, "width": 96, "height": 32, "originX": 0, "originY": 0, "flippedY": false},
+        {"name": "Block", "id": 15, "_eid": "55823268", "x": 1608, "y": 272, "width": 432, "height": 160, "originX": 0, "originY": 0},
         {
           "name": "NpcIguana",
           "id": 17,
           "_eid": "26367058",
-          "x": 1040,
+          "x": 1624,
           "y": 272,
           "originX": 11,
           "originY": 27,
@@ -91,7 +91,7 @@
           "name": "Region",
           "id": 18,
           "_eid": "25971607",
-          "x": 1128,
+          "x": 1712,
           "y": 256,
           "width": 104,
           "height": 16,
@@ -103,7 +103,7 @@
           "name": "Anchor",
           "id": 20,
           "_eid": "25979726",
-          "x": 800,
+          "x": 1384,
           "y": 280,
           "originX": 0,
           "originY": 0,
@@ -113,13 +113,33 @@
           "name": "Region",
           "id": 21,
           "_eid": "25971607",
-          "x": 792,
+          "x": 1376,
           "y": 288,
           "width": 40,
           "height": 16,
           "originX": 0,
           "originY": 0,
           "values": {"name": "DropCrateRegion"}
+        },
+        {
+          "name": "Door",
+          "id": 23,
+          "_eid": "55913988",
+          "x": 568,
+          "y": 208,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "", "checkpointName": "", "name": "InnDoor"}
+        },
+        {
+          "name": "Door",
+          "id": 26,
+          "_eid": "55913988",
+          "x": 424,
+          "y": 208,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "", "checkpointName": "", "name": "BarDoor"}
         }
       ]
     },
@@ -130,11 +150,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 168,
+      "gridCellsX": 255,
       "gridCellsY": 54,
       "decals": [
         {
-          "x": 232,
+          "x": 816,
           "y": 208,
           "scaleX": 1,
           "scaleY": 1,
@@ -145,7 +165,7 @@
           "values": {"name": "LeftHouse"}
         },
         {
-          "x": 704,
+          "x": 1288,
           "y": 304,
           "scaleX": 1,
           "scaleY": 1,
@@ -156,7 +176,7 @@
           "values": {"name": "RightHouse"}
         },
         {
-          "x": 184,
+          "x": 768,
           "y": 208,
           "scaleX": 1,
           "scaleY": 1,
@@ -167,7 +187,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 212,
+          "x": 796,
           "y": 123,
           "scaleX": -1,
           "scaleY": 1,
@@ -178,7 +198,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 488,
+          "x": 1072,
           "y": 260,
           "scaleX": 1,
           "scaleY": 1,
@@ -189,7 +209,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 460,
+          "x": 1044,
           "y": 258,
           "scaleX": -1,
           "scaleY": 1,
@@ -200,7 +220,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 736,
+          "x": 1320,
           "y": 304,
           "scaleX": -1,
           "scaleY": 1,
@@ -211,7 +231,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 752,
+          "x": 1336,
           "y": 304,
           "scaleX": 1,
           "scaleY": 1,
@@ -222,18 +242,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 116,
-          "y": 235,
-          "scaleX": -1,
-          "scaleY": 1,
-          "rotation": -0.3490658503988659,
-          "texture": "spiky brush a.png",
-          "originX": 0.5,
-          "originY": 1,
-          "values": {"name": ""}
-        },
-        {
-          "x": 1124,
+          "x": 1708,
           "y": 248,
           "scaleX": 1,
           "scaleY": 1,
@@ -244,7 +253,7 @@
           "values": {"name": "Crate9"}
         },
         {
-          "x": 1152,
+          "x": 1736,
           "y": 248,
           "scaleX": 1,
           "scaleY": 1,
@@ -255,7 +264,7 @@
           "values": {"name": "Crate8"}
         },
         {
-          "x": 1182,
+          "x": 1766,
           "y": 248,
           "scaleX": 1,
           "scaleY": 1,
@@ -266,7 +275,7 @@
           "values": {"name": "Crate6"}
         },
         {
-          "x": 1210,
+          "x": 1794,
           "y": 248,
           "scaleX": 1,
           "scaleY": 1,
@@ -277,7 +286,7 @@
           "values": {"name": "Crate4"}
         },
         {
-          "x": 1138,
+          "x": 1722,
           "y": 224,
           "scaleX": 1,
           "scaleY": 1,
@@ -288,7 +297,7 @@
           "values": {"name": "Crate7"}
         },
         {
-          "x": 1196,
+          "x": 1780,
           "y": 224,
           "scaleX": 1,
           "scaleY": 1,
@@ -299,7 +308,7 @@
           "values": {"name": "Crate3"}
         },
         {
-          "x": 1167,
+          "x": 1751,
           "y": 224,
           "scaleX": 1,
           "scaleY": 1,
@@ -310,7 +319,7 @@
           "values": {"name": "Crate5"}
         },
         {
-          "x": 1152,
+          "x": 1736,
           "y": 200,
           "scaleX": 1,
           "scaleY": 1,
@@ -321,7 +330,7 @@
           "values": {"name": "Crate2"}
         },
         {
-          "x": 1182,
+          "x": 1766,
           "y": 200,
           "scaleX": 1,
           "scaleY": 1,
@@ -332,7 +341,7 @@
           "values": {"name": "Crate1"}
         },
         {
-          "x": 1167,
+          "x": 1751,
           "y": 176,
           "scaleX": 1,
           "scaleY": 1,
@@ -343,7 +352,7 @@
           "values": {"name": "Crate0"}
         },
         {
-          "x": 1112,
+          "x": 1696,
           "y": 264,
           "scaleX": 1,
           "scaleY": 1,
@@ -354,7 +363,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 1240,
+          "x": 1824,
           "y": 264,
           "scaleX": 1,
           "scaleY": 1,
@@ -365,12 +374,89 @@
           "values": {"name": ""}
         },
         {
-          "x": 952,
+          "x": 1536,
           "y": 288,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": -0.17453292519943295,
           "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 616,
+          "y": 240,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crude house c.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": "InnBuilding"}
+        },
+        {
+          "x": 400,
+          "y": 240,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crude house.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": "BarBuilding"}
+        },
+        {
+          "x": 476,
+          "y": 243,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 672,
+          "y": 244,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 368,
+          "y": 196,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 584,
+          "y": 198,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "sign inn.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 440,
+          "y": 200,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "sign tavern.png",
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
@@ -385,11 +471,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 168,
+      "gridCellsX": 255,
       "gridCellsY": 54,
       "decals": [
         {
-          "x": 64,
+          "x": 648,
           "y": 136,
           "scaleX": 1,
           "scaleY": 1,
@@ -400,7 +486,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 168,
+          "x": 752,
           "y": 88,
           "scaleX": -1,
           "scaleY": 1,
@@ -411,7 +497,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 356,
+          "x": 940,
           "y": 126,
           "scaleX": 1,
           "scaleY": 1,
@@ -422,7 +508,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 320,
+          "x": 904,
           "y": 120,
           "scaleX": 1,
           "scaleY": 1,
@@ -433,7 +519,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 568,
+          "x": 1152,
           "y": 168,
           "scaleX": -1,
           "scaleY": 1,
@@ -444,7 +530,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 828,
+          "x": 1412,
           "y": 175,
           "scaleX": 1,
           "scaleY": 1,
@@ -455,7 +541,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 800,
+          "x": 1384,
           "y": 168,
           "scaleX": 1,
           "scaleY": 1,
@@ -466,7 +552,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 1012,
+          "x": 1596,
           "y": 183,
           "scaleX": 1,
           "scaleY": 1,
@@ -477,7 +563,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 1052,
+          "x": 1636,
           "y": 191,
           "scaleX": -1,
           "scaleY": 1,
@@ -488,7 +574,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 924,
+          "x": 1508,
           "y": 111,
           "scaleX": 1,
           "scaleY": -1,
@@ -499,7 +585,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 1244,
+          "x": 1828,
           "y": 159,
           "scaleX": 1,
           "scaleY": -1,
@@ -510,10 +596,87 @@
           "values": {"name": ""}
         },
         {
-          "x": 1276,
+          "x": 1860,
           "y": 167,
           "scaleX": 1,
           "scaleY": -1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 352,
+          "y": 144,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 380,
+          "y": 150,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 512,
+          "y": 112,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 216,
+          "y": 88,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 144,
+          "y": 136,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 112,
+          "y": 144,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 2032,
+          "y": 136,
+          "scaleX": 1,
+          "scaleY": 1,
           "rotation": 0,
           "texture": "cloud long.png",
           "originX": 0.5,

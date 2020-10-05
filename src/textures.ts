@@ -17,6 +17,7 @@ export let CharacterWhites: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CloudLong: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrateWooden: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrudeHouseB: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CrudeHouseC: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrudeHouse: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Cursor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let HotTerrain: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -43,6 +44,8 @@ export let PotteryOrangeDamaged: PIXI.Texture = undefined as unknown as PIXI.Tex
 export let PotteryOrange: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RightPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RockCracks: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let SignInn: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let SignTavern: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Sign: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SpikyBrushA: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SpikyBrushB: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -96,6 +99,9 @@ export function loadTexturesAsync()
 
     const CrudeHouseBPath = require("./images/crude house b.png");
     loader.add(CrudeHouseBPath); 
+
+    const CrudeHouseCPath = require("./images/crude house c.png");
+    loader.add(CrudeHouseCPath); 
 
     const CrudeHousePath = require("./images/crude house.png");
     loader.add(CrudeHousePath); 
@@ -175,6 +181,12 @@ export function loadTexturesAsync()
     const RockCracksPath = require("./images/rock cracks.png");
     loader.add(RockCracksPath); 
 
+    const SignInnPath = require("./images/sign inn.png");
+    loader.add(SignInnPath); 
+
+    const SignTavernPath = require("./images/sign tavern.png");
+    loader.add(SignTavernPath); 
+
     const SignPath = require("./images/sign.png");
     loader.add(SignPath); 
 
@@ -203,6 +215,7 @@ export function loadTexturesAsync()
             CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
             CrateWooden = resources[CrateWoodenPath]?.texture as PIXI.Texture;
             CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;
+            CrudeHouseC = resources[CrudeHouseCPath]?.texture as PIXI.Texture;
             CrudeHouse = resources[CrudeHousePath]?.texture as PIXI.Texture;
             Cursor = resources[CursorPath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
@@ -229,6 +242,8 @@ export function loadTexturesAsync()
             PotteryOrange = resources[PotteryOrangePath]?.texture as PIXI.Texture;
             RightPipeEnd = resources[RightPipeEndPath]?.texture as PIXI.Texture;
             RockCracks = resources[RockCracksPath]?.texture as PIXI.Texture;
+            SignInn = resources[SignInnPath]?.texture as PIXI.Texture;
+            SignTavern = resources[SignTavernPath]?.texture as PIXI.Texture;
             Sign = resources[SignPath]?.texture as PIXI.Texture;
             SpikyBrushA = resources[SpikyBrushAPath]?.texture as PIXI.Texture;
             SpikyBrushB = resources[SpikyBrushBPath]?.texture as PIXI.Texture;
