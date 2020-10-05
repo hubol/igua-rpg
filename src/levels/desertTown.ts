@@ -10,6 +10,7 @@ import { CratePickup, CratePlace } from "../sounds";
 import {progress} from "../igua/progress";
 import {Sleepy} from "../gameObjects/npcMods";
 import {npc} from "../gameObjects/npc";
+import {add} from "../utils/vector";
 
 function getDesertTownLevel()
 {
@@ -104,7 +105,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
         while (pickupCrate(false))
             stackCrate(false);
 
-        level.Stacker.at(896, 296);
+        level.Stacker.at(add({x: 96, y: -32}, level.DropCrateAnchor));
         level.Stacker.duckImmediately();
         level.Stacker.closeEyesImmediately();
         level.Stacker.mods.add(Sleepy);

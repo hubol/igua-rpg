@@ -31,3 +31,10 @@ export function normalize(vec: Vector) {
 
     return vec;
 }
+
+export function add(a: Vector, b: Vector)
+{
+    a.x += b.x;
+    a.y += b.y;
+    return a;
+}
