@@ -1,16 +1,17 @@
 import {makePromiseLibrary} from "./promiseLibrary";
-import {CancellationToken} from "pissant";
+import {IguaPromiseConfig} from "./iguaPromiseConfig";
+import {game} from "../igua/game";
 
 export class RecycleablePromiseLibrary
 {
-    private _cancellationToken = new CancellationToken();
-    private _promiseLibrary = makePromiseLibrary(this._cancellationToken);
+    private _config = new IguaPromiseConfig(game.ticker);
+    private _promiseLibrary = makePromiseLibrary(this._config);
 
     public recycle()
     {
-        this._cancellationToken.cancel();
-        this._cancellationToken = new CancellationToken();
-        this._promiseLibrary = makePromiseLibrary(this._cancellationToken);
+        this._config.cancellationToken.cancel();
+        this._config = new IguaPromiseConfig(game.ticker);
+        this._promiseLibrary = makePromiseLibrary(this._config);
     }
 
     public get promiseLibrary()

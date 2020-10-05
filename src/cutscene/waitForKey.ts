@@ -1,10 +1,10 @@
 import {game} from "../igua/game";
 import {Key, KeyCode} from "../utils/key";
 import {invisibleObject} from "../gameObjects/utils/invisibleObject";
-import {CancellationToken} from "pissant";
 import {tickerWait} from "../utils/tickerWait";
+import {IguaPromiseConfig} from "./iguaPromiseConfig";
 
-export async function waitForKey(keyCode: KeyCode, ct?: CancellationToken)
+export async function waitForKey(keyCode: KeyCode, config?: IguaPromiseConfig)
 {
     let wasUp = false;
     let advance = false;
@@ -17,6 +17,6 @@ export async function waitForKey(keyCode: KeyCode, ct?: CancellationToken)
     });
     game.stage.addChild(displayObject);
 
-    await tickerWait(() => advance, ct);
-    displayObject.destroy();
+    await tickerWait(() => advance, config)
+        .finally(() => displayObject.destroy());
 }

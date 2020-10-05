@@ -4,12 +4,16 @@ import {sleep} from "pissant";
 import {getLevelApplicator} from "./getLevelApplicator";
 import {progress} from "../progress";
 
-const levelRecycleablePromiseLibrary = new RecycleablePromiseLibrary();
+let levelRecycleablePromiseLibrary: RecycleablePromiseLibrary | null;
 
 export const level = {
+    get recycleablePromiseLibrary()
+    {
+        return levelRecycleablePromiseLibrary ?? (levelRecycleablePromiseLibrary = new RecycleablePromiseLibrary());
+    },
     get promiseLibrary()
     {
-        return levelRecycleablePromiseLibrary.promiseLibrary;
+        return this.recycleablePromiseLibrary.promiseLibrary;
     },
     async goto(levelName: string)
     {
@@ -31,6 +35,6 @@ export const level = {
         game.parallax1Stage.removeAllChildren();
         game.backgroundGameObjectStage.removeAllChildren();
         game.gameObjectStage.removeAllChildren();
-        levelRecycleablePromiseLibrary.recycle();
+        this.recycleablePromiseLibrary.recycle();
     }
 }
