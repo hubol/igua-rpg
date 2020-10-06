@@ -4,7 +4,8 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertInnArgs} from "../levelArgs";
 import {game} from "../igua/game";
 import {progress} from "../igua/progress";
-import {Lazy, Sleepy} from "../gameObjects/npcMods";
+import {Sleepy} from "../igua/puppet/mods/sleepy";
+import {Lazy} from "../igua/puppet/mods/lazy";
 
 export function DesertInn()
 {

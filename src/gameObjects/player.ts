@@ -3,8 +3,8 @@ import {
     CharacterBody, CharacterCrest, CharacterFoot,
     CharacterHead, CharacterMouthV, CharacterPupils, CharacterWhites
 } from "../textures";
-import {iguanaPuppet} from "../igua/iguanaPuppet";
-import {iguanaEyes} from "../igua/iguanaEyes";
+import {iguanaPuppet} from "../igua/puppet/iguanaPuppet";
+import {iguanaEyes} from "../igua/puppet/eyes";
 import {
     CharacterHurt, CharacterHurtDefense
 } from "../sounds";
@@ -12,7 +12,7 @@ import {playerCharacterKey as playerKey} from "../igua/playerCharacterKey";
 import {merge} from "../utils/merge";
 import {progress} from "../igua/progress";
 import {gotoDeathScreen} from "../igua/gotoDeathScreen";
-import {Sleepy} from "./npcMods";
+import {Sleepy} from "../igua/puppet/mods/sleepy";
 
 function playerPuppet()
 {

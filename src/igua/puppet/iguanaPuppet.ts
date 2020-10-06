@@ -1,11 +1,11 @@
 import {Container, DisplayObject} from "pixi.js";
-import {approachLinear, lerp} from "../utils/math";
-import {IguanaEyes} from "./iguanaEyes";
-import {IguanaBlink} from "../sounds";
-import {game} from "./game";
-import {merge} from "../utils/merge";
-import {IguanaEngine, makeIguanaEngine} from "./puppet/makeIguanaEngine";
-import {NpcMod} from "../gameObjects/npcMods";
+import {approachLinear, lerp} from "../../utils/math";
+import {IguanaEyes} from "./eyes";
+import {IguanaBlink} from "../../sounds";
+import {game} from "../game";
+import {merge} from "../../utils/merge";
+import {IguanaPuppetEngine, makeIguanaPuppetEngine} from "./engine";
+import {makeIguanaMods} from "./mods";
 
 interface IguanaPuppetArgs
 {
@@ -21,13 +21,14 @@ interface IguanaPuppetArgs
 
 IguanaBlink.volume(0.06);
 
-export type IguanaPuppet = IguanaPuppetNoEngine & { engine: IguanaEngine, mods: IguanaMods };
+export type IguanaPuppet = IguanaPuppetNoEngine & { engine: IguanaPuppetEngine, mods: IguanaMods };
 export type IguanaPuppetNoEngine = ReturnType<typeof iguanaPuppetNoEngine>;
+type IguanaMods = ReturnType<typeof makeIguanaMods>;
 
 export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
 {
     const puppetNoEngine = iguanaPuppetNoEngine(args);
-    return merge(puppetNoEngine, { engine: makeIguanaEngine(puppetNoEngine), mods: makeIguanaMods(puppetNoEngine as any) });
+    return merge(puppetNoEngine, { engine: makeIguanaPuppetEngine(puppetNoEngine), mods: makeIguanaMods(puppetNoEngine as any) });
 }
 
 function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
@@ -160,41 +161,4 @@ function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
     player.withStep(puppetStep);
 
     return player;
-}
-
-type IguanaMods = ReturnType<typeof makeIguanaMods>;
-
-function makeIguanaMods(npc: IguanaPuppet)
-{
-    const currentMods = {} as any;
-
-    return {
-        has(mod: NpcMod)
-        {
-            return !!currentMods[mod as any];
-        },
-        add(mod: NpcMod)
-        {
-            if (this.has(mod))
-                this.remove(mod);
-
-            const displayObject = mod(npc);
-            currentMods[mod as any] = displayObject;
-            npc.addChild(displayObject);
-        },
-        remove(mod: NpcMod)
-        {
-            if (!this.has(mod))
-                return;
-            currentMods[mod as any]?.destroy();
-            currentMods[mod as any] = null;
-        },
-        toggle(mod: NpcMod)
-        {
-            if (this.has(mod))
-                this.remove(mod);
-            else
-                this.add(mod);
-        }
-    }
 }
