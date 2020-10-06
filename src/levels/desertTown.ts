@@ -8,9 +8,9 @@ import {CrateWooden} from "../textures";
 import {isOnScreen} from "../igua/isOnScreen";
 import { CratePickup, CratePlace } from "../sounds";
 import {progress} from "../igua/progress";
-import {Sleepy} from "../gameObjects/npcMods";
 import {npc} from "../gameObjects/npc";
 import {add} from "../utils/vector";
+import {Sleepy} from "../igua/puppet/mods/sleepy";
 
 function getDesertTownLevel()
 {

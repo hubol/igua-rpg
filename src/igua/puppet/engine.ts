@@ -1,4 +1,4 @@
-import {IguanaPuppetNoEngine} from "../iguanaPuppet";
+import {IguanaPuppetNoEngine} from "./iguanaPuppet";
 import {game} from "../game";
 import {push} from "../../gameObjects/walls";
 import {
@@ -16,9 +16,9 @@ CharacterStep2.volume(.4);
 CharacterStep3.volume(.4);
 CharacterStep4.volume(.4);
 
-export type IguanaEngine = ReturnType<typeof makeIguanaEngine>;
+export type IguanaPuppetEngine = ReturnType<typeof makeIguanaPuppetEngine>;
 
-export function makeIguanaEngine(puppet: IguanaPuppetNoEngine)
+export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
 {
     let pedometer = 0;
     
