@@ -123,17 +123,6 @@ layerName: "BackgroundDecals",
 texture: PotteryOrange
 }),
 PotteryOrangeDamaged_1: resolveDecalGameObject({
-    x: 40,
-y: 64,
-originX: 0.5,
-originY: 1,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "BackgroundDecals",
-texture: PotteryOrangeDamaged
-}),
-PotteryOrangeDamaged_2: resolveDecalGameObject({
     x: 64,
 y: 400,
 originX: 0.5,
@@ -221,7 +210,7 @@ PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":80,"y":320,
 // @ts-ignore
 PipeLeftEnd_2: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":80,"y":320,"flippedX":false,"flippedY":false,"uid":"63428932"}),
 // @ts-ignore
-SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":24,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599"}),
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":24,"y":32,"width":64,"height":48,"flippedX":false,"flippedY":true,"uid":"55845599"}),
 // @ts-ignore
 SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":80,"y":400,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599"}),
 // @ts-ignore
