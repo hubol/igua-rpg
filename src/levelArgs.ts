@@ -21,8 +21,57 @@ import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
 import { resolveValuableBlue } from "./gameObjects/valuable";
+import { CracksA } from "./textures";
 import { PotteryOrangeDamaged } from "./textures";
 import { PotteryOrange } from "./textures";
+
+export const DesertInnArgs = {
+    width: 320,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    CracksA: resolveDecalGameObject({
+    x: 56,
+y: 64,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+CracksA_1: resolveDecalGameObject({
+    x: 232,
+y: 168,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: -1.5707963267948966,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":32,"y":128,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"DesertTown","checkpointName":"FromInn","name":""}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":160,"width":320,"height":96,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":0,"width":16,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":16,"y":0,"width":304,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+Player: {"type":"Player","x":80,"y":160,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true},
+// @ts-ignore
+Innkeeper: resolveNpc({"type":"NpcIguana","x":160,"y":160,"flippedX":true,"flippedY":false,"uid":"26367058","name":"Innkeeper","style":3}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":16,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599"}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":280,"y":32,"width":40,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268"}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":176,"y":32,"width":104,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435"})
+};
+}
+};
 
 export const DesertOracleArgs = {
     width: 256,
@@ -94,6 +143,39 @@ scaleY: 1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: PotteryOrangeDamaged
+}),
+CracksA: resolveDecalGameObject({
+    x: 88,
+y: 48,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+CracksA_1: resolveDecalGameObject({
+    x: 32,
+y: 304,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+CracksA_2: resolveDecalGameObject({
+    x: 240,
+y: 480,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
 }),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":-16,"width":256,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268"}),
@@ -708,9 +790,10 @@ DropCrateAnchor: {"type":"Anchor","x":1384,"y":280,"flippedX":false,"flippedY":f
 // @ts-ignore
 DropCrateRegion: resolveRegion({"type":"Region","x":1376,"y":288,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607","name":"DropCrateRegion"}),
 // @ts-ignore
-InnDoor: resolveDoor({"type":"Door","x":568,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"InnDoor"}),
+InnDoor: resolveDoor({"type":"Door","x":568,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"DesertInn","checkpointName":"","name":"InnDoor"}),
 // @ts-ignore
-BarDoor: resolveDoor({"type":"Door","x":424,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"BarDoor"})
+BarDoor: resolveDoor({"type":"Door","x":424,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"BarDoor"}),
+FromInn: {"type":"Checkpoint","x":552,"y":240,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromInn","faceRight":false}
 };
 }
 };
