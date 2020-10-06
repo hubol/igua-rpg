@@ -28,7 +28,7 @@ function door(vector: Vector, levelName: string, checkpointName: string)
                             level.gotoSync(sprite.levelName);
                         });
 
-                game.cutscenePlayer.playCutscene(async () => await show("The door is locked."));
+                game.cutscenePlayer.playCutscene(async p => await p.show("The door is locked."));
             }
         });
     return game.gameObjectStage.addChild(sprite);
