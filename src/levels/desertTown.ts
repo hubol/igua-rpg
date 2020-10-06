@@ -32,7 +32,6 @@ export function DesertTown()
     level.LeftHouse.tint = 0xA0C0C0;
     level.RightHouseDoor.locked = true;
     level.BarDoor.locked = true;
-    level.InnDoor.locked = true;
 
     if (!progress.flags.heardIntroduction)
     {

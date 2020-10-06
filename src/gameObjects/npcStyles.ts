@@ -14,9 +14,14 @@ import {
     NpcStrangeBody,
     NpcPinkFoot,
     NpcPinkFootRear,
-    NpcPupilsCartoonish
+    NpcPupilsCartoonish,
+    NpcShortTailBody,
+    NpcYellowFoot,
+    NpcYellowFootRear,
+    NpcPupilsWeird
 } from "../textures";
 import {IguanaEyes, iguanaEyes} from "../igua/iguanaEyes";
+import {add, Vector} from "../utils/vector";
 
 const npcStyles: Array<ReturnType<typeof getNpcStyle>> = [];
 
@@ -87,6 +92,32 @@ npcStyles[2] = npcStyle(args => {
     args.eyelidColor = 0xF0E050;
 });
 
+npcStyles[3] = npcStyle(args => {
+    args.body = Sprite.from(NpcShortTailBody);
+    args.body.pivot.y -= 1;
+    args.body.tint = 0x80D080;
+
+    args.frontRightFoot = Sprite.from(NpcYellowFoot);
+
+    args.backRightFoot = Sprite.from(NpcYellowFootRear);
+    args.backRightFoot.pivot.y = 1;
+
+    args.crest = Sprite.from(NpcCurvedCrest);
+    args.crest.scale.y *= -1;
+    args.crest.pivot.set(-3, -4);
+    args.crest.tint = 0x4080F0;
+
+    args.headOffset.y += 2;
+
+    args.headSprite.tint = 0xF0D080;
+    args.mouthSprite.tint = 0x4080F0;
+
+    args.pupils = Sprite.from(NpcPupilsWeird);
+    args.pupils.pivot.y -= 1;
+    args.pupils.tint = 0x4080F0;
+    args.eyelidColor = 0xC0B070;
+});
+
 function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
 {
     return () => {
@@ -97,7 +128,7 @@ function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
         const mouthSprite = Sprite.from(CharacterMouthV);
         mouthSprite.pivot.set(-10, -11);
 
-        const args = {headSprite: Sprite.from(CharacterHead), mouthSprite, pupils, eyeShape: Sprite.from(CharacterWhites)} as unknown as ConfigureNpcStyleArgs;
+        const args = {headSprite: Sprite.from(CharacterHead), mouthSprite, pupils, eyeShape: Sprite.from(CharacterWhites), headOffset: { x: 0, y: 0 } } as unknown as ConfigureNpcStyleArgs;
         configure(args);
 
         if (!args.frontLeftFoot)
@@ -121,8 +152,12 @@ function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
             container.addChild(args.headSprite, args.mouthSprite);
         }
 
+        add(args.head.pivot, args.headOffset);
+
         if (!args.eyes)
             args.eyes = iguanaEyes(args as any);
+
+        add(args.eyes.pivot, args.headOffset);
 
         return iguanaPuppet(args as any);
     }
@@ -143,6 +178,7 @@ interface ConfigureNpcStyleArgs
     pupils: Sprite;
     eyeShape: Container;
     eyelidColor?: number;
+    headOffset: Vector;
 }
 
 export function getNpcStyle(index: number): () => IguanaPuppet

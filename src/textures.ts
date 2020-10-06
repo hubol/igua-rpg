@@ -15,6 +15,7 @@ export let CharacterMouthV: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterPupils: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterWhites: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CloudLong: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let CracksA: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrateWooden: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrudeHouseB: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrudeHouseC: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -33,10 +34,14 @@ export let NpcPinkFootRear: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcPinkFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcPupilsAngry: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcPupilsCartoonish: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcPupilsWeird: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcRedFootRear: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcRedFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcShortTailBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcStrangeBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let NpcWeirdBody: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcYellowFootRear: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let NpcYellowFoot: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OpenDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let OrangeValuable: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Pipe: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -94,6 +99,9 @@ export function loadTexturesAsync()
     const CloudLongPath = require("./images/cloud long.png");
     loader.add(CloudLongPath); 
 
+    const CracksAPath = require("./images/cracks a.png");
+    loader.add(CracksAPath); 
+
     const CrateWoodenPath = require("./images/crate wooden.png");
     loader.add(CrateWoodenPath); 
 
@@ -148,17 +156,29 @@ export function loadTexturesAsync()
     const NpcPupilsCartoonishPath = require("./images/npc/pupils cartoonish.png");
     loader.add(NpcPupilsCartoonishPath); 
 
+    const NpcPupilsWeirdPath = require("./images/npc/pupils weird.png");
+    loader.add(NpcPupilsWeirdPath); 
+
     const NpcRedFootRearPath = require("./images/npc/red foot rear.png");
     loader.add(NpcRedFootRearPath); 
 
     const NpcRedFootPath = require("./images/npc/red foot.png");
     loader.add(NpcRedFootPath); 
 
+    const NpcShortTailBodyPath = require("./images/npc/short tail body.png");
+    loader.add(NpcShortTailBodyPath); 
+
     const NpcStrangeBodyPath = require("./images/npc/strange body.png");
     loader.add(NpcStrangeBodyPath); 
 
     const NpcWeirdBodyPath = require("./images/npc/weird body.png");
     loader.add(NpcWeirdBodyPath); 
+
+    const NpcYellowFootRearPath = require("./images/npc/yellow foot rear.png");
+    loader.add(NpcYellowFootRearPath); 
+
+    const NpcYellowFootPath = require("./images/npc/yellow foot.png");
+    loader.add(NpcYellowFootPath); 
 
     const OpenDoorPath = require("./images/open door.png");
     loader.add(OpenDoorPath); 
@@ -213,6 +233,7 @@ export function loadTexturesAsync()
             CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
             CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
+            CracksA = resources[CracksAPath]?.texture as PIXI.Texture;
             CrateWooden = resources[CrateWoodenPath]?.texture as PIXI.Texture;
             CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;
             CrudeHouseC = resources[CrudeHouseCPath]?.texture as PIXI.Texture;
@@ -231,10 +252,14 @@ export function loadTexturesAsync()
             NpcPinkFoot = resources[NpcPinkFootPath]?.texture as PIXI.Texture;
             NpcPupilsAngry = resources[NpcPupilsAngryPath]?.texture as PIXI.Texture;
             NpcPupilsCartoonish = resources[NpcPupilsCartoonishPath]?.texture as PIXI.Texture;
+            NpcPupilsWeird = resources[NpcPupilsWeirdPath]?.texture as PIXI.Texture;
             NpcRedFootRear = resources[NpcRedFootRearPath]?.texture as PIXI.Texture;
             NpcRedFoot = resources[NpcRedFootPath]?.texture as PIXI.Texture;
+            NpcShortTailBody = resources[NpcShortTailBodyPath]?.texture as PIXI.Texture;
             NpcStrangeBody = resources[NpcStrangeBodyPath]?.texture as PIXI.Texture;
             NpcWeirdBody = resources[NpcWeirdBodyPath]?.texture as PIXI.Texture;
+            NpcYellowFootRear = resources[NpcYellowFootRearPath]?.texture as PIXI.Texture;
+            NpcYellowFoot = resources[NpcYellowFootPath]?.texture as PIXI.Texture;
             OpenDoor = resources[OpenDoorPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
             Pipe = resources[PipePath]?.texture as PIXI.Texture;

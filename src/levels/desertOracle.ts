@@ -11,6 +11,8 @@ export function DesertOracle()
     game.backgroundColor = 0x609090;
     game.terrainColor = 0x204040;
 
+    [level.CracksA, level.CracksA_1, level.CracksA_2].forEach(x => x.tint = 0x406060);
+
     let talkedAlready = false;
 
     level.Oracle.cutscene = async p => {
