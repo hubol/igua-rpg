@@ -4,6 +4,8 @@ import {IguanaEyes} from "./iguanaEyes";
 import {IguanaBlink} from "../sounds";
 import {game} from "./game";
 import {merge} from "../utils/merge";
+import {IguanaEngine, makeIguanaEngine} from "./puppet/makeIguanaEngine";
+import {NpcMod} from "../gameObjects/npcMods";
 
 interface IguanaPuppetArgs
 {
@@ -19,9 +21,16 @@ interface IguanaPuppetArgs
 
 IguanaBlink.volume(0.06);
 
-export type IguanaPuppet = ReturnType<typeof iguanaPuppet>;
+export type IguanaPuppet = IguanaPuppetNoEngine & { engine: IguanaEngine, mods: IguanaMods };
+export type IguanaPuppetNoEngine = ReturnType<typeof iguanaPuppetNoEngine>;
 
-export function iguanaPuppet(args: IguanaPuppetArgs)
+export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
+{
+    const puppetNoEngine = iguanaPuppetNoEngine(args);
+    return merge(puppetNoEngine, { engine: makeIguanaEngine(puppetNoEngine), mods: makeIguanaMods(puppetNoEngine as any) });
+}
+
+function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
 {
     args.body.pivot.y -= 5;
 
@@ -58,7 +67,17 @@ export function iguanaPuppet(args: IguanaPuppetArgs)
         vspeed: 0,
         canBlink: true,
         isClosingEyes: false,
-        closedEyesUnit: 0
+        closedEyesUnit: 0,
+        duckImmediately()
+        {
+            player.isDucking = true;
+            player.duckUnit = 1;
+        },
+        closeEyesImmediately()
+        {
+            player.isClosingEyes = true;
+            player.closedEyesUnit = 1;
+        }
     });
     player.addChild(args.backLeftFoot, args.frontLeftFoot, body, args.backRightFoot, args.frontRightFoot);
     player.pivot.set(11, 17);
@@ -141,4 +160,41 @@ export function iguanaPuppet(args: IguanaPuppetArgs)
     player.withStep(puppetStep);
 
     return player;
+}
+
+type IguanaMods = ReturnType<typeof makeIguanaMods>;
+
+function makeIguanaMods(npc: IguanaPuppet)
+{
+    const currentMods = {} as any;
+
+    return {
+        has(mod: NpcMod)
+        {
+            return !!currentMods[mod as any];
+        },
+        add(mod: NpcMod)
+        {
+            if (this.has(mod))
+                this.remove(mod);
+
+            const displayObject = mod(npc);
+            currentMods[mod as any] = displayObject;
+            npc.addChild(displayObject);
+        },
+        remove(mod: NpcMod)
+        {
+            if (!this.has(mod))
+                return;
+            currentMods[mod as any]?.destroy();
+            currentMods[mod as any] = null;
+        },
+        toggle(mod: NpcMod)
+        {
+            if (this.has(mod))
+                this.remove(mod);
+            else
+                this.add(mod);
+        }
+    }
 }

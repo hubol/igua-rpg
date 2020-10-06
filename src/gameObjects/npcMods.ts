@@ -1,10 +1,10 @@
 import {BitmapText, Container, DisplayObject} from "pixi.js";
-import {Npc} from "./npc";
 import {AcrobatixFont} from "../fonts";
 import {game} from "../igua/game";
 import {distance} from "../utils/vector";
+import {IguanaPuppet} from "../igua/iguanaPuppet";
 
-export type NpcMod = (npc: Npc) => DisplayObject;
+export type NpcMod = (npc: IguanaPuppet) => DisplayObject;
 
 export const Sleepy: NpcMod = puppet => {
     puppet.canBlink = false;

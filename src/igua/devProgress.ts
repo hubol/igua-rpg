@@ -4,5 +4,6 @@ export function devProgress()
 {
     progress.flags.heardIntroduction = true;
     progress.flags.stackedAllCrates = true;
-    progress.levelName = "DesertOracle";
+    progress.valuables = 100;
+    progress.levelName = "DesertInn";
 }

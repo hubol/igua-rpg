@@ -3,9 +3,7 @@ import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {Cutscene} from "../cutscene/cutscene";
 import {merge} from "../utils/merge";
 import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
-import {makeIguanaEngine} from "../igua/puppet/makeIguanaEngine";
 import {rejection} from "../utils/rejection";
-import {NpcMod} from "./npcMods";
 import {getNpcStyle} from "./npcStyles";
 
 export const resolveNpc = resolveGameObject("NpcIguana", e => {
@@ -15,41 +13,6 @@ export const resolveNpc = resolveGameObject("NpcIguana", e => {
     return n;
 });
 
-function makeNpcMods(npc: Npc)
-{
-    const currentMods = {} as any;
-
-    return {
-        has(mod: NpcMod)
-        {
-            return !!currentMods[mod as any];
-        },
-        add(mod: NpcMod)
-        {
-            if (this.has(mod))
-                this.remove(mod);
-
-            const displayObject = mod(npc);
-            currentMods[mod as any] = displayObject;
-            npc.addChild(displayObject);
-        },
-        remove(mod: NpcMod)
-        {
-            if (!this.has(mod))
-                return;
-            currentMods[mod as any]?.destroy();
-            currentMods[mod as any] = null;
-        },
-        toggle(mod: NpcMod)
-        {
-            if (this.has(mod))
-                this.remove(mod);
-            else
-                this.add(mod);
-        }
-    }
-}
-
 function makeCutscenePuppet(style: number)
 {
     const puppet = getNpcStyle(style)();
@@ -58,27 +21,13 @@ function makeCutscenePuppet(style: number)
         get isCutscenePlaying() {
             return this.cutscene && this.cutscene === game.cutscenePlayer.currentCutscene;
         },
-        canWalkWhileCutsceneIsPlaying: false,
-        engine: makeIguanaEngine(puppet),
-        duckImmediately()
-        {
-            puppet.isDucking = true;
-            puppet.duckUnit = 1;
-        },
-        closeEyesImmediately()
-        {
-            puppet.isClosingEyes = true;
-            puppet.closedEyesUnit = 1;
-        }
+        canWalkWhileCutsceneIsPlaying: false
     });
 }
 
-export type Npc = ReturnType<typeof makeCutscenePuppet>;
-
 export function npc(x, y, style: number = 0)
 {
-    const cutscenePuppet = makeCutscenePuppet(style);
-    const puppet = merge(cutscenePuppet, { mods: makeNpcMods(cutscenePuppet) });
+    const puppet = makeCutscenePuppet(style);
     puppet.x = x;
     puppet.y = y;
 
