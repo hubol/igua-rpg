@@ -12,7 +12,7 @@ import {playerCharacterKey as playerKey} from "../igua/playerCharacterKey";
 import {merge} from "../utils/merge";
 import {progress} from "../igua/progress";
 import {gotoDeathScreen} from "../igua/gotoDeathScreen";
-import {makeIguanaEngine} from "../igua/puppet/makeIguanaEngine";
+import {Sleepy} from "./npcMods";
 
 function playerPuppet()
 {
@@ -90,7 +90,7 @@ export function player()
             }
         });
 
-    const engine = makeIguanaEngine(player);
+    const engine = player.engine;
 
     const step = () => {
         if (player.invulnerableFrameCount <= 0)
@@ -110,7 +110,7 @@ export function player()
             return;
         }
 
-        player.isDucking = playerKey.isDown("ArrowDown") && engine.coyote > 0;
+        player.isDucking = (playerKey.isDown("ArrowDown") && engine.coyote > 0) || player.mods.has(Sleepy);
 
         if (!player.isDucking)
         {

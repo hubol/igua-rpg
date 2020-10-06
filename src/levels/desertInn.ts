@@ -4,7 +4,7 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertInnArgs} from "../levelArgs";
 import {game} from "../igua/game";
 import {progress} from "../igua/progress";
-import {Lazy} from "../gameObjects/npcMods";
+import {Lazy, Sleepy} from "../gameObjects/npcMods";
 
 export function DesertInn()
 {
@@ -22,10 +22,12 @@ export function DesertInn()
         {
             if (progress.valuables >= 10)
             {
-                // TODO lol puppet needs to support mods
                 progress.valuables -= 10;
                 await p.show("Thanks for resting here.");
+                game.player.mods.add(Sleepy);
+                await p.sleep(4_000);
                 await p.show("Full health restored!");
+                game.player.mods.remove(Sleepy);
                 progress.health = progress.maxHealth;
             }
             else
