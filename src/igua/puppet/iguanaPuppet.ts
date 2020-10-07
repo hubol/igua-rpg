@@ -4,7 +4,7 @@ import {IguanaEyes} from "./eyes";
 import {IguanaBlink} from "../../sounds";
 import {game} from "../game";
 import {merge} from "../../utils/merge";
-import {IguanaPuppetEngine, makeIguanaPuppetEngine} from "./engine";
+import {makeIguanaPuppetEngine} from "./engine";
 import {makeIguanaMods} from "./mods";
 
 interface IguanaPuppetArgs
@@ -21,14 +21,14 @@ interface IguanaPuppetArgs
 
 IguanaBlink.volume(0.06);
 
-export type IguanaPuppet = IguanaPuppetNoEngine & { engine: IguanaPuppetEngine, mods: IguanaMods };
+export type IguanaPuppet = ReturnType<typeof iguanaPuppet>;
 export type IguanaPuppetNoEngine = ReturnType<typeof iguanaPuppetNoEngine>;
-type IguanaMods = ReturnType<typeof makeIguanaMods>;
 
-export function iguanaPuppet(args: IguanaPuppetArgs): IguanaPuppet
+export function iguanaPuppet(args: IguanaPuppetArgs)
 {
     const puppetNoEngine = iguanaPuppetNoEngine(args);
-    return merge(puppetNoEngine, { engine: makeIguanaPuppetEngine(puppetNoEngine), mods: makeIguanaMods(puppetNoEngine as any) });
+    const engine = makeIguanaPuppetEngine(puppetNoEngine);
+    return merge(puppetNoEngine, { engine, mods: makeIguanaMods(puppetNoEngine), walkTo: engine.walkTo });
 }
 
 function iguanaPuppetNoEngine(args: IguanaPuppetArgs)

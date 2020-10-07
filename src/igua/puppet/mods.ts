@@ -1,9 +1,9 @@
-import {DisplayObject} from "pixi.js";
+import {Container, DisplayObject} from "pixi.js";
 import {IguanaPuppet} from "./iguanaPuppet";
 
 export type IguanaPuppetMod = (puppet: IguanaPuppet) => DisplayObject;
 
-export function makeIguanaMods(npc: IguanaPuppet)
+export function makeIguanaMods(npc: Container)
 {
     const currentMods = {} as any;
 
@@ -15,7 +15,7 @@ export function makeIguanaMods(npc: IguanaPuppet)
             if (this.has(mod))
                 this.remove(mod);
 
-            const displayObject = mod(npc);
+            const displayObject = mod(npc as any);
             currentMods[mod as any] = displayObject;
             npc.addChild(displayObject);
         },
