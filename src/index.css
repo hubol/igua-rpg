@@ -1,3 +1,7 @@
+html {
+    font-family: sans-serif;
+}
+
 #gameCanvas {
     /* see: http://jsfiddle.net/namuol/VAXrL/1459/ */
     image-rendering: -moz-crisp-edges;
@@ -8,9 +12,9 @@
 
 #startButton {
     background-color: #C0C0C0;
+    color: black;
     appearance: unset;
     display: inline-block;
-    font-family: sans-serif;
     font-weight: bold;
     max-width: 80vw;
     font-size: 8vmin;
@@ -44,4 +48,12 @@ body {
 
 html {
     height: 96%;
+}
+
+noscript {
+    font-size: 4vw;
+    font-weight: bold;
+    background-color: #d05050;
+    color: #f0f0d0;
+    padding: .1em .2em;
 }
