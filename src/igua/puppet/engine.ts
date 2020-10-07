@@ -10,27 +10,71 @@ import {
     CharacterStep4
 } from "../../sounds";
 import {isOnScreen} from "../isOnScreen";
+import {rejection} from "../../utils/rejection";
 
 CharacterStep.volume(.4);
 CharacterStep2.volume(.4);
 CharacterStep3.volume(.4);
 CharacterStep4.volume(.4);
 
-export type IguanaPuppetEngine = ReturnType<typeof makeIguanaPuppetEngine>;
-
 export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
 {
+    interface WalkPromise
+    {
+        x: number,
+        resolve(),
+        reject()
+    }
+
+    const next: WalkPromise[] = [];
+    let current: WalkPromise | null;
+
+    puppet.on("removed", () => {
+        current?.reject();
+        next.forEach(x => x.reject());
+    });
+
     let pedometer = 0;
-    
+
     return {
         isOnGround: false,
         coyote: 0,
         on: true,
         walkSpeed: 2.5,
+        walkTo(x: number)
+        {
+            return new Promise<void>((resolve, reject) =>
+                next.push({ x, resolve, reject: () => reject(rejection("walkTo Promise rejected due to iguana puppet DisplayObject removal")) }))
+        },
         step()
         {
             if (!this.on)
                 return;
+
+            while (true)
+            {
+                if (current)
+                {
+                    const difference = puppet.x - current.x;
+                    const distance = Math.abs(difference);
+                    if (distance === 0 || (distance < 5 && Math.sign(difference) === Math.sign(puppet.hspeed)))
+                    {
+                        puppet.hspeed = 0;
+                        current.resolve();
+                        current = null;
+                    }
+                    else
+                    {
+                        puppet.hspeed = -Math.sign(difference) * this.walkSpeed;
+                        break;
+                    }
+                }
+
+                if (next.length === 0)
+                    break;
+
+                current = next.shift() as WalkPromise;
+            }
 
             if (puppet.isDucking)
                 puppet.hspeed *= 0.9;

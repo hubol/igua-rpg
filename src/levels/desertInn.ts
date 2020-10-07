@@ -25,11 +25,14 @@ export function DesertInn()
             {
                 progress.valuables -= 10;
                 await p.show("Thanks for resting here.");
+                await game.player.walkTo(level.Innkeeper.x + 64);
+                await p.sleep(250);
                 game.player.mods.add(Sleepy);
-                await p.sleep(4_000);
+                await Promise.all([
+                    p.wait(() => Math.min(progress.health += 0.25, progress.maxHealth) >= progress.maxHealth),
+                    p.sleep(4_000) ]);
                 await p.show("Full health restored!");
                 game.player.mods.remove(Sleepy);
-                progress.health = progress.maxHealth;
             }
             else
                 await p.show("You dont have enough money.");
