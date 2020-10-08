@@ -87,7 +87,9 @@
       "nodeDisplay": 0,
       "nodeGhost": true,
       "tags": ["Terrain"],
-      "values": []
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ]
     },
     {
       "exportID": "55824435",

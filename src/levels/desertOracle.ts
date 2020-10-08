@@ -11,6 +11,7 @@ export function DesertOracle()
     game.backgroundColor = 0x609090;
     game.terrainColor = 0x204040;
 
+    level.GlowingCircle.tint = 0xF0F0B0;
     [level.CracksA, level.CracksA_1, level.CracksA_2].forEach(x => x.tint = 0x406060);
 
     let talkedAlready = false;

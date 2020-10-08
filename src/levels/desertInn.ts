@@ -14,8 +14,8 @@ export function DesertInn()
     game.backgroundColor = 0xC08070;
     game.terrainColor = 0x702010;
 
-    level.CracksA.tint = 0xA05040;
-    level.CracksA_1.tint = level.CracksA.tint;
+    level.GlowingCircle.tint = 0xF0F0B0;
+    [ level.CracksA, level.CracksA_1, level.CracksA_2 ].forEach(x => x.tint = 0xA05040);
 
     level.Innkeeper.mods.add(Lazy);
     level.Innkeeper.cutscene = async p => {
@@ -25,7 +25,13 @@ export function DesertInn()
             {
                 progress.valuables -= 10;
                 await p.show("Thanks for resting here.");
-                await game.player.walkTo(level.Innkeeper.x + 64);
+                if (!level.RoomWall.destroyed)
+                {
+                    await p.move(level.RoomWall).to(level.RoomWall.x, level.RoomWall.y - level.RoomWall.height).over(1_000);
+                    level.RoomWall.destroy();
+                }
+
+                await game.player.walkTo(level.SleepHere.x);
                 await p.sleep(250);
                 game.player.mods.add(Sleepy);
                 await Promise.all([
