@@ -2,7 +2,7 @@ import {game} from "../igua/game";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {Cutscene} from "../cutscene/cutscene";
 import {merge} from "../utils/merge";
-import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
+import {isPlayerInteractingWith} from "../igua/logic/isPlayerInteractingWith";
 import {getNpcStyle} from "./npcStyles";
 
 export const resolveNpc = resolveGameObject("NpcIguana", e => {

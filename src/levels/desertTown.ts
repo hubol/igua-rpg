@@ -5,7 +5,7 @@ import {Country, Oracle} from "../musics";
 import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 import {CrateWooden} from "../textures";
-import {isOnScreen} from "../igua/isOnScreen";
+import {isOnScreen} from "../igua/logic/isOnScreen";
 import {CollectGeneric, CratePickup, CratePlace} from "../sounds";
 import {progress} from "../igua/progress";
 import {npc} from "../gameObjects/npc";

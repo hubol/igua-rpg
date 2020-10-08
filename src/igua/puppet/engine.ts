@@ -9,7 +9,7 @@ import {
     CharacterStep3,
     CharacterStep4
 } from "../../sounds";
-import {isOnScreen} from "../isOnScreen";
+import {isOnScreen} from "../logic/isOnScreen";
 import {rejection} from "../../utils/rejection";
 
 CharacterStep.volume(.4);

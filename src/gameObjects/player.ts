@@ -8,7 +8,7 @@ import {iguanaEyes} from "../igua/puppet/eyes";
 import {
     CharacterHurt, CharacterHurtDefense
 } from "../sounds";
-import {playerCharacterKey as playerKey} from "../igua/playerCharacterKey";
+import {playerCharacterKey as playerKey} from "../igua/logic/playerCharacterKey";
 import {merge} from "../utils/merge";
 import {progress} from "../igua/progress";
 import {gotoDeathScreen} from "../igua/gotoDeathScreen";
