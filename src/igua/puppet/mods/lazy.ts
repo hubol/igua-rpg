@@ -1,6 +1,6 @@
 import {Container} from "pixi.js";
 import {game} from "../../game";
-import {distance} from "../../../utils/vector";
+import {distance} from "../../../utils/math/vector";
 import {IguanaPuppetMod} from "../mods";
 
 export const Lazy: IguanaPuppetMod = puppet => {

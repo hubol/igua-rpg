@@ -1,5 +1,5 @@
 import {Graphics, SCALE_MODES, SimpleMesh, Sprite} from "pixi.js";
-import {distance, dot, normalize, perpendicular, Vector} from "../utils/vector";
+import {distance, dot, normalize, perpendicular, Vector} from "../utils/math/vector";
 import {LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
 import {game} from "../igua/game";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";

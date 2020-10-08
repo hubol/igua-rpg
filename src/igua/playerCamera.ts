@@ -1,5 +1,5 @@
 import {game} from "./game";
-import {distance, lerp} from "../utils/vector";
+import {distance, lerp} from "../utils/math/vector";
 
 let target = { x: 0, y: 0 };
 

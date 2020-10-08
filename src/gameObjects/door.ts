@@ -1,4 +1,4 @@
-import {Vector} from "../utils/vector";
+import {Vector} from "../utils/math/vector";
 import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 import {LockedDoor, OpenDoor} from "../textures";
