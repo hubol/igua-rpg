@@ -13,7 +13,7 @@ import {createApplication} from "./utils/createApplication";
 import {upscaleGameCanvas} from "./igua/upscaleGameCanvas";
 import {devMute} from "./igua/devMute";
 import {handleIguaPromiseRejection} from "./utils/rejection";
-import {make2dCanvasSink} from "./utils/make2dCanvasSink";
+import {make2dCanvasSink} from "./utils/browser/make2dCanvasSink";
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 const application = createApplication({width: 256, height: 256, targetFps: 60, showCursor: false});
