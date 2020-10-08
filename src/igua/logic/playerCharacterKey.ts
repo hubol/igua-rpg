@@ -1,5 +1,5 @@
-import {Key} from "../utils/browser/key";
-import {game} from "./game";
+import {Key} from "../../utils/browser/key";
+import {game} from "../game";
 
 function playerCharacterHasControl()
 {

@@ -1,6 +1,6 @@
-import {Vector} from "../utils/math/vector";
-import {game} from "./game";
-import {areRectanglesOverlapping, normalizeRectangle, Rectangle, rectangleContainsVector} from "../utils/math/rectangle";
+import {Vector} from "../../utils/math/vector";
+import {game} from "../game";
+import {areRectanglesOverlapping, normalizeRectangle, Rectangle, rectangleContainsVector} from "../../utils/math/rectangle";
 
 let tempRectangle = { } as Rectangle;
 

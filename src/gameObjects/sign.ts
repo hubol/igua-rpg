@@ -2,7 +2,7 @@ import { Vector } from "../utils/math/vector";
 import {BitmapText, Container, Sprite} from "pixi.js";
 import {Sign} from "../textures";
 import {AtomixFont} from "../fonts";
-import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
+import {isPlayerInteractingWith} from "../igua/logic/isPlayerInteractingWith";
 import {game} from "../igua/game";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {Cutscene} from "../cutscene/cutscene";
