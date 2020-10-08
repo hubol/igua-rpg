@@ -1,4 +1,4 @@
-import {subimageTextures} from "../utils/simpleSpritesheet";
+import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {Burst, Burst2} from "../textures";
 import {game} from "../igua/game";
 import {Sprite} from "pixi.js";

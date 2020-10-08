@@ -7,7 +7,7 @@ import {CutscenePlayer} from "../cutscene/cutscene";
 import {createDefaultHud} from "./createDefaultHud";
 import {level} from "./level/level";
 import {getInitialProgress, progress, setProgress} from "./progress";
-import {AsshatApplication} from "../utils/createApplication";
+import {AsshatApplication} from "../utils/pixi/createApplication";
 import {environment} from "./environment";
 import {devProgress} from "./devProgress";
 

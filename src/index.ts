@@ -9,7 +9,7 @@ import {
     publishGameObjectResolversIsRequested
 } from "../tools/write-levelargs/appOnly/publishGameObjectResolvers";
 import {environment} from "./igua/environment";
-import {createApplication} from "./utils/createApplication";
+import {createApplication} from "./utils/pixi/createApplication";
 import {upscaleGameCanvas} from "./igua/upscaleGameCanvas";
 import {devMute} from "./igua/devMute";
 import {handleIguaPromiseRejection} from "./utils/rejection";
