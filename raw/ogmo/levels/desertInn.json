@@ -254,6 +254,17 @@
           "originX": 0.286,
           "originY": 0,
           "values": {"name": ""}
+        },
+        {
+          "x": 384,
+          "y": 0,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cobweb.png",
+          "originX": 1,
+          "originY": 0,
+          "values": {"name": ""}
         }
       ],
       "folder": "..\\..\\src\\images"

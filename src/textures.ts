@@ -15,6 +15,7 @@ export let CharacterMouthV: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterPupils: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CharacterWhites: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CloudLong: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let Cobweb: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CracksA: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrateWooden: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let CrudeHouseB: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -101,6 +102,9 @@ export function loadTexturesAsync()
 
     const CloudLongPath = require("./images/cloud long.png");
     loader.add(CloudLongPath); 
+
+    const CobwebPath = require("./images/cobweb.png");
+    loader.add(CobwebPath); 
 
     const CracksAPath = require("./images/cracks a.png");
     loader.add(CracksAPath); 
@@ -245,6 +249,7 @@ export function loadTexturesAsync()
             CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
             CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
+            Cobweb = resources[CobwebPath]?.texture as PIXI.Texture;
             CracksA = resources[CracksAPath]?.texture as PIXI.Texture;
             CrateWooden = resources[CrateWoodenPath]?.texture as PIXI.Texture;
             CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;

@@ -19,9 +19,11 @@ export function DesertInn()
     level.GlowingCircle.tint = 0xF0F0B0;
     [ level.CracksA, level.CracksA_1, level.CracksA_2 ].forEach(x => x.tint = 0xA05040);
 
-    level.KeyRed.withStep(() => {
-       level.KeyRed.angle = lerp(35, 55, (Math.sin(now.ms * 0.0025) + 1) / 2);
-    });
+    level.KeyRed
+        .withStep(() => {
+           level.KeyRed.angle = lerp(35, 55, (Math.sin(now.ms * 0.0025) + 1) / 2);
+        })
+        .asCollectible(progress.flags, "collectedInnKey");
 
     level.Innkeeper.mods.add(Lazy);
     level.Innkeeper.cutscene = async p => {

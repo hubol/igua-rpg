@@ -42,6 +42,11 @@ export const CharacterStep = new Howl({
     
 });
 
+export const CollectGeneric = new Howl({
+    src: [require("./sound/collect generic.ogg"), require("./sound/collect generic.mp3")],
+    
+});
+
 export const CollectValuableSmall = new Howl({
     src: [require("./sound/collect valuable small.ogg"), require("./sound/collect valuable small.mp3")],
     

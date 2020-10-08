@@ -7,6 +7,8 @@ import {CancellationToken} from "pissant";
 import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
 import {Container} from "pixi.js";
 import {IguaPromiseConfig} from "../cutscene/iguaPromiseConfig";
+import {PropertiesOf} from "./propertiesOf";
+import {CollectGeneric} from "../sounds";
 
 declare global {
     namespace PIXI {
@@ -19,6 +21,7 @@ declare global {
             withStep(step: () => void): this;
             withAsync(async: (p: PromiseLibrary) => Promise<unknown>): this;
             withInteraction(interaction: () => void): this;
+            asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>);
             at(vector: Vector): this;
             at(x: number, y: number): this;
             destroyed: boolean;
@@ -50,6 +53,19 @@ function doNowOrOnAdded<T extends PIXI.DisplayObject>(displayObject: T, onAdded:
     if (displayObject.parent)
         onAdded();
     return displayObject.on("added", onAdded);
+}
+
+PIXI.DisplayObject.prototype.asCollectible = function (object, key)
+{
+    return this.withStep(() => {
+        if (!object[key] && this.collides(game.player))
+        {
+            (object as any)[key] = true;
+            CollectGeneric.play();
+        }
+        if (object[key])
+           this.destroy();
+    });
 }
 
 PIXI.DisplayObject.prototype.withStep = function(step)

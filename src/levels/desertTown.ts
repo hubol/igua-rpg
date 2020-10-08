@@ -6,7 +6,7 @@ import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 import {CrateWooden} from "../textures";
 import {isOnScreen} from "../igua/isOnScreen";
-import { CratePickup, CratePlace } from "../sounds";
+import {CollectGeneric, CratePickup, CratePlace} from "../sounds";
 import {progress} from "../igua/progress";
 import {npc} from "../gameObjects/npc";
 import {add} from "../utils/vector";
@@ -118,6 +118,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
         {
             await p.show("Thank you for your help.");
             await p.show("All I have to show my appreciation is this old key.");
+            CollectGeneric.play();
             await p.show("Received the key.");
             progress.flags.thankedByCrateStacker = true;
         }
