@@ -1,4 +1,4 @@
-import {loadHowlAsync} from "../utils/loadHowls";
+import {loadHowlAsync} from "../utils/resources/loadHowls";
 import {wait} from "pissant";
 
 class Jukebox
