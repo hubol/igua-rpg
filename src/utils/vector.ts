@@ -1,4 +1,4 @@
-import {lerp as lerpNumber} from "./math";
+import {lerp as lerpNumber} from "./number";
 
 export interface Vector
 {
