@@ -4,7 +4,7 @@ import {stepPlayerCamera} from "./playerCamera";
 import {player} from "../gameObjects/player";
 import {advanceKeyListener, startKeyListener} from "../utils/browser/key";
 import {CutscenePlayer} from "../cutscene/cutscene";
-import {createDefaultHud} from "./createDefaultHud";
+import {hud} from "../gameObjects/hud";
 import {level} from "./level/level";
 import {getInitialProgress, progress, setProgress} from "./progress";
 import {AsshatApplication} from "../utils/pixi/createApplication";
@@ -85,7 +85,7 @@ export function startGame(application: AsshatApplication)
     recreatePlayer();
     game.ticker.add(stepPlayerCamera);
 
-    createDefaultHud();
+    hud();
 
     loadSavedProgress();
     level.gotoSync(progress.levelName);
