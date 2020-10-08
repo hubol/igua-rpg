@@ -25,6 +25,7 @@ import { GlowingCircle } from "./textures";
 import { CracksA } from "./textures";
 import { PotteryOrangeDamaged } from "./textures";
 import { PotteryOrange } from "./textures";
+import { Cobweb } from "./textures";
 import { KeyRed } from "./textures";
 import { Rope } from "./textures";
 
@@ -131,6 +132,17 @@ scaleY: 1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: KeyRed
+}),
+Cobweb: resolveDecalGameObject({
+    x: 384,
+y: 0,
+originX: 1,
+originY: 0,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Cobweb
 }),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":32,"y":128,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"DesertTown","checkpointName":"FromInn","name":""}),

@@ -4,5 +4,6 @@ export function getInitialFlags()
         heardIntroduction: false,
         stackedAllCrates: false,
         thankedByCrateStacker: false,
+        collectedInnKey: false
     };
 }
