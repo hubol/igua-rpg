@@ -32,4 +32,4 @@ Array.prototype.firstOrDefault = function () {
     return this[0];
 }
 
-export const noOneCares = 0;
+export default 0;

@@ -27,8 +27,7 @@ async function initialize()
 
     const howls = Object.values(require("./sounds")) as Howl[];
     await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
-    require("./utils/arrayExtensions");
-    require("./utils/pixiExtensions");
+    require("./utils/extensions/**/*.*");
     if (publishGameObjectResolversIsRequested())
         discoverAndPublishGameObjectResolvers();
     else
