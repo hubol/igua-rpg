@@ -1,4 +1,4 @@
-import {progress} from "./progress";
+import {progress} from "../progress";
 
 export function devProgress()
 {

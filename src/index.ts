@@ -11,7 +11,7 @@ import {
 import {environment} from "./igua/environment";
 import {createApplication} from "./utils/pixi/createApplication";
 import {upscaleGameCanvas} from "./igua/upscaleGameCanvas";
-import {devMute} from "./igua/devMute";
+import {devMute} from "./igua/dev/devMute";
 import {handleIguaPromiseRejection} from "./utils/rejection";
 import {make2dCanvasSink} from "./utils/browser/make2dCanvasSink";
 
