@@ -1,5 +1,5 @@
-import {viewport} from "../utils/viewport";
-import {onViewportResize} from "../utils/onViewportResize";
+import {viewport} from "../utils/browser/viewport";
+import {onViewportResize} from "../utils/browser/onViewportResize";
 
 export function upscaleGameCanvas(canvasElement: HTMLCanvasElement)
 {

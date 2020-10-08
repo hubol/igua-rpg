@@ -1,5 +1,5 @@
 import {game} from "../igua/game";
-import {Key, KeyCode} from "../utils/key";
+import {Key, KeyCode} from "../utils/browser/key";
 import {invisibleObject} from "../gameObjects/utils/invisibleObject";
 import {tickerWait} from "../utils/tickerWait";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";

@@ -3,7 +3,7 @@ import {MessageBox, Cursor} from "../textures";
 import {AcrobatixFont} from "../fonts";
 import {game} from "../igua/game";
 import {waitForKey} from "./waitForKey";
-import {Key} from "../utils/key";
+import {Key} from "../utils/browser/key";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";
 
 type Answer = string;

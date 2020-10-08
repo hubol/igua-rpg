@@ -2,7 +2,7 @@ import {Container, DisplayObject, Graphics} from "pixi.js";
 import {IguaTicker} from "../utils/iguaTicker";
 import {stepPlayerCamera} from "./playerCamera";
 import {player} from "../gameObjects/player";
-import {advanceKeyListener, startKeyListener} from "../utils/key";
+import {advanceKeyListener, startKeyListener} from "../utils/browser/key";
 import {CutscenePlayer} from "../cutscene/cutscene";
 import {createDefaultHud} from "./createDefaultHud";
 import {level} from "./level/level";
