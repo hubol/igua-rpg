@@ -1,14 +1,11 @@
-import {areRectanglesOverlapping, rectangle as createRectangle, normalizeRectangle} from "./math";
-import {Vector} from "./vector";
+import {areRectanglesOverlapping, rectangle as createRectangle, normalizeRectangle} from "../math";
+import {Vector} from "../vector";
 import * as PIXI from "pixi.js";
-import {game} from "../igua/game";
-import {makePromiseLibrary, PromiseLibrary} from "../cutscene/promiseLibrary";
+import {game} from "../../igua/game";
+import {makePromiseLibrary, PromiseLibrary} from "../../cutscene/promiseLibrary";
 import {CancellationToken} from "pissant";
-import {isPlayerInteractingWith} from "../igua/isPlayerInteractingWith";
 import {Container} from "pixi.js";
-import {IguaPromiseConfig} from "../cutscene/iguaPromiseConfig";
-import {PropertiesOf} from "./propertiesOf";
-import {CollectGeneric} from "../sounds";
+import {IguaPromiseConfig} from "../../cutscene/iguaPromiseConfig";
 
 declare global {
     namespace PIXI {
@@ -20,8 +17,6 @@ declare global {
             rectangle: Rectangle;
             withStep(step: () => void): this;
             withAsync(async: (p: PromiseLibrary) => Promise<unknown>): this;
-            withInteraction(interaction: () => void): this;
-            asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>);
             at(vector: Vector): this;
             at(x: number, y: number): this;
             destroyed: boolean;
@@ -55,31 +50,10 @@ function doNowOrOnAdded<T extends PIXI.DisplayObject>(displayObject: T, onAdded:
     return displayObject.on("added", onAdded);
 }
 
-PIXI.DisplayObject.prototype.asCollectible = function (object, key)
-{
-    return this.withStep(() => {
-        if (!object[key] && this.collides(game.player))
-        {
-            (object as any)[key] = true;
-            CollectGeneric.play();
-        }
-        if (object[key])
-           this.destroy();
-    });
-}
-
 PIXI.DisplayObject.prototype.withStep = function(step)
 {
     return doNowOrOnAdded(this, () => game.ticker.add(step))
         .on("removed", () => game.ticker.remove(step));
-}
-
-PIXI.DisplayObject.prototype.withInteraction = function(interaction)
-{
-    return this.withStep(() => {
-        if (isPlayerInteractingWith(this))
-            interaction();
-    })
 }
 
 PIXI.DisplayObject.prototype.withAsync = function(promiseSupplier)
@@ -220,4 +194,4 @@ function collides(container, otherContainerOrContainers, offset)
     return areRectanglesOverlapping(containerBounds, otherContainerBounds);
 }
 
-export const noOneCares = 0;
+export default 0;
