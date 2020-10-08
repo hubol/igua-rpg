@@ -1,6 +1,5 @@
 import {game} from "./game";
-import {lerpVector} from "../utils/math";
-import {distance} from "../utils/vector";
+import {distance, lerp} from "../utils/vector";
 
 let target = { x: 0, y: 0 };
 
@@ -27,7 +26,7 @@ export function stepPlayerCamera()
         target.y = game.camera.y + game.player.y - y1;
 
     clampCameraTarget();
-    lerpVector(game.camera, target, 0.33);
+    lerp(game.camera, target, 0.33);
     if (distance(game.camera, target) < 1)
     {
         game.camera.x = Math.round(target.x);

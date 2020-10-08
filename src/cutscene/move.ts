@@ -1,7 +1,6 @@
-import {Vector} from "../utils/vector";
+import {lerp, Vector} from "../utils/vector";
 import {tickerWait} from "./tickerWait";
 import {game} from "../igua/game";
-import {lerpVector} from "../utils/math";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";
 
 export function move(vector: Vector, config?: IguaPromiseConfig)
@@ -67,7 +66,7 @@ class Move
 
                     this._vector.x = start.x;
                     this._vector.y = start.y;
-                    lerpVector(this._vector, dest, factor);
+                    lerp(this._vector, dest, factor);
 
                     return factor >= 1;
                 },
