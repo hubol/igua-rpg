@@ -1,4 +1,4 @@
-import { Vector } from "../utils/vector";
+import { Vector } from "../utils/math/vector";
 import {BitmapText, Container, Sprite} from "pixi.js";
 import {Sign} from "../textures";
 import {AtomixFont} from "../fonts";

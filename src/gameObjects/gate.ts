@@ -5,7 +5,7 @@ import {Gate} from "../sounds";
 import {progress} from "../igua/progress";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {level} from "../igua/level/level";
-import {areRectanglesOverlapping} from "../utils/rectangle";
+import {areRectanglesOverlapping} from "../utils/math/rectangle";
 
 export const resolveGate = resolveGameObject("Gate", args => {
     const anyEntity = args as any;

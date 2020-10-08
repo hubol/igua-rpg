@@ -1,11 +1,11 @@
-import {Vector} from "../vector";
+import {Vector} from "../math/vector";
 import * as PIXI from "pixi.js";
 import {game} from "../../igua/game";
 import {makePromiseLibrary, PromiseLibrary} from "../../cutscene/promiseLibrary";
 import {CancellationToken} from "pissant";
 import {Container} from "pixi.js";
 import {IguaPromiseConfig} from "../../cutscene/iguaPromiseConfig";
-import {areRectanglesOverlapping, normalizeRectangle, rectangle as createRectangle} from "../rectangle";
+import {areRectanglesOverlapping, normalizeRectangle, rectangle as createRectangle} from "../math/rectangle";
 
 declare global {
     namespace PIXI {

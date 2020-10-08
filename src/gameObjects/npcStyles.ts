@@ -21,7 +21,7 @@ import {
     NpcPupilsWeird
 } from "../textures";
 import {IguanaEyes, iguanaEyes} from "../igua/puppet/eyes";
-import {add, Vector} from "../utils/vector";
+import {add, Vector} from "../utils/math/vector";
 
 const npcStyles: Array<ReturnType<typeof getNpcStyle>> = [];
 

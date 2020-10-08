@@ -9,7 +9,7 @@ import {isOnScreen} from "../igua/isOnScreen";
 import {CollectGeneric, CratePickup, CratePlace} from "../sounds";
 import {progress} from "../igua/progress";
 import {npc} from "../gameObjects/npc";
-import {add} from "../utils/vector";
+import {add} from "../utils/math/vector";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 
 function getDesertTownLevel()

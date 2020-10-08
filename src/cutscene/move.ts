@@ -1,4 +1,4 @@
-import {lerp, Vector} from "../utils/vector";
+import {lerp, Vector} from "../utils/math/vector";
 import {tickerWait} from "./tickerWait";
 import {game} from "../igua/game";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";
