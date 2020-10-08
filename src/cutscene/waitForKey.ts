@@ -1,7 +1,7 @@
 import {game} from "../igua/game";
 import {Key, KeyCode} from "../utils/browser/key";
 import {invisibleObject} from "../gameObjects/utils/invisibleObject";
-import {tickerWait} from "../utils/tickerWait";
+import {tickerWait} from "./tickerWait";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";
 
 export async function waitForKey(keyCode: KeyCode, config?: IguaPromiseConfig)

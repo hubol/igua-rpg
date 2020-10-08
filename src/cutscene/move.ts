@@ -1,5 +1,5 @@
 import {Vector} from "../utils/vector";
-import {tickerWait} from "../utils/tickerWait";
+import {tickerWait} from "./tickerWait";
 import {game} from "../igua/game";
 import {lerpVector} from "../utils/math";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";

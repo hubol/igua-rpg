@@ -1,4 +1,4 @@
-import {IguaPromiseConfig} from "../cutscene/iguaPromiseConfig";
+import {IguaPromiseConfig} from "./iguaPromiseConfig";
 import {game} from "../igua/game";
 
 type Predicate = () => boolean;

@@ -1,6 +1,6 @@
 import {game} from "../igua/game";
 import {tickerWait} from "./tickerWait";
-import {IguaPromiseConfig} from "../cutscene/iguaPromiseConfig";
+import {IguaPromiseConfig} from "./iguaPromiseConfig";
 
 export function tickerSleep(ms: number, config?: IguaPromiseConfig)
 {
