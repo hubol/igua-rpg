@@ -1,5 +1,5 @@
 import {Container, DisplayObject} from "pixi.js";
-import {approachLinear, lerp} from "../../utils/math";
+import {approachLinear, lerp} from "../../utils/number";
 import {IguanaEyes} from "./eyes";
 import {IguanaBlink} from "../../sounds";
 import {game} from "../game";

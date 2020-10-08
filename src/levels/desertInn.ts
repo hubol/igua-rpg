@@ -7,7 +7,7 @@ import {progress} from "../igua/progress";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {Lazy} from "../igua/puppet/mods/lazy";
 import {now} from "../utils/now";
-import {lerp} from "../utils/math";
+import {lerp} from "../utils/number";
 
 export function DesertInn()
 {
