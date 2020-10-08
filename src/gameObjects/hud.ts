@@ -1,9 +1,9 @@
 import {BitmapText, Container, Graphics} from "pixi.js";
-import {progress} from "./progress";
-import {game} from "./game";
+import {progress} from "../igua/progress";
+import {game} from "../igua/game";
 import {AcrobatixFont} from "../fonts";
 
-export function createDefaultHud()
+export function hud()
 {
     const healthbar = new Graphics()
         .withStep(() => {
@@ -18,10 +18,10 @@ export function createDefaultHud()
         .withStep(() => valuables.text = `${progress.valuables} valuables`)
         .at(2, 15);
 
-    const defaultHud = new Container()
-        .withStep(() => defaultHud.visible = !game.player.isDead);
+    const container = new Container()
+        .withStep(() => container.visible = !game.player.isDead);
 
-    defaultHud.addChild(healthbar, valuables);
+    container.addChild(healthbar, valuables);
 
-    game.hudStage.addChild(defaultHud);
+    return game.hudStage.addChild(container);
 }
