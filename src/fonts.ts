@@ -1,6 +1,6 @@
-import {BitmapFont, Texture} from "pixi.js";
-import {default as axios} from "axios";
+import {BitmapFont} from "pixi.js";
 import {loadTextureAsync} from "./utils/resources/loadTexture";
+import {loadBitmapFontAsync} from "./utils/resources/loadBitmapFont";
 
 export let AcrobatixFont: BitmapFont;
 export let AtomixFont: BitmapFont;
@@ -16,8 +16,3 @@ export async function loadFontsAsync()
         await loadTextureAsync(require("./fonts/Atomix_0.png")));
 }
 
-async function loadBitmapFontAsync(fntUrl: string, texture: Texture)
-{
-    const fntData = (await axios.get(fntUrl)).data;
-    return BitmapFont.install(fntData, texture);
-}

@@ -1,6 +1,6 @@
 import {loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";
-import {loadHowlsAsync} from "./utils/loadHowls";
+import {loadHowlsAsync} from "./utils/resources/loadHowls";
 import * as PIXI from "pixi.js";
 import {handlePromiseCancellation} from "pissant";
 import {discoverGameObjectResolvers} from "../tools/gen-levelargs/discoverGameObjectResolvers";
