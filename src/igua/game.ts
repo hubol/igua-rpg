@@ -9,7 +9,7 @@ import {level} from "./level/level";
 import {getInitialProgress, progress, setProgress} from "./progress";
 import {AsshatApplication} from "../utils/pixi/createApplication";
 import {environment} from "./environment";
-import {devProgress} from "./devProgress";
+import {devProgress} from "./dev/devProgress";
 
 export let game: ReturnType<typeof createGame>;
 function createGame(application: AsshatApplication)
