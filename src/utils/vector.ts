@@ -1,3 +1,5 @@
+import {lerp as lerpNumber} from "./math";
+
 export interface Vector
 {
     x: number;
@@ -36,5 +38,12 @@ export function add(a: Vector, b: Vector)
 {
     a.x += b.x;
     a.y += b.y;
+    return a;
+}
+
+export function lerp(a: Vector, b: Vector, factor: number): Vector
+{
+    a.x = lerpNumber(a.x, b.x, factor);
+    a.y = lerpNumber(a.y, b.y, factor);
     return a;
 }
