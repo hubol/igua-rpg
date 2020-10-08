@@ -25,6 +25,8 @@ import { GlowingCircle } from "./textures";
 import { CracksA } from "./textures";
 import { PotteryOrangeDamaged } from "./textures";
 import { PotteryOrange } from "./textures";
+import { KeyRed } from "./textures";
+import { Rope } from "./textures";
 
 export const DesertInnArgs = {
     width: 512,
@@ -107,6 +109,28 @@ scaleY: 1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: GlowingCircle
+}),
+Rope: resolveDecalGameObject({
+    x: 304,
+y: 48,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 7,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rope
+}),
+KeyRed: resolveDecalGameObject({
+    x: 306,
+y: 103,
+originX: 0.286,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: KeyRed
 }),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":32,"y":128,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"DesertTown","checkpointName":"FromInn","name":""}),

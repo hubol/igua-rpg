@@ -232,6 +232,28 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 304,
+          "y": 48,
+          "scaleX": 1,
+          "scaleY": 7,
+          "rotation": 0,
+          "texture": "rope.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 306,
+          "y": 103,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key red.png",
+          "originX": 0.286,
+          "originY": 0,
+          "values": {"name": ""}
         }
       ],
       "folder": "..\\..\\src\\images"

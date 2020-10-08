@@ -23,6 +23,7 @@ export let CrudeHouse: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Cursor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let GlowingCircle: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let HotTerrain: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let KeyRed: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let LockedDoor: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let MessageBox: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -50,6 +51,7 @@ export let PotteryOrangeDamaged: PIXI.Texture = undefined as unknown as PIXI.Tex
 export let PotteryOrange: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RightPipeEnd: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let RockCracks: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let Rope: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SignInn: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SignTavern: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Sign: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -123,6 +125,9 @@ export function loadTexturesAsync()
 
     const HotTerrainPath = require("./images/hot terrain.png");
     loader.add(HotTerrainPath); 
+
+    const KeyRedPath = require("./images/key red.png");
+    loader.add(KeyRedPath); 
 
     const LeftPipeEndPath = require("./images/left pipe end.png");
     loader.add(LeftPipeEndPath); 
@@ -205,6 +210,9 @@ export function loadTexturesAsync()
     const RockCracksPath = require("./images/rock cracks.png");
     loader.add(RockCracksPath); 
 
+    const RopePath = require("./images/rope.png");
+    loader.add(RopePath); 
+
     const SignInnPath = require("./images/sign inn.png");
     loader.add(SignInnPath); 
 
@@ -245,6 +253,7 @@ export function loadTexturesAsync()
             Cursor = resources[CursorPath]?.texture as PIXI.Texture;
             GlowingCircle = resources[GlowingCirclePath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
+            KeyRed = resources[KeyRedPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
             LockedDoor = resources[LockedDoorPath]?.texture as PIXI.Texture;
             MessageBox = resources[MessageBoxPath]?.texture as PIXI.Texture;
@@ -272,6 +281,7 @@ export function loadTexturesAsync()
             PotteryOrange = resources[PotteryOrangePath]?.texture as PIXI.Texture;
             RightPipeEnd = resources[RightPipeEndPath]?.texture as PIXI.Texture;
             RockCracks = resources[RockCracksPath]?.texture as PIXI.Texture;
+            Rope = resources[RopePath]?.texture as PIXI.Texture;
             SignInn = resources[SignInnPath]?.texture as PIXI.Texture;
             SignTavern = resources[SignTavernPath]?.texture as PIXI.Texture;
             Sign = resources[SignPath]?.texture as PIXI.Texture;
