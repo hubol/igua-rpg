@@ -100,11 +100,9 @@ export function loadSavedProgress()
 
 export function recreatePlayer()
 {
-    if (game.player?.removeAllChildren)
-    {
-        game.player.removeAllChildren();
-        game.player.destroy();
-    }
+    if (game.player?.destroy)
+        game.player.destroy({children: true});
+
     game.player = player();
     game.stage.addChild(game.player);
 }
