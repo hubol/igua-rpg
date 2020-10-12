@@ -67,6 +67,11 @@ export const CratePlace = new Howl({
     
 });
 
+export const DragRock = new Howl({
+    src: [require("./sound/drag rock.ogg"), require("./sound/drag rock.mp3")],
+    
+});
+
 export const Gate = new Howl({
     src: [require("./sound/gate.ogg"), require("./sound/gate.mp3")],
     
@@ -74,5 +79,10 @@ export const Gate = new Howl({
 
 export const IguanaBlink = new Howl({
     src: [require("./sound/iguana blink.ogg"), require("./sound/iguana blink.mp3")],
+    
+});
+
+export const SelectOption = new Howl({
+    src: [require("./sound/select option.ogg"), require("./sound/select option.mp3")],
     
 });
