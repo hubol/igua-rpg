@@ -4,7 +4,7 @@ import {Sprite} from "pixi.js";
 import {LockedDoor, OpenDoor} from "../textures";
 import {merge} from "../utils/merge";
 import {isPlayerInteractingWith} from "../igua/logic/isPlayerInteractingWith";
-import {EscapeTickerAndExecute} from "../utils/iguaTicker";
+import {EscapeTickerAndExecute} from "../utils/asshatTicker";
 import {progress} from "../igua/progress";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {level} from "../igua/level/level";

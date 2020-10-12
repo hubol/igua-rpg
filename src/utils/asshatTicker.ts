@@ -7,12 +7,12 @@ export class EscapeTickerAndExecute
     }
 }
 
-type IguaTickerFn = () => void;
+type AsshatTickerFn = () => void;
 
-export class IguaTicker
+export class AsshatTicker
 {
-    private readonly _callbacks: IguaTickerFn[] = [];
-    private _callbacksToRemove: IguaTickerFn[] = [];
+    private readonly _callbacks: AsshatTickerFn[] = [];
+    private _callbacksToRemove: AsshatTickerFn[] = [];
 
     add(fn: (...params: any[]) => any): this
     {
@@ -37,7 +37,7 @@ export class IguaTicker
                 e.execute();
                 return;
             }
-            console.error(`Unhandled error in IguaTicker.update: ${e}`);
+            console.error(`Unhandled error in AsshatTicker.update: ${e}`);
         }
     }
 
