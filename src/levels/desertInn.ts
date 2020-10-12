@@ -8,6 +8,7 @@ import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {Lazy} from "../igua/puppet/mods/lazy";
 import {now} from "../utils/now";
 import {lerp} from "../utils/math/number";
+import { DragRock } from "../sounds";
 
 export function DesertInn()
 {
@@ -35,7 +36,9 @@ export function DesertInn()
                 await p.show("Thanks for resting here.");
                 if (!level.RoomWall.destroyed)
                 {
+                    DragRock.play();
                     await p.move(level.RoomWall).to(level.RoomWall.x, level.RoomWall.y - level.RoomWall.height).over(1_000);
+                    DragRock.stop();
                     level.RoomWall.destroy();
                 }
 

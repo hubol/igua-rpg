@@ -5,6 +5,7 @@ import {game} from "../igua/game";
 import {waitForKey} from "./waitForKey";
 import {Key} from "../utils/browser/key";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";
+import {SelectOption} from "../sounds";
 
 type Answer = string;
 
@@ -64,10 +65,10 @@ async function askImpl<T extends Answer>(question: string, answers: T[], config?
             config?.cancellationToken.rejectIfCancelled(reject);
 
             const nothingSelected = selectedIndex === -1;
+            const previousSelectedIndex = selectedIndex;
 
             if (Key.justWentDown("ArrowLeft") && (selectedIndex > 0 || nothingSelected))
             {
-                // TODO SFX
                 if (nothingSelected)
                     selectedIndex = 0;
                 else
@@ -75,12 +76,14 @@ async function askImpl<T extends Answer>(question: string, answers: T[], config?
             }
             else if (Key.justWentDown("ArrowRight") && (selectedIndex < answers.length - 1 || nothingSelected))
             {
-                // TODO SFX
                 if (nothingSelected)
                     selectedIndex = answers.length - 1;
                 else
                     selectedIndex++;
             }
+
+            if (previousSelectedIndex !== selectedIndex)
+                SelectOption.play();
 
             cursor.visible = selectedIndex !== -1;
             if (!cursor.visible)
