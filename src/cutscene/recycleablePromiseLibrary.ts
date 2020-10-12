@@ -1,20 +1,28 @@
 import {makePromiseLibrary} from "./promiseLibrary";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";
 import {game} from "../igua/game";
+import {AsshatTicker} from "../utils/asshatTicker";
 
 export class RecycleablePromiseLibrary
 {
-    private _config = new IguaPromiseConfig(game.ticker);
+    private readonly _ticker: AsshatTicker;
+
+    constructor(ticker?: AsshatTicker)
+    {
+        this._ticker = ticker ?? game.ticker;
+    }
+
+    private _config = new IguaPromiseConfig(this._ticker);
     private _promiseLibrary = makePromiseLibrary(this._config);
 
-    public recycle()
+    recycle()
     {
         this._config.cancellationToken.cancel();
-        this._config = new IguaPromiseConfig(game.ticker);
+        this._config = new IguaPromiseConfig(this._ticker);
         this._promiseLibrary = makePromiseLibrary(this._config);
     }
 
-    public get promiseLibrary()
+    get promiseLibrary()
     {
         return this._promiseLibrary;
     }
