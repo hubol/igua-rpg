@@ -1,6 +1,6 @@
 import {Container} from "pixi.js";
 import {game} from "../igua/game";
-import {EscapeTickerAndExecute} from "../utils/iguaTicker";
+import {EscapeTickerAndExecute} from "../utils/asshatTicker";
 import {Gate} from "../sounds";
 import {progress} from "../igua/progress";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";

@@ -1,9 +1,9 @@
 import {CancellationToken} from "pissant";
-import {IguaTicker} from "../utils/iguaTicker";
+import {AsshatTicker} from "../utils/asshatTicker";
 
 export class IguaPromiseConfig
 {
-    readonly ticker: IguaTicker;
+    readonly ticker: AsshatTicker;
     readonly cancellationToken: CancellationToken;
 
     constructor(ticker, cancellationToken?: CancellationToken)

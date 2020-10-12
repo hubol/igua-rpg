@@ -1,5 +1,5 @@
 import {Container, DisplayObject, Graphics} from "pixi.js";
-import {IguaTicker} from "../utils/iguaTicker";
+import {AsshatTicker} from "../utils/asshatTicker";
 import {stepPlayerCamera} from "./playerCamera";
 import {player} from "../gameObjects/player";
 import {advanceKeyListener, startKeyListener} from "../utils/browser/key";
@@ -16,12 +16,12 @@ function createGame(application: AsshatApplication)
 {
     application.ticker.start();
 
-    const iguaTicker = new IguaTicker();
+    const ticker = new AsshatTicker();
 
     startKeyListener();
-    iguaTicker.add(advanceKeyListener);
+    ticker.add(advanceKeyListener);
 
-    application.ticker.add(() => iguaTicker.update());
+    application.ticker.add(() => ticker.update());
 
     const backgroundGraphics = new Graphics();
     const terrainStage = new Container();
@@ -48,7 +48,7 @@ function createGame(application: AsshatApplication)
         get applicationTicker() {
             return application.ticker;
         },
-        ticker: iguaTicker,
+        ticker,
         camera: createCamera(stage),
         set backgroundColor(value: number) {
             backgroundGraphics.clear();
