@@ -1,4 +1,4 @@
-import {progress} from "../progress";
+import {progress} from "../data/progress";
 
 export function spendValuables(valuables: number)
 {

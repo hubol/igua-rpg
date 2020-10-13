@@ -1,7 +1,7 @@
 import {game} from "../game";
 import {sleep} from "pissant";
 import {getLevelApplicator} from "./getLevelApplicator";
-import {progress} from "../progress";
+import {progress} from "../data/progress";
 import {sceneStack} from "../scene";
 
 export const level = {

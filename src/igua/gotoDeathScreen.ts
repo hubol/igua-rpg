@@ -1,6 +1,6 @@
 import {level} from "./level/level";
 import {game, loadSavedProgress, recreatePlayer} from "./game";
-import {progress} from "./progress";
+import {progress} from "./data/progress";
 import {jukebox} from "./jukebox";
 import {scene} from "./scene";
 
