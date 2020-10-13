@@ -94,6 +94,6 @@ export const sceneStack = {
     },
     toArray()
     {
-        return scenes.splice(0);
+        return [...scenes];
     }
 };
