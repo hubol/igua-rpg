@@ -45,6 +45,7 @@ export class AsshatTicker
     {
         for (let i = 0, len = this._callbacksToRemove.length; i < len; i++)
             this._callbacks.removeFirst(this._callbacksToRemove[i]);
+        this._callbacksToRemove.length = 0;
 
         for (let i = 0, len = this._callbacks.length; i < len; i++)
         {
