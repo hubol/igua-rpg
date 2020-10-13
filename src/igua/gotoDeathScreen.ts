@@ -2,13 +2,15 @@ import {level} from "./level/level";
 import {game, loadSavedProgress, recreatePlayer} from "./game";
 import {progress} from "./progress";
 import {jukebox} from "./jukebox";
+import {scene, sceneStack} from "./scene";
 
 export function gotoDeathScreen()
 {
     jukebox.stop();
-    level.clear();
+    while (sceneStack.pop()) { }
+    sceneStack.push();
     game.player.isDead = true;
-    game.backgroundColor = 0x000000;
+    scene.backgroundColor = 0x000000;
     setTimeout(() => {
         recreatePlayer();
         loadSavedProgress();

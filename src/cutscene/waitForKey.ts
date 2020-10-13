@@ -15,7 +15,7 @@ export async function waitForKey(keyCode: KeyCode, config?: IguaPromiseConfig)
         if (Key.isUp(keyCode))
             wasUp = true;
     });
-    game.stage.addChild(displayObject);
+    game.hudStage.addChild(displayObject);
 
     await tickerWait(() => advance, config)
         .finally(() => displayObject.destroy());

@@ -1,11 +1,12 @@
 import {Vector} from "../math/vector";
 import * as PIXI from "pixi.js";
+import {Container} from "pixi.js";
 import {game} from "../../igua/game";
 import {makePromiseLibrary, PromiseLibrary} from "../../cutscene/promiseLibrary";
 import {CancellationToken} from "pissant";
-import {Container} from "pixi.js";
 import {IguaPromiseConfig} from "../../cutscene/iguaPromiseConfig";
 import {areRectanglesOverlapping, normalizeRectangle, rectangle as createRectangle} from "../math/rectangle";
+import {AsshatTicker} from "../asshatTicker";
 
 declare global {
     namespace PIXI {
@@ -20,11 +21,13 @@ declare global {
             at(vector: Vector): this;
             at(x: number, y: number): this;
             destroyed: boolean;
+            ticker: AsshatTicker;
         }
 
         export interface Container {
             removeAllChildren();
             addChild<T extends DisplayObject>(child: T): T;
+            withTicker(ticker: AsshatTicker): this;
         }
     }
 }
@@ -43,6 +46,21 @@ Object.defineProperty(PIXI.DisplayObject.prototype, "destroyed", {
     }
 });
 
+Object.defineProperty(PIXI.DisplayObject.prototype, "ticker", {
+    get: function ticker() {
+        if (this._ticker)
+            return this._ticker;
+
+        if (this.parent)
+            this._ticker = this.parent.ticker;
+
+        if (!this._ticker)
+            this._ticker = game.ticker;
+
+        return this._ticker;
+    }
+});
+
 function doNowOrOnAdded<T extends PIXI.DisplayObject>(displayObject: T, onAdded: () => void): T
 {
     if (displayObject.parent)
@@ -50,21 +68,27 @@ function doNowOrOnAdded<T extends PIXI.DisplayObject>(displayObject: T, onAdded:
     return displayObject.on("added", onAdded);
 }
 
+PIXI.Container.prototype.withTicker = function(ticker)
+{
+    (this as any)._ticker = ticker;
+    return this;
+}
+
 PIXI.DisplayObject.prototype.withStep = function(step)
 {
-    return doNowOrOnAdded(this, () => game.ticker.add(step))
-        .on("removed", () => game.ticker.remove(step));
+    return doNowOrOnAdded(this, () => this.ticker.add(step))
+        .on("removed", () => this.ticker.remove(step));
 }
 
 PIXI.DisplayObject.prototype.withAsync = function(promiseSupplier)
 {
     const cancellationToken = new CancellationToken();
-    const promiseLibrary = makePromiseLibrary(new IguaPromiseConfig(game.ticker, cancellationToken));
     const thisDisplayObject = this;
 
     return doNowOrOnAdded(this, () => setTimeout(async () => {
             try
             {
+                const promiseLibrary = makePromiseLibrary(new IguaPromiseConfig(this.ticker, cancellationToken));
                 await promiseSupplier(promiseLibrary);
             }
             catch (e)

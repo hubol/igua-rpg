@@ -1,12 +1,12 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {Burst, Burst2} from "../textures";
-import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
+import {scene} from "../igua/scene";
 
 const burst8pxTextures = subimageTextures(Burst, 4);
 const burst12pxTextures = subimageTextures(Burst2, 4);
 
-export function smallPop(size: 8 | 12 = 8, container = game.gameObjectStage)
+export function smallPop(size: 8 | 12 = 8, container = scene.gameObjectStage)
 {
     const textures = size === 8 ? burst8pxTextures : burst12pxTextures;
 
