@@ -2,7 +2,7 @@ import {GameObjectResolver} from "../../gen-levelargs/types/gameObjectResolver";
 
 export function publishGameObjectResolversIsRequested()
 {
-    return (window as any).__publishGameObjectResolversIsRequested;
+    return !!process.env.PUBLISH_GAME_OBJECT_RESOLVERS;
 }
 
 export function publishGameObjectResolvers(gameObjectResolvers: GameObjectResolver[])

@@ -1,12 +1,10 @@
 import {getGameObjectResolvers} from "./tasks/getGameObjectResolvers";
 import {GameObjectResolver} from "../gen-levelargs/types/gameObjectResolver";
 import {writeLevelArgsFile} from "./tasks/writeLevelArgsFile";
-import {requestPublishGameObjectResolvers} from "./tasks/requestPublishGameObjectResolvers";
 
 describe("Let's generate the levels", () => {
-    it("Visit and request the app to publish GameObjectResolvers", () => {
+    it("Visit the app", () => {
         cy.visit("http://localhost:2456");
-        requestPublishGameObjectResolvers();
     })
 
     let gameObjectResolvers: GameObjectResolver[];
