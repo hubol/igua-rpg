@@ -10,6 +10,7 @@ import {now} from "../utils/now";
 import {lerp} from "../utils/math/number";
 import { DragRock } from "../sounds";
 import {scene} from "../igua/scene";
+import {spendValuables} from "../igua/logic/spendValuables";
 
 export function DesertInn()
 {
@@ -31,9 +32,8 @@ export function DesertInn()
     level.Innkeeper.cutscene = async p => {
         if (await p.ask("Do you want to rest here? It costs 10 valuables."))
         {
-            if (progress.valuables >= 10)
+            if (spendValuables(10))
             {
-                progress.valuables -= 10;
                 await p.show("Thanks for resting here.");
                 if (!level.RoomWall.destroyed)
                 {
