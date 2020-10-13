@@ -25,7 +25,7 @@ function createGame(application: AsshatApplication)
 
     application.ticker.add(() => {
         ticker.update();
-        scene?.ticker.update();
+        scene.ticker.update();
     });
 
     const sceneStage = new Container();
