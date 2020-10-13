@@ -25,21 +25,15 @@
   "license": "ISC",
   "devDependencies": {
     "@types/howler": "^2.1.2",
-    "@types/mocha": "^8.0.2",
-    "@types/node": "^14.0.27",
     "@types/serialize-javascript": "^4.0.0",
     "concurrently": "^5.1.0",
     "cross-env": "^7.0.2",
-    "cypress": "^4.12.1",
     "generate-howls": "^0.2.4",
     "generate-json-exports": "^0.1.0",
     "generate-textures": "^0.1.0",
-    "http-server": "^0.12.3",
     "onchange": "^7.0.2",
     "parcel-bundler": "^1.12.4",
-    "pissant-node": "^0.1.2",
     "rimraf": "^3.0.2",
-    "start-server-and-test": "^1.11.3",
     "typescript": "^3.9.7"
   },
   "dependencies": {
