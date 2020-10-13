@@ -11,6 +11,7 @@ import {AsshatApplication} from "../utils/pixi/createApplication";
 import {environment} from "./environment";
 import {devProgress} from "./dev/devProgress";
 import {scene} from "./scene";
+import {devWindow} from "./dev/devWindow";
 
 export let game: ReturnType<typeof createGame>;
 function createGame(application: AsshatApplication)
@@ -65,6 +66,9 @@ export function startGame(application: AsshatApplication)
 
     loadSavedProgress();
     level.gotoSync(progress.levelName);
+
+    if (!environment.isProduction)
+        devWindow();
 }
 
 export function loadSavedProgress()
