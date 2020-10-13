@@ -12,7 +12,7 @@ declare global {
     namespace PIXI {
         export interface DisplayObject {
             moveUntilCollides(speed: Vector, displayObjects: DisplayObject | DisplayObject[]);
-            collides(displayObjects: DisplayObject | DisplayObject[], offset?: Vector);
+            collides(displayObjects: DisplayObject | DisplayObject[], offset?: Vector): boolean;
             useLinearFiltering();
             useNearestFiltering();
             rectangle: Rectangle;
