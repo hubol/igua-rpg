@@ -29,7 +29,6 @@
     "concurrently": "^5.1.0",
     "cross-env": "^7.0.2",
     "generate-howls": "^0.2.4",
-    "generate-json-exports": "^0.1.0",
     "generate-textures": "^0.1.0",
     "onchange": "^7.0.2",
     "parcel-bundler": "^1.12.4",
