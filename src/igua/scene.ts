@@ -91,8 +91,8 @@ export const sceneStack = {
         onScenesModified();
         return poppedScene;
     },
-    get length()
+    toArray()
     {
-        return scenes.length;
+        return scenes.splice(0);
     }
 };
