@@ -1,5 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     font-family: sans-serif;
+    height: 100%;
+    overflow: hidden;
 }
 
 #gameCanvas {
@@ -44,10 +51,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
-}
-
-html {
-    height: 96%;
 }
 
 noscript {
