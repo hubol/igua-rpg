@@ -16,6 +16,7 @@
     "gen:music": "generate-howls raw/music src/music src/musics.ts --dontPreload",
     "gen:levelargs": "start-server-and-test start-gameObjectResolver-server http://localhost:2456 write-levelargs",
     "start-gameObjectResolver-server": "cross-env NODE_ENV=development PUBLISH_GAME_OBJECT_RESOLVERS=true parcel build --public-url ./ src/index.html --out-dir ./.gen/dist --cache-dir ./.gen/cache --no-minify --no-content-hash --no-source-maps && http-server ./.gen/dist -p 2456",
+    "blah": "rimraf ./tools/write-levelargs2/.bin && cross-env NODE_ENV=development PUBLISH_GAME_OBJECT_RESOLVERS=true parcel build --public-url ./ src/index.html --out-dir ./tools/write-levelargs2/.bin/.app --cache-dir ./.gen/cache --no-minify --no-content-hash --no-source-maps && npm start --prefix ./tools/write-levelargs2",
     "write-levelargs": "cypress run --config-file ./tools/write-levelargs/cypress.json"
   },
   "repository": {
@@ -39,6 +40,7 @@
     "onchange": "^7.0.2",
     "parcel-bundler": "^1.12.4",
     "pissant-node": "^0.1.2",
+    "rimraf": "^3.0.2",
     "start-server-and-test": "^1.11.3",
     "typescript": "^3.9.7"
   },
