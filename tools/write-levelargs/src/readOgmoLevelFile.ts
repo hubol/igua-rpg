@@ -1,7 +1,7 @@
 import {Ogmo} from "../../gen-levelargs/types/ogmo";
 import {readFile} from "fs";
 
-export async function __nodeOnly__readOgmoLevelFile(path: string)
+export async function readOgmoLevelFile(path: string)
 {
     return {
         path,
