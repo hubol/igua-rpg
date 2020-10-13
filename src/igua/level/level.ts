@@ -1,4 +1,4 @@
-import {getLevelApplicator} from "./getLevelApplicator";
+import {getLevelApplicator, LevelApplicator} from "./getLevelApplicator";
 import {progress} from "../data/progress";
 import {sceneStack} from "../scene";
 
@@ -7,9 +7,11 @@ export const level = {
     {
         sceneStack.pop();
         sceneStack.push();
-        getLevelApplicator(levelName)();
+        this.current = getLevelApplicator(levelName);
+        this.current();
         progress.levelName = levelName;
     },
+    current: null as unknown as LevelApplicator,
     width: 0,
     height: 0
 }
