@@ -14,7 +14,7 @@
     "gen:textures": "generate-textures src/images src/textures.ts",
     "gen:sounds": "generate-howls raw/sound src/sound src/sounds.ts",
     "gen:music": "generate-howls raw/music src/music src/musics.ts --dontPreload",
-    "gen:levelargs": "rimraf ./tools/write-levelargs2/.bin && cross-env NODE_ENV=development PUBLISH_GAME_OBJECT_RESOLVERS=true parcel build --public-url ./ src/index.html --out-dir ./tools/write-levelargs2/.bin/.app --cache-dir ./.gen/cache --no-minify --no-content-hash --no-source-maps && npm start --prefix ./tools/write-levelargs2",
+    "gen:levelargs": "rimraf ./tools/write-levelargs/.bin && cross-env NODE_ENV=development PUBLISH_GAME_OBJECT_RESOLVERS=true parcel build --public-url ./ src/index.html --out-dir ./tools/write-levelargs/.bin/.app --cache-dir ./.gen/cache --no-minify --no-content-hash --no-source-maps && npm start --prefix ./tools/write-levelargs",
     "write-levelargs": "cypress run --config-file ./tools/write-levelargs/cypress.json"
   },
   "repository": {
