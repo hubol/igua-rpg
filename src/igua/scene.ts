@@ -5,6 +5,7 @@ import {merge} from "../utils/merge";
 
 function createScene()
 {
+    const ticker = new AsshatTicker();
     const backgroundGraphics = new Graphics();
     const terrainStage = new Container();
 
@@ -15,9 +16,9 @@ function createScene()
     const gameObjectStage = new Container();
     const cameraStage = new Container();
     cameraStage.addChild(backgroundGameObjectStage, pipeStage, terrainStage, terrainContainer, gameObjectStage);
-    const stage = new Container(); // TODO add to application
+    const stage = new Container().withTicker(ticker);
     stage.addChild(backgroundGraphics, parallax1Stage, cameraStage);
-    // TODO add to application: application.stage.addChild(backgroundGraphics, parallax1Stage, stage);
+    game.sceneStage.addChild(stage);
 
     return {
         set backgroundColor(value: number) {
@@ -43,7 +44,7 @@ function createScene()
         terrainStage,
         terrainContainer,
         gameObjectStage,
-        ticker: new AsshatTicker(),
+        ticker,
         destroy()
         {
             stage.destroy({ children: true });
@@ -59,7 +60,7 @@ function createScene()
     };
 }
 
-type Scene = ReturnType<typeof createScene>;
+export type Scene = ReturnType<typeof createScene>;
 
 const scenes: Scene[] = [];
 
@@ -85,8 +86,10 @@ export const sceneStack = {
     },
     pop()
     {
-        scenes.pop()?.destroy();
+        const poppedScene = scenes.pop();
+        poppedScene?.destroy();
         onScenesModified();
+        return poppedScene;
     },
     get length()
     {

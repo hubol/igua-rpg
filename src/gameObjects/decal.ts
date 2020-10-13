@@ -1,5 +1,5 @@
 import {Sprite, Texture} from "pixi.js";
-import {game} from "../igua/game";
+import {scene} from "../igua/scene";
 
 export interface DecalArgs
 {
@@ -29,8 +29,8 @@ function getStage(layerName: string)
     switch (layerName)
     {
         case "Parallax1Decals":
-            return game.parallax1Stage;
+            return scene.parallax1Stage;
         default:
-            return game.backgroundGameObjectStage;
+            return scene.backgroundGameObjectStage;
     }
 }

@@ -9,13 +9,14 @@ import {Lazy} from "../igua/puppet/mods/lazy";
 import {now} from "../utils/now";
 import {lerp} from "../utils/math/number";
 import { DragRock } from "../sounds";
+import {scene} from "../igua/scene";
 
 export function DesertInn()
 {
     jukebox.play(Oracle);
     const level = applyOgmoLevel(DesertInnArgs);
-    game.backgroundColor = 0xC08070;
-    game.terrainColor = 0x702010;
+    scene.backgroundColor = 0xC08070;
+    scene.terrainColor = 0x702010;
 
     level.GlowingCircle.tint = 0xF0F0B0;
     [ level.CracksA, level.CracksA_1, level.CracksA_2 ].forEach(x => x.tint = 0xA05040);

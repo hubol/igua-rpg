@@ -1,20 +1,10 @@
 import {game} from "../game";
-import {RecycleablePromiseLibrary} from "../../cutscene/recycleablePromiseLibrary";
 import {sleep} from "pissant";
 import {getLevelApplicator} from "./getLevelApplicator";
 import {progress} from "../progress";
-
-let levelRecycleablePromiseLibrary: RecycleablePromiseLibrary | null;
+import {sceneStack} from "../scene";
 
 export const level = {
-    get recycleablePromiseLibrary()
-    {
-        return levelRecycleablePromiseLibrary ?? (levelRecycleablePromiseLibrary = new RecycleablePromiseLibrary());
-    },
-    get promiseLibrary()
-    {
-        return this.recycleablePromiseLibrary.promiseLibrary;
-    },
     async goto(levelName: string)
     {
         game.applicationTicker.stop();
@@ -24,17 +14,9 @@ export const level = {
     },
     gotoSync(levelName: string)
     {
-        this.clear();
+        sceneStack.pop();
+        sceneStack.push();
         getLevelApplicator(levelName)();
         progress.levelName = levelName;
-    },
-    clear()
-    {
-        game.terrainStage.removeAllChildren();
-        game.pipeStage.removeAllChildren();
-        game.parallax1Stage.removeAllChildren();
-        game.backgroundGameObjectStage.removeAllChildren();
-        game.gameObjectStage.removeAllChildren();
-        this.recycleablePromiseLibrary.recycle();
     }
 }
