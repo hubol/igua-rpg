@@ -1,7 +1,7 @@
 import { Sprite} from "pixi.js";
 import {BlueValuable, OrangeValuable} from "../textures";
 import {game} from "../igua/game";
-import {progress} from "../igua/progress";
+import {progress} from "../igua/data/progress";
 import {smallPop} from "./smallPop";
 import {CollectValuable, CollectValuableSmall} from "../sounds";
 import {GameObjectArgs} from "../../tools/gen-levelargs/types/gameObjectArgs";

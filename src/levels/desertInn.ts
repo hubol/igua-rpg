@@ -3,7 +3,7 @@ import {Oracle} from "../musics";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertInnArgs} from "../levelArgs";
 import {game} from "../igua/game";
-import {progress} from "../igua/progress";
+import {progress} from "../igua/data/progress";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {Lazy} from "../igua/puppet/mods/lazy";
 import {now} from "../utils/now";

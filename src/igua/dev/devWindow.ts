@@ -3,7 +3,7 @@ import {game} from "../game";
 import {sceneStack} from "../scene";
 import {level} from "../level/level";
 import {jukebox} from "../jukebox";
-import {progress} from "../progress";
+import {progress} from "../data/progress";
 import {environment} from "../environment";
 
 function createDev() {

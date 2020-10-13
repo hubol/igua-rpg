@@ -6,7 +6,7 @@ import {advanceKeyListener, startKeyListener} from "../utils/browser/key";
 import {CutscenePlayer} from "../cutscene/cutscene";
 import {hud} from "../gameObjects/hud";
 import {level} from "./level/level";
-import {getInitialProgress, progress, setProgress} from "./progress";
+import {getInitialProgress, progress, setProgress} from "./data/progress";
 import {AsshatApplication} from "../utils/pixi/createApplication";
 import {environment} from "./environment";
 import {devProgress} from "./dev/devProgress";

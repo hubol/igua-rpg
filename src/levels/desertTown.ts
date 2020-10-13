@@ -7,7 +7,7 @@ import {Sprite} from "pixi.js";
 import {CrateWooden} from "../textures";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {CollectGeneric, CratePickup, CratePlace} from "../sounds";
-import {progress} from "../igua/progress";
+import {progress} from "../igua/data/progress";
 import {npc} from "../gameObjects/npc";
 import {add} from "../utils/math/vector";
 import {Sleepy} from "../igua/puppet/mods/sleepy";

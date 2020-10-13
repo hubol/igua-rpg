@@ -1,7 +1,7 @@
 import {game} from "../game";
 import {centerPlayerCamera} from "../playerCamera";
 import {ApplyOgmoLevelArgs, GameObjects} from "./applyOgmoLevelArgs";
-import {progress} from "../progress";
+import {progress} from "../data/progress";
 import {level} from "./level";
 
 export function applyOgmoLevel<T>(args: ApplyOgmoLevelArgs<T>): GameObjects<T>
