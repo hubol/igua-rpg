@@ -47,7 +47,7 @@ export function DesertInn()
                 await p.sleep(250);
                 game.player.mods.add(Sleepy);
                 await Promise.all([
-                    p.wait(() => Math.min(progress.health += 0.25, progress.maxHealth) >= progress.maxHealth),
+                    p.wait(() => (progress.health = Math.min(progress.health + 0.25, progress.maxHealth)) >= progress.maxHealth),
                     p.sleep(4_000) ]);
                 await p.show("Full health restored!");
                 game.player.mods.remove(Sleepy);
