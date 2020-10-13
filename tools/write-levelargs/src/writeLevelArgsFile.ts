@@ -1,11 +1,18 @@
-import {generateLevelArgsExport} from "../../gen-levelargs/generateLevelArgsExport";
-import {Module} from "../../gen-module/components/module";
-import {writeModule} from "../../gen-module/writeModule";
-import {WriteLevelArgsFileArgs} from "../tasks/writeLevelArgsFile";
+import {GameObjectResolver} from "../../gen-levelargs/types/gameObjectResolver";
 import {createOrUpdateFile, getAllFiles, getDirectory} from "pissant-node";
-import {__nodeOnly__readOgmoLevelFile as readOgmoLevelFile} from "./readOgmoLevelFile";
+import {generateLevelArgsExport} from "../../gen-levelargs/generateLevelArgsExport";
+import {writeModule} from "../../gen-module/writeModule";
+import {Module} from "../../gen-module/components/module";
+import {readOgmoLevelFile} from "./readOgmoLevelFile";
 
-export async function __nodeOnly__writeLevelArgsFile(
+export interface WriteLevelArgsFileArgs
+{
+    gameObjectResolvers: GameObjectResolver[],
+    ogmoLevelsDirectoryPath: string,
+    levelArgsFilePath: string
+}
+
+export async function writeLevelArgsFile(
     { gameObjectResolvers, levelArgsFilePath, ogmoLevelsDirectoryPath }: WriteLevelArgsFileArgs)
 {
     const exports =

@@ -7,7 +7,7 @@ import {discoverGameObjectResolvers} from "../tools/gen-levelargs/discoverGameOb
 import {
     publishGameObjectResolvers,
     publishGameObjectResolversIsRequested
-} from "../tools/write-levelargs/appOnly/publishGameObjectResolvers";
+} from "../tools/write-levelargs/publishGameObjectResolvers";
 import {environment} from "./igua/environment";
 import {createApplication} from "./utils/pixi/createApplication";
 import {upscaleGameCanvas} from "./igua/upscaleGameCanvas";
