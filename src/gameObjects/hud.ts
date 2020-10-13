@@ -1,5 +1,5 @@
 import {BitmapText, Container, Graphics} from "pixi.js";
-import {progress} from "../igua/progress";
+import {progress} from "../igua/data/progress";
 import {game} from "../igua/game";
 import {AcrobatixFont} from "../fonts";
 

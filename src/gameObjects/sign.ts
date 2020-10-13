@@ -7,9 +7,10 @@ import {game} from "../igua/game";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {Cutscene} from "../cutscene/cutscene";
 import {merge} from "../utils/merge";
+import {scene} from "../igua/scene";
 
 export const resolveSign =
-    resolveGameObject("Sign", e => game.gameObjectStage.addChild(sign(e, (e as any).title, (e as any).message)));
+    resolveGameObject("Sign", e => scene.gameObjectStage.addChild(sign(e, (e as any).title, (e as any).message)));
 
 export function sign(vector: Vector, title: string, message: string)
 {

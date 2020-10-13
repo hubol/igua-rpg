@@ -1,11 +1,12 @@
 import { Sprite} from "pixi.js";
 import {BlueValuable, OrangeValuable} from "../textures";
 import {game} from "../igua/game";
-import {progress} from "../igua/progress";
+import {progress} from "../igua/data/progress";
 import {smallPop} from "./smallPop";
 import {CollectValuable, CollectValuableSmall} from "../sounds";
 import {GameObjectArgs} from "../../tools/gen-levelargs/types/gameObjectArgs";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
+import {scene} from "../igua/scene";
 
 type ValuableType = keyof typeof valuableStyles;
 
@@ -41,7 +42,7 @@ function resolveValuable(e: GameObjectArgs)
     {
         const uid = e.uid;
         if (!progress.gotLevelValuable.has(uid))
-            return game.gameObjectStage.addChild(valuable(e.x, e.y, uid, e.type));
+            return scene.gameObjectStage.addChild(valuable(e.x, e.y, uid, e.type));
     }
 }
 
