@@ -64,7 +64,7 @@ export function startGame(application: AsshatApplication)
     hud();
 
     loadSavedProgress();
-    level.gotoSync(progress.levelName);
+    level.goto(progress.levelName);
 
     if (!environment.isProduction)
         devWindow();

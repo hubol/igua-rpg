@@ -32,7 +32,7 @@ export function gate(x, y, width, height, destination: { checkpointName, levelNa
             throw new EscapeTickerAndExecute(
                 () => {
                     progress.checkpointName = destination.checkpointName;
-                    return level.goto(destination.levelName)
+                    level.goto(destination.levelName)
                 });
         }
     });

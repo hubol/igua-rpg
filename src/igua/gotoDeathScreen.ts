@@ -13,7 +13,7 @@ export function gotoDeathScreen()
     setTimeout(() => {
         recreatePlayer();
         loadSavedProgress();
-        level.gotoSync(progress.levelName);
+        level.goto(progress.levelName);
     },
     4_000)
 }
