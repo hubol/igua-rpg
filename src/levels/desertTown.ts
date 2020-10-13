@@ -7,10 +7,11 @@ import {Sprite} from "pixi.js";
 import {CrateWooden} from "../textures";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {CollectGeneric, CratePickup, CratePlace} from "../sounds";
-import {progress} from "../igua/progress";
+import {progress} from "../igua/data/progress";
 import {npc} from "../gameObjects/npc";
 import {add} from "../utils/math/vector";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
+import {scene} from "../igua/scene";
 
 function getDesertTownLevel()
 {
@@ -23,8 +24,8 @@ export function DesertTown()
 {
     jukebox.play(Country).warm(Oracle);
     const level = getDesertTownLevel();
-    game.backgroundColor = 0xF0F0B0;
-    game.terrainColor = 0xE0D060;
+    scene.backgroundColor = 0xF0F0B0;
+    scene.terrainColor = 0xE0D060;
 
     level.BarBuilding.tint = 0xA0C0C0;
     level.InnBuilding.tint = 0xE08060;
@@ -44,7 +45,7 @@ export function DesertTown()
 
 function addIntroduction(level: DesertTownLevel)
 {
-    const lizard = game.gameObjectStage.addChild(npc(level.LeftHouseDoor.x - 32, level.LeftHouseDoor.y + 32, 2));
+    const lizard = scene.gameObjectStage.addChild(npc(level.LeftHouseDoor.x - 32, level.LeftHouseDoor.y + 32, 2));
     lizard.engine.walkSpeed = 2;
     game.cutscenePlayer.playCutscene(async p => {
         game.camera.followPlayer = false;
@@ -81,7 +82,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
             lastStackedCrate
                 ? { x: lastStackedCrate.x + Math.round(-6 + Math.random() * 12), y: lastStackedCrate.y - lastStackedCrate.height }
                 : level.DropCrateAnchor);
-        game.backgroundGameObjectStage.addChild(nextCrate);
+        scene.backgroundGameObjectStage.addChild(nextCrate);
         lastStackedCrate = nextCrate;
         if (playSound && isOnScreen(level.DropCrateAnchor))
             CratePlace.play();

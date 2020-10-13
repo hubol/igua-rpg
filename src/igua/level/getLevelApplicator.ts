@@ -2,6 +2,8 @@ import {mergeFunctionLeaves} from "../../utils/mergeFunctionLeaves";
 
 let levelApplicatorLibrary;
 
+export type LevelApplicator = ReturnType<typeof getLevelApplicator>;
+
 export function getLevelApplicator(name: string)
 {
     if (!levelApplicatorLibrary)

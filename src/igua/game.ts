@@ -1,4 +1,4 @@
-import {Container, DisplayObject, Graphics} from "pixi.js";
+import {Container} from "pixi.js";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {stepPlayerCamera} from "./playerCamera";
 import {player} from "../gameObjects/player";
@@ -6,10 +6,12 @@ import {advanceKeyListener, startKeyListener} from "../utils/browser/key";
 import {CutscenePlayer} from "../cutscene/cutscene";
 import {hud} from "../gameObjects/hud";
 import {level} from "./level/level";
-import {getInitialProgress, progress, setProgress} from "./progress";
+import {getInitialProgress, progress, setProgress} from "./data/progress";
 import {AsshatApplication} from "../utils/pixi/createApplication";
 import {environment} from "./environment";
 import {devProgress} from "./dev/devProgress";
+import {scene} from "./scene";
+import {devWindow} from "./dev/devWindow";
 
 export let game: ReturnType<typeof createGame>;
 function createGame(application: AsshatApplication)
@@ -21,51 +23,26 @@ function createGame(application: AsshatApplication)
     startKeyListener();
     ticker.add(advanceKeyListener);
 
-    application.ticker.add(() => ticker.update());
+    application.ticker.add(() => {
+        ticker.update();
+        scene.ticker.update();
+    });
 
-    const backgroundGraphics = new Graphics();
-    const terrainStage = new Container();
+    const sceneStage = new Container();
+    const playerStage = new Container().withTicker(ticker);
+    const hudStage = new Container().withTicker(ticker);
 
-    const parallax1Stage = new Container();
-    const backgroundGameObjectStage = new Container();
-    const terrainContainer = new Container();
-    const pipeStage = new Container();
-    const gameObjectStage = new Container();
-    const stage = new Container();
-    stage.addChild(backgroundGameObjectStage, pipeStage, terrainStage, terrainContainer, gameObjectStage);
-    application.stage.addChild(backgroundGraphics, parallax1Stage, stage);
+    application.stage.addChild(sceneStage, playerStage, hudStage);
 
     return {
-        get hudStage() {
-            return application.stage;
-        },
-        parallax1Stage,
-        backgroundGameObjectStage,
-        terrainStage,
-        pipeStage,
-        gameObjectStage,
-        stage,
+        hudStage,
+        sceneStage,
+        playerStage,
         get applicationTicker() {
             return application.ticker;
         },
         ticker,
-        camera: createCamera(stage),
-        set backgroundColor(value: number) {
-            backgroundGraphics.clear();
-            backgroundGraphics.beginFill(value);
-            backgroundGraphics.drawRect(0, 0, 256, 256);
-        },
-        set terrainFill(value: DisplayObject) {
-            terrainContainer.removeAllChildren();
-            value.mask = terrainStage;
-            terrainContainer.addChild(value);
-        },
-        set terrainColor(color: number) {
-            const graphics = new Graphics();
-            graphics.beginFill(color);
-            graphics.drawRect(0, 0, game.level.width, game.level.height);
-            this.terrainFill = graphics;
-        },
+        camera: createCamera(),
         player: {} as ReturnType<typeof player>,
         get width() {
             return application.renderer.width;
@@ -73,7 +50,6 @@ function createGame(application: AsshatApplication)
         get height() {
             return application.renderer.height;
         },
-        level: {} as LevelInfo,
         cutscenePlayer: new CutscenePlayer()
     };
 }
@@ -88,7 +64,10 @@ export function startGame(application: AsshatApplication)
     hud();
 
     loadSavedProgress();
-    level.gotoSync(progress.levelName);
+    level.goto(progress.levelName);
+
+    if (!environment.isProduction)
+        devWindow();
 }
 
 export function loadSavedProgress()
@@ -104,34 +83,30 @@ export function recreatePlayer()
         game.player.destroy({children: true});
 
     game.player = player();
-    game.stage.addChild(game.player);
+    game.playerStage.addChild(game.player);
 }
 
-function createCamera(displayObject: DisplayObject)
+function createCamera()
 {
     return {
         get x() {
-            return -displayObject.x;
+            return -scene.cameraStage.x;
         },
         get y() {
-            return -displayObject.y;
+            return -scene.cameraStage.y;
         },
         set x(value) {
-            displayObject.x = -value;
-            game.parallax1Stage.x = Math.round(-value * 0.9);
+            game.playerStage.x = -value;
+            scene.cameraStage.x = -value;
+            scene.parallax1Stage.x = Math.round(-value * 0.9);
         },
         set y(value) {
-            displayObject.y = -value;
-            game.parallax1Stage.y = Math.round(-value * 0.9);
+            game.playerStage.y = -value;
+            scene.cameraStage.y = -value;
+            scene.parallax1Stage.y = Math.round(-value * 0.9);
         },
         width: 256,
         height: 256,
         followPlayer: true
     };
-}
-
-interface LevelInfo
-{
-    width: number;
-    height: number;
 }

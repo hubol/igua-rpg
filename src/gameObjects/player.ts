@@ -10,7 +10,7 @@ import {
 } from "../sounds";
 import {playerCharacterKey as playerKey} from "../igua/logic/playerCharacterKey";
 import {merge} from "../utils/merge";
-import {progress} from "../igua/progress";
+import {progress} from "../igua/data/progress";
 import {gotoDeathScreen} from "../igua/gotoDeathScreen";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 
