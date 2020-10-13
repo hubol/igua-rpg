@@ -50,7 +50,6 @@ function createGame(application: AsshatApplication)
         get height() {
             return application.renderer.height;
         },
-        level: {} as LevelInfo,
         cutscenePlayer: new CutscenePlayer()
     };
 }
@@ -110,10 +109,4 @@ function createCamera()
         height: 256,
         followPlayer: true
     };
-}
-
-interface LevelInfo
-{
-    width: number;
-    height: number;
 }

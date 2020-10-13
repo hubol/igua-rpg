@@ -1,5 +1,4 @@
 import {IguanaPuppetNoEngine} from "./iguanaPuppet";
-import {game} from "../game";
 import {push} from "../../gameObjects/walls";
 import {
     CharacterHitCeiling,
@@ -11,6 +10,7 @@ import {
 } from "../../sounds";
 import {isOnScreen} from "../logic/isOnScreen";
 import {rejection} from "../../utils/rejection";
+import {level} from "../level/level";
 
 CharacterStep.volume(.4);
 CharacterStep2.volume(.4);
@@ -112,9 +112,9 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
                     hsp = 0;
                     puppet.hspeed = 0;
                 }
-                else if (puppet.x > game.level.width - 20)
+                else if (puppet.x > level.width - 20)
                 {
-                    puppet.x = game.level.width - 20;
+                    puppet.x = level.width - 20;
                     hsp = 0;
                     puppet.hspeed = 0;
                 }
@@ -125,9 +125,9 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
                     vsp = Math.abs(vsp);
                     puppet.vspeed = Math.abs(puppet.vspeed);
                 }
-                else if (puppet.y > game.level.height)
+                else if (puppet.y > level.height)
                 {
-                    puppet.y = game.level.height;
+                    puppet.y = level.height;
                     vsp = -Math.abs(vsp);
                     puppet.vspeed = -Math.abs(puppet.vspeed);
                 }

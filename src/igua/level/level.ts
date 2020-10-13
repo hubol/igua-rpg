@@ -18,5 +18,7 @@ export const level = {
         sceneStack.push();
         getLevelApplicator(levelName)();
         progress.levelName = levelName;
-    }
+    },
+    width: 0,
+    height: 0
 }

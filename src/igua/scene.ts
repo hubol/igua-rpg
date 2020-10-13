@@ -2,6 +2,7 @@ import {Container, DisplayObject, Graphics} from "pixi.js";
 import {game} from "./game";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {merge} from "../utils/merge";
+import {level} from "./level/level";
 
 function createScene()
 {
@@ -34,7 +35,7 @@ function createScene()
         set terrainColor(color: number) {
             const graphics = new Graphics();
             graphics.beginFill(color);
-            graphics.drawRect(0, 0, game.level.width, game.level.height);
+            graphics.drawRect(0, 0, level.width, level.height);
             this.terrainFill = graphics;
         },
         parallax1Stage,
