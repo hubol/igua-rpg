@@ -8,28 +8,21 @@ import {environment} from "../environment";
 
 function createDev() {
     return {
-        get game() {
-            return game;
-        },
-        get scenes() {
-            return sceneStack.toArray();
-        },
-        get level() {
-            return level;
-        },
-        get jukebox() {
-            return jukebox;
-        },
-        get progress() {
-            return progress;
-        },
-        get environment() {
-            return environment;
-        }
+        game,
+        scenes: sceneStack.toArray(),
+        level,
+        jukebox,
+        progress,
+        environment
     };
 }
 
 export function devWindow()
 {
-    merge(window, { dev: createDev() });
+    merge(window, {
+        get dev()
+        {
+            return createDev();
+        }
+    });
 }
