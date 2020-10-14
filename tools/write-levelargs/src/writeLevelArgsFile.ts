@@ -1,5 +1,5 @@
 import {GameObjectResolver} from "../../gen-levelargs/types/gameObjectResolver";
-import {createOrUpdateFile, getAllFiles, getDirectory} from "pissant-node";
+import {createOrUpdateFile, getAllFiles, getDirectory, getRelativePath} from "pissant-node";
 import {generateLevelArgsExport} from "../../gen-levelargs/generateLevelArgsExport";
 import {writeModule} from "../../gen-module/writeModule";
 import {Module} from "../../gen-module/components/module";
@@ -18,8 +18,10 @@ export async function writeLevelArgsFile(
     const exports =
         (await Promise.all(getAllFiles(ogmoLevelsDirectoryPath).filter(x => x.endsWith(".json")).map(readOgmoLevelFile)))
             .map(generateLevelArgsExport(gameObjectResolvers));
+    const module = new Module(getDirectory(levelArgsFilePath), exports);
+
     const moduleText = `// This file is generated. Do not touch.
-${writeModule(new Module(getDirectory(levelArgsFilePath), exports))}`;
+${writeModule(module, getRelativePath)}`;
     console.log(moduleText);
     createOrUpdateFile(levelArgsFilePath, moduleText);
 }
