@@ -1,5 +1,4 @@
 import {Module} from "./components/module";
-import {getRelativePath} from "pissant-node";
 import {Export} from "./components/export";
 import {AnonymousFunction} from "./components/function";
 import {Invocation} from "./components/invocation";
@@ -7,15 +6,17 @@ import {findImports, Import} from "./findImports";
 import {isPojo} from "./isPojo";
 import {ImportedConst} from "./components/imported";
 
-export function writeModule(module: Module)
+type GetRelativePath = (from: string, to: string) => string;
+
+export function writeModule(module: Module, getRelativePath: GetRelativePath)
 {
     const imports = findImports(module);
-    return `${imports.map(writeImport(module)).join("\n")}
+    return `${imports.map(writeImport(module, getRelativePath)).join("\n")}
 
 ${module.exports.map(writeExport).join("\n\n")}`;
 }
 
-function writeImport(module: Module) {
+function writeImport(module: Module, getRelativePath: GetRelativePath) {
     return function(x: Import)
     {
         return `import { ${x.exportedName} } from "${getRelativePath(module.directoryPath, x.modulePath)}";`;
