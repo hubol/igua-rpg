@@ -1,8 +1,8 @@
 // This file is generated. Do not touch.
+import { resolveBlock } from "./gameObjects/walls";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveRegion } from "./gameObjects/region";
 import { resolveNpc } from "./gameObjects/npc";
-import { resolveBlock } from "./gameObjects/walls";
 import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveSlopeLeft } from "./gameObjects/walls";
@@ -905,6 +905,22 @@ InnDoor: resolveDoor({"type":"Door","x":568,"y":208,"flippedX":false,"flippedY":
 // @ts-ignore
 BarDoor: resolveDoor({"type":"Door","x":424,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"BarDoor"}),
 FromInn: {"type":"Checkpoint","x":552,"y":240,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromInn","faceRight":false}
+};
+}
+};
+
+export const UnrealFlightArgs = {
+    width: 512,
+height: 312,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":256,"width":152,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":152,"y":128,"width":32,"height":184,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":152,"y":0,"width":32,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+Player: {"type":"Player","x":72,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true}
 };
 }
 };
