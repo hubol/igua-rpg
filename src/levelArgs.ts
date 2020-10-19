@@ -1,5 +1,6 @@
 // This file is generated. Do not touch.
 import { resolveBlock } from "./gameObjects/walls";
+import { resolveGate } from "./gameObjects/gate";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveRegion } from "./gameObjects/region";
 import { resolveNpc } from "./gameObjects/npc";
@@ -28,6 +29,158 @@ import { PotteryOrange } from "./textures";
 import { Cobweb } from "./textures";
 import { KeyRed } from "./textures";
 import { Rope } from "./textures";
+import { DesertTemple } from "./textures";
+
+export const DesertFieldArgs = {
+    width: 680,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    DesertTemple: resolveDecalGameObject({
+    x: 352,
+y: 208,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: DesertTemple
+}),
+SpikyBrushA: resolveDecalGameObject({
+    x: 288,
+y: 208,
+originX: 0.5,
+originY: 0.9,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
+SpikyBrushA_1: resolveDecalGameObject({
+    x: 264,
+y: 208,
+originX: 0.5,
+originY: 0.9,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
+SpikyBrushB: resolveDecalGameObject({
+    x: 272,
+y: 200,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+SpikyBrushB_1: resolveDecalGameObject({
+    x: 424,
+y: 120,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+CloudLong: resolveDecalGameObject({
+    x: 56,
+y: 64,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 88,
+y: 72,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 248,
+y: 104,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_3: resolveDecalGameObject({
+    x: 352,
+y: 40,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_4: resolveDecalGameObject({
+    x: 520,
+y: 72,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_5: resolveDecalGameObject({
+    x: 552,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_6: resolveDecalGameObject({
+    x: 664,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":208,"width":680,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+TempleDoor: resolveDoor({"type":"Door","x":312,"y":176,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"TempleDoor"}),
+// @ts-ignore
+Sign: resolveSign({"type":"Sign","x":384,"y":208,"flippedX":false,"flippedY":false,"uid":"86706091","title":"Temple","message":"This is the ancient desert temple."}),
+Player: {"type":"Player","x":184,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true},
+// @ts-ignore
+Gate: resolveGate({"type":"Gate","x":0,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertTown","checkpointName":"FromField"}),
+FromTown: {"type":"Checkpoint","x":72,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromTown","faceRight":true}
+};
+}
+};
 
 export const DesertInnArgs = {
     width: 512,
@@ -904,7 +1057,10 @@ DropCrateRegion: resolveRegion({"type":"Region","x":1376,"y":288,"width":40,"hei
 InnDoor: resolveDoor({"type":"Door","x":568,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"DesertInn","checkpointName":"","name":"InnDoor"}),
 // @ts-ignore
 BarDoor: resolveDoor({"type":"Door","x":424,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"BarDoor"}),
-FromInn: {"type":"Checkpoint","x":552,"y":240,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromInn","faceRight":false}
+FromInn: {"type":"Checkpoint","x":552,"y":240,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromInn","faceRight":false},
+// @ts-ignore
+Gate: resolveGate({"type":"Gate","x":2008,"y":240,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertField","checkpointName":"FromTown"}),
+FromField: {"type":"Checkpoint","x":1960,"y":272,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromField","faceRight":false}
 };
 }
 };
