@@ -4,12 +4,8 @@ import {wait} from "pissant";
 class Jukebox
 {
     private _currentHowl?: Howl;
-    private readonly _howlsWarmer: HowlsWarmer;
 
-    constructor(howlsWarmer: HowlsWarmer)
-    {
-        this._howlsWarmer = howlsWarmer;
-    }
+    constructor(private readonly _howlsWarmer: HowlsWarmer) { }
 
     warm(...howls: Howl[])
     {
@@ -94,12 +90,8 @@ class Jukebox
 class HowlsWarmer
 {
     private readonly _warmedHowls: Howl[] = [];
-    private readonly _maxWarmedHowlsCount: number;
 
-    constructor(maxWarmedHowlsCount: number)
-    {
-        this._maxWarmedHowlsCount = maxWarmedHowlsCount;
-    }
+    constructor(private readonly _maxWarmedHowlsCount: number) { }
 
     async warm(howl: Howl)
     {

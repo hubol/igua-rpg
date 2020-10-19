@@ -1,11 +1,4 @@
 export class ImportedConst
 {
-    public readonly exportedName: string;
-    public readonly modulePath: string;
-
-    public constructor(exportedName: string, modulePath: string)
-    {
-        this.exportedName = exportedName;
-        this.modulePath = modulePath;
-    }
+    constructor(readonly exportedName: string, readonly modulePath: string) { }
 }

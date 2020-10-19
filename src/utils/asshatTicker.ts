@@ -1,10 +1,6 @@
 export class EscapeTickerAndExecute
 {
-    public readonly execute: () => void;
-
-    constructor(execute: () => void) {
-        this.execute = execute;
-    }
+    constructor(readonly execute: () => void) { }
 }
 
 type AsshatTickerFn = () => void;
