@@ -22,14 +22,7 @@ type MoveTime = ReturnType<typeof moveOver>;
 
 class Move
 {
-    private readonly _vector: Vector;
-    private readonly _config?: IguaPromiseConfig;
-
-    constructor(vector: Vector, config?: IguaPromiseConfig)
-    {
-        this._vector = vector;
-        this._config = config;
-    }
+    constructor(private readonly _vector: Vector, private readonly _config?: IguaPromiseConfig) { }
 
     by(speed: Vector): MoveTime;
     by(x: number, y: number): MoveTime;

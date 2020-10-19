@@ -30,11 +30,6 @@ function getGameObjectResolverInfoImpl(object: any)
 
 class GameObjectResolverInfo
 {
-    readonly canResolveGameObjectArgsType: string;
-
-    constructor(canResolveGameObjectArgsType: string)
-    {
-        this.canResolveGameObjectArgsType = canResolveGameObjectArgsType;
-    }
+    constructor(readonly canResolveGameObjectArgsType: string) { }
 
 }
