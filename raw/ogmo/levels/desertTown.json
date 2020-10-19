@@ -227,6 +227,28 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromInn", "faceRight": false}
+        },
+        {
+          "name": "Gate",
+          "id": 28,
+          "_eid": "55920197",
+          "x": 2008,
+          "y": 240,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "DesertField", "checkpointName": "FromTown"}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 29,
+          "_eid": "55940370",
+          "x": 1960,
+          "y": 272,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromField", "faceRight": false}
         }
       ]
     },
