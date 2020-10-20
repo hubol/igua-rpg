@@ -5,5 +5,5 @@ export function devProgress()
     progress.flags.heardIntroduction = true;
     progress.flags.stackedAllCrates = true;
     progress.valuables = 100;
-    // progress.levelName = "UnrealFlight";
+    progress.levelName = "DesertField";
 }
