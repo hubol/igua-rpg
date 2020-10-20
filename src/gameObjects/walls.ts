@@ -29,8 +29,12 @@ export const resolvePipeRight = resolveGameObject("PipeRight", e =>
 export const resolvePipeLeft = resolveGameObject("PipeLeft", e =>
     scene.pipeStage.addChild(pipe(e.x, e.y, e.x + e.width, e.y + e.height)));
 
-export const resolvePipeHorizontal = resolveGameObject("PipeHorizontal", e =>
-    scene.pipeStage.addChild(pipe(e.x, e.y, e.x + e.width, e.y)));
+export const resolvePipeHorizontal = resolveGameObject("PipeHorizontal", e => {
+    const pipeChild = pipe(e.x, e.y, e.x + e.width, e.y);
+    if ((e as any).visible === false)
+        pipeChild.visible = false;
+    return scene.pipeStage.addChild(pipeChild);
+});
 
 export const resolvePipeRightEnd = resolveGameObject("PipeRightEnd", e => {
     const sprite = Sprite.from(RightPipeEnd);

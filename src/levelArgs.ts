@@ -1,5 +1,6 @@
 // This file is generated. Do not touch.
 import { resolveBlock } from "./gameObjects/walls";
+import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveRegion } from "./gameObjects/region";
@@ -18,7 +19,6 @@ import { CrudeHouseC } from "./textures";
 import { CrateWooden } from "./textures";
 import { CrudeHouseB } from "./textures";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
-import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
 import { resolveValuableBlue } from "./gameObjects/valuable";
@@ -357,7 +357,9 @@ Block_5: resolveBlock({"type":"Block","x":1400,"y":136,"width":152,"height":32,"
 // @ts-ignore
 SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":1400,"y":168,"width":152,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435"}),
 // @ts-ignore
-Digua: resolveNpc({"type":"NpcIguana","x":1400,"y":136,"flippedX":true,"flippedY":false,"uid":"26367058","name":"Digua","style":4})
+Digua: resolveNpc({"type":"NpcIguana","x":1400,"y":136,"flippedX":true,"flippedY":false,"uid":"26367058","name":"Digua","style":4}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":344,"y":136,"width":200,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false})
 };
 }
 };
@@ -627,7 +629,7 @@ Player: {"type":"Player","x":80,"y":232,"flippedX":false,"flippedY":false,"uid":
 // @ts-ignore
 PipeLeft: resolvePipeLeft({"type":"PipeLeft","x":176,"y":144,"width":56,"height":40,"flippedX":false,"flippedY":false,"uid":"55866573"}),
 // @ts-ignore
-PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":144,"y":144,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307"}),
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":144,"y":144,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":true}),
 // @ts-ignore
 PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":144,"y":144,"flippedX":false,"flippedY":false,"uid":"63428932"}),
 // @ts-ignore
@@ -645,7 +647,7 @@ PipeRight_1: resolvePipeRight({"type":"PipeRight","x":112,"y":336,"width":120,"h
 // @ts-ignore
 PipeLeft_3: resolvePipeLeft({"type":"PipeLeft","x":168,"y":288,"width":64,"height":48,"flippedX":false,"flippedY":false,"uid":"55866573"}),
 // @ts-ignore
-PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":136,"y":288,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307"}),
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":136,"y":288,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":true}),
 // @ts-ignore
 PipeLeftEnd_1: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":136,"y":288,"flippedX":false,"flippedY":false,"uid":"63428932"}),
 // @ts-ignore
@@ -653,7 +655,7 @@ Oracle: resolveNpc({"type":"NpcIguana","x":48,"y":616,"flippedX":false,"flippedY
 // @ts-ignore
 SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":24,"y":232,"width":96,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599"}),
 // @ts-ignore
-PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":80,"y":400,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307"}),
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":80,"y":400,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":true}),
 // @ts-ignore
 PipeLeftEnd_2: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":80,"y":400,"flippedX":false,"flippedY":false,"uid":"63428932"}),
 // @ts-ignore
@@ -1240,7 +1242,27 @@ BarDoor: resolveDoor({"type":"Door","x":424,"y":208,"flippedX":false,"flippedY":
 FromInn: {"type":"Checkpoint","x":552,"y":240,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromInn","faceRight":false},
 // @ts-ignore
 Gate: resolveGate({"type":"Gate","x":2008,"y":240,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertField","checkpointName":"FromTown"}),
-FromField: {"type":"Checkpoint","x":1960,"y":272,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromField","faceRight":false}
+FromField: {"type":"Checkpoint","x":1960,"y":272,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromField","faceRight":false},
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":415,"y":160,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":359,"y":190,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":571,"y":187,"width":74,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":611,"y":153,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":758,"y":185,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+PipeHorizontal_5: resolvePipeHorizontal({"type":"PipeHorizontal","x":813,"y":156,"width":48,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":782,"y":122,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":1246,"y":254,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":1302,"y":224,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+PipeHorizontal_9: resolvePipeHorizontal({"type":"PipeHorizontal","x":639,"y":213,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false})
 };
 }
 };

@@ -165,6 +165,17 @@
           "originY": 27,
           "flippedX": true,
           "values": {"name": "Digua", "style": 4}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 19,
+          "_eid": "55841307",
+          "x": 344,
+          "y": 136,
+          "width": 200,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
         }
       ]
     },

@@ -249,6 +249,116 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromField", "faceRight": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 30,
+          "_eid": "55841307",
+          "x": 415,
+          "y": 160,
+          "width": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 31,
+          "_eid": "55841307",
+          "x": 359,
+          "y": 190,
+          "width": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 32,
+          "_eid": "55841307",
+          "x": 571,
+          "y": 187,
+          "width": 74,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 33,
+          "_eid": "55841307",
+          "x": 611,
+          "y": 153,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 34,
+          "_eid": "55841307",
+          "x": 758,
+          "y": 185,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 35,
+          "_eid": "55841307",
+          "x": 813,
+          "y": 156,
+          "width": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 36,
+          "_eid": "55841307",
+          "x": 782,
+          "y": 122,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 37,
+          "_eid": "55841307",
+          "x": 1246,
+          "y": 254,
+          "width": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 38,
+          "_eid": "55841307",
+          "x": 1302,
+          "y": 224,
+          "width": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 39,
+          "_eid": "55841307",
+          "x": 639,
+          "y": 213,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
         }
       ]
     },
