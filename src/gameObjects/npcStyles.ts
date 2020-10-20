@@ -18,10 +18,12 @@ import {
     NpcShortTailBody,
     NpcYellowFoot,
     NpcYellowFootRear,
-    NpcPupilsWeird
+    NpcPupilsWeird,
+    NpcLongTailBody, CharacterCrest, NpcBlueFoot2, NpcBlueFootRear2, NpcHornedCrest
 } from "../textures";
 import {IguanaEyes, iguanaEyes} from "../igua/puppet/eyes";
 import {add, Vector} from "../utils/math/vector";
+import {invisibleObject} from "./utils/invisibleObject";
 
 const npcStyles: Array<ReturnType<typeof getNpcStyle>> = [];
 
@@ -116,6 +118,32 @@ npcStyles[3] = npcStyle(args => {
     args.pupils.pivot.y -= 1;
     args.pupils.tint = 0x4080F0;
     args.eyelidColor = 0xC0B070;
+});
+
+npcStyles[4] = npcStyle(args => {
+    args.body = Sprite.from(NpcLongTailBody);
+    args.body.pivot.x += 13;
+    args.body.pivot.y += 3;
+    args.body.tint = 0xA0A0E0;
+
+    args.frontRightFoot = Sprite.from(NpcBlueFoot2);
+
+    args.backRightFoot = Sprite.from(NpcBlueFootRear2);
+    args.backRightFoot.pivot.y = 1;
+
+    args.crest = Sprite.from(NpcHornedCrest);
+    args.crest.pivot.set(-6, 6);
+    args.crest.tint = 0xD05070;
+
+    args.headOffset.y += 2;
+
+    args.headSprite.tint = 0x90D0E0;
+    args.mouthSprite.tint = 0xD05070;
+
+    args.pupils = Sprite.from(NpcPupilsCartoonish);
+    // args.pupils.pivot.y += 1;
+    args.pupils.tint = 0xD05070;
+    args.eyelidColor = 0x60B0D0;
 });
 
 function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)

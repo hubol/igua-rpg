@@ -1,7 +1,7 @@
 {
   "ogmoVersion": "3.3.0",
-  "width": 680,
-  "height": 256,
+  "width": 1552,
+  "height": 352,
   "offsetX": 0,
   "offsetY": 0,
   "layers": [
@@ -12,17 +12,17 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 85,
-      "gridCellsY": 32,
+      "gridCellsX": 194,
+      "gridCellsY": 44,
       "entities": [
         {
           "name": "Block",
           "id": 0,
           "_eid": "55823268",
           "x": 0,
-          "y": 208,
-          "width": 680,
-          "height": 48,
+          "y": 248,
+          "width": 312,
+          "height": 104,
           "originX": 0,
           "originY": 0,
           "values": {"name": ""}
@@ -31,7 +31,7 @@
           "name": "Door",
           "id": 1,
           "_eid": "55913988",
-          "x": 312,
+          "x": 400,
           "y": 176,
           "originX": 0,
           "originY": 0,
@@ -41,7 +41,7 @@
           "name": "Sign",
           "id": 2,
           "_eid": "86706091",
-          "x": 384,
+          "x": 472,
           "y": 208,
           "originX": 14,
           "originY": 18,
@@ -51,8 +51,8 @@
           "name": "Player",
           "id": 3,
           "_eid": "55988047",
-          "x": 184,
-          "y": 208,
+          "x": 1352,
+          "y": 264,
           "originX": 11,
           "originY": 27,
           "values": {"faceRight": true}
@@ -62,7 +62,7 @@
           "id": 4,
           "_eid": "55920197",
           "x": 0,
-          "y": 176,
+          "y": 216,
           "width": 32,
           "height": 32,
           "originX": 0,
@@ -74,10 +74,97 @@
           "id": 5,
           "_eid": "55940370",
           "x": 72,
-          "y": 208,
+          "y": 248,
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromTown", "faceRight": true}
+        },
+        {"name": "SlopeRight", "id": 6, "_eid": "55824435", "x": 232, "y": 208, "width": 80, "height": 40, "originX": 0, "originY": 0, "flippedY": false},
+        {
+          "name": "Block",
+          "id": 7,
+          "_eid": "55823268",
+          "x": 312,
+          "y": 208,
+          "width": 288,
+          "height": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"name": "SlopeLeft", "id": 8, "_eid": "55845599", "x": 600, "y": 208, "width": 112, "height": 56, "originX": 0, "originY": 0, "flippedY": false},
+        {
+          "name": "Sign",
+          "id": 9,
+          "_eid": "86706091",
+          "x": 168,
+          "y": 248,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "Sand", "message": "This is the desert."}
+        },
+        {
+          "name": "Block",
+          "id": 10,
+          "_eid": "55823268",
+          "x": 600,
+          "y": 264,
+          "width": 168,
+          "height": 88,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"name": "SlopeLeft", "id": 11, "_eid": "55845599", "x": 768, "y": 264, "width": 96, "height": 32, "originX": 0, "originY": 0, "flippedY": false},
+        {
+          "name": "Block",
+          "id": 12,
+          "_eid": "55823268",
+          "x": 768,
+          "y": 296,
+          "width": 432,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"name": "SlopeRight", "id": 13, "_eid": "55824435", "x": 1112, "y": 264, "width": 88, "height": 32, "originX": 0, "originY": 0, "flippedY": false},
+        {
+          "name": "Block",
+          "id": 14,
+          "_eid": "55823268",
+          "x": 1200,
+          "y": 264,
+          "width": 352,
+          "height": 88,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"name": "SlopeRight", "id": 15, "_eid": "55824435", "x": 1368, "y": 136, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "Block",
+          "id": 16,
+          "_eid": "55823268",
+          "x": 1400,
+          "y": 136,
+          "width": 152,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"name": "SlopeRight", "id": 17, "_eid": "55824435", "x": 1400, "y": 168, "width": 152, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "NpcIguana",
+          "id": 18,
+          "_eid": "26367058",
+          "x": 1400,
+          "y": 136,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "Digua", "style": 4}
         }
       ]
     },
@@ -88,11 +175,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 85,
-      "gridCellsY": 32,
+      "gridCellsX": 194,
+      "gridCellsY": 44,
       "decals": [
         {
-          "x": 352,
+          "x": 440,
           "y": 208,
           "scaleX": 1,
           "scaleY": 1,
@@ -103,7 +190,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 288,
+          "x": 376,
           "y": 208,
           "scaleX": 1,
           "scaleY": 1,
@@ -113,9 +200,19 @@
           "originY": 0.9,
           "values": {"name": ""}
         },
-        {"x": 264, "y": 208, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "spiky brush a.png", "originX": 0.5, "originY": 0.9},
         {
-          "x": 272,
+          "x": 352,
+          "y": 208,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 0.9,
+          "values": {"name": ""}
+        },
+        {
+          "x": 360,
           "y": 200,
           "scaleX": 1,
           "scaleY": 1,
@@ -126,12 +223,67 @@
           "values": {"name": ""}
         },
         {
-          "x": 424,
-          "y": 120,
+          "x": 512,
+          "y": 124,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": 0,
           "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 145,
+          "y": 240,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1448,
+          "y": 140,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 744,
+          "y": 253,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1096,
+          "y": 288,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1320,
+          "y": 256,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
@@ -146,11 +298,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 85,
-      "gridCellsY": 32,
+      "gridCellsX": 194,
+      "gridCellsY": 44,
       "decals": [
         {
-          "x": 56,
+          "x": 144,
           "y": 64,
           "scaleX": 1,
           "scaleY": 1,
@@ -161,7 +313,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 88,
+          "x": 176,
           "y": 72,
           "scaleX": 1,
           "scaleY": 1,
@@ -172,7 +324,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 248,
+          "x": 336,
           "y": 104,
           "scaleX": 1,
           "scaleY": 1,
@@ -183,7 +335,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 352,
+          "x": 440,
           "y": 40,
           "scaleX": 1,
           "scaleY": 1,
@@ -194,7 +346,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 520,
+          "x": 608,
           "y": 72,
           "scaleX": 1,
           "scaleY": 1,
@@ -205,7 +357,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 552,
+          "x": 640,
           "y": 80,
           "scaleX": 1,
           "scaleY": 1,
@@ -216,8 +368,107 @@
           "values": {"name": ""}
         },
         {
-          "x": 664,
+          "x": 752,
           "y": 112,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 8,
+          "y": 120,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 848,
+          "y": 184,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 880,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 976,
+          "y": 112,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1152,
+          "y": 192,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1248,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1272,
+          "y": 104,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1432,
+          "y": 168,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1544,
+          "y": 48,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": 0,

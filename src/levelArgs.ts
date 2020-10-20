@@ -32,12 +32,12 @@ import { Rope } from "./textures";
 import { DesertTemple } from "./textures";
 
 export const DesertFieldArgs = {
-    width: 680,
-height: 256,
+    width: 1552,
+height: 352,
 gameObjectsSupplier: () => {
   return {
     DesertTemple: resolveDecalGameObject({
-    x: 352,
+    x: 440,
 y: 208,
 originX: 0.5,
 originY: 1,
@@ -48,7 +48,7 @@ layerName: "BackgroundDecals",
 texture: DesertTemple
 }),
 SpikyBrushA: resolveDecalGameObject({
-    x: 288,
+    x: 376,
 y: 208,
 originX: 0.5,
 originY: 0.9,
@@ -59,7 +59,7 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
 SpikyBrushA_1: resolveDecalGameObject({
-    x: 264,
+    x: 352,
 y: 208,
 originX: 0.5,
 originY: 0.9,
@@ -70,7 +70,7 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
 SpikyBrushB: resolveDecalGameObject({
-    x: 272,
+    x: 360,
 y: 200,
 originX: 0.5,
 originY: 0.5,
@@ -81,8 +81,8 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
 SpikyBrushB_1: resolveDecalGameObject({
-    x: 424,
-y: 120,
+    x: 512,
+y: 124,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -91,8 +91,63 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
+SpikyBrushB_2: resolveDecalGameObject({
+    x: 145,
+y: 240,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+SpikyBrushB_3: resolveDecalGameObject({
+    x: 1448,
+y: 140,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+SpikyBrushB_4: resolveDecalGameObject({
+    x: 744,
+y: 253,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+SpikyBrushA_2: resolveDecalGameObject({
+    x: 1096,
+y: 288,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
+SpikyBrushA_3: resolveDecalGameObject({
+    x: 1320,
+y: 256,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
 CloudLong: resolveDecalGameObject({
-    x: 56,
+    x: 144,
 y: 64,
 originX: 0.5,
 originY: 0.5,
@@ -103,7 +158,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_1: resolveDecalGameObject({
-    x: 88,
+    x: 176,
 y: 72,
 originX: 0.5,
 originY: 0.5,
@@ -114,7 +169,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_2: resolveDecalGameObject({
-    x: 248,
+    x: 336,
 y: 104,
 originX: 0.5,
 originY: 0.5,
@@ -125,7 +180,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_3: resolveDecalGameObject({
-    x: 352,
+    x: 440,
 y: 40,
 originX: 0.5,
 originY: 0.5,
@@ -136,7 +191,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_4: resolveDecalGameObject({
-    x: 520,
+    x: 608,
 y: 72,
 originX: 0.5,
 originY: 0.5,
@@ -147,7 +202,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_5: resolveDecalGameObject({
-    x: 552,
+    x: 640,
 y: 80,
 originX: 0.5,
 originY: 0.5,
@@ -158,7 +213,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_6: resolveDecalGameObject({
-    x: 664,
+    x: 752,
 y: 112,
 originX: 0.5,
 originY: 0.5,
@@ -168,16 +223,141 @@ rotation: 0,
 layerName: "Parallax1Decals",
 texture: CloudLong
 }),
+CloudLong_7: resolveDecalGameObject({
+    x: 8,
+y: 120,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_8: resolveDecalGameObject({
+    x: 848,
+y: 184,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_9: resolveDecalGameObject({
+    x: 880,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_10: resolveDecalGameObject({
+    x: 976,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_11: resolveDecalGameObject({
+    x: 1152,
+y: 192,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_12: resolveDecalGameObject({
+    x: 1248,
+y: 96,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_13: resolveDecalGameObject({
+    x: 1272,
+y: 104,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_14: resolveDecalGameObject({
+    x: 1432,
+y: 168,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_15: resolveDecalGameObject({
+    x: 1544,
+y: 48,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":208,"width":680,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+Block: resolveBlock({"type":"Block","x":0,"y":248,"width":312,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
 // @ts-ignore
-TempleDoor: resolveDoor({"type":"Door","x":312,"y":176,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"TempleDoor"}),
+TempleDoor: resolveDoor({"type":"Door","x":400,"y":176,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"","checkpointName":"","name":"TempleDoor"}),
 // @ts-ignore
-Sign: resolveSign({"type":"Sign","x":384,"y":208,"flippedX":false,"flippedY":false,"uid":"86706091","title":"Temple","message":"This is the ancient desert temple."}),
-Player: {"type":"Player","x":184,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true},
+Sign: resolveSign({"type":"Sign","x":472,"y":208,"flippedX":false,"flippedY":false,"uid":"86706091","title":"Temple","message":"This is the ancient desert temple."}),
+Player: {"type":"Player","x":1352,"y":264,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":0,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertTown","checkpointName":"FromField"}),
-FromTown: {"type":"Checkpoint","x":72,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromTown","faceRight":true}
+Gate: resolveGate({"type":"Gate","x":0,"y":216,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertTown","checkpointName":"FromField"}),
+FromTown: {"type":"Checkpoint","x":72,"y":248,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromTown","faceRight":true},
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":232,"y":208,"width":80,"height":40,"flippedX":false,"flippedY":false,"uid":"55824435"}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":312,"y":208,"width":288,"height":144,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":600,"y":208,"width":112,"height":56,"flippedX":false,"flippedY":false,"uid":"55845599"}),
+// @ts-ignore
+Sign_1: resolveSign({"type":"Sign","x":168,"y":248,"flippedX":false,"flippedY":false,"uid":"86706091","title":"Sand","message":"This is the desert."}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":600,"y":264,"width":168,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":768,"y":264,"width":96,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599"}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":768,"y":296,"width":432,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":1112,"y":264,"width":88,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435"}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":1200,"y":264,"width":352,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":1368,"y":136,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435"}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":1400,"y":136,"width":152,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":1400,"y":168,"width":152,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435"}),
+// @ts-ignore
+Digua: resolveNpc({"type":"NpcIguana","x":1400,"y":136,"flippedX":true,"flippedY":false,"uid":"26367058","name":"Digua","style":4})
 };
 }
 };
