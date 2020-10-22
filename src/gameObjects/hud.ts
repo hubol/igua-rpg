@@ -23,5 +23,5 @@ export function hud()
 
     container.addChild(healthbar, valuables);
 
-    return game.hudStage.addChild(container);
+    return container;
 }
