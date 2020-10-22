@@ -58,7 +58,7 @@ export function startGame(application: AsshatApplication)
 
     game.ticker.add(stepPlayerCamera);
 
-    hud();
+    game.hudStage.addChild(hud());
 
     loadSavedProgress();
     level.goto(progress.levelName);
