@@ -16,7 +16,8 @@ function createScene()
     const pipeStage = new Container();
     const gameObjectStage = new Container();
     const cameraStage = new Container();
-    cameraStage.addChild(backgroundGameObjectStage, pipeStage, terrainStage, terrainContainer, gameObjectStage);
+    const playerStage = new Container();
+    cameraStage.addChild(backgroundGameObjectStage, pipeStage, terrainStage, terrainContainer, gameObjectStage, playerStage);
     const stage = new Container().withTicker(ticker);
     stage.addChild(backgroundGraphics, parallax1Stage, cameraStage);
     game.sceneStage.addChild(stage);
@@ -45,6 +46,7 @@ function createScene()
         terrainStage,
         terrainContainer,
         gameObjectStage,
+        playerStage,
         ticker,
         destroy()
         {

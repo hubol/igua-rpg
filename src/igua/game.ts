@@ -29,15 +29,13 @@ function createGame(application: AsshatApplication)
     });
 
     const sceneStage = new Container();
-    const playerStage = new Container().withTicker(ticker);
     const hudStage = new Container().withTicker(ticker);
 
-    application.stage.addChild(sceneStage, playerStage, hudStage);
+    application.stage.addChild(sceneStage, hudStage);
 
     return {
         hudStage,
         sceneStage,
-        playerStage,
         get applicationTicker() {
             return application.ticker;
         },
@@ -58,7 +56,6 @@ export function startGame(application: AsshatApplication)
 {
     game = createGame(application);
 
-    recreatePlayer();
     game.ticker.add(stepPlayerCamera);
 
     hud();
@@ -83,7 +80,7 @@ export function recreatePlayer()
         game.player.destroy({children: true});
 
     game.player = player();
-    game.playerStage.addChild(game.player);
+    scene.playerStage.addChild(game.player);
 }
 
 function createCamera()
@@ -96,12 +93,10 @@ function createCamera()
             return -scene.cameraStage.y;
         },
         set x(value) {
-            game.playerStage.x = -value;
             scene.cameraStage.x = -value;
             scene.parallax1Stage.x = Math.round(-value * 0.9);
         },
         set y(value) {
-            game.playerStage.y = -value;
             scene.cameraStage.y = -value;
             scene.parallax1Stage.y = Math.round(-value * 0.9);
         },
