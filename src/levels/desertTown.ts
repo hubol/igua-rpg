@@ -48,12 +48,12 @@ function addIntroduction(level: DesertTownLevel)
     const lizard = scene.gameObjectStage.addChild(npc(level.LeftHouseDoor.x - 32, level.LeftHouseDoor.y + 32, 2));
     lizard.engine.walkSpeed = 2;
     game.cutscenePlayer.playCutscene(async p => {
-        game.camera.followPlayer = false;
+        scene.camera.followPlayer = false;
 
         await p.sleep(1_000);
         await lizard.walkTo(level.LeftHouseDoor.x + 32);
         await p.sleep(1_000);
-        await p.move(game.camera).to(Math.round((lizard.x + game.player.x) / 2) - 128, lizard.y - 128).over(1_000);
+        await p.move(scene.camera).to(Math.round((lizard.x + game.player.x) / 2) - 128, lizard.y - 128).over(1_000);
         await p.sleep(1_000);
         await p.show("A great evil has entered the world.");
         await p.show("You are the one who must stop the evil.");
@@ -62,7 +62,7 @@ function addIntroduction(level: DesertTownLevel)
         await lizard.walkTo(level.LeftHouseDoor.x - 128);
         lizard.destroy();
 
-        game.camera.followPlayer = true;
+        scene.camera.followPlayer = true;
     });
 }
 
