@@ -4,7 +4,6 @@ import {UnrealFlightArgs} from "../levelArgs";
 import {Sprite} from "pixi.js";
 import {CloudLong} from "../textures";
 import {add} from "../utils/math/vector";
-import {game} from "../igua/game";
 
 export function UnrealFlight()
 {
@@ -23,13 +22,13 @@ function cloud()
     const sprite = Sprite.from(CloudLong)
         .withStep(() => {
             sprite.x -= speed;
-            if (sprite.x + sprite.width < game.camera.x)
+            if (sprite.x + sprite.width < scene.camera.x)
             {
-                sprite.x = game.camera.x + game.camera.width;
-                sprite.y = game.camera.y + game.camera.height * Math.random();
+                sprite.x = scene.camera.x + scene.camera.width;
+                sprite.y = scene.camera.y + scene.camera.height * Math.random();
             }
         })
-        .at(add({ x: game.camera.width * Math.random(), y: game.camera.height * Math.random() }, game.camera));
+        .at(add({ x: scene.camera.width * Math.random(), y: scene.camera.height * Math.random() }, scene.camera));
     if (Math.random() > 0.5)
         sprite.scale.y *= -1;
     scene.backgroundGameObjectStage.addChild(sprite);

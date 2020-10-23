@@ -3,6 +3,7 @@ import {game} from "./game";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {merge} from "../utils/merge";
 import {level} from "./level/level";
+import {camera as createCamera} from "./camera";
 
 function createScene()
 {
@@ -39,6 +40,7 @@ function createScene()
             graphics.drawRect(0, 0, level.width, level.height);
             this.terrainFill = graphics;
         },
+        camera: createCamera(),
         parallax1Stage,
         backgroundGameObjectStage,
         cameraStage,
