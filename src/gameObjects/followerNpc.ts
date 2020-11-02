@@ -1,6 +1,7 @@
 import {npc} from "./npc";
 import {game} from "../igua/game";
 import {add} from "../utils/math/vector";
+import {merge} from "../utils/merge";
 
 type Npc = ReturnType<typeof npc>;
 
@@ -8,7 +9,12 @@ export function followerNpc(npc: Npc)
 {
     let once = false;
 
-    return npc.withStep(() => {
+    const followerNpc = merge(npc, { isFollowing: true });
+
+    return followerNpc.withStep(() => {
+        if (!followerNpc.isFollowing)
+            return;
+
         if (!once || npc.hspeed === 0)
             npc.scale.x = game.player.scale.x;
 

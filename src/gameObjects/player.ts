@@ -64,11 +64,9 @@ function playerPuppet()
 
 export function player()
 {
-    if (progress.flags.diguaIsFollowing)
-        scene.playerStage.addChild(followerNpc(npc(0, 0, 4)));
-
     const player = merge(playerPuppet(),
         {
+            follower: getFollower(),
             invulnerableFrameCount: 0,
             isDead: false,
             damage(health: number)
@@ -161,4 +159,10 @@ export function player()
         .withStep(() => engine.step());
 
     return player;
+}
+
+function getFollower()
+{
+    if (progress.flags.diguaIsFollowing)
+        return scene.playerStage.addChild(followerNpc(npc(0, 0, 4)));
 }
