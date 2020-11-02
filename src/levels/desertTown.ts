@@ -213,9 +213,7 @@ function enhanceDigSpot(level: DesertTownLevel)
             await Promise.all([
                 p.show("Hey! I think there is something I can dig here!"),
                 p.move(scene.camera).to(level.DigKey.x - 128, scene.camera.y).over(1_000),
-                game.player.walkTo(v.x - 24) ]);
-
-            game.player.scale.x = 1;
+                game.player.walkTo(v.x - 24).then(() => game.player.scale.x = 1) ]);
 
             for (const block of blocks) {
                 const next = add({ x: 8, y: -8 }, block.getLocalBounds());
