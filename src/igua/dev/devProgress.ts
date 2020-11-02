@@ -6,4 +6,5 @@ export function devProgress()
     progress.flags.stackedAllCrates = true;
     progress.valuables = 100;
     progress.levelName = "DesertField";
+    progress.flags.diguaIsFollowing = true;
 }

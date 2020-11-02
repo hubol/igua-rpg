@@ -15,6 +15,9 @@ import {gotoDeathScreen} from "../igua/gotoDeathScreen";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {level} from "../igua/level/level";
 import {UnrealFlight} from "../levels/unrealFlight";
+import {scene} from "../igua/scene";
+import {followerNpc} from "./followerNpc";
+import {npc} from "./npc";
 
 function playerPuppet()
 {
@@ -61,6 +64,9 @@ function playerPuppet()
 
 export function player()
 {
+    if (progress.flags.diguaIsFollowing)
+        scene.playerStage.addChild(followerNpc(npc(0, 0, 4)));
+
     const player = merge(playerPuppet(),
         {
             invulnerableFrameCount: 0,
