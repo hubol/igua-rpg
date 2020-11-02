@@ -17,6 +17,7 @@ interface IguanaPuppetArgs
     head: DisplayObject;
     eyes: IguanaEyes | DisplayObject;
     crest: DisplayObject;
+    moveCrestWhenDucking?: boolean;
 }
 
 IguanaBlink.volume(0.06);
@@ -148,8 +149,12 @@ function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
             args.frontRightFoot.position.x += Math.round(roundedDuckUnit);
         }
 
-        args.crest.x = Math.round(roundedDuckUnit * 2);
-        args.crest.y = Math.round(roundedDuckUnit * -1);
+        if (args.moveCrestWhenDucking === undefined || args.moveCrestWhenDucking)
+        {
+            args.crest.x = Math.round(roundedDuckUnit * 2);
+            args.crest.y = Math.round(roundedDuckUnit * -1);
+        }
+
         head.y = Math.round(roundedDuckUnit * 2);
 
         if (player.hspeed < 0)

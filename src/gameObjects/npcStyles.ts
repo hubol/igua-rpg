@@ -140,6 +140,8 @@ npcStyles[4] = npcStyle(args => {
     args.headSprite.tint = 0x90D0E0;
     args.mouthSprite.tint = 0xD05070;
 
+    args.moveCrestWhenDucking = false;
+
     args.pupils = Sprite.from(NpcPupilsCartoonish);
     // args.pupils.pivot.y += 1;
     args.pupils.tint = 0xD05070;
@@ -207,6 +209,7 @@ interface ConfigureNpcStyleArgs
     eyeShape: Container;
     eyelidColor?: number;
     headOffset: Vector;
+    moveCrestWhenDucking?: boolean;
 }
 
 export function getNpcStyle(index: number): () => IguanaPuppet
