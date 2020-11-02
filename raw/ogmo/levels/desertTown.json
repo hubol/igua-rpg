@@ -21,8 +21,8 @@
           "_eid": "55823268",
           "x": 0,
           "y": 240,
-          "width": 752,
-          "height": 208,
+          "width": 184,
+          "height": 192,
           "originX": 0,
           "originY": 0,
           "values": {"name": ""}
@@ -359,6 +359,150 @@
           "originX": 0,
           "originY": 0,
           "values": {"visible": false}
+        },
+        {
+          "name": "Block",
+          "id": 40,
+          "_eid": "55823268",
+          "x": 304,
+          "y": 240,
+          "width": 448,
+          "height": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "name": "Block",
+          "id": 41,
+          "_eid": "55823268",
+          "x": 232,
+          "y": 240,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Dig1"}
+        },
+        {
+          "name": "Block",
+          "id": 42,
+          "_eid": "55823268",
+          "x": 216,
+          "y": 240,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Dig2"}
+        },
+        {
+          "name": "Block",
+          "id": 43,
+          "_eid": "55823268",
+          "x": 216,
+          "y": 256,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Dig5"}
+        },
+        {
+          "name": "Block",
+          "id": 44,
+          "_eid": "55823268",
+          "x": 200,
+          "y": 256,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Dig6"}
+        },
+        {
+          "name": "Block",
+          "id": 45,
+          "_eid": "55823268",
+          "x": 200,
+          "y": 240,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Dig3"}
+        },
+        {
+          "name": "Block",
+          "id": 46,
+          "_eid": "55823268",
+          "x": 184,
+          "y": 240,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Dig4"}
+        },
+        {
+          "name": "Block",
+          "id": 47,
+          "_eid": "55823268",
+          "x": 184,
+          "y": 256,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Dig6"}
+        },
+        {
+          "name": "Block",
+          "id": 48,
+          "_eid": "55823268",
+          "x": 184,
+          "y": 288,
+          "width": 120,
+          "height": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "name": "Block",
+          "id": 49,
+          "_eid": "55823268",
+          "x": 248,
+          "y": 240,
+          "width": 56,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "name": "Block",
+          "id": 50,
+          "_eid": "55823268",
+          "x": 232,
+          "y": 256,
+          "width": 16,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "name": "Region",
+          "id": 51,
+          "_eid": "25971607",
+          "x": 168,
+          "y": 168,
+          "width": 64,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "StartDigging"}
         }
       ]
     },
@@ -679,6 +823,17 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 208,
+          "y": 280,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key red.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "DigKey"}
         }
       ],
       "folder": "..\\..\\src\\images"

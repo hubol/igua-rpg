@@ -1,15 +1,16 @@
 // This file is generated. Do not touch.
 import { resolveBlock } from "./gameObjects/walls";
+import { resolveRegion } from "./gameObjects/region";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDoor } from "./gameObjects/door";
-import { resolveRegion } from "./gameObjects/region";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { CloudLong } from "./textures";
+import { KeyRed } from "./textures";
 import { SignTavern } from "./textures";
 import { SignInn } from "./textures";
 import { SpikyBrushB } from "./textures";
@@ -27,7 +28,6 @@ import { CracksA } from "./textures";
 import { PotteryOrangeDamaged } from "./textures";
 import { PotteryOrange } from "./textures";
 import { Cobweb } from "./textures";
-import { KeyRed } from "./textures";
 import { Rope } from "./textures";
 import { DesertTemple } from "./textures";
 
@@ -989,6 +989,17 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: SignTavern
 }),
+DigKey: resolveDecalGameObject({
+    x: 208,
+y: 280,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: KeyRed
+}),
 CloudLong: resolveDecalGameObject({
     x: 648,
 y: 136,
@@ -1199,7 +1210,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":240,"width":752,"height":208,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+Block: resolveBlock({"type":"Block","x":0,"y":240,"width":184,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":680,"y":208,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435"}),
 // @ts-ignore
@@ -1262,7 +1273,31 @@ PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":1246,"y":25
 // @ts-ignore
 PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":1302,"y":224,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
 // @ts-ignore
-PipeHorizontal_9: resolvePipeHorizontal({"type":"PipeHorizontal","x":639,"y":213,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false})
+PipeHorizontal_9: resolvePipeHorizontal({"type":"PipeHorizontal","x":639,"y":213,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+Block_7: resolveBlock({"type":"Block","x":304,"y":240,"width":448,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+Dig1: resolveBlock({"type":"Block","x":232,"y":240,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":"Dig1"}),
+// @ts-ignore
+Dig2: resolveBlock({"type":"Block","x":216,"y":240,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":"Dig2"}),
+// @ts-ignore
+Dig5: resolveBlock({"type":"Block","x":216,"y":256,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":"Dig5"}),
+// @ts-ignore
+Dig6: resolveBlock({"type":"Block","x":200,"y":256,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":"Dig6"}),
+// @ts-ignore
+Dig3: resolveBlock({"type":"Block","x":200,"y":240,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":"Dig3"}),
+// @ts-ignore
+Dig4: resolveBlock({"type":"Block","x":184,"y":240,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":"Dig4"}),
+// @ts-ignore
+Dig6_1: resolveBlock({"type":"Block","x":184,"y":256,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":"Dig6"}),
+// @ts-ignore
+Block_8: resolveBlock({"type":"Block","x":184,"y":288,"width":120,"height":144,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+Block_9: resolveBlock({"type":"Block","x":248,"y":240,"width":56,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+Block_10: resolveBlock({"type":"Block","x":232,"y":256,"width":16,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+StartDigging: resolveRegion({"type":"Region","x":168,"y":168,"width":64,"height":72,"flippedX":false,"flippedY":false,"uid":"25971607","name":"StartDigging"})
 };
 }
 };

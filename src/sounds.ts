@@ -67,6 +67,11 @@ export const CratePlace = new Howl({
     
 });
 
+export const Dig = new Howl({
+    src: [require("./sound/dig.ogg"), require("./sound/dig.mp3")],
+    
+});
+
 export const DragRock = new Howl({
     src: [require("./sound/drag rock.ogg"), require("./sound/drag rock.mp3")],
     

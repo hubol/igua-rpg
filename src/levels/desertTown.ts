@@ -6,10 +6,10 @@ import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 import {CrateWooden} from "../textures";
 import {isOnScreen} from "../igua/logic/isOnScreen";
-import {CollectGeneric, CratePickup, CratePlace} from "../sounds";
+import {CollectGeneric, CratePickup, CratePlace, Dig} from "../sounds";
 import {progress} from "../igua/data/progress";
 import {npc} from "../gameObjects/npc";
-import {add} from "../utils/math/vector";
+import {add, vector} from "../utils/math/vector";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {scene} from "../igua/scene";
 
@@ -41,6 +41,7 @@ export function DesertTown()
     }
 
     enhanceCrateStacker(level);
+    enhanceDigSpot(level);
 }
 
 function addIntroduction(level: DesertTownLevel)
@@ -181,4 +182,70 @@ function enhanceCrateStacker(level: DesertTownLevel)
             await p.show("You placed the crate.");
         });
     });
+}
+
+function enhanceDigSpot(level: DesertTownLevel)
+{
+    level.DigKey.asCollectible(progress.flags, "collectedDigKey");
+
+    const blocks = [ level.Dig2, level.Dig3, level.Dig4, level.Dig5, level.Dig6, level.Dig6_1 ];
+    if (progress.flags.dugInDesertTown)
+    {
+        blocks.forEach(x => x.destroy());
+        return;
+    }
+
+    level.StartDigging.withStep(() => {
+        const follower = game.player.follower;
+
+        if (!progress.flags.diguaIsFollowing || !follower || !follower.collides(level.StartDigging))
+            return;
+
+        const b = level.StartDigging.getBounds();
+        const v = vector(level.StartDigging);
+
+        game.cutscenePlayer.playCutscene(async p => {
+            scene.camera.followPlayer = false;
+            follower.engine.on = false;
+            follower.hspeed = 0;
+            follower.isFollowing = false;
+
+            await Promise.all([
+                p.show("Hey! I think there is something I can dig here!"),
+                p.move(scene.camera).to(level.DigKey.x - 128, scene.camera.y).over(1_000),
+                game.player.walkTo(v.x - 24) ]);
+
+            game.player.scale.x = 1;
+
+            for (const block of blocks) {
+                const next = add({ x: 8, y: -8 }, block.getLocalBounds());
+                follower.scale.x = Math.sign(next.x - follower.x);
+                follower.at(next);
+                await p.sleep(250);
+                follower.isDucking = true;
+                await p.sleep(250);
+                Dig.play();
+                block.destroy();
+                follower.duckUnit = 0;
+                follower.isDucking = false;
+            }
+
+            progress.flags.dugInDesertTown = true;
+            follower.at(game.player.x + b.width + 64, game.player.y);
+
+            await p.sleep(500);
+            await p.show("Looks like something pretty nice! You should have it!");
+            await p.show("I'm going to the bar now.");
+
+            follower.engine.on = true;
+            await follower.walkTo(scene.camera.x + 300);
+            follower.destroy();
+
+            progress.flags.diguaIsFollowing = false;
+
+            scene.camera.followPlayer = true;
+        });
+
+        level.StartDigging.destroy();
+    })
 }

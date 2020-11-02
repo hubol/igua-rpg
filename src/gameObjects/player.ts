@@ -164,5 +164,9 @@ export function player()
 function getFollower()
 {
     if (progress.flags.diguaIsFollowing)
-        return scene.playerStage.addChild(followerNpc(npc(0, 0, 4)));
+        {
+            const npcGameObject = followerNpc(npc(0, 0, 4));
+            scene.playerStage.addChild(npcGameObject);
+            return npcGameObject;
+        }
 }

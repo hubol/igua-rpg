@@ -6,6 +6,11 @@ export interface Vector
     y: number;
 }
 
+export function vector(vec: Vector)
+{
+    return { x: vec.x, y: vec.y };
+}
+
 export function perpendicular(vec: Vector) {
     const tmp = vec.x;
     vec.x = vec.y;
