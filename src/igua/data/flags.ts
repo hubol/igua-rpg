@@ -6,5 +6,7 @@ export function getInitialFlags()
         thankedByCrateStacker: false,
         collectedInnKey: false,
         diguaIsFollowing: false,
+        dugInDesertTown: false,
+        collectedDigKey: false,
     };
 }
