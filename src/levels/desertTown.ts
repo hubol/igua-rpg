@@ -207,7 +207,6 @@ function enhanceDigSpot(level: DesertTownLevel)
 
         game.cutscenePlayer.playCutscene(async p => {
             scene.camera.followPlayer = false;
-            follower.engine.on = false;
             follower.hspeed = 0;
             follower.isFollowing = false;
 
@@ -236,7 +235,6 @@ function enhanceDigSpot(level: DesertTownLevel)
             await p.show("Looks like something pretty nice! You should have it!");
             await p.show("I'm going to the bar now.");
 
-            follower.engine.on = true;
             await follower.walkTo(scene.camera.x + 300);
             follower.destroy();
 
