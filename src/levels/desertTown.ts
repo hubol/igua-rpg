@@ -239,6 +239,7 @@ function enhanceDigSpot(level: DesertTownLevel)
             follower.destroy();
 
             progress.flags.diguaIsFollowing = false;
+            progress.flags.diguaIsInBar = true;
 
             scene.camera.followPlayer = true;
         });

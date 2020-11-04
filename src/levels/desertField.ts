@@ -7,14 +7,32 @@ import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {createFollower, player} from "../gameObjects/player";
 import {progress} from "../igua/data/progress";
 
+function getDesertFieldLevel()
+{
+    return applyOgmoLevel(DesertFieldArgs);
+}
+
+type DesertFieldLevel = ReturnType<typeof getDesertFieldLevel>;
+
 export function DesertField()
 {
     jukebox.play(Country).warm(Oracle);
-    const level = applyOgmoLevel(DesertFieldArgs);
+    const level = getDesertFieldLevel();
     scene.backgroundColor = 0xF0F0B0;
     scene.terrainColor = 0xE0D060;
 
     level.TempleDoor.locked = true;
+
+    enrichDigua(level);
+}
+
+function enrichDigua(level: DesertFieldLevel)
+{
+    if (progress.flags.diguaIsInBar || progress.flags.diguaIsFollowing)
+    {
+        level.Digua.destroy();
+        return;
+    }
 
     level.Digua.mods.add(Sleepy);
     level.Digua.duckImmediately();
