@@ -13,11 +13,11 @@ export function getInitialProgress()
     };
 }
 
-export const progress = getInitialProgress();
+export let progress = getInitialProgress();
 
 export type Progress = typeof progress;
 
 export function setProgress(p: Progress)
 {
-    Object.assign(progress, p);
+    progress = p;
 }
