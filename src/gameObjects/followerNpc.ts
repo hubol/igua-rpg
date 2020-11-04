@@ -9,6 +9,7 @@ export function followerNpc(npc: Npc)
 {
     let once = false;
 
+    const vspeeds: number[] = [];
     const followerNpc = merge(npc, { isFollowing: true });
 
     return followerNpc.withStep(() => {
@@ -33,8 +34,13 @@ export function followerNpc(npc: Npc)
         // TODO Need finer control over order of steps attached to game objects
         npc.hspeed = Math.min(npc.engine.walkSpeed, Math.abs(npc.hspeed)) * Math.sign(npc.hspeed);
 
-        if (player.vspeed !== 0)
-            npc.vspeed = player.vspeed;
+        vspeeds.push(player.vspeed);
+        if (vspeeds.length >= 15)
+        {
+            const vspeed = vspeeds.shift() as number;
+            if (vspeed < 0)
+                npc.vspeed = vspeed;
+        }
     });
 }
 
