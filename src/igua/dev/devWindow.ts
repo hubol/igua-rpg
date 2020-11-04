@@ -5,6 +5,7 @@ import {level} from "../level/level";
 import {jukebox} from "../jukebox";
 import {progress} from "../data/progress";
 import {environment} from "../environment";
+import {player} from "../../gameObjects/player";
 
 function createDev() {
     return {
@@ -12,6 +13,7 @@ function createDev() {
         scenes: sceneStack.toArray(),
         level,
         jukebox,
+        player,
         progress,
         environment
     };

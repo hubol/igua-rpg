@@ -1,7 +1,6 @@
 import {Container} from "pixi.js";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {stepPlayerCamera} from "./playerCamera";
-import {player} from "../gameObjects/player";
 import {advanceKeyListener, startKeyListener} from "../utils/browser/key";
 import {CutscenePlayer} from "../cutscene/cutscene";
 import {hud} from "../gameObjects/hud";
@@ -40,7 +39,6 @@ function createGame(application: AsshatApplication)
             return application.ticker;
         },
         ticker,
-        player: {} as ReturnType<typeof player>,
         get width() {
             return application.renderer.width;
         },
@@ -71,13 +69,4 @@ export function loadSavedProgress()
     setProgress(getInitialProgress()); // TODO read from localStorage
     if (!environment.isProduction)
         devProgress();
-}
-
-export function recreatePlayer()
-{
-    if (game.player?.destroy)
-        game.player.destroy({children: true});
-
-    game.player = player();
-    scene.playerStage.addChild(game.player);
 }

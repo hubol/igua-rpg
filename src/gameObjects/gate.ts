@@ -1,5 +1,4 @@
 import {Container} from "pixi.js";
-import {game} from "../igua/game";
 import {EscapeTickerAndExecute} from "../utils/asshatTicker";
 import {Gate} from "../sounds";
 import {progress} from "../igua/data/progress";
@@ -7,6 +6,7 @@ import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {level} from "../igua/level/level";
 import {areRectanglesOverlapping} from "../utils/math/rectangle";
 import {scene} from "../igua/scene";
+import {player} from "./player";
 
 export const resolveGate = resolveGameObject("Gate", args => {
     const anyEntity = args as any;
@@ -25,7 +25,7 @@ export function gate(x, y, width, height, destination: { checkpointName, levelNa
     const container = new Container();
 
     return container.withStep(() => {
-        if (areRectanglesOverlapping(game.player.rectangle, bounds))
+        if (areRectanglesOverlapping(player.rectangle, bounds))
         {
             Gate.volume(0.4);
             Gate.play();

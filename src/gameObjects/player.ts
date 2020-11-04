@@ -62,7 +62,18 @@ function playerPuppet()
     });
 }
 
-export function player()
+export let player: ReturnType<typeof createPlayer>;
+
+export function recreatePlayer()
+{
+    if (player?.destroy)
+        player.destroy({children: true});
+
+    player = createPlayer();
+    scene.playerStage.addChild(player);
+}
+
+function createPlayer()
 {
     const player = merge(playerPuppet(),
         {

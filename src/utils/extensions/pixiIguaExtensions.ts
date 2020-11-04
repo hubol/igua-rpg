@@ -1,8 +1,8 @@
 import * as PIXI from "pixi.js";
-import {game} from "../../igua/game";
 import {isPlayerInteractingWith} from "../../igua/logic/isPlayerInteractingWith";
 import {PropertiesOf} from "../propertiesOf";
 import {CollectGeneric} from "../../sounds";
+import {player} from "../../gameObjects/player";
 
 declare global {
     namespace PIXI {
@@ -16,7 +16,7 @@ declare global {
 PIXI.DisplayObject.prototype.asCollectible = function (object, key)
 {
     return this.withStep(() => {
-        if (!object[key] && this.collides(game.player))
+        if (!object[key] && this.collides(player))
         {
             (object as any)[key] = true;
             CollectGeneric.play();
