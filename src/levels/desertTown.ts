@@ -12,6 +12,7 @@ import {npc} from "../gameObjects/npc";
 import {add, vector} from "../utils/math/vector";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {scene} from "../igua/scene";
+import {player} from "../gameObjects/player";
 
 function getDesertTownLevel()
 {
@@ -54,7 +55,7 @@ function addIntroduction(level: DesertTownLevel)
         await p.sleep(1_000);
         await lizard.walkTo(level.LeftHouseDoor.x + 32);
         await p.sleep(1_000);
-        await p.move(scene.camera).to(Math.round((lizard.x + game.player.x) / 2) - 128, lizard.y - 128).over(1_000);
+        await p.move(scene.camera).to(Math.round((lizard.x + player.x) / 2) - 128, lizard.y - 128).over(1_000);
         await p.sleep(1_000);
         await p.show("A great evil has entered the world.");
         await p.show("You are the one who must stop the evil.");
@@ -196,7 +197,7 @@ function enhanceDigSpot(level: DesertTownLevel)
     }
 
     level.StartDigging.withStep(() => {
-        const follower = game.player.follower;
+        const follower = player.follower;
 
         if (!progress.flags.diguaIsFollowing || !follower || !follower.collides(level.StartDigging))
             return;
@@ -213,7 +214,7 @@ function enhanceDigSpot(level: DesertTownLevel)
             await Promise.all([
                 p.show("Hey! I think there is something I can dig here!"),
                 p.move(scene.camera).to(level.DigKey.x - 128, scene.camera.y).over(1_000),
-                game.player.walkTo(v.x - 24).then(() => game.player.scale.x = 1) ]);
+                player.walkTo(v.x - 24).then(() => player.scale.x = 1) ]);
 
             for (const block of blocks) {
                 const next = add({ x: 8, y: -8 }, block.getLocalBounds());
@@ -229,7 +230,7 @@ function enhanceDigSpot(level: DesertTownLevel)
             }
 
             progress.flags.dugInDesertTown = true;
-            follower.at(game.player.x + b.width + 64, game.player.y);
+            follower.at(player.x + b.width + 64, player.y);
 
             await p.sleep(500);
             await p.show("Looks like something pretty nice! You should have it!");

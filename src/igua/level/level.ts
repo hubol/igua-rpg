@@ -1,7 +1,7 @@
 import {getLevelApplicator, LevelApplicator} from "./getLevelApplicator";
 import {progress} from "../data/progress";
 import {sceneStack} from "../scene";
-import {recreatePlayer} from "../game";
+import {recreatePlayer} from "../../gameObjects/player";
 
 export const level = {
     goto(levelName: string)

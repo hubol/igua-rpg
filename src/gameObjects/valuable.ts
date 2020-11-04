@@ -1,12 +1,12 @@
 import { Sprite} from "pixi.js";
 import {BlueValuable, OrangeValuable} from "../textures";
-import {game} from "../igua/game";
 import {progress} from "../igua/data/progress";
 import {smallPop} from "./smallPop";
 import {CollectValuable, CollectValuableSmall} from "../sounds";
 import {GameObjectArgs} from "../../tools/gen-levelargs/types/gameObjectArgs";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {scene} from "../igua/scene";
+import {player} from "./player";
 
 type ValuableType = keyof typeof valuableStyles;
 
@@ -18,7 +18,7 @@ export function valuable(x, y, uid, type: ValuableType)
     sprite.anchor.set(0.5, 1);
 
     return sprite.withStep(() => {
-        if (game.player.collides(sprite))
+        if (player.collides(sprite))
         {
             const particle = smallPop(12);
             particle.position.set(sprite.x, sprite.y - 7);

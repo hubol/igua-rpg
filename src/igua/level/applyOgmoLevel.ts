@@ -1,16 +1,16 @@
-import {game} from "../game";
 import {centerPlayerCamera} from "../playerCamera";
 import {ApplyOgmoLevelArgs, GameObjects} from "./applyOgmoLevelArgs";
 import {progress} from "../data/progress";
 import {level} from "./level";
+import {player} from "../../gameObjects/player";
 
 export function applyOgmoLevel<T>(args: ApplyOgmoLevelArgs<T>): GameObjects<T>
 {
     level.width = args.width;
     level.height = args.height;
 
-    game.player.hspeed = 0;
-    game.player.vspeed = 0;
+    player.hspeed = 0;
+    player.vspeed = 0;
 
     const gameObjectsLibrary = args.gameObjectsSupplier();
 
@@ -29,7 +29,7 @@ function applyPlayerStartingPosition(gameObjects: any[])
 
 function setPlayerPosition(v: { x: number, y: number, faceRight: boolean | undefined })
 {
-    game.player.x = v.x;
-    game.player.y = v.y - 8;
-    game.player.scale.x = v.faceRight ? 1 : -1;
+    player.x = v.x;
+    player.y = v.y - 8;
+    player.scale.x = v.faceRight ? 1 : -1;
 }

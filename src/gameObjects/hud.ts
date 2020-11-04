@@ -1,7 +1,7 @@
 import {BitmapText, Container, Graphics} from "pixi.js";
 import {progress} from "../igua/data/progress";
-import {game} from "../igua/game";
 import {AcrobatixFont} from "../fonts";
+import {player} from "./player";
 
 export function hud()
 {
@@ -19,7 +19,7 @@ export function hud()
         .at(2, 15);
 
     const container = new Container()
-        .withStep(() => container.visible = !game.player.isDead);
+        .withStep(() => container.visible = !player.isDead);
 
     container.addChild(healthbar, valuables);
 
