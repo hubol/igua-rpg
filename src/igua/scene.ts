@@ -1,7 +1,6 @@
 import {Container, DisplayObject, Graphics} from "pixi.js";
 import {game} from "./game";
 import {AsshatTicker} from "../utils/asshatTicker";
-import {merge} from "../utils/merge";
 import {level} from "./level/level";
 import {camera as createCamera} from "./camera";
 
@@ -74,15 +73,15 @@ function onScenesModified()
     if (scenes.length < 1)
         return;
 
-    merge(scene, scenes[scenes.length - 1]);
+    scene = scenes[scenes.length - 1];
 }
 
-export const scene = {} as Scene;
+export let scene: Scene;
 
 export const sceneStack = {
     push()
     {
-        if (scene.visible)
+        if (scene?.visible)
             scene.visible = false;
 
         const newScene = createScene();
