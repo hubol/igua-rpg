@@ -357,7 +357,7 @@ Block_5: resolveBlock({"type":"Block","x":1400,"y":136,"width":152,"height":32,"
 // @ts-ignore
 SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":1400,"y":168,"width":152,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435"}),
 // @ts-ignore
-Digua: resolveNpc({"type":"NpcIguana","x":1400,"y":136,"flippedX":true,"flippedY":false,"uid":"26367058","name":"Digua","style":4}),
+Digua: resolveNpc({"type":"NpcIguana","x":1400,"y":264,"flippedX":true,"flippedY":false,"uid":"26367058","name":"Digua","style":4}),
 // @ts-ignore
 PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":344,"y":136,"width":200,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false})
 };
@@ -1259,7 +1259,7 @@ PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":415,"y":160,"
 // @ts-ignore
 PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":359,"y":190,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
 // @ts-ignore
-PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":571,"y":187,"width":74,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":571,"y":187,"width":42,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
 // @ts-ignore
 PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":611,"y":153,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
 // @ts-ignore

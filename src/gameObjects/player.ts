@@ -77,7 +77,7 @@ function createPlayer()
 {
     const player = merge(playerPuppet(),
         {
-            follower: getFollower(),
+            follower: createFollower(),
             invulnerableFrameCount: 0,
             isDead: false,
             damage(health: number)
@@ -172,7 +172,7 @@ function createPlayer()
     return player;
 }
 
-function getFollower()
+export function createFollower()
 {
     if (progress.flags.diguaIsFollowing)
         {
