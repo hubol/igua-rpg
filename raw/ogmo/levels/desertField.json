@@ -160,7 +160,7 @@
           "id": 18,
           "_eid": "26367058",
           "x": 1400,
-          "y": 264,
+          "y": 136,
           "originX": 11,
           "originY": 27,
           "flippedX": true,
@@ -176,6 +176,50 @@
           "originX": 0,
           "originY": 0,
           "values": {"visible": false}
+        },
+        {
+          "name": "Gate",
+          "id": 20,
+          "_eid": "55920197",
+          "x": 1520,
+          "y": 104,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "DesertOutskirts", "checkpointName": "FromDigua"}
+        },
+        {
+          "name": "Gate",
+          "id": 21,
+          "_eid": "55920197",
+          "x": 1520,
+          "y": 232,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "DesertOutskirts", "checkpointName": ""}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 22,
+          "_eid": "55940370",
+          "x": 1488,
+          "y": 136,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromOutskirtsTop", "faceRight": false}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 23,
+          "_eid": "55940370",
+          "x": 1488,
+          "y": 264,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromOutskirtsBottom", "faceRight": false}
         }
       ]
     },
@@ -298,7 +342,19 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
-        }
+        },
+        {
+          "x": 1528,
+          "y": 264,
+          "scaleX": 1,
+          "scaleY": 1.1,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {"x": 1480, "y": 264, "scaleX": 1, "scaleY": 1.275, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 1}
       ],
       "folder": "..\\..\\src\\images"
     },

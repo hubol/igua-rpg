@@ -20,6 +20,8 @@ import { CrudeHouseC } from "./textures";
 import { CrateWooden } from "./textures";
 import { CrudeHouseB } from "./textures";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
+import { resolvePipeRightEnd } from "./gameObjects/walls";
+import { Column } from "./textures";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
 import { resolveValuableBlue } from "./gameObjects/valuable";
@@ -145,6 +147,28 @@ scaleY: 1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: SpikyBrushA
+}),
+Column: resolveDecalGameObject({
+    x: 1528,
+y: 264,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1.1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Column
+}),
+Column_1: resolveDecalGameObject({
+    x: 1480,
+y: 264,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1.275,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Column
 }),
 CloudLong: resolveDecalGameObject({
     x: 144,
@@ -357,9 +381,15 @@ Block_5: resolveBlock({"type":"Block","x":1400,"y":136,"width":152,"height":32,"
 // @ts-ignore
 SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":1400,"y":168,"width":152,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435"}),
 // @ts-ignore
-Digua: resolveNpc({"type":"NpcIguana","x":1400,"y":264,"flippedX":true,"flippedY":false,"uid":"26367058","name":"Digua","style":4}),
+Digua: resolveNpc({"type":"NpcIguana","x":1400,"y":136,"flippedX":true,"flippedY":false,"uid":"26367058","name":"Digua","style":4}),
 // @ts-ignore
-PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":344,"y":136,"width":200,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false})
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":344,"y":136,"width":200,"flippedX":false,"flippedY":false,"uid":"55841307","visible":false}),
+// @ts-ignore
+Gate_1: resolveGate({"type":"Gate","x":1520,"y":104,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertOutskirts","checkpointName":"FromDigua"}),
+// @ts-ignore
+Gate_2: resolveGate({"type":"Gate","x":1520,"y":232,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertOutskirts","checkpointName":""}),
+FromOutskirtsTop: {"type":"Checkpoint","x":1488,"y":136,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromOutskirtsTop","faceRight":false},
+FromOutskirtsBottom: {"type":"Checkpoint","x":1488,"y":264,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromOutskirtsBottom","faceRight":false}
 };
 }
 };
@@ -672,6 +702,151 @@ SlopeLeft_3: resolveSlopeLeft({"type":"SlopeLeft","x":144,"y":80,"width":32,"hei
 Block_4: resolveBlock({"type":"Block","x":144,"y":0,"width":32,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
 // @ts-ignore
 Block_5: resolveBlock({"type":"Block","x":200,"y":0,"width":56,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268","name":""})
+};
+}
+};
+
+export const DesertOutskirtsArgs = {
+    width: 368,
+height: 416,
+gameObjectsSupplier: () => {
+  return {
+    Column: resolveDecalGameObject({
+    x: 24,
+y: 296,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Column
+}),
+Column_1: resolveDecalGameObject({
+    x: 72,
+y: 296,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Column
+}),
+SpikyBrushA: resolveDecalGameObject({
+    x: 56,
+y: 328,
+originX: 0.5,
+originY: 0.9,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
+SpikyBrushB: resolveDecalGameObject({
+    x: 304,
+y: 288,
+originX: 0.5,
+originY: 0.7,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+SpikyBrushA_1: resolveDecalGameObject({
+    x: 112,
+y: 192,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
+CloudLong: resolveDecalGameObject({
+    x: 72,
+y: 96,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 112,
+y: 104,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 216,
+y: 224,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_3: resolveDecalGameObject({
+    x: 312,
+y: 152,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_4: resolveDecalGameObject({
+    x: 248,
+y: 72,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":328,"width":368,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":200,"width":96,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+Player: {"type":"Player","x":72,"y":328,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true},
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":96,"y":200,"width":64,"height":64,"flippedX":false,"flippedY":true,"uid":"55845599"}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":144,"y":200,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307","visible":true}),
+// @ts-ignore
+PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":184,"y":200,"flippedX":false,"flippedY":false,"uid":"63418353"}),
+FromDigua: {"type":"Checkpoint","x":72,"y":200,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromDigua","faceRight":true},
+// @ts-ignore
+Gate: resolveGate({"type":"Gate","x":0,"y":168,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertField","checkpointName":"FromOutskirtsTop"}),
+// @ts-ignore
+Gate_1: resolveGate({"type":"Gate","x":0,"y":296,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertField","checkpointName":"FromOutskirtsBottom"}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":232,"y":296,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435"}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":296,"y":296,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":288,"y":232,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307","visible":true}),
+// @ts-ignore
+PipeRightEnd_1: resolvePipeRightEnd({"type":"PipeRightEnd","x":320,"y":232,"flippedX":false,"flippedY":false,"uid":"63418353"}),
+// @ts-ignore
+PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":288,"y":232,"flippedX":false,"flippedY":false,"uid":"63428932"})
 };
 }
 };
