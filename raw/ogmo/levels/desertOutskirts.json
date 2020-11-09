@@ -1,0 +1,264 @@
+{
+  "ogmoVersion": "3.3.0",
+  "width": 368,
+  "height": 416,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 46,
+      "gridCellsY": 52,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 0,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 328,
+          "width": 368,
+          "height": 88,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "name": "Block",
+          "id": 1,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 200,
+          "width": 96,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "name": "Player",
+          "id": 2,
+          "_eid": "55988047",
+          "x": 72,
+          "y": 328,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": true}
+        },
+        {"name": "SlopeLeft", "id": 3, "_eid": "55845599", "x": 96, "y": 200, "width": 64, "height": 64, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "PipeHorizontal",
+          "id": 4,
+          "_eid": "55841307",
+          "x": 144,
+          "y": 200,
+          "width": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true}
+        },
+        {"name": "PipeRightEnd", "id": 5, "_eid": "63418353", "x": 184, "y": 200, "originX": 0, "originY": 0},
+        {
+          "name": "Checkpoint",
+          "id": 6,
+          "_eid": "55940370",
+          "x": 72,
+          "y": 200,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromDigua", "faceRight": true}
+        },
+        {
+          "name": "Gate",
+          "id": 7,
+          "_eid": "55920197",
+          "x": 0,
+          "y": 168,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "DesertField", "checkpointName": "FromOutskirtsTop"}
+        },
+        {
+          "name": "Gate",
+          "id": 8,
+          "_eid": "55920197",
+          "x": 0,
+          "y": 296,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "DesertField", "checkpointName": "FromOutskirtsBottom"}
+        },
+        {"name": "SlopeRight", "id": 9, "_eid": "55824435", "x": 232, "y": 296, "width": 64, "height": 32, "originX": 0, "originY": 0, "flippedY": false},
+        {
+          "name": "Block",
+          "id": 10,
+          "_eid": "55823268",
+          "x": 296,
+          "y": 296,
+          "width": 72,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 11,
+          "_eid": "55841307",
+          "x": 288,
+          "y": 232,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true}
+        },
+        {"name": "PipeRightEnd", "id": 12, "_eid": "63418353", "x": 320, "y": 232, "originX": 0, "originY": 0},
+        {"name": "PipeLeftEnd", "id": 13, "_eid": "63428932", "x": 288, "y": 232, "originX": 16, "originY": 0}
+      ]
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 46,
+      "gridCellsY": 52,
+      "decals": [
+        {
+          "x": 24,
+          "y": 296,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 72,
+          "y": 296,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 56,
+          "y": 328,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 0.9,
+          "values": {"name": ""}
+        },
+        {
+          "x": 304,
+          "y": 288,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.7,
+          "values": {"name": ""}
+        },
+        {
+          "x": 112,
+          "y": 192,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 46,
+      "gridCellsY": 52,
+      "decals": [
+        {
+          "x": 72,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 112,
+          "y": 104,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 216,
+          "y": 224,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 312,
+          "y": 152,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 248,
+          "y": 72,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "../../src/images"
+    }
+  ]
+}
