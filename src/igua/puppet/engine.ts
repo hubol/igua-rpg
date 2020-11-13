@@ -10,7 +10,7 @@ import {
 } from "../../sounds";
 import {isOnScreen} from "../logic/isOnScreen";
 import {rejection} from "../../utils/rejection";
-import {level} from "../level/level";
+import {scene} from "../scene";
 
 CharacterStep.volume(.4);
 CharacterStep2.volume(.4);
@@ -112,9 +112,9 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
                     hsp = 0;
                     puppet.hspeed = 0;
                 }
-                else if (puppet.x > level.width - 20)
+                else if (puppet.x > scene.width - 20)
                 {
-                    puppet.x = level.width - 20;
+                    puppet.x = scene.width - 20;
                     hsp = 0;
                     puppet.hspeed = 0;
                 }
@@ -125,9 +125,9 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
                     vsp = Math.abs(vsp);
                     puppet.vspeed = Math.abs(puppet.vspeed);
                 }
-                else if (puppet.y > level.height)
+                else if (puppet.y > scene.height)
                 {
-                    puppet.y = level.height;
+                    puppet.y = scene.height;
                     vsp = -Math.abs(vsp);
                     puppet.vspeed = -Math.abs(puppet.vspeed);
                 }

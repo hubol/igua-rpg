@@ -13,7 +13,5 @@ export const level = {
         this.current();
         progress.levelName = levelName;
     },
-    current: null as unknown as LevelApplicator,
-    width: 0,
-    height: 0
+    current: null as unknown as LevelApplicator
 }
