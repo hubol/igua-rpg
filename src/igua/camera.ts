@@ -1,6 +1,6 @@
 import {scene} from "./scene";
 
-export function camera()
+export function camera(followPlayer: boolean)
 {
     return {
         get x() {
@@ -19,6 +19,6 @@ export function camera()
         },
         width: 256,
         height: 256,
-        followPlayer: true
+        followPlayer
     };
 }

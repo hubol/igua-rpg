@@ -24,6 +24,8 @@ export function DesertField()
     level.TempleDoor.locked = !progress.flags.desert.unlockedTemple;
 
     enrichDigua(level);
+
+    return level;
 }
 
 function enrichDigua(level: DesertFieldLevel)

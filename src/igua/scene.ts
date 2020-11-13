@@ -4,7 +4,7 @@ import {AsshatTicker} from "../utils/asshatTicker";
 import {level} from "./level/level";
 import {camera as createCamera} from "./camera";
 
-function createScene()
+function createScene(isLevel: boolean)
 {
     const ticker = new AsshatTicker();
     const backgroundGraphics = new Graphics();
@@ -39,7 +39,7 @@ function createScene()
             graphics.drawRect(0, 0, level.width, level.height);
             this.terrainFill = graphics;
         },
-        camera: createCamera(),
+        camera: createCamera(isLevel),
         parallax1Stage,
         backgroundGameObjectStage,
         cameraStage,
@@ -73,7 +73,10 @@ function onScenesModified()
     if (scenes.length < 1)
         return;
 
+    for (let i = 0; i < scenes.length - 1; i++)
+        scenes[i].visible = false;
     scene = scenes[scenes.length - 1];
+    scene.visible = true;
 }
 
 export let scene: Scene;
@@ -81,10 +84,7 @@ export let scene: Scene;
 export const sceneStack = {
     push()
     {
-        if (scene?.visible)
-            scene.visible = false;
-
-        const newScene = createScene();
+        const newScene = createScene(scenes.length === 0);
         scenes.push(newScene);
         onScenesModified();
     },
@@ -98,5 +98,9 @@ export const sceneStack = {
     toArray()
     {
         return [...scenes];
+    },
+    get isLevel()
+    {
+        return scenes.length === 1;
     }
 };
