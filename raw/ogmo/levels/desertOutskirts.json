@@ -121,7 +121,19 @@
           "values": {"visible": true}
         },
         {"name": "PipeRightEnd", "id": 12, "_eid": "63418353", "x": 320, "y": 232, "originX": 0, "originY": 0},
-        {"name": "PipeLeftEnd", "id": 13, "_eid": "63428932", "x": 288, "y": 232, "originX": 16, "originY": 0}
+        {"name": "PipeLeftEnd", "id": 13, "_eid": "63428932", "x": 288, "y": 232, "originX": 16, "originY": 0},
+        {
+          "name": "PipeHorizontal",
+          "id": 19,
+          "_eid": "55841307",
+          "x": 256,
+          "y": 128,
+          "width": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true}
+        },
+        {"name": "PipeLeftEnd", "id": 20, "_eid": "63428932", "x": 256, "y": 128, "originX": 16, "originY": 0}
       ]
     },
     {
@@ -188,6 +200,17 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 328,
+          "y": 120,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "anchor.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "TempleUnlockBlob"}
         }
       ],
       "folder": "..\\..\\src\\images"
