@@ -21,7 +21,7 @@ export function DesertField()
     scene.backgroundColor = 0xF0F0B0;
     scene.terrainColor = 0xE0D060;
 
-    level.TempleDoor.locked = true;
+    level.TempleDoor.locked = !progress.flags.desert.unlockedTemple;
 
     enrichDigua(level);
 }

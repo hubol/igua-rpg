@@ -10,6 +10,7 @@ export function getInitialFlags()
             diguaIsInBar: false,
             dugInDesertTown: false,
             collectedDigKey: false,
+            unlockedTemple: false,
         }
     };
 }

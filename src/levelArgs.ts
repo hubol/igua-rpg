@@ -21,6 +21,7 @@ import { CrateWooden } from "./textures";
 import { CrudeHouseB } from "./textures";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
+import { Anchor } from "./textures";
 import { Column } from "./textures";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
@@ -766,6 +767,17 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
+TempleUnlockBlob: resolveDecalGameObject({
+    x: 328,
+y: 120,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Anchor
+}),
 CloudLong: resolveDecalGameObject({
     x: 72,
 y: 96,
@@ -846,7 +858,11 @@ PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":288,"y":232
 // @ts-ignore
 PipeRightEnd_1: resolvePipeRightEnd({"type":"PipeRightEnd","x":320,"y":232,"flippedX":false,"flippedY":false,"uid":"63418353"}),
 // @ts-ignore
-PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":288,"y":232,"flippedX":false,"flippedY":false,"uid":"63428932"})
+PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":288,"y":232,"flippedX":false,"flippedY":false,"uid":"63428932"}),
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":256,"y":128,"width":112,"flippedX":false,"flippedY":false,"uid":"55841307","visible":true}),
+// @ts-ignore
+PipeLeftEnd_1: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":256,"y":128,"flippedX":false,"flippedY":false,"uid":"63428932"})
 };
 }
 };
