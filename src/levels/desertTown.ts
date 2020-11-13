@@ -35,10 +35,10 @@ export function DesertTown()
     level.RightHouseDoor.locked = true;
     level.BarDoor.locked = true;
 
-    if (!progress.flags.heardIntroduction)
+    if (!progress.flags.desert.heardIntroduction)
     {
         addIntroduction(level);
-        progress.flags.heardIntroduction = true;
+        progress.flags.desert.heardIntroduction = true;
     }
 
     enhanceCrateStacker(level);
@@ -78,7 +78,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
     {
         cratesLeftToStack--;
         if (cratesLeftToStack <= 0)
-            progress.flags.stackedAllCrates = true;
+            progress.flags.desert.stackedAllCrates = true;
 
         const nextCrate = Sprite.from(CrateWooden).at(
             lastStackedCrate
@@ -102,7 +102,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
         return true;
     }
 
-    if (progress.flags.stackedAllCrates)
+    if (progress.flags.desert.stackedAllCrates)
     {
         while (pickupCrate(false))
             stackCrate(false);
@@ -113,17 +113,17 @@ function enhanceCrateStacker(level: DesertTownLevel)
         level.Stacker.mods.add(Sleepy);
     }
 
-    let tiredOfWorking = progress.flags.stackedAllCrates;
+    let tiredOfWorking = progress.flags.desert.stackedAllCrates;
 
     level.Stacker.cutscene = async p => {
         level.Stacker.mods.remove(Sleepy);
-        if (progress.flags.stackedAllCrates && !progress.flags.thankedByCrateStacker)
+        if (progress.flags.desert.stackedAllCrates && !progress.flags.desert.thankedByCrateStacker)
         {
             await p.show("Thank you for your help.");
             await p.show("All I have to show my appreciation is this old key.");
             CollectGeneric.play();
             await p.show("Received the key.");
-            progress.flags.thankedByCrateStacker = true;
+            progress.flags.desert.thankedByCrateStacker = true;
         }
         else if (tiredOfWorking)
             await p.show("I think I'm done working for today.");
@@ -187,10 +187,10 @@ function enhanceCrateStacker(level: DesertTownLevel)
 
 function enhanceDigSpot(level: DesertTownLevel)
 {
-    level.DigKey.asCollectible(progress.flags, "collectedDigKey");
+    level.DigKey.asCollectible(progress.flags.desert, "collectedDigKey");
 
     const blocks = [ level.Dig2, level.Dig3, level.Dig4, level.Dig5, level.Dig6, level.Dig6_1 ];
-    if (progress.flags.dugInDesertTown)
+    if (progress.flags.desert.dugInDesertTown)
     {
         blocks.forEach(x => x.destroy());
         return;
@@ -199,7 +199,7 @@ function enhanceDigSpot(level: DesertTownLevel)
     level.StartDigging.withStep(() => {
         const follower = player.follower;
 
-        if (!progress.flags.diguaIsFollowing || !follower || !follower.collides(level.StartDigging))
+        if (!progress.flags.desert.diguaIsFollowing || !follower || !follower.collides(level.StartDigging))
             return;
 
         const b = level.StartDigging.getBounds();
@@ -228,7 +228,7 @@ function enhanceDigSpot(level: DesertTownLevel)
                 follower.isDucking = false;
             }
 
-            progress.flags.dugInDesertTown = true;
+            progress.flags.desert.dugInDesertTown = true;
             follower.at(player.x + b.width + 64, player.y);
 
             await p.sleep(500);
@@ -238,8 +238,8 @@ function enhanceDigSpot(level: DesertTownLevel)
             await follower.walkTo(scene.camera.x + 300);
             follower.destroy();
 
-            progress.flags.diguaIsFollowing = false;
-            progress.flags.diguaIsInBar = true;
+            progress.flags.desert.diguaIsFollowing = false;
+            progress.flags.desert.diguaIsInBar = true;
 
             scene.camera.followPlayer = true;
         });

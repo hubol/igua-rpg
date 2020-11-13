@@ -174,7 +174,7 @@ function createPlayer()
 
 export function createFollower()
 {
-    if (progress.flags.diguaIsFollowing)
+    if (progress.flags.desert.diguaIsFollowing)
         {
             const npcGameObject = followerNpc(npc(0, 0, 4));
             scene.playerStage.addChild(npcGameObject);

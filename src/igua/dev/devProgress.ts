@@ -2,8 +2,8 @@ import {progress} from "../data/progress";
 
 export function devProgress()
 {
-    progress.flags.heardIntroduction = true;
-    progress.flags.stackedAllCrates = true;
+    progress.flags.desert.heardIntroduction = true;
+    progress.flags.desert.stackedAllCrates = true;
     progress.valuables = 100;
     progress.levelName = "DesertOutskirts";
     // progress.flags.diguaIsFollowing = true;
