@@ -13,6 +13,7 @@ import {add, vector} from "../utils/math/vector";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {scene} from "../igua/scene";
 import {player} from "../gameObjects/player";
+import {resolvePipeHorizontal} from "../gameObjects/walls";
 
 function getDesertTownLevel()
 {
@@ -85,6 +86,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
                 ? { x: lastStackedCrate.x + Math.round(-6 + Math.random() * 12), y: lastStackedCrate.y - lastStackedCrate.height }
                 : level.DropCrateAnchor);
         scene.backgroundGameObjectStage.addChild(nextCrate);
+        resolvePipeHorizontal({ ...vector(nextCrate), width: nextCrate.width, visible: false } as any);
         lastStackedCrate = nextCrate;
         if (playSound && isOnScreen(level.DropCrateAnchor))
             CratePlace.play();
