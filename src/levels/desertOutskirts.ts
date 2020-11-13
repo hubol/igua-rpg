@@ -28,10 +28,10 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
             sceneStack.push();
             const level = DesertField();
             scene.camera.x = 1296;
-            const goalX = Math.round(level.TempleDoor.x - 128);
+            const goalX = Math.round(level.TempleDoor.x - 128 + 15);
             const goalY = Math.round(level.TempleDoor.y - 128);
-            scene.camera.y = goalY;
-            await p.move(scene.camera).to(goalX, goalY).over(5_000);
+            scene.camera.y = goalY + 32;
+            await p.move(scene.camera).to(goalX, goalY).over(4_000);
             await p.sleep(500);
             // TODO sfx
             level.TempleDoor.locked = false;

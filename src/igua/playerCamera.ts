@@ -1,6 +1,5 @@
 import {game} from "./game";
 import {distance, lerp} from "../utils/math/vector";
-import {level} from "./level/level";
 import {scene} from "./scene";
 import {player} from "../gameObjects/player";
 
@@ -49,6 +48,6 @@ export function centerPlayerCamera()
 
 function clampCameraTarget()
 {
-    target.x = Math.min(level.width - game.width, Math.max(target.x, 0));
-    target.y = Math.min(level.height - game.height, Math.max(target.y, 0));
+    target.x = Math.min(scene.width - game.width, Math.max(target.x, 0));
+    target.y = Math.min(scene.height - game.height, Math.max(target.y, 0));
 }

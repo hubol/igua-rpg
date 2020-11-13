@@ -1,7 +1,6 @@
 import {Container, DisplayObject, Graphics} from "pixi.js";
 import {game} from "./game";
 import {AsshatTicker} from "../utils/asshatTicker";
-import {level} from "./level/level";
 import {camera as createCamera} from "./camera";
 
 function createScene(isLevel: boolean)
@@ -36,7 +35,7 @@ function createScene(isLevel: boolean)
         set terrainColor(color: number) {
             const graphics = new Graphics();
             graphics.beginFill(color);
-            graphics.drawRect(0, 0, level.width, level.height);
+            graphics.drawRect(0, 0, 4096, 4096);
             this.terrainFill = graphics;
         },
         camera: createCamera(isLevel),
@@ -60,7 +59,9 @@ function createScene(isLevel: boolean)
         set visible(value: boolean)
         {
             stage.visible = value;
-        }
+        },
+        width: 0,
+        height: 0
     };
 }
 

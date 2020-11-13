@@ -1,19 +1,18 @@
 import {centerPlayerCamera} from "../playerCamera";
 import {ApplyOgmoLevelArgs, GameObjects} from "./applyOgmoLevelArgs";
 import {progress} from "../data/progress";
-import {level} from "./level";
 import {player} from "../../gameObjects/player";
-import {sceneStack} from "../scene";
+import {scene, sceneStack} from "../scene";
 
 export function applyOgmoLevel<T>(args: ApplyOgmoLevelArgs<T>): GameObjects<T>
 {
+    scene.width = args.width;
+    scene.height = args.height;
+
     const gameObjectsLibrary = args.gameObjectsSupplier();
 
     if (sceneStack.isLevel)
     {
-        level.width = args.width;
-        level.height = args.height;
-
         player.hspeed = 0;
         player.vspeed = 0;
         const gameObjects = Object.values(gameObjectsLibrary).filter(x => !!x && typeof x === "object");
