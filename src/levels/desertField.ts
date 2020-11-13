@@ -28,7 +28,7 @@ export function DesertField()
 
 function enrichDigua(level: DesertFieldLevel)
 {
-    if (progress.flags.diguaIsInBar || progress.flags.diguaIsFollowing)
+    if (progress.flags.desert.diguaIsInBar || progress.flags.desert.diguaIsFollowing)
     {
         level.Digua.destroy();
         return;
@@ -65,7 +65,7 @@ function enrichDigua(level: DesertFieldLevel)
         await p.sleep(500);
         await p.show("Awesome! Let's go on an adventure!");
 
-        progress.flags.diguaIsFollowing = true;
+        progress.flags.desert.diguaIsFollowing = true;
         player.follower = createFollower();
         level.Digua.destroy();
     };
