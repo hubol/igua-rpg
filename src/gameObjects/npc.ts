@@ -7,7 +7,7 @@ import {getNpcStyle} from "./npcStyles";
 import {scene} from "../igua/scene";
 
 export const resolveNpc = resolveGameObject("NpcIguana", e => {
-    const n = scene.gameObjectStage.addChild(npc(e.x, e.y - 8, (e as any).style));
+    const n = scene.gameObjectStage.addChild(npc(e.x, e.y, (e as any).style));
     if (e.flippedX)
         n.scale.x *= -1;
     return n;
