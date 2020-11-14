@@ -35,7 +35,7 @@
           "y": 176,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "TempleDoor"}
+          "values": {"levelName": "DesertTemple", "checkpointName": "", "name": "TempleDoor"}
         },
         {
           "name": "Sign",
@@ -220,6 +220,16 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromOutskirtsBottom", "faceRight": false}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 24,
+          "_eid": "55940370",
+          "x": 384,
+          "y": 208,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromTemple", "faceRight": true}
         }
       ]
     },
@@ -354,7 +364,17 @@
           "originY": 1,
           "values": {"name": ""}
         },
-        {"x": 1480, "y": 264, "scaleX": 1, "scaleY": 1.275, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 1}
+        {
+          "x": 1480,
+          "y": 264,
+          "scaleX": 1,
+          "scaleY": 1.275,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },
