@@ -4,6 +4,7 @@ import {scene, sceneStack} from "../igua/scene";
 import {progress} from "../igua/data/progress";
 import {DesertField} from "./desertField";
 import {game} from "../igua/game";
+import {flash} from "../gameObjects/flash";
 
 function getDesertOutskirtsLevel()
 {
@@ -31,6 +32,11 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
             const goalX = Math.round(level.TempleDoor.x - 128 + 15);
             const goalY = Math.round(level.TempleDoor.y - 128);
             scene.camera.y = goalY + 32;
+
+            const flashObject = flash(0xF0F0B0);
+            await p.lerp(flashObject, "alpha").to(0).over(2_000);
+            flashObject.destroy();
+
             await p.move(scene.camera).to(goalX, goalY).over(4_000);
             await p.sleep(500);
             // TODO sfx

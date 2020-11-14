@@ -4,13 +4,15 @@ import {tickerWait} from "./tickerWait";
 import {ask} from "./ask";
 import {move} from "./move";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";
+import {lerp} from "./lerp";
 
 const promiseLibrary = {
     sleep: tickerSleep,
     wait: tickerWait,
     show,
     ask,
-    move
+    move,
+    lerp
 };
 
 export type PromiseLibrary = typeof promiseLibrary;
