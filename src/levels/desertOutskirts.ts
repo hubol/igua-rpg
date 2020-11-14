@@ -5,6 +5,10 @@ import {progress} from "../igua/data/progress";
 import {DesertField} from "./desertField";
 import {game} from "../igua/game";
 import {flash} from "../gameObjects/flash";
+import {lever} from "../gameObjects/lever";
+import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
+import {DesertTempleLever} from "../textures";
+import {add} from "../utils/math/vector";
 
 function getDesertOutskirtsLevel()
 {
@@ -24,8 +28,26 @@ export function DesertOutskirts()
 
 function enrichUnlockTemple(level: DesertOutskirtsLevel)
 {
-    level.TempleUnlockBlob.withInteraction(() => {
+    const offAngle = -45;
+    const onAngle = -offAngle;
+
+    const leverTextures = subimageTextures(DesertTempleLever, 2);
+    const leverObject = lever(leverTextures[0], leverTextures[1], progress.flags.desert.unlockedTemple? onAngle : offAngle)
+        .at(add({ x: 0, y: 8 }, level.TempleUnlockBlob));
+    scene.backgroundGameObjectStage.addChild(leverObject);
+
+    level.TempleUnlockBlob.visible = false;
+    leverObject.withInteraction(() => {
+        if (progress.flags.desert.unlockedTemple)
+        {
+            game.cutscenePlayer.playCutscene(async p => {
+               await p.show("You already activated the lever. It opened the door to the desert temple.");
+            });
+            return;
+        }
+
         game.cutscenePlayer.playCutscene(async p => {
+            await p.lerp(leverObject, "angle").to(onAngle).over(200);
 
             const flashObject = flash(0xF0F0B0, 0);
             await p.lerp(flashObject, "alpha").to(1).over(500);
