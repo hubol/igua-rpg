@@ -126,6 +126,16 @@
           "originX": 11,
           "originY": 27,
           "values": {"faceRight": true}
+        },
+        {
+          "name": "Sign",
+          "id": 12,
+          "_eid": "86706091",
+          "x": 128,
+          "y": 224,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "Big Key", "message": ""}
         }
       ]
     },

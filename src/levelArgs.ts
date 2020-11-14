@@ -1005,7 +1005,9 @@ Block_2: resolveBlock({"type":"Block","x":0,"y":0,"width":240,"height":152,"flip
 Block_3: resolveBlock({"type":"Block","x":0,"y":152,"width":24,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
 // @ts-ignore
 Block_4: resolveBlock({"type":"Block","x":488,"y":152,"width":24,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
-Player: {"type":"Player","x":80,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true}
+Player: {"type":"Player","x":80,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true},
+// @ts-ignore
+Sign: resolveSign({"type":"Sign","x":128,"y":224,"flippedX":false,"flippedY":false,"uid":"86706091","title":"Big Key","message":""})
 };
 }
 };
