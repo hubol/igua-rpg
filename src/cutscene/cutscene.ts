@@ -5,11 +5,11 @@ import {game} from "../igua/game";
 
 export type Cutscene = (p: PromiseLibrary) => Promise<any>;
 
-export class CutscenePlayer
+class CutscenePlayer
 {
     private _currentCutscene: Cutscene | undefined = undefined;
 
-    playCutscene(cutscene: Cutscene)
+    play(cutscene: Cutscene)
     {
         if (this._currentCutscene)
             console.warn("Playing cutscene", cutscene, "before cutscene", this._currentCutscene, "finished.");
@@ -37,13 +37,15 @@ export class CutscenePlayer
         });
     }
 
-    get isPlayingCutscene()
+    get isPlaying()
     {
         return !!this._currentCutscene;
     }
 
-    get currentCutscene()
+    get current()
     {
         return this._currentCutscene;
     }
 }
+
+export const cutscene = new CutscenePlayer();

@@ -1,6 +1,5 @@
-import {game} from "../igua/game";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
-import {Cutscene} from "../cutscene/cutscene";
+import {cutscene, Cutscene} from "../cutscene/cutscene";
 import {merge} from "../utils/merge";
 import {isPlayerInteractingWith} from "../igua/logic/isPlayerInteractingWith";
 import {getNpcStyle} from "./npcStyles";
@@ -19,7 +18,7 @@ function makeCutscenePuppet(style: number)
     return merge(puppet, {
         cutscene: undefined as Cutscene | undefined,
         get isCutscenePlaying() {
-            return this.cutscene && this.cutscene === game.cutscenePlayer.currentCutscene;
+            return this.cutscene && this.cutscene === cutscene.current;
         },
         canWalkWhileCutsceneIsPlaying: false
     });
@@ -33,7 +32,7 @@ export function npc(x, y, style: number = 0)
 
     return puppet.withStep(() => {
         if (puppet.cutscene && isPlayerInteractingWith(puppet))
-            game.cutscenePlayer.playCutscene(puppet.cutscene);
+            cutscene.play(puppet.cutscene);
         if (!puppet.canWalkWhileCutsceneIsPlaying && puppet.isCutscenePlaying)
             puppet.hspeed = 0;
         if (puppet.canWalkWhileCutsceneIsPlaying || !puppet.isCutscenePlaying)

@@ -2,7 +2,6 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertTownArgs} from "../levelArgs";
 import {jukebox} from "../igua/jukebox";
 import {Country, Oracle} from "../musics";
-import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 import {CrateWooden} from "../textures";
 import {isOnScreen} from "../igua/logic/isOnScreen";
@@ -14,6 +13,7 @@ import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {scene} from "../igua/scene";
 import {player} from "../gameObjects/player";
 import {resolvePipeHorizontal} from "../gameObjects/walls";
+import {cutscene} from "../cutscene/cutscene";
 
 function getDesertTownLevel()
 {
@@ -50,7 +50,7 @@ function addIntroduction(level: DesertTownLevel)
 {
     const lizard = scene.gameObjectStage.addChild(npc(level.LeftHouseDoor.x - 32, level.LeftHouseDoor.y + 32, 2));
     lizard.engine.walkSpeed = 2;
-    game.cutscenePlayer.playCutscene(async p => {
+    cutscene.play(async p => {
         scene.camera.followPlayer = false;
 
         await p.sleep(1_000);
@@ -164,7 +164,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
         if (crates.length < 1)
             return;
 
-        game.cutscenePlayer.playCutscene(async p => {
+        cutscene.play(async p => {
             if (playerHasCrate)
                 await p.show("You are already carrying a crate.");
             else if (pickupCrate())
@@ -181,7 +181,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
 
         playerHasCrate = false;
         stackCrate();
-        game.cutscenePlayer.playCutscene(async p => {
+        cutscene.play(async p => {
             await p.show("You placed the crate.");
         });
     });
@@ -207,7 +207,7 @@ function enhanceDigSpot(level: DesertTownLevel)
         const b = level.StartDigging.getBounds();
         const v = vector(level.StartDigging);
 
-        game.cutscenePlayer.playCutscene(async p => {
+        cutscene.play(async p => {
             scene.camera.followPlayer = false;
             follower.hspeed = 0;
             follower.isFollowing = false;

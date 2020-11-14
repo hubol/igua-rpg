@@ -3,12 +3,12 @@ import {DesertOutskirtsArgs} from "../levelArgs";
 import {scene, sceneStack} from "../igua/scene";
 import {progress} from "../igua/data/progress";
 import {DesertField} from "./desertField";
-import {game} from "../igua/game";
 import {flash} from "../gameObjects/flash";
 import {lever} from "../gameObjects/lever";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {DesertTempleLever} from "../textures";
 import {add} from "../utils/math/vector";
+import {cutscene} from "../cutscene/cutscene";
 
 function getDesertOutskirtsLevel()
 {
@@ -40,13 +40,13 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
     leverObject.withInteraction(() => {
         if (progress.flags.desert.unlockedTemple)
         {
-            game.cutscenePlayer.playCutscene(async p => {
+            cutscene.play(async p => {
                await p.show("You already activated the lever. It opened the door to the desert temple.");
             });
             return;
         }
 
-        game.cutscenePlayer.playCutscene(async p => {
+        cutscene.play(async p => {
             await p.lerp(leverObject, "angle").to(onAngle).over(200);
 
             const flashObject = flash(0xF0F0B0, 0);

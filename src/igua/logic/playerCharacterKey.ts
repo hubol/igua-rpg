@@ -1,9 +1,9 @@
 import {Key} from "../../utils/browser/key";
-import {game} from "../game";
+import {cutscene} from "../../cutscene/cutscene";
 
 function playerCharacterHasControl()
 {
-    return !game.cutscenePlayer.isPlayingCutscene;
+    return !cutscene.isPlaying;
 }
 
 export const playerCharacterKey: typeof Key = {
