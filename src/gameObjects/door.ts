@@ -1,5 +1,4 @@
 import {Vector} from "../utils/math/vector";
-import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 import {LockedDoor, OpenDoor} from "../textures";
 import {merge} from "../utils/merge";
@@ -9,6 +8,7 @@ import {progress} from "../igua/data/progress";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {level} from "../igua/level/level";
 import {scene} from "../igua/scene";
+import {cutscene} from "../cutscene/cutscene";
 
 export const resolveDoor =
     resolveGameObject("Door", e => door(e, (e as any).levelName, (e as any).checkpointName));
@@ -28,7 +28,7 @@ function door(vector: Vector, levelName: string, checkpointName: string)
                             level.goto(sprite.levelName);
                         });
 
-                game.cutscenePlayer.playCutscene(async p => await p.show("The door is locked."));
+                cutscene.play(async p => await p.show("The door is locked."));
             }
         });
     return scene.gameObjectStage.addChild(sprite);

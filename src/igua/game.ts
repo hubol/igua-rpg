@@ -2,7 +2,6 @@ import {Container} from "pixi.js";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {stepPlayerCamera} from "./playerCamera";
 import {advanceKeyListener, startKeyListener} from "../utils/browser/key";
-import {CutscenePlayer} from "../cutscene/cutscene";
 import {hud} from "../gameObjects/hud";
 import {level} from "./level/level";
 import {getInitialProgress, progress, setProgress} from "./data/progress";
@@ -44,8 +43,7 @@ function createGame(application: AsshatApplication)
         },
         get height() {
             return application.renderer.height;
-        },
-        cutscenePlayer: new CutscenePlayer()
+        }
     };
 }
 
