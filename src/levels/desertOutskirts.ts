@@ -26,6 +26,10 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
 {
     level.TempleUnlockBlob.withInteraction(() => {
         game.cutscenePlayer.playCutscene(async p => {
+
+            const flashObject = flash(0xF0F0B0, 0);
+            await p.lerp(flashObject, "alpha").to(1).over(500);
+
             sceneStack.push();
             const level = DesertField();
             scene.camera.x = 1296;
@@ -33,8 +37,7 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
             const goalY = Math.round(level.TempleDoor.y - 128);
             scene.camera.y = goalY + 32;
 
-            const flashObject = flash(0xF0F0B0);
-            await p.lerp(flashObject, "alpha").to(0).over(2_000);
+            await p.lerp(flashObject, "alpha").to(0).over(500);
             flashObject.destroy();
 
             await p.move(scene.camera).to(goalX, goalY).over(4_000);
