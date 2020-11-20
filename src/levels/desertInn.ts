@@ -1,5 +1,5 @@
 import {jukebox} from "../igua/jukebox";
-import {Oracle} from "../musics";
+import {Bluehouse} from "../musics";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertInnArgs} from "../levelArgs";
 import {progress} from "../igua/data/progress";
@@ -14,7 +14,7 @@ import {player} from "../gameObjects/player";
 
 export function DesertInn()
 {
-    jukebox.play(Oracle);
+    jukebox.play(Bluehouse);
     const level = applyOgmoLevel(DesertInnArgs);
     scene.backgroundColor = 0xC08070;
     scene.terrainColor = 0x702010;
