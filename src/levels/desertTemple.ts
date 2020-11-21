@@ -2,9 +2,12 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import { DesertTempleArgs } from "../levelArgs";
 import {scene} from "../igua/scene";
 import {progress} from "../igua/data/progress";
+import {jukebox} from "../igua/jukebox";
+import { Temple } from "../musics";
 
 export function DesertTemple()
 {
+    jukebox.play(Temple);
     const level = applyOgmoLevel(DesertTempleArgs);
     scene.backgroundColor = 0xCEA5A5;
     scene.terrainColor = 0x283741;
