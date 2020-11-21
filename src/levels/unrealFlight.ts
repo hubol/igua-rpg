@@ -4,9 +4,12 @@ import {UnrealFlightArgs} from "../levelArgs";
 import {Sprite} from "pixi.js";
 import {CloudLong} from "../textures";
 import {add} from "../utils/math/vector";
+import {jukebox} from "../igua/jukebox";
+import { Fly } from "../musics";
 
 export function UnrealFlight()
 {
+    jukebox.play(Fly);
     const level = applyOgmoLevel(UnrealFlightArgs);
 
     scene.backgroundColor = 0x60B0E0;
