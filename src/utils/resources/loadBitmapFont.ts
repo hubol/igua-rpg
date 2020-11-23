@@ -1,7 +1,6 @@
 import {BitmapFont, Texture} from "pixi.js";
-import {default as axios} from "axios";
 
 export async function loadBitmapFontAsync(fntUrl: string, texture: Texture) {
-    const fntData = (await axios.get(fntUrl)).data;
+    const fntData = await fetch(fntUrl).then(x => x.text());
     return BitmapFont.install(fntData, texture);
 }
