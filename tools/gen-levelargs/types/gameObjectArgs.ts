@@ -1,4 +1,8 @@
-export interface GameObjectArgs
+import {AtLeast} from "../../../src/utils/types/atLeast";
+
+export type GameObjectArgs = AtLeast<GameObjectArgsBase>;
+
+interface GameObjectArgsBase
 {
     type: string;
     uid: string;

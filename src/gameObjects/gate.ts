@@ -9,11 +9,9 @@ import {scene} from "../igua/scene";
 import {player} from "./player";
 
 export const resolveGate = resolveGameObject("Gate", args => {
-    const anyEntity = args as any;
-
     const destination = {
-        levelName: anyEntity.levelName,
-        checkpointName: anyEntity.checkpointName,
+        levelName: args.levelName,
+        checkpointName: args.checkpointName,
     };
     return scene.gameObjectStage.addChild(gate(args.x, args.y, args.width, args.height, destination));
 });

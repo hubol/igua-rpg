@@ -11,7 +11,7 @@ import {scene} from "../igua/scene";
 import {cutscene} from "../cutscene/cutscene";
 
 export const resolveDoor =
-    resolveGameObject("Door", e => door(e, (e as any).levelName, (e as any).checkpointName));
+    resolveGameObject("Door", e => door(e, e.levelName, e.checkpointName));
 
 function door(vector: Vector, levelName: string, checkpointName: string)
 {
