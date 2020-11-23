@@ -1,4 +1,4 @@
-import {PropertiesOf} from "../utils/propertiesOf";
+import {PropertiesOf} from "../utils/types/propertiesOf";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";
 import {tickerWait} from "./tickerWait";
 import {game} from "../igua/game";

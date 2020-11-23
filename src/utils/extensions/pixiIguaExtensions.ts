@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js";
 import {isPlayerInteractingWith} from "../../igua/logic/isPlayerInteractingWith";
-import {PropertiesOf} from "../propertiesOf";
+import {PropertiesOf} from "../types/propertiesOf";
 import {CollectGeneric} from "../../sounds";
 import {player} from "../../gameObjects/player";
 
