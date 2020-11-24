@@ -6,9 +6,11 @@ import {CloudLong} from "../textures";
 import {add} from "../utils/math/vector";
 import {jukebox} from "../igua/jukebox";
 import { Fly } from "../musics";
+import {portalFluidConfig} from "../gameObjects/portalFluid";
 
 export function UnrealFlight()
 {
+    portalFluidConfig.gotoLevelName = "DesertTemple";
     jukebox.play(Fly);
     const level = applyOgmoLevel(UnrealFlightArgs);
 

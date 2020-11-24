@@ -10,6 +10,8 @@ export class AsshatTicker
     private readonly _callbacks: AsshatTickerFn[] = [];
     private _callbacksToRemove: AsshatTickerFn[] = [];
 
+    doNextUpdate = true;
+
     add(fn: (...params: any[]) => any): this
     {
         this._callbacks.push(fn);
@@ -23,6 +25,9 @@ export class AsshatTicker
     }
 
     update(): void {
+        if (!this.doNextUpdate)
+            return;
+
         try
         {
             this.updateImpl();
