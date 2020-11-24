@@ -1,7 +1,7 @@
 import {Key} from "../../utils/browser/key";
 import {cutscene} from "../../cutscene/cutscene";
 
-function playerCharacterHasControl()
+export function playerCharacterHasControl()
 {
     return !cutscene.isPlaying;
 }

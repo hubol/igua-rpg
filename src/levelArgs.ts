@@ -1,4 +1,5 @@
 // This file is generated. Do not touch.
+import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveBlock } from "./gameObjects/walls";
 import { resolveRegion } from "./gameObjects/region";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
@@ -1639,7 +1640,7 @@ StartDigging: resolveRegion({"type":"Region","x":168,"y":168,"width":64,"height"
 };
 
 export const UnrealFlightArgs = {
-    width: 512,
+    width: 728,
 height: 312,
 gameObjectsSupplier: () => {
   return {
@@ -1649,7 +1650,21 @@ Block: resolveBlock({"type":"Block","x":0,"y":256,"width":152,"height":56,"flipp
 Block_1: resolveBlock({"type":"Block","x":152,"y":128,"width":32,"height":184,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
 // @ts-ignore
 Block_2: resolveBlock({"type":"Block","x":152,"y":0,"width":32,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
-Player: {"type":"Player","x":72,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true}
+Player: {"type":"Player","x":72,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true},
+// @ts-ignore
+PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":184,"y":0,"width":224,"height":32,"flippedX":false,"flippedY":false,"uid":"24775263"}),
+// @ts-ignore
+PortalFluid_1: resolvePortalFluid({"type":"PortalFluid","x":184,"y":144,"width":160,"height":168,"flippedX":false,"flippedY":false,"uid":"24775263"}),
+// @ts-ignore
+PortalFluid_2: resolvePortalFluid({"type":"PortalFluid","x":408,"y":0,"width":232,"height":208,"flippedX":false,"flippedY":false,"uid":"24775263"}),
+// @ts-ignore
+PortalFluid_3: resolvePortalFluid({"type":"PortalFluid","x":344,"y":280,"width":384,"height":32,"flippedX":false,"flippedY":false,"uid":"24775263"}),
+// @ts-ignore
+PortalFluid_4: resolvePortalFluid({"type":"PortalFluid","x":696,"y":0,"width":32,"height":280,"flippedX":false,"flippedY":false,"uid":"24775263"}),
+// @ts-ignore
+PortalFluid_5: resolvePortalFluid({"type":"PortalFluid","x":440,"y":208,"width":200,"height":8,"flippedX":false,"flippedY":false,"uid":"24775263"}),
+// @ts-ignore
+PortalFluid_6: resolvePortalFluid({"type":"PortalFluid","x":472,"y":216,"width":168,"height":8,"flippedX":false,"flippedY":false,"uid":"24775263"})
 };
 }
 };

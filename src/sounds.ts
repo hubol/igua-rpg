@@ -91,3 +91,8 @@ export const SelectOption = new Howl({
     src: [require("./sound/select option.ogg"), require("./sound/select option.mp3")],
     
 });
+
+export const Teleported = new Howl({
+    src: [require("./sound/teleported.ogg"), require("./sound/teleported.mp3")],
+    
+});
