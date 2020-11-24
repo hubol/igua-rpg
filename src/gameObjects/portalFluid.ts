@@ -7,6 +7,8 @@ import {level} from "../igua/level/level";
 import {scene} from "../igua/scene";
 import { Teleported } from "../sounds";
 import {jukebox} from "../igua/jukebox";
+import {game} from "../igua/game";
+import {filters} from "pixi.js";
 
 export const portalFluidConfig = {
     gotoLevelName: "Unknown"
@@ -29,10 +31,14 @@ function portalFluid({ width, height }: { width: number, height: number })
                 jukebox.stop();
                 Teleported.play();
                 scene.ticker.doNextUpdate = false;
+
                 cutscene.play(async p => {
-                     await p.show("You have been teleported to the room of doors.");
-                     await p.sleep(1_000);
-                     level.goto(portalFluidConfig.gotoLevelName);
+                    await p.show("You have been teleported to the room of doors.");
+                    const blurFilter = new filters.BlurFilter(0, 6, 1, 9);
+                    game.sceneStage.filters = [blurFilter];
+                    await p.lerp(blurFilter, "blur").to(24).over(1_000);
+                    game.sceneStage.filters = [];
+                    level.goto(portalFluidConfig.gotoLevelName);
                 });
             }
         });

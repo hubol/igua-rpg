@@ -8,6 +8,6 @@ export function devProgress()
     progress.flags.desert.thankedByCrateStacker = true;
     // progress.flags.desert.diguaIsFollowing = true;
     progress.valuables = 100;
-    progress.levelName = "DesertTemple";
+    progress.levelName = "UnrealFlight";
     // progress.flags.diguaIsFollowing = true;
 }
