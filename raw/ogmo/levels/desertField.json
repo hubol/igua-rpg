@@ -229,7 +229,7 @@
           "y": 208,
           "originX": 6,
           "originY": 12,
-          "values": {"name": "FromTemple", "faceRight": true}
+          "values": {"name": "FromTemple", "faceRight": false}
         }
       ]
     },

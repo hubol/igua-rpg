@@ -392,7 +392,7 @@ Gate_1: resolveGate({"type":"Gate","x":1520,"y":104,"width":32,"height":32,"flip
 Gate_2: resolveGate({"type":"Gate","x":1520,"y":232,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertOutskirts","checkpointName":""}),
 FromOutskirtsTop: {"type":"Checkpoint","x":1488,"y":136,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromOutskirtsTop","faceRight":false},
 FromOutskirtsBottom: {"type":"Checkpoint","x":1488,"y":264,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromOutskirtsBottom","faceRight":false},
-FromTemple: {"type":"Checkpoint","x":384,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromTemple","faceRight":true}
+FromTemple: {"type":"Checkpoint","x":384,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromTemple","faceRight":false}
 };
 }
 };
