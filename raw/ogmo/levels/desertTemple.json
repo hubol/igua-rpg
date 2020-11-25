@@ -136,6 +136,18 @@
           "originX": 14,
           "originY": 18,
           "values": {"title": "Big Key", "message": ""}
+        },
+        {
+          "name": "Region",
+          "id": 13,
+          "_eid": "25971607",
+          "x": 263,
+          "y": 104,
+          "width": 50,
+          "height": 28,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "BigKey"}
         }
       ]
     },
@@ -237,7 +249,17 @@
           "originY": 1,
           "values": {"name": ""}
         },
-        {"x": 424, "y": 224, "scaleX": 1, "scaleY": 1.125, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 1},
+        {
+          "x": 424,
+          "y": 224,
+          "scaleX": 1,
+          "scaleY": 1.125,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
         {
           "x": 288,
           "y": -12,

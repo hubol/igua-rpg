@@ -11,6 +11,11 @@ export function getInitialFlags()
             dugInDesertTown: false,
             collectedDigKey: false,
             unlockedTemple: false,
+            bigKey: {
+                piece1: false,
+                piece2: false,
+                piece3: false,
+            }
         }
     };
 }

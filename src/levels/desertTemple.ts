@@ -4,6 +4,9 @@ import {scene} from "../igua/scene";
 import {progress} from "../igua/data/progress";
 import {jukebox} from "../igua/jukebox";
 import { Temple } from "../musics";
+import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
+import {BigKey1} from "../textures";
+import {bigKeyMeter} from "../gameObjects/bigKeyMeter";
 
 export function DesertTemple()
 {
@@ -22,6 +25,17 @@ export function DesertTemple()
         await p.show("Here you can find pieces of a big key if you move through the doors.");
         await p.show("You need keys to enter the doors leading to the pieces.");
     };
+
+    scene.backgroundGameObjectStage.addChild(makeDesertBigKeyMeter().at(level.BigKey));
+}
+
+export function makeDesertBigKeyMeter()
+{
+    const bigKey1Textures = subimageTextures(BigKey1, 3);
+    return bigKeyMeter(
+        [ bigKey1Textures[0], progress.flags.desert.bigKey.piece1 ],
+        [ bigKey1Textures[1], progress.flags.desert.bigKey.piece2 ],
+        [ bigKey1Textures[2], progress.flags.desert.bigKey.piece3 ],);
 }
 
 function makeUnrealDoor(unlocked: boolean, displayObjects: any[])
