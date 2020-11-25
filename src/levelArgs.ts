@@ -1,7 +1,7 @@
 // This file is generated. Do not touch.
+import { resolveRegion } from "./gameObjects/region";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveBlock } from "./gameObjects/walls";
-import { resolveRegion } from "./gameObjects/region";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDoor } from "./gameObjects/door";
@@ -1666,7 +1666,9 @@ PortalFluid_4: resolvePortalFluid({"type":"PortalFluid","x":696,"y":0,"width":32
 // @ts-ignore
 PortalFluid_5: resolvePortalFluid({"type":"PortalFluid","x":440,"y":208,"width":200,"height":8,"flippedX":false,"flippedY":false,"uid":"24775263"}),
 // @ts-ignore
-PortalFluid_6: resolvePortalFluid({"type":"PortalFluid","x":472,"y":216,"width":168,"height":8,"flippedX":false,"flippedY":false,"uid":"24775263"})
+PortalFluid_6: resolvePortalFluid({"type":"PortalFluid","x":472,"y":216,"width":168,"height":8,"flippedX":false,"flippedY":false,"uid":"24775263"}),
+// @ts-ignore
+BigKeyPiece: resolveRegion({"type":"Region","x":643,"y":8,"width":50,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607","name":"BigKeyPiece"})
 };
 }
 };

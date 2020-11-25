@@ -7,6 +7,9 @@ import {add} from "../utils/math/vector";
 import {jukebox} from "../igua/jukebox";
 import { Fly } from "../musics";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
+import {bigKeyPiece} from "../gameObjects/bigKey";
+import {progress} from "../igua/data/progress";
+import {desertBigKeyTextures} from "./desertTemple";
 
 export function UnrealFlight()
 {
@@ -16,6 +19,11 @@ export function UnrealFlight()
 
     scene.backgroundColor = 0x60B0E0;
     scene.terrainColor = 0x40A020;
+
+    scene.backgroundGameObjectStage.addChild(
+        bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[0], "piece1")
+            .at(level.BigKeyPiece)
+    );
 
     for (let i = 0; i < 32; i++)
         cloud();
