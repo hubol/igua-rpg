@@ -3,7 +3,6 @@ import {UnrealMimicArgs} from "../levelArgs";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
 import {scene} from "../igua/scene";
 import { filters } from "pixi.js";
-import {player} from "../gameObjects/player";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
@@ -19,7 +18,6 @@ export function UnrealMimic()
     const colorMatrixFilter = new filters.ColorMatrixFilter();
     colorMatrixFilter.matrix = [0, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0, .875, 0, 0, 0, 0, 1, 0];
     level.Mimic.filters = [colorMatrixFilter];
-    level.Mimic.x -= 0.1; // TODO this is very messed up
 
     scene.backgroundGameObjectStage.addChild(
         bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[1], "piece2")
@@ -29,8 +27,6 @@ export function UnrealMimic()
     function defeatMimic()
     {
         level.PlayerFloorBlock.destroy();
-        if (player.vspeed === 0) // TODO this is a hack (player does not automatically fall when solid below it is destroyed)
-            player.vspeed = 1;
         scene.gameObjectStage.withAsync(async p => {
             await Promise.all([
                 p.lerp(level.Mimic.scale, "x").to(0).over(1000),
@@ -40,5 +36,5 @@ export function UnrealMimic()
         });
     }
 
-    setTimeout(defeatMimic, 1000);
+    setTimeout(defeatMimic, 2000);
 }
