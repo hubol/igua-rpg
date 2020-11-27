@@ -1,14 +1,14 @@
 // This file is generated. Do not touch.
-import { resolveRegion } from "./gameObjects/region";
+import { resolveSlopeLeft } from "./gameObjects/walls";
+import { resolveSlopeRight } from "./gameObjects/walls";
+import { resolveNpc } from "./gameObjects/npc";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveBlock } from "./gameObjects/walls";
+import { resolveRegion } from "./gameObjects/region";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDoor } from "./gameObjects/door";
-import { resolveNpc } from "./gameObjects/npc";
-import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveSign } from "./gameObjects/sign";
-import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { CloudLong } from "./textures";
 import { KeyRed } from "./textures";
@@ -991,7 +991,7 @@ Door: resolveDoor({"type":"Door","x":32,"y":192,"flippedX":false,"flippedY":fals
 // @ts-ignore
 Door1: resolveDoor({"type":"Door","x":192,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"UnrealFlight","checkpointName":"","name":"Door1"}),
 // @ts-ignore
-Door2: resolveDoor({"type":"Door","x":272,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"DesertField","checkpointName":"","name":"Door2"}),
+Door2: resolveDoor({"type":"Door","x":272,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"UnrealMimic","checkpointName":"","name":"Door2"}),
 // @ts-ignore
 Door3: resolveDoor({"type":"Door","x":352,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"DesertField","checkpointName":"","name":"Door3"}),
 // @ts-ignore
@@ -1669,6 +1669,40 @@ PortalFluid_5: resolvePortalFluid({"type":"PortalFluid","x":440,"y":208,"width":
 PortalFluid_6: resolvePortalFluid({"type":"PortalFluid","x":472,"y":216,"width":168,"height":8,"flippedX":false,"flippedY":false,"uid":"24775263"}),
 // @ts-ignore
 BigKeyPiece: resolveRegion({"type":"Region","x":643,"y":8,"width":50,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607","name":"BigKeyPiece"})
+};
+}
+};
+
+export const UnrealMimicArgs = {
+    width: 256,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+PlayerFloorBlock: resolveBlock({"type":"Block","x":48,"y":120,"width":160,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":"PlayerFloorBlock"}),
+// @ts-ignore
+PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":0,"y":56,"width":48,"height":144,"flippedX":false,"flippedY":false,"uid":"24775263"}),
+// @ts-ignore
+PortalFluid_1: resolvePortalFluid({"type":"PortalFluid","x":208,"y":56,"width":48,"height":144,"flippedX":false,"flippedY":false,"uid":"24775263"}),
+Player: {"type":"Player","x":128,"y":120,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true},
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":48,"y":200,"width":80,"height":56,"flippedX":false,"flippedY":true,"uid":"55824435"}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":128,"y":200,"width":80,"height":56,"flippedX":false,"flippedY":true,"uid":"55845599"}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":128,"y":0,"width":80,"height":56,"flippedX":false,"flippedY":false,"uid":"55845599"}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":48,"y":0,"width":80,"height":56,"flippedX":false,"flippedY":false,"uid":"55824435"}),
+// @ts-ignore
+Mimic: resolveNpc({"type":"NpcIguana","x":128,"y":200,"flippedX":false,"flippedY":false,"uid":"26367058","name":"Mimic","style":0}),
+// @ts-ignore
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":208,"y":0,"width":80,"height":56,"flippedX":false,"flippedY":false,"uid":"55824435"}),
+// @ts-ignore
+SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":-32,"y":0,"width":80,"height":56,"flippedX":false,"flippedY":false,"uid":"55845599"}),
+// @ts-ignore
+SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":208,"y":200,"width":80,"height":56,"flippedX":false,"flippedY":true,"uid":"55824435"}),
+// @ts-ignore
+SlopeLeft_3: resolveSlopeLeft({"type":"SlopeLeft","x":-32,"y":200,"width":80,"height":56,"flippedX":false,"flippedY":true,"uid":"55845599"})
 };
 }
 };

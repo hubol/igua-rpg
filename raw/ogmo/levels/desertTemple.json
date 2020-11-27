@@ -55,7 +55,7 @@
           "y": 192,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "DesertField", "checkpointName": "", "name": "Door2"}
+          "values": {"levelName": "UnrealMimic", "checkpointName": "", "name": "Door2"}
         },
         {
           "name": "Door",
