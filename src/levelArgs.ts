@@ -1,10 +1,10 @@
 // This file is generated. Do not touch.
+import { resolveRegion } from "./gameObjects/region";
 import { resolveBlock } from "./gameObjects/walls";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
-import { resolveRegion } from "./gameObjects/region";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDoor } from "./gameObjects/door";
@@ -1704,7 +1704,11 @@ SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":208,"y":200,"width":80,
 // @ts-ignore
 SlopeLeft_3: resolveSlopeLeft({"type":"SlopeLeft","x":-32,"y":200,"width":80,"height":56,"flippedX":false,"flippedY":true,"uid":"55845599"}),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":120,"y":40,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":""})
+Block: resolveBlock({"type":"Block","x":120,"y":40,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":120,"y":200,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+BigKeyPiece: resolveRegion({"type":"Region","x":56,"y":152,"width":50,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607","name":"BigKeyPiece"})
 };
 }
 };
