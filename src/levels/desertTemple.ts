@@ -17,9 +17,9 @@ export function DesertTemple()
     [level.CracksA, level.CracksA_1].forEach(x => x.tint = 0xA66B6B);
     level.GlowingCircle.tint = 0xF0F0B0;
 
-    makeUnrealDoor(progress.flags.desert.thankedByCrateStacker, progress.flags.desert.bigKey.piece1, [level.Key1, level.Door1]);
-    makeUnrealDoor(progress.flags.desert.collectedInnKey, progress.flags.desert.bigKey.piece2, [level.Key2, level.Door2]);
-    makeUnrealDoor(progress.flags.desert.collectedDigKey, progress.flags.desert.bigKey.piece3, [level.Key3, level.Door3]);
+    makeUnrealDoor(progress.flags.desert.key.fromCrateStacker, progress.flags.desert.bigKey.piece1, [level.Key1, level.Door1]);
+    makeUnrealDoor(progress.flags.desert.key.fromInn, progress.flags.desert.bigKey.piece2, [level.Key2, level.Door2]);
+    makeUnrealDoor(progress.flags.desert.key.fromDiggingInTown, progress.flags.desert.bigKey.piece3, [level.Key3, level.Door3]);
 
     level.Sign.cutscene = async p => {
         await p.show("Here you can find pieces of a big key if you move through the doors.");
