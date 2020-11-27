@@ -119,13 +119,13 @@ function enhanceCrateStacker(level: DesertTownLevel)
 
     level.Stacker.cutscene = async p => {
         level.Stacker.mods.remove(Sleepy);
-        if (progress.flags.desert.stackedAllCrates && !progress.flags.desert.thankedByCrateStacker)
+        if (progress.flags.desert.stackedAllCrates && !progress.flags.desert.key.fromCrateStacker)
         {
             await p.show("Thank you for your help.");
             await p.show("All I have to show my appreciation is this old key.");
             CollectGeneric.play();
             await p.show("Received the key.");
-            progress.flags.desert.thankedByCrateStacker = true;
+            progress.flags.desert.key.fromCrateStacker = true;
         }
         else if (tiredOfWorking)
             await p.show("I think I'm done working for today.");
@@ -189,7 +189,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
 
 function enhanceDigSpot(level: DesertTownLevel)
 {
-    level.DigKey.asCollectible(progress.flags.desert, "collectedDigKey");
+    level.DigKey.asCollectible(progress.flags.desert.key, "fromDiggingInTown");
 
     const blocks = [ level.Dig2, level.Dig3, level.Dig4, level.Dig5, level.Dig6, level.Dig6_1 ];
     if (progress.flags.desert.dugInDesertTown)

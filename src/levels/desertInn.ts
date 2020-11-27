@@ -26,7 +26,7 @@ export function DesertInn()
         .withStep(() => {
            level.KeyRed.angle = lerp(35, 55, (Math.sin(now.ms * 0.0025) + 1) / 2);
         })
-        .asCollectible(progress.flags.desert, "collectedInnKey");
+        .asCollectible(progress.flags.desert.key, "fromInn");
 
     level.Innkeeper.mods.add(Lazy);
     level.Innkeeper.cutscene = async p => {

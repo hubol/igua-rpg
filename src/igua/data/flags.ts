@@ -4,13 +4,15 @@ export function getInitialFlags()
         desert: {
             heardIntroduction: false,
             stackedAllCrates: false,
-            thankedByCrateStacker: false,
-            collectedInnKey: false,
             diguaIsFollowing: false,
             diguaIsInBar: false,
-            dugInDesertTown: false,
-            collectedDigKey: false,
             unlockedTemple: false,
+            dugInDesertTown: false,
+            key: {
+                fromCrateStacker: false,
+                fromInn: false,
+                fromDiggingInTown: false,
+            },
             bigKey: {
                 piece1: false,
                 piece2: false,
