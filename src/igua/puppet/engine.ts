@@ -100,9 +100,11 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
             const vspeedBeforePush = puppet.vspeed;
 
             const canPlaySounds = isOnScreen(puppet);
+            let once = false;
 
-            while (Math.abs(hsp) > 0 || Math.abs(vsp) > 0)
+            while (Math.abs(hsp) > 0 || Math.abs(vsp) > 0 || !once)
             {
+                once = true;
                 puppet.x += Math.min(maxMotion, Math.abs(hsp)) * Math.sign(hsp);
                 puppet.y += Math.min(maxMotion, Math.abs(vsp)) * Math.sign(vsp);
 
