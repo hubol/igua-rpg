@@ -3,14 +3,14 @@ import { DesertTempleArgs } from "../levelArgs";
 import {scene} from "../igua/scene";
 import {progress} from "../igua/data/progress";
 import {jukebox} from "../igua/jukebox";
-import { Temple } from "../musics";
+import {Fly, Mimic, Temple} from "../musics";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {BigKey1} from "../textures";
 import {bigKeyMeter} from "../gameObjects/bigKey";
 
 export function DesertTemple()
 {
-    jukebox.play(Temple);
+    jukebox.play(Temple).warm(Fly, Mimic);
     const level = applyOgmoLevel(DesertTempleArgs);
     scene.backgroundColor = 0xCEA5A5;
     scene.terrainColor = 0x283741;

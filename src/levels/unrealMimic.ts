@@ -6,9 +6,12 @@ import { filters } from "pixi.js";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
+import {jukebox} from "../igua/jukebox";
+import {Mimic} from "../musics";
 
 export function UnrealMimic()
 {
+    jukebox.play(Mimic);
     portalFluidConfig.gotoLevelName = "DesertTemple";
     const level = applyOgmoLevel(UnrealMimicArgs);
 
