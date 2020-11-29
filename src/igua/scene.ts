@@ -51,6 +51,8 @@ function createScene(isLevel: boolean)
         destroy()
         {
             stage.destroy({ children: true });
+            ticker.doNextUpdate = true;
+            ticker.update();
         },
         get visible()
         {
