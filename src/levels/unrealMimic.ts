@@ -21,6 +21,7 @@ export function UnrealMimic()
     const colorMatrixFilter = new filters.ColorMatrixFilter();
     colorMatrixFilter.matrix = [0, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0, .875, 0, 0, 0, 0, 1, 0];
     level.Mimic.filters = [colorMatrixFilter];
+    level.Mimic.canBlink = false;
 
     scene.backgroundGameObjectStage.addChild(
         bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[1], "piece2")
