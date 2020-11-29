@@ -102,6 +102,10 @@ export const sceneStack = {
     },
     get isLevel()
     {
-        return scenes.length === 1;
+        return this.length === 1;
+    },
+    get length()
+    {
+        return scenes.length;
     }
 };
