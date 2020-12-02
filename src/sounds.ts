@@ -2,6 +2,11 @@ import { Howl } from 'howler';
     
 // This file is generated. Do not touch.
 
+export const ActivateLever = new Howl({
+    src: [require("./sound/activate lever.ogg"), require("./sound/activate lever.mp3")],
+    
+});
+
 export const CharacterHitCeiling = new Howl({
     src: [require("./sound/character hit ceiling.ogg"), require("./sound/character hit ceiling.mp3")],
     
@@ -94,5 +99,15 @@ export const SelectOption = new Howl({
 
 export const Teleported = new Howl({
     src: [require("./sound/teleported.ogg"), require("./sound/teleported.mp3")],
+    
+});
+
+export const TempleDoorOpen = new Howl({
+    src: [require("./sound/temple door open.ogg"), require("./sound/temple door open.mp3")],
+    
+});
+
+export const TransitionSlide = new Howl({
+    src: [require("./sound/transition slide.ogg"), require("./sound/transition slide.mp3")],
     
 });
