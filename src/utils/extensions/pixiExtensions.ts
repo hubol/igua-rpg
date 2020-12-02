@@ -197,6 +197,9 @@ function moveUntilCollides(container, speed, otherContainerOrContainers)
 
 function collides(container, otherContainerOrContainers, offset)
 {
+    if (container.destroyed)
+        return false;
+
     if (Array.isArray(otherContainerOrContainers))
     {
         for (let i = 0; i < otherContainerOrContainers.length; i++)
@@ -207,6 +210,9 @@ function collides(container, otherContainerOrContainers, offset)
 
         return false;
     }
+
+    if (otherContainerOrContainers.destroyed)
+        return false;
 
     const containerBounds = container.getBounds();
     if (offset)
