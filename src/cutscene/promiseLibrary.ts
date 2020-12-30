@@ -5,6 +5,7 @@ import {ask} from "./ask";
 import {move} from "./move";
 import {IguaPromiseConfig} from "./iguaPromiseConfig";
 import {lerp} from "./lerp";
+import {waitHold} from "./waitHold";
 
 const promiseLibrary = {
     sleep: tickerSleep,
@@ -12,7 +13,8 @@ const promiseLibrary = {
     show,
     ask,
     move,
-    lerp
+    lerp,
+    waitHold
 };
 
 export type PromiseLibrary = typeof promiseLibrary;

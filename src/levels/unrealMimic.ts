@@ -9,6 +9,8 @@ import {desertBigKeyTextures} from "./desertTemple";
 import {jukebox} from "../igua/jukebox";
 import {Mimic} from "../musics";
 import {PromiseLibrary} from "../cutscene/promiseLibrary";
+import {player} from "../gameObjects/player";
+import {now} from "../utils/now";
 
 function applyUnrealMimicLevel()
 {
@@ -44,6 +46,54 @@ export function UnrealMimic()
         await mimic.moveRight(p);
         mimic.defeat();
     });
+
+    scene.gameObjectStage.withAsync(async p => {
+        const { moveLeft, duck, jump, moveRight } = waitForPlayerMotion(p);
+        const moves = [ moveLeft, duck, jump, moveRight, duck, jump, moveLeft, moveLeft ];
+        for (const move of moves) {
+            await move();
+            console.log(now.ms / 1000);
+        }
+    })
+}
+
+function waitForPlayerMotion(p: PromiseLibrary)
+{
+    async function duck()
+    {
+        const startDuckUnit = player.duckUnit;
+        await p.wait(() => player.duckUnit === 0 || player.duckUnit < startDuckUnit);
+        await p.waitHold(() => player.duckUnit >= 0.5, 4);
+        return "Duck";
+    }
+
+    async function moveLeft()
+    {
+        await p.wait(() => Math.abs(player.hspeed) < 1);
+        await p.waitHold(() => player.hspeed < 0, 8);
+        return "Left";
+    }
+
+    async function moveRight()
+    {
+        await p.wait(() => Math.abs(player.hspeed) < 1);
+        await p.waitHold(() => player.hspeed > 0, 8);
+        return "Right";
+    }
+
+    async function jump()
+    {
+        await p.wait(() => player.vspeed >= 0);
+        await p.waitHold(() => player.vspeed < 0, 8);
+        return "Jump";
+    }
+
+    return {
+        duck,
+        moveLeft,
+        moveRight,
+        jump
+    };
 }
 
 function enrichMimic(level: UnrealMimicLevel)
