@@ -12,6 +12,8 @@ import {cutscene} from "../cutscene/cutscene";
 import {ActivateLever, TempleDoorOpen, TransitionSlide} from "../sounds";
 import {ShockwaveFilter} from "@pixi/filter-shockwave";
 import {game} from "../igua/game";
+import {jukebox} from "../igua/jukebox";
+import {DesertTown} from "../musics";
 
 function getDesertOutskirtsLevel()
 {
@@ -22,6 +24,7 @@ type DesertOutskirtsLevel = ReturnType<typeof getDesertOutskirtsLevel>;
 
 export function DesertOutskirts()
 {
+    jukebox.play(DesertTown);
     const level = getDesertOutskirtsLevel();
     scene.backgroundColor = 0xF0F0B0;
     scene.terrainColor = 0xE0D060;

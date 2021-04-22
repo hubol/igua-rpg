@@ -1,5 +1,5 @@
 import {jukebox} from "../igua/jukebox";
-import {Country, Temple} from "../musics";
+import {Country, DesertTown, Temple} from "../musics";
 import {scene} from "../igua/scene";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertFieldArgs} from "../levelArgs";
@@ -16,7 +16,7 @@ type DesertFieldLevel = ReturnType<typeof getDesertFieldLevel>;
 
 export function DesertField()
 {
-    jukebox.play(Country).warm(Temple);
+    jukebox.play(DesertTown).warm(Temple, Country);
     const level = getDesertFieldLevel();
     scene.backgroundColor = 0xF0F0B0;
     scene.terrainColor = 0xE0D060;
