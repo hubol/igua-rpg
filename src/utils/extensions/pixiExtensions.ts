@@ -1,7 +1,6 @@
 import {Vector} from "../math/vector";
 import * as PIXI from "pixi.js";
 import {Container} from "pixi.js";
-import {game} from "../../igua/game";
 import {makePromiseLibrary, PromiseLibrary} from "../../cutscene/promiseLibrary";
 import {CancellationToken} from "pissant";
 import {IguaPromiseConfig} from "../../cutscene/iguaPromiseConfig";
@@ -46,18 +45,86 @@ Object.defineProperty(PIXI.DisplayObject.prototype, "destroyed", {
     }
 });
 
+type LazyTickerReceiver = (ticker: AsshatTicker) => void;
+
+interface LazyTicker extends AsshatTicker {
+    _resolve(ticker: AsshatTicker): void;
+    _addReceiver(receiver: LazyTickerReceiver): void;
+    _isLazy: true;
+}
+
+const isLazyTicker = (ticker: AsshatTicker): ticker is LazyTicker => (ticker as any)._isLazy;
+
+const lazyTickerHandler = {
+    get(target, propKey) {
+        if (propKey === '_resolve') {
+            return function (ticker: AsshatTicker) {
+                if (target._resolved) {
+                    console.error(`Attempt to resolve already resovled LazyTicker`, target);
+                    return;
+                }
+                target._queuedCalls.forEach(({ name, args }) => ticker[name](...args));
+                target._receivers.forEach(fn => fn(ticker));
+                target._resolved = true;
+            }
+        }
+        if (propKey === '_addReceiver') {
+            return function (receiver) {
+                if (target._resolved) {
+                    console.error(`Attempt to add receiver to already-resovled LazyTicker`, target, receiver);
+                    return;
+                }
+                target._receivers.push(receiver);
+            }
+        }
+
+        return function (...args) {
+            if (target._resolved) {
+                console.error(`Attempt to queue call to already-resovled LazyTicker`, target, propKey, args);
+                return;
+            }
+            target._queuedCalls.push({ name: propKey, args })
+        };
+    }
+};
+
+function createLazyTicker(): LazyTicker {
+    return new Proxy({ _resolved: false, _receivers: [], _queuedCalls: [] }, lazyTickerHandler);
+}
+
 Object.defineProperty(PIXI.DisplayObject.prototype, "ticker", {
     get: function ticker() {
         if (this._ticker)
             return this._ticker;
 
-        if (this.parent)
-            this._ticker = this.parent.ticker;
+        if (this._lazyTicker)
+            return this._lazyTicker;
 
-        if (!this._ticker)
-            this._ticker = game.ticker;
+        if (this.parent) {
+            const maybeTicker = this.parent.ticker;
+            if (!isLazyTicker(maybeTicker))
+                return this._ticker = maybeTicker;
 
-        return this._ticker;
+            maybeTicker._addReceiver(ticker => {
+                this._ticker = ticker;
+                delete this._lazyTicker;
+            });
+            return this._lazyTicker = maybeTicker;
+        }
+
+        const lazyTicker = createLazyTicker();
+        lazyTicker._addReceiver(ticker => {
+            this._ticker = ticker;
+            delete this._lazyTicker;
+        });
+        this.on('added', () => {
+            const parentTicker = this.parent.ticker;
+            if (isLazyTicker(parentTicker))
+                parentTicker._addReceiver(lazyTicker._resolve);
+            else
+                lazyTicker._resolve(parentTicker);
+        });
+        return this._lazyTicker = lazyTicker;
     }
 });
 
@@ -71,6 +138,7 @@ function doNowOrOnAdded<T extends PIXI.DisplayObject>(displayObject: T, onAdded:
 PIXI.Container.prototype.withTicker = function(ticker)
 {
     (this as any)._ticker = ticker;
+    (this as any)._lazyTicker?._resolve(ticker);
     return this;
 }
 
