@@ -3,7 +3,7 @@ import {distance, lerp} from "../utils/math/vector";
 import {scene} from "./scene";
 import {player} from "../gameObjects/player";
 
-let target = { x: 0, y: 0 };
+const target = { x: 0, y: 0 };
 
 export function stepPlayerCamera()
 {
