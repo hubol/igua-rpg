@@ -9,6 +9,6 @@ export function devProgress()
     progress.flags.desert.key.fromInn = true;
     // progress.flags.desert.diguaIsFollowing = true;
     progress.valuables = 100;
-    progress.levelName = "UnrealMimic";
+    progress.levelName = "DesertOutskirts";
     // progress.flags.diguaIsFollowing = true;
 }

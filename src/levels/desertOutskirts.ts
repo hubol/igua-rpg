@@ -40,7 +40,14 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
     const leverTextures = subimageTextures(DesertTempleLever, 2);
     const leverObject = lever(leverTextures[0], leverTextures[1], progress.flags.desert.unlockedTemple? onAngle : offAngle)
         .at(add({ x: 0, y: 8 }, level.TempleUnlockBlob));
-    scene.backgroundGameObjectStage.addChild(leverObject);
+    scene.backgroundGameObjectStage.addChildAt(leverObject, 0);
+
+    const targetBushRight = level.BushRight.x + 8;
+    const targetBushLeft = level.BushLeft.x - 8;
+    if (progress.flags.desert.unlockedTemple) {
+        level.BushRight.x = targetBushRight;
+        level.BushLeft.x = targetBushLeft;
+    }
 
     level.TempleUnlockBlob.visible = false;
     leverObject.withInteraction(() => {
@@ -53,6 +60,11 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
         }
 
         cutscene.play(async p => {
+            await Promise.all([
+                p.lerp(level.BushRight, "x").to(targetBushRight).over(300),
+                p.lerp(level.BushLeft, "x").to(targetBushLeft).over(360),
+            ])
+            await p.sleep(300);
             ActivateLever.play();
             await p.lerp(leverObject, "angle").to(onAngle).over(200);
 
@@ -62,10 +74,10 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
             await p.lerp(flashObject, "alpha").to(1).over(500);
 
             sceneStack.push();
-            const level = DesertField();
+            const field = DesertField();
             scene.camera.x = 1296;
-            const goalX = Math.round(level.TempleDoor.x - 128 + 15);
-            const goalY = Math.round(level.TempleDoor.y - 128);
+            const goalX = Math.round(field.TempleDoor.x - 128 + 15);
+            const goalY = Math.round(field.TempleDoor.y - 128);
             scene.camera.y = goalY + 32;
 
             await p.lerp(flashObject, "alpha").to(0).over(500);
@@ -76,7 +88,7 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
 
             const shockwaveFilter = new ShockwaveFilter([128, 136]);
             game.sceneStage.filters = [shockwaveFilter];
-            level.TempleDoor.locked = false;
+            field.TempleDoor.locked = false;
             TempleDoorOpen.play();
             await p.lerp(shockwaveFilter, "time").to(1).over(1000);
             await p.sleep(500);

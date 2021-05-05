@@ -780,6 +780,28 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: Anchor
 }),
+BushRight: resolveDecalGameObject({
+    x: 336,
+y: 122,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
+BushLeft: resolveDecalGameObject({
+    x: 320,
+y: 120,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
 CloudLong: resolveDecalGameObject({
     x: 72,
 y: 96,
