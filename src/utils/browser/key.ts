@@ -47,6 +47,12 @@ function handleKeyUp(event: KeyboardEvent)
     workingKeysState[event.code] = ((workingKeysState[event.code] ?? 0) | 0b001) & 0b101;
 }
 
+function releaseKeys() {
+    const keys = Object.keys(workingKeysState);
+    for (const key of keys)
+        workingKeysState[key] = 0;
+}
+
 let startedKeyListener = false;
 
 export function startKeyListener()
@@ -57,6 +63,8 @@ export function startKeyListener()
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keypress", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
+
+    window.addEventListener("blur", releaseKeys);
 
     startedKeyListener = true;
 }
