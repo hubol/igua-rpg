@@ -1,16 +1,14 @@
-import {IguaPromiseConfig} from "./iguaPromiseConfig";
 import {Predicate} from "pissant";
-import {tickerWait} from "./tickerWait";
+import {wait} from "./wait";
 
-export async function waitHold(predicate: Predicate<void>, steps: number, config?: IguaPromiseConfig)
+export async function waitHold(predicate: Predicate<void>, steps: number)
 {
     const stepsMax = steps;
-    return tickerWait(() => {
+    return wait(() => {
             if (predicate())
                 steps--;
             else
                 steps = stepsMax;
             return steps <= 0;
-        },
-        config);
+        });
 }

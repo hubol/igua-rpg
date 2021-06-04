@@ -7,13 +7,14 @@ import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {cutscene, Cutscene} from "../cutscene/cutscene";
 import {merge} from "../utils/merge";
 import {scene} from "../igua/scene";
+import {show} from "../cutscene/dialog";
 
 export const resolveSign =
     resolveGameObject("Sign", e => scene.gameObjectStage.addChild(sign(e, e.title, e.message)));
 
 export function sign(vector: Vector, title: string, message: string)
 {
-    const thisCutscene: Cutscene = async p => await p.show(message);
+    const thisCutscene: Cutscene = async () => await show(message);
     const sprite = new Sprite(Sign);
     const text = new BitmapText(title, { fontName: AtomixFont.font, tint: 0xA08030 }).at(1, -2);
 

@@ -14,6 +14,10 @@ import {ShockwaveFilter} from "@pixi/filter-shockwave";
 import {game} from "../igua/game";
 import {jukebox} from "../igua/jukebox";
 import {DesertTown} from "../musics";
+import {show} from "../cutscene/dialog";
+import {lerp} from "../cutscene/lerp";
+import {sleep} from "../cutscene/sleep";
+import {move} from "../cutscene/move";
 
 function getDesertOutskirtsLevel()
 {
@@ -53,25 +57,25 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
     leverObject.withInteraction(() => {
         if (progress.flags.desert.unlockedTemple)
         {
-            cutscene.play(async p => {
-               await p.show("You already activated the lever. It opened the door to the desert temple.");
+            cutscene.play(async () => {
+               await show("You already activated the lever. It opened the door to the desert temple.");
             });
             return;
         }
 
-        cutscene.play(async p => {
+        cutscene.play(async () => {
             await Promise.all([
-                p.lerp(level.BushRight, "x").to(targetBushRight).over(300),
-                p.lerp(level.BushLeft, "x").to(targetBushLeft).over(360),
+                lerp(level.BushRight, "x").to(targetBushRight).over(300),
+                lerp(level.BushLeft, "x").to(targetBushLeft).over(360),
             ])
-            await p.sleep(300);
+            await sleep(300);
             ActivateLever.play();
-            await p.lerp(leverObject, "angle").to(onAngle).over(200);
+            await lerp(leverObject, "angle").to(onAngle).over(200);
 
             const flashObject = flash(0xF0F0B0, 0);
             TransitionSlide.volume(0.7);
             TransitionSlide.play();
-            await p.lerp(flashObject, "alpha").to(1).over(500);
+            await lerp(flashObject, "alpha").to(1).over(500);
 
             sceneStack.push();
             const field = DesertField();
@@ -80,18 +84,18 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
             const goalY = Math.round(field.TempleDoor.y - 128);
             scene.camera.y = goalY + 32;
 
-            await p.lerp(flashObject, "alpha").to(0).over(500);
+            await lerp(flashObject, "alpha").to(0).over(500);
             flashObject.destroy();
 
-            await p.move(scene.camera).to(goalX, goalY).over(4_000);
-            await p.sleep(500);
+            await move(scene.camera).to(goalX, goalY).over(4_000);
+            await sleep(500);
 
             const shockwaveFilter = new ShockwaveFilter([128, 136]);
             game.sceneStage.filters = [shockwaveFilter];
             field.TempleDoor.locked = false;
             TempleDoorOpen.play();
-            await p.lerp(shockwaveFilter, "time").to(1).over(1000);
-            await p.sleep(500);
+            await lerp(shockwaveFilter, "time").to(1).over(1000);
+            await sleep(500);
             game.sceneStage.filters = [];
             sceneStack.pop();
             progress.flags.desert.unlockedTemple = true;

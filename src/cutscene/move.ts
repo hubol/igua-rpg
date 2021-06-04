@@ -1,11 +1,10 @@
 import {lerp, Vector} from "../utils/math/vector";
-import {tickerWait} from "./tickerWait";
+import {wait} from "./wait";
 import {game} from "../igua/game";
-import {IguaPromiseConfig} from "./iguaPromiseConfig";
 
-export function move(vector: Vector, config?: IguaPromiseConfig)
+export function move(vector: Vector)
 {
-    return new Move(vector, config);
+    return new Move(vector);
 }
 
 function moveOver(doMove: (ms: number) => Promise<any>)
@@ -22,7 +21,7 @@ type MoveTime = ReturnType<typeof moveOver>;
 
 class Move
 {
-    constructor(private readonly _vector: Vector, private readonly _config?: IguaPromiseConfig) { }
+    constructor(private readonly _vector: Vector) { }
 
     by(speed: Vector): MoveTime;
     by(x: number, y: number): MoveTime;
@@ -33,12 +32,11 @@ class Move
         return moveOver(async ms => {
             let ticksUntilResolve = (ms / 1000) * game.applicationTicker.maxFPS;
 
-            return await tickerWait(() => {
+            return await wait(() => {
                     this._vector.x += speed.x;
                     this._vector.y += speed.y;
                     return --ticksUntilResolve <= 0;
-                },
-                this._config);
+                });
         });
     }
 
@@ -52,7 +50,7 @@ class Move
             let currentTick = 0;
             const start = { x: this._vector.x, y : this._vector.y };
 
-            return await tickerWait(() => {
+            return await wait(() => {
                     currentTick++;
                     const currentMs = (currentTick * 1000) / game.applicationTicker.maxFPS;
                     const factor = Math.min(currentMs / ms, 1);
@@ -62,8 +60,7 @@ class Move
                     lerp(this._vector, dest, factor);
 
                     return factor >= 1;
-                },
-                this._config);
+                });
         });
     }
 }

@@ -8,9 +8,12 @@ import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
 import {jukebox} from "../igua/jukebox";
 import {Mimic} from "../musics";
-import {PromiseLibrary} from "../cutscene/promiseLibrary";
 import {player} from "../gameObjects/player";
 import {now} from "../utils/now";
+import {lerp} from "../cutscene/lerp";
+import {wait} from "../cutscene/wait";
+import {waitHold} from "../cutscene/waitHold";
+import {sleep} from "../cutscene/sleep";
 
 function applyUnrealMimicLevel()
 {
@@ -35,20 +38,20 @@ export function UnrealMimic()
 
     const mimic = enrichMimic(level);
 
-    scene.gameObjectStage.withAsync(async p => {
-        await mimic.moveLeft(p);
-        await mimic.jump(p);
-        await mimic.moveLeft(p);
-        await mimic.duck(p);
-        await mimic.duck(p);
-        await mimic.moveRight(p);
-        await mimic.jump(p);
-        await mimic.moveRight(p);
+    scene.gameObjectStage.withAsync(async () => {
+        await mimic.moveLeft();
+        await mimic.jump();
+        await mimic.moveLeft();
+        await mimic.duck();
+        await mimic.duck();
+        await mimic.moveRight();
+        await mimic.jump();
+        await mimic.moveRight();
         mimic.defeat();
     });
 
-    scene.gameObjectStage.withAsync(async p => {
-        const { moveLeft, duck, jump, moveRight } = waitForPlayerMotion(p);
+    scene.gameObjectStage.withAsync(async () => {
+        const { moveLeft, duck, jump, moveRight } = waitForPlayerMotion();
         const moves = [ moveLeft, duck, jump, moveRight, duck, jump, moveLeft, moveLeft ];
         for (const move of moves) {
             await move();
@@ -57,34 +60,34 @@ export function UnrealMimic()
     })
 }
 
-function waitForPlayerMotion(p: PromiseLibrary)
+function waitForPlayerMotion()
 {
     async function duck()
     {
         const startDuckUnit = player.duckUnit;
-        await p.wait(() => player.duckUnit === 0 || player.duckUnit < startDuckUnit);
-        await p.waitHold(() => player.duckUnit >= 0.5, 4);
+        await wait(() => player.duckUnit === 0 || player.duckUnit < startDuckUnit);
+        await waitHold(() => player.duckUnit >= 0.5, 4);
         return "Duck";
     }
 
     async function moveLeft()
     {
-        await p.wait(() => Math.abs(player.hspeed) < 1);
-        await p.waitHold(() => player.hspeed < 0, 8);
+        await wait(() => Math.abs(player.hspeed) < 1);
+        await waitHold(() => player.hspeed < 0, 8);
         return "Left";
     }
 
     async function moveRight()
     {
-        await p.wait(() => Math.abs(player.hspeed) < 1);
-        await p.waitHold(() => player.hspeed > 0, 8);
+        await wait(() => Math.abs(player.hspeed) < 1);
+        await waitHold(() => player.hspeed > 0, 8);
         return "Right";
     }
 
     async function jump()
     {
-        await p.wait(() => player.vspeed >= 0);
-        await p.waitHold(() => player.vspeed < 0, 8);
+        await wait(() => player.vspeed >= 0);
+        await waitHold(() => player.vspeed < 0, 8);
         return "Jump";
     }
 
@@ -104,38 +107,38 @@ function enrichMimic(level: UnrealMimicLevel)
     level.Mimic.canBlink = false;
 
     return {
-        async moveLeft(p: PromiseLibrary)
+        async moveLeft()
         {
             await level.Mimic.walkTo(level.Mimic.x - 24);
-            await p.sleep(300);
+            await sleep(300);
         },
-        async moveRight(p: PromiseLibrary)
+        async moveRight()
         {
             await level.Mimic.walkTo(level.Mimic.x + 24);
-            await p.sleep(300);
+            await sleep(300);
         },
-        async duck(p: PromiseLibrary)
+        async duck()
         {
             level.Mimic.isDucking = true;
-            await p.sleep(600);
+            await sleep(600);
             level.Mimic.isDucking = false;
-            await p.sleep(400);
+            await sleep(400);
         },
-        async jump(p: PromiseLibrary)
+        async jump()
         {
             level.Mimic.vspeed = -3;
-            await p.wait(() => level.Mimic.vspeed > 0);
-            await p.wait(() => level.Mimic.vspeed === 0);
-            await p.sleep(200);
+            await wait(() => level.Mimic.vspeed > 0);
+            await wait(() => level.Mimic.vspeed === 0);
+            await sleep(200);
         },
         defeat()
         {
             level.PlayerFloorBlock.destroy();
-            scene.gameObjectStage.withAsync(async p => {
+            scene.gameObjectStage.withAsync(async () => {
                 await Promise.all([
-                    p.lerp(level.Mimic.scale, "x").to(0).over(1000),
-                    p.lerp(level.Mimic.scale, "y").to(0).over(1000),
-                    p.lerp(level.Mimic, "angle").to(720).over(1000)
+                    lerp(level.Mimic.scale, "x").to(0).over(1000),
+                    lerp(level.Mimic.scale, "y").to(0).over(1000),
+                    lerp(level.Mimic, "angle").to(720).over(1000)
                 ]);
             });
         }

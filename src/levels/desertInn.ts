@@ -11,6 +11,11 @@ import { DragRock } from "../sounds";
 import {scene} from "../igua/scene";
 import {spendValuables} from "../igua/logic/spendValuables";
 import {player} from "../gameObjects/player";
+import {show} from "../cutscene/dialog";
+import {sleep} from "../cutscene/sleep";
+import {wait} from "../cutscene/wait";
+import {move} from "../cutscene/move";
+import {ask} from "../cutscene/ask";
 
 export function DesertInn()
 {
@@ -29,33 +34,33 @@ export function DesertInn()
         .asCollectible(progress.flags.desert.key, "fromInn");
 
     level.Innkeeper.mods.add(Lazy);
-    level.Innkeeper.cutscene = async p => {
-        if (await p.ask("Do you want to rest here? It costs 10 valuables."))
+    level.Innkeeper.cutscene = async () => {
+        if (await ask("Do you want to rest here? It costs 10 valuables."))
         {
             if (spendValuables(10))
             {
-                await p.show("Thanks for resting here.");
+                await show("Thanks for resting here.");
                 if (!level.RoomWall.destroyed)
                 {
                     DragRock.play();
-                    await p.move(level.RoomWall).to(level.RoomWall.x, level.RoomWall.y - level.RoomWall.height).over(1_000);
+                    await move(level.RoomWall).to(level.RoomWall.x, level.RoomWall.y - level.RoomWall.height).over(1_000);
                     DragRock.stop();
                     level.RoomWall.destroy();
                 }
 
                 await player.walkTo(level.SleepHere.x);
-                await p.sleep(250);
+                await sleep(250);
                 player.mods.add(Sleepy);
                 await Promise.all([
-                    p.wait(() => (progress.health = Math.min(progress.health + 0.25, progress.maxHealth)) >= progress.maxHealth),
-                    p.sleep(4_000) ]);
-                await p.show("Full health restored!");
+                    wait(() => (progress.health = Math.min(progress.health + 0.25, progress.maxHealth)) >= progress.maxHealth),
+                    sleep(4_000) ]);
+                await show("Full health restored!");
                 player.mods.remove(Sleepy);
             }
             else
-                await p.show("You dont have enough money.");
+                await show("You dont have enough money.");
         }
         else
-            await p.show("Come back later!")
+            await show("Come back later!")
     };
 }

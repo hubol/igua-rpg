@@ -1,11 +1,10 @@
 import {Vector} from "../math/vector";
 import * as PIXI from "pixi.js";
 import {Container} from "pixi.js";
-import {makePromiseLibrary, PromiseLibrary} from "../../cutscene/promiseLibrary";
 import {CancellationToken} from "pissant";
-import {IguaPromiseConfig} from "../../cutscene/iguaPromiseConfig";
 import {areRectanglesOverlapping, normalizeRectangle, rectangle as createRectangle} from "../math/rectangle";
 import {AsshatTicker} from "../asshatTicker";
+import {PromiseFn, runInIguaZone} from "../../cutscene/runInIguaZone";
 
 declare global {
     namespace PIXI {
@@ -16,7 +15,7 @@ declare global {
             useNearestFiltering();
             rectangle: Rectangle;
             withStep(step: () => void): this;
-            withAsync(async: (p: PromiseLibrary) => Promise<unknown>): this;
+            withAsync(async: PromiseFn): this;
             at(vector: Vector): this;
             at(x: number, y: number): this;
             destroyed: boolean;
@@ -148,7 +147,7 @@ PIXI.DisplayObject.prototype.withStep = function(step)
         .on("removed", () => this.ticker.remove(step));
 }
 
-PIXI.DisplayObject.prototype.withAsync = function(promiseSupplier)
+PIXI.DisplayObject.prototype.withAsync = function(promiseFn)
 {
     const cancellationToken = new CancellationToken();
     const thisDisplayObject = this;
@@ -156,8 +155,7 @@ PIXI.DisplayObject.prototype.withAsync = function(promiseSupplier)
     return doNowOrOnAdded(this, () => setTimeout(async () => {
             try
             {
-                const promiseLibrary = makePromiseLibrary(new IguaPromiseConfig(this.ticker, cancellationToken));
-                await promiseSupplier(promiseLibrary);
+                await runInIguaZone(`${thisDisplayObject.constructor.name}.withAsync`, promiseFn, { ticker: this.ticker, cancellationToken });
             }
             catch (e)
             {

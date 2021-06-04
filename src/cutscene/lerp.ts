@@ -1,10 +1,9 @@
 import {PropertiesOf} from "../utils/types/propertiesOf";
-import {IguaPromiseConfig} from "./iguaPromiseConfig";
-import {tickerWait} from "./tickerWait";
+import {wait} from "./wait";
 import {game} from "../igua/game";
 import {lerp as lerpNumber} from "../utils/math/number";
 
-export function lerp<T>(object: T, key: keyof PropertiesOf<T, number>, config?: IguaPromiseConfig)
+export function lerp<T>(object: T, key: keyof PropertiesOf<T, number>)
 {
     return {
         to(target: number)
@@ -15,7 +14,7 @@ export function lerp<T>(object: T, key: keyof PropertiesOf<T, number>, config?: 
                     let currentTick = 0;
                     const start = object[key] as unknown as number;
 
-                    return tickerWait(() => {
+                    return wait(() => {
                             currentTick++;
                             const currentMs = (currentTick * 1000) / game.applicationTicker.maxFPS;
                             const factor = Math.min(currentMs / ms, 1);
@@ -23,8 +22,7 @@ export function lerp<T>(object: T, key: keyof PropertiesOf<T, number>, config?: 
                             object[key] = lerpNumber(start, target, factor) as any;
 
                             return factor >= 1;
-                        },
-                        config);
+                        });
                 }
             }
         }

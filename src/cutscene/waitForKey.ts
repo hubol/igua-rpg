@@ -1,10 +1,9 @@
 import {game} from "../igua/game";
 import {Key, KeyCode} from "../utils/browser/key";
 import {invisibleObject} from "../gameObjects/utils/invisibleObject";
-import {tickerWait} from "./tickerWait";
-import {IguaPromiseConfig} from "./iguaPromiseConfig";
+import {wait} from "./wait";
 
-export async function waitForKey(keyCode: KeyCode, config?: IguaPromiseConfig)
+export async function waitForKey(keyCode: KeyCode)
 {
     let wasUp = false;
     let advance = false;
@@ -17,6 +16,6 @@ export async function waitForKey(keyCode: KeyCode, config?: IguaPromiseConfig)
     });
     game.hudStage.addChild(displayObject);
 
-    await tickerWait(() => advance, config)
+    await wait(() => advance)
         .finally(() => displayObject.destroy());
 }

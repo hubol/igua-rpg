@@ -3,6 +3,9 @@ import {Oracle} from "../musics";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertOracleArgs} from "../levelArgs";
 import {scene} from "../igua/scene";
+import {show} from "../cutscene/dialog";
+import {ask} from "../cutscene/ask";
+import {sleep} from "../cutscene/sleep";
 
 export function DesertOracle()
 {
@@ -16,27 +19,27 @@ export function DesertOracle()
 
     let talkedAlready = false;
 
-    level.Oracle.cutscene = async p => {
+    level.Oracle.cutscene = async () => {
         if (!talkedAlready)
         {
-            await p.show("Hello. I am the oracle of the desert.");
-            await p.show("I usually stay in the basement to stay closer to the core of the world.");
+            await show("Hello. I am the oracle of the desert.");
+            await show("I usually stay in the basement to stay closer to the core of the world.");
             talkedAlready = true;
         }
-        if (await p.ask("Would you like some advice?"))
-            await p.show("I don't have any advice right now.");
+        if (await ask("Would you like some advice?"))
+            await show("I don't have any advice right now.");
         else
-            await p.show("That is okay.");
+            await show("That is okay.");
     };
 
-    level.Oracle.withAsync(async p => {
+    level.Oracle.withAsync(async () => {
         while (true)
         {
-            await p.sleep(3_000);
+            await sleep(3_000);
             await level.Oracle.walkTo(92);
-            await p.sleep(3_000);
+            await sleep(3_000);
             await level.Oracle.walkTo(50);
-            await p.sleep(3_000);
+            await sleep(3_000);
             level.Oracle.scale.x = 1;
         }
     });
