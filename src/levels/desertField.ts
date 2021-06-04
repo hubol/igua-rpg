@@ -6,6 +6,9 @@ import {DesertFieldArgs} from "../levelArgs";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {createFollower, player} from "../gameObjects/player";
 import {progress} from "../igua/data/progress";
+import {sleep} from "../cutscene/sleep";
+import {show} from "../cutscene/dialog";
+import {ask} from "../cutscene/ask";
 
 function getDesertFieldLevel()
 {
@@ -42,30 +45,30 @@ function enrichDigua(level: DesertFieldLevel)
 
     let rejectedOnce = false;
 
-    level.Digua.cutscene = async p => {
+    level.Digua.cutscene = async () => {
         level.Digua.mods.remove(Sleepy);
-        await p.sleep(1000);
+        await sleep(1000);
         if (rejectedOnce)
         {
-            await p.show("Oh. It's you again.");
+            await show("Oh. It's you again.");
         }
         else
         {
-            await p.show("Oh. I guess I fell asleep here when I realized it was unsafe to cross the desert.");
-            await p.show("I'm Digua. My talent is digging things out of the ground.");
+            await show("Oh. I guess I fell asleep here when I realized it was unsafe to cross the desert.");
+            await show("I'm Digua. My talent is digging things out of the ground.");
         }
 
-        if (!await p.ask("Can I follow you around for a bit?"))
+        if (!await ask("Can I follow you around for a bit?"))
         {
             rejectedOnce = true;
-            await p.show("Ok. I'll be here if you change your mind.")
+            await show("Ok. I'll be here if you change your mind.")
             level.Digua.mods.add(Sleepy);
             return;
         }
 
         level.Digua.isDucking = false;
-        await p.sleep(500);
-        await p.show("Awesome! Let's go on an adventure!");
+        await sleep(500);
+        await show("Awesome! Let's go on an adventure!");
 
         progress.flags.desert.diguaIsFollowing = true;
         player.follower = createFollower();

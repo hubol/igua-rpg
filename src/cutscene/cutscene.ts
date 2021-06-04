@@ -1,9 +1,8 @@
-import {makePromiseLibrary, PromiseLibrary} from "./promiseLibrary";
 import {CancellationToken} from "pissant";
-import {IguaPromiseConfig} from "./iguaPromiseConfig";
+import {PromiseFn, runInIguaZone} from "./runInIguaZone";
 import {game} from "../igua/game";
 
-export type Cutscene = (p: PromiseLibrary) => Promise<any>;
+export type Cutscene = PromiseFn;
 
 class CutscenePlayer
 {
@@ -21,7 +20,7 @@ class CutscenePlayer
         setTimeout(async () => {
             try
             {
-                await cutscene(makePromiseLibrary(new IguaPromiseConfig(game.ticker, ct)));
+                await runInIguaZone(`Cutscene ${cutscene.name}`, cutscene, { cancellationToken: ct, ticker: game.ticker });
             }
             catch (e)
             {

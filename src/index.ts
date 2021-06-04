@@ -1,8 +1,11 @@
+import "zone.js";
+
+Zone[Zone.__symbol__('ignoreConsoleErrorUncaughtError')] = true;
+
 import {loadTexturesAsync} from "./textures";
 import {loadFontsAsync} from "./fonts";
 import {loadHowlsAsync} from "./utils/resources/loadHowls";
 import * as PIXI from "pixi.js";
-import {handlePromiseCancellation} from "pissant";
 import {discoverGameObjectResolvers} from "../tools/gen-levelargs/discoverGameObjectResolvers";
 import {
     publishGameObjectResolvers,
@@ -14,6 +17,7 @@ import {upscaleGameCanvas} from "./igua/upscaleGameCanvas";
 import {devMute} from "./igua/dev/devMute";
 import {handleIguaPromiseRejection} from "./utils/rejection";
 import {make2dCanvasSink} from "./utils/browser/make2dCanvasSink";
+import {handlePromiseCancellation} from "pissant";
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 const application = createApplication({width: 256, height: 256, targetFps: 60, showCursor: false});

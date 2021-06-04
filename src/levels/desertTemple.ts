@@ -7,6 +7,7 @@ import {Fly, Mimic, Temple} from "../musics";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {BigKey1} from "../textures";
 import {bigKeyMeter} from "../gameObjects/bigKey";
+import {show} from "../cutscene/dialog";
 
 export function DesertTemple()
 {
@@ -21,9 +22,9 @@ export function DesertTemple()
     makeUnrealDoor(progress.flags.desert.key.fromInn, progress.flags.desert.bigKey.piece2, [level.Key2, level.Door2]);
     makeUnrealDoor(progress.flags.desert.key.fromDiggingInTown, progress.flags.desert.bigKey.piece3, [level.Key3, level.Door3]);
 
-    level.Sign.cutscene = async p => {
-        await p.show("Here you can find pieces of a big key if you move through the doors.");
-        await p.show("You need keys to enter the doors leading to the pieces.");
+    level.Sign.cutscene = async () => {
+        await show("Here you can find pieces of a big key if you move through the doors.");
+        await show("You need keys to enter the doors leading to the pieces.");
     };
 
     scene.backgroundGameObjectStage.addChild(desertBigKeyMeter().at(level.BigKey));

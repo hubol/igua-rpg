@@ -3,9 +3,8 @@ import {Container, Sprite, BitmapText} from "pixi.js";
 import {MessageBox} from "../textures";
 import {AcrobatixFont} from "../fonts";
 import {waitForKey} from "./waitForKey";
-import {IguaPromiseConfig} from "./iguaPromiseConfig";
 
-export async function show(message: string, config?: IguaPromiseConfig)
+export async function show(message: string)
 {
     const dialogContainer = new Container().at(24, 27);
     dialogContainer
@@ -13,6 +12,6 @@ export async function show(message: string, config?: IguaPromiseConfig)
 
     game.hudStage.addChild(dialogContainer);
 
-    await waitForKey("Space", config)
+    await waitForKey("Space")
         .finally(() => dialogContainer.destroy());
 }

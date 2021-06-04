@@ -13,6 +13,8 @@ import {now} from "../utils/now";
 import {Rectangle} from "../utils/math/rectangle";
 import {SceneLocal} from "../igua/sceneLocal";
 import {BevelFilter} from "@pixi/filter-bevel";
+import {show} from "../cutscene/dialog";
+import {lerp} from "../cutscene/lerp";
 
 export const portalFluidConfig = {
     gotoLevelName: "Unknown"
@@ -64,11 +66,11 @@ function portalFluid({ width, height }: { width: number, height: number })
                 Teleported.play();
                 scene.ticker.doNextUpdate = false;
 
-                cutscene.play(async p => {
-                    await p.show("You have been teleported to the room of doors.");
+                cutscene.play(async () => {
+                    await show("You have been teleported to the room of doors.");
                     const blurFilter = new filters.BlurFilter(0, 6, 1, 9);
                     game.sceneStage.filters = [blurFilter];
-                    await p.lerp(blurFilter, "blur").to(24).over(1_000);
+                    await lerp(blurFilter, "blur").to(24).over(1_000);
                     game.sceneStage.filters = [];
                     level.goto(portalFluidConfig.gotoLevelName);
                 });

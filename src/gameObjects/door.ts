@@ -9,6 +9,7 @@ import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {level} from "../igua/level/level";
 import {scene} from "../igua/scene";
 import {cutscene} from "../cutscene/cutscene";
+import {show} from "../cutscene/dialog";
 
 export const resolveDoor =
     resolveGameObject("Door", e => door(e, e.levelName, e.checkpointName));
@@ -28,7 +29,7 @@ function door(vector: Vector, levelName: string, checkpointName: string)
                             level.goto(sprite.levelName);
                         });
 
-                cutscene.play(async p => await p.show("The door is locked."));
+                cutscene.play(async () => await show("The door is locked."));
             }
         });
     return scene.gameObjectStage.addChild(sprite);

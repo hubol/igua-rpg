@@ -4,24 +4,18 @@ import {AcrobatixFont} from "../fonts";
 import {game} from "../igua/game";
 import {waitForKey} from "./waitForKey";
 import {Key} from "../utils/browser/key";
-import {IguaPromiseConfig} from "./iguaPromiseConfig";
 import {SelectOption} from "../sounds";
+import {IguaZone} from "./runInIguaZone";
 
 type Answer = string;
 
-export async function ask(question: string, config?: IguaPromiseConfig): Promise<boolean>;
-export async function ask<T extends Answer>(question: string, answers: [T], config?: IguaPromiseConfig): Promise<T>;
-export async function ask<T extends Answer>(question: string, answers: [T, T], config?: IguaPromiseConfig): Promise<T>;
-export async function ask<T extends Answer>(question: string, answers: [T, T, T], config?: IguaPromiseConfig): Promise<T>;
+export async function ask(question: string): Promise<boolean>;
+export async function ask<T extends Answer>(question: string, answers: [T]): Promise<T>;
+export async function ask<T extends Answer>(question: string, answers: [T, T]): Promise<T>;
+export async function ask<T extends Answer>(question: string, answers: [T, T, T]): Promise<T>;
 
 export function ask()
 {
-    let config: IguaPromiseConfig | undefined = undefined;
-
-    const lastArgument = arguments[arguments.length - 1];
-    if (lastArgument instanceof IguaPromiseConfig)
-        config = lastArgument;
-
     let returnBool = true;
     let answers: any[] = ["Yes", "No"];
 
@@ -31,14 +25,14 @@ export function ask()
         returnBool = false;
     }
 
-    const promise = askImpl(arguments[0] as string, answers, config);
+    const promise = askImpl(arguments[0] as string, answers);
     if (returnBool)
         return promise.then(x => x === "Yes");
 
     return promise;
 }
 
-async function askImpl<T extends Answer>(question: string, answers: T[], config?: IguaPromiseConfig): Promise<T>
+async function askImpl<T extends Answer>(question: string, answers: T[]): Promise<T>
 {
     const dialogContainer = new Container().at(24, 27);
     dialogContainer
@@ -60,9 +54,11 @@ async function askImpl<T extends Answer>(question: string, answers: T[], config?
 
     game.hudStage.addChild(dialogContainer);
 
+    const cancellationToken = IguaZone.cancellationToken;
+
     await new Promise((resolve, reject) => {
         const cursor = Sprite.from(Cursor).withStep(() => {
-            config?.cancellationToken.rejectIfCancelled(reject);
+            cancellationToken?.rejectIfCancelled(reject);
 
             const nothingSelected = selectedIndex === -1;
             const previousSelectedIndex = selectedIndex;
@@ -101,7 +97,7 @@ async function askImpl<T extends Answer>(question: string, answers: T[], config?
         throw e;
     });
 
-    await waitForKey("Space", config);
+    await waitForKey("Space");
     dialogContainer.destroy();
 
     return answers[selectedIndex];
