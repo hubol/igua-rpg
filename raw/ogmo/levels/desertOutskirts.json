@@ -211,6 +211,28 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": "TempleUnlockBlob"}
+        },
+        {
+          "x": 336,
+          "y": 122,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "BushRight"}
+        },
+        {
+          "x": 320,
+          "y": 120,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "BushLeft"}
         }
       ],
       "folder": "..\\..\\src\\images"
