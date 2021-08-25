@@ -9,7 +9,6 @@ import {desertBigKeyTextures} from "./desertTemple";
 import {jukebox} from "../igua/jukebox";
 import {Mimic} from "../musics";
 import {player} from "../gameObjects/player";
-import {now} from "../utils/now";
 import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {waitHold} from "../cutscene/waitHold";
@@ -39,6 +38,7 @@ export function UnrealMimic()
     const mimic = enrichMimic(level);
 
     scene.gameObjectStage.withAsync(async () => {
+        await sleep(1000);
         await mimic.moveLeft();
         await mimic.jump();
         await mimic.moveLeft();
@@ -49,54 +49,32 @@ export function UnrealMimic()
         await mimic.moveRight();
         mimic.defeat();
     });
-
-    scene.gameObjectStage.withAsync(async () => {
-        const { moveLeft, duck, jump, moveRight } = waitForPlayerMotion();
-        const moves = [ moveLeft, duck, jump, moveRight, duck, jump, moveLeft, moveLeft ];
-        for (const move of moves) {
-            await move();
-            console.log(now.ms / 1000);
-        }
-    })
 }
 
-function waitForPlayerMotion()
-{
-    async function duck()
-    {
+const playerMotion = {
+    async duck() {
         const startDuckUnit = player.duckUnit;
         await wait(() => player.duckUnit === 0 || player.duckUnit < startDuckUnit);
-        await waitHold(() => player.duckUnit >= 0.5, 4);
+        await waitHold(() => player.duckUnit >= 0.1, 4);
+        await waitHold(() => player.duckUnit < 0.1, 4);
         return "Duck";
-    }
-
-    async function moveLeft()
-    {
+    },
+    async moveLeft() {
         await wait(() => Math.abs(player.hspeed) < 1);
         await waitHold(() => player.hspeed < 0, 8);
         return "Left";
-    }
-
-    async function moveRight()
-    {
+    },
+    async moveRight() {
         await wait(() => Math.abs(player.hspeed) < 1);
         await waitHold(() => player.hspeed > 0, 8);
         return "Right";
-    }
-
-    async function jump()
-    {
+    },
+    async jump() {
         await wait(() => player.vspeed >= 0);
         await waitHold(() => player.vspeed < 0, 8);
+        await wait(() => player.vspeed >= 0);
         return "Jump";
     }
-
-    return {
-        duck,
-        moveLeft,
-        moveRight,
-        jump
-    };
 }
 
 function enrichMimic(level: UnrealMimicLevel)
@@ -109,27 +87,39 @@ function enrichMimic(level: UnrealMimicLevel)
     return {
         async moveLeft()
         {
+            const p = playerMotion.moveLeft();
             await level.Mimic.walkTo(level.Mimic.x - 24);
-            await sleep(300);
+            await p;
+            await sleep(66);
         },
         async moveRight()
         {
+            const p = playerMotion.moveRight();
             await level.Mimic.walkTo(level.Mimic.x + 24);
-            await sleep(300);
+            await p;
+            await sleep(66);
         },
         async duck()
         {
+            const p = playerMotion.duck();
             level.Mimic.isDucking = true;
             await sleep(600);
             level.Mimic.isDucking = false;
-            await sleep(400);
+            await sleep(100);
+            await p;
+            await sleep(66);
         },
         async jump()
         {
+            const p = playerMotion.jump();
+            level.Mimic.isDucking = true;
+            await sleep(100);
+            level.Mimic.isDucking = false;
             level.Mimic.vspeed = -3;
             await wait(() => level.Mimic.vspeed > 0);
             await wait(() => level.Mimic.vspeed === 0);
-            await sleep(200);
+            await p;
+            await sleep(66);
         },
         defeat()
         {
