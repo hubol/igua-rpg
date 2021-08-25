@@ -1,5 +1,5 @@
 import {IguanaPuppetNoEngine} from "./iguanaPuppet";
-import {push} from "../../gameObjects/walls";
+import {isOnGround, push} from "../../gameObjects/walls";
 import {
     CharacterHitCeiling,
     CharacterLandOnGround,
@@ -100,11 +100,12 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
             const vspeedBeforePush = puppet.vspeed;
 
             const canPlaySounds = isOnScreen(puppet);
-            let once = false;
 
-            while (Math.abs(hsp) > 0 || Math.abs(vsp) > 0 || !once)
+            if (!(Math.abs(hsp) > 0 || Math.abs(vsp) > 0))
+                this.isOnGround = isOnGround(puppet, radius);
+
+            while (Math.abs(hsp) > 0 || Math.abs(vsp) > 0)
             {
-                once = true;
                 puppet.x += Math.min(maxMotion, Math.abs(hsp)) * Math.sign(hsp);
                 puppet.y += Math.min(maxMotion, Math.abs(vsp)) * Math.sign(vsp);
 

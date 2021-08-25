@@ -51,6 +51,24 @@ export const resolvePipeLeftEnd = resolveGameObject("PipeLeftEnd", e => {
     return scene.pipeStage.addChild(sprite);
 });
 
+export function isOnGround(xy: Pushable, radius: number) {
+    return walls.some(s => {
+        // TODO bad copy-pastey, but it's probably a poor idea to extract a function that returns an object
+        const offset = {x: xy.x - s.x, y: xy.y - s.y};
+        const offsetDotNormal = dot(offset, s.normal);
+        const offsetDotForward = dot(offset, s.forward);
+        const alongForward = offsetDotForward > 0 && offsetDotForward < s.length;
+        const absOffsetDotNormal = Math.abs(offsetDotNormal);
+
+        const canCorrectPosition = !s.isPipe
+            || (xy.vspeed === undefined || (xy.vspeed > 0 && offsetDotNormal >= 0) || (xy.vspeed === 0 && offsetDotNormal >= radius * .9))
+            || (s.normal.x !== 0 && xy.hspeed !== undefined && (xy.hspeed !== 0 && Math.sign(s.normal.x) !== Math.sign(xy.hspeed)));
+        const isGround = s.isGround && canCorrectPosition;
+
+        return (alongForward && absOffsetDotNormal > radius - 0.1 && absOffsetDotNormal < radius + 0.1 && isGround);
+    });
+}
+
 export function push(xy: Pushable, radius: number) {
     const result: PushResult = {};
 
@@ -66,7 +84,7 @@ export function push(xy: Pushable, radius: number) {
             || (s.normal.x !== 0 && xy.hspeed !== undefined && (xy.hspeed !== 0 && Math.sign(s.normal.x) !== Math.sign(xy.hspeed)));
         const isGround = s.isGround && canCorrectPosition;
 
-        if (alongForward && absOffsetDotNormal === radius && isGround) {
+        if (alongForward && absOffsetDotNormal > radius - 0.1 && absOffsetDotNormal < radius + 0.1 && isGround) {
             result.isOnGround = true;
         }
 
