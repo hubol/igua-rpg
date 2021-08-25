@@ -92,6 +92,11 @@ export const IguanaBlink = new Howl({
     
 });
 
+export const MimicCorrect = new Howl({
+    src: [require("./sound/mimic correct.ogg"), require("./sound/mimic correct.mp3")],
+    
+});
+
 export const SelectOption = new Howl({
     src: [require("./sound/select option.ogg"), require("./sound/select option.mp3")],
     

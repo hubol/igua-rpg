@@ -13,6 +13,7 @@ import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {waitHold} from "../cutscene/waitHold";
 import {sleep} from "../cutscene/sleep";
+import {MimicCorrect} from "../sounds";
 
 function applyUnrealMimicLevel()
 {
@@ -72,7 +73,8 @@ const playerMotion = {
     async jump() {
         await wait(() => player.vspeed >= 0);
         await waitHold(() => player.vspeed < 0, 8);
-        await wait(() => player.vspeed >= 0);
+        await wait(() => player.vspeed > 0);
+        await wait(() => player.vspeed === 0);
         return "Jump";
     }
 }
@@ -84,12 +86,18 @@ function enrichMimic(level: UnrealMimicLevel)
     level.Mimic.filters = [colorMatrixFilter];
     level.Mimic.canBlink = false;
 
+    const correct = () => {
+        colorMatrixFilter.matrix = [0, 0, 0, 0, Math.random(), 0, 0, 0, Math.random(), 0, 0, 0, 0, Math.random(), 0, 0, 0, 0, 1, 0];
+        MimicCorrect.play();
+    }
+
     return {
         async moveLeft()
         {
             const p = playerMotion.moveLeft();
             await level.Mimic.walkTo(level.Mimic.x - 24);
             await p;
+            correct();
             await sleep(66);
         },
         async moveRight()
@@ -97,6 +105,7 @@ function enrichMimic(level: UnrealMimicLevel)
             const p = playerMotion.moveRight();
             await level.Mimic.walkTo(level.Mimic.x + 24);
             await p;
+            correct();
             await sleep(66);
         },
         async duck()
@@ -107,6 +116,7 @@ function enrichMimic(level: UnrealMimicLevel)
             level.Mimic.isDucking = false;
             await sleep(100);
             await p;
+            correct();
             await sleep(66);
         },
         async jump()
@@ -119,6 +129,7 @@ function enrichMimic(level: UnrealMimicLevel)
             await wait(() => level.Mimic.vspeed > 0);
             await wait(() => level.Mimic.vspeed === 0);
             await p;
+            correct();
             await sleep(66);
         },
         defeat()
