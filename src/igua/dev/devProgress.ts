@@ -7,8 +7,9 @@ export function devProgress()
     // progress.flags.desert.unlockedTemple = true;
     progress.flags.desert.key.fromCrateStacker = true;
     progress.flags.desert.key.fromInn = true;
+    progress.flags.desert.key.fromDiggingInTown = true;
     // progress.flags.desert.diguaIsFollowing = true;
     progress.valuables = 100;
-    progress.levelName = "DesertOutskirts";
+    progress.levelName = "UnrealSnowman";
     // progress.flags.diguaIsFollowing = true;
 }

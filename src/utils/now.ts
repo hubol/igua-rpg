@@ -6,5 +6,9 @@ export const now = {
     get ms()
     {
         return new Date().getTime();
+    },
+    get s()
+    {
+        return new Date().getTime() / 1000;
     }
 }

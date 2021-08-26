@@ -1,4 +1,4 @@
-import {Vector} from "../math/vector";
+import {moveTowards, Vector} from "../math/vector";
 import * as PIXI from "pixi.js";
 import {Container} from "pixi.js";
 import {CancellationToken} from "pissant";
@@ -10,6 +10,7 @@ declare global {
     namespace PIXI {
         export interface DisplayObject {
             moveUntilCollides(speed: Vector, displayObjects: DisplayObject | DisplayObject[]);
+            moveTowards(dest: Vector, speed: number);
             collides(displayObjects: DisplayObject | DisplayObject[], offset?: Vector): boolean;
             useLinearFiltering();
             useNearestFiltering();
@@ -139,6 +140,11 @@ PIXI.Container.prototype.withTicker = function(ticker)
     (this as any)._ticker = ticker;
     (this as any)._lazyTicker?._resolve(ticker);
     return this;
+}
+
+PIXI.DisplayObject.prototype.moveTowards = function(other, speed)
+{
+    moveTowards(this, other, speed);
 }
 
 PIXI.DisplayObject.prototype.withStep = function(step)
