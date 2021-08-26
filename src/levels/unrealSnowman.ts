@@ -10,6 +10,8 @@ import {Torch} from "../textures";
 import {Sprite} from "pixi.js";
 import {now} from "../utils/now";
 import {merge} from "../utils/merge";
+import {cutscene} from "../cutscene/cutscene";
+import {show} from "../cutscene/dialog";
 
 let holdingFlame = false;
 
@@ -27,7 +29,7 @@ export function UnrealSnowman() {
         await lerp(scene.camera, 'x').to(256).over(1000);
     })
 
-    const puzzleTorch = torch(true).at(level.TorchA);
+    const puzzleTorch = torch(true, true).at(level.TorchA);
     [level.Torch1, level.Torch2, level.Torch3].map(x => torch().at(x));
 
     level.PuzzleWall.withStep(() => {
@@ -37,7 +39,7 @@ export function UnrealSnowman() {
 
 const torchSubimages = subimageTextures(Torch, 5);
 
-const torch = (burning = false) => {
+const torch = (burning = false, showHint = false) => {
     const sprite = merge(Sprite.from(torchSubimages[0]), { burning });
     sprite.anchor.set(0.5, 1);
     sprite.withStep(() => {
@@ -48,6 +50,10 @@ const torch = (burning = false) => {
         if (sprite.burning !== holdingFlame) {
             sprite.burning = holdingFlame;
             holdingFlame = !sprite.burning;
+        }
+        if (showHint) {
+            cutscene.play(async () => await show('Picked up the flame.'));
+            showHint = false;
         }
     });
     return scene.gameObjectStage.addChild(sprite);
