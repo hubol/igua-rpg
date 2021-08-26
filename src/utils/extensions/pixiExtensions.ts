@@ -1,6 +1,5 @@
 import {moveTowards, Vector} from "../math/vector";
 import * as PIXI from "pixi.js";
-import {Container} from "pixi.js";
 import {CancellationToken} from "pissant";
 import {areRectanglesOverlapping, normalizeRectangle, rectangle as createRectangle} from "../math/rectangle";
 import {AsshatTicker} from "../asshatTicker";
@@ -27,6 +26,11 @@ declare global {
             removeAllChildren();
             addChild<T extends DisplayObject>(child: T): T;
             withTicker(ticker: AsshatTicker): this;
+        }
+
+        export interface Transform {
+            onPositionChanged(cb: () => void): this;
+            onScaleChanged(cb: () => void): this;
         }
     }
 }
@@ -294,6 +298,16 @@ function collides(container, otherContainerOrContainers, offset)
     }
     const otherContainerBounds = otherContainerOrContainers.getBounds();
     return areRectanglesOverlapping(containerBounds, otherContainerBounds);
+}
+
+PIXI.Transform.prototype.onPositionChanged = function(cb) {
+    (this.position as any).cb = () => { cb(); (this as any).onChange(); };
+    return this;
+}
+
+PIXI.Transform.prototype.onScaleChanged = function(cb) {
+    (this.scale as any).cb = () => { cb(); (this as any).onChange(); };
+    return this;
 }
 
 export default 0;
