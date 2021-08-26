@@ -65,7 +65,7 @@
           "y": 192,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "DesertField", "checkpointName": "", "name": "Door3"}
+          "values": {"levelName": "UnrealSnowman", "checkpointName": "", "name": "Door3"}
         },
         {"name": "SlopeRight", "id": 5, "_eid": "55824435", "x": 296, "y": 0, "width": 40, "height": 152, "originX": 0, "originY": 0, "flippedY": true},
         {"name": "SlopeLeft", "id": 6, "_eid": "55845599", "x": 240, "y": 0, "width": 40, "height": 152, "originX": 0, "originY": 0, "flippedY": true},

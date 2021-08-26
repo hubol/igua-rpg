@@ -66,6 +66,7 @@ export let SignTavern: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Sign: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SpikyBrushA: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SpikyBrushB: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let Torch: PIXI.Texture = undefined as unknown as PIXI.Texture;
 
 
 export function loadTexturesAsync()
@@ -264,6 +265,9 @@ export function loadTexturesAsync()
     const SpikyBrushBPath = require("./images/spiky brush b.png");
     loader.add(SpikyBrushBPath); 
 
+    const TorchPath = require("./images/torch.png");
+    loader.add(TorchPath); 
+
     
     return new Promise(resolve =>
     {
@@ -332,6 +336,7 @@ export function loadTexturesAsync()
             Sign = resources[SignPath]?.texture as PIXI.Texture;
             SpikyBrushA = resources[SpikyBrushAPath]?.texture as PIXI.Texture;
             SpikyBrushB = resources[SpikyBrushBPath]?.texture as PIXI.Texture;
+            Torch = resources[TorchPath]?.texture as PIXI.Texture;
 
             resolve();
         });

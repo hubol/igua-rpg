@@ -52,3 +52,19 @@ export function lerp(a: Vector, b: Vector, factor: number): Vector
     a.y = lerpNumber(a.y, b.y, factor);
     return a;
 }
+
+export function moveTowards(a: Vector, b: Vector, d: number) {
+    if(d <= 0)
+        return a;
+    const sp = distance(a, b);
+    if (sp<=d)
+    {
+        a.x=b.x;
+        a.y=b.y;
+        return a;
+    }
+    d=d/sp;
+    a.x=a.x*(1-d)+b.x*(d);
+    a.y=a.y*(1-d)+b.y*(d);
+    return a;
+}

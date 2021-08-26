@@ -1,8 +1,8 @@
 // This file is generated. Do not touch.
-import { resolveRegion } from "./gameObjects/region";
 import { resolveBlock } from "./gameObjects/walls";
-import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveSlopeRight } from "./gameObjects/walls";
+import { resolveRegion } from "./gameObjects/region";
+import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
@@ -1015,7 +1015,7 @@ Door1: resolveDoor({"type":"Door","x":192,"y":192,"flippedX":false,"flippedY":fa
 // @ts-ignore
 Door2: resolveDoor({"type":"Door","x":272,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"UnrealMimic","checkpointName":"","name":"Door2"}),
 // @ts-ignore
-Door3: resolveDoor({"type":"Door","x":352,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"DesertField","checkpointName":"","name":"Door3"}),
+Door3: resolveDoor({"type":"Door","x":352,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988","levelName":"UnrealSnowman","checkpointName":"","name":"Door3"}),
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":296,"y":0,"width":40,"height":152,"flippedX":false,"flippedY":true,"uid":"55824435"}),
 // @ts-ignore
@@ -1731,6 +1731,32 @@ Block: resolveBlock({"type":"Block","x":120,"y":40,"width":16,"height":16,"flipp
 Block_1: resolveBlock({"type":"Block","x":120,"y":200,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
 // @ts-ignore
 BigKeyPiece: resolveRegion({"type":"Region","x":56,"y":152,"width":50,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607","name":"BigKeyPiece"})
+};
+}
+};
+
+export const UnrealSnowmanArgs = {
+    width: 512,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    Player: {"type":"Player","x":88,"y":136,"flippedX":false,"flippedY":false,"uid":"55988047","faceRight":true},
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":256,"y":224,"width":256,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":512,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":136,"width":256,"height":120,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+// @ts-ignore
+PuzzleWall: resolveBlock({"type":"Block","x":224,"y":0,"width":32,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268","name":"PuzzleWall"}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":128,"y":72,"width":96,"height":64,"flippedX":false,"flippedY":false,"uid":"55824435"}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":224,"y":72,"width":32,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
+TorchA: {"type":"Anchor","x":16,"y":136,"flippedX":false,"flippedY":false,"uid":"25979726","name":"TorchA"},
+Torch1: {"type":"Anchor","x":280,"y":224,"flippedX":false,"flippedY":false,"uid":"25979726","name":"Torch1"},
+Torch3: {"type":"Anchor","x":488,"y":224,"flippedX":false,"flippedY":false,"uid":"25979726","name":"Torch3"},
+Torch2: {"type":"Anchor","x":384,"y":224,"flippedX":false,"flippedY":false,"uid":"25979726","name":"Torch2"}
 };
 }
 };
