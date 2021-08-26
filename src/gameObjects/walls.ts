@@ -106,15 +106,23 @@ export function push(xy: Pushable, radius: number) {
     return result;
 }
 
+const temp = { xmin: 0, xmax: 0, ymin: 0, ymax: 0, width: 0, height: 0 };
+
+function computeBox(x0: number, y0: number, x1: number, y1: number) {
+    temp.xmin = Math.min(x0, x1);
+    temp.xmax = Math.max(x0, x1);
+    temp.ymin = Math.min(y0, y1);
+    temp.ymax = Math.max(y0, y1);
+
+    temp.width = temp.xmax - temp.xmin;
+    temp.height = temp.ymax - temp.ymin;
+
+    return temp;
+}
+
 export function block(x0: number, y0: number, x1: number, y1: number)
 {
-    const xmin = Math.min(x0, x1);
-    const xmax = Math.max(x0, x1);
-    const ymin = Math.min(y0, y1);
-    const ymax = Math.max(y0, y1);
-
-    const width = xmax - xmin;
-    const height = ymax - ymin;
+    const { width, xmax, xmin, ymin, ymax, height } = computeBox(x0, y0, x1, y1);
 
     const graphics = new Graphics();
     graphics.beginFill();
@@ -128,6 +136,24 @@ export function block(x0: number, y0: number, x1: number, y1: number)
 
     graphics.on('added', () => walls.push(leftWall, rightWall, topWall, bottomWall));
     graphics.on('removed', () => walls.removeFirst(leftWall, rightWall, topWall, bottomWall));
+    const recreateBlock = () => {
+        const bounds = graphics.geometry.bounds;
+        const newBox = computeBox(bounds.minX + graphics.x, bounds.minY + graphics.y, bounds.maxX + graphics.x, bounds.maxY + graphics.y);
+        leftWall.x = newBox.xmin;
+        leftWall.y = newBox.ymin;
+        leftWall.length = newBox.height;
+        rightWall.x = newBox.xmax;
+        rightWall.y = newBox.ymin;
+        rightWall.length = newBox.height;
+        topWall.x = newBox.xmin;
+        topWall.y = newBox.ymin;
+        topWall.length = newBox.width;
+        bottomWall.x = newBox.xmin;
+        bottomWall.y = newBox.ymax;
+        bottomWall.length = newBox.width;
+    }
+    graphics.transform.onPositionChanged(recreateBlock);
+    graphics.transform.onScaleChanged(recreateBlock);
 
     return graphics;
 }
