@@ -85,7 +85,7 @@ function createPlayer()
                 if (player.invulnerableFrameCount > 0)
                 {
                     // TODO SFX
-                    player.invulnerableFrameCount -= 5;
+                    player.invulnerableFrameCount -= 1;
                     return;
                 }
 
