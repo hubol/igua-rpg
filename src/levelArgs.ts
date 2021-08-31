@@ -1756,7 +1756,8 @@ Block_3: resolveBlock({"type":"Block","x":224,"y":72,"width":32,"height":64,"fli
 TorchA: {"type":"Anchor","x":16,"y":136,"flippedX":false,"flippedY":false,"uid":"25979726","name":"TorchA"},
 Torch1: {"type":"Anchor","x":280,"y":224,"flippedX":false,"flippedY":false,"uid":"25979726","name":"Torch1"},
 Torch3: {"type":"Anchor","x":488,"y":224,"flippedX":false,"flippedY":false,"uid":"25979726","name":"Torch3"},
-Torch2: {"type":"Anchor","x":384,"y":224,"flippedX":false,"flippedY":false,"uid":"25979726","name":"Torch2"}
+Torch2: {"type":"Anchor","x":384,"y":224,"flippedX":false,"flippedY":false,"uid":"25979726","name":"Torch2"},
+SnowmanSpawn: {"type":"Anchor","x":328,"y":224,"flippedX":false,"flippedY":false,"uid":"25979726","name":"SnowmanSpawn"}
 };
 }
 };
