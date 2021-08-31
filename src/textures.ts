@@ -64,6 +64,7 @@ export let Rope: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SignInn: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SignTavern: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Sign: PIXI.Texture = undefined as unknown as PIXI.Texture;
+export let Snowman: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SpikyBrushA: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let SpikyBrushB: PIXI.Texture = undefined as unknown as PIXI.Texture;
 export let Torch: PIXI.Texture = undefined as unknown as PIXI.Texture;
@@ -259,6 +260,9 @@ export function loadTexturesAsync()
     const SignPath = require("./images/sign.png");
     loader.add(SignPath); 
 
+    const SnowmanPath = require("./images/snowman.png");
+    loader.add(SnowmanPath); 
+
     const SpikyBrushAPath = require("./images/spiky brush a.png");
     loader.add(SpikyBrushAPath); 
 
@@ -334,6 +338,7 @@ export function loadTexturesAsync()
             SignInn = resources[SignInnPath]?.texture as PIXI.Texture;
             SignTavern = resources[SignTavernPath]?.texture as PIXI.Texture;
             Sign = resources[SignPath]?.texture as PIXI.Texture;
+            Snowman = resources[SnowmanPath]?.texture as PIXI.Texture;
             SpikyBrushA = resources[SpikyBrushAPath]?.texture as PIXI.Texture;
             SpikyBrushB = resources[SpikyBrushBPath]?.texture as PIXI.Texture;
             Torch = resources[TorchPath]?.texture as PIXI.Texture;
