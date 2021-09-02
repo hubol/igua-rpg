@@ -7,7 +7,7 @@ import {player} from "../gameObjects/player";
 import {lerp} from "../cutscene/lerp";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {Snowman, Torch} from "../textures";
-import {Container, Sprite} from "pixi.js";
+import {Container, Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
 import {merge} from "../utils/merge";
 import {cutscene} from "../cutscene/cutscene";
@@ -68,6 +68,7 @@ const snowman = () => {
     const sprite = merge(Sprite.from(snowmanSubimages[0]), { hspeed: 0 });
     const foot1 = Sprite.from(snowmanSubimages[1]);
     const foot2 = Sprite.from(snowmanSubimages[2]);
+    const mask = new Graphics().drawRect(1, 9, 19, 28);
     sprite.withStep(() => {
        pedometer++;
        foot1.y = Math.round(Math.sin(pedometer * 0.2));
@@ -81,11 +82,11 @@ const snowman = () => {
             container.scale.x = 1;
             container.x += 1;
         }
-        if (container.collides(player))
+        if (mask.collides(player))
             player.damage(10);
     });
     const container = new Container();
-    container.addChild(foot1, foot2, sprite);
+    container.addChild(foot1, foot2, sprite, mask);
     container.pivot.set(11, 42);
     return scene.gameObjectStage.addChild(container);
 }
