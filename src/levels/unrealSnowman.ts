@@ -12,6 +12,7 @@ import {now} from "../utils/now";
 import {merge} from "../utils/merge";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
+import {instancer} from "../igua/instancer";
 
 let holdingFlame = false;
 
@@ -41,7 +42,7 @@ export function UnrealSnowman() {
 
 const torchSubimages = subimageTextures(Torch, 5);
 
-const torch = (burning = false, showHint = false) => {
+const torch = instancer((burning = false, showHint = false) => {
     const sprite = merge(Sprite.from(torchSubimages[0]), { burning });
     sprite.anchor.set(0.5, 1);
     sprite.withStep(() => {
@@ -59,7 +60,7 @@ const torch = (burning = false, showHint = false) => {
         }
     });
     return scene.gameObjectStage.addChild(sprite);
-}
+});
 
 const snowmanSubimages = subimageTextures(Snowman, 3);
 
@@ -74,11 +75,14 @@ const snowman = () => {
        foot1.y = Math.round(Math.sin(pedometer * 0.2));
         foot2.y = Math.round(Math.sin(pedometer * 0.2 - 3));
         sprite.y = Math.round(Math.sin(pedometer * 0.2 - 5));
-        if (container.x > player.x) {
+
+        const targetX = torch.instances.filter(x => x.burning)[0]?.x ?? container.x;
+
+        if (container.x > targetX) {
             container.scale.x = -1;
             container.x -= 1;
         }
-        else if (container.x < player.x) {
+        else if (container.x < targetX) {
             container.scale.x = 1;
             container.x += 1;
         }

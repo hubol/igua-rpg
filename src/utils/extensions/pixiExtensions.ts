@@ -132,7 +132,7 @@ Object.defineProperty(PIXI.DisplayObject.prototype, "ticker", {
     }
 });
 
-function doNowOrOnAdded<T extends PIXI.DisplayObject>(displayObject: T, onAdded: () => void): T
+export function doNowOrOnAdded<T extends PIXI.DisplayObject>(displayObject: T, onAdded: () => void): T
 {
     if (displayObject.parent)
         onAdded();
