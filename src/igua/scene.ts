@@ -39,7 +39,7 @@ function createScene(isLevel: boolean)
             this.terrainFill = graphics;
         },
         camera: createCamera(isLevel),
-        displayObjectInstances: {},
+        trackedDisplayObjects: {},
         parallax1Stage,
         backgroundGameObjectStage,
         cameraStage,

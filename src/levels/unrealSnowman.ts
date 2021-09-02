@@ -12,7 +12,7 @@ import {now} from "../utils/now";
 import {merge} from "../utils/merge";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
-import {instancer} from "../igua/instancer";
+import {track} from "../igua/track";
 
 let holdingFlame = false;
 
@@ -42,7 +42,7 @@ export function UnrealSnowman() {
 
 const torchSubimages = subimageTextures(Torch, 5);
 
-const torch = instancer((burning = false, showHint = false) => {
+const torch = track((burning = false, showHint = false) => {
     const sprite = merge(Sprite.from(torchSubimages[0]), { burning });
     sprite.anchor.set(0.5, 1);
     sprite.withStep(() => {
