@@ -67,6 +67,26 @@ const torch = track((burning = false, showHint = false) => {
 
 const snowmanSubimages = subimageTextures(Snowman, 3);
 
+const dust = () => {
+    let life = 1;
+    const baseWidth = 16;
+    const baseHeight = 16;
+    const lifeDelta = 0.01 + Math.random() * 0.01;
+    let vspeed = -0.2 - Math.random() * 0.5;
+    const graphics = new Graphics()
+        .withStep(() => {
+            life -= lifeDelta;
+            graphics.y += vspeed;
+            if (life <= 0)
+                return graphics.destroy();
+            graphics
+                .clear()
+                .beginFill(0xffffff, life * 0.5)
+                .drawEllipse(0, 0, baseWidth, baseHeight * 2 * (1 - life));
+        });
+    return scene.gameObjectStage.addChild(graphics);
+}
+
 const snowman = (groundY, retreatX) => {
     let pedometer = 0;
     const sprite = merge(Sprite.from(snowmanSubimages[0]), { hspeed: 0 });
@@ -86,6 +106,7 @@ const snowman = (groundY, retreatX) => {
         {
             health = 0;
         }
+        dust().at(container);
     };
 
     const step = () => {
