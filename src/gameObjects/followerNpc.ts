@@ -1,5 +1,4 @@
 import {npc} from "./npc";
-import {add} from "../utils/math/vector";
 import {merge} from "../utils/merge";
 import {player} from "./player";
 
@@ -46,6 +45,6 @@ export function followerNpc(npc: Npc)
 
 const desired = {
     get position() {
-        return add({ x: player.scale.x * -34, y: 0 }, player);
+        return { x: player.scale.x * -34, y: 0 }.add(player);
     }
 };

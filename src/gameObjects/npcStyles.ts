@@ -19,11 +19,10 @@ import {
     NpcYellowFoot,
     NpcYellowFootRear,
     NpcPupilsWeird,
-    NpcLongTailBody, CharacterCrest, NpcBlueFoot2, NpcBlueFootRear2, NpcHornedCrest
+    NpcLongTailBody, NpcBlueFoot2, NpcBlueFootRear2, NpcHornedCrest
 } from "../textures";
 import {IguanaEyes, iguanaEyes} from "../igua/puppet/eyes";
-import {add, Vector} from "../utils/math/vector";
-import {invisibleObject} from "./utils/invisibleObject";
+import {Vector} from "../utils/math/vector";
 
 const npcStyles: Array<ReturnType<typeof getNpcStyle>> = [];
 
@@ -182,12 +181,12 @@ function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
             container.addChild(args.headSprite, args.mouthSprite);
         }
 
-        add(args.head.pivot, args.headOffset);
+        args.head.pivot.add(args.headOffset);
 
         if (!args.eyes)
             args.eyes = iguanaEyes(args as any);
 
-        add(args.eyes.pivot, args.headOffset);
+        args.eyes.pivot.add(args.headOffset);
 
         return iguanaPuppet(args as any);
     }

@@ -3,7 +3,6 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {UnrealFlightArgs} from "../levelArgs";
 import {Sprite} from "pixi.js";
 import {CloudLong} from "../textures";
-import {add} from "../utils/math/vector";
 import {jukebox} from "../igua/jukebox";
 import { Fly } from "../musics";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
@@ -41,7 +40,7 @@ function cloud()
                 sprite.y = scene.camera.y + scene.camera.height * Math.random();
             }
         })
-        .at(add({ x: scene.camera.width * Math.random(), y: scene.camera.height * Math.random() }, scene.camera));
+        .at({ x: scene.camera.width * Math.random(), y: scene.camera.height * Math.random() }.add(scene.camera));
     if (Math.random() > 0.5)
         sprite.scale.y *= -1;
     scene.backgroundGameObjectStage.addChild(sprite);

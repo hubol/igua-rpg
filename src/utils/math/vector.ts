@@ -39,13 +39,6 @@ export function normalize(vec: Vector) {
     return vec;
 }
 
-export function add(a: Vector, b: Vector)
-{
-    a.x += b.x;
-    a.y += b.y;
-    return a;
-}
-
 export function lerp(a: Vector, b: Vector, factor: number): Vector
 {
     a.x = lerpNumber(a.x, b.x, factor);

@@ -10,7 +10,7 @@ export function wait(predicate: Predicate)
 
     const cancellationToken = IguaZone.cancellationToken;
 
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         fn = () => {
             if (cancellationToken?.isCancelled)
             {
