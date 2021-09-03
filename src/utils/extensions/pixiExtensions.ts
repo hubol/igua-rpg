@@ -169,7 +169,7 @@ PIXI.DisplayObject.prototype.withAsync = function(promiseFn)
             }
             catch (e)
             {
-                throw { ...e, thisDisplayObject };
+                throw e;
             }
             finally
             {
