@@ -28,7 +28,6 @@ export function UnrealSnowman() {
         await wait(() => player.x >= 280);
         scene.camera.followPlayer = false;
         await lerp(scene.camera, 'x').to(256).over(1000);
-        (level.SnowmanSpawn as any).hello();
     })
 
     snowman().at(level.SnowmanSpawn.add(0, -128));
