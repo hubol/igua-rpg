@@ -8,7 +8,7 @@ import {isOnScreen} from "../igua/logic/isOnScreen";
 import {CollectGeneric, CratePickup, CratePlace, Dig} from "../sounds";
 import {progress} from "../igua/data/progress";
 import {npc} from "../gameObjects/npc";
-import {add, vector} from "../utils/math/vector";
+import {vector} from "../utils/math/vector";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {scene} from "../igua/scene";
 import {player} from "../gameObjects/player";
@@ -113,7 +113,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
         while (pickupCrate(false))
             stackCrate(false);
 
-        level.Stacker.at(add({x: 96, y: -32}, level.DropCrateAnchor));
+        level.Stacker.at({x: 96, y: -32}.add(level.DropCrateAnchor));
         level.Stacker.duckImmediately();
         level.Stacker.closeEyesImmediately();
         level.Stacker.mods.add(Sleepy);
@@ -222,7 +222,7 @@ function enhanceDigSpot(level: DesertTownLevel)
                 player.walkTo(v.x - 24).then(() => player.scale.x = 1) ]);
 
             for (const block of blocks) {
-                const next = add({ x: 8, y: -8 }, block.getLocalBounds());
+                const next = { x: 8, y: -8 }.add(block.getLocalBounds());
                 follower.scale.x = Math.sign(next.x - follower.x);
                 follower.at(next);
                 await sleep(250);

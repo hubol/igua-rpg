@@ -28,7 +28,10 @@ export function UnrealSnowman() {
         await wait(() => player.x >= 280);
         scene.camera.followPlayer = false;
         await lerp(scene.camera, 'x').to(256).over(1000);
+        (level.SnowmanSpawn as any).hello();
     })
+
+    snowman().at(level.SnowmanSpawn.add(0, -128));
 
     const puzzleTorch = torch(true, true).at(level.TorchA);
     [level.Torch1, level.Torch2, level.Torch3].map(x => torch().at(x));
@@ -36,8 +39,6 @@ export function UnrealSnowman() {
     level.PuzzleWall.withStep(() => {
         level.PuzzleWall.moveTowards({ x: level.PuzzleWall.x, y: puzzleTorch.burning ? 0 : -level.PuzzleWall.height }, puzzleTorch.burning ? 8 : 2);
     });
-
-    snowman().at(level.SnowmanSpawn);
 }
 
 const torchSubimages = subimageTextures(Torch, 5);

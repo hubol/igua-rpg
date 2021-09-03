@@ -7,7 +7,6 @@ import {flash} from "../gameObjects/flash";
 import {lever} from "../gameObjects/lever";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {DesertTempleLever} from "../textures";
-import {add} from "../utils/math/vector";
 import {cutscene} from "../cutscene/cutscene";
 import {ActivateLever, TempleDoorOpen, TransitionSlide} from "../sounds";
 import {ShockwaveFilter} from "@pixi/filter-shockwave";
@@ -43,7 +42,7 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
 
     const leverTextures = subimageTextures(DesertTempleLever, 2);
     const leverObject = lever(leverTextures[0], leverTextures[1], progress.flags.desert.unlockedTemple? onAngle : offAngle)
-        .at(add({ x: 0, y: 8 }, level.TempleUnlockBlob));
+        .at({ x: 0, y: 8 }.add(level.TempleUnlockBlob));
     scene.backgroundGameObjectStage.addChildAt(leverObject, 0);
 
     const targetBushRight = level.BushRight.x + 8;

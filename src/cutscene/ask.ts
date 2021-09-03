@@ -56,7 +56,7 @@ async function askImpl<T extends Answer>(question: string, answers: T[]): Promis
 
     const cancellationToken = IguaZone.cancellationToken;
 
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
         const cursor = Sprite.from(Cursor).withStep(() => {
             cancellationToken?.rejectIfCancelled(reject);
 
