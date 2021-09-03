@@ -9,6 +9,7 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {Snowman, Torch} from "../textures";
 import {Container, Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
+import {lerp as lerpNumber} from "../utils/math/number";
 import {merge} from "../utils/merge";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
@@ -73,28 +74,54 @@ const snowman = (groundY) => {
     const foot2 = Sprite.from(snowmanSubimages[2]);
     const mask = new Graphics().drawRect(1, 9, 19, 28);
     let arriveVspeed = 0;
+    let hspeed = 0;
+    let phase = 0;
+    let health = 100;
+    let xx = 0;
+
+    const damage = (amount) => {
+        health -= amount;
+        if (health < 0)
+        {
+            health = 0;
+        }
+    };
+
     const step = () => {
        pedometer++;
        foot1.y = Math.round(Math.sin(pedometer * 0.2));
         foot2.y = Math.round(Math.sin(pedometer * 0.2 - 3));
         sprite.y = Math.round(Math.sin(pedometer * 0.2 - 5));
 
-        if (container.y >= groundY)
+        if (container.y >= groundY) {
             arriveVspeed = 0;
+            if (phase === 0) {
+                xx = container.x;
+                phase = 1;
+            }
+        }
         else
             container.y += (arriveVspeed += 0.5);
         container.y = Math.round(Math.min(container.y, groundY));
 
-        const targetX = torch.instances.filter(x => x.burning)[0]?.x ?? container.x;
+        if (phase < 1)
+            return;
 
-        if (container.x > targetX) {
-            container.scale.x = -1;
-            container.x -= 1;
+        const litTorch = torch.instances.filter(x => x.burning)[0];
+        if (litTorch && container.collides(litTorch))
+            damage(1);
+        const targetX = player.x;
+
+        const targetHspeed = container.x > targetX ? -1.5 : 1.5;
+        hspeed = lerpNumber(hspeed, targetHspeed, 0.15);
+        container.x = Math.round(xx += hspeed);
+
+        if (hspeed !== 0) {
+            const scale = lerpNumber(0.25, 1, health / 100);
+            container.scale.x = scale * Math.sign(hspeed);
+            container.scale.y = scale;
         }
-        else if (container.x < targetX) {
-            container.scale.x = 1;
-            container.x += 1;
-        }
+
         if (mask.collides(player))
             player.damage(10);
     };
