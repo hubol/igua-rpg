@@ -32,7 +32,7 @@ export function UnrealSnowman() {
         scene.camera.followPlayer = false;
         await Promise.all([ moveCamera, wait(() => player.y >= 128) ]);
         await sleep(500);
-        snowman(level.SnowmanSpawn.y).at([0, -128].add(level.SnowmanSpawn));
+        snowman(level.SnowmanSpawn.y, (level.Torch1.x + level.Torch2.x) / 2).at([0, -128].add(level.SnowmanSpawn));
     });
 
     const puzzleTorch = torch(true, true).at(level.TorchA);
@@ -67,7 +67,7 @@ const torch = track((burning = false, showHint = false) => {
 
 const snowmanSubimages = subimageTextures(Snowman, 3);
 
-const snowman = (groundY) => {
+const snowman = (groundY, retreatX) => {
     let pedometer = 0;
     const sprite = merge(Sprite.from(snowmanSubimages[0]), { hspeed: 0 });
     const foot1 = Sprite.from(snowmanSubimages[1]);
@@ -78,6 +78,7 @@ const snowman = (groundY) => {
     let phase = 0;
     let health = 100;
     let xx = 0;
+    let retreat = 0;
 
     const damage = (amount) => {
         health -= amount;
@@ -108,9 +109,12 @@ const snowman = (groundY) => {
             return;
 
         const litTorch = torch.instances.filter(x => x.burning)[0];
+        retreat += litTorch ? 1 : -1;
+        retreat = Math.max(0, Math.min(120, retreat));
         if (litTorch && container.collides(litTorch))
-            damage(1);
-        const targetX = player.x;
+            damage(0.3);
+        const notNearLitTorch = litTorch && Math.abs(player.x - litTorch.x) > 64;
+        const targetX = (retreat < 100 || notNearLitTorch) ? player.x : retreatX;
 
         const targetHspeed = container.x > targetX ? -1.5 : 1.5;
         hspeed = lerpNumber(hspeed, targetHspeed, 0.15);
