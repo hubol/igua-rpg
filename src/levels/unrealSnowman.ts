@@ -1,7 +1,7 @@
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {UnrealSnowmanArgs} from "../levelArgs";
 import {scene} from "../igua/scene";
-import {portalFluidConfig} from "../gameObjects/portalFluid";
+import {portalFluidConfig, teleportToTheRoomOfDoors} from "../gameObjects/portalFluid";
 import {wait} from "../cutscene/wait";
 import {player} from "../gameObjects/player";
 import {lerp} from "../cutscene/lerp";
@@ -15,6 +15,9 @@ import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
 import {track} from "../igua/track";
 import {sleep} from "../cutscene/sleep";
+import {bigKeyPiece} from "../gameObjects/bigKey";
+import {progress} from "../igua/data/progress";
+import {desertBigKeyTextures} from "./desertTemple";
 
 let holdingFlame = false;
 
@@ -104,7 +107,15 @@ const snowman = (groundY, retreatX) => {
         health -= amount;
         if (health < 0)
         {
-            health = 0;
+            const key = bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[2], "piece3")
+                .at(retreatX - 40, 0)
+                .withStep(() => {
+                    if (key.y < 120)
+                        key.y++;
+                })
+            key.onCollect = teleportToTheRoomOfDoors;
+            scene.gameObjectStage.addChild(key);
+            container.destroy();
         }
         dust().at(container);
     };
@@ -133,7 +144,7 @@ const snowman = (groundY, retreatX) => {
         retreat += litTorch ? 1 : -1;
         retreat = Math.max(0, Math.min(120, retreat));
         if (litTorch && container.collides(litTorch))
-            damage(0.3);
+            damage(0.625);
         const notNearLitTorch = litTorch && Math.abs(player.x - litTorch.x) > 64;
         const targetX = (retreat < 100 || notNearLitTorch) ? player.x : retreatX;
 

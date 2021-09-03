@@ -61,21 +61,23 @@ function portalFluid({ width, height }: { width: number, height: number })
         .drawRect(0, 0, width, height)
         .withStep(() => {
             if (playerCharacterHasControl() && graphics.collides(player))
-            {
-                jukebox.stop();
-                Teleported.play();
-                scene.ticker.doNextUpdate = false;
-
-                cutscene.play(async () => {
-                    await show("You have been teleported to the room of doors.");
-                    const blurFilter = new filters.BlurFilter(0, 6, 1, 9);
-                    game.sceneStage.filters = [blurFilter];
-                    await lerp(blurFilter, "blur").to(24).over(1_000);
-                    game.sceneStage.filters = [];
-                    level.goto(portalFluidConfig.gotoLevelName);
-                });
-            }
+                teleportToTheRoomOfDoors();
         });
+}
+
+export function teleportToTheRoomOfDoors() {
+    jukebox.stop();
+    Teleported.play();
+    scene.ticker.doNextUpdate = false;
+
+    cutscene.play(async () => {
+        await show("You have been teleported to the room of doors.");
+        const blurFilter = new filters.BlurFilter(0, 6, 1, 9);
+        game.sceneStage.filters = [blurFilter];
+        await lerp(blurFilter, "blur").to(24).over(1_000);
+        game.sceneStage.filters = [];
+        level.goto(portalFluidConfig.gotoLevelName);
+    });
 }
 
 function drawFluid(g: Graphics, { x, y, width, height }: Rectangle)
