@@ -18,6 +18,9 @@ export function getInitialFlags()
                 piece2: false,
                 piece3: false,
             }
+        },
+        oracle: {
+            lore1: false,
         }
     };
 }
