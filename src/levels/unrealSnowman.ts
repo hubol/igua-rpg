@@ -146,9 +146,20 @@ const snowman = (groundY, retreatX) => {
         if (litTorch && container.collides(litTorch))
             damage(0.625);
         const notNearLitTorch = litTorch && Math.abs(player.x - litTorch.x) > 64;
-        const targetX = (retreat < 100 || notNearLitTorch) ? player.x : retreatX;
+        const isRetreating = !(retreat < 100 || notNearLitTorch);
+        const targetX = isRetreating ? retreatX : player.x;
 
-        const targetHspeed = container.x > targetX ? -1.5 : 1.5;
+        let targetHspeed = container.x > targetX ? -1.5 : 1.5;
+        if (isRetreating && Math.abs(container.x - targetX) < 8) {
+            targetHspeed = 0;
+            if (Math.abs(hspeed) < 1) {
+                pedometer++;
+                if (container.y >= groundY) {
+                    container.y = groundY - 1;
+                    arriveVspeed = -7;
+                }
+            }
+        }
         hspeed = lerpNumber(hspeed, targetHspeed, 0.15);
         container.x = Math.round(xx += hspeed);
 
