@@ -18,6 +18,8 @@ import {sleep} from "../cutscene/sleep";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
+import {jukebox} from "../igua/jukebox";
+import { Hemaboss1 } from "../musics";
 
 let holdingFlame = false;
 
@@ -27,6 +29,8 @@ export function UnrealSnowman() {
     scene.terrainColor = 0xC43E4E;
     portalFluidConfig.gotoLevelName = "DesertTemple";
 
+    jukebox.stop().warm(Hemaboss1);
+
     holdingFlame = false;
 
     scene.gameObjectStage.withAsync(async () => {
@@ -35,6 +39,7 @@ export function UnrealSnowman() {
         scene.camera.followPlayer = false;
         await Promise.all([ moveCamera, wait(() => player.y >= 128) ]);
         await sleep(500);
+        jukebox.play(Hemaboss1);
         snowman(level.SnowmanSpawn.y, (level.Torch1.x + level.Torch2.x) / 2).at([0, -128].add(level.SnowmanSpawn));
     });
 
@@ -115,6 +120,7 @@ const snowman = (groundY, retreatX) => {
                 })
             key.onCollect = teleportToTheRoomOfDoors;
             scene.gameObjectStage.addChild(key);
+            jukebox.currentSong?.fade(1, 0, 1000);
             container.destroy();
         }
         dust().at(container);

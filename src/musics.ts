@@ -22,6 +22,11 @@ export const Fly = new Howl({
     preload: false
 });
 
+export const Hemaboss1 = new Howl({
+    src: [require("./music/hemaboss1.ogg"), require("./music/hemaboss1.mp3")],
+    preload: false
+});
+
 export const Mimic = new Howl({
     src: [require("./music/mimic.ogg"), require("./music/mimic.mp3")],
     preload: false
