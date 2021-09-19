@@ -65,6 +65,7 @@ export let SignInn: PIXI.Texture;
 export let SignTavern: PIXI.Texture;
 export let Sign: PIXI.Texture;
 export let Snowman: PIXI.Texture;
+export let Sparkle: PIXI.Texture;
 export let SpikyBrushA: PIXI.Texture;
 export let SpikyBrushB: PIXI.Texture;
 export let Torch: PIXI.Texture;
@@ -263,6 +264,9 @@ export function loadTexturesAsync()
     const SnowmanPath = require("./images/snowman.png");
     loader.add(SnowmanPath); 
 
+    const SparklePath = require("./images/sparkle.png");
+    loader.add(SparklePath); 
+
     const SpikyBrushAPath = require("./images/spiky brush a.png");
     loader.add(SpikyBrushAPath); 
 
@@ -339,6 +343,7 @@ export function loadTexturesAsync()
             SignTavern = resources[SignTavernPath]?.texture as PIXI.Texture;
             Sign = resources[SignPath]?.texture as PIXI.Texture;
             Snowman = resources[SnowmanPath]?.texture as PIXI.Texture;
+            Sparkle = resources[SparklePath]?.texture as PIXI.Texture;
             SpikyBrushA = resources[SpikyBrushAPath]?.texture as PIXI.Texture;
             SpikyBrushB = resources[SpikyBrushBPath]?.texture as PIXI.Texture;
             Torch = resources[TorchPath]?.texture as PIXI.Texture;

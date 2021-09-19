@@ -17,6 +17,7 @@ export function getInitialFlags()
                 piece1: false,
                 piece2: false,
                 piece3: false,
+                reward: false,
             }
         },
         oracle: {

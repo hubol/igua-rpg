@@ -8,6 +8,7 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {BigKey1} from "../textures";
 import {bigKeyMeter} from "../gameObjects/bigKey";
 import {show} from "../cutscene/dialog";
+import {sparkle} from "../gameObjects/sparkle";
 
 export function DesertTemple()
 {
@@ -26,6 +27,8 @@ export function DesertTemple()
         await show("Here you can find pieces of a big key if you move through the doors.");
         await show("You need keys to enter the doors leading to the pieces.");
     };
+
+    scene.gameObjectStage.addChild(sparkle(0.2, 0.2, 200).at(64, 64));
 
     scene.backgroundGameObjectStage.addChild(desertBigKeyMeter().at(level.BigKey));
 }
