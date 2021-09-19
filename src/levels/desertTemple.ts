@@ -8,7 +8,12 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {BigKey1} from "../textures";
 import {bigKeyMeter} from "../gameObjects/bigKey";
 import {show} from "../cutscene/dialog";
-import {sparkle} from "../gameObjects/sparkle";
+import {sparkles} from "../gameObjects/sparkle";
+import {player} from "../gameObjects/player";
+import {wait} from "../cutscene/wait";
+import {cutscene} from "../cutscene/cutscene";
+import {BigKeyCollected, CollectGeneric} from "../sounds";
+import {sleep} from "../cutscene/sleep";
 
 export function DesertTemple()
 {
@@ -28,9 +33,26 @@ export function DesertTemple()
         await show("You need keys to enter the doors leading to the pieces.");
     };
 
-    scene.gameObjectStage.addChild(sparkle(0.2, 0.2, 200).at(64, 64));
-
     scene.backgroundGameObjectStage.addChild(desertBigKeyMeter().at(level.BigKey));
+
+    if (progress.flags.desert.bigKey.piece1
+        && progress.flags.desert.bigKey.piece2
+        && progress.flags.desert.bigKey.piece3
+        && !progress.flags.desert.bigKey.reward)
+        scene.gameObjectStage.withAsync(async () => {
+            await wait(() => player.x >= level.BigKey.x - 25 && !cutscene.isPlaying);
+            cutscene.play(async () => {
+                progress.flags.desert.bigKey.reward = true;
+                BigKeyCollected.play();
+                jukebox.currentSong?.pause();
+                sparkles(level.BigKey.x + 25, level.BigKey.y + 14, 10, 32, 100);
+                await sleep(1000);
+                await show("You gathered all the pieces of the big key.");
+                CollectGeneric.play();
+                await show("Received Blessing of Earth.");
+                jukebox.currentSong?.play();
+            });
+        });
 }
 
 export const desertBigKeyTextures = subimageTextures(BigKey1, 3);
