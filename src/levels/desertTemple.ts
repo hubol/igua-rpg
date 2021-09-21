@@ -3,7 +3,7 @@ import { DesertTempleArgs } from "../levelArgs";
 import {scene} from "../igua/scene";
 import {progress} from "../igua/data/progress";
 import {jukebox} from "../igua/jukebox";
-import {Fly, Mimic, Temple} from "../musics";
+import {DesertTown, Fly, Mimic, Temple} from "../musics";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {BigKey1} from "../textures";
 import {bigKeyMeter} from "../gameObjects/bigKey";
@@ -17,7 +17,7 @@ import {sleep} from "../cutscene/sleep";
 
 export function DesertTemple()
 {
-    jukebox.play(Temple).warm(Fly, Mimic);
+    jukebox.play(Temple).warm(Fly, Mimic, DesertTown);
     const level = applyOgmoLevel(DesertTempleArgs);
     scene.backgroundColor = 0xCEA5A5;
     scene.terrainColor = 0x283741;
