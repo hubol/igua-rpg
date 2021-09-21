@@ -87,6 +87,16 @@ export const DragRock = new Howl({
     
 });
 
+export const FlameOff = new Howl({
+    src: [require("./sound/flame off.ogg"), require("./sound/flame off.mp3")],
+    
+});
+
+export const FlameOn = new Howl({
+    src: [require("./sound/flame on.ogg"), require("./sound/flame on.mp3")],
+    
+});
+
 export const Gate = new Howl({
     src: [require("./sound/gate.ogg"), require("./sound/gate.mp3")],
     

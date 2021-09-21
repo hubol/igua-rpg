@@ -20,6 +20,7 @@ import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
 import {jukebox} from "../igua/jukebox";
 import { Hemaboss1 } from "../musics";
+import {FlameOff, FlameOn} from "../sounds";
 
 let holdingFlame = false;
 
@@ -64,6 +65,10 @@ const torch = track((burning = false, showHint = false) => {
         if (sprite.burning !== holdingFlame) {
             sprite.burning = holdingFlame;
             holdingFlame = !sprite.burning;
+            if (sprite.burning)
+                FlameOn.play();
+            else
+                FlameOff.play();
         }
         if (showHint) {
             cutscene.play(async () => await show('Picked up the flame.'));
