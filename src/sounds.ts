@@ -117,6 +117,21 @@ export const SelectOption = new Howl({
     
 });
 
+export const SnowmanDie = new Howl({
+    src: [require("./sound/snowman die.ogg"), require("./sound/snowman die.mp3")],
+    
+});
+
+export const SnowmanHurt = new Howl({
+    src: [require("./sound/snowman hurt.ogg"), require("./sound/snowman hurt.mp3")],
+    
+});
+
+export const SnowmanLand = new Howl({
+    src: [require("./sound/snowman land.ogg"), require("./sound/snowman land.mp3")],
+    
+});
+
 export const Teleported = new Howl({
     src: [require("./sound/teleported.ogg"), require("./sound/teleported.mp3")],
     

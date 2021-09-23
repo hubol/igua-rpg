@@ -20,7 +20,7 @@ import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
 import {jukebox} from "../igua/jukebox";
 import { Hemaboss1 } from "../musics";
-import {FlameOff, FlameOn} from "../sounds";
+import {FlameOff, FlameOn, SnowmanDie, SnowmanHurt, SnowmanLand} from "../sounds";
 
 let holdingFlame = false;
 
@@ -114,9 +114,13 @@ const snowman = (groundY, retreatX) => {
     let retreat = 0;
 
     const damage = (amount) => {
+        const previousHealth = health;
         health -= amount;
+        if (Math.floor(previousHealth / 2) !== Math.floor(health / 2))
+            SnowmanHurt.play();
         if (health < 0)
         {
+            SnowmanDie.play();
             const key = bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[2], "piece3")
                 .at(retreatX - 40, 0)
                 .withStep(() => {
@@ -137,6 +141,7 @@ const snowman = (groundY, retreatX) => {
         foot2.y = Math.round(Math.sin(pedometer * 0.2 - 3));
         sprite.y = Math.round(Math.sin(pedometer * 0.2 - 5));
 
+        const previousContainerY = container.y;
         if (container.y >= groundY) {
             arriveVspeed = 0;
             if (phase === 0) {
@@ -147,6 +152,9 @@ const snowman = (groundY, retreatX) => {
         else
             container.y += (arriveVspeed += 0.5);
         container.y = Math.round(Math.min(container.y, groundY));
+
+        if (previousContainerY < groundY && container.y === groundY)
+            SnowmanLand.play();
 
         if (phase < 1)
             return;
