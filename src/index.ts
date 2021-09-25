@@ -19,6 +19,7 @@ import {handleIguaPromiseRejection} from "./utils/rejection";
 import {make2dCanvasSink} from "./utils/browser/make2dCanvasSink";
 import {handlePromiseCancellation} from "pissant";
 
+(PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 const application = createApplication({width: 256, height: 256, targetFps: 60, showCursor: false});
 
