@@ -6,3 +6,7 @@ export function isPlayerInteractingWith(object: DisplayObject)
 {
     return playerCharacterKey.justWentDown("ArrowUp") && object.collides(player);
 }
+
+export function isPlayerMoving() {
+    return Math.abs(player.hspeed) > 0.1 || Math.abs(player.vspeed) > 0.1;
+}
