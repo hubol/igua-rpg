@@ -1,5 +1,5 @@
 import {Container, Graphics, Sprite} from "pixi.js";
-import {CommonClown} from "../textures";
+import {ClownSpikeBall, CommonClown} from "../textures";
 import {scene} from "../igua/scene";
 import {merge} from "../utils/merge";
 import { lerp } from "../utils/math/number";
@@ -10,13 +10,15 @@ import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
 export function commonClown() {
     const container = merge(new Container(), { hspeed: 0.75, vspeed: 0 });
     const sprite = Sprite.from(CommonClown);
+    const spikeBall = Sprite.from(ClownSpikeBall);
+    spikeBall.anchor.set(6/14, 3/14);
     const graphics = new Graphics();
     sprite.anchor.set(.5, 1);
 
     let unit = 0;
     let distanceTraveled = 0;
     let invulnerable = -1;
-    let attackedSpeed = 0;
+    let knockbackSpeed = 0;
 
     sprite.withStep(() => {
         const xPrevious = container.x;
@@ -28,10 +30,17 @@ export function commonClown() {
         const invertedScale = Math.max(0.95 - unit, 0);
         graphics.clear();
         graphics.lineStyle(1, 0x888888);
+
+        const knockbackOffset = container.scale.x * knockbackSpeed * 2;
         for (let i = 0; i < 1; i += 0.05)
-            graphics.lineTo(Math.sin(i * Math.PI * 2.25 * 2 + radians) * 6 * Math.min(1, i * 2) * invertedScale - Math.pow(i, 2) * scale, i * 10 * scale);
-        container.x += attackedSpeed;
-        attackedSpeed = lerp(attackedSpeed, 0, 0.1);
+            graphics.lineTo(Math.sin(i * Math.PI * 2.25 * 2 + radians) * 6 * Math.min(1, i * 2) * invertedScale - Math.pow(i, 2) * scale - i * knockbackOffset, i * 10 * scale);
+        // @ts-ignore
+        spikeBall.x = graphics.currentPath.points[graphics.currentPath.points.length - 2];
+        // @ts-ignore
+        spikeBall.y = graphics.currentPath.points[graphics.currentPath.points.length - 1];
+
+        container.x += knockbackSpeed;
+        knockbackSpeed = lerp(knockbackSpeed, 0, 0.1);
         if (container.vspeed > -5 && container.vspeed < 5)
             container.x += container.hspeed;
 
@@ -39,8 +48,9 @@ export function commonClown() {
 
         if (container.hspeed !== 0)
             container.scale.x = Math.sign(container.hspeed);
+        spikeBall.scale.x = Math.sign(container.scale.x);
 
-        const spring = 10 * scale;
+        const spring = 10 * scale + 4;
         const radius = Math.max(8, container.vspeed);
         const pushable = { x: container.x, y: container.y + spring - radius };
         if (container.vspeed > 0 && isOnGround(pushable, radius)) {
@@ -50,9 +60,9 @@ export function commonClown() {
         }
         container.y += container.vspeed;
 
-        if (player.collides(sprite) && isPlayerMoving()) {
+        if (player.invulnerableFrameCount <= 0 && player.collides(sprite) && isPlayerMoving()) {
             container.vspeed = Math.min(0, container.vspeed);
-            attackedSpeed = Math.max(4, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
+            knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
             if (invulnerable <= 0)
                 invulnerable = 30;
         }
@@ -63,7 +73,9 @@ export function commonClown() {
         }
 
         container.visible = true;
+        if (player.collides(spikeBall))
+            player.damage(5);
     })
-    container.addChild(graphics, sprite);
+    container.addChild(graphics, spikeBall, sprite);
     return scene.gameObjectStage.addChild(container);
 }

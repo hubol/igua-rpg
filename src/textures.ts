@@ -16,6 +16,7 @@ export let CharacterMouthV: PIXI.Texture;
 export let CharacterPupils: PIXI.Texture;
 export let CharacterWhites: PIXI.Texture;
 export let CloudLong: PIXI.Texture;
+export let ClownSpikeBall: PIXI.Texture;
 export let Cobweb: PIXI.Texture;
 export let Column: PIXI.Texture;
 export let CommonClown: PIXI.Texture;
@@ -117,6 +118,9 @@ export function loadTexturesAsync()
 
     const CloudLongPath = require("./images/cloud long.png");
     loader.add(CloudLongPath); 
+
+    const ClownSpikeBallPath = require("./images/clown spike ball.png");
+    loader.add(ClownSpikeBallPath); 
 
     const CobwebPath = require("./images/cobweb.png");
     loader.add(CobwebPath); 
@@ -298,6 +302,7 @@ export function loadTexturesAsync()
             CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
             CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
+            ClownSpikeBall = resources[ClownSpikeBallPath]?.texture as PIXI.Texture;
             Cobweb = resources[CobwebPath]?.texture as PIXI.Texture;
             Column = resources[ColumnPath]?.texture as PIXI.Texture;
             CommonClown = resources[CommonClownPath]?.texture as PIXI.Texture;
