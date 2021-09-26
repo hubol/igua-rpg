@@ -12,6 +12,7 @@ export function commonClown() {
     sprite.anchor.set(.5, 1);
 
     let unit = 0;
+    let distanceTraveled = 0;
 
     sprite.withStep(() => {
         unit = lerp(unit, container.vspeed < 0 ? 1 : 0, 0.0875);
@@ -27,11 +28,19 @@ export function commonClown() {
         if (container.vspeed > -5 && container.vspeed < 5)
             container.x += container.hspeed;
 
+        distanceTraveled += container.hspeed;
+
+        if (container.hspeed !== 0)
+            container.scale.x = Math.sign(container.hspeed);
+
         const spring = 10 * scale;
         const radius = Math.max(8, container.vspeed);
         const pushable = { x: container.x, y: container.y + spring - radius };
-        if (container.vspeed > 0 && isOnGround(pushable, radius))
+        if (container.vspeed > 0 && isOnGround(pushable, radius)) {
             container.vspeed = -6;
+            if ((distanceTraveled > 128 && container.hspeed > 0) || (distanceTraveled <= 0 && container.hspeed < 0))
+                container.hspeed *= -1;
+        }
         container.y += container.vspeed;
     })
     container.addChild(graphics, sprite);
