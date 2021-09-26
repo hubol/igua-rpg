@@ -230,7 +230,10 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromTemple", "faceRight": false}
-        }
+        },
+        {"name": "CommonClown", "id": 25, "_eid": "68762216", "x": 696, "y": 248, "originX": 8, "originY": 62},
+        {"name": "CommonClown", "id": 26, "_eid": "68762216", "x": 840, "y": 280, "originX": 8, "originY": 62},
+        {"name": "CommonClown", "id": 27, "_eid": "68762216", "x": 1032, "y": 288, "originX": 8, "originY": 62}
       ]
     },
     {
