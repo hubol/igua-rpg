@@ -6,6 +6,9 @@ import { lerp } from "../utils/math/number";
 import {isOnGround} from "./walls";
 import {player} from "./player";
 import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
+import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
+
+export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
 export function commonClown() {
     const container = merge(new Container(), { hspeed: 0.75, vspeed: 0 });
@@ -60,11 +63,12 @@ export function commonClown() {
         }
         container.y += container.vspeed;
 
-        if (player.invulnerableFrameCount <= 0 && player.collides(sprite) && isPlayerMoving()) {
-            container.vspeed = Math.min(0, container.vspeed);
+        if (player.collides(sprite) && isPlayerMoving()) {
+            container.vspeed = Math.min(-Math.random(), container.vspeed);
             knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
-            if (invulnerable <= 0)
+            if (invulnerable <= 0) {
                 invulnerable = 30;
+            }
         }
 
         if (invulnerable-- > 0) {

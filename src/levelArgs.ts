@@ -33,6 +33,7 @@ import { resolveValuableBlue } from "./gameObjects/valuable";
 import { PotteryOrangeDamaged } from "./textures";
 import { PotteryOrange } from "./textures";
 import { Rope } from "./textures";
+import { resolveCommonClown } from "./gameObjects/commonClown";
 import { DesertTemple } from "./textures";
 
 export const DesertFieldArgs = {
@@ -392,7 +393,13 @@ Gate_1: resolveGate({"type":"Gate","x":1520,"y":104,"width":32,"height":32,"flip
 Gate_2: resolveGate({"type":"Gate","x":1520,"y":232,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197","levelName":"DesertOutskirts","checkpointName":""}),
 FromOutskirtsTop: {"type":"Checkpoint","x":1488,"y":136,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromOutskirtsTop","faceRight":false},
 FromOutskirtsBottom: {"type":"Checkpoint","x":1488,"y":264,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromOutskirtsBottom","faceRight":false},
-FromTemple: {"type":"Checkpoint","x":384,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromTemple","faceRight":false}
+FromTemple: {"type":"Checkpoint","x":384,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370","name":"FromTemple","faceRight":false},
+// @ts-ignore
+CommonClown: resolveCommonClown({"type":"CommonClown","x":696,"y":248,"flippedX":false,"flippedY":false,"uid":"68762216"}),
+// @ts-ignore
+CommonClown_1: resolveCommonClown({"type":"CommonClown","x":840,"y":280,"flippedX":false,"flippedY":false,"uid":"68762216"}),
+// @ts-ignore
+CommonClown_2: resolveCommonClown({"type":"CommonClown","x":1032,"y":288,"flippedX":false,"flippedY":false,"uid":"68762216"})
 };
 }
 };

@@ -792,6 +792,44 @@
       "nodeGhost": true,
       "tags": [],
       "values": []
+    },
+    {
+      "exportID": "68762216",
+      "name": "CommonClown",
+      "limit": -1,
+      "size": {"x": 22, "y": 63},
+      "origin": {"x": 8, "y": 62},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [],
+      "texture": "preview-images/commonClown.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAA/CAYAAADkFzjFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAB8UlEQVRYR+2XsU7DQAyG+wLdGXiMTrwEz8KOWLpk5xVgQOIJmEBiYK9UISF2xMx+9D/Vkc9nn31BqRhS6dTE8X3397cvSVcppZU3fob7Q4qfx3NcKJJnAQNKo0e1q3gWMIf2qm4qJtjX20WiEbXDBHOYPI7ATwu21PYUUlVMYK140SJW4BZMXmt5fRpwRG20QwrFGrjVdrhm2ZHBV9t9wrAg1nWKE5yfj1AKSkg0LvNMsEzsPS+s6J1s5cOakOL1+XWiwWFWHDkVGGWmDytGKMYXLazgUH7MlbXiRVccW8ViZgskDOdWnFqPNkgITMolmMf/L/j4SpB/6STFpkeHCxzO8rK9rsc0QRaLoDIuPcYC7qfRCTR3vFvKG30YbinVFE+2hWD8u/XC4qrXgC3F6mLDMGAh912vG4wJPfCwggU8WtXjL9/SrtcLePG4vicsXTFvV/T6G97SfwK/7D7NJ4QGbuVXipEsJ0ioluM+TL9vHzOYTyYwjyPPe/5Vt0sJ377epfePhzwAj0DV4mEih3Mw4JPBeMMhOI4vb56ThHs2qMXjfwsILOFeRxRgXhwOP9s8ZdUEh/pIZxTFgwVSMZ0TDAtEfK66QgNrbej5XIGhTMJlp3hQc+dplvTCC8VyA8hdCCVki6d6BFstZBXKa7lfa31tETmRHfgAAAAASUVORK5CYII="
     }
   ],
   "tilesets": []
