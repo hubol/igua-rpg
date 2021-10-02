@@ -7,6 +7,8 @@ import {isOnGround} from "./walls";
 import {player} from "./player";
 import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
+import {isOnScreen} from "../igua/logic/isOnScreen";
+import {ClownHurt, CommonClownLand} from "../sounds";
 
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
@@ -57,6 +59,8 @@ export function commonClown() {
         const radius = Math.max(8, container.vspeed);
         const pushable = { x: container.x, y: container.y + spring - radius };
         if (container.vspeed > 0 && isOnGround(pushable, radius)) {
+            if (isOnScreen(container))
+                CommonClownLand.play();
             container.vspeed = -6;
             if ((distanceTraveled > 128 && container.hspeed > 0) || (distanceTraveled <= 0 && container.hspeed < 0))
                 container.hspeed *= -1;
@@ -67,6 +71,10 @@ export function commonClown() {
             container.vspeed = Math.min(-Math.random(), container.vspeed);
             knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
             if (invulnerable <= 0) {
+                ClownHurt.play();
+                player.engine.knockback.x = (player.x - container.x) / 5;
+                // player.vspeed *= -1;
+                // player.vspeed += Math.sign(player.y - (container.y + sprite.y)) * 1.7;
                 invulnerable = 30;
             }
         }
@@ -77,8 +85,9 @@ export function commonClown() {
         }
 
         container.visible = true;
-        if (player.collides(spikeBall))
-            player.damage(5);
+        if (player.collides(spikeBall) && player.damage(5)) {
+            player.engine.knockback.x = container.hspeed * 4;
+        }
     })
     container.addChild(graphics, spikeBall, sprite);
     return scene.gameObjectStage.addChild(container);

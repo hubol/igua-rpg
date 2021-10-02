@@ -86,7 +86,7 @@ function createPlayer()
                 {
                     // TODO SFX
                     player.invulnerableFrameCount -= 1;
-                    return;
+                    return false;
                 }
 
                 if (player.isDucking)
@@ -104,6 +104,8 @@ function createPlayer()
 
                 if (progress.health <= 0)
                     gotoDeathScreen();
+
+                return true;
             }
         });
 
@@ -163,6 +165,7 @@ function createPlayer()
             else if (player.vspeed < 6)
                 player.vspeed -= 0.02;
         }
+        player.vspeed = Math.max(-4, player.vspeed);
     };
 
     player

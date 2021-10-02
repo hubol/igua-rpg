@@ -52,6 +52,16 @@ export const CharacterStep = new Howl({
     
 });
 
+export const ClownExplode = new Howl({
+    src: [require("./sound/clown explode.ogg"), require("./sound/clown explode.mp3")],
+    
+});
+
+export const ClownHurt = new Howl({
+    src: [require("./sound/clown hurt.ogg"), require("./sound/clown hurt.mp3")],
+    
+});
+
 export const CollectGeneric = new Howl({
     src: [require("./sound/collect generic.ogg"), require("./sound/collect generic.mp3")],
     
@@ -64,6 +74,11 @@ export const CollectValuableSmall = new Howl({
 
 export const CollectValuable = new Howl({
     src: [require("./sound/collect valuable.ogg"), require("./sound/collect valuable.mp3")],
+    
+});
+
+export const CommonClownLand = new Howl({
+    src: [require("./sound/common clown land.ogg"), require("./sound/common clown land.mp3")],
     
 });
 

@@ -11,6 +11,7 @@ import {
 import {isOnScreen} from "../logic/isOnScreen";
 import {rejection} from "../../utils/rejection";
 import {scene} from "../scene";
+import {approachLinear} from "../../utils/math/number";
 
 CharacterStep.volume(.4);
 CharacterStep2.volume(.4);
@@ -36,11 +37,15 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
 
     let pedometer = 0;
 
-    return {
+    const engine = {
         isOnGround: false,
         coyote: 0,
         on: true,
         walkSpeed: 2.5,
+        knockback: {
+            x: 0,
+            y: 0,
+        },
         walkTo(x: number)
         {
             return new Promise<void>((resolve, reject) =>
@@ -91,8 +96,10 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
             if (!this.isOnGround)
                 puppet.vspeed += 0.15;
 
-            let hsp = puppet.hspeed;
-            let vsp = puppet.vspeed;
+            let hsp = puppet.hspeed + engine.knockback.x;
+            let vsp = puppet.vspeed + engine.knockback.y;
+            engine.knockback.x = approachLinear(engine.knockback.x, 0, 0.5);
+            engine.knockback.y = approachLinear(engine.knockback.y, 0, 0.5);
 
             const radius = 8;
             const maxMotion = Math.sqrt(radius);
@@ -198,4 +205,6 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
             }
         }
     }
+
+    return engine;
 }
