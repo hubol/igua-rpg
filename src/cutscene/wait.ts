@@ -4,6 +4,9 @@ type Predicate = () => boolean;
 
 export function wait(predicate: Predicate)
 {
+    if (predicate())
+        return Promise.resolve();
+
     let fn: () => void;
 
     const ticker = IguaZone.ticker;
