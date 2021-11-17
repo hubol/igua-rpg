@@ -69,7 +69,7 @@ const lazyTickerHandler = {
                 }
                 target._queuedCalls.forEach(({ name, args }) => ticker[name](...args));
                 target._receivers.forEach(fn => fn(ticker));
-                target._resolved = true;
+                target._resolved = ticker;
             }
         }
         if (propKey === '_addReceiver') {
@@ -84,8 +84,7 @@ const lazyTickerHandler = {
 
         return function (...args) {
             if (target._resolved) {
-                console.error(`Attempt to queue call to already-resovled LazyTicker`, target, propKey, args);
-                return;
+                return target._resolved[propKey](...args);
             }
             target._queuedCalls.push({ name: propKey, args })
         };
@@ -162,21 +161,21 @@ PIXI.DisplayObject.prototype.withAsync = function(promiseFn)
     const cancellationToken = new CancellationToken();
     const thisDisplayObject = this;
 
-    return doNowOrOnAdded(this, () => setTimeout(async () => {
-            try
-            {
-                await runInIguaZone(`${thisDisplayObject.constructor.name}.withAsync`, promiseFn, { ticker: this.ticker, cancellationToken });
-            }
-            catch (e)
-            {
-                throw e;
-            }
-            finally
-            {
-                cancellationToken.cancel();
-            }
-        }))
-        .on("removed", () => cancellationToken.cancel());
+    return doNowOrOnAdded(this, async () => {
+        try
+        {
+            await runInIguaZone(`${thisDisplayObject.constructor.name}.withAsync`, promiseFn, { ticker: this.ticker, cancellationToken });
+        }
+        catch (e)
+        {
+            throw e;
+        }
+        finally
+        {
+            cancellationToken.cancel();
+        }
+    })
+    .on("removed", () => cancellationToken.cancel());
 }
 
 PIXI.DisplayObject.prototype.at = function(x: Vector | number, y?: number)
