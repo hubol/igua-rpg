@@ -118,6 +118,7 @@ const snowman = (groundY, retreatX) => {
         health -= amount;
         if (Math.floor(previousHealth / 2) !== Math.floor(health / 2))
             SnowmanHurt.play();
+        dust().at(container);
         if (health < 0)
         {
             SnowmanDie.play();
@@ -132,7 +133,6 @@ const snowman = (groundY, retreatX) => {
             jukebox.currentSong?.fade(1, 0, 1000);
             container.destroy();
         }
-        dust().at(container);
     };
 
     const step = () => {
@@ -164,6 +164,8 @@ const snowman = (groundY, retreatX) => {
         retreat = Math.max(0, Math.min(120, retreat));
         if (litTorch && container.collides(litTorch))
             damage(0.625);
+        if (container.destroyed)
+            return;
         const notNearLitTorch = litTorch && Math.abs(player.x - litTorch.x) > 64;
         const isRetreating = !(retreat < 100 || notNearLitTorch);
         const targetX = isRetreating ? retreatX : player.x;
