@@ -74,7 +74,8 @@ class Jukebox
                 this._currentHowl.stop();
             }
             this._currentHowl = howl;
-            howl.loop(true).play();
+            // @ts-ignore
+            howl.volume(1).loop(true).play();
         }
         catch (e)
         {
