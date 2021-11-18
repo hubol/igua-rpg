@@ -98,8 +98,8 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
 
             let hsp = puppet.hspeed + engine.knockback.x;
             let vsp = puppet.vspeed + engine.knockback.y;
-            engine.knockback.x = approachLinear(engine.knockback.x, 0, 0.5);
-            engine.knockback.y = approachLinear(engine.knockback.y, 0, 0.5);
+            engine.knockback.x = approachLinear(engine.knockback.x, 0, 0.25);
+            engine.knockback.y = approachLinear(engine.knockback.y, 0, 0.25);
 
             const radius = 8;
             const maxMotion = Math.sqrt(radius);

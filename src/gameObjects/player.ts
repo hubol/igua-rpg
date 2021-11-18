@@ -135,11 +135,13 @@ function createPlayer()
 
         if (!player.isDucking)
         {
+            const isKnockedBack = Math.abs(player.engine.knockback.x) > 0.05;
+            const deltaHspeed = isKnockedBack ? 0.01 : 0.5;
             if (playerKey.isDown("ArrowRight"))
-                player.hspeed += 0.5;
+                player.hspeed += deltaHspeed;
             if (playerKey.isDown("ArrowLeft"))
-                player.hspeed -= 0.5;
-            if (playerKey.isUp("ArrowRight") && playerKey.isUp("ArrowLeft"))
+                player.hspeed -= deltaHspeed;
+            if ((playerKey.isUp("ArrowRight") && playerKey.isUp("ArrowLeft")) || isKnockedBack)
                 player.hspeed *= 0.8;
         }
 

@@ -69,10 +69,11 @@ export function commonClown() {
 
         if (player.collides(sprite) && isPlayerMoving()) {
             container.vspeed = Math.min(-Math.random(), container.vspeed);
-            knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
+            if (Math.abs(knockbackSpeed) < 0.5)
+                knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
             if (invulnerable <= 0) {
                 ClownHurt.play();
-                player.engine.knockback.x = (player.x - container.x) / 5;
+                player.engine.knockback.x = (player.x - container.x) / 8;
                 // player.vspeed *= -1;
                 // player.vspeed += Math.sign(player.y - (container.y + sprite.y)) * 1.7;
                 invulnerable = 30;
