@@ -6,6 +6,7 @@ export function getInitialProgress()
         health: 20,
         maxHealth: 100,
         valuables: 0,
+        level: 1,
         gotLevelValuable: new Set<string>(),
         flags: getInitialFlags(),
         levelName: "DesertTown",

@@ -106,6 +106,9 @@ function createPlayer()
                     gotoDeathScreen();
 
                 return true;
+            },
+            get strength() {
+                return 1 + (progress.level - 1) * 0.67;
             }
         });
 

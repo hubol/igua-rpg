@@ -20,6 +20,7 @@ export let ClownSpikeBall: PIXI.Texture;
 export let Cobweb: PIXI.Texture;
 export let Column: PIXI.Texture;
 export let CommonClown: PIXI.Texture;
+export let ConfettiPiece: PIXI.Texture;
 export let CracksA: PIXI.Texture;
 export let CrateWooden: PIXI.Texture;
 export let CrudeHouseB: PIXI.Texture;
@@ -130,6 +131,9 @@ export function loadTexturesAsync()
 
     const CommonClownPath = require("./images/common clown.png");
     loader.add(CommonClownPath); 
+
+    const ConfettiPiecePath = require("./images/confetti piece.png");
+    loader.add(ConfettiPiecePath); 
 
     const CracksAPath = require("./images/cracks a.png");
     loader.add(CracksAPath); 
@@ -306,6 +310,7 @@ export function loadTexturesAsync()
             Cobweb = resources[CobwebPath]?.texture as PIXI.Texture;
             Column = resources[ColumnPath]?.texture as PIXI.Texture;
             CommonClown = resources[CommonClownPath]?.texture as PIXI.Texture;
+            ConfettiPiece = resources[ConfettiPiecePath]?.texture as PIXI.Texture;
             CracksA = resources[CracksAPath]?.texture as PIXI.Texture;
             CrateWooden = resources[CrateWoodenPath]?.texture as PIXI.Texture;
             CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;

@@ -9,6 +9,7 @@ import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {ClownHurt, CommonClownLand} from "../sounds";
+import {confetti} from "./confetti";
 
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
@@ -24,6 +25,8 @@ export function commonClown() {
     let distanceTraveled = 0;
     let invulnerable = -1;
     let knockbackSpeed = 0;
+
+    let health = 5;
 
     sprite.withStep(() => {
         const xPrevious = container.x;
@@ -72,8 +75,13 @@ export function commonClown() {
             if (Math.abs(knockbackSpeed) < 0.5)
                 knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
             if (invulnerable <= 0) {
-                ClownHurt.play();
                 player.engine.knockback.x = (player.x - container.x) / 8;
+                health -= player.strength;
+                if (health <= 0) {
+                    scene.gameObjectStage.addChild(confetti().at(container));
+                    return container.destroy();
+                }
+                ClownHurt.play();
                 // player.vspeed *= -1;
                 // player.vspeed += Math.sign(player.y - (container.y + sprite.y)) * 1.7;
                 invulnerable = 30;
