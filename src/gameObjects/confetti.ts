@@ -33,7 +33,7 @@ export function confettiPiece(hsp) {
     const f2 = Math.random() > 0.5 ? 1 : -1;
     let xScale = 1;
     let yScale = 1;
-    let vsp = -Math.random() * 2 - 0.3;
+    let vsp = -Math.random() * 1.6 - 0.6;
     const s = new Sprite(ConfettiPiece).withStep(() => {
         if (d === 0)
             s.skew.x = Math.sin(e + now.s) * f1;

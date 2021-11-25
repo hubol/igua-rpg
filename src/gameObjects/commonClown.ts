@@ -26,12 +26,14 @@ export function commonClown() {
     let invulnerable = -1;
     let knockbackSpeed = 0;
 
-    let health = 5;
+    const fullHealth = 5;
+    let health = fullHealth;
 
     sprite.withStep(() => {
+        const nearDeath = health < fullHealth && health <= player.strength;
         const xPrevious = container.x;
         unit = lerp(unit, container.vspeed < 0 ? 1 : 0, 0.0875);
-        container.vspeed += 0.25;
+        container.vspeed += nearDeath ? 0.5 : 0.25;
 
         const radians = Math.PI * unit * 2;
         const scale = 0.5 + unit * 2;
@@ -50,7 +52,7 @@ export function commonClown() {
         container.x += knockbackSpeed;
         knockbackSpeed = lerp(knockbackSpeed, 0, 0.1);
         if (container.vspeed > -5 && container.vspeed < 5)
-            container.x += container.hspeed;
+            container.x += container.hspeed * (nearDeath ? 2 : 1);
 
         distanceTraveled += container.x - xPrevious;
 
@@ -64,7 +66,7 @@ export function commonClown() {
         if (container.vspeed > 0 && isOnGround(pushable, radius)) {
             if (isOnScreen(container))
                 CommonClownLand.play();
-            container.vspeed = -6;
+            container.vspeed = nearDeath ? -9 : -6;
             if ((distanceTraveled > 128 && container.hspeed > 0) || (distanceTraveled <= 0 && container.hspeed < 0))
                 container.hspeed *= -1;
         }
@@ -94,7 +96,7 @@ export function commonClown() {
         }
 
         container.visible = true;
-        if (player.collides(spikeBall) && player.damage(5)) {
+        if (player.collides(spikeBall) && player.damage(20)) {
             player.engine.knockback.x = container.hspeed * 4;
         }
     })

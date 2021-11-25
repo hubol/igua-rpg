@@ -3,7 +3,7 @@ import {getInitialFlags} from "./flags";
 export function getInitialProgress()
 {
     return {
-        health: 20,
+        health: 100,
         maxHealth: 100,
         valuables: 0,
         level: 1,
