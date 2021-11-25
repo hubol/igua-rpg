@@ -10,6 +10,8 @@ import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {ClownHurt, CommonClownLand} from "../sounds";
 import {confetti} from "./confetti";
+import {progress} from "../igua/data/progress";
+import {valuable} from "./valuable";
 
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
@@ -28,6 +30,7 @@ export function commonClown() {
 
     const fullHealth = 5;
     let health = fullHealth;
+    let dropOdds = 0.67 - (progress.level - 1) * 0.075;
 
     sprite.withStep(() => {
         const nearDeath = health < fullHealth && health <= player.strength;
@@ -80,7 +83,12 @@ export function commonClown() {
                 player.engine.knockback.x = (player.x - container.x) / 8;
                 health -= player.strength;
                 if (health <= 0) {
-                    scene.gameObjectStage.addChild(confetti().at(container));
+                    const realDropOdds = Math.max(0.1, dropOdds);
+                    const drop = Math.random() < realDropOdds;
+                    if (drop)
+                        scene.gameObjectStage.addChild(valuable(container.x, container.y, undefined, "ValuableOrange"));
+
+                    scene.gameObjectStage.addChild(confetti().at(container))
                     return container.destroy();
                 }
                 ClownHurt.play();
@@ -97,6 +105,7 @@ export function commonClown() {
 
         container.visible = true;
         if (player.collides(spikeBall) && player.damage(20)) {
+            dropOdds *= 0.33;
             player.engine.knockback.x = container.hspeed * 4;
         }
     })

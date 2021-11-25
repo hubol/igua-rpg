@@ -23,7 +23,8 @@ export function valuable(x, y, uid, type: ValuableType)
             const particle = smallPop(12);
             particle.position.set(sprite.x, sprite.y - 7);
 
-            progress.gotLevelValuable.add(uid);
+            if (uid)
+                progress.gotLevelValuable.add(uid);
             progress.valuables += valuableStyle.value;
             const sound = valuableStyle.sound;
             sound.volume(0.5);
