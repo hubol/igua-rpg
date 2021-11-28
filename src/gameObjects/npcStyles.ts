@@ -1,4 +1,4 @@
-import {iguanaPuppet, IguanaPuppet} from "../igua/puppet/iguanaPuppet";
+import {iguanaPuppet} from "../igua/puppet/iguanaPuppet";
 import {Container, DisplayObject, Sprite} from "pixi.js";
 import {
     CharacterHead,
@@ -24,7 +24,7 @@ import {
 import {IguanaEyes, iguanaEyes} from "../igua/puppet/eyes";
 import {Vector} from "../utils/math/vector";
 
-const npcStyles: Array<ReturnType<typeof getNpcStyle>> = [];
+const npcStyles: Array<ReturnType<typeof npcStyle>> = [];
 
 npcStyles[0] = npcStyle(args => {
     args.body = Sprite.from(NpcWeirdBody);
@@ -211,11 +211,11 @@ interface ConfigureNpcStyleArgs
     moveCrestWhenDucking?: boolean;
 }
 
-export function getNpcStyle(index: number): () => IguanaPuppet
+export function getNpcStyle(index: number)
 {
-    if (index >= 0 && index < npcStyles.length)
-        return npcStyles[index];
-
-    console.error("npc style index", index, "is out of bounds", [0, npcStyles.length])
-    return npcStyles[0];
+    if (!(index in npcStyles)) {
+        console.error("npc style index", index, "is out of bounds", [0, npcStyles.length])
+        index = 0;
+    }
+    return npcStyles[index];
 }

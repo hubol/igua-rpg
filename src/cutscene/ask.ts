@@ -1,11 +1,13 @@
 import {BitmapText, Container, Sprite} from "pixi.js";
-import {MessageBox, Cursor} from "../textures";
+import {MessageBox} from "../textures";
 import {AcrobatixFont} from "../fonts";
 import {game} from "../igua/game";
 import {waitForKey} from "./waitForKey";
 import {Key} from "../utils/browser/key";
 import {SelectOption} from "../sounds";
 import {IguaZone} from "./runInIguaZone";
+import {iguanaHead} from "../igua/puppet/iguanaPuppet";
+import {playerPuppetArgs} from "../gameObjects/player";
 
 type Answer = string;
 
@@ -57,7 +59,7 @@ async function askImpl<T extends Answer>(question: string, answers: T[]): Promis
     const cancellationToken = IguaZone.cancellationToken;
 
     await new Promise<void>((resolve, reject) => {
-        const cursor = Sprite.from(Cursor).withStep(() => {
+        const cursor = iguanaHead(playerPuppetArgs()).withStep(() => {
             cancellationToken?.rejectIfCancelled(reject);
 
             const nothingSelected = selectedIndex === -1;
@@ -89,7 +91,7 @@ async function askImpl<T extends Answer>(question: string, answers: T[]): Promis
             const selectedGameObject = answerGameObjects[selectedIndex];
             cursor.position.set(selectedGameObject.x - 2, selectedGameObject.y + selectedGameObject.height);
         });
-        cursor.anchor.set(1, 0.6);
+        cursor.pivot.set(18, 7);
         dialogContainer.addChild(cursor);
     })
     .catch(e => {

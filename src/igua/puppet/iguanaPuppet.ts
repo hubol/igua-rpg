@@ -7,7 +7,7 @@ import {merge} from "../../utils/merge";
 import {makeIguanaPuppetEngine} from "./engine";
 import {makeIguanaMods} from "./mods";
 
-interface IguanaPuppetArgs
+export interface IguanaPuppetArgs
 {
     body: DisplayObject;
     backLeftFoot: DisplayObject;
@@ -32,6 +32,19 @@ export function iguanaPuppet(args: IguanaPuppetArgs)
     return merge(puppetNoEngine, { engine, mods: makeIguanaMods(puppetNoEngine), walkTo: engine.walkTo });
 }
 
+export function iguanaHead(args: IguanaPuppetArgs) {
+    args.crest.pivot.x += 3;
+    args.crest.pivot.y += 5;
+
+    args.eyes.pivot.x += -7;
+    args.eyes.pivot.y += -3;
+
+    const head = new Container();
+
+    head.addChild(args.crest, args.head, args.eyes);
+    return head;
+}
+
 function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
 {
     args.body.pivot.y -= 5;
@@ -48,16 +61,8 @@ function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
     args.frontRightFoot.pivot.x += -12;
     args.frontRightFoot.pivot.y += -21;
 
-    args.crest.pivot.x += 3;
-    args.crest.pivot.y += 5;
-
-    args.eyes.pivot.x += -7;
-    args.eyes.pivot.y += -3;
-
-    const head = new Container();
+    const head = iguanaHead(args);
     head.pivot.set(-15, -5);
-
-    head.addChild(args.crest, args.head, args.eyes);
 
     const body = new Container();
     body.addChild(args.body, head);

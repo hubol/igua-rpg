@@ -3,7 +3,7 @@ import {
     CharacterBody, CharacterCrest, CharacterFoot,
     CharacterHead, CharacterMouthV, CharacterPupils, CharacterWhites
 } from "../textures";
-import {iguanaPuppet} from "../igua/puppet/iguanaPuppet";
+import {iguanaPuppet, IguanaPuppetArgs} from "../igua/puppet/iguanaPuppet";
 import {iguanaEyes} from "../igua/puppet/eyes";
 import {
     CharacterHurt, CharacterHurtDefense
@@ -19,8 +19,7 @@ import {scene} from "../igua/scene";
 import {followerNpc} from "./followerNpc";
 import {npc} from "./npc";
 
-function playerPuppet()
-{
+export function playerPuppetArgs() {
     const body = Sprite.from(CharacterBody);
     body.tint = 0xCC70BB;
 
@@ -42,7 +41,6 @@ function playerPuppet()
     mouthSprite.pivot.set(-10, -11);
     mouthSprite.tint = 0x9957AF;
     head.addChild(headSprite, mouthSprite);
-    head.cacheAsBitmap = true;
 
     const pupils = Sprite.from(CharacterPupils);
     pupils.tint = 0x9957AF;
@@ -50,7 +48,7 @@ function playerPuppet()
 
     const eyes = iguanaEyes({ eyelidColor: 0xB29400, pupils, eyeShape: Sprite.from(CharacterWhites) });
 
-    return iguanaPuppet({
+    return <IguanaPuppetArgs>{
         backRightFoot,
         frontLeftFoot,
         backLeftFoot,
@@ -59,7 +57,11 @@ function playerPuppet()
         head,
         eyes,
         frontRightFoot
-    });
+    };
+}
+
+function playerPuppet() {
+    return iguanaPuppet(playerPuppetArgs());
 }
 
 export let player: ReturnType<typeof createPlayer>;

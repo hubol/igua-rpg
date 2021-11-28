@@ -26,7 +26,6 @@ export let CrateWooden: PIXI.Texture;
 export let CrudeHouseB: PIXI.Texture;
 export let CrudeHouseC: PIXI.Texture;
 export let CrudeHouse: PIXI.Texture;
-export let Cursor: PIXI.Texture;
 export let DesertTempleLever: PIXI.Texture;
 export let DesertTemple: PIXI.Texture;
 export let GlowingCircle: PIXI.Texture;
@@ -149,9 +148,6 @@ export function loadTexturesAsync()
 
     const CrudeHousePath = require("./images/crude house.png");
     loader.add(CrudeHousePath); 
-
-    const CursorPath = require("./images/cursor.png");
-    loader.add(CursorPath); 
 
     const DesertTempleLeverPath = require("./images/desert temple lever.png");
     loader.add(DesertTempleLeverPath); 
@@ -316,7 +312,6 @@ export function loadTexturesAsync()
             CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;
             CrudeHouseC = resources[CrudeHouseCPath]?.texture as PIXI.Texture;
             CrudeHouse = resources[CrudeHousePath]?.texture as PIXI.Texture;
-            Cursor = resources[CursorPath]?.texture as PIXI.Texture;
             DesertTempleLever = resources[DesertTempleLeverPath]?.texture as PIXI.Texture;
             DesertTemple = resources[DesertTemplePath]?.texture as PIXI.Texture;
             GlowingCircle = resources[GlowingCirclePath]?.texture as PIXI.Texture;
