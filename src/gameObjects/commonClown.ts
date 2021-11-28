@@ -8,7 +8,7 @@ import {player} from "./player";
 import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {isOnScreen} from "../igua/logic/isOnScreen";
-import {ClownHurt, CommonClownLand} from "../sounds";
+import {ClownExplode, ClownHurt, CommonClownLand} from "../sounds";
 import {confetti} from "./confetti";
 import {progress} from "../igua/data/progress";
 import {valuable} from "./valuable";
@@ -83,6 +83,7 @@ export function commonClown() {
                 player.engine.knockback.x = (player.x - container.x) / 8;
                 health -= player.strength;
                 if (health <= 0) {
+                    ClownExplode.play();
                     const realDropOdds = Math.max(0.1, dropOdds);
                     const drop = Math.random() < realDropOdds;
                     if (drop)
