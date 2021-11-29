@@ -5,17 +5,18 @@ import { resolveRegion } from "./gameObjects/region";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
+import { resolveBoulder } from "./gameObjects/boulder";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { CloudLong } from "./textures";
+import { SpikyBrushB } from "./textures";
+import { SpikyBrushA } from "./textures";
 import { KeyRed } from "./textures";
 import { SignTavern } from "./textures";
 import { SignInn } from "./textures";
-import { SpikyBrushB } from "./textures";
-import { SpikyBrushA } from "./textures";
 import { CrudeHouse } from "./textures";
 import { CrudeHouseC } from "./textures";
 import { CrateWooden } from "./textures";
@@ -1368,6 +1369,28 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: KeyRed
 }),
+SpikyBrushA_5: resolveDecalGameObject({
+    x: 48,
+y: 232,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
+SpikyBrushB_7: resolveDecalGameObject({
+    x: 56,
+y: 160,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 1.5762825345220057,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
 CloudLong: resolveDecalGameObject({
     x: 648,
 y: 136,
@@ -1665,7 +1688,13 @@ Block_9: resolveBlock({"type":"Block","x":248,"y":240,"width":56,"height":48,"fl
 // @ts-ignore
 Block_10: resolveBlock({"type":"Block","x":232,"y":256,"width":16,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268","name":""}),
 // @ts-ignore
-StartDigging: resolveRegion({"type":"Region","x":168,"y":168,"width":64,"height":72,"flippedX":false,"flippedY":false,"uid":"25971607","name":"StartDigging"})
+StartDigging: resolveRegion({"type":"Region","x":168,"y":168,"width":64,"height":72,"flippedX":false,"flippedY":false,"uid":"25971607","name":"StartDigging"}),
+// @ts-ignore
+Boulder: resolveBoulder({"type":"Boulder","x":72,"y":228,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"15952797"}),
+// @ts-ignore
+Boulder_1: resolveBoulder({"type":"Boulder","x":48,"y":204,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"15952797"}),
+// @ts-ignore
+Block_11: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268","name":""})
 };
 }
 };
