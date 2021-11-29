@@ -125,7 +125,7 @@ function getGameObjectArgs(entity: Ogmo.Entity): GameObjectArgs
         height: entity.height,
         flippedX: !!entity.flippedX,
         flippedY: !!entity.flippedY,
-        uid: entity._eid,
+        uid: `${entity._eid}_${entity.id}`,
         ...entity.values
     };
 }
