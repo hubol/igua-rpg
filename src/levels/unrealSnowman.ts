@@ -21,6 +21,7 @@ import {desertBigKeyTextures} from "./desertTemple";
 import {jukebox} from "../igua/jukebox";
 import { Hemaboss1 } from "../musics";
 import {FlameOff, FlameOn, SnowmanDie, SnowmanHurt, SnowmanLand} from "../sounds";
+import {rng} from "../utils/rng";
 
 let holdingFlame = false;
 
@@ -84,8 +85,8 @@ const dust = () => {
     let life = 1;
     const baseWidth = 16;
     const baseHeight = 16;
-    const lifeDelta = 0.01 + Math.random() * 0.01;
-    let vspeed = -0.2 - Math.random() * 0.5;
+    const lifeDelta = 0.01 + rng() * 0.01;
+    let vspeed = -0.2 - rng() * 0.5;
     const graphics = new Graphics()
         .withStep(() => {
             life -= lifeDelta;

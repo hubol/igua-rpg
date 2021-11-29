@@ -12,6 +12,13 @@ declare global {
     }
 }
 
+declare global {
+    interface Array<T> {
+        x: number;
+        y: number;
+    }
+}
+
 Object.defineProperties(Array.prototype, {
     x: {
         get: function () {
@@ -68,9 +75,6 @@ Object.defineProperties(Object.prototype, {
     },
     vcpy: {
         value: function () {
-            if (Array.isArray(this)) {
-                return { x: this[0] ?? 0, y: this[1] ?? 0 };
-            }
             return { x: this.x, y: this.y };
         },
         enumerable: false,

@@ -18,6 +18,7 @@ import {sleep} from "../cutscene/sleep";
 import {move} from "../cutscene/move";
 import {show} from "../cutscene/dialog";
 import {wait} from "../cutscene/wait";
+import {rng} from "../utils/rng";
 
 function getDesertTownLevel()
 {
@@ -87,7 +88,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
 
         const nextCrate = Sprite.from(CrateWooden).at(
             lastStackedCrate
-                ? { x: lastStackedCrate.x + Math.round(-6 + Math.random() * 12), y: lastStackedCrate.y - lastStackedCrate.height }
+                ? { x: lastStackedCrate.x + Math.round(rng.polar * 6), y: lastStackedCrate.y - lastStackedCrate.height }
                 : level.DropCrateAnchor);
         scene.backgroundGameObjectStage.addChild(nextCrate);
         resolvePipeHorizontal({ ...vector(nextCrate), width: nextCrate.width, visible: false } as any);

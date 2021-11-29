@@ -6,6 +6,7 @@ import {game} from "../game";
 import {merge} from "../../utils/merge";
 import {makeIguanaPuppetEngine} from "./engine";
 import {makeIguanaMods} from "./mods";
+import {rng} from "../../utils/rng";
 
 export interface IguanaPuppetArgs
 {
@@ -99,7 +100,7 @@ function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
             if (player.canBlink)
             {
                 if (ticksUntilBlink-- <= 0) {
-                    ticksUntilBlink = 120 + Math.random() * 120;
+                    ticksUntilBlink = 120 + rng() * 120;
                     player.isClosingEyes = true;
                 }
 

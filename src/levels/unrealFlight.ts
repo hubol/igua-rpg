@@ -9,6 +9,7 @@ import {portalFluidConfig} from "../gameObjects/portalFluid";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
+import {rng} from "../utils/rng";
 
 export function UnrealFlight()
 {
@@ -30,18 +31,18 @@ export function UnrealFlight()
 
 function cloud()
 {
-    const speed = 0.5 + Math.random() * 2.5;
+    const speed = 0.5 + rng() * 2.5;
     const sprite = Sprite.from(CloudLong)
         .withStep(() => {
             sprite.x -= speed;
             if (sprite.x + sprite.width < scene.camera.x)
             {
                 sprite.x = scene.camera.x + scene.camera.width;
-                sprite.y = scene.camera.y + scene.camera.height * Math.random();
+                sprite.y = scene.camera.y + scene.camera.height * rng();
             }
         })
-        .at({ x: scene.camera.width * Math.random(), y: scene.camera.height * Math.random() }.add(scene.camera));
-    if (Math.random() > 0.5)
+        .at({ x: scene.camera.width * rng(), y: scene.camera.height * rng() }.add(scene.camera));
+    if (rng.bool)
         sprite.scale.y *= -1;
     scene.backgroundGameObjectStage.addChild(sprite);
 }

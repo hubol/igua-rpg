@@ -12,6 +12,7 @@ import {ClownExplode, ClownHurt, CommonClownLand} from "../sounds";
 import {confetti} from "./confetti";
 import {progress} from "../igua/data/progress";
 import {valuable} from "./valuable";
+import {rng} from "../utils/rng";
 
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
@@ -76,7 +77,7 @@ export function commonClown() {
         container.y += container.vspeed;
 
         if (player.collides(sprite) && isPlayerMoving()) {
-            container.vspeed = Math.min(-Math.random(), container.vspeed);
+            container.vspeed = Math.min(-rng(), container.vspeed);
             if (Math.abs(knockbackSpeed) < 0.5)
                 knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
             if (invulnerable <= 0) {
@@ -85,7 +86,7 @@ export function commonClown() {
                 if (health <= 0) {
                     ClownExplode.play();
                     const realDropOdds = Math.max(0.1, dropOdds);
-                    const drop = Math.random() < realDropOdds;
+                    const drop = rng() < realDropOdds;
                     if (drop)
                         scene.gameObjectStage.addChild(valuable(container.x, container.y, undefined, "ValuableOrange"));
 

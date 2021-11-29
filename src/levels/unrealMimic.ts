@@ -14,6 +14,7 @@ import {wait} from "../cutscene/wait";
 import {waitHold} from "../cutscene/waitHold";
 import {sleep} from "../cutscene/sleep";
 import {MimicCorrect} from "../sounds";
+import {rng} from "../utils/rng";
 
 function applyUnrealMimicLevel()
 {
@@ -87,7 +88,7 @@ function enrichMimic(level: UnrealMimicLevel)
     level.Mimic.canBlink = false;
 
     const correct = () => {
-        colorMatrixFilter.matrix = [0, 0, 0, 0, Math.random(), 0, 0, 0, Math.random(), 0, 0, 0, 0, Math.random(), 0, 0, 0, 0, 1, 0];
+        colorMatrixFilter.matrix = [0, 0, 0, 0, rng(), 0, 0, 0, rng(), 0, 0, 0, 0, rng(), 0, 0, 0, 0, 1, 0];
         MimicCorrect.play();
     }
 
