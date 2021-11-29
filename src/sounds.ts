@@ -12,6 +12,11 @@ export const BigKeyCollected = new Howl({
     
 });
 
+export const BoulderBless = new Howl({
+    src: [require("./sound/boulder bless.ogg"), require("./sound/boulder bless.mp3")],
+    
+});
+
 export const CharacterHitCeiling = new Howl({
     src: [require("./sound/character hit ceiling.ogg"), require("./sound/character hit ceiling.mp3")],
     

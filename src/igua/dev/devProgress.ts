@@ -11,5 +11,6 @@ export function devProgress()
     // progress.flags.desert.diguaIsFollowing = true;
     progress.valuables = 100;
     progress.levelName = "DesertInn";
+    progress.flags.desert.bigKey.reward = true;
     // progress.flags.diguaIsFollowing = true;
 }

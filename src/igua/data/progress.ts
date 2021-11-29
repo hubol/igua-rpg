@@ -8,6 +8,7 @@ export function getInitialProgress()
         valuables: 0,
         level: 1,
         gotLevelValuable: new Set<string>(),
+        clearedBoulder: new Set<string>(),
         flags: getInitialFlags(),
         levelName: "DesertTown",
         checkpointName: "none"
