@@ -3,14 +3,20 @@ import {isPlayerInteractingWith} from "../../igua/logic/isPlayerInteractingWith"
 import {PropertiesOf} from "../types/propertiesOf";
 import {CollectGeneric} from "../../sounds";
 import {player} from "../../gameObjects/player";
+import {scene} from "../../igua/scene";
 
 declare global {
     namespace PIXI {
         export interface DisplayObject {
+            show(): this;
             withInteraction(interaction: () => void): this;
             asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>);
         }
     }
+}
+
+PIXI.DisplayObject.prototype.show = function () {
+    return scene.gameObjectStage.addChild(this);
 }
 
 PIXI.DisplayObject.prototype.asCollectible = function (object, key)

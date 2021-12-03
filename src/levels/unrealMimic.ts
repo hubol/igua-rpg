@@ -15,6 +15,7 @@ import {waitHold} from "../cutscene/waitHold";
 import {sleep} from "../cutscene/sleep";
 import {MimicCorrect} from "../sounds";
 import {rng} from "../utils/rng";
+import {confetti} from "../gameObjects/confetti";
 
 function applyUnrealMimicLevel()
 {
@@ -136,6 +137,7 @@ function enrichMimic(level: UnrealMimicLevel)
         defeat()
         {
             level.PlayerFloorBlock.destroy();
+            confetti().at(level.Mimic).show();
             scene.gameObjectStage.withAsync(async () => {
                 await Promise.all([
                     lerp(level.Mimic.scale, "x").to(0).over(1000),

@@ -1,7 +1,6 @@
 import {BitmapText, Container} from "pixi.js";
 import {AcrobatixFont} from "../../../fonts";
 import {IguanaPuppetMod} from "../mods";
-import {scene} from "../../scene";
 import {sleep} from "../../../cutscene/sleep";
 import {rng} from "../../../utils/rng";
 
@@ -24,8 +23,7 @@ export const Sleepy: IguanaPuppetMod = puppet => {
                             bitmapText.y += rng() * -8;
                         }
                         bitmapText.destroy();
-                    });
-                scene.gameObjectStage.addChild(bitmapText);
+                    }).show();
             }
         })
         .on("removed", () => puppet.canBlink = true);

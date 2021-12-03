@@ -22,6 +22,7 @@ import {jukebox} from "../igua/jukebox";
 import { Hemaboss1 } from "../musics";
 import {FlameOff, FlameOn, SnowmanDie, SnowmanHurt, SnowmanLand} from "../sounds";
 import {rng} from "../utils/rng";
+import {confetti} from "../gameObjects/confetti";
 
 let holdingFlame = false;
 
@@ -122,6 +123,7 @@ const snowman = (groundY, retreatX) => {
         dust().at(container);
         if (health < 0)
         {
+            confetti().at(container).show();
             SnowmanDie.play();
             const key = bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[2], "piece3")
                 .at(retreatX - 40, 0)

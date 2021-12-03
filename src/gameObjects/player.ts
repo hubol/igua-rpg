@@ -116,6 +116,8 @@ function createPlayer()
 
     const engine = player.engine;
 
+    let bufferedJump = 0;
+
     const step = () => {
         if (player.invulnerableFrameCount <= 0)
             player.visible = true;
@@ -157,12 +159,18 @@ function createPlayer()
             return;
         }
 
-        if (engine.coyote > 0 && playerKey.justWentDown("Space"))
+        if (playerKey.justWentDown("Space"))
+            bufferedJump = 5;
+        if (engine.coyote > 0 && bufferedJump)
         {
             engine.coyote = 0;
             player.vspeed = -3;
             engine.isOnGround = false;
         }
+
+        if (bufferedJump > 0)
+            bufferedJump--;
+
         if (player.vspeed !== 0 && playerKey.isDown("Space"))
         {
             if (player.vspeed < 0)
