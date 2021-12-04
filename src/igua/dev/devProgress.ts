@@ -10,7 +10,7 @@ export function devProgress()
     progress.flags.desert.key.fromDiggingInTown = true;
     // progress.flags.desert.diguaIsFollowing = true;
     progress.valuables = 100;
-    progress.levelName = "DesertTemple";
+    progress.levelName = "DesertOutskirts";
     progress.flags.desert.bigKey.reward = true;
     // progress.flags.diguaIsFollowing = true;
 }
