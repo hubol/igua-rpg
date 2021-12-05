@@ -1,4 +1,5 @@
 import {getInitialFlags} from "./flags";
+import {PotionType} from "../inventory/potions";
 
 export function getInitialProgress()
 {
@@ -9,6 +10,7 @@ export function getInitialProgress()
         level: 1,
         gotLevelValuable: new Set<string>(),
         clearedBoulder: new Set<string>(),
+        shopPurchases: {} as Record<PotionType, number | undefined>,
         flags: getInitialFlags(),
         levelName: "DesertTown",
         checkpointName: "none"

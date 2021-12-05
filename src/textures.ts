@@ -4,6 +4,7 @@ import * as PIXI from "pixi.js";
 
 export let Anchor: PIXI.Texture;
 export let BigKey1: PIXI.Texture;
+export let BitterMedicinePotion: PIXI.Texture;
 export let BlueGradient: PIXI.Texture;
 export let BlueValuable: PIXI.Texture;
 export let Boulder: PIXI.Texture;
@@ -16,11 +17,13 @@ export let CharacterHead: PIXI.Texture;
 export let CharacterMouthV: PIXI.Texture;
 export let CharacterPupils: PIXI.Texture;
 export let CharacterWhites: PIXI.Texture;
+export let ClawPowderPotion: PIXI.Texture;
 export let CloudLong: PIXI.Texture;
 export let ClownSpikeBall: PIXI.Texture;
 export let Cobweb: PIXI.Texture;
 export let Column: PIXI.Texture;
 export let CommonClown: PIXI.Texture;
+export let CommonPoisonPotion: PIXI.Texture;
 export let ConfettiPiece: PIXI.Texture;
 export let CracksA: PIXI.Texture;
 export let CrateWooden: PIXI.Texture;
@@ -69,9 +72,13 @@ export let SignTavern: PIXI.Texture;
 export let Sign: PIXI.Texture;
 export let Snowman: PIXI.Texture;
 export let Sparkle: PIXI.Texture;
+export let SpicedNectarPotion: PIXI.Texture;
 export let SpikyBrushA: PIXI.Texture;
 export let SpikyBrushB: PIXI.Texture;
+export let SweetBerryPotion: PIXI.Texture;
 export let Torch: PIXI.Texture;
+export let ValuableIcon: PIXI.Texture;
+export let WonderBallonPotion: PIXI.Texture;
 
 
 export function loadTexturesAsync()
@@ -83,6 +90,9 @@ export function loadTexturesAsync()
 
     const BigKey1Path = require("./images/big key1.png");
     loader.add(BigKey1Path); 
+
+    const BitterMedicinePotionPath = require("./images/bitter medicine potion.png");
+    loader.add(BitterMedicinePotionPath); 
 
     const BlueGradientPath = require("./images/blue gradient.png");
     loader.add(BlueGradientPath); 
@@ -120,6 +130,9 @@ export function loadTexturesAsync()
     const CharacterWhitesPath = require("./images/character/whites.png");
     loader.add(CharacterWhitesPath); 
 
+    const ClawPowderPotionPath = require("./images/claw powder potion.png");
+    loader.add(ClawPowderPotionPath); 
+
     const CloudLongPath = require("./images/cloud long.png");
     loader.add(CloudLongPath); 
 
@@ -134,6 +147,9 @@ export function loadTexturesAsync()
 
     const CommonClownPath = require("./images/common clown.png");
     loader.add(CommonClownPath); 
+
+    const CommonPoisonPotionPath = require("./images/common poison potion.png");
+    loader.add(CommonPoisonPotionPath); 
 
     const ConfettiPiecePath = require("./images/confetti piece.png");
     loader.add(ConfettiPiecePath); 
@@ -279,14 +295,26 @@ export function loadTexturesAsync()
     const SparklePath = require("./images/sparkle.png");
     loader.add(SparklePath); 
 
+    const SpicedNectarPotionPath = require("./images/spiced nectar potion.png");
+    loader.add(SpicedNectarPotionPath); 
+
     const SpikyBrushAPath = require("./images/spiky brush a.png");
     loader.add(SpikyBrushAPath); 
 
     const SpikyBrushBPath = require("./images/spiky brush b.png");
     loader.add(SpikyBrushBPath); 
 
+    const SweetBerryPotionPath = require("./images/sweet berry potion.png");
+    loader.add(SweetBerryPotionPath); 
+
     const TorchPath = require("./images/torch.png");
     loader.add(TorchPath); 
+
+    const ValuableIconPath = require("./images/valuable icon.png");
+    loader.add(ValuableIconPath); 
+
+    const WonderBallonPotionPath = require("./images/wonder ballon potion.png");
+    loader.add(WonderBallonPotionPath); 
 
     
     return new Promise<void>(resolve =>
@@ -294,6 +322,7 @@ export function loadTexturesAsync()
         loader.load((_, resources) => {
             Anchor = resources[AnchorPath]?.texture as PIXI.Texture;
             BigKey1 = resources[BigKey1Path]?.texture as PIXI.Texture;
+            BitterMedicinePotion = resources[BitterMedicinePotionPath]?.texture as PIXI.Texture;
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
             BlueValuable = resources[BlueValuablePath]?.texture as PIXI.Texture;
             Boulder = resources[BoulderPath]?.texture as PIXI.Texture;
@@ -306,11 +335,13 @@ export function loadTexturesAsync()
             CharacterMouthV = resources[CharacterMouthVPath]?.texture as PIXI.Texture;
             CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
+            ClawPowderPotion = resources[ClawPowderPotionPath]?.texture as PIXI.Texture;
             CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
             ClownSpikeBall = resources[ClownSpikeBallPath]?.texture as PIXI.Texture;
             Cobweb = resources[CobwebPath]?.texture as PIXI.Texture;
             Column = resources[ColumnPath]?.texture as PIXI.Texture;
             CommonClown = resources[CommonClownPath]?.texture as PIXI.Texture;
+            CommonPoisonPotion = resources[CommonPoisonPotionPath]?.texture as PIXI.Texture;
             ConfettiPiece = resources[ConfettiPiecePath]?.texture as PIXI.Texture;
             CracksA = resources[CracksAPath]?.texture as PIXI.Texture;
             CrateWooden = resources[CrateWoodenPath]?.texture as PIXI.Texture;
@@ -359,9 +390,13 @@ export function loadTexturesAsync()
             Sign = resources[SignPath]?.texture as PIXI.Texture;
             Snowman = resources[SnowmanPath]?.texture as PIXI.Texture;
             Sparkle = resources[SparklePath]?.texture as PIXI.Texture;
+            SpicedNectarPotion = resources[SpicedNectarPotionPath]?.texture as PIXI.Texture;
             SpikyBrushA = resources[SpikyBrushAPath]?.texture as PIXI.Texture;
             SpikyBrushB = resources[SpikyBrushBPath]?.texture as PIXI.Texture;
+            SweetBerryPotion = resources[SweetBerryPotionPath]?.texture as PIXI.Texture;
             Torch = resources[TorchPath]?.texture as PIXI.Texture;
+            ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
+            WonderBallonPotion = resources[WonderBallonPotionPath]?.texture as PIXI.Texture;
 
             resolve();
         });

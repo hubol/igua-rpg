@@ -959,6 +959,38 @@ ValuableBlue_1: resolveValuableBlue({"type":"ValuableBlue","x":492,"y":318,"flip
 }
 };
 
+export const DesertShopArgs = {
+    width: 416,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Door: resolveDoor({"type":"Door","x":48,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"DesertTown","checkpointName":"FromShop","name":""}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":416,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":""}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":""}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":16,"y":0,"width":368,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":""}),
+Player: {"type":"Player","x":96,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_4","faceRight":true},
+// @ts-ignore
+Shopkeeper: resolveNpc({"type":"NpcIguana","x":344,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_5","name":"Shopkeeper","style":3}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":32,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_17"}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":224,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_18"}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":160,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_19"}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":192,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":""}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":352,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_21"}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":384,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268_24","name":""})
+};
+}
+};
+
 export const DesertTempleArgs = {
     width: 512,
 height: 256,
@@ -1700,7 +1732,7 @@ DropCrateRegion: resolveRegion({"type":"Region","x":1376,"y":288,"width":40,"hei
 // @ts-ignore
 InnDoor: resolveDoor({"type":"Door","x":568,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988_23","levelName":"DesertInn","checkpointName":"","name":"InnDoor"}),
 // @ts-ignore
-BarDoor: resolveDoor({"type":"Door","x":424,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988_26","levelName":"","checkpointName":"","name":"BarDoor"}),
+BarDoor: resolveDoor({"type":"Door","x":424,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988_26","levelName":"DesertShop","checkpointName":"","name":"BarDoor"}),
 FromInn: {"type":"Checkpoint","x":552,"y":240,"flippedX":false,"flippedY":false,"uid":"55940370_27","name":"FromInn","faceRight":false},
 // @ts-ignore
 Gate: resolveGate({"type":"Gate","x":2008,"y":240,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_28","levelName":"DesertField","checkpointName":"FromTown"}),
@@ -1754,7 +1786,8 @@ Boulder: resolveBoulder({"type":"Boulder","x":72,"y":228,"width":32,"height":32,
 // @ts-ignore
 Boulder_1: resolveBoulder({"type":"Boulder","x":48,"y":204,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"15952797_53"}),
 // @ts-ignore
-Block_11: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_55","name":""})
+Block_11: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_55","name":""}),
+FromShop: {"type":"Checkpoint","x":472,"y":240,"flippedX":false,"flippedY":false,"uid":"55940370_56","name":"FromShop","faceRight":true}
 };
 }
 };
