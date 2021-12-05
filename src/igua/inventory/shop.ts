@@ -59,7 +59,6 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
     const options: Container[] = [];
     let y = 1;
 
-    // const optionsLength = Math.min(5, types.length);
     const optionsLength = types.length + 1;
     for (let i = 0; i < optionsLength; i++) {
         const o = option();
@@ -92,6 +91,24 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
     c.addChild(...potionContents);
 
     let selectedIndex = -1;
+
+    const tip = new Container();
+    const tipGfx = new Graphics()
+        .lineStyle(3, 0x00FF00, 1, 0)
+        .beginFill(0x005870)
+        .drawRect(0, 0, 122, 54);
+    const tipText = new BitmapText('', { fontName: AcrobatixFont.font, maxWidth: tipGfx.width - 10 }).at(5, 2);
+    tip.addChild(tipGfx, tipText);
+    tip.withStep(() => {
+       const type = types[selectedIndex];
+       tip.visible = !!type;
+       if (!tip.visible)
+           return;
+       tipText.text = potions[type].description;
+    });
+    tip.y = Math.max(64, Math.min(192, rect1[3] - rect1[1] - tipGfx.height));
+
+    c.addChild(tip);
 
     const cursor = iguanaHead(playerPuppetArgs()).withStep(() => {
         const nothingSelected = selectedIndex === -1;
