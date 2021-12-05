@@ -1,5 +1,5 @@
 import {getCost, potions, PotionType} from "./potions";
-import {BitmapText, Container, DisplayObject, Graphics, Rectangle, Sprite} from "pixi.js";
+import {BitmapText, Container, Graphics, Sprite} from "pixi.js";
 import {game} from "../game";
 import {merge} from "../../utils/merge";
 import {AcrobatixFont} from "../../fonts";
@@ -19,7 +19,7 @@ function option() {
     const graphics = new Graphics()
         .lineStyle(3, 0x00FF00, 1, 0)
         .beginFill(0x005870)
-        .drawRect(0, 0, 134, 28)
+        .drawRect(0, 0, 134, 26)
     graphics.visible = false;
     graphics.x = (256 - graphics.width);
     return graphics;
@@ -56,7 +56,7 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
     const c = new Container();
     game.hudStage.addChild(c);
     const options: Container[] = [];
-    let y = 0;
+    let y = 1;
 
     // const optionsLength = Math.min(5, types.length);
     const optionsLength = types.length + 1;
@@ -69,7 +69,7 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
     }
 
     const rect1 = [options[0].x, 0, 256, options[options.length - 2].y + options[options.length - 2].height + 3];
-    const rect2 = [193, 0, 256, options[options.length - 1].y + options[options.length - 1].height - 6];
+    const rect2 = [193, 0, 256, options[options.length - 1].y + options[options.length - 1].height - 4];
     const rects = [rect1, rect2];
 
     const graphics = new Graphics();
