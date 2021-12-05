@@ -8,6 +8,7 @@ import {iguanaHead} from "../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../gameObjects/player";
 import {Key} from "../../utils/browser/key";
 import {SelectOption} from "../../sounds";
+import {cyclic} from "../../utils/math/number";
 
 export function shop(...potions: PotionType[]) {
     return new Promise<void>(r => {
@@ -90,7 +91,6 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
     potionContents.push(potionContent());
     c.addChild(...potionContents);
 
-    let top = 0;
     let selectedIndex = -1;
 
     const cursor = iguanaHead(playerPuppetArgs()).withStep(() => {
@@ -113,27 +113,13 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
         }
 
         if (!nothingSelected) {
-            if (selectedIndex < 0) {
-                selectedIndex = potionContents.length - 1;
-                top = Math.max(0, options.length - potionContents.length);
-            }
-            if (selectedIndex === potionContents.length) {
-                selectedIndex = 0;
-                top = 0;
-            }
-            if (selectedIndex === top + options.length ) {
-                top += 1;
-            }
-            if (selectedIndex === top - 1 ) {
-                top -= 1;
-            }
+            selectedIndex = cyclic(selectedIndex, 0, potionContents.length);
         }
 
         if (selectedIndex !== -1) {
-            const index = selectedIndex - top;
-            const option = options[index];
+            const option = options[selectedIndex];
             cursor.at(option).add(option.width - 8, 10);
-            const doneSelected = index === options.length - 1;
+            const doneSelected = selectedIndex === options.length - 1;
             if (doneSelected)
                 cursor.y -= 8;
 
@@ -151,7 +137,7 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
 
         potionContents.forEach(x => x.put(undefined));
         for (let i = 0; i < options.length; i++)
-            potionContents[top + i].put(options[i]);
+            potionContents[i].put(options[i]);
         cursor.visible = selectedIndex !== -1;
     });
 
