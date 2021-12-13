@@ -49,7 +49,8 @@ jobs:
     steps:
       - run: >
           git config --global user.email "hubol.gordon@gmail.com" &&
-          git config --global user.name "hubol"
+          git config --global user.name "hubol" &&
+          heroku auth:login
       - run: >
           git init &&
           heroku git:remote -a igua-rpg
