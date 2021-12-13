@@ -2,7 +2,7 @@ import {progress} from "../data/progress";
 import {PotionType} from "./potions";
 
 export const inventory = {
-    slotsCount: 24,
+    slotsCount: 12,
     get usedSlotsCount() {
         return progress.inventory.filter(x => x).length;
     },

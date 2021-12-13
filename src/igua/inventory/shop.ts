@@ -3,8 +3,8 @@ import {BitmapText, Container, Graphics, Sprite} from "pixi.js";
 import {game} from "../game";
 import {merge} from "../../utils/merge";
 import {AcrobatixFont} from "../../fonts";
-import {CrateWooden, ValuableIcon} from "../../textures";
-import {iguanaHead, iguanaPuppetNoEngine} from "../puppet/iguanaPuppet";
+import {BackpackIcon, ValuableIcon} from "../../textures";
+import {iguanaHead} from "../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../gameObjects/player";
 import {Key} from "../../utils/browser/key";
 import {SelectOption} from "../../sounds";
@@ -46,9 +46,19 @@ function potionContent(type?: PotionType) {
             .withStep(() => {
                 const cost = getCost(type);
                 price.text = cost.toString();
-                price.tint = progress.valuables < cost || inventory.isFull ? 0xff0000 : 0xffffff;
+                price.tint = progress.valuables < cost ? 0xff0000 : 0xffffff;
             });
-        container.addChild(potionSprite, name, valuableIcon, price);
+        const backpackIcon = Sprite.from(BackpackIcon).at(64, 12);
+        const held = new BitmapText('', { fontName: AcrobatixFont.font }).at(backpackIcon.x + 11, 9)
+            .withStep(() => {
+                const count = inventory.count(type);
+                backpackIcon.visible = count > 0;
+                held.visible = backpackIcon.visible;
+
+                held.text = count.toString();
+                held.tint = inventory.isFull ? 0xff0000 : 0xffffff;
+            });
+        container.addChild(potionSprite, name, valuableIcon, price, backpackIcon, held);
     }
     else {
         const done = new BitmapText('Done', { fontName: AcrobatixFont.font }).at(77, -1);
@@ -57,53 +67,6 @@ function potionContent(type?: PotionType) {
 
     container.visible = false;
     return container;
-}
-
-function hh() {
-    const held = merge(new Container(), { count: 0 });
-    const heldScene = new Container();
-    heldScene.scale.set(0.5, 0.5);
-    const heldText = new BitmapText('', { fontName: AcrobatixFont.font }).at(20, -48);
-    heldText.tint = 0x00ff00;
-
-    const crates: Sprite[] = [];
-
-    let rowSize = 5;
-    let y = 0;
-    const dx = 28;
-    const dy = 24;
-    while (rowSize > 0) {
-        let x = dx * rowSize / 2;
-        for (let i = 0; i < rowSize; i++) {
-            crates.push(Sprite.from(CrateWooden).at(x, y));
-            x -= dx;
-        }
-        rowSize--;
-        y -= dy;
-    }
-
-    const player = iguanaPuppetNoEngine(playerPuppetArgs());
-
-    heldScene.addChild(...crates, player);
-
-    held.addChild(heldScene, heldText);
-    held.withStep(() => {
-        let lastVisible: Sprite | null = null;
-        for (let i = 0; i < crates.length; i++) {
-            crates[i].visible = held.count >= i + 1;
-            if (crates[i].visible)
-                lastVisible = crates[i];
-        }
-        player.visible = !!lastVisible;
-        if (lastVisible)
-            player.at(lastVisible).add(10, -10);
-        const extra = held.count - crates.length;
-        heldText.visible = extra > 0;
-        if (heldText.visible)
-            heldText.text = `+${extra}`;
-    });
-
-    return held;
 }
 
 type PotionContent = ReturnType<typeof potionContent>;
@@ -165,8 +128,6 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
         }
     }
 
-    const held = hh().at(50, -12);
-
     const tip = new Container();
     const tipGfx = new Graphics()
         .lineStyle(3, 0x00FF00, 1, 0)
@@ -174,18 +135,20 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
         .drawRect(0, 0, 122, 54);
     const tipText = new BitmapText('', { fontName: AcrobatixFont.font, maxWidth: tipGfx.width - 10 }).at(5, 2);
 
-    tip.addChild(tipGfx, tipText, held);
+    tip.addChild(tipGfx, tipText);
     tip.withStep(() => {
        const type = types[selectedIndex];
-       held.count = inventory.count(type);
        tip.visible = !!type;
        if (!tip.visible)
            return;
        tipText.text = potions[type].description;
     });
     tip.y = Math.max(64, Math.min(192, rect1[3] - rect1[1] - tipGfx.height));
+    const inventoryFull = new BitmapText('Your inventory is full.', { fontName: AcrobatixFont.font }).at(2, tip.y + tipGfx.height);
+    inventoryFull.tint = 0xff0000;
+    inventoryFull.withStep(() => inventoryFull.visible = inventory.isFull);
 
-    c.addChild(tip);
+    c.addChild(tip, inventoryFull);
 
     const cursor = iguanaHead(playerPuppetArgs()).withStep(() => {
         const nothingSelected = selectedIndex === -1;

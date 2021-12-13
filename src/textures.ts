@@ -3,6 +3,7 @@ import * as PIXI from "pixi.js";
 // This file is generated. Do not touch.
 
 export let Anchor: PIXI.Texture;
+export let BackpackIcon: PIXI.Texture;
 export let BigKey1: PIXI.Texture;
 export let BitterMedicinePotion: PIXI.Texture;
 export let BlueGradient: PIXI.Texture;
@@ -87,6 +88,9 @@ export function loadTexturesAsync()
 
     const AnchorPath = require("./images/anchor.png");
     loader.add(AnchorPath); 
+
+    const BackpackIconPath = require("./images/backpack icon.png");
+    loader.add(BackpackIconPath); 
 
     const BigKey1Path = require("./images/big key1.png");
     loader.add(BigKey1Path); 
@@ -321,6 +325,7 @@ export function loadTexturesAsync()
     {
         loader.load((_, resources) => {
             Anchor = resources[AnchorPath]?.texture as PIXI.Texture;
+            BackpackIcon = resources[BackpackIconPath]?.texture as PIXI.Texture;
             BigKey1 = resources[BigKey1Path]?.texture as PIXI.Texture;
             BitterMedicinePotion = resources[BitterMedicinePotionPath]?.texture as PIXI.Texture;
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
