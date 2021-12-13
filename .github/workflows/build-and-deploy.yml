@@ -49,8 +49,12 @@ jobs:
     steps:
       - run: >
           git config --global user.email "hubol.gordon@gmail.com" &&
-          git config --global user.name "hubol" &&
-          heroku auth:login
+          git config --global user.name "hubol"
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_email: hubol.gordon@gmail.com
+          justlogin: true
       - run: >
           git init &&
           heroku git:remote -a igua-rpg
