@@ -64,7 +64,7 @@ jobs:
       - run: >
           git add . &&
           git commit -am "${{ github.event.commits[0].message }}" &&
-          git push heroku main
+          git push heroku master -f
   cleanup:
     needs: [deploy-itch, deploy-heroku]
     runs-on: ubuntu-latest
