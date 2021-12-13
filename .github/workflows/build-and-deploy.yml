@@ -48,6 +48,9 @@ jobs:
       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
     steps:
       - run: >
+          git config --global user.email "hubol.gordon@gmail.com" &&
+          git config --global user.name "Hubol"
+      - run: >
           git init &&
           heroku git:remote -a igua-rpg
       - uses: actions/download-artifact@v2
@@ -62,3 +65,10 @@ jobs:
           git add . &&
           git commit -am "${{ github.event.commits[0].message }}" &&
           git push heroku main
+  cleanup:
+    needs: [deploy-itch, deploy-heroku]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: build
