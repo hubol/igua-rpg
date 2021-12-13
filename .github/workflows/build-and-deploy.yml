@@ -1,0 +1,26 @@
+name: Build and push
+on:
+  push:
+    branches: [main]
+jobs:
+  build-and-push:
+    name: 🍆
+    runs-on: ubuntu-latest
+    steps:
+      - run: apt-get install -y sox libsox-fmt-mp3
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
+      - uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: html5
+          ITCH_GAME: igua-rpg
+          ITCH_USER: hubol
+          PACKAGE: dist
