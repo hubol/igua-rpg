@@ -3,7 +3,13 @@ on:
   push:
     branches: [main]
 jobs:
-  build-and-push:
+  cancel-previous:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+  build:
     name: 🍆
     runs-on: ubuntu-latest
     steps:
@@ -17,21 +23,41 @@ jobs:
           # cache: 'npm'
       - run: npm install
       - run: npm run build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: dist
+  deploy-itch:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: html5
           ITCH_GAME: igua-rpg
           ITCH_USER: hubol
-          PACKAGE: dist
+          PACKAGE: build
+  deploy-heroku:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build
       # https://izy.codes/heroku-deploy-static-html-en/
       - run: >
           echo '<?php include_once("index.html"); ?>' > index.php &&
           echo '{}' > composer.json
-        working-directory: dist
+        working-directory: build
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: igua-rpg
           heroku_email: hubol.gordon@gmail.com
-          appdir: dist
+          appdir: build
