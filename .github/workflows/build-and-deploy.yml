@@ -7,7 +7,7 @@ jobs:
     name: 🍆
     runs-on: ubuntu-latest
     steps:
-      - run: apt-get install -y sox libsox-fmt-mp3
+      - run: sudo apt-get install -y sox libsox-fmt-mp3
       - uses: actions/checkout@v2
         with:
           lfs: true
