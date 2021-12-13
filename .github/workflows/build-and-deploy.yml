@@ -24,3 +24,14 @@ jobs:
           ITCH_GAME: igua-rpg
           ITCH_USER: hubol
           PACKAGE: dist
+      # https://izy.codes/heroku-deploy-static-html-en/
+      - run: >
+          echo '<?php include_once("index.html"); ?>' > index.php &&
+          echo '{}' > composer.json
+        working-directory: dist
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: igua-rpg
+          heroku_email: hubol.gordon@gmail.com
+          appdir: dist
