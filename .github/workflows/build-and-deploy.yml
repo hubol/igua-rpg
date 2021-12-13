@@ -10,7 +10,6 @@ jobs:
         with:
           access_token: ${{ github.token }}
   build:
-    name: 🍆
     runs-on: ubuntu-latest
     steps:
       - run: sudo apt-get install -y sox libsox-fmt-mp3
@@ -45,19 +44,21 @@ jobs:
   deploy-heroku:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
     steps:
+      - run: >
+          git init &&
+          heroku git:remote -a igua-rpg
       - uses: actions/download-artifact@v2
         with:
           name: build
-          path: build
       # https://izy.codes/heroku-deploy-static-html-en/
       - run: >
           echo '<?php include_once("index.html"); ?>' > index.php &&
           echo '{}' > composer.json
-        working-directory: build
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: igua-rpg
-          heroku_email: hubol.gordon@gmail.com
-          appdir: build
+      - run: ls
+      - run: >
+          git add . &&
+          git commit -am "${{ github.event.commits[0].message }}" &&
+          git push heroku main
