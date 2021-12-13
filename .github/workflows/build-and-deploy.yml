@@ -49,7 +49,8 @@ jobs:
     steps:
       - run: >
           git config --global user.email "hubol.gordon@gmail.com" &&
-          git config --global user.name "Hubol"
+          git config --global user.name "Hubol" &&
+          heroku login
       - run: >
           git init &&
           heroku git:remote -a igua-rpg
@@ -60,7 +61,6 @@ jobs:
       - run: >
           echo '<?php include_once("index.html"); ?>' > index.php &&
           echo '{}' > composer.json
-      - run: ls
       - run: >
           git add . &&
           git commit -am "${{ github.event.commits[0].message }}" &&
