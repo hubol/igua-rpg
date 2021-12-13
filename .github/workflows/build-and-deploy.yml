@@ -14,7 +14,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
-          cache: 'npm'
+          # https://github.com/actions/cache/issues/698
+          # uncomment sometime
+          # cache: 'npm'
       - run: npm install
       - run: npm run build
       - uses: josephbmanley/butler-publish-itchio-action@master
