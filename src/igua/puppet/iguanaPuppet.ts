@@ -46,7 +46,7 @@ export function iguanaHead(args: IguanaPuppetArgs) {
     return head;
 }
 
-function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
+export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
 {
     args.body.pivot.y -= 5;
 
@@ -164,9 +164,9 @@ function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
         head.y = Math.round(roundedDuckUnit * 2);
 
         if (player.hspeed < 0)
-            player.scale.x = -1;
+            player.scale.x = -Math.abs(player.scale.x);
         else if (player.hspeed > 0)
-            player.scale.x = 1;
+            player.scale.x = Math.abs(player.scale.x);
     };
 
     player.withStep(puppetStep);

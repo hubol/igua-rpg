@@ -11,6 +11,7 @@ export function getInitialProgress()
         gotLevelValuable: new Set<string>(),
         clearedBoulder: new Set<string>(),
         shopPurchases: {} as Record<PotionType, number | undefined>,
+        inventory: [] as (PotionType | undefined)[],
         flags: getInitialFlags(),
         levelName: "DesertTown",
         checkpointName: "none"
