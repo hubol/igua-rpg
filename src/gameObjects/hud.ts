@@ -23,10 +23,14 @@ export function hud()
         })
         .at(2, 15);
 
+    const poisoned = IguaText.Large("You are poisoned", { tint: 0x00ff00 })
+        .withStep(() => poisoned.visible = progress.poisonLevel > 0)
+        .at(2, 24);
+
     const container = new Container()
         .withStep(() => container.visible = !player.isDead && sceneStack.isLevel);
 
-    container.addChild(healthbar, valuables);
+    container.addChild(healthbar, valuables, poisoned);
 
     return container;
 }
