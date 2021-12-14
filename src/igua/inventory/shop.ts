@@ -19,23 +19,17 @@ export function shop(...potions: PotionType[]) {
     });
 }
 
-function option() {
+function box() {
     const graphics = new Graphics()
         .lineStyle(3, 0x00FF00, 1, 0)
-        .beginFill(0x005870)
         .drawRect(0, 0, 134, 26)
-    graphics.visible = false;
     graphics.x = (256 - graphics.width);
     return graphics;
 }
 
-function potionContent(type?: PotionType) {
-    const container = merge(new Container(), { put(c?: Container) {
-            container.visible = !!c;
-            if (!c)
-                return;
-            container.at(c).add(3, (c.height - 20) / 2);
-        } });
+function makeButton(box: Container, type?: PotionType) {
+    const container = merge(new Container(), { box, type });
+    container.at(box).add(3, (box.height - 20) / 2);
 
     if (type) {
         const potion = potions[type];
@@ -65,29 +59,28 @@ function potionContent(type?: PotionType) {
         container.addChild(done);
     }
 
-    container.visible = false;
     return container;
 }
 
-type PotionContent = ReturnType<typeof potionContent>;
+function makeButtons(types: PotionType[]) {
+    let y = 1;
+
+    return [...types, undefined].map(x => {
+        const o = box();
+        o.y = y;
+        y += o.height + 2;
+        return makeButton(o, x);
+    })
+}
 
 function shopImpl(resolve: () => void, types: PotionType[]) {
     const c = new Container();
     game.hudStage.addChild(c);
-    const options: Container[] = [];
-    let y = 1;
 
-    const optionsLength = types.length + 1;
-    for (let i = 0; i < optionsLength; i++) {
-        const o = option();
-        options.push(o);
-        o.y = y;
-        y += o.height + 2;
-        c.addChild(o);
-    }
+    const buttons = makeButtons(types);
 
-    const rect1 = [options[0].x, 0, 256, options[options.length - 2].y + options[options.length - 2].height + 3];
-    const rect2 = [193, 0, 256, options[options.length - 1].y + options[options.length - 1].height - 4];
+    const rect1 = [buttons[0].box.x, 0, 256, buttons[buttons.length - 2].box.y + buttons[buttons.length - 2].box.height + 3];
+    const rect2 = [193, 0, 256, buttons[buttons.length - 1].box.y + buttons[buttons.length - 1].box.height - 4];
     const rects = [rect1, rect2];
 
     const graphics = new Graphics();
@@ -100,13 +93,7 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
         graphics.beginFill(0x005870);
     }
 
-    c.addChild(graphics);
-
-    const potionContents: PotionContent[] = [];
-    for (const type of types)
-        potionContents.push(potionContent(type));
-    potionContents.push(potionContent());
-    c.addChild(...potionContents);
+    c.addChild(graphics, ...buttons);
 
     let selectedIndex = -1;
     let error = 0;
@@ -158,7 +145,7 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
         if (Key.justWentDown("ArrowUp"))
         {
             if (nothingSelected)
-                selectedIndex = potionContents.length - 1;
+                selectedIndex = buttons.length - 1;
             else
                 selectedIndex--;
         }
@@ -171,13 +158,14 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
         }
 
         if (!nothingSelected) {
-            selectedIndex = cyclic(selectedIndex, 0, potionContents.length);
+            selectedIndex = cyclic(selectedIndex, 0, buttons.length);
         }
 
         if (selectedIndex !== -1) {
-            const option = options[selectedIndex];
-            cursor.at(option).add(option.width - 8, 10);
-            const doneSelected = selectedIndex === options.length - 1;
+            const button = buttons[selectedIndex];
+            const box = button.box;
+            cursor.at(box).add(box.width - 8, 10);
+            const doneSelected = button.type === undefined;
             if (doneSelected)
                 cursor.y -= 8;
 
@@ -201,9 +189,6 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
         if (previousSelectedIndex !== selectedIndex)
             SelectOption.play();
 
-        potionContents.forEach(x => x.put(undefined));
-        for (let i = 0; i < options.length; i++)
-            potionContents[i].put(options[i]);
         cursor.visible = selectedIndex !== -1;
     });
 
