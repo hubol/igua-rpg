@@ -8,7 +8,7 @@ import {iguanaEyes} from "../igua/puppet/eyes";
 import {
     CharacterHurt, CharacterHurtDefense
 } from "../sounds";
-import {playerCharacterKey as playerKey} from "../igua/logic/playerCharacterKey";
+import {playerCharacterHasControl, playerCharacterKey as playerKey} from "../igua/logic/playerCharacterKey";
 import {merge} from "../utils/merge";
 import {progress} from "../igua/data/progress";
 import {gotoDeathScreen} from "../igua/gotoDeathScreen";
@@ -76,6 +76,11 @@ export function recreatePlayer()
     scene.playerStage.addChild(player);
 }
 
+function conditionallyGotoDeathScreen() {
+    if (progress.health <= 0)
+        gotoDeathScreen();
+}
+
 function createPlayer()
 {
     const player = merge(playerPuppet(),
@@ -83,6 +88,10 @@ function createPlayer()
             follower: createFollower(),
             invulnerableFrameCount: 0,
             isDead: false,
+            drain(health: number) {
+                progress.health -= health;
+                conditionallyGotoDeathScreen();
+            },
             damage(health: number)
             {
                 if (player.invulnerableFrameCount > 0)
@@ -105,8 +114,7 @@ function createPlayer()
                     player.invulnerableFrameCount = 60;
                 }
 
-                if (progress.health <= 0)
-                    gotoDeathScreen();
+                conditionallyGotoDeathScreen();
 
                 return true;
             },
@@ -141,6 +149,11 @@ function createPlayer()
             engine.on = false;
             return;
         }
+
+        if (playerCharacterHasControl() && progress.health > 5 && progress.poisonLevel > 0)
+            player.drain(0.01 * Math.pow(progress.poisonLevel, 2));
+
+        player.engine.walkSpeed = 2.5 + 0.5 * progress.poisonLevel;
 
         player.isDucking = (playerKey.isDown("ArrowDown") && engine.coyote > 0) || player.mods.has(Sleepy);
 

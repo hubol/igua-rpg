@@ -8,6 +8,7 @@ export function getInitialProgress()
         maxHealth: 100,
         valuables: 0,
         level: 1,
+        poisonLevel: 0,
         gotLevelValuable: new Set<string>(),
         clearedBoulder: new Set<string>(),
         shopPurchases: {} as Record<PotionType, number | undefined>,

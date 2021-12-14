@@ -16,11 +16,13 @@ function consumePotionImpl(potion: PotionType) {
         case "WonderBallon":
             break;
         case "CommonPoison":
+            progress.poisonLevel += 1;
             break;
         case "SpicedNectar":
             progress.maxHealth += 15;
             break;
         case "BitterMedicine":
+            progress.poisonLevel = 0;
             break;
         case "SweetBerry":
             progress.health = Math.min(progress.maxHealth, progress.health + progress.maxHealth * .334);

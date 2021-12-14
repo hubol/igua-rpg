@@ -16,7 +16,11 @@ export function hud()
         });
 
     const valuables = new BitmapText("", { fontName: AcrobatixFont.font, tint: 0x00ff00 })
-        .withStep(() => valuables.text = `${progress.valuables} valuables`)
+        .withStep(() => {
+            if (progress.valuables === 1)
+                return valuables.text = '1 valuable';
+            valuables.text = `${progress.valuables} valuables`;
+        })
         .at(2, 15);
 
     const container = new Container()
