@@ -1,5 +1,5 @@
 import {progress} from "../data/progress";
-import {PotionType} from "./potions";
+import {potions, PotionType} from "./potions";
 
 export const inventory = {
     slotsCount: 12,
@@ -11,6 +11,10 @@ export const inventory = {
     },
     get(index: number) {
         return progress.inventory[index];
+    },
+    potion(index: number) {
+        const type = this.get(index);
+        return type && potions[type];
     },
     remove(index: number) {
         const potion = progress.inventory[index];

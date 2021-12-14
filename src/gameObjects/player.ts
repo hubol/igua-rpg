@@ -18,6 +18,7 @@ import {UnrealFlight} from "../levels/unrealFlight";
 import {scene} from "../igua/scene";
 import {followerNpc} from "./followerNpc";
 import {npc} from "./npc";
+import {showUseMenu} from "../igua/inventory/showUseMenu";
 
 export function playerPuppetArgs() {
     const body = Sprite.from(CharacterBody);
@@ -110,7 +111,7 @@ function createPlayer()
                 return true;
             },
             get strength() {
-                return 1 + (progress.level - 1) * 0.67;
+                return 1 + (progress.level - 1) * 0.6;
             }
         });
 
@@ -119,6 +120,9 @@ function createPlayer()
     let bufferedJump = 0;
 
     const step = () => {
+        if (playerKey.justWentDown("KeyU"))
+            showUseMenu();
+
         if (player.invulnerableFrameCount <= 0)
             player.visible = true;
         else
