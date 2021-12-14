@@ -75,12 +75,12 @@
           "name": "NpcIguana",
           "id": 5,
           "_eid": "26367058",
-          "x": 344,
+          "x": 328,
           "y": 224,
           "originX": 11,
           "originY": 27,
           "flippedX": true,
-          "values": {"name": "Shopkeeper", "style": 3}
+          "values": {"name": "Shopkeeper", "style": 5}
         },
         {"name": "SlopeLeft", "id": 17, "_eid": "55845599", "x": 32, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
         {"name": "SlopeLeft", "id": 18, "_eid": "55845599", "x": 224, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
@@ -121,7 +121,98 @@
       "gridCellHeight": 8,
       "gridCellsX": 52,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 352,
+          "y": 200,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 360,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 376,
+          "y": 208,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cobweb.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 376,
+          "y": 168,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 3.141592653589793,
+          "texture": "cobweb.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 360,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "bottle1.png",
+          "originX": 0,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {"x": 376, "y": 224, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "bottle1.png", "originX": 0, "originY": 1},
+        {
+          "x": 356,
+          "y": 200,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "bottle2.png",
+          "originX": 0,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {"x": 260, "y": 216, "scaleX": 1, "scaleY": 1, "rotation": 1.8849555921538759, "texture": "bottle2.png", "originX": 0, "originY": 1},
+        {
+          "x": 72,
+          "y": 72,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cracks a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 80,
+          "y": 134,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0.7853981633974483,
+          "texture": "cracks a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "..\\..\\src\\images"
     },
     {

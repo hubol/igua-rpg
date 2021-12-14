@@ -151,7 +151,7 @@ function createPlayer()
         }
 
         if (playerCharacterHasControl() && progress.health > 5 && progress.poisonLevel > 0)
-            player.drain(0.01 * Math.pow(progress.poisonLevel, 2));
+            player.drain(Math.min(progress.health - 5, 0.01 * Math.pow(progress.poisonLevel, 2)));
 
         player.engine.walkSpeed = 2.5 + 0.5 * progress.poisonLevel;
 

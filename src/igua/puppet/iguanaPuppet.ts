@@ -94,7 +94,7 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
 
     if (canBlink)
     {
-        let ticksUntilBlink = 60;
+        let ticksUntilBlink = 30 + rng() * 210;
 
         player.withStep(() => {
             if (player.canBlink)

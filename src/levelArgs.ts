@@ -25,6 +25,8 @@ import { GlowingCircle } from "./textures";
 import { Column } from "./textures";
 import { CracksA } from "./textures";
 import { Cobweb } from "./textures";
+import { Bottle2 } from "./textures";
+import { Bottle1 } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
@@ -964,7 +966,117 @@ export const DesertShopArgs = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    CrateWooden: resolveDecalGameObject({
+    x: 352,
+y: 200,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+CrateWooden_1: resolveDecalGameObject({
+    x: 360,
+y: 176,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CrateWooden
+}),
+Cobweb: resolveDecalGameObject({
+    x: 376,
+y: 208,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Cobweb
+}),
+Cobweb_1: resolveDecalGameObject({
+    x: 376,
+y: 168,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 3.141592653589793,
+layerName: "BackgroundDecals",
+texture: Cobweb
+}),
+Bottle1: resolveDecalGameObject({
+    x: 360,
+y: 176,
+originX: 0,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Bottle1
+}),
+Bottle1_1: resolveDecalGameObject({
+    x: 376,
+y: 224,
+originX: 0,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Bottle1
+}),
+Bottle2: resolveDecalGameObject({
+    x: 356,
+y: 200,
+originX: 0,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Bottle2
+}),
+Bottle2_1: resolveDecalGameObject({
+    x: 260,
+y: 216,
+originX: 0,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 1.8849555921538759,
+layerName: "BackgroundDecals",
+texture: Bottle2
+}),
+CracksA: resolveDecalGameObject({
+    x: 72,
+y: 72,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+CracksA_1: resolveDecalGameObject({
+    x: 80,
+y: 134,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0.7853981633974483,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+// @ts-ignore
 Door: resolveDoor({"type":"Door","x":48,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"DesertTown","checkpointName":"FromShop","name":""}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":224,"width":416,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":""}),
@@ -974,7 +1086,7 @@ Block_1: resolveBlock({"type":"Block","x":0,"y":0,"width":32,"height":224,"flipp
 Block_2: resolveBlock({"type":"Block","x":16,"y":0,"width":368,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":""}),
 Player: {"type":"Player","x":96,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_4","faceRight":true},
 // @ts-ignore
-Shopkeeper: resolveNpc({"type":"NpcIguana","x":344,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_5","name":"Shopkeeper","style":3}),
+Shopkeeper: resolveNpc({"type":"NpcIguana","x":328,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_5","name":"Shopkeeper","style":5}),
 // @ts-ignore
 SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":32,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_17"}),
 // @ts-ignore

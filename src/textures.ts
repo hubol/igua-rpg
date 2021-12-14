@@ -8,6 +8,8 @@ export let BigKey1: PIXI.Texture;
 export let BitterMedicinePotion: PIXI.Texture;
 export let BlueGradient: PIXI.Texture;
 export let BlueValuable: PIXI.Texture;
+export let Bottle1: PIXI.Texture;
+export let Bottle2: PIXI.Texture;
 export let Boulder: PIXI.Texture;
 export let Burst: PIXI.Texture;
 export let Burst2: PIXI.Texture;
@@ -103,6 +105,12 @@ export function loadTexturesAsync()
 
     const BlueValuablePath = require("./images/blue valuable.png");
     loader.add(BlueValuablePath); 
+
+    const Bottle1Path = require("./images/bottle1.png");
+    loader.add(Bottle1Path); 
+
+    const Bottle2Path = require("./images/bottle2.png");
+    loader.add(Bottle2Path); 
 
     const BoulderPath = require("./images/boulder.png");
     loader.add(BoulderPath); 
@@ -330,6 +338,8 @@ export function loadTexturesAsync()
             BitterMedicinePotion = resources[BitterMedicinePotionPath]?.texture as PIXI.Texture;
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
             BlueValuable = resources[BlueValuablePath]?.texture as PIXI.Texture;
+            Bottle1 = resources[Bottle1Path]?.texture as PIXI.Texture;
+            Bottle2 = resources[Bottle2Path]?.texture as PIXI.Texture;
             Boulder = resources[BoulderPath]?.texture as PIXI.Texture;
             Burst = resources[BurstPath]?.texture as PIXI.Texture;
             Burst2 = resources[Burst2Path]?.texture as PIXI.Texture;
