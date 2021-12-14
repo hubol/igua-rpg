@@ -132,6 +132,16 @@ export const MimicCorrect = new Howl({
     
 });
 
+export const PurchaseFail = new Howl({
+    src: [require("./sound/purchase fail.ogg"), require("./sound/purchase fail.mp3")],
+    
+});
+
+export const Purchase = new Howl({
+    src: [require("./sound/purchase.ogg"), require("./sound/purchase.mp3")],
+    
+});
+
 export const SelectOption = new Howl({
     src: [require("./sound/select option.ogg"), require("./sound/select option.mp3")],
     

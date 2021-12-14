@@ -65,11 +65,7 @@
     /* Disallow inconsistently-cased references to the same file. */
     "lib": [
       "dom",
-      "es5",
-      "scripthost",
-      "es2015.promise",
-      "es2015.core",
-      "es2015.collection",
+      "es2018",
       "es2019.array"
     ]
   }

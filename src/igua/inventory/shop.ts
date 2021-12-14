@@ -7,7 +7,7 @@ import {BackpackIcon, ValuableIcon} from "../../textures";
 import {iguanaHead} from "../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../gameObjects/player";
 import {Key} from "../../utils/browser/key";
-import {SelectOption} from "../../sounds";
+import {Purchase, PurchaseFail, SelectOption} from "../../sounds";
 import {cyclic} from "../../utils/math/number";
 import {progress} from "../data/progress";
 import {inventory} from "./inventory";
@@ -109,23 +109,24 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
     c.addChild(...potionContents);
 
     let selectedIndex = -1;
+    let error = 0;
+
+    function doPurchaseFail() {
+        error = 8;
+        PurchaseFail.play();
+    }
 
     function buyPotion() {
         const potion = types[selectedIndex];
         if (!potion) return;
-        if (inventory.isFull) {
-            // TODO fail sound -- inventory full
-            return;
-        }
         const cost = getCost(potion);
-        if (spendValuables(cost)) {
-            // TODO purchase sound
-            progress.shopPurchases[potion] = (progress.shopPurchases[potion] ?? 0) + 1;
-            inventory.push(potion);
-        }
-        else {
-            // TODO fail sound -- no money
-        }
+
+        if (inventory.isFull || !spendValuables(cost))
+            return doPurchaseFail();
+
+        Purchase.play();
+        progress.shopPurchases[potion] = (progress.shopPurchases[potion] ?? 0) + 1;
+        inventory.push(potion);
     }
 
     const tip = new Container();
@@ -190,6 +191,11 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
                     buyPotion();
                 }
             }
+        }
+
+        if (error > 0) {
+            cursor.x += (error % 2 === 0 ? 1 : -1) * Math.ceil(error / 6);
+            error--;
         }
 
         if (previousSelectedIndex !== selectedIndex)
