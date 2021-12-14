@@ -75,7 +75,8 @@ function gui(c: Controller, margin = 2, size = 24) {
         }
     });
     gfx.addChild(...items);
-    gfx.at((256 - c.row * (size + margin)) / 2, 40);
+    const width = c.row * size + (c.row - 1) * margin;
+    gfx.at((256 - width) / 2, 40);
     return gfx;
 }
 
