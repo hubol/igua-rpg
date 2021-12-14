@@ -7,18 +7,21 @@ import {merge} from "../../utils/merge";
 import {cyclic} from "../../utils/math/number";
 import {inventory} from "./inventory";
 import {SelectOption} from "../../sounds";
-import {PotionType} from "./potions";
+import {potions, PotionType} from "./potions";
 import {consumePotion} from "./consumePotion";
 import {range} from "../../utils/range";
+import {IguaText} from "../text";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
 }
 
+let defaultIndex = 0;
+
 function controller(row: number, slots: number) {
     scene.ticker.doNextUpdate = false;
     let destroyOnNextStep = false;
-    const c = merge(new Container(), { index: 0, row, slots, type: undefined as PotionType | undefined }).withStep(() => {
+    const c = merge(new Container(), { index: defaultIndex, row, slots, type: undefined as PotionType | undefined }).withStep(() => {
         if (destroyOnNextStep) {
             scene.ticker.doNextUpdate = true;
             return c.destroy();
@@ -40,6 +43,7 @@ function controller(row: number, slots: number) {
         else if (Key.justWentDown("ArrowDown")) {
             c.index = cyclic(c.index + (right - left), 0, slots);
         }
+        defaultIndex = c.index;
         c.type = inventory.get(c.index);
         if (previousIndex !== c.index)
             SelectOption.play();
@@ -74,9 +78,31 @@ function gui(c: Controller, margin = 2, size = 24) {
             }
         }
     });
-    gfx.addChild(...items);
+
+    const rowCount = Math.floor(c.slots / c.row);
+    const height = rowCount * size + (rowCount - 1) * margin;
     const width = c.row * size + (c.row - 1) * margin;
-    gfx.at((256 - width) / 2, 40);
+    gfx.at((256 - width) / 2, 80);
+
+    const tip = new Graphics().withStep(() => {
+        tip.visible = !!c.type;
+        if (!c.type)
+            return;
+        const potion = potions[c.type];
+        name.text = potion.name;
+        description.text = potion.description;
+    })
+        .beginFill(0x005870)
+        .drawRect(0, 0, width, 48)
+        .at(0, height + margin);
+
+    const name = IguaText.Large().at(5, 2);
+    const description = IguaText.Large('', { maxWidth: width - 10 }).at(name.x, 20);
+
+    tip.addChild(name, description);
+
+    gfx.addChild(...items, tip);
+
     return gfx;
 }
 
@@ -86,4 +112,5 @@ function useImpl() {
     const c = controller(row, slots);
     c.addChild(gui(c));
     game.hudStage.addChild(c);
+    game.hudStage.ticker.update();
 }

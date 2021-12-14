@@ -1,4 +1,5 @@
 import {progress} from "../data/progress";
+import {potions} from "../inventory/potions";
 
 export function devProgress()
 {
@@ -12,5 +13,6 @@ export function devProgress()
     progress.valuables = 100;
     progress.levelName = "DesertShop";
     progress.flags.desert.bigKey.reward = true;
+    progress.inventory = Object.keys(potions) as any;
     // progress.flags.diguaIsFollowing = true;
 }
