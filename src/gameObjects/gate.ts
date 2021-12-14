@@ -31,7 +31,6 @@ export function gate(x, y, width, height, destination: { checkpointName, levelNa
                 () => {
                     progress.checkpointName = destination.checkpointName;
                     level.goto(destination.levelName);
-                    scene.ticker.update();
                 });
         }
     });

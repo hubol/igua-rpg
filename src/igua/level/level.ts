@@ -1,6 +1,6 @@
 import {getLevelApplicator, LevelApplicator} from "./getLevelApplicator";
 import {progress} from "../data/progress";
-import {sceneStack} from "../scene";
+import {scene, sceneStack} from "../scene";
 import {recreatePlayer} from "../../gameObjects/player";
 
 export const level = {
@@ -12,6 +12,7 @@ export const level = {
         this.current = getLevelApplicator(levelName);
         this.current();
         progress.levelName = levelName;
+        scene.ticker.update();
     },
     current: null as unknown as LevelApplicator
 }
