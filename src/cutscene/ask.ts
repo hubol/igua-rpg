@@ -1,6 +1,5 @@
-import {BitmapText, Container, Sprite} from "pixi.js";
+import {Container, Sprite} from "pixi.js";
 import {MessageBox} from "../textures";
-import {AcrobatixFont} from "../fonts";
 import {game} from "../igua/game";
 import {waitForKey} from "./waitForKey";
 import {Key} from "../utils/browser/key";
@@ -8,6 +7,7 @@ import {SelectOption} from "../sounds";
 import {IguaZone} from "./runInIguaZone";
 import {iguanaHead} from "../igua/puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../gameObjects/player";
+import {IguaText} from "../igua/text";
 
 type Answer = string;
 
@@ -38,14 +38,14 @@ async function askImpl<T extends Answer>(question: string, answers: T[]): Promis
 {
     const dialogContainer = new Container().at(24, 27);
     dialogContainer
-        .addChild(Sprite.from(MessageBox), new BitmapText(question, { fontName: AcrobatixFont.font, maxWidth: 196 }).at(6, 6));
+        .addChild(Sprite.from(MessageBox), IguaText.Large(question, { maxWidth: 196 }).at(6, 6));
 
     const answerGameObjectXCoordinates = getAnswerXUnitCoordinates(answers.length).map(x => x * 208);
 
     let selectedIndex = -1;
     const answerGameObjects = answers.map((x, i) => {
         const container = new Container();
-        const bitmapText = new BitmapText(x, { fontName: AcrobatixFont.font });
+        const bitmapText = IguaText.Large(x);
         container.addChild(bitmapText);
         dialogContainer.addChild(container);
 

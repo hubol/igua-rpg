@@ -1,8 +1,8 @@
-import {BitmapText, Container} from "pixi.js";
-import {AcrobatixFont} from "../../../fonts";
+import {Container} from "pixi.js";
 import {IguanaPuppetMod} from "../mods";
 import {sleep} from "../../../cutscene/sleep";
 import {rng} from "../../../utils/rng";
+import {IguaText} from "../../text";
 
 export const Sleepy: IguanaPuppetMod = puppet => {
     puppet.canBlink = false;
@@ -12,9 +12,9 @@ export const Sleepy: IguanaPuppetMod = puppet => {
         .withAsync(async () => {
             while (true) {
                 await sleep(1500);
-                const bitmapText = new BitmapText(
+                const bitmapText = IguaText.Large(
                     rng.bool ? "z" : "Z",
-                    {fontName: AcrobatixFont.font, tint: 0x222288})
+                    {tint: 0x222288})
                     .at(puppet.x + Math.sign(puppet.scale.x) * 20, puppet.y - 16)
                     .withAsync(async () => {
                         for (let i = 0; i < 10; i++) {

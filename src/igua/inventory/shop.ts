@@ -1,8 +1,7 @@
 import {getCost, potions, PotionType} from "./potions";
-import {BitmapText, Container, Graphics, Sprite} from "pixi.js";
+import {Container, Graphics, Sprite} from "pixi.js";
 import {game} from "../game";
 import {merge} from "../../utils/merge";
-import {AcrobatixFont} from "../../fonts";
 import {BackpackIcon, ValuableIcon} from "../../textures";
 import {iguanaHead} from "../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../gameObjects/player";
@@ -12,6 +11,7 @@ import {cyclic} from "../../utils/math/number";
 import {progress} from "../data/progress";
 import {inventory} from "./inventory";
 import {spendValuables} from "../logic/spendValuables";
+import {IguaText} from "../text";
 
 export function shop(...potions: PotionType[]) {
     return new Promise<void>(r => {
@@ -34,16 +34,16 @@ function makeButton(box: Container, type?: PotionType) {
     if (type) {
         const potion = potions[type];
         const potionSprite = Sprite.from(potion.texture);
-        const name = new BitmapText(potion.name, { fontName: AcrobatixFont.font }).at(23, -2);
+        const name = IguaText.Large(potion.name).at(23, -2);
         const valuableIcon = Sprite.from(ValuableIcon).at(23, 12);
-        const price = new BitmapText('', { fontName: AcrobatixFont.font }).at(34, 9)
+        const price = IguaText.Large().at(34, 9)
             .withStep(() => {
                 const cost = getCost(type);
                 price.text = cost.toString();
                 price.tint = progress.valuables < cost ? 0xff0000 : 0xffffff;
             });
         const backpackIcon = Sprite.from(BackpackIcon).at(64, 12);
-        const held = new BitmapText('', { fontName: AcrobatixFont.font }).at(backpackIcon.x + 11, 9)
+        const held = IguaText.Large().at(backpackIcon.x + 11, 9)
             .withStep(() => {
                 const count = inventory.count(type);
                 backpackIcon.visible = count > 0;
@@ -55,7 +55,7 @@ function makeButton(box: Container, type?: PotionType) {
         container.addChild(potionSprite, name, valuableIcon, price, backpackIcon, held);
     }
     else {
-        const done = new BitmapText('Done', { fontName: AcrobatixFont.font }).at(77, -1);
+        const done = IguaText.Large('Done').at(77, -1);
         container.addChild(done);
     }
 
@@ -121,7 +121,7 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
         .lineStyle(3, 0x00FF00, 1, 0)
         .beginFill(0x005870)
         .drawRect(0, 0, 122, 54);
-    const tipText = new BitmapText('', { fontName: AcrobatixFont.font, maxWidth: tipGfx.width - 10 }).at(5, 2);
+    const tipText = IguaText.Large('', { maxWidth: tipGfx.width - 10 }).at(5, 2);
 
     tip.addChild(tipGfx, tipText);
     tip.withStep(() => {
@@ -132,7 +132,7 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
        tipText.text = potions[type].description;
     });
     tip.y = Math.max(64, Math.min(192, rect1[3] - rect1[1] - tipGfx.height));
-    const inventoryFull = new BitmapText('Your inventory is full.', { fontName: AcrobatixFont.font }).at(2, tip.y + tipGfx.height);
+    const inventoryFull = IguaText.Large('Your inventory is full.').at(2, tip.y + tipGfx.height);
     inventoryFull.tint = 0xff0000;
     inventoryFull.withStep(() => inventoryFull.visible = inventory.isFull);
 

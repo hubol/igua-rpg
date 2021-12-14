@@ -1,8 +1,8 @@
-import {BitmapText, Container, Graphics} from "pixi.js";
+import {Container, Graphics} from "pixi.js";
 import {progress} from "../igua/data/progress";
-import {AcrobatixFont} from "../fonts";
 import {player} from "./player";
 import {sceneStack} from "../igua/scene";
+import {IguaText} from "../igua/text";
 
 export function hud()
 {
@@ -15,7 +15,7 @@ export function hud()
             healthbar.drawRect(0, 0, progress.health, 16);
         });
 
-    const valuables = new BitmapText("", { fontName: AcrobatixFont.font, tint: 0x00ff00 })
+    const valuables = IguaText.Large("", { tint: 0x00ff00 })
         .withStep(() => {
             if (progress.valuables === 1)
                 return valuables.text = '1 valuable';
