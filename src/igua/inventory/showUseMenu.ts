@@ -83,7 +83,7 @@ function gui(c: Controller, margin = 2, size = 24) {
     const rowCount = Math.floor(c.slots / c.row);
     const height = rowCount * size + (rowCount - 1) * margin;
     const width = c.row * size + (c.row - 1) * margin;
-    gfx.at((256 - width) / 2, 80);
+    gfx.at((256 - width) / 2, 78);
 
     const tip = new Graphics().withStep(() => {
         tip.visible = !!c.type;
