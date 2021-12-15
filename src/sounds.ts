@@ -162,6 +162,16 @@ export const InnRefresh = new Howl({
     
 });
 
+export const InventoryClose = new Howl({
+    src: [require("./sound/inventory close.ogg"), require("./sound/inventory close.mp3")],
+    
+});
+
+export const InventoryOpen = new Howl({
+    src: [require("./sound/inventory open.ogg"), require("./sound/inventory open.mp3")],
+    
+});
+
 export const MimicCorrect = new Howl({
     src: [require("./sound/mimic correct.ogg"), require("./sound/mimic correct.mp3")],
     

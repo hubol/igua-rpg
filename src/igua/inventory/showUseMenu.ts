@@ -6,7 +6,7 @@ import {Key} from "../../utils/browser/key";
 import {merge} from "../../utils/merge";
 import {cyclic} from "../../utils/math/number";
 import {inventory} from "./inventory";
-import {SelectOption} from "../../sounds";
+import {InventoryClose, InventoryOpen, SelectOption} from "../../sounds";
 import {potions, PotionType} from "./potions";
 import {consumePotion} from "./consumePotion";
 import {range} from "../../utils/range";
@@ -25,6 +25,7 @@ function controller(row: number, slots: number) {
     const c = merge(new Container(), { index: defaultIndex, row, slots, type: undefined as PotionType | undefined }).withStep(() => {
         if (destroyOnNextStep) {
             scene.ticker.doNextUpdate = true;
+            InventoryClose.play();
             return c.destroy();
         }
         if (Key.justWentDown("KeyU"))
@@ -111,6 +112,8 @@ function useImpl() {
     const row = 6;
     const slots = inventory.slotsCount;
     const c = controller(row, slots);
+
+    InventoryOpen.play();
 
     const clawLevel = IguaText.Large("", { tint: 0x00ff00 })
         .withStep(() => clawLevel.text = `Claw Level ${progress.level}`)
