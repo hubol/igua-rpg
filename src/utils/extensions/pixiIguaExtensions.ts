@@ -8,7 +8,9 @@ import {scene} from "../../igua/scene";
 declare global {
     namespace PIXI {
         export interface DisplayObject {
+            ahead(): this;
             show(): this;
+            behind(): this;
             withInteraction(interaction: () => void): this;
             asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>);
         }
@@ -17,6 +19,14 @@ declare global {
 
 PIXI.DisplayObject.prototype.show = function () {
     return scene.gameObjectStage.addChild(this);
+}
+
+PIXI.DisplayObject.prototype.behind = function () {
+    return scene.backgroundGameObjectStage.addChild(this);
+}
+
+PIXI.DisplayObject.prototype.ahead = function () {
+    return scene.playerStage.addChild(this);
 }
 
 PIXI.DisplayObject.prototype.asCollectible = function (object, key)

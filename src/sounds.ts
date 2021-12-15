@@ -87,6 +87,36 @@ export const CommonClownLand = new Howl({
     
 });
 
+export const ConsumeBallon = new Howl({
+    src: [require("./sound/consume ballon.ogg"), require("./sound/consume ballon.mp3")],
+    
+});
+
+export const ConsumeBerry = new Howl({
+    src: [require("./sound/consume berry.ogg"), require("./sound/consume berry.mp3")],
+    
+});
+
+export const ConsumeElixir = new Howl({
+    src: [require("./sound/consume elixir.ogg"), require("./sound/consume elixir.mp3")],
+    
+});
+
+export const ConsumeMedicine = new Howl({
+    src: [require("./sound/consume medicine.ogg"), require("./sound/consume medicine.mp3")],
+    
+});
+
+export const ConsumePoison = new Howl({
+    src: [require("./sound/consume poison.ogg"), require("./sound/consume poison.mp3")],
+    
+});
+
+export const ConsumePowder = new Howl({
+    src: [require("./sound/consume powder.ogg"), require("./sound/consume powder.mp3")],
+    
+});
+
 export const CratePickup = new Howl({
     src: [require("./sound/crate pickup.ogg"), require("./sound/crate pickup.mp3")],
     

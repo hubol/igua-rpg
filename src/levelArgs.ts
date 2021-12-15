@@ -25,9 +25,9 @@ import { GlowingCircle } from "./textures";
 import { Column } from "./textures";
 import { CracksA } from "./textures";
 import { Cobweb } from "./textures";
+import { resolveValuableBlue } from "./gameObjects/valuable";
 import { Bottle2 } from "./textures";
 import { Bottle1 } from "./textures";
-import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
@@ -550,7 +550,11 @@ SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":400,"y":32,"width":80,"
 SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":272,"y":32,"width":80,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_13"}),
 // @ts-ignore
 Block_5: resolveBlock({"type":"Block","x":400,"y":0,"width":112,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_14","name":""}),
-SleepHere: {"type":"Anchor","x":384,"y":152,"flippedX":false,"flippedY":false,"uid":"25979726_15","name":"SleepHere"}
+SleepHere: {"type":"Anchor","x":384,"y":152,"flippedX":false,"flippedY":false,"uid":"25979726_15","name":"SleepHere"},
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":436,"y":112,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_16","visible":false}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":424,"y":136,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307_17","visible":false})
 };
 }
 };
@@ -1076,14 +1080,36 @@ rotation: 0.7853981633974483,
 layerName: "BackgroundDecals",
 texture: CracksA
 }),
+Cobweb_2: resolveDecalGameObject({
+    x: 168,
+y: 49,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Cobweb
+}),
+Cobweb_3: resolveDecalGameObject({
+    x: 150,
+y: 38,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Cobweb
+}),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":48,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"DesertTown","checkpointName":"FromShop","name":""}),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":224,"width":416,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":""}),
+Floor: resolveBlock({"type":"Block","x":0,"y":224,"width":416,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"Floor"}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":0,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":""}),
+Block: resolveBlock({"type":"Block","x":0,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":""}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":16,"y":0,"width":368,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":""}),
+Block_1: resolveBlock({"type":"Block","x":16,"y":0,"width":368,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":""}),
 Player: {"type":"Player","x":96,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_4","faceRight":true},
 // @ts-ignore
 Shopkeeper: resolveNpc({"type":"NpcIguana","x":328,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_5","name":"Shopkeeper","style":5}),
@@ -1094,11 +1120,19 @@ SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":224,"y":32,"width":32,"hei
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":160,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_19"}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":192,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":""}),
+Block_2: resolveBlock({"type":"Block","x":192,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":""}),
 // @ts-ignore
 SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":352,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_21"}),
 // @ts-ignore
-Block_4: resolveBlock({"type":"Block","x":384,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268_24","name":""})
+Block_3: resolveBlock({"type":"Block","x":384,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268_24","name":""}),
+ShopLamp: {"type":"Anchor","x":296,"y":160,"flippedX":false,"flippedY":false,"uid":"25979726_25","name":"ShopLamp"},
+MiddleLamp: {"type":"Anchor","x":184,"y":144,"flippedX":false,"flippedY":false,"uid":"25979726_26","name":"MiddleLamp"},
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":360,"y":176,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":false}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":352,"y":200,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_29","visible":false}),
+// @ts-ignore
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":160,"y":56,"flippedX":false,"flippedY":false,"uid":"55991906_32"})
 };
 }
 };

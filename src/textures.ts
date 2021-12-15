@@ -64,6 +64,8 @@ export let NpcYellowFootRear: PIXI.Texture;
 export let NpcYellowFoot: PIXI.Texture;
 export let OpenDoor: PIXI.Texture;
 export let OrangeValuable: PIXI.Texture;
+export let OverheadLampLight: PIXI.Texture;
+export let OverheadLamp: PIXI.Texture;
 export let Pipe: PIXI.Texture;
 export let PotteryOrangeDamaged: PIXI.Texture;
 export let PotteryOrange: PIXI.Texture;
@@ -82,6 +84,7 @@ export let SweetBerryPotion: PIXI.Texture;
 export let Torch: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
 export let WonderBallonPotion: PIXI.Texture;
+export let WoodenStool: PIXI.Texture;
 
 
 export function loadTexturesAsync()
@@ -274,6 +277,12 @@ export function loadTexturesAsync()
     const OrangeValuablePath = require("./images/orange valuable.png");
     loader.add(OrangeValuablePath); 
 
+    const OverheadLampLightPath = require("./images/overhead lamp light.png");
+    loader.add(OverheadLampLightPath); 
+
+    const OverheadLampPath = require("./images/overhead lamp.png");
+    loader.add(OverheadLampPath); 
+
     const PipePath = require("./images/pipe.png");
     loader.add(PipePath); 
 
@@ -327,6 +336,9 @@ export function loadTexturesAsync()
 
     const WonderBallonPotionPath = require("./images/wonder ballon potion.png");
     loader.add(WonderBallonPotionPath); 
+
+    const WoodenStoolPath = require("./images/wooden stool.png");
+    loader.add(WoodenStoolPath); 
 
     
     return new Promise<void>(resolve =>
@@ -394,6 +406,8 @@ export function loadTexturesAsync()
             NpcYellowFoot = resources[NpcYellowFootPath]?.texture as PIXI.Texture;
             OpenDoor = resources[OpenDoorPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
+            OverheadLampLight = resources[OverheadLampLightPath]?.texture as PIXI.Texture;
+            OverheadLamp = resources[OverheadLampPath]?.texture as PIXI.Texture;
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
             PotteryOrangeDamaged = resources[PotteryOrangeDamagedPath]?.texture as PIXI.Texture;
             PotteryOrange = resources[PotteryOrangePath]?.texture as PIXI.Texture;
@@ -412,6 +426,7 @@ export function loadTexturesAsync()
             Torch = resources[TorchPath]?.texture as PIXI.Texture;
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
             WonderBallonPotion = resources[WonderBallonPotionPath]?.texture as PIXI.Texture;
+            WoodenStool = resources[WoodenStoolPath]?.texture as PIXI.Texture;
 
             resolve();
         });
