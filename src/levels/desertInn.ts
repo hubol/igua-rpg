@@ -3,19 +3,18 @@ import {Bluehouse} from "../musics";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertInnArgs} from "../levelArgs";
 import {progress} from "../igua/data/progress";
-import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {Lazy} from "../igua/puppet/mods/lazy";
 import {now} from "../utils/now";
 import {lerp} from "../utils/math/number";
-import { DragRock } from "../sounds";
+import { DragRock} from "../sounds";
 import {scene} from "../igua/scene";
 import {spendValuables} from "../igua/logic/spendValuables";
 import {player} from "../gameObjects/player";
 import {show} from "../cutscene/dialog";
 import {sleep} from "../cutscene/sleep";
-import {wait} from "../cutscene/wait";
 import {move} from "../cutscene/move";
 import {ask} from "../cutscene/ask";
+import { restAtInn } from "../igua/logic/restAtInn";
 
 export function DesertInn()
 {
@@ -50,12 +49,7 @@ export function DesertInn()
 
                 await player.walkTo(level.SleepHere.x);
                 await sleep(250);
-                player.mods.add(Sleepy);
-                await Promise.all([
-                    wait(() => (progress.health = Math.min(progress.health + 0.25, progress.maxHealth)) >= progress.maxHealth),
-                    sleep(4_000) ]);
-                await show("Full health restored!");
-                player.mods.remove(Sleepy);
+                await restAtInn();
             }
             else
                 await show("You dont have enough money.");

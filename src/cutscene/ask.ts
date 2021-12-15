@@ -1,5 +1,4 @@
-import {Container, Sprite} from "pixi.js";
-import {MessageBox} from "../textures";
+import {Container} from "pixi.js";
 import {game} from "../igua/game";
 import {waitForKey} from "./waitForKey";
 import {Key} from "../utils/browser/key";
@@ -8,6 +7,7 @@ import {IguaZone} from "./runInIguaZone";
 import {iguanaHead} from "../igua/puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../gameObjects/player";
 import {IguaText} from "../igua/text";
+import {messageBox} from "./dialog";
 
 type Answer = string;
 
@@ -36,9 +36,7 @@ export function ask()
 
 async function askImpl<T extends Answer>(question: string, answers: T[]): Promise<T>
 {
-    const dialogContainer = new Container().at(24, 27);
-    dialogContainer
-        .addChild(Sprite.from(MessageBox), IguaText.Large(question, { maxWidth: 196 }).at(6, 6));
+    const dialogContainer = messageBox(question);
 
     const answerGameObjectXCoordinates = getAnswerXUnitCoordinates(answers.length).map(x => x * 208);
 

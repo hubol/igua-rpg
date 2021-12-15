@@ -1,17 +1,24 @@
 import {game} from "../igua/game";
-import {Container, Sprite} from "pixi.js";
+import {Sprite} from "pixi.js";
 import {MessageBox} from "../textures";
 import {waitForKey} from "./waitForKey";
 import {IguaText} from "../igua/text";
+import {container} from "../utils/pixi/container";
+import {progress} from "../igua/data/progress";
+
+export function messageBox(message: string) {
+    return container(
+        Sprite.from(MessageBox),
+        IguaText.Large(message, { maxWidth: 196 }).at(6, 6))
+    .at(24, progress.poisonLevel > 0 ? 38 : 27);
+}
 
 export async function show(message: string)
 {
-    const dialogContainer = new Container().at(24, 27);
-    dialogContainer
-        .addChild(Sprite.from(MessageBox), IguaText.Large(message, { maxWidth: 196 }).at(6, 6));
+    const box = messageBox(message);
 
-    game.hudStage.addChild(dialogContainer);
+    game.hudStage.addChild(box);
 
     await waitForKey("Space")
-        .finally(() => dialogContainer.destroy());
+        .finally(() => box.destroy());
 }

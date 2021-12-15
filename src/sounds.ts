@@ -157,6 +157,11 @@ export const IguanaBlink = new Howl({
     
 });
 
+export const InnRefresh = new Howl({
+    src: [require("./sound/inn refresh.ogg"), require("./sound/inn refresh.mp3")],
+    
+});
+
 export const MimicCorrect = new Howl({
     src: [require("./sound/mimic correct.ogg"), require("./sound/mimic correct.mp3")],
     
