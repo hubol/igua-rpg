@@ -1698,7 +1698,7 @@ texture: CloudLong
 }),
 CloudLong_4: resolveDecalGameObject({
     x: 1152,
-y: 168,
+y: 152,
 originX: 0.5,
 originY: 0.5,
 scaleX: -1,
