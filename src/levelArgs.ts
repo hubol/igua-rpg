@@ -28,6 +28,7 @@ import { Cobweb } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { Bottle2 } from "./textures";
 import { Bottle1 } from "./textures";
+import { WoodenStool } from "./textures";
 import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
@@ -413,7 +414,18 @@ export const DesertInnArgs = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    CracksA: resolveDecalGameObject({
+    WoodenStool: resolveDecalGameObject({
+    x: 134,
+y: 157,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: WoodenStool
+}),
+CracksA: resolveDecalGameObject({
     x: 56,
 y: 64,
 originX: 0.5,
@@ -970,7 +982,18 @@ export const DesertShopArgs = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    CrateWooden: resolveDecalGameObject({
+    WoodenStool: resolveDecalGameObject({
+    x: 300,
+y: 221,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: WoodenStool
+}),
+CrateWooden: resolveDecalGameObject({
     x: 352,
 y: 200,
 originX: 0,

@@ -83,6 +83,18 @@
       ]
     },
     {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 91,
+      "gridCellsY": 39,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
       "name": "BackgroundDecals",
       "_eid": "03531763",
       "offsetX": 0,

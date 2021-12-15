@@ -156,6 +156,30 @@
       ]
     },
     {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 52,
+      "gridCellsY": 32,
+      "decals": [
+        {
+          "x": 300,
+          "y": 221,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "wooden stool.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "../../src/images"
+    },
+    {
       "name": "BackgroundDecals",
       "_eid": "03531763",
       "offsetX": 0,
