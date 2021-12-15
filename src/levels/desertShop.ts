@@ -10,13 +10,19 @@ import {rng} from "../utils/rng";
 import {resolvePipeHorizontal} from "../gameObjects/walls";
 import {vector} from "../utils/math/vector";
 import {cigarette} from "../gameObjects/cigarette";
+import {show} from "../cutscene/dialog";
+import {progress} from "../igua/data/progress";
 
 export function DesertShop() {
     const level = applyOgmoLevel(DesertShopArgs);
     scene.terrainColor = 0x60669B;
     scene.backgroundColor = 0x3B3F63;
     level.Shopkeeper.cutscene = async () => {
-        await shop('ClawPowder', 'SpicedNectar', 'SweetBerry', 'WonderBallon', 'CommonPoison', 'BitterMedicine');
+        const purchases = await shop('ClawPowder', 'SpicedNectar', 'SweetBerry', 'WonderBallon', 'CommonPoison', 'BitterMedicine');
+        if (purchases.length > 0)
+            await show("Thanks for your business!");
+        else
+            await show("Come back later!");
     }
     level.Shopkeeper.mods.add(Lazy);
     [level.CracksA, level.CracksA_1].forEach(x => x.tint = 0x1F223A);
@@ -36,6 +42,29 @@ export function DesertShop() {
 
     const c = cigarette().at([-17, -8].add(level.BarAttendee)).show();
     c.scale.x = -1;
+
+    if (!progress.flags.desert.diguaIsInBar) {
+        level.DiguaGlass.destroy();
+        return level.Digua.destroy();
+    }
+
+    let diguaTalked = false;
+    level.Digua.cutscene = async () => {
+        if (!diguaTalked)
+            await show("Oh, it's you!");
+        diguaTalked = true;
+        if (!progress.flags.desert.key.fromDiggingInTown) {
+            await show("Did you make sure to pick up the thing I dug up for you? It could be useful.");
+        }
+        else if (!progress.flags.desert.digua.discussedKey) {
+            await show("I hope the thing I dug up for you was useful!");
+            await show("I wish I could help you more with your task. But all I can do is dig.");
+            progress.flags.desert.digua.discussedKey = true;
+        }
+        else {
+            await show("I wish I could help you more with your task. But all I can do is dig.");
+        }
+    }
 }
 
 function enrichLight(light: Sprite, level) {

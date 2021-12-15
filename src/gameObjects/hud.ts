@@ -24,7 +24,15 @@ export function hud()
         .at(2, 15);
 
     const poisoned = IguaText.Large("You are poisoned", { tint: 0x00ff00 })
-        .withStep(() => poisoned.visible = progress.poisonLevel > 0)
+        .withStep(() => {
+            poisoned.visible = progress.poisonLevel > 0;
+            if (!poisoned.visible)
+                return;
+            if (progress.poisonLevel < 2)
+                poisoned.text = "You are poisoned";
+            else
+                poisoned.text = `You are poisoned x${Math.floor(progress.poisonLevel)}`;
+        })
         .at(2, 24);
 
     const container = new Container()

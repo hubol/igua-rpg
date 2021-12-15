@@ -89,6 +89,7 @@ export let SpikyBrushB: PIXI.Texture;
 export let SweetBerryPotion: PIXI.Texture;
 export let Torch: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
+export let WhiskeyGlass: PIXI.Texture;
 export let WonderBallonPotion: PIXI.Texture;
 export let WoodenStool: PIXI.Texture;
 
@@ -358,6 +359,9 @@ export function loadTexturesAsync()
     const ValuableIconPath = require("./images/valuable icon.png");
     loader.add(ValuableIconPath); 
 
+    const WhiskeyGlassPath = require("./images/whiskey glass.png");
+    loader.add(WhiskeyGlassPath); 
+
     const WonderBallonPotionPath = require("./images/wonder ballon potion.png");
     loader.add(WonderBallonPotionPath); 
 
@@ -455,6 +459,7 @@ export function loadTexturesAsync()
             SweetBerryPotion = resources[SweetBerryPotionPath]?.texture as PIXI.Texture;
             Torch = resources[TorchPath]?.texture as PIXI.Texture;
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
+            WhiskeyGlass = resources[WhiskeyGlassPath]?.texture as PIXI.Texture;
             WonderBallonPotion = resources[WonderBallonPotionPath]?.texture as PIXI.Texture;
             WoodenStool = resources[WoodenStoolPath]?.texture as PIXI.Texture;
 

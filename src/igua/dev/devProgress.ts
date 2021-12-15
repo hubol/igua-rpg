@@ -8,7 +8,7 @@ export function devProgress()
     // progress.flags.desert.unlockedTemple = true;
     progress.flags.desert.key.fromCrateStacker = true;
     progress.flags.desert.key.fromInn = true;
-    progress.flags.desert.key.fromDiggingInTown = true;
+    progress.flags.desert.key.fromDiggingInTown = false;
     // progress.flags.desert.diguaIsFollowing = true;
     progress.valuables = 100;
     progress.levelName = "DesertShop";

@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.3.0",
-  "width": 416,
+  "width": 496,
   "height": 256,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,7 +12,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 52,
+      "gridCellsX": 62,
       "gridCellsY": 32,
       "entities": [
         {
@@ -31,7 +31,7 @@
           "_eid": "55823268",
           "x": 0,
           "y": 224,
-          "width": 416,
+          "width": 496,
           "height": 32,
           "originX": 0,
           "originY": 0,
@@ -53,9 +53,9 @@
           "name": "Block",
           "id": 3,
           "_eid": "55823268",
-          "x": 16,
+          "x": 32,
           "y": 0,
-          "width": 368,
+          "width": 432,
           "height": 32,
           "originX": 0,
           "originY": 0,
@@ -75,21 +75,21 @@
           "name": "NpcIguana",
           "id": 5,
           "_eid": "26367058",
-          "x": 328,
+          "x": 408,
           "y": 224,
           "originX": 11,
           "originY": 27,
           "flippedX": true,
           "values": {"name": "Shopkeeper", "style": 5}
         },
-        {"name": "SlopeLeft", "id": 17, "_eid": "55845599", "x": 32, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeLeft", "id": 18, "_eid": "55845599", "x": 224, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeRight", "id": 19, "_eid": "55824435", "x": 160, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {"name": "SlopeLeft", "id": 17, "_eid": "55845599", "x": 112, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {"name": "SlopeLeft", "id": 18, "_eid": "55845599", "x": 304, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {"name": "SlopeRight", "id": 19, "_eid": "55824435", "x": 240, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
         {
           "name": "Block",
           "id": 20,
           "_eid": "55823268",
-          "x": 192,
+          "x": 272,
           "y": 32,
           "width": 32,
           "height": 32,
@@ -97,12 +97,12 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"name": "SlopeRight", "id": 21, "_eid": "55824435", "x": 352, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {"name": "SlopeRight", "id": 21, "_eid": "55824435", "x": 432, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
         {
           "name": "Block",
           "id": 24,
           "_eid": "55823268",
-          "x": 384,
+          "x": 464,
           "y": 0,
           "width": 32,
           "height": 224,
@@ -114,7 +114,7 @@
           "name": "Anchor",
           "id": 25,
           "_eid": "25979726",
-          "x": 296,
+          "x": 376,
           "y": 160,
           "originX": 0,
           "originY": 0,
@@ -124,7 +124,7 @@
           "name": "Anchor",
           "id": 26,
           "_eid": "25979726",
-          "x": 184,
+          "x": 264,
           "y": 144,
           "originX": 0,
           "originY": 0,
@@ -134,7 +134,7 @@
           "name": "PipeHorizontal",
           "id": 28,
           "_eid": "55841307",
-          "x": 360,
+          "x": 440,
           "y": 176,
           "width": 32,
           "originX": 0,
@@ -145,24 +145,47 @@
           "name": "PipeHorizontal",
           "id": 29,
           "_eid": "55841307",
-          "x": 352,
+          "x": 432,
           "y": 200,
           "width": 32,
           "originX": 0,
           "originY": 0,
           "values": {"visible": false}
         },
-        {"name": "ValuableBlue", "id": 32, "_eid": "55991906", "x": 160, "y": 56, "originX": 8, "originY": 14},
+        {"name": "ValuableBlue", "id": 32, "_eid": "55991906", "x": 240, "y": 56, "originX": 8, "originY": 14},
         {
           "name": "NpcIguana",
           "id": 33,
           "_eid": "26367058",
-          "x": 192,
+          "x": 264,
           "y": 224,
           "originX": 11,
           "originY": 27,
           "flippedX": true,
           "values": {"name": "BarAttendee", "style": 6}
+        },
+        {
+          "name": "Block",
+          "id": 34,
+          "_eid": "55823268",
+          "x": 32,
+          "y": 32,
+          "width": 80,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 35,
+          "_eid": "26367058",
+          "x": 184,
+          "y": 224,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": false,
+          "values": {"name": "Digua", "style": 4}
         }
       ]
     },
@@ -173,11 +196,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 52,
+      "gridCellsX": 62,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 300,
+          "x": 380,
           "y": 221,
           "scaleX": 1,
           "scaleY": 1,
@@ -188,7 +211,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 296,
+          "x": 376,
           "y": 217,
           "scaleX": 1,
           "scaleY": 1,
@@ -199,7 +222,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 160,
+          "x": 224,
           "y": 224,
           "scaleX": 1,
           "scaleY": 1,
@@ -210,7 +233,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 232,
+          "x": 312,
           "y": 224,
           "scaleX": 1,
           "scaleY": 1,
@@ -221,12 +244,23 @@
           "values": {"name": ""}
         },
         {
-          "x": 152,
+          "x": 216,
           "y": 216,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": 0,
           "texture": "cocktail glass.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": "DiguaGlass"}
+        },
+        {
+          "x": 232,
+          "y": 216,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "whiskey glass.png",
           "originX": 0.5,
           "originY": 1,
           "values": {"name": ""}
@@ -241,11 +275,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 52,
+      "gridCellsX": 62,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 352,
+          "x": 432,
           "y": 200,
           "scaleX": 1,
           "scaleY": 1,
@@ -256,7 +290,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 360,
+          "x": 440,
           "y": 176,
           "scaleX": 1,
           "scaleY": 1,
@@ -267,7 +301,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 376,
+          "x": 456,
           "y": 208,
           "scaleX": 1,
           "scaleY": 1,
@@ -278,7 +312,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 376,
+          "x": 456,
           "y": 168,
           "scaleX": 1,
           "scaleY": 1,
@@ -289,7 +323,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 360,
+          "x": 440,
           "y": 176,
           "scaleX": 1,
           "scaleY": 1,
@@ -300,7 +334,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 376,
+          "x": 456,
           "y": 224,
           "scaleX": 1,
           "scaleY": 1,
@@ -311,7 +345,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 356,
+          "x": 436,
           "y": 200,
           "scaleX": 1,
           "scaleY": 1,
@@ -322,7 +356,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 260,
+          "x": 340,
           "y": 216,
           "scaleX": 1,
           "scaleY": 1,
@@ -333,7 +367,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 72,
+          "x": 152,
           "y": 72,
           "scaleX": 1,
           "scaleY": 1,
@@ -344,7 +378,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 80,
+          "x": 160,
           "y": 134,
           "scaleX": 1,
           "scaleY": 1,
@@ -355,7 +389,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 168,
+          "x": 248,
           "y": 49,
           "scaleX": -1,
           "scaleY": 1,
@@ -366,7 +400,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 150,
+          "x": 230,
           "y": 38,
           "scaleX": -1,
           "scaleY": 1,
@@ -377,7 +411,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 320,
+          "x": 400,
           "y": 184,
           "scaleX": 1,
           "scaleY": 1,
@@ -397,7 +431,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 52,
+      "gridCellsX": 62,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"

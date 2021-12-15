@@ -13,8 +13,10 @@ import {inventory} from "./inventory";
 import {spendValuables} from "../logic/spendValuables";
 import {IguaText} from "../text";
 
+type Purchases = PotionType[];
+
 export function shop(...potions: PotionType[]) {
-    return new Promise<void>(r => {
+    return new Promise<Purchases>(r => {
         shopImpl(r, potions);
     });
 }
@@ -73,7 +75,8 @@ function makeButtons(types: PotionType[]) {
     })
 }
 
-function shopImpl(resolve: () => void, types: PotionType[]) {
+function shopImpl(resolve: (p: Purchases) => void, types: PotionType[]) {
+    const purchases: Purchases = [];
     const c = new Container();
     game.hudStage.addChild(c);
 
@@ -114,6 +117,7 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
         Purchase.play();
         progress.shopPurchases[potion] = (progress.shopPurchases[potion] ?? 0) + 1;
         inventory.push(potion);
+        purchases.push(potion);
     }
 
     const tip = new Container();
@@ -171,7 +175,7 @@ function shopImpl(resolve: () => void, types: PotionType[]) {
 
             if (Key.justWentDown('Space')) {
                 if (doneSelected) {
-                    resolve();
+                    resolve(purchases);
                     c.destroy();
                     return;
                 }

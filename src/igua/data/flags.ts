@@ -12,6 +12,9 @@ export function getInitialFlags()
             diguaIsInBar: false,
             unlockedTemple: false,
             dugInDesertTown: false,
+            digua: {
+                discussedKey: false,
+            },
             key: {
                 fromCrateStacker: false,
                 fromInn: false,

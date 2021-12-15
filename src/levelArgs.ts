@@ -29,6 +29,7 @@ import { resolveValuableBlue } from "./gameObjects/valuable";
 import { DontPoster } from "./textures";
 import { Bottle2 } from "./textures";
 import { Bottle1 } from "./textures";
+import { WhiskeyGlass } from "./textures";
 import { CocktailGlass } from "./textures";
 import { DinerTable } from "./textures";
 import { WoodenStool } from "./textures";
@@ -1055,12 +1056,12 @@ ValuableBlue_1: resolveValuableBlue({"type":"ValuableBlue","x":492,"y":318,"flip
 };
 
 export const DesertShopArgs = {
-    width: 416,
+    width: 496,
 height: 256,
 gameObjectsSupplier: () => {
   return {
     WoodenStool: resolveDecalGameObject({
-    x: 300,
+    x: 380,
 y: 221,
 originX: 0.5,
 originY: 0.5,
@@ -1071,7 +1072,7 @@ layerName: "TerrainDecals",
 texture: WoodenStool
 }),
 CocktailGlass: resolveDecalGameObject({
-    x: 296,
+    x: 376,
 y: 217,
 originX: 0.5,
 originY: 1,
@@ -1082,7 +1083,7 @@ layerName: "TerrainDecals",
 texture: CocktailGlass
 }),
 DinerTable: resolveDecalGameObject({
-    x: 160,
+    x: 224,
 y: 224,
 originX: 0.5,
 originY: 1,
@@ -1093,7 +1094,7 @@ layerName: "TerrainDecals",
 texture: DinerTable
 }),
 DinerTable_1: resolveDecalGameObject({
-    x: 232,
+    x: 312,
 y: 224,
 originX: 0.5,
 originY: 1,
@@ -1103,8 +1104,8 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: DinerTable
 }),
-CocktailGlass_1: resolveDecalGameObject({
-    x: 152,
+DiguaGlass: resolveDecalGameObject({
+    x: 216,
 y: 216,
 originX: 0.5,
 originY: 1,
@@ -1114,8 +1115,19 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: CocktailGlass
 }),
+WhiskeyGlass: resolveDecalGameObject({
+    x: 232,
+y: 216,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: WhiskeyGlass
+}),
 CrateWooden: resolveDecalGameObject({
-    x: 352,
+    x: 432,
 y: 200,
 originX: 0,
 originY: 0,
@@ -1126,7 +1138,7 @@ layerName: "BackgroundDecals",
 texture: CrateWooden
 }),
 CrateWooden_1: resolveDecalGameObject({
-    x: 360,
+    x: 440,
 y: 176,
 originX: 0,
 originY: 0,
@@ -1137,7 +1149,7 @@ layerName: "BackgroundDecals",
 texture: CrateWooden
 }),
 Cobweb: resolveDecalGameObject({
-    x: 376,
+    x: 456,
 y: 208,
 originX: 0.5,
 originY: 0.5,
@@ -1148,7 +1160,7 @@ layerName: "BackgroundDecals",
 texture: Cobweb
 }),
 Cobweb_1: resolveDecalGameObject({
-    x: 376,
+    x: 456,
 y: 168,
 originX: 0.5,
 originY: 0.5,
@@ -1159,7 +1171,7 @@ layerName: "BackgroundDecals",
 texture: Cobweb
 }),
 Bottle1: resolveDecalGameObject({
-    x: 360,
+    x: 440,
 y: 176,
 originX: 0,
 originY: 1,
@@ -1170,7 +1182,7 @@ layerName: "BackgroundDecals",
 texture: Bottle1
 }),
 Bottle1_1: resolveDecalGameObject({
-    x: 376,
+    x: 456,
 y: 224,
 originX: 0,
 originY: 1,
@@ -1181,7 +1193,7 @@ layerName: "BackgroundDecals",
 texture: Bottle1
 }),
 Bottle2: resolveDecalGameObject({
-    x: 356,
+    x: 436,
 y: 200,
 originX: 0,
 originY: 1,
@@ -1192,7 +1204,7 @@ layerName: "BackgroundDecals",
 texture: Bottle2
 }),
 Bottle2_1: resolveDecalGameObject({
-    x: 260,
+    x: 340,
 y: 216,
 originX: 0,
 originY: 1,
@@ -1203,7 +1215,7 @@ layerName: "BackgroundDecals",
 texture: Bottle2
 }),
 CracksA: resolveDecalGameObject({
-    x: 72,
+    x: 152,
 y: 72,
 originX: 0.5,
 originY: 0.5,
@@ -1214,7 +1226,7 @@ layerName: "BackgroundDecals",
 texture: CracksA
 }),
 CracksA_1: resolveDecalGameObject({
-    x: 80,
+    x: 160,
 y: 134,
 originX: 0.5,
 originY: 0.5,
@@ -1225,7 +1237,7 @@ layerName: "BackgroundDecals",
 texture: CracksA
 }),
 Cobweb_2: resolveDecalGameObject({
-    x: 168,
+    x: 248,
 y: 49,
 originX: 0.5,
 originY: 0.5,
@@ -1236,7 +1248,7 @@ layerName: "BackgroundDecals",
 texture: Cobweb
 }),
 Cobweb_3: resolveDecalGameObject({
-    x: 150,
+    x: 230,
 y: 38,
 originX: 0.5,
 originY: 0.5,
@@ -1247,7 +1259,7 @@ layerName: "BackgroundDecals",
 texture: Cobweb
 }),
 DontPoster: resolveDecalGameObject({
-    x: 320,
+    x: 400,
 y: 184,
 originX: 0.5,
 originY: 0.5,
@@ -1260,36 +1272,40 @@ texture: DontPoster
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":48,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"DesertTown","checkpointName":"FromShop","name":""}),
 // @ts-ignore
-Floor: resolveBlock({"type":"Block","x":0,"y":224,"width":416,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"Floor"}),
+Floor: resolveBlock({"type":"Block","x":0,"y":224,"width":496,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"Floor"}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":""}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":16,"y":0,"width":368,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":""}),
+Block_1: resolveBlock({"type":"Block","x":32,"y":0,"width":432,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":""}),
 Player: {"type":"Player","x":96,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_4","faceRight":true},
 // @ts-ignore
-Shopkeeper: resolveNpc({"type":"NpcIguana","x":328,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_5","name":"Shopkeeper","style":5}),
+Shopkeeper: resolveNpc({"type":"NpcIguana","x":408,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_5","name":"Shopkeeper","style":5}),
 // @ts-ignore
-SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":32,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_17"}),
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":112,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_17"}),
 // @ts-ignore
-SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":224,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_18"}),
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":304,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_18"}),
 // @ts-ignore
-SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":160,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_19"}),
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":240,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_19"}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":192,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":""}),
+Block_2: resolveBlock({"type":"Block","x":272,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":""}),
 // @ts-ignore
-SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":352,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_21"}),
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":432,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_21"}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":384,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268_24","name":""}),
-ShopLamp: {"type":"Anchor","x":296,"y":160,"flippedX":false,"flippedY":false,"uid":"25979726_25","name":"ShopLamp"},
-MiddleLamp: {"type":"Anchor","x":184,"y":144,"flippedX":false,"flippedY":false,"uid":"25979726_26","name":"MiddleLamp"},
+Block_3: resolveBlock({"type":"Block","x":464,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268_24","name":""}),
+ShopLamp: {"type":"Anchor","x":376,"y":160,"flippedX":false,"flippedY":false,"uid":"25979726_25","name":"ShopLamp"},
+MiddleLamp: {"type":"Anchor","x":264,"y":144,"flippedX":false,"flippedY":false,"uid":"25979726_26","name":"MiddleLamp"},
 // @ts-ignore
-PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":360,"y":176,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":false}),
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":440,"y":176,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":false}),
 // @ts-ignore
-PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":352,"y":200,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_29","visible":false}),
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":432,"y":200,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_29","visible":false}),
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":160,"y":56,"flippedX":false,"flippedY":false,"uid":"55991906_32"}),
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":240,"y":56,"flippedX":false,"flippedY":false,"uid":"55991906_32"}),
 // @ts-ignore
-BarAttendee: resolveNpc({"type":"NpcIguana","x":192,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_33","name":"BarAttendee","style":6})
+BarAttendee: resolveNpc({"type":"NpcIguana","x":264,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_33","name":"BarAttendee","style":6}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":32,"y":32,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_34","name":""}),
+// @ts-ignore
+Digua: resolveNpc({"type":"NpcIguana","x":184,"y":224,"flippedX":false,"flippedY":false,"uid":"26367058_35","name":"Digua","style":4})
 };
 }
 };
