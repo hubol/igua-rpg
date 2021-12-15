@@ -11,6 +11,7 @@ import {potions, PotionType} from "./potions";
 import {consumePotion} from "./consumePotion";
 import {range} from "../../utils/range";
 import {IguaText} from "../text";
+import {progress} from "../data/progress";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
@@ -110,7 +111,14 @@ function useImpl() {
     const row = 6;
     const slots = inventory.slotsCount;
     const c = controller(row, slots);
-    c.addChild(gui(c));
+
+    const clawLevel = IguaText.Large("", { tint: 0x00ff00 })
+        .withStep(() => clawLevel.text = `Claw Level ${progress.level}`)
+        .at(254, 256);
+    clawLevel.anchor.set(1, 1);
+
+    c.addChild(gui(c), clawLevel);
+
     game.hudStage.addChild(c);
     game.hudStage.ticker.update();
 }
