@@ -70,7 +70,7 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
                     }
                     else
                     {
-                        puppet.hspeed = -Math.sign(difference) * this.walkSpeed;
+                        puppet.hspeed = -Math.sign(difference) * Math.min(this.walkSpeed, Math.abs(difference));
                         break;
                     }
                 }

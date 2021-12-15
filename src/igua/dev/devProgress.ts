@@ -11,6 +11,7 @@ export function devProgress()
     progress.flags.desert.key.fromDiggingInTown = false;
     // progress.flags.desert.diguaIsFollowing = true;
     progress.valuables = 100;
+    progress.poisonLevel = 0;
     progress.levelName = "DesertShop";
     progress.flags.desert.bigKey.reward = true;
     progress.inventory = Object.keys(potions) as any;
