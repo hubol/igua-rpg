@@ -194,7 +194,7 @@ const snowman = (groundY, retreatX) => {
         }
 
         if (mask.collides(player))
-            player.damage(10);
+            player.damage(25);
     };
     sprite.withAsync(async () => {
         await sleep(500);

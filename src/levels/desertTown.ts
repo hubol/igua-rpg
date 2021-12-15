@@ -65,6 +65,8 @@ function addIntroduction(level: DesertTownLevel)
         await show("A great evil has entered the world.");
         await show("You are the one who must stop the evil.");
         await show("You can walk with left and right arrows and jump with space bar.");
+        await show("To interact with an object or another animal, press up arrow.");
+        await show("You have a supply of potions and medicine. To use something or just check your supply, press U.");
         await show("In the town there is an oracle if you need advice. Good luck.");
         await lizard.walkTo(level.LeftHouseDoor.x - 128);
         lizard.destroy();
