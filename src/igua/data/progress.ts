@@ -6,16 +6,14 @@ export function getInitialProgress()
     return {
         health: 100,
         maxHealth: 100,
-        valuables: 0,
+        valuables: 100,
         level: 1,
         poisonLevel: 0,
-        gotLevelValuable: new Set<string>(),
-        clearedBoulder: new Set<string>(),
-        shopPurchases: {} as Record<PotionType, number | undefined>,
         inventory: [] as (PotionType | undefined)[],
-        flags: getInitialFlags(),
+        shopPurchases: {} as Record<PotionType, number | undefined>,
         levelName: "DesertTown",
-        checkpointName: "none"
+        checkpointName: "none",
+        flags: getInitialFlags(),
     };
 }
 

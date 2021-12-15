@@ -1,6 +1,10 @@
 export function getInitialFlags()
 {
     return {
+        objects: {
+            gotLevelValuable: new Set<string>(),
+            clearedBoulder: new Set<string>(),
+        },
         desert: {
             heardIntroduction: false,
             stackedAllCrates: false,

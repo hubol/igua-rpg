@@ -9,7 +9,7 @@ import {progress} from "../igua/data/progress";
 
 export const resolveBoulder =
     resolveGameObject("Boulder", e => {
-        if (progress.clearedBoulder.has(e.uid))
+        if (progress.flags.objects.clearedBoulder.has(e.uid))
             return;
         const b = boulder(e.uid).at(e);
         b.width = e.width;
@@ -40,7 +40,7 @@ export function boulder(uid) {
                 bouncePlayer(s);
                 if (progress.flags.desert.bigKey.reward) {
                     BoulderBless.play();
-                    progress.clearedBoulder.add(uid);
+                    progress.flags.objects.clearedBoulder.add(uid);
                     dying = true;
                 }
             }

@@ -24,7 +24,7 @@ export function valuable(x, y, uid, type: ValuableType)
             particle.position.set(sprite.x, sprite.y - 7);
 
             if (uid)
-                progress.gotLevelValuable.add(uid);
+                progress.flags.objects.gotLevelValuable.add(uid);
             progress.valuables += valuableStyle.value;
             const sound = valuableStyle.sound;
             sound.volume(0.5);
@@ -42,7 +42,7 @@ function resolveValuable(e: GameObjectArgs)
     if (e.type === "ValuableOrange" || e.type === "ValuableBlue")
     {
         const uid = e.uid;
-        if (!progress.gotLevelValuable.has(uid))
+        if (!progress.flags.objects.gotLevelValuable.has(uid))
             return scene.gameObjectStage.addChild(valuable(e.x, e.y, uid, e.type));
     }
 }
