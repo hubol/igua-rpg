@@ -19,7 +19,7 @@ import {
     NpcYellowFoot,
     NpcYellowFootRear,
     NpcPupilsWeird,
-    NpcLongTailBody, NpcBlueFoot2, NpcBlueFootRear2, NpcHornedCrest, CharacterCrest, CharacterBody
+    NpcLongTailBody, NpcBlueFoot2, NpcBlueFootRear2, NpcHornedCrest, CharacterCrest, CharacterBody, NpcPupilsCartoonishGapped
 } from "../textures";
 import {IguanaEyes, iguanaEyes} from "../igua/puppet/eyes";
 import {Vector} from "../utils/math/vector";
@@ -150,8 +150,13 @@ npcStyles[4] = npcStyle(args => {
     args.eyelidColor = 0x60B0D0;
 });
 
-npcStyles[5] = genNpcStyle1(172);
-// npcStyles[6] = genNpcStyle1(22);
+npcStyles[5] = genNpcStyle1(172, (args) => {
+    args.pupils.pivot.y -= 1;
+});
+npcStyles[6] = genNpcStyle1(191, (args) => {
+    args.pupils.texture = NpcPupilsCartoonishGapped;
+    args.pupils.pivot.x -= 2;
+});
 // npcStyles[7] = genNpcStyle1(52);
 // npcStyles[9] = genNpcStyle1(95);
 // npcStyles[10] = genNpcStyle1(172);
@@ -160,7 +165,7 @@ npcStyles[5] = genNpcStyle1(172);
 // npcStyles[13] = genNpcStyle1(261);
 // npcStyles[14] = genNpcStyle1(316);
 
-function genNpcStyle1(seed: number) {
+function genNpcStyle1(seed: number, configure?: (args: ConfigureNpcStyleArgs) => void) {
     return () => {
         const pseudo = makePseudo(seed);
         const npcContainer = npcStyle(args => {
@@ -188,6 +193,9 @@ function genNpcStyle1(seed: number) {
             args.pupils = Sprite.from(pseudo.choose(NpcPupilsCartoonish, NpcPupilsWeird));
             args.pupils.tint = pseudo.color();
             args.eyelidColor = pseudo.color();
+
+            if (configure)
+                configure(args);
         })();
         const colorMatrixFilter = new filters.ColorMatrixFilter();
         colorMatrixFilter.hue(pseudo.int() % 360, false);

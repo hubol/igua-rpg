@@ -26,8 +26,11 @@ import { Column } from "./textures";
 import { CracksA } from "./textures";
 import { Cobweb } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
+import { DontPoster } from "./textures";
 import { Bottle2 } from "./textures";
 import { Bottle1 } from "./textures";
+import { CocktailGlass } from "./textures";
+import { DinerTable } from "./textures";
 import { WoodenStool } from "./textures";
 import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
@@ -37,6 +40,8 @@ import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
 import { PotteryOrangeDamaged } from "./textures";
 import { PotteryOrange } from "./textures";
+import { RoseVase } from "./textures";
+import { LightShelf } from "./textures";
 import { Rope } from "./textures";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { DesertTemple } from "./textures";
@@ -535,6 +540,72 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: Cobweb
 }),
+LightShelf: resolveDecalGameObject({
+    x: 96,
+y: 88,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: LightShelf
+}),
+LightShelf_1: resolveDecalGameObject({
+    x: 136,
+y: 104,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: LightShelf
+}),
+LightShelf_2: resolveDecalGameObject({
+    x: 408,
+y: 120,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: LightShelf
+}),
+RoseVase: resolveDecalGameObject({
+    x: 144,
+y: 104,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: RoseVase
+}),
+RoseVase_1: resolveDecalGameObject({
+    x: 88,
+y: 88,
+originX: 0.5,
+originY: 1,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: RoseVase
+}),
+DontPoster: resolveDecalGameObject({
+    x: 192,
+y: 128,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: DontPoster
+}),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":32,"y":128,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"DesertTown","checkpointName":"FromInn","name":""}),
 // @ts-ignore
@@ -566,7 +637,13 @@ SleepHere: {"type":"Anchor","x":384,"y":152,"flippedX":false,"flippedY":false,"u
 // @ts-ignore
 PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":436,"y":112,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_16","visible":false}),
 // @ts-ignore
-PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":424,"y":136,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307_17","visible":false})
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":424,"y":136,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307_17","visible":false}),
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":120,"y":104,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_18","visible":false}),
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":80,"y":88,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_19","visible":false}),
+// @ts-ignore
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":392,"y":120,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_20","visible":false})
 };
 }
 };
@@ -993,6 +1070,50 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: WoodenStool
 }),
+CocktailGlass: resolveDecalGameObject({
+    x: 296,
+y: 217,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: CocktailGlass
+}),
+DinerTable: resolveDecalGameObject({
+    x: 160,
+y: 224,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: DinerTable
+}),
+DinerTable_1: resolveDecalGameObject({
+    x: 232,
+y: 224,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: DinerTable
+}),
+CocktailGlass_1: resolveDecalGameObject({
+    x: 152,
+y: 216,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: CocktailGlass
+}),
 CrateWooden: resolveDecalGameObject({
     x: 352,
 y: 200,
@@ -1125,6 +1246,17 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: Cobweb
 }),
+DontPoster: resolveDecalGameObject({
+    x: 320,
+y: 184,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: DontPoster
+}),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":48,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"DesertTown","checkpointName":"FromShop","name":""}),
 // @ts-ignore
@@ -1155,7 +1287,9 @@ PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":360,"y":176,"
 // @ts-ignore
 PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":352,"y":200,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_29","visible":false}),
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":160,"y":56,"flippedX":false,"flippedY":false,"uid":"55991906_32"})
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":160,"y":56,"flippedX":false,"flippedY":false,"uid":"55991906_32"}),
+// @ts-ignore
+BarAttendee: resolveNpc({"type":"NpcIguana","x":192,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_33","name":"BarAttendee","style":6})
 };
 }
 };

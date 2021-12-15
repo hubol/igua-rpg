@@ -24,6 +24,7 @@ export let ClawPowderPotion: PIXI.Texture;
 export let CloudLong: PIXI.Texture;
 export let ClownSpikeBall: PIXI.Texture;
 export let Cobweb: PIXI.Texture;
+export let CocktailGlass: PIXI.Texture;
 export let Column: PIXI.Texture;
 export let CommonClown: PIXI.Texture;
 export let CommonPoisonPotion: PIXI.Texture;
@@ -35,10 +36,13 @@ export let CrudeHouseC: PIXI.Texture;
 export let CrudeHouse: PIXI.Texture;
 export let DesertTempleLever: PIXI.Texture;
 export let DesertTemple: PIXI.Texture;
+export let DinerTable: PIXI.Texture;
+export let DontPoster: PIXI.Texture;
 export let GlowingCircle: PIXI.Texture;
 export let HotTerrain: PIXI.Texture;
 export let KeyRed: PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture;
+export let LightShelf: PIXI.Texture;
 export let LockedDoor: PIXI.Texture;
 export let MessageBox: PIXI.Texture;
 export let NpcBlueFoot2: PIXI.Texture;
@@ -53,6 +57,7 @@ export let NpcLongTailBody: PIXI.Texture;
 export let NpcPinkFootRear: PIXI.Texture;
 export let NpcPinkFoot: PIXI.Texture;
 export let NpcPupilsAngry: PIXI.Texture;
+export let NpcPupilsCartoonishGapped: PIXI.Texture;
 export let NpcPupilsCartoonish: PIXI.Texture;
 export let NpcPupilsWeird: PIXI.Texture;
 export let NpcRedFootRear: PIXI.Texture;
@@ -72,6 +77,7 @@ export let PotteryOrange: PIXI.Texture;
 export let RightPipeEnd: PIXI.Texture;
 export let RockCracks: PIXI.Texture;
 export let Rope: PIXI.Texture;
+export let RoseVase: PIXI.Texture;
 export let SignInn: PIXI.Texture;
 export let SignTavern: PIXI.Texture;
 export let Sign: PIXI.Texture;
@@ -157,6 +163,9 @@ export function loadTexturesAsync()
     const CobwebPath = require("./images/cobweb.png");
     loader.add(CobwebPath); 
 
+    const CocktailGlassPath = require("./images/cocktail glass.png");
+    loader.add(CocktailGlassPath); 
+
     const ColumnPath = require("./images/column.png");
     loader.add(ColumnPath); 
 
@@ -190,6 +199,12 @@ export function loadTexturesAsync()
     const DesertTemplePath = require("./images/desert temple.png");
     loader.add(DesertTemplePath); 
 
+    const DinerTablePath = require("./images/diner table.png");
+    loader.add(DinerTablePath); 
+
+    const DontPosterPath = require("./images/dont poster.png");
+    loader.add(DontPosterPath); 
+
     const GlowingCirclePath = require("./images/glowing circle.png");
     loader.add(GlowingCirclePath); 
 
@@ -201,6 +216,9 @@ export function loadTexturesAsync()
 
     const LeftPipeEndPath = require("./images/left pipe end.png");
     loader.add(LeftPipeEndPath); 
+
+    const LightShelfPath = require("./images/light shelf.png");
+    loader.add(LightShelfPath); 
 
     const LockedDoorPath = require("./images/locked door.png");
     loader.add(LockedDoorPath); 
@@ -243,6 +261,9 @@ export function loadTexturesAsync()
 
     const NpcPupilsAngryPath = require("./images/npc/pupils angry.png");
     loader.add(NpcPupilsAngryPath); 
+
+    const NpcPupilsCartoonishGappedPath = require("./images/npc/pupils cartoonish gapped.png");
+    loader.add(NpcPupilsCartoonishGappedPath); 
 
     const NpcPupilsCartoonishPath = require("./images/npc/pupils cartoonish.png");
     loader.add(NpcPupilsCartoonishPath); 
@@ -300,6 +321,9 @@ export function loadTexturesAsync()
 
     const RopePath = require("./images/rope.png");
     loader.add(RopePath); 
+
+    const RoseVasePath = require("./images/rose vase.png");
+    loader.add(RoseVasePath); 
 
     const SignInnPath = require("./images/sign inn.png");
     loader.add(SignInnPath); 
@@ -366,6 +390,7 @@ export function loadTexturesAsync()
             CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
             ClownSpikeBall = resources[ClownSpikeBallPath]?.texture as PIXI.Texture;
             Cobweb = resources[CobwebPath]?.texture as PIXI.Texture;
+            CocktailGlass = resources[CocktailGlassPath]?.texture as PIXI.Texture;
             Column = resources[ColumnPath]?.texture as PIXI.Texture;
             CommonClown = resources[CommonClownPath]?.texture as PIXI.Texture;
             CommonPoisonPotion = resources[CommonPoisonPotionPath]?.texture as PIXI.Texture;
@@ -377,10 +402,13 @@ export function loadTexturesAsync()
             CrudeHouse = resources[CrudeHousePath]?.texture as PIXI.Texture;
             DesertTempleLever = resources[DesertTempleLeverPath]?.texture as PIXI.Texture;
             DesertTemple = resources[DesertTemplePath]?.texture as PIXI.Texture;
+            DinerTable = resources[DinerTablePath]?.texture as PIXI.Texture;
+            DontPoster = resources[DontPosterPath]?.texture as PIXI.Texture;
             GlowingCircle = resources[GlowingCirclePath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             KeyRed = resources[KeyRedPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
+            LightShelf = resources[LightShelfPath]?.texture as PIXI.Texture;
             LockedDoor = resources[LockedDoorPath]?.texture as PIXI.Texture;
             MessageBox = resources[MessageBoxPath]?.texture as PIXI.Texture;
             NpcBlueFoot2 = resources[NpcBlueFoot2Path]?.texture as PIXI.Texture;
@@ -395,6 +423,7 @@ export function loadTexturesAsync()
             NpcPinkFootRear = resources[NpcPinkFootRearPath]?.texture as PIXI.Texture;
             NpcPinkFoot = resources[NpcPinkFootPath]?.texture as PIXI.Texture;
             NpcPupilsAngry = resources[NpcPupilsAngryPath]?.texture as PIXI.Texture;
+            NpcPupilsCartoonishGapped = resources[NpcPupilsCartoonishGappedPath]?.texture as PIXI.Texture;
             NpcPupilsCartoonish = resources[NpcPupilsCartoonishPath]?.texture as PIXI.Texture;
             NpcPupilsWeird = resources[NpcPupilsWeirdPath]?.texture as PIXI.Texture;
             NpcRedFootRear = resources[NpcRedFootRearPath]?.texture as PIXI.Texture;
@@ -414,6 +443,7 @@ export function loadTexturesAsync()
             RightPipeEnd = resources[RightPipeEndPath]?.texture as PIXI.Texture;
             RockCracks = resources[RockCracksPath]?.texture as PIXI.Texture;
             Rope = resources[RopePath]?.texture as PIXI.Texture;
+            RoseVase = resources[RoseVasePath]?.texture as PIXI.Texture;
             SignInn = resources[SignInnPath]?.texture as PIXI.Texture;
             SignTavern = resources[SignTavernPath]?.texture as PIXI.Texture;
             Sign = resources[SignPath]?.texture as PIXI.Texture;

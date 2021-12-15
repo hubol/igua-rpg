@@ -9,6 +9,7 @@ import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/rng";
 import {resolvePipeHorizontal} from "../gameObjects/walls";
 import {vector} from "../utils/math/vector";
+import {cigarette} from "../gameObjects/cigarette";
 
 export function DesertShop() {
     const level = applyOgmoLevel(DesertShopArgs);
@@ -32,6 +33,9 @@ export function DesertShop() {
     flicker(light2);
 
     [light1, light2].forEach(x => enrichLight(x, level));
+
+    const c = cigarette().at([-17, -8].add(level.BarAttendee)).show();
+    c.scale.x = -1;
 }
 
 function enrichLight(light: Sprite, level) {

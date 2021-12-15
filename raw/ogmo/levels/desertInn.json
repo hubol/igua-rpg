@@ -165,6 +165,39 @@
           "originX": 0,
           "originY": 0,
           "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 18,
+          "_eid": "55841307",
+          "x": 120,
+          "y": 104,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 19,
+          "_eid": "55841307",
+          "x": 80,
+          "y": 88,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 20,
+          "_eid": "55841307",
+          "x": 392,
+          "y": 120,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
         }
       ]
     },
@@ -310,6 +343,72 @@
           "texture": "cobweb.png",
           "originX": 1,
           "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 96,
+          "y": 88,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "light shelf.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 136,
+          "y": 104,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "light shelf.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 408,
+          "y": 120,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "light shelf.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 144,
+          "y": 104,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "rose vase.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 88,
+          "y": 88,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "rose vase.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 192,
+          "y": 128,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "dont poster.png",
+          "originX": 0.5,
+          "originY": 0.5,
           "values": {"name": ""}
         }
       ],

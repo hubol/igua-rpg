@@ -152,7 +152,18 @@
           "originY": 0,
           "values": {"visible": false}
         },
-        {"name": "ValuableBlue", "id": 32, "_eid": "55991906", "x": 160, "y": 56, "originX": 8, "originY": 14}
+        {"name": "ValuableBlue", "id": 32, "_eid": "55991906", "x": 160, "y": 56, "originX": 8, "originY": 14},
+        {
+          "name": "NpcIguana",
+          "id": 33,
+          "_eid": "26367058",
+          "x": 192,
+          "y": 224,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "BarAttendee", "style": 6}
+        }
       ]
     },
     {
@@ -174,6 +185,50 @@
           "texture": "wooden stool.png",
           "originX": 0.5,
           "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 296,
+          "y": 217,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cocktail glass.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 160,
+          "y": 224,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "diner table.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 232,
+          "y": 224,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "diner table.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 152,
+          "y": 216,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cocktail glass.png",
+          "originX": 0.5,
+          "originY": 1,
           "values": {"name": ""}
         }
       ],
@@ -317,6 +372,17 @@
           "scaleY": 1,
           "rotation": 0,
           "texture": "cobweb.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 320,
+          "y": 184,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "dont poster.png",
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
