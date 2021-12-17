@@ -1,19 +1,15 @@
 import {moveTowards, Vector} from "../math/vector";
 import * as PIXI from "pixi.js";
 import {CancellationToken} from "pissant";
-import {areRectanglesOverlapping, normalizeRectangle, rectangle as createRectangle} from "../math/rectangle";
 import {AsshatTicker} from "../asshatTicker";
 import {PromiseFn, runInIguaZone} from "../../cutscene/runInIguaZone";
 
 declare global {
     namespace PIXI {
         export interface DisplayObject {
-            moveUntilCollides(speed: Vector, displayObjects: DisplayObject | DisplayObject[]);
             moveTowards(dest: Vector, speed: number);
-            collides(displayObjects: DisplayObject | DisplayObject[], offset?: Vector): boolean;
             useLinearFiltering();
             useNearestFiltering();
-            rectangle: Rectangle;
             withStep(step: () => void): this;
             withAsync(async: PromiseFn): this;
             at(vector: Vector): this;
@@ -34,14 +30,6 @@ declare global {
         }
     }
 }
-
-Object.defineProperty(PIXI.DisplayObject.prototype, "rectangle", {
-    get: function rectangle() {
-        if (!this.anchor)
-            return normalizeRectangle(createRectangle(this));
-        return normalizeRectangle({ x: this.x - this.width * this.anchor.x, y: this.y - this.height * this.anchor.y, width: this.width, height: this.height });
-    }
-});
 
 Object.defineProperty(PIXI.DisplayObject.prototype, "destroyed", {
     get: function destroyed() {
@@ -197,18 +185,6 @@ PIXI.Container.prototype.removeAllChildren = function ()
     this.removeChildren();
 }
 
-// Move this Container by the given speed without touching any of the specified container(s). If a collision did not occur, the supplied speed will be modified with the remainder. Otherwise, the speed will have a length of 0.
-PIXI.DisplayObject.prototype.moveUntilCollides = function (speed, otherContainerOrContainers)
-{
-    return moveUntilCollides(this, speed, otherContainerOrContainers);
-}
-
-// Test if this container collides with any of the specified containers taking into account the offset, if specified
-PIXI.DisplayObject.prototype.collides = function(otherContainerOrContainers, offset)
-{
-    return collides(this, otherContainerOrContainers, offset);
-}
-
 // Use linear filtering for this
 PIXI.DisplayObject.prototype.useLinearFiltering = function()
 {
@@ -234,69 +210,6 @@ function useFiltering(object, scaleModeValue)
         return useFiltering(object.baseTexture, scaleModeValue);
     if (object.texture)
         return useFiltering(object.texture, scaleModeValue);
-}
-
-function moveUntilCollides(container, speed, otherContainerOrContainers)
-{
-    const signX = Math.sign(speed.x);
-    const signY = Math.sign(speed.y);
-
-    while (Math.abs(speed.x) >= 1 || Math.abs(speed.y) >= 1)
-    {
-        if (Math.abs(speed.x) >= 1)
-        {
-            if (container.collides(otherContainerOrContainers, { x: signX, y: 0 }))
-            {
-                speed.x = 0;
-            }
-            else
-            {
-                container.x += signX;
-                speed.x -= signX;
-            }
-        }
-        if (Math.abs(speed.y) >= 1)
-        {
-            if (container.collides(otherContainerOrContainers, { x: 0, y: signY }))
-            {
-                speed.y = 0;
-            }
-            else
-            {
-                container.y += signY;
-                speed.y -= signY;
-            }
-        }
-    }
-}
-
-function collides(container, otherContainerOrContainers, offset)
-{
-    if (container.destroyed)
-        return false;
-
-    if (Array.isArray(otherContainerOrContainers))
-    {
-        for (let i = 0; i < otherContainerOrContainers.length; i++)
-        {
-            if (collides(container, otherContainerOrContainers[i], offset))
-                return true;
-        }
-
-        return false;
-    }
-
-    if (otherContainerOrContainers.destroyed)
-        return false;
-
-    const containerBounds = container.getBounds();
-    if (offset)
-    {
-        containerBounds.x += offset.x;
-        containerBounds.y += offset.y;
-    }
-    const otherContainerBounds = otherContainerOrContainers.getBounds();
-    return areRectanglesOverlapping(containerBounds, otherContainerBounds);
 }
 
 PIXI.Transform.prototype.onPositionChanged = function(cb) {
