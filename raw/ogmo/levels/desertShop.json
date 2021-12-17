@@ -186,6 +186,28 @@
           "originY": 27,
           "flippedX": false,
           "values": {"name": "Digua", "style": 4}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 36,
+          "_eid": "55841307",
+          "x": 296,
+          "y": 216,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 37,
+          "_eid": "55841307",
+          "x": 208,
+          "y": 216,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
         }
       ]
     },

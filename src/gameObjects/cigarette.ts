@@ -9,8 +9,11 @@ const smoke = 0x93989B;
 export function cigarette(life = .5 + rng() * .5) {
     let update = 0;
     const gfx = new Graphics().withStep(() => {
-        if (life <= 0)
+        if (life <= 0) {
+            gfx.angle -= 4;
+            gfx.x -= 1;
             return gfx.y += 2;
+        }
         if (update++ % 2 !== 0)
             return;
 

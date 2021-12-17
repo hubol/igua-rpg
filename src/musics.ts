@@ -46,3 +46,8 @@ export const Temple = new Howl({
     src: [require("./music/temple.ogg"), require("./music/temple.mp3")],
     preload: false
 });
+
+export const TickingTime = new Howl({
+    src: [require("./music/ticking time.ogg"), require("./music/ticking time.mp3")],
+    preload: false
+});

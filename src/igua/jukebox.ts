@@ -1,5 +1,6 @@
 import {loadHowlAsync} from "../utils/resources/loadHowls";
 import {wait} from "pissant";
+import {getMusicVolume} from "./getMusicVolume";
 
 class Jukebox
 {
@@ -74,8 +75,9 @@ class Jukebox
                 this._currentHowl.stop();
             }
             this._currentHowl = howl;
+            const volume = getMusicVolume(howl);
             // @ts-ignore
-            howl.volume(1).loop(true).play();
+            howl.volume(volume).loop(true).play();
         }
         catch (e)
         {

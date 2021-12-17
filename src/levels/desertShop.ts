@@ -12,9 +12,12 @@ import {vector} from "../utils/math/vector";
 import {cigarette} from "../gameObjects/cigarette";
 import {show} from "../cutscene/dialog";
 import {progress} from "../igua/data/progress";
+import {jukebox} from "../igua/jukebox";
+import {Country, Shop} from "../musics";
 
 export function DesertShop() {
     const level = applyOgmoLevel(DesertShopArgs);
+    jukebox.play(Shop).warm(Country);
     scene.terrainColor = 0x60669B;
     scene.backgroundColor = 0x3B3F63;
     level.Shopkeeper.cutscene = async () => {

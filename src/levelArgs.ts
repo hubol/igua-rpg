@@ -1305,7 +1305,11 @@ BarAttendee: resolveNpc({"type":"NpcIguana","x":264,"y":224,"flippedX":true,"fli
 // @ts-ignore
 Block_4: resolveBlock({"type":"Block","x":32,"y":32,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_34","name":""}),
 // @ts-ignore
-Digua: resolveNpc({"type":"NpcIguana","x":184,"y":224,"flippedX":false,"flippedY":false,"uid":"26367058_35","name":"Digua","style":4})
+Digua: resolveNpc({"type":"NpcIguana","x":184,"y":224,"flippedX":false,"flippedY":false,"uid":"26367058_35","name":"Digua","style":4}),
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":296,"y":216,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_36","visible":false}),
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":208,"y":216,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_37","visible":false})
 };
 }
 };
