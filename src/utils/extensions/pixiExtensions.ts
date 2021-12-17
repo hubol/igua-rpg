@@ -8,8 +8,8 @@ declare global {
     namespace PIXI {
         export interface DisplayObject {
             moveTowards(dest: Vector, speed: number);
-            useLinearFiltering();
-            useNearestFiltering();
+            useLinearFiltering(): this;
+            useNearestFiltering(): this;
             withStep(step: () => void): this;
             withAsync(async: PromiseFn): this;
             at(vector: Vector): this;
@@ -185,16 +185,16 @@ PIXI.Container.prototype.removeAllChildren = function ()
     this.removeChildren();
 }
 
-// Use linear filtering for this
 PIXI.DisplayObject.prototype.useLinearFiltering = function()
 {
     useFiltering(this, PIXI.SCALE_MODES.LINEAR);
+    return this;
 }
 
-// Use nearest filtering for this
 PIXI.DisplayObject.prototype.useNearestFiltering = function()
 {
     useFiltering(this, PIXI.SCALE_MODES.NEAREST);
+    return this;
 }
 
 // Below are utilities, do not worry about them
