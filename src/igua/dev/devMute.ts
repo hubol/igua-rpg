@@ -1,12 +1,8 @@
 import { Howler } from "howler";
+import {onKey} from "../../utils/browser/onKey";
 
 export function devMute()
 {
     Howler.volume(0);
-    document.addEventListener("keyup", ev => {
-        if (ev.code !== "KeyM")
-            return;
-
-        Howler.volume(!!(Howler.volume()) ? 0 : 1);
-    });
+    onKey('KeyM').up(() => Howler.volume(!!(Howler.volume()) ? 0 : 1));
 }
