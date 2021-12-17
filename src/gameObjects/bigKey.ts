@@ -19,7 +19,7 @@ export function bigKeyPiece<T>(progress: T, texture: Texture, key: keyof Propert
 {
     const sprite = merge(new Sprite(texture), {
         onCollect() { }
-    });
+    }).trimHitbox();
     if (progress[key])
         sprite.alpha = 0.5;
     return sprite

@@ -2,6 +2,7 @@ import {Vector} from "../math/vector";
 import * as PIXI from "pixi.js";
 import {areRectanglesOverlapping, normalizeRectangle, rectangle as createRectangle} from "../math/rectangle";
 import {Hitbox} from "../types/hitbox";
+import {getOpaquePixelsHitbox} from "../pixi/getOpaquePixelsBounds";
 
 declare global {
     namespace PIXI {
@@ -11,7 +12,18 @@ declare global {
             moveUntilCollides(speed: Vector, displayObjects: DisplayObject | DisplayObject[]);
             rectangle: Rectangle;
         }
+
+        export interface Sprite {
+            trimHitbox(): this;
+        }
     }
+}
+
+PIXI.Sprite.prototype.trimHitbox = function () {
+    const hitbox = getOpaquePixelsHitbox(this.texture);
+    if (hitbox)
+        this.hitbox = [...hitbox];
+    return this;
 }
 
 Object.defineProperty(PIXI.DisplayObject.prototype, "rectangle", {
