@@ -26,6 +26,8 @@ import { Column } from "./textures";
 import { CracksA } from "./textures";
 import { Cobweb } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
+import { PaSpeaker } from "./textures";
+import { GreenCable } from "./textures";
 import { DontPoster } from "./textures";
 import { Bottle2 } from "./textures";
 import { Bottle1 } from "./textures";
@@ -39,9 +41,10 @@ import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { Anchor } from "./textures";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
-import { PotteryOrangeDamaged } from "./textures";
-import { PotteryOrange } from "./textures";
 import { RoseVase } from "./textures";
+import { OrnateCarpet } from "./textures";
+import { PotteryOrange } from "./textures";
+import { PotteryOrangeDamaged } from "./textures";
 import { LightShelf } from "./textures";
 import { Rope } from "./textures";
 import { resolveCommonClown } from "./gameObjects/commonClown";
@@ -607,6 +610,61 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: DontPoster
 }),
+PotteryOrange: resolveDecalGameObject({
+    x: 344,
+y: 160,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: PotteryOrange
+}),
+PotteryOrange_1: resolveDecalGameObject({
+    x: 323,
+y: 160,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: PotteryOrange
+}),
+CloudLong: resolveDecalGameObject({
+    x: 392,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 432,
+y: 88,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 352,
+y: 104,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":32,"y":128,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"DesertTown","checkpointName":"FromInn","name":""}),
 // @ts-ignore
@@ -644,7 +702,9 @@ PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":120,"y":104
 // @ts-ignore
 PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":80,"y":88,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_19","visible":false}),
 // @ts-ignore
-PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":392,"y":120,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_20","visible":false})
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":392,"y":120,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_20","visible":false}),
+// @ts-ignore
+Window: resolveRegion({"type":"Region","x":336,"y":72,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_22","name":"Window"})
 };
 }
 };
@@ -654,60 +714,93 @@ export const DesertOracleArgs = {
 height: 648,
 gameObjectsSupplier: () => {
   return {
-    PotteryOrange: resolveDecalGameObject({
-    x: 96,
-y: 400,
+    Cobweb: resolveDecalGameObject({
+    x: 32,
+y: 158,
 originX: 0.5,
-originY: 1,
+originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-layerName: "BackgroundDecals",
-texture: PotteryOrange
-}),
-PotteryOrange_1: resolveDecalGameObject({
-    x: 126,
-y: 610,
-originX: 0.5,
-originY: 1,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "BackgroundDecals",
-texture: PotteryOrange
+layerName: "TerrainDecals",
+texture: Cobweb
 }),
 PotteryOrangeDamaged: resolveDecalGameObject({
-    x: 104,
-y: 616,
+    x: 64,
+y: 482,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-layerName: "BackgroundDecals",
+layerName: "TerrainDecals",
 texture: PotteryOrangeDamaged
 }),
-PotteryOrange_2: resolveDecalGameObject({
+PotteryOrange: resolveDecalGameObject({
     x: 32,
-y: 616,
+y: 617,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-layerName: "BackgroundDecals",
+layerName: "TerrainDecals",
 texture: PotteryOrange
 }),
 PotteryOrangeDamaged_1: resolveDecalGameObject({
-    x: 64,
-y: 480,
+    x: 104,
+y: 618,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-layerName: "BackgroundDecals",
+layerName: "TerrainDecals",
 texture: PotteryOrangeDamaged
+}),
+PotteryOrange_1: resolveDecalGameObject({
+    x: 126,
+y: 612,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: PotteryOrange
+}),
+Cobweb_1: resolveDecalGameObject({
+    x: 224,
+y: 496,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: Cobweb
+}),
+OrnateCarpet: resolveDecalGameObject({
+    x: 68,
+y: 616,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: OrnateCarpet
+}),
+RoseVase: resolveDecalGameObject({
+    x: 80,
+y: 618,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: RoseVase
 }),
 CracksA: resolveDecalGameObject({
     x: 88,
@@ -752,6 +845,94 @@ scaleY: 1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: GlowingCircle
+}),
+Cobweb_2: resolveDecalGameObject({
+    x: 124,
+y: 212,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 3.141592653589793,
+layerName: "BackgroundDecals",
+texture: Cobweb
+}),
+RoseVase_1: resolveDecalGameObject({
+    x: 116,
+y: 212,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: RoseVase
+}),
+CloudLong: resolveDecalGameObject({
+    x: 56,
+y: 144,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 88,
+y: 152,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 24,
+y: 184,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_3: resolveDecalGameObject({
+    x: 160,
+y: 192,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_4: resolveDecalGameObject({
+    x: 192,
+y: 184,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_5: resolveDecalGameObject({
+    x: 168,
+y: 96,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
 }),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":0,"width":144,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":""}),
@@ -809,7 +990,15 @@ SlopeLeft_3: resolveSlopeLeft({"type":"SlopeLeft","x":144,"y":80,"width":32,"hei
 // @ts-ignore
 Block_4: resolveBlock({"type":"Block","x":144,"y":0,"width":32,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_30","name":""}),
 // @ts-ignore
-Block_5: resolveBlock({"type":"Block","x":200,"y":0,"width":56,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_31","name":""})
+Block_5: resolveBlock({"type":"Block","x":200,"y":0,"width":56,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_31","name":""}),
+// @ts-ignore
+Window1: resolveRegion({"type":"Region","x":72,"y":160,"width":24,"height":24,"flippedX":false,"flippedY":false,"uid":"25971607_32","name":"Window1"}),
+// @ts-ignore
+Window2: resolveRegion({"type":"Region","x":100,"y":160,"width":24,"height":24,"flippedX":false,"flippedY":false,"uid":"25971607_35","name":"Window2"}),
+// @ts-ignore
+Window3: resolveRegion({"type":"Region","x":72,"y":188,"width":24,"height":24,"flippedX":false,"flippedY":false,"uid":"25971607_36","name":"Window3"}),
+// @ts-ignore
+Window4: resolveRegion({"type":"Region","x":100,"y":188,"width":24,"height":24,"flippedX":false,"flippedY":false,"uid":"25971607_37","name":"Window4"})
 };
 }
 };
@@ -1269,6 +1458,72 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: DontPoster
 }),
+GreenCable: resolveDecalGameObject({
+    x: 196,
+y: 120,
+originX: 0,
+originY: 0,
+scaleX: 20,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GreenCable
+}),
+PaSpeaker: resolveDecalGameObject({
+    x: 200,
+y: 127,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: PaSpeaker
+}),
+PaSpeaker_1: resolveDecalGameObject({
+    x: 336,
+y: 127,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: PaSpeaker
+}),
+CloudLong: resolveDecalGameObject({
+    x: 48,
+y: 88,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 88,
+y: 96,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 120,
+y: 128,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":48,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"DesertTown","checkpointName":"FromShop","name":""}),
 // @ts-ignore
@@ -1309,7 +1564,15 @@ Digua: resolveNpc({"type":"NpcIguana","x":184,"y":224,"flippedX":false,"flippedY
 // @ts-ignore
 PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":296,"y":216,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_36","visible":false}),
 // @ts-ignore
-PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":208,"y":216,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_37","visible":false})
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":208,"y":216,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_37","visible":false}),
+// @ts-ignore
+Window1: resolveRegion({"type":"Region","x":38,"y":70,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_38","name":"Window1"}),
+// @ts-ignore
+Window2: resolveRegion({"type":"Region","x":74,"y":70,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_39","name":"Window2"}),
+// @ts-ignore
+Window3: resolveRegion({"type":"Region","x":38,"y":106,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_40","name":"Window3"}),
+// @ts-ignore
+Window4: resolveRegion({"type":"Region","x":74,"y":106,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_41","name":"Window4"})
 };
 }
 };

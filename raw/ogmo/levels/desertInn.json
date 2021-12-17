@@ -198,6 +198,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"visible": false}
+        },
+        {
+          "name": "Region",
+          "id": 22,
+          "_eid": "25971607",
+          "x": 336,
+          "y": 72,
+          "width": 80,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window"}
         }
       ]
     },
@@ -410,7 +422,19 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
-        }
+        },
+        {
+          "x": 344,
+          "y": 160,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "pottery orange.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {"x": 323, "y": 160, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "pottery orange.png", "originX": 0.5, "originY": 1}
       ],
       "folder": "..\\..\\src\\images"
     },
@@ -423,7 +447,41 @@
       "gridCellHeight": 8,
       "gridCellsX": 64,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 392,
+          "y": 80,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 432,
+          "y": 88,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 352,
+          "y": 104,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     }
   ]

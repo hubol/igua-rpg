@@ -167,6 +167,54 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": ""}
+        },
+        {
+          "name": "Region",
+          "id": 32,
+          "_eid": "25971607",
+          "x": 72,
+          "y": 160,
+          "width": 24,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window1"}
+        },
+        {
+          "name": "Region",
+          "id": 35,
+          "_eid": "25971607",
+          "x": 100,
+          "y": 160,
+          "width": 24,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window2"}
+        },
+        {
+          "name": "Region",
+          "id": 36,
+          "_eid": "25971607",
+          "x": 72,
+          "y": 188,
+          "width": 24,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window3"}
+        },
+        {
+          "name": "Region",
+          "id": 37,
+          "_eid": "25971607",
+          "x": 100,
+          "y": 188,
+          "width": 24,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window4"}
         }
       ]
     },
@@ -179,7 +227,96 @@
       "gridCellHeight": 8,
       "gridCellsX": 32,
       "gridCellsY": 81,
-      "decals": [],
+      "decals": [
+        {
+          "x": 32,
+          "y": 158,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cobweb.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 64,
+          "y": 482,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "pottery orange damaged.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 32,
+          "y": 617,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "pottery orange.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 104,
+          "y": 618,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "pottery orange damaged.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 126,
+          "y": 612,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "pottery orange.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 224,
+          "y": 496,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cobweb.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 68,
+          "y": 616,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ornate carpet.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 80,
+          "y": 618,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "rose vase.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {
@@ -192,61 +329,6 @@
       "gridCellsX": 32,
       "gridCellsY": 81,
       "decals": [
-        {
-          "x": 96,
-          "y": 400,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "pottery orange.png",
-          "originX": 0.5,
-          "originY": 1,
-          "values": {"name": ""}
-        },
-        {
-          "x": 126,
-          "y": 610,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "pottery orange.png",
-          "originX": 0.5,
-          "originY": 1,
-          "values": {"name": ""}
-        },
-        {
-          "x": 104,
-          "y": 616,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "pottery orange damaged.png",
-          "originX": 0.5,
-          "originY": 1,
-          "values": {"name": ""}
-        },
-        {
-          "x": 32,
-          "y": 616,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "pottery orange.png",
-          "originX": 0.5,
-          "originY": 1,
-          "values": {"name": ""}
-        },
-        {
-          "x": 64,
-          "y": 480,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "pottery orange damaged.png",
-          "originX": 0.5,
-          "originY": 1,
-          "values": {"name": ""}
-        },
         {
           "x": 88,
           "y": 128,
@@ -290,6 +372,28 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 124,
+          "y": 212,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 3.141592653589793,
+          "texture": "cobweb.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 116,
+          "y": 212,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "rose vase.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
         }
       ],
       "folder": "..\\..\\src\\images"
@@ -303,7 +407,74 @@
       "gridCellHeight": 8,
       "gridCellsX": 32,
       "gridCellsY": 81,
-      "decals": [],
+      "decals": [
+        {
+          "x": 56,
+          "y": 144,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 88,
+          "y": 152,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 24,
+          "y": 184,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 160,
+          "y": 192,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 192,
+          "y": 184,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 168,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     }
   ]

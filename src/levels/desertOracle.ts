@@ -7,6 +7,7 @@ import {show} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
 import {sleep} from "../cutscene/sleep";
 import {oracleAdvice} from "../igua/oracleAdvice";
+import {cutOutWindow} from "../igua/cutOutWindow";
 
 export function DesertOracle()
 {
@@ -16,7 +17,11 @@ export function DesertOracle()
     scene.terrainColor = 0x204040;
 
     level.GlowingCircle.tint = 0xF0F0B0;
+    cutOutWindow(0xF0F0B0, level.Window1, level.Window2, level.Window3, level.Window4);
+
     [level.CracksA, level.CracksA_1, level.CracksA_2].forEach(x => x.tint = 0x406060);
+    [level.PotteryOrange, level.PotteryOrange_1, level.PotteryOrangeDamaged, level.PotteryOrangeDamaged_1]
+        .forEach(x => x.shiftHue(x.x + x.y));
 
     let talkedAlready = false;
 

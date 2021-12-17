@@ -208,6 +208,54 @@
           "originX": 0,
           "originY": 0,
           "values": {"visible": false}
+        },
+        {
+          "name": "Region",
+          "id": 38,
+          "_eid": "25971607",
+          "x": 38,
+          "y": 70,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window1"}
+        },
+        {
+          "name": "Region",
+          "id": 39,
+          "_eid": "25971607",
+          "x": 74,
+          "y": 70,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window2"}
+        },
+        {
+          "name": "Region",
+          "id": 40,
+          "_eid": "25971607",
+          "x": 38,
+          "y": 106,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window3"}
+        },
+        {
+          "name": "Region",
+          "id": 41,
+          "_eid": "25971607",
+          "x": 74,
+          "y": 106,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window4"}
         }
       ]
     },
@@ -442,7 +490,20 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
-        }
+        },
+        {
+          "x": 196,
+          "y": 120,
+          "scaleX": 20,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "green cable.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"x": 200, "y": 127, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "pa speaker.png", "originX": 0.5, "originY": 0.5},
+        {"x": 336, "y": 127, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "pa speaker.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "..\\..\\src\\images"
     },
@@ -455,7 +516,41 @@
       "gridCellHeight": 8,
       "gridCellsX": 62,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 48,
+          "y": 88,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 88,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 120,
+          "y": 128,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     }
   ]

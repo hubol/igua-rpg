@@ -40,6 +40,7 @@ export let DinerTable: PIXI.Texture;
 export let DontPoster: PIXI.Texture;
 export let FishProjectile: PIXI.Texture;
 export let GlowingCircle: PIXI.Texture;
+export let GreenCable: PIXI.Texture;
 export let HotTerrain: PIXI.Texture;
 export let KeyRed: PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture;
@@ -70,8 +71,10 @@ export let NpcYellowFootRear: PIXI.Texture;
 export let NpcYellowFoot: PIXI.Texture;
 export let OpenDoor: PIXI.Texture;
 export let OrangeValuable: PIXI.Texture;
+export let OrnateCarpet: PIXI.Texture;
 export let OverheadLampLight: PIXI.Texture;
 export let OverheadLamp: PIXI.Texture;
+export let PaSpeaker: PIXI.Texture;
 export let Pipe: PIXI.Texture;
 export let PotteryOrangeDamaged: PIXI.Texture;
 export let PotteryOrange: PIXI.Texture;
@@ -213,6 +216,9 @@ export function loadTexturesAsync()
     const GlowingCirclePath = require("./images/glowing circle.png");
     loader.add(GlowingCirclePath); 
 
+    const GreenCablePath = require("./images/green cable.png");
+    loader.add(GreenCablePath); 
+
     const HotTerrainPath = require("./images/hot terrain.png");
     loader.add(HotTerrainPath); 
 
@@ -303,11 +309,17 @@ export function loadTexturesAsync()
     const OrangeValuablePath = require("./images/orange valuable.png");
     loader.add(OrangeValuablePath); 
 
+    const OrnateCarpetPath = require("./images/ornate carpet.png");
+    loader.add(OrnateCarpetPath); 
+
     const OverheadLampLightPath = require("./images/overhead lamp light.png");
     loader.add(OverheadLampLightPath); 
 
     const OverheadLampPath = require("./images/overhead lamp.png");
     loader.add(OverheadLampPath); 
+
+    const PaSpeakerPath = require("./images/pa speaker.png");
+    loader.add(PaSpeakerPath); 
 
     const PipePath = require("./images/pipe.png");
     loader.add(PipePath); 
@@ -414,6 +426,7 @@ export function loadTexturesAsync()
             DontPoster = resources[DontPosterPath]?.texture as PIXI.Texture;
             FishProjectile = resources[FishProjectilePath]?.texture as PIXI.Texture;
             GlowingCircle = resources[GlowingCirclePath]?.texture as PIXI.Texture;
+            GreenCable = resources[GreenCablePath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             KeyRed = resources[KeyRedPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
@@ -444,8 +457,10 @@ export function loadTexturesAsync()
             NpcYellowFoot = resources[NpcYellowFootPath]?.texture as PIXI.Texture;
             OpenDoor = resources[OpenDoorPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
+            OrnateCarpet = resources[OrnateCarpetPath]?.texture as PIXI.Texture;
             OverheadLampLight = resources[OverheadLampLightPath]?.texture as PIXI.Texture;
             OverheadLamp = resources[OverheadLampPath]?.texture as PIXI.Texture;
+            PaSpeaker = resources[PaSpeakerPath]?.texture as PIXI.Texture;
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
             PotteryOrangeDamaged = resources[PotteryOrangeDamagedPath]?.texture as PIXI.Texture;
             PotteryOrange = resources[PotteryOrangePath]?.texture as PIXI.Texture;

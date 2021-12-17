@@ -55,6 +55,7 @@ function hook() {
             const msg = createMessage();
             try {
                 msg.textContent = 'npm run gen:levelargs...';
+                msg.count();
                 const stdout = await execute(rootPath, 'npm run gen:levelargs');
                 const lines = (stdout.match(/\n/g) || '').length;
                 msg.textContent = `Done! ${lines} lines.`;
@@ -74,6 +75,17 @@ function hook() {
     function createMessage() {
         const div = document.createElement('div');
         div.className = 'hubol_message';
+
+        div.count = () => {
+            const text = div.textContent;
+            let seconds = 0;
+            const interval = setInterval(() => {
+                if (!div.textContent.startsWith(text))
+                    return clearInterval(interval);
+                seconds++;
+                div.textContent = `${text} (${seconds}s)`
+            }, 1000);
+        }
         return document.body.appendChild(div);
     }
 

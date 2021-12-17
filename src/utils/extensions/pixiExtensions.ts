@@ -3,6 +3,7 @@ import * as PIXI from "pixi.js";
 import {CancellationToken} from "pissant";
 import {AsshatTicker} from "../asshatTicker";
 import {PromiseFn, runInIguaZone} from "../../cutscene/runInIguaZone";
+import { filters } from "pixi.js";
 
 declare global {
     namespace PIXI {
@@ -16,6 +17,7 @@ declare global {
             at(x: number, y: number): this;
             destroyed: boolean;
             ticker: AsshatTicker;
+            shiftHue(angle: number): this;
         }
 
         export interface Container {
@@ -124,6 +126,24 @@ export function doNowOrOnAdded<T extends PIXI.DisplayObject>(displayObject: T, o
     if (displayObject.parent)
         onAdded();
     return displayObject.on("added", onAdded);
+}
+
+PIXI.DisplayObject.prototype.shiftHue = function(angle) {
+    // @ts-ignore
+    if (this.__hueShiftFilter) {
+        // @ts-ignore
+        this.__hueShiftFilter.reset();
+        // @ts-ignore
+        this.__hueShiftFilter.hue(angle);
+        return this;
+    }
+    const colorMatrixFilter = new filters.ColorMatrixFilter();
+    colorMatrixFilter.hue(angle, false);
+    if (!this.filters) this.filters = [];
+    this.filters.push(colorMatrixFilter);
+    // @ts-ignore
+    this.__hueShiftFilter = colorMatrixFilter;
+    return this;
 }
 
 PIXI.Container.prototype.withTicker = function(ticker)

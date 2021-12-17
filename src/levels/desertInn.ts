@@ -15,6 +15,7 @@ import {sleep} from "../cutscene/sleep";
 import {move} from "../cutscene/move";
 import {ask} from "../cutscene/ask";
 import { restAtInn } from "../igua/logic/restAtInn";
+import {cutOutWindow} from "../igua/cutOutWindow";
 
 export function DesertInn()
 {
@@ -25,6 +26,9 @@ export function DesertInn()
 
     level.GlowingCircle.tint = 0xF0F0B0;
     [ level.CracksA, level.CracksA_1, level.CracksA_2 ].forEach(x => x.tint = 0xA05040);
+    [level.PotteryOrange_1, level.PotteryOrange].forEach(x => x.shiftHue(20));
+
+    cutOutWindow(0xF0F0B0, level.Window);
 
     level.KeyRed
         .withStep(() => {
