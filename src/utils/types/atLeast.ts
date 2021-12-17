@@ -1,1 +1,0 @@
-export type AtLeast<T> = T & Dictionary<any>;

@@ -1,6 +1,4 @@
-import {AtLeast} from "../../../src/utils/types/atLeast";
-
-export type GameObjectArgs = AtLeast<GameObjectArgsBase>;
+export type GameObjectArgs = GameObjectArgsBase & Record<string, any>;
 
 interface GameObjectArgsBase
 {
