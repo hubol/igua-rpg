@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.3.0",
+  "ogmoVersion": "3.4.0",
   "width": 512,
   "height": 256,
   "offsetX": 0,
@@ -434,7 +434,17 @@
           "originY": 1,
           "values": {"name": ""}
         },
-        {"x": 323, "y": 160, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "pottery orange.png", "originX": 0.5, "originY": 1}
+        {
+          "x": 323,
+          "y": 160,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "pottery orange.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },

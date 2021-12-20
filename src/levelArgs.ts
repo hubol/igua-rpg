@@ -1192,7 +1192,7 @@ Player: {"type":"Player","x":72,"y":328,"flippedX":false,"flippedY":false,"uid":
 // @ts-ignore
 SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":96,"y":200,"width":64,"height":64,"flippedX":false,"flippedY":true,"uid":"55845599_3"}),
 // @ts-ignore
-PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":144,"y":200,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307_4","visible":true}),
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":148,"y":200,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307_4","visible":true}),
 // @ts-ignore
 PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":184,"y":200,"flippedX":false,"flippedY":false,"uid":"63418353_5"}),
 FromDigua: {"type":"Checkpoint","x":72,"y":200,"flippedX":false,"flippedY":false,"uid":"55940370_6","name":"FromDigua","faceRight":true},

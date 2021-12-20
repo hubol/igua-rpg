@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.3.0",
+  "ogmoVersion": "3.4.0",
   "width": 576,
   "height": 416,
   "offsetX": 0,
@@ -54,7 +54,7 @@
           "name": "PipeHorizontal",
           "id": 4,
           "_eid": "55841307",
-          "x": 144,
+          "x": 148,
           "y": 200,
           "width": 40,
           "originX": 0,
