@@ -19,6 +19,7 @@ import {move} from "../cutscene/move";
 import {show} from "../cutscene/dialog";
 import {wait} from "../cutscene/wait";
 import {rng} from "../utils/rng";
+import {inventory} from "../igua/inventory/inventory";
 
 function getDesertTownLevel()
 {
@@ -90,7 +91,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
         const nextCrate = Sprite.from(CrateWooden).at(
             lastStackedCrate
                 ? { x: lastStackedCrate.x + Math.round(rng.polar * 6), y: lastStackedCrate.y - lastStackedCrate.height }
-                : level.DropCrateAnchor).show();
+                : level.DropCrateAnchor).behind();
         resolvePipeHorizontal({ ...vector(nextCrate), width: nextCrate.width, visible: false } as any);
         lastStackedCrate = nextCrate;
         if (playSound && isOnScreen(level.DropCrateAnchor))
@@ -120,17 +121,27 @@ function enhanceCrateStacker(level: DesertTownLevel)
         level.Stacker.mods.add(Sleepy);
     }
 
+    level.CrateStackKey.asCollectible(progress.flags.desert.key, "fromTopOfCrateStack");
+
     let tiredOfWorking = progress.flags.desert.stackedAllCrates;
 
     level.Stacker.cutscene = async () => {
         level.Stacker.mods.remove(Sleepy);
-        if (progress.flags.desert.stackedAllCrates && !progress.flags.desert.key.fromCrateStacker)
+        if (progress.flags.desert.stackedAllCrates)
         {
-            await show("Thank you for your help.");
-            await show("All I have to show my appreciation is this old key.");
-            CollectGeneric.play();
-            await show("Received the key.");
-            progress.flags.desert.key.fromCrateStacker = true;
+            if (!progress.flags.desert.crateStacker.receivedBallon) {
+                await show("Thank you for your help.");
+                await show("All I have to show my appreciation is this ballon.");
+                CollectGeneric.play();
+                await show("Received WonderBallon.");
+                inventory.push('WonderBallon');
+                progress.flags.desert.crateStacker.receivedBallon = true;
+            }
+            else {
+                await show("I hope the ballon I gave you was useful.");
+                await show("Before the invaders came, we used to play with ballons all the time.");
+                await show("Once, someone I knew made a fortress in the sky.");
+            }
         }
         else if (tiredOfWorking)
             await show("I think I'm done working for today.");

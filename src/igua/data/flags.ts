@@ -12,11 +12,14 @@ export function getInitialFlags()
             diguaIsInBar: false,
             unlockedTemple: false,
             dugInDesertTown: false,
+            crateStacker: {
+                receivedBallon: false,
+            },
             digua: {
                 discussedKey: false,
             },
             key: {
-                fromCrateStacker: false,
+                fromTopOfCrateStack: false,
                 fromInn: false,
                 fromDiggingInTown: false,
             },

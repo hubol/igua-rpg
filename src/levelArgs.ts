@@ -5,6 +5,7 @@ import { resolveRegion } from "./gameObjects/region";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
+import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
@@ -12,9 +13,9 @@ import { resolveDoor } from "./gameObjects/door";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { CloudLong } from "./textures";
+import { KeyRed } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { SpikyBrushA } from "./textures";
-import { KeyRed } from "./textures";
 import { SignTavern } from "./textures";
 import { SignInn } from "./textures";
 import { CrudeHouse } from "./textures";
@@ -25,7 +26,6 @@ import { GlowingCircle } from "./textures";
 import { Column } from "./textures";
 import { CracksA } from "./textures";
 import { Cobweb } from "./textures";
-import { resolveValuableBlue } from "./gameObjects/valuable";
 import { PaSpeaker } from "./textures";
 import { GreenCable } from "./textures";
 import { DontPoster } from "./textures";
@@ -1727,12 +1727,12 @@ BigKey: resolveRegion({"type":"Region","x":263,"y":104,"width":50,"height":28,"f
 
 export const DesertTownArgs = {
     width: 2040,
-height: 432,
+height: 568,
 gameObjectsSupplier: () => {
   return {
     LeftHouse: resolveDecalGameObject({
     x: 816,
-y: 208,
+y: 344,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -1743,7 +1743,7 @@ texture: CrudeHouseB
 }),
 RightHouse: resolveDecalGameObject({
     x: 1288,
-y: 304,
+y: 440,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -1754,7 +1754,7 @@ texture: CrudeHouse
 }),
 SpikyBrushA: resolveDecalGameObject({
     x: 768,
-y: 208,
+y: 344,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -1765,7 +1765,7 @@ texture: SpikyBrushA
 }),
 SpikyBrushA_1: resolveDecalGameObject({
     x: 796,
-y: 123,
+y: 259,
 originX: 0.5,
 originY: 1,
 scaleX: -1,
@@ -1776,7 +1776,7 @@ texture: SpikyBrushA
 }),
 SpikyBrushB: resolveDecalGameObject({
     x: 1072,
-y: 260,
+y: 396,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -1787,7 +1787,7 @@ texture: SpikyBrushB
 }),
 SpikyBrushB_1: resolveDecalGameObject({
     x: 1044,
-y: 258,
+y: 394,
 originX: 0.5,
 originY: 1,
 scaleX: -1,
@@ -1798,7 +1798,7 @@ texture: SpikyBrushB
 }),
 SpikyBrushA_2: resolveDecalGameObject({
     x: 1320,
-y: 304,
+y: 440,
 originX: 0.5,
 originY: 1,
 scaleX: -1,
@@ -1809,7 +1809,7 @@ texture: SpikyBrushA
 }),
 SpikyBrushB_2: resolveDecalGameObject({
     x: 1336,
-y: 304,
+y: 440,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -1820,7 +1820,7 @@ texture: SpikyBrushB
 }),
 Crate9: resolveDecalGameObject({
     x: 1708,
-y: 248,
+y: 384,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -1831,7 +1831,7 @@ texture: CrateWooden
 }),
 Crate8: resolveDecalGameObject({
     x: 1736,
-y: 248,
+y: 384,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -1842,7 +1842,7 @@ texture: CrateWooden
 }),
 Crate6: resolveDecalGameObject({
     x: 1766,
-y: 248,
+y: 384,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -1853,7 +1853,7 @@ texture: CrateWooden
 }),
 Crate4: resolveDecalGameObject({
     x: 1794,
-y: 248,
+y: 384,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -1864,7 +1864,7 @@ texture: CrateWooden
 }),
 Crate7: resolveDecalGameObject({
     x: 1722,
-y: 224,
+y: 360,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -1875,7 +1875,7 @@ texture: CrateWooden
 }),
 Crate3: resolveDecalGameObject({
     x: 1780,
-y: 224,
+y: 360,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -1886,7 +1886,7 @@ texture: CrateWooden
 }),
 Crate5: resolveDecalGameObject({
     x: 1751,
-y: 224,
+y: 360,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -1897,7 +1897,7 @@ texture: CrateWooden
 }),
 Crate2: resolveDecalGameObject({
     x: 1736,
-y: 200,
+y: 336,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -1908,7 +1908,7 @@ texture: CrateWooden
 }),
 Crate1: resolveDecalGameObject({
     x: 1766,
-y: 200,
+y: 336,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -1919,7 +1919,7 @@ texture: CrateWooden
 }),
 Crate0: resolveDecalGameObject({
     x: 1751,
-y: 176,
+y: 312,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -1930,7 +1930,7 @@ texture: CrateWooden
 }),
 SpikyBrushA_3: resolveDecalGameObject({
     x: 1696,
-y: 264,
+y: 400,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -1941,7 +1941,7 @@ texture: SpikyBrushA
 }),
 SpikyBrushB_3: resolveDecalGameObject({
     x: 1824,
-y: 264,
+y: 400,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -1952,7 +1952,7 @@ texture: SpikyBrushB
 }),
 SpikyBrushB_4: resolveDecalGameObject({
     x: 1536,
-y: 288,
+y: 424,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -1963,7 +1963,7 @@ texture: SpikyBrushB
 }),
 InnBuilding: resolveDecalGameObject({
     x: 616,
-y: 240,
+y: 376,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -1974,7 +1974,7 @@ texture: CrudeHouseC
 }),
 BarBuilding: resolveDecalGameObject({
     x: 400,
-y: 240,
+y: 376,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -1985,7 +1985,7 @@ texture: CrudeHouse
 }),
 SpikyBrushA_4: resolveDecalGameObject({
     x: 476,
-y: 243,
+y: 379,
 originX: 0.5,
 originY: 1,
 scaleX: -1,
@@ -1996,7 +1996,7 @@ texture: SpikyBrushA
 }),
 SpikyBrushB_5: resolveDecalGameObject({
     x: 672,
-y: 244,
+y: 380,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -2007,7 +2007,7 @@ texture: SpikyBrushB
 }),
 SpikyBrushB_6: resolveDecalGameObject({
     x: 368,
-y: 196,
+y: 332,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -2018,7 +2018,7 @@ texture: SpikyBrushB
 }),
 SignInn: resolveDecalGameObject({
     x: 584,
-y: 198,
+y: 334,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2029,7 +2029,7 @@ texture: SignInn
 }),
 SignTavern: resolveDecalGameObject({
     x: 440,
-y: 200,
+y: 336,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2040,7 +2040,7 @@ texture: SignTavern
 }),
 DigKey: resolveDecalGameObject({
     x: 208,
-y: 280,
+y: 416,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2051,7 +2051,7 @@ texture: KeyRed
 }),
 SpikyBrushA_5: resolveDecalGameObject({
     x: 48,
-y: 232,
+y: 368,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2062,7 +2062,7 @@ texture: SpikyBrushA
 }),
 SpikyBrushB_7: resolveDecalGameObject({
     x: 56,
-y: 160,
+y: 296,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2071,9 +2071,20 @@ rotation: 1.5762825345220057,
 layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
+CrateStackKey: resolveDecalGameObject({
+    x: 1280,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: KeyRed
+}),
 CloudLong: resolveDecalGameObject({
     x: 648,
-y: 136,
+y: 272,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2084,7 +2095,7 @@ texture: CloudLong
 }),
 CloudLong_1: resolveDecalGameObject({
     x: 752,
-y: 88,
+y: 224,
 originX: 0.5,
 originY: 0.5,
 scaleX: -1,
@@ -2095,7 +2106,7 @@ texture: CloudLong
 }),
 CloudLong_2: resolveDecalGameObject({
     x: 940,
-y: 126,
+y: 262,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2106,7 +2117,7 @@ texture: CloudLong
 }),
 CloudLong_3: resolveDecalGameObject({
     x: 904,
-y: 120,
+y: 256,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2117,7 +2128,7 @@ texture: CloudLong
 }),
 CloudLong_4: resolveDecalGameObject({
     x: 1152,
-y: 152,
+y: 288,
 originX: 0.5,
 originY: 0.5,
 scaleX: -1,
@@ -2128,7 +2139,7 @@ texture: CloudLong
 }),
 CloudLong_5: resolveDecalGameObject({
     x: 1412,
-y: 175,
+y: 311,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2139,7 +2150,7 @@ texture: CloudLong
 }),
 CloudLong_6: resolveDecalGameObject({
     x: 1384,
-y: 168,
+y: 304,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2150,7 +2161,7 @@ texture: CloudLong
 }),
 CloudLong_7: resolveDecalGameObject({
     x: 1596,
-y: 183,
+y: 319,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2161,7 +2172,7 @@ texture: CloudLong
 }),
 CloudLong_8: resolveDecalGameObject({
     x: 1636,
-y: 191,
+y: 327,
 originX: 0.5,
 originY: 0.5,
 scaleX: -1,
@@ -2172,7 +2183,7 @@ texture: CloudLong
 }),
 CloudLong_9: resolveDecalGameObject({
     x: 1508,
-y: 111,
+y: 247,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2183,7 +2194,7 @@ texture: CloudLong
 }),
 CloudLong_10: resolveDecalGameObject({
     x: 1828,
-y: 159,
+y: 295,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2194,7 +2205,7 @@ texture: CloudLong
 }),
 CloudLong_11: resolveDecalGameObject({
     x: 1860,
-y: 167,
+y: 303,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2205,7 +2216,7 @@ texture: CloudLong
 }),
 CloudLong_12: resolveDecalGameObject({
     x: 352,
-y: 144,
+y: 280,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2216,7 +2227,7 @@ texture: CloudLong
 }),
 CloudLong_13: resolveDecalGameObject({
     x: 380,
-y: 150,
+y: 286,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2227,7 +2238,7 @@ texture: CloudLong
 }),
 CloudLong_14: resolveDecalGameObject({
     x: 512,
-y: 112,
+y: 248,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2238,7 +2249,7 @@ texture: CloudLong
 }),
 CloudLong_15: resolveDecalGameObject({
     x: 216,
-y: 88,
+y: 224,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2249,7 +2260,7 @@ texture: CloudLong
 }),
 CloudLong_16: resolveDecalGameObject({
     x: 144,
-y: 136,
+y: 272,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2260,7 +2271,7 @@ texture: CloudLong
 }),
 CloudLong_17: resolveDecalGameObject({
     x: 112,
-y: 144,
+y: 280,
 originX: 0.5,
 originY: 0.5,
 scaleX: -1,
@@ -2271,7 +2282,40 @@ texture: CloudLong
 }),
 CloudLong_18: resolveDecalGameObject({
     x: 2032,
-y: 136,
+y: 272,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_19: resolveDecalGameObject({
+    x: 1336,
+y: 208,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_20: resolveDecalGameObject({
+    x: 1248,
+y: 128,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_21: resolveDecalGameObject({
+    x: 1440,
+y: 160,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2281,101 +2325,103 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":240,"width":184,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":""}),
+Block: resolveBlock({"type":"Block","x":0,"y":376,"width":184,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":""}),
 // @ts-ignore
-SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":680,"y":208,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_1"}),
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":680,"y":344,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_1"}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":752,"y":208,"width":128,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":""}),
+Block_1: resolveBlock({"type":"Block","x":752,"y":344,"width":128,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":""}),
 // @ts-ignore
-SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":880,"y":208,"width":72,"height":48,"flippedX":false,"flippedY":false,"uid":"55845599_3"}),
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":880,"y":344,"width":72,"height":48,"flippedX":false,"flippedY":false,"uid":"55845599_3"}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":952,"y":256,"width":136,"height":176,"flippedX":false,"flippedY":false,"uid":"55823268_4","name":""}),
+Block_2: resolveBlock({"type":"Block","x":952,"y":392,"width":136,"height":176,"flippedX":false,"flippedY":false,"uid":"55823268_4","name":""}),
 // @ts-ignore
-SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":1088,"y":256,"width":96,"height":48,"flippedX":false,"flippedY":false,"uid":"55845599_5"}),
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":1088,"y":392,"width":96,"height":48,"flippedX":false,"flippedY":false,"uid":"55845599_5"}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":1184,"y":304,"width":424,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":""}),
+Block_3: resolveBlock({"type":"Block","x":1184,"y":440,"width":424,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":""}),
 // @ts-ignore
-Block_4: resolveBlock({"type":"Block","x":1088,"y":304,"width":96,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":""}),
+Block_4: resolveBlock({"type":"Block","x":1088,"y":440,"width":96,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":""}),
 // @ts-ignore
-Block_5: resolveBlock({"type":"Block","x":752,"y":256,"width":200,"height":176,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":""}),
+Block_5: resolveBlock({"type":"Block","x":752,"y":392,"width":200,"height":176,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":""}),
 // @ts-ignore
-LeftHouseDoor: resolveDoor({"type":"Door","x":832,"y":176,"flippedX":false,"flippedY":false,"uid":"55913988_9","levelName":"DesertOracle","checkpointName":"","name":"LeftHouseDoor"}),
+LeftHouseDoor: resolveDoor({"type":"Door","x":832,"y":312,"flippedX":false,"flippedY":false,"uid":"55913988_9","levelName":"DesertOracle","checkpointName":"","name":"LeftHouseDoor"}),
 // @ts-ignore
-RightHouseDoor: resolveDoor({"type":"Door","x":1256,"y":272,"flippedX":false,"flippedY":false,"uid":"55913988_10","levelName":"","checkpointName":"","name":"RightHouseDoor"}),
-Player: {"type":"Player","x":984,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047_11","faceRight":false},
+RightHouseDoor: resolveDoor({"type":"Door","x":1256,"y":408,"flippedX":false,"flippedY":false,"uid":"55913988_10","levelName":"","checkpointName":"","name":"RightHouseDoor"}),
+Player: {"type":"Player","x":984,"y":392,"flippedX":false,"flippedY":false,"uid":"55988047_11","faceRight":false},
 // @ts-ignore
-Sign: resolveSign({"type":"Sign","x":1056,"y":256,"flippedX":false,"flippedY":false,"uid":"86706091_12","title":"Town","message":"Welcome to the desert town."}),
-FromLeftHouse: {"type":"Checkpoint","x":876,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370_13","name":"FromLeftHouse","faceRight":true},
+Sign: resolveSign({"type":"Sign","x":1056,"y":392,"flippedX":false,"flippedY":false,"uid":"86706091_12","title":"Town","message":"Welcome to the desert town."}),
+FromLeftHouse: {"type":"Checkpoint","x":876,"y":344,"flippedX":false,"flippedY":false,"uid":"55940370_13","name":"FromLeftHouse","faceRight":true},
 // @ts-ignore
-SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":1512,"y":272,"width":96,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_14"}),
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":1512,"y":408,"width":96,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_14"}),
 // @ts-ignore
-Block_6: resolveBlock({"type":"Block","x":1608,"y":272,"width":432,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_15","name":""}),
+Block_6: resolveBlock({"type":"Block","x":1608,"y":408,"width":432,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_15","name":""}),
 // @ts-ignore
-Stacker: resolveNpc({"type":"NpcIguana","x":1624,"y":272,"flippedX":false,"flippedY":false,"uid":"26367058_17","name":"Stacker","style":1}),
+Stacker: resolveNpc({"type":"NpcIguana","x":1624,"y":408,"flippedX":false,"flippedY":false,"uid":"26367058_17","name":"Stacker","style":1}),
 // @ts-ignore
-PickupCratesRegion: resolveRegion({"type":"Region","x":1712,"y":256,"width":104,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607_18","name":"PickupCratesRegion"}),
-DropCrateAnchor: {"type":"Anchor","x":1384,"y":280,"flippedX":false,"flippedY":false,"uid":"25979726_20","name":"DropCrateAnchor"},
+PickupCratesRegion: resolveRegion({"type":"Region","x":1712,"y":392,"width":104,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607_18","name":"PickupCratesRegion"}),
+DropCrateAnchor: {"type":"Anchor","x":1384,"y":416,"flippedX":false,"flippedY":false,"uid":"25979726_20","name":"DropCrateAnchor"},
 // @ts-ignore
-DropCrateRegion: resolveRegion({"type":"Region","x":1376,"y":288,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607_21","name":"DropCrateRegion"}),
+DropCrateRegion: resolveRegion({"type":"Region","x":1376,"y":424,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607_21","name":"DropCrateRegion"}),
 // @ts-ignore
-InnDoor: resolveDoor({"type":"Door","x":568,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988_23","levelName":"DesertInn","checkpointName":"","name":"InnDoor"}),
+InnDoor: resolveDoor({"type":"Door","x":568,"y":344,"flippedX":false,"flippedY":false,"uid":"55913988_23","levelName":"DesertInn","checkpointName":"","name":"InnDoor"}),
 // @ts-ignore
-BarDoor: resolveDoor({"type":"Door","x":424,"y":208,"flippedX":false,"flippedY":false,"uid":"55913988_26","levelName":"DesertShop","checkpointName":"","name":"BarDoor"}),
-FromInn: {"type":"Checkpoint","x":552,"y":240,"flippedX":false,"flippedY":false,"uid":"55940370_27","name":"FromInn","faceRight":false},
+BarDoor: resolveDoor({"type":"Door","x":424,"y":344,"flippedX":false,"flippedY":false,"uid":"55913988_26","levelName":"DesertShop","checkpointName":"","name":"BarDoor"}),
+FromInn: {"type":"Checkpoint","x":552,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_27","name":"FromInn","faceRight":false},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":2008,"y":240,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_28","levelName":"DesertField","checkpointName":"FromTown"}),
-FromField: {"type":"Checkpoint","x":1960,"y":272,"flippedX":false,"flippedY":false,"uid":"55940370_29","name":"FromField","faceRight":false},
+Gate: resolveGate({"type":"Gate","x":2008,"y":376,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_28","levelName":"DesertField","checkpointName":"FromTown"}),
+FromField: {"type":"Checkpoint","x":1960,"y":408,"flippedX":false,"flippedY":false,"uid":"55940370_29","name":"FromField","faceRight":false},
 // @ts-ignore
-PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":415,"y":160,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307_30","visible":false}),
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":415,"y":296,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307_30","visible":false}),
 // @ts-ignore
-PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":359,"y":190,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307_31","visible":false}),
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":359,"y":326,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307_31","visible":false}),
 // @ts-ignore
-PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":571,"y":187,"width":42,"flippedX":false,"flippedY":false,"uid":"55841307_32","visible":false}),
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":571,"y":323,"width":42,"flippedX":false,"flippedY":false,"uid":"55841307_32","visible":false}),
 // @ts-ignore
-PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":611,"y":153,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_33","visible":false}),
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":611,"y":289,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_33","visible":false}),
 // @ts-ignore
-PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":758,"y":185,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_34","visible":false}),
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":758,"y":321,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_34","visible":false}),
 // @ts-ignore
-PipeHorizontal_5: resolvePipeHorizontal({"type":"PipeHorizontal","x":813,"y":156,"width":48,"flippedX":false,"flippedY":false,"uid":"55841307_35","visible":false}),
+PipeHorizontal_5: resolvePipeHorizontal({"type":"PipeHorizontal","x":813,"y":292,"width":48,"flippedX":false,"flippedY":false,"uid":"55841307_35","visible":false}),
 // @ts-ignore
-PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":782,"y":122,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_36","visible":false}),
+PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":782,"y":258,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_36","visible":false}),
 // @ts-ignore
-PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":1246,"y":254,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307_37","visible":false}),
+PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":1246,"y":390,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307_37","visible":false}),
 // @ts-ignore
-PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":1302,"y":224,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307_38","visible":false}),
+PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":1302,"y":360,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307_38","visible":false}),
 // @ts-ignore
-PipeHorizontal_9: resolvePipeHorizontal({"type":"PipeHorizontal","x":639,"y":213,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_39","visible":false}),
+PipeHorizontal_9: resolvePipeHorizontal({"type":"PipeHorizontal","x":639,"y":349,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_39","visible":false}),
 // @ts-ignore
-Block_7: resolveBlock({"type":"Block","x":304,"y":240,"width":448,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_40","name":""}),
+Block_7: resolveBlock({"type":"Block","x":304,"y":376,"width":448,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_40","name":""}),
 // @ts-ignore
-Dig1: resolveBlock({"type":"Block","x":232,"y":240,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_41","name":"Dig1"}),
+Dig1: resolveBlock({"type":"Block","x":232,"y":376,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_41","name":"Dig1"}),
 // @ts-ignore
-Dig2: resolveBlock({"type":"Block","x":216,"y":240,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_42","name":"Dig2"}),
+Dig2: resolveBlock({"type":"Block","x":216,"y":376,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_42","name":"Dig2"}),
 // @ts-ignore
-Dig5: resolveBlock({"type":"Block","x":216,"y":256,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_43","name":"Dig5"}),
+Dig5: resolveBlock({"type":"Block","x":216,"y":392,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_43","name":"Dig5"}),
 // @ts-ignore
-Dig6: resolveBlock({"type":"Block","x":200,"y":256,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_44","name":"Dig6"}),
+Dig6: resolveBlock({"type":"Block","x":200,"y":392,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_44","name":"Dig6"}),
 // @ts-ignore
-Dig3: resolveBlock({"type":"Block","x":200,"y":240,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_45","name":"Dig3"}),
+Dig3: resolveBlock({"type":"Block","x":200,"y":376,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_45","name":"Dig3"}),
 // @ts-ignore
-Dig4: resolveBlock({"type":"Block","x":184,"y":240,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_46","name":"Dig4"}),
+Dig4: resolveBlock({"type":"Block","x":184,"y":376,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_46","name":"Dig4"}),
 // @ts-ignore
-Dig6_1: resolveBlock({"type":"Block","x":184,"y":256,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_47","name":"Dig6"}),
+Dig6_1: resolveBlock({"type":"Block","x":184,"y":392,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_47","name":"Dig6"}),
 // @ts-ignore
-Block_8: resolveBlock({"type":"Block","x":184,"y":288,"width":120,"height":144,"flippedX":false,"flippedY":false,"uid":"55823268_48","name":""}),
+Block_8: resolveBlock({"type":"Block","x":184,"y":424,"width":120,"height":144,"flippedX":false,"flippedY":false,"uid":"55823268_48","name":""}),
 // @ts-ignore
-Block_9: resolveBlock({"type":"Block","x":248,"y":240,"width":56,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_49","name":""}),
+Block_9: resolveBlock({"type":"Block","x":248,"y":376,"width":56,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_49","name":""}),
 // @ts-ignore
-Block_10: resolveBlock({"type":"Block","x":232,"y":256,"width":16,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_50","name":""}),
+Block_10: resolveBlock({"type":"Block","x":232,"y":392,"width":16,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_50","name":""}),
 // @ts-ignore
-StartDigging: resolveRegion({"type":"Region","x":168,"y":168,"width":64,"height":72,"flippedX":false,"flippedY":false,"uid":"25971607_51","name":"StartDigging"}),
+StartDigging: resolveRegion({"type":"Region","x":168,"y":304,"width":64,"height":72,"flippedX":false,"flippedY":false,"uid":"25971607_51","name":"StartDigging"}),
 // @ts-ignore
-Boulder: resolveBoulder({"type":"Boulder","x":72,"y":228,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"15952797_52"}),
+Boulder: resolveBoulder({"type":"Boulder","x":72,"y":364,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"15952797_52"}),
 // @ts-ignore
-Boulder_1: resolveBoulder({"type":"Boulder","x":48,"y":204,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"15952797_53"}),
+Boulder_1: resolveBoulder({"type":"Boulder","x":48,"y":340,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"15952797_53"}),
 // @ts-ignore
-Block_11: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_55","name":""}),
-FromShop: {"type":"Checkpoint","x":472,"y":240,"flippedX":false,"flippedY":false,"uid":"55940370_56","name":"FromShop","faceRight":true}
+Block_11: resolveBlock({"type":"Block","x":0,"y":136,"width":48,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_55","name":""}),
+FromShop: {"type":"Checkpoint","x":472,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_56","name":"FromShop","faceRight":true},
+// @ts-ignore
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":1388,"y":130,"flippedX":false,"flippedY":false,"uid":"55991906_57"})
 };
 }
 };
