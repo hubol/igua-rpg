@@ -12,12 +12,14 @@ import {AsshatTicker} from "../utils/asshatTicker";
 import {player} from "./player";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {smallPopTextures} from "./smallPop";
+import {BallonPop} from "../sounds";
+import { lerp } from "../utils/math/number";
 
 interface BallonDisplayState {
     color: number;
     offset: Vector;
 }
-type DisplayState = BallonDisplayState[];
+export type DisplayState = BallonDisplayState[];
 
 interface Args {
     target: DisplayObject;
@@ -40,14 +42,12 @@ function ballon(hacks) {
     const r = rng();
     const sprite = Sprite.from(PlayerBalloon);
     sprite.anchor.set(0.5, 1);
+    let life = rng.int(8);
 
     const gfx = new Graphics().withStep(() => {
-        if (hacks.dead) {
-            const p = c.parent.addChild(ballonPop()).at(c);
-            p.hueShift = c.hueShift;
-            c.destroy();
-        }
-        if (!hacks.animate)
+        if (hacks.dead && life-- <= 0)
+            return c.die();
+        if (!hacks.animate || hacks.dead)
             return;
         sprite.y = Math.round(Math.sin(now.s * 2 + r) * 1.7);
         gfx.clear()
@@ -62,7 +62,12 @@ function ballon(hacks) {
             sprite.angle = 0;
     });
 
-    const c = container(gfx, sprite);
+    const c = merge(container(gfx, sprite), { die() {
+            const p = c.parent.addChild(ballonPop()).at([-1, -11].add(c));
+            p.hueShift = c.hueShift;
+            BallonPop.play();
+            c.destroy();
+        } });
     return c;
 }
 
@@ -74,7 +79,7 @@ export function ballons({ target, offset, state, string, displayState = [], tick
 
     let allowedToAnimateWhenTargetTickerDisabled = false;
 
-    const c = merge(new Container(), { displayState }).withStep(() => {
+    const c = new Container().withStep(() => {
         hacks.dead = target.destroyed || (target === player && player.isDead);
 
         if (target.ticker.doNextUpdate)
@@ -87,12 +92,20 @@ export function ballons({ target, offset, state, string, displayState = [], tick
         if (!hacks.animate)
             return;
 
-        // TODO support popping ballons
+        const deadIndex = state.findIndex(x => x <= 0);
+        if (deadIndex > -1) {
+            state.splice(deadIndex);
+            displayState.splice(deadIndex);
+            objs.splice(deadIndex).forEach(x => x.die());
+        }
+
         while (displayState.length < state.length) {
             displayState.push({ color: rng() * 360, offset: [rng.polar * 2, 0] });
         }
         while (objs.length < displayState.length) {
-            objs.push(c.addChild(ballon(hacks)));
+            const b = c.addChild(ballon(hacks));
+            b.at(displayState[objs.length].offset);
+            objs.push(b);
         }
         for (let i = 0; i < displayState.length; i++) {
             const ii = displayState[i];
@@ -121,9 +134,9 @@ export function ballons({ target, offset, state, string, displayState = [], tick
             const distance = ii.offset.vlength;
             let fix = 0;
             if (distance > string * 1.45)
-                fix = 1.1;
+                fix = 3;
             else if (distance > string * 1.3)
-                fix = .7;
+                fix = 1;
             else if (distance > string * 1.1)
                 fix = .3;
             if (fix > 0)
@@ -134,8 +147,11 @@ export function ballons({ target, offset, state, string, displayState = [], tick
 
         displayState!.forEach((x, i) => {
             objs[i].hueShift = x.color;
-            const delta = 1 - (objs[i].vlength / string);
-            objs[i].moveTowards(x.offset, Math.max(0.1, delta));
+            const len = objs[i].vlength;
+            const delta1 = 1 - (len / string);
+            const delta2 = Math.abs(len - string) / 4;
+            const delta = lerp(delta1, delta2, Math.max(0, Math.min(1, (len - string) / string)));
+            objs[i].moveTowards(x.offset, delta);
         });
 
         c.at(t.current).add(offset);
@@ -158,4 +174,6 @@ export function ballons({ target, offset, state, string, displayState = [], tick
         const stage = findStage(target);
         stage.addChildAt(c, 0);
     });
+
+    return displayState!;
 }

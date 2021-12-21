@@ -7,6 +7,11 @@ export const ActivateLever = new Howl({
     
 });
 
+export const BallonPop = new Howl({
+    src: [require("./sound/ballon pop.ogg"), require("./sound/ballon pop.mp3")],
+    
+});
+
 export const BigKeyCollected = new Howl({
     src: [require("./sound/big key collected.ogg"), require("./sound/big key collected.mp3")],
     

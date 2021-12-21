@@ -19,6 +19,8 @@ import {scene} from "../igua/scene";
 import {followerNpc} from "./followerNpc";
 import {npc} from "./npc";
 import {showUseMenu} from "../igua/inventory/showUseMenu";
+import {ballons, DisplayState} from "./ballons";
+import {game} from "../igua/game";
 
 export function playerPuppetArgs() {
     const body = Sprite.from(CharacterBody);
@@ -126,6 +128,7 @@ function createPlayer()
     const engine = player.engine;
 
     let bufferedJump = 0;
+    let ballonLifeTick = 0;
 
     const step = () => {
         if (playerKey.justWentDown("KeyU"))
@@ -152,6 +155,12 @@ function createPlayer()
 
         if (playerCharacterHasControl() && progress.health > 5 && progress.poisonLevel > 0)
             player.drain(Math.min(progress.health - 5, 0.01 * Math.pow(progress.poisonLevel, 2)));
+
+        ballonLifeTick = (ballonLifeTick + 1) % 60;
+        if (playerCharacterHasControl() && ballonLifeTick === 0) {
+            for (let i = 0; i < progress.ballons.length; i++)
+                progress.ballons[i] -= 1 / 59.5;
+        }
 
         const baseSpeed = !progress.poisonLevel ? 2.5 : 3.25;
         player.engine.walkSpeed = baseSpeed + Math.max(0, 0.5 * (progress.poisonLevel - 1));
@@ -205,8 +214,21 @@ function createPlayer()
         .withStep(step)
         .withStep(() => engine.step());
 
+    const offset = {
+        x: 0,
+        get y() {
+            return -4 + player.duckUnit * 3;
+        }
+    }
+
+    if (progress.ballons.length !== displayState.length)
+        displayState = [];
+    ballons({ target: player, state: progress.ballons, offset, string: 24, ticker: game.hudStage.ticker, displayState });
+
     return player;
 }
+
+let displayState: DisplayState = [];
 
 export function createFollower()
 {

@@ -12,9 +12,9 @@ export function consumePotion(index: number) {
 }
 
 function consumePotionImpl(potion: PotionType) {
-    // TODO
     switch (potion) {
         case "WonderBallon":
+            progress.ballons.push(1);
             ConsumeBallon.play();
             break;
         case "CommonPoison":
