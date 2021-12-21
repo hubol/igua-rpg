@@ -712,7 +712,8 @@ PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":80,"y":88,"
 // @ts-ignore
 PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":392,"y":120,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_20","visible":false}),
 // @ts-ignore
-Window: resolveRegion({"type":"Region","x":336,"y":72,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_22","name":"Window"})
+Window: resolveRegion({"type":"Region","x":336,"y":72,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_22","name":"Window"}),
+FromInnSave: {"type":"Checkpoint","x":376,"y":160,"flippedX":false,"flippedY":false,"uid":"55940370_23","name":"FromInnSave","faceRight":false}
 };
 }
 };

@@ -39,6 +39,7 @@ export let DesertTemple: PIXI.Texture;
 export let DinerTable: PIXI.Texture;
 export let DontPoster: PIXI.Texture;
 export let FishProjectile: PIXI.Texture;
+export let FloppyDisk: PIXI.Texture;
 export let GlowingCircle: PIXI.Texture;
 export let GreenCable: PIXI.Texture;
 export let HotTerrain: PIXI.Texture;
@@ -214,6 +215,9 @@ export function loadTexturesAsync()
 
     const FishProjectilePath = require("./images/fish projectile.png");
     loader.add(FishProjectilePath); 
+
+    const FloppyDiskPath = require("./images/floppy disk.png");
+    loader.add(FloppyDiskPath); 
 
     const GlowingCirclePath = require("./images/glowing circle.png");
     loader.add(GlowingCirclePath); 
@@ -433,6 +437,7 @@ export function loadTexturesAsync()
             DinerTable = resources[DinerTablePath]?.texture as PIXI.Texture;
             DontPoster = resources[DontPosterPath]?.texture as PIXI.Texture;
             FishProjectile = resources[FishProjectilePath]?.texture as PIXI.Texture;
+            FloppyDisk = resources[FloppyDiskPath]?.texture as PIXI.Texture;
             GlowingCircle = resources[GlowingCirclePath]?.texture as PIXI.Texture;
             GreenCable = resources[GreenCablePath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;

@@ -28,6 +28,9 @@ export function DesertInn()
     [ level.CracksA, level.CracksA_1, level.CracksA_2 ].forEach(x => x.tint = 0xA05040);
     [level.PotteryOrange_1, level.PotteryOrange].forEach(x => x.hueShift = 20);
 
+    if (progress.checkpointName === "FromInnSave")
+        level.RoomWall.destroy();
+
     cutOutWindow(0xF0F0B0, level.Window);
 
     level.KeyRed
@@ -51,6 +54,7 @@ export function DesertInn()
                     level.RoomWall.destroy();
                 }
 
+                progress.checkpointName = "FromInnSave";
                 await player.walkTo(level.SleepHere.x);
                 await sleep(250);
                 await restAtInn();

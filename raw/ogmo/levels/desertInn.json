@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 512,
   "height": 256,
   "offsetX": 0,
@@ -210,6 +210,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "Window"}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 23,
+          "_eid": "55940370",
+          "x": 376,
+          "y": 160,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromInnSave", "faceRight": false}
         }
       ]
     },
