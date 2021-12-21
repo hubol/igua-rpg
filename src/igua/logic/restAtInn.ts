@@ -14,7 +14,7 @@ export async function restAtInn() {
         sleep(4_000) ]);
     await show("Full health restored!");
     InnRefresh.play();
-    progress.poisonLevel = 0;
+    progress.poisonLevel = Math.min(progress.poisonLevel, 1);
     player.mods.remove(Sleepy);
     await persistence.save();
 }
