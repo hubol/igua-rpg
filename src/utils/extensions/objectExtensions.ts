@@ -9,6 +9,9 @@ declare global {
         add(vector: Vector, scalar: number): Vector;
         normalize(): Vector;
         scale(f: number): Vector;
+        at(vector: Vector): Vector;
+        at(x: number, y: number): Vector;
+        vlength: number;
     }
 }
 
@@ -43,6 +46,33 @@ Object.defineProperties(Array.prototype, {
 });
 
 Object.defineProperties(Object.prototype, {
+    vlength: {
+        get: function () {
+            // @ts-ignore
+            return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y,2));
+        },
+        set: function (l) {
+            normalize(this).scale(l);
+        },
+        enumerable: false,
+        configurable: true,
+    },
+    at: {
+        value: function (x, y) {
+            if (typeof x === "number") {
+                this.x = x;
+                this.y = y;
+            }
+            else {
+                this.x = x.x;
+                this.y = x.y;
+            }
+            return this;
+        },
+        enumerable: false,
+        configurable: true,
+        writable: true,
+    },
     add: {
         value: function (...args) {
             const me = this;

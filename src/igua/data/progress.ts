@@ -9,6 +9,7 @@ export function getInitialProgress()
         valuables: 100,
         level: 1,
         poisonLevel: 0,
+        ballons: [] as number[],
         inventory: [] as (PotionType | undefined)[],
         shopPurchases: {} as Record<PotionType, number | undefined>,
         levelName: "DesertTown",
