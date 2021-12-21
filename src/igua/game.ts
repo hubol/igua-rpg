@@ -10,6 +10,7 @@ import {environment} from "./environment";
 import {devProgress} from "./dev/devProgress";
 import {scene} from "./scene";
 import {devWindow} from "./dev/devWindow";
+import {persistence} from "./data/persistence";
 
 export let game: ReturnType<typeof createGame>;
 function createGame(application: AsshatApplication)
@@ -55,16 +56,18 @@ export function startGame(application: AsshatApplication)
 
     game.hudStage.addChild(hud());
 
-    loadSavedProgress();
-    level.goto(progress.levelName);
-
-    if (!environment.isProduction)
+    if (environment.isProduction) {
+        setTimeout(async () => await persistence.load(true));
+    }
+    else {
+        loadDevProgress();
         devWindow();
+    }
 }
 
-export function loadSavedProgress()
+export function loadDevProgress()
 {
-    setProgress(getInitialProgress()); // TODO read from localStorage
-    if (!environment.isProduction)
-        devProgress();
+    setProgress(getInitialProgress());
+    devProgress();
+    level.goto(progress.levelName);
 }

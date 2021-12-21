@@ -5,6 +5,7 @@ import {progress} from "../data/progress";
 import {sleep} from "../../cutscene/sleep";
 import {show} from "../../cutscene/dialog";
 import {InnRefresh} from "../../sounds";
+import {persistence} from "../data/persistence";
 
 export async function restAtInn() {
     player.mods.add(Sleepy);
@@ -15,4 +16,5 @@ export async function restAtInn() {
     InnRefresh.play();
     progress.poisonLevel = 0;
     player.mods.remove(Sleepy);
+    await persistence.save();
 }

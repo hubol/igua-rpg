@@ -20,6 +20,7 @@ import {show} from "../cutscene/dialog";
 import {wait} from "../cutscene/wait";
 import {rng} from "../utils/rng";
 import {inventory} from "../igua/inventory/inventory";
+import {persistence} from "../igua/data/persistence";
 
 function getDesertTownLevel()
 {
@@ -68,9 +69,11 @@ function addIntroduction(level: DesertTownLevel)
         await show("You can walk with left and right arrows and jump with space bar.");
         await show("To interact with an object or another animal, press up arrow.");
         await show("You have a supply of potions and medicine. To use something or just check your supply, press U.");
+        await show("You can save by resting at an inn.");
         await show("In the town there is an oracle if you need advice. Good luck.");
         await lizard.walkTo(level.LeftHouseDoor.x - 128);
         lizard.destroy();
+        await persistence.save();
 
         scene.camera.followPlayer = true;
     });
