@@ -4,7 +4,7 @@ This is a fangame of [Oddwarg Animal RPG](http://oddwarg.com/index.php?id=OARPG)
 
 At this point, the game is maybe 20% finished.
 
-[You can play the current build here.](https://igua-rpg.herokuapp.com/) Beware, it is not yet possible to save your progress.
+[You can play the current build here.](https://igua-rpg.herokuapp.com/)
 
 ## Using the source code
 This is a modern web project. You will need `node` and `npm` to continue.
