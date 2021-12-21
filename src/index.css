@@ -48,6 +48,7 @@ html {
 body {
     background-color: #008080;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;

@@ -42,7 +42,7 @@ async function initialize()
 }
 
 if (environment.isProduction && !environment.isElectron)
-    document.body.appendChild(createStartGameButtonElement());
+    addStartGameElements();
 else
     window.onload = initialize;
 
@@ -57,7 +57,7 @@ function discoverAndPublishGameObjectResolvers()
     }]));
 }
 
-function createStartGameButtonElement()
+function addStartGameElements()
 {
     const buttonElement = document.createElement("button");
     buttonElement.id = "startButton";
@@ -66,7 +66,22 @@ function createStartGameButtonElement()
         document.body.removeChild(buttonElement);
         setTimeout(initialize);
     };
-    return buttonElement;
+
+    document.body.appendChild(buttonElement);
+
+    if (localStorage.getItem("file1")) {
+        const aElement = document.createElement("button");
+        aElement.style.marginTop = "3em";
+        aElement.textContent = "Click me to erase save data ^_^";
+        aElement.onclick = () => {
+            localStorage.clear();
+            alert("All gone!");
+            aElement.remove();
+        };
+        buttonElement.addEventListener('click', () => aElement.remove());
+
+        document.body.appendChild(aElement);
+    }
 }
 
 function addGameCanvasToDocument(element: HTMLCanvasElement)

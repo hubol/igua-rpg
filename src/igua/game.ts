@@ -57,7 +57,7 @@ export function startGame(application: AsshatApplication)
     game.hudStage.addChild(hud());
 
     if (environment.isProduction) {
-        setTimeout(async () => await persistence.load(true));
+        persistence.load(true);
     }
     else {
         loadDevProgress();

@@ -2428,7 +2428,9 @@ Boulder_1: resolveBoulder({"type":"Boulder","x":48,"y":340,"width":32,"height":3
 Block_11: resolveBlock({"type":"Block","x":0,"y":136,"width":48,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_55","name":""}),
 FromShop: {"type":"Checkpoint","x":472,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_56","name":"FromShop","faceRight":true},
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":1348,"y":130,"flippedX":false,"flippedY":false,"uid":"55991906_57"})
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":1348,"y":130,"flippedX":false,"flippedY":false,"uid":"55991906_57"}),
+// @ts-ignore
+Block_12: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_58","name":""})
 };
 }
 };
