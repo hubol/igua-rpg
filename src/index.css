@@ -60,3 +60,21 @@ noscript {
     color: #f0f0d0;
     padding: .1em .2em;
 }
+
+.devMessageContainer {
+    position: fixed;
+    bottom: 8px;
+    left: 8px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+}
+
+.devMessageContainer > * {
+    padding: 16px;
+    margin: 8px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 4px 4px 4px #006060;
+}

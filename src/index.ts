@@ -27,9 +27,6 @@ async function initialize()
 {
     upscaleGameCanvas(addGameCanvasToDocument(application.canvasElement));
 
-    if (!environment.isProduction)
-        devMute();
-
     const howls = Object.values(require("./sounds")) as Howl[];
     await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
     require("./utils/extensions/**/*.*");
@@ -37,6 +34,11 @@ async function initialize()
         discoverAndPublishGameObjectResolvers();
     else
         require("./igua/game").startGame(application);
+
+    if (!environment.isProduction) {
+        devMute();
+        require("./igua/dev/devPersistence").devPersistence();
+    }
 }
 
 if (environment.isProduction && !environment.isElectron)
