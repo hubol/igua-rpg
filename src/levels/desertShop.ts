@@ -18,6 +18,7 @@ import {cutOutWindow} from "../igua/cutOutWindow";
 import {ballons} from "../gameObjects/ballons";
 import {player} from "../gameObjects/player";
 import {range} from "../utils/range";
+import {game} from "../igua/game";
 
 export function DesertShop() {
     const level = applyOgmoLevel(DesertShopArgs);
@@ -25,7 +26,13 @@ export function DesertShop() {
     scene.terrainColor = 0x60669B;
     scene.backgroundColor = 0x3B3F63;
 
-    ballons({ target: player, state: range(1), offset: [0, -5], string: 32 });
+    const offset = {
+        x: 0,
+        get y() {
+            return -4 + player.duckUnit * 3;
+        }
+    }
+    ballons({ target: player, state: range(3), offset, string: 24, ticker: game.hudStage.ticker });
 
     cutOutWindow(0xF0F0B0, level.Window1, level.Window2, level.Window3, level.Window4);
     const tintedWindow = new Graphics().beginFill(0x60669B).drawRect(0, 0, 1000, 1000);

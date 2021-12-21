@@ -21,7 +21,7 @@ export function DesertOracle()
 
     [level.CracksA, level.CracksA_1, level.CracksA_2].forEach(x => x.tint = 0x406060);
     [level.PotteryOrange, level.PotteryOrange_1, level.PotteryOrangeDamaged, level.PotteryOrangeDamaged_1]
-        .forEach(x => x.shiftHue(x.x + x.y));
+        .forEach(x => x.hueShift = x.x + x.y);
 
     let talkedAlready = false;
 
