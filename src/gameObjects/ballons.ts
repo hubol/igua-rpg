@@ -1,10 +1,13 @@
-import {Vector} from "../utils/math/vector";
-import {Container, DisplayObject, Sprite} from "pixi.js";
+import {lerp, Vector} from "../utils/math/vector";
+import {Container, DisplayObject, Graphics, Sprite} from "pixi.js";
 import {findStage} from "../igua/findStage";
 import {rng} from "../utils/rng";
 import {merge} from "../utils/merge";
 import {PlayerBalloon} from "../textures";
 import {doNowOrOnAdded} from "../utils/extensions/pixiExtensions";
+import {trackPosition} from "../igua/trackPosition";
+import {now} from "../utils/now";
+import {container} from "../utils/pixi/container";
 
 interface BallonDisplayState {
     color: number;
@@ -23,13 +26,30 @@ interface Args {
 const work: Vector = { x: 0, y: 0 };
 
 function ballon() {
+    const r = rng();
     const sprite = Sprite.from(PlayerBalloon);
-    sprite.anchor.set(0.5, 0.75);
-    return sprite;
+    sprite.anchor.set(0.5, 1);
+    const gfx = new Graphics().withStep(() => {
+        sprite.y = Math.round(Math.sin(now.s * 2 + r) * 1.7);
+        gfx.clear()
+            .lineStyle(1, 0xaaaaaa)
+            .moveTo(sprite.x, sprite.y)
+            .lineTo(-c.x, -c.y);
+        if (Math.abs(c.x) > 8)
+            sprite.angle = (Math.abs(c.x) - 8) * Math.sign(c.x);
+        else
+            sprite.angle = 0;
+    });
+
+    const c = container(gfx, sprite);
+    return c;
 }
 
 export function ballons({ target, offset, state, string, displayState = [] }: Args) {
     const objs: ReturnType<typeof ballon>[] = [];
+
+    const t = trackPosition(target);
+
     const c = merge(new Container(), { displayState }).withStep(() => {
         // TODO support popping ballons
         while (displayState.length < state.length) {
@@ -43,6 +63,10 @@ export function ballons({ target, offset, state, string, displayState = [] }: Ar
             if (ii.offset.vlength < string)
                 ii.offset.y -= 1;
 
+            const nudgeF = Math.abs(Math.sin(now.s * 3 + i * 2));
+            const nudgeCheck = nudgeF * 14;
+            const nudgeBy = nudgeF * 0.1;
+
             for (let j = 0; j < displayState.length; j++) {
                 if (j === i)
                     continue;
@@ -50,28 +74,35 @@ export function ballons({ target, offset, state, string, displayState = [] }: Ar
 
                 work.at(ii.offset).add(jj.offset, -1);
 
-                if (work.vlength < 14) {
-                    ii.offset.add(work, 0.1);
-                    jj.offset.add(work, -0.1);
+                if (work.vlength < nudgeCheck) {
+                    ii.offset.add(work, nudgeBy);
+                    jj.offset.add(work, -nudgeBy);
                 }
             }
 
             if (ii.offset.vlength > string * 1.1)
-                ii.offset.vlength -= .1;
+                ii.offset.vlength -= .3;
+            if (ii.offset.vlength > string * 0.7 && ii.offset.y > -10)
+                ii.offset.y -= 1;
         }
 
         displayState!.forEach((x, i) => {
             objs[i].shiftHue(x.color);
-            objs[i].x = x.offset.x;
-            objs[i].y = x.offset.y;
-        })
+            const delta = 1 - (objs[i].vlength / string);
+            objs[i].moveTowards(x.offset, Math.max(0.1, delta));
+        });
+
+        c.at(t.current).add(offset);
+        if (Math.abs(t.diff.x) < 0.1 && Math.abs(t.diff.y) < 0.1)
+            return;
+        for (let i = 0; i < displayState.length; i++) {
+            displayState[i].offset.add(t.diff, -0.1);
+            objs[i]?.add(t.diff, -0.1);
+        }
     });
 
     doNowOrOnAdded(target, () => {
         const stage = findStage(target);
         stage.addChildAt(c, 0);
     });
-
-    // TODO possibly nudge ballons
-    target.transform.onPositionChanged(() => c.at(offset).add(target));
 }
