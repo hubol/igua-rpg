@@ -52,12 +52,12 @@ import { DesertTemple } from "./textures";
 
 export const DesertFieldArgs = {
     width: 1552,
-height: 352,
+height: 472,
 gameObjectsSupplier: () => {
   return {
     DesertTemple: resolveDecalGameObject({
     x: 440,
-y: 208,
+y: 328,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -68,7 +68,7 @@ texture: DesertTemple
 }),
 SpikyBrushA: resolveDecalGameObject({
     x: 376,
-y: 208,
+y: 328,
 originX: 0.5,
 originY: 0.9,
 scaleX: 1,
@@ -79,7 +79,7 @@ texture: SpikyBrushA
 }),
 SpikyBrushA_1: resolveDecalGameObject({
     x: 352,
-y: 208,
+y: 328,
 originX: 0.5,
 originY: 0.9,
 scaleX: -1,
@@ -90,7 +90,7 @@ texture: SpikyBrushA
 }),
 SpikyBrushB: resolveDecalGameObject({
     x: 360,
-y: 200,
+y: 320,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -101,7 +101,7 @@ texture: SpikyBrushB
 }),
 SpikyBrushB_1: resolveDecalGameObject({
     x: 512,
-y: 124,
+y: 244,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -112,7 +112,7 @@ texture: SpikyBrushB
 }),
 SpikyBrushB_2: resolveDecalGameObject({
     x: 145,
-y: 240,
+y: 360,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -123,7 +123,7 @@ texture: SpikyBrushB
 }),
 SpikyBrushB_3: resolveDecalGameObject({
     x: 1448,
-y: 140,
+y: 260,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -134,7 +134,7 @@ texture: SpikyBrushB
 }),
 SpikyBrushB_4: resolveDecalGameObject({
     x: 744,
-y: 253,
+y: 373,
 originX: 0.5,
 originY: 0.5,
 scaleX: -1,
@@ -145,7 +145,7 @@ texture: SpikyBrushB
 }),
 SpikyBrushA_2: resolveDecalGameObject({
     x: 1096,
-y: 288,
+y: 408,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -156,7 +156,7 @@ texture: SpikyBrushA
 }),
 SpikyBrushA_3: resolveDecalGameObject({
     x: 1320,
-y: 256,
+y: 376,
 originX: 0.5,
 originY: 0.5,
 scaleX: -1,
@@ -167,7 +167,7 @@ texture: SpikyBrushA
 }),
 Column: resolveDecalGameObject({
     x: 1528,
-y: 264,
+y: 384,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -178,7 +178,7 @@ texture: Column
 }),
 Column_1: resolveDecalGameObject({
     x: 1480,
-y: 264,
+y: 384,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -189,7 +189,7 @@ texture: Column
 }),
 CloudLong: resolveDecalGameObject({
     x: 144,
-y: 64,
+y: 184,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -200,7 +200,7 @@ texture: CloudLong
 }),
 CloudLong_1: resolveDecalGameObject({
     x: 176,
-y: 72,
+y: 192,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -211,7 +211,7 @@ texture: CloudLong
 }),
 CloudLong_2: resolveDecalGameObject({
     x: 336,
-y: 104,
+y: 224,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -222,7 +222,7 @@ texture: CloudLong
 }),
 CloudLong_3: resolveDecalGameObject({
     x: 440,
-y: 40,
+y: 160,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -233,7 +233,7 @@ texture: CloudLong
 }),
 CloudLong_4: resolveDecalGameObject({
     x: 608,
-y: 72,
+y: 192,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -244,7 +244,7 @@ texture: CloudLong
 }),
 CloudLong_5: resolveDecalGameObject({
     x: 640,
-y: 80,
+y: 200,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -255,7 +255,7 @@ texture: CloudLong
 }),
 CloudLong_6: resolveDecalGameObject({
     x: 752,
-y: 112,
+y: 232,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -266,7 +266,7 @@ texture: CloudLong
 }),
 CloudLong_7: resolveDecalGameObject({
     x: 8,
-y: 120,
+y: 240,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -277,7 +277,7 @@ texture: CloudLong
 }),
 CloudLong_8: resolveDecalGameObject({
     x: 848,
-y: 184,
+y: 304,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -288,7 +288,7 @@ texture: CloudLong
 }),
 CloudLong_9: resolveDecalGameObject({
     x: 880,
-y: 176,
+y: 296,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -299,7 +299,7 @@ texture: CloudLong
 }),
 CloudLong_10: resolveDecalGameObject({
     x: 976,
-y: 112,
+y: 232,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -310,7 +310,7 @@ texture: CloudLong
 }),
 CloudLong_11: resolveDecalGameObject({
     x: 1152,
-y: 192,
+y: 312,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -321,7 +321,7 @@ texture: CloudLong
 }),
 CloudLong_12: resolveDecalGameObject({
     x: 1248,
-y: 96,
+y: 216,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -332,7 +332,7 @@ texture: CloudLong
 }),
 CloudLong_13: resolveDecalGameObject({
     x: 1272,
-y: 104,
+y: 224,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -343,7 +343,7 @@ texture: CloudLong
 }),
 CloudLong_14: resolveDecalGameObject({
     x: 1432,
-y: 168,
+y: 288,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -354,7 +354,7 @@ texture: CloudLong
 }),
 CloudLong_15: resolveDecalGameObject({
     x: 1544,
-y: 48,
+y: 168,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -364,58 +364,64 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":248,"width":312,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":""}),
+Block: resolveBlock({"type":"Block","x":0,"y":368,"width":312,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":""}),
 // @ts-ignore
-TempleDoor: resolveDoor({"type":"Door","x":400,"y":176,"flippedX":false,"flippedY":false,"uid":"55913988_1","levelName":"DesertTemple","checkpointName":"","name":"TempleDoor"}),
+TempleDoor: resolveDoor({"type":"Door","x":400,"y":296,"flippedX":false,"flippedY":false,"uid":"55913988_1","levelName":"DesertTemple","checkpointName":"","name":"TempleDoor"}),
 // @ts-ignore
-Sign: resolveSign({"type":"Sign","x":472,"y":208,"flippedX":false,"flippedY":false,"uid":"86706091_2","title":"Temple","message":"This is the ancient desert temple."}),
-Player: {"type":"Player","x":1352,"y":264,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":true},
+Sign: resolveSign({"type":"Sign","x":472,"y":328,"flippedX":false,"flippedY":false,"uid":"86706091_2","title":"Temple","message":"This is the ancient desert temple."}),
+Player: {"type":"Player","x":1352,"y":384,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":true},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":0,"y":216,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_4","levelName":"DesertTown","checkpointName":"FromField"}),
-FromTown: {"type":"Checkpoint","x":72,"y":248,"flippedX":false,"flippedY":false,"uid":"55940370_5","name":"FromTown","faceRight":true},
+Gate: resolveGate({"type":"Gate","x":0,"y":336,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_4","levelName":"DesertTown","checkpointName":"FromField"}),
+FromTown: {"type":"Checkpoint","x":72,"y":368,"flippedX":false,"flippedY":false,"uid":"55940370_5","name":"FromTown","faceRight":true},
 // @ts-ignore
-SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":232,"y":208,"width":80,"height":40,"flippedX":false,"flippedY":false,"uid":"55824435_6"}),
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":232,"y":328,"width":80,"height":40,"flippedX":false,"flippedY":false,"uid":"55824435_6"}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":312,"y":208,"width":288,"height":144,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":""}),
+Block_1: resolveBlock({"type":"Block","x":312,"y":328,"width":288,"height":144,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":""}),
 // @ts-ignore
-SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":600,"y":208,"width":112,"height":56,"flippedX":false,"flippedY":false,"uid":"55845599_8"}),
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":600,"y":328,"width":112,"height":56,"flippedX":false,"flippedY":false,"uid":"55845599_8"}),
 // @ts-ignore
-Sign_1: resolveSign({"type":"Sign","x":168,"y":248,"flippedX":false,"flippedY":false,"uid":"86706091_9","title":"Sand","message":"This is the desert."}),
+Sign_1: resolveSign({"type":"Sign","x":168,"y":368,"flippedX":false,"flippedY":false,"uid":"86706091_9","title":"Sand","message":"This is the desert."}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":600,"y":264,"width":168,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_10","name":""}),
+Block_2: resolveBlock({"type":"Block","x":600,"y":384,"width":168,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_10","name":""}),
 // @ts-ignore
-SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":768,"y":264,"width":96,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_11"}),
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":768,"y":384,"width":96,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_11"}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":768,"y":296,"width":432,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_12","name":""}),
+Block_3: resolveBlock({"type":"Block","x":768,"y":416,"width":432,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_12","name":""}),
 // @ts-ignore
-SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":1112,"y":264,"width":88,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_13"}),
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":1112,"y":384,"width":88,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_13"}),
 // @ts-ignore
-Block_4: resolveBlock({"type":"Block","x":1200,"y":264,"width":352,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_14","name":""}),
+Block_4: resolveBlock({"type":"Block","x":1200,"y":384,"width":352,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_14","name":""}),
 // @ts-ignore
-SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":1368,"y":136,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_15"}),
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":1368,"y":256,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_15"}),
 // @ts-ignore
-Block_5: resolveBlock({"type":"Block","x":1400,"y":136,"width":152,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":""}),
+Block_5: resolveBlock({"type":"Block","x":1400,"y":256,"width":152,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":""}),
 // @ts-ignore
-SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":1400,"y":168,"width":152,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_17"}),
+SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":1400,"y":288,"width":152,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_17"}),
 // @ts-ignore
-Digua: resolveNpc({"type":"NpcIguana","x":1400,"y":136,"flippedX":true,"flippedY":false,"uid":"26367058_18","name":"Digua","style":4}),
+Digua: resolveNpc({"type":"NpcIguana","x":1400,"y":256,"flippedX":true,"flippedY":false,"uid":"26367058_18","name":"Digua","style":4}),
 // @ts-ignore
-PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":344,"y":136,"width":200,"flippedX":false,"flippedY":false,"uid":"55841307_19","visible":false}),
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":344,"y":256,"width":200,"flippedX":false,"flippedY":false,"uid":"55841307_19","visible":false}),
 // @ts-ignore
-Gate_1: resolveGate({"type":"Gate","x":1520,"y":104,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_20","levelName":"DesertOutskirts","checkpointName":"FromDigua"}),
+Gate_1: resolveGate({"type":"Gate","x":1520,"y":224,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_20","levelName":"DesertOutskirts","checkpointName":"FromDigua"}),
 // @ts-ignore
-Gate_2: resolveGate({"type":"Gate","x":1520,"y":232,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_21","levelName":"DesertOutskirts","checkpointName":""}),
-FromOutskirtsTop: {"type":"Checkpoint","x":1488,"y":136,"flippedX":false,"flippedY":false,"uid":"55940370_22","name":"FromOutskirtsTop","faceRight":false},
-FromOutskirtsBottom: {"type":"Checkpoint","x":1488,"y":264,"flippedX":false,"flippedY":false,"uid":"55940370_23","name":"FromOutskirtsBottom","faceRight":false},
-FromTemple: {"type":"Checkpoint","x":384,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370_24","name":"FromTemple","faceRight":false},
+Gate_2: resolveGate({"type":"Gate","x":1520,"y":352,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_21","levelName":"DesertOutskirts","checkpointName":""}),
+FromOutskirtsTop: {"type":"Checkpoint","x":1488,"y":256,"flippedX":false,"flippedY":false,"uid":"55940370_22","name":"FromOutskirtsTop","faceRight":false},
+FromOutskirtsBottom: {"type":"Checkpoint","x":1488,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_23","name":"FromOutskirtsBottom","faceRight":false},
+FromTemple: {"type":"Checkpoint","x":384,"y":328,"flippedX":false,"flippedY":false,"uid":"55940370_24","name":"FromTemple","faceRight":false},
 // @ts-ignore
-CommonClown: resolveCommonClown({"type":"CommonClown","x":696,"y":248,"flippedX":false,"flippedY":false,"uid":"68762216_25"}),
+CommonClown: resolveCommonClown({"type":"CommonClown","x":696,"y":368,"flippedX":false,"flippedY":false,"uid":"68762216_25"}),
 // @ts-ignore
-CommonClown_1: resolveCommonClown({"type":"CommonClown","x":840,"y":280,"flippedX":false,"flippedY":false,"uid":"68762216_26"}),
+CommonClown_1: resolveCommonClown({"type":"CommonClown","x":840,"y":400,"flippedX":false,"flippedY":false,"uid":"68762216_26"}),
 // @ts-ignore
-CommonClown_2: resolveCommonClown({"type":"CommonClown","x":1032,"y":288,"flippedX":false,"flippedY":false,"uid":"68762216_27"}),
+CommonClown_2: resolveCommonClown({"type":"CommonClown","x":1032,"y":408,"flippedX":false,"flippedY":false,"uid":"68762216_27"}),
 // @ts-ignore
-PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":460,"y":42,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":false})
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":460,"y":162,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":false}),
+// @ts-ignore
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":472,"y":56,"flippedX":false,"flippedY":false,"uid":"56004563_29"}),
+// @ts-ignore
+ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":496,"y":40,"flippedX":false,"flippedY":false,"uid":"56004563_30"}),
+// @ts-ignore
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":472,"y":24,"flippedX":false,"flippedY":false,"uid":"55991906_31"})
 };
 }
 };
@@ -1194,7 +1200,7 @@ Player: {"type":"Player","x":72,"y":328,"flippedX":false,"flippedY":false,"uid":
 // @ts-ignore
 SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":96,"y":200,"width":64,"height":64,"flippedX":false,"flippedY":true,"uid":"55845599_3"}),
 // @ts-ignore
-PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":148,"y":200,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307_4","visible":true}),
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":144,"y":200,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307_4","visible":true}),
 // @ts-ignore
 PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":184,"y":200,"flippedX":false,"flippedY":false,"uid":"63418353_5"}),
 FromDigua: {"type":"Checkpoint","x":72,"y":200,"flippedX":false,"flippedY":false,"uid":"55940370_6","name":"FromDigua","faceRight":true},
