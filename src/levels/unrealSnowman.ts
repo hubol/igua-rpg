@@ -23,6 +23,8 @@ import { Hemaboss1 } from "../musics";
 import {FlameOff, FlameOn, SnowmanDie, SnowmanHurt, SnowmanLand} from "../sounds";
 import {rng} from "../utils/rng";
 import {confetti} from "../gameObjects/confetti";
+import {ballons} from "../gameObjects/ballons";
+import {range} from "../utils/range";
 
 let holdingFlame = false;
 
@@ -125,12 +127,15 @@ const snowman = (groundY, retreatX) => {
         {
             confetti().at(container).show();
             SnowmanDie.play();
+            let ky = 0;
             const key = bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[2], "piece3")
                 .at(retreatX - 40, 0)
                 .withStep(() => {
-                    if (key.y < 120)
-                        key.y++;
-                })
+                    if (ky < 120)
+                        ky++;
+                    key.y = ky + Math.sin(now.s * 2) * 2;
+                });
+            ballons({ target: key, state: range(3), offset: [39, 9], string: 18 });
             key.onCollect = teleportToTheRoomOfDoors;
             scene.gameObjectStage.addChild(key);
             jukebox.currentSong?.fade(1, 0, 1000);
