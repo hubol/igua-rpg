@@ -42,7 +42,7 @@ function ballon(hacks) {
     const r = rng();
     const sprite = Sprite.from(PlayerBalloon);
     sprite.anchor.set(0.5, 1);
-    let life = rng.int(8);
+    let life = 1 + rng.int(8);
 
     const gfx = new Graphics().withStep(() => {
         if (hacks.dead && life-- <= 0)
@@ -94,9 +94,9 @@ export function ballons({ target, offset, state, string, displayState = [], tick
 
         const deadIndex = state.findIndex(x => x <= 0);
         if (deadIndex > -1) {
-            state.splice(deadIndex);
-            displayState.splice(deadIndex);
-            objs.splice(deadIndex).forEach(x => x.die());
+            state.splice(deadIndex, 1);
+            displayState.splice(deadIndex, 1);
+            objs.splice(deadIndex, 1)[0]?.die();
         }
 
         while (displayState.length < state.length) {

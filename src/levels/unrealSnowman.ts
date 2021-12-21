@@ -24,7 +24,6 @@ import {FlameOff, FlameOn, SnowmanDie, SnowmanHurt, SnowmanLand} from "../sounds
 import {rng} from "../utils/rng";
 import {confetti} from "../gameObjects/confetti";
 import {ballons} from "../gameObjects/ballons";
-import {range} from "../utils/range";
 
 let holdingFlame = false;
 
@@ -135,7 +134,7 @@ const snowman = (groundY, retreatX) => {
                         ky++;
                     key.y = ky + Math.sin(now.s * 2) * 2;
                 });
-            ballons({ target: key, state: range(3), offset: [39, 9], string: 18 });
+            ballons({ target: key, state: [1, 1, 1], offset: [39, 9], string: 18 });
             key.onCollect = teleportToTheRoomOfDoors;
             scene.gameObjectStage.addChild(key);
             jukebox.currentSong?.fade(1, 0, 1000);

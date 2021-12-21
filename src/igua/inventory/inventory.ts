@@ -19,6 +19,7 @@ export const inventory = {
     remove(index: number) {
         const potion = progress.inventory[index];
         progress.inventory[index] = progress.inventory[this.slotsCount];
+        progress.inventory[this.slotsCount] = undefined;
         const excess = progress.inventory.slice(this.slotsCount).filter(x => !!x);
         progress.inventory = [...progress.inventory.slice(0, this.slotsCount), ...excess];
         return potion;
