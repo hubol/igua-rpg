@@ -413,7 +413,9 @@ CommonClown: resolveCommonClown({"type":"CommonClown","x":696,"y":248,"flippedX"
 // @ts-ignore
 CommonClown_1: resolveCommonClown({"type":"CommonClown","x":840,"y":280,"flippedX":false,"flippedY":false,"uid":"68762216_26"}),
 // @ts-ignore
-CommonClown_2: resolveCommonClown({"type":"CommonClown","x":1032,"y":288,"flippedX":false,"flippedY":false,"uid":"68762216_27"})
+CommonClown_2: resolveCommonClown({"type":"CommonClown","x":1032,"y":288,"flippedX":false,"flippedY":false,"uid":"68762216_27"}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":460,"y":42,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":false})
 };
 }
 };

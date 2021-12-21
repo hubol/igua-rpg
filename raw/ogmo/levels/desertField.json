@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 1552,
   "height": 352,
   "offsetX": 0,
@@ -233,7 +233,18 @@
         },
         {"name": "CommonClown", "id": 25, "_eid": "68762216", "x": 696, "y": 248, "originX": 8, "originY": 62},
         {"name": "CommonClown", "id": 26, "_eid": "68762216", "x": 840, "y": 280, "originX": 8, "originY": 62},
-        {"name": "CommonClown", "id": 27, "_eid": "68762216", "x": 1032, "y": 288, "originX": 8, "originY": 62}
+        {"name": "CommonClown", "id": 27, "_eid": "68762216", "x": 1032, "y": 288, "originX": 8, "originY": 62},
+        {
+          "name": "PipeHorizontal",
+          "id": 28,
+          "_eid": "55841307",
+          "x": 460,
+          "y": 42,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false}
+        }
       ]
     },
     {

@@ -42,6 +42,7 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
         coyote: 0,
         on: true,
         walkSpeed: 2.5,
+        gravity: 0.15,
         knockback: {
             x: 0,
             y: 0,
@@ -94,7 +95,7 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
             }
 
             if (!this.isOnGround)
-                puppet.vspeed += 0.15;
+                puppet.vspeed += engine.gravity;
 
             let hsp = puppet.hspeed + engine.knockback.x;
             let vsp = puppet.vspeed + engine.knockback.y;

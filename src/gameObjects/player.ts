@@ -164,6 +164,7 @@ function createPlayer()
 
         const baseSpeed = !progress.poisonLevel ? 2.5 : 3.25;
         player.engine.walkSpeed = baseSpeed + Math.max(0, 0.5 * (progress.poisonLevel - 1));
+        player.engine.gravity = Math.max(0.02, 0.15 - Math.min(1, progress.ballons.length) * 0.01 - Math.max(0, progress.ballons.length - 1) * 0.00625);
 
         player.isDucking = (playerKey.isDown("ArrowDown") && engine.coyote > 0) || player.mods.has(Sleepy);
 
