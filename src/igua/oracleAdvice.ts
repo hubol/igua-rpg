@@ -33,14 +33,14 @@ export async function oracleAdvice() {
         }
         else {
             await show(`You will need to acquire some keys to continue.`);
-            if (progress.flags.desert.key.fromInn) {
+            if (!progress.flags.desert.key.fromInn) {
                 return await show(`One is in the desert inn.`);
             }
-            if (progress.flags.desert.key.fromTopOfCrateStack) {
+            if (!progress.flags.desert.key.fromTopOfCrateStack) {
                 await show(`One is above the desert town.`);
                 return await show(`Assist the laborer iguana to reveal your prize.`);
             }
-            if (progress.flags.desert.key.fromDiggingInTown) {
+            if (!progress.flags.desert.key.fromDiggingInTown) {
                 await show(`One is under the desert town.`);
                 return await show(`You'll need to find someone with a special digging ability to help you.`);
             }
