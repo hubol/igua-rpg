@@ -528,7 +528,16 @@
           "originY": 12,
           "values": {"name": "FromShop", "faceRight": true}
         },
-        {"name": "ValuableBlue", "id": 57, "_eid": "55991906", "x": 1348, "y": 130, "originX": 8, "originY": 14},
+        {
+          "name": "ValuableBlue",
+          "id": 57,
+          "_eid": "55991906",
+          "x": 1348,
+          "y": 130,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        },
         {
           "name": "Block",
           "id": 58,

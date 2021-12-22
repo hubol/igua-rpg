@@ -417,11 +417,11 @@ CommonClown_2: resolveCommonClown({"type":"CommonClown","x":1032,"y":408,"flippe
 // @ts-ignore
 PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":460,"y":162,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":false}),
 // @ts-ignore
-ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":472,"y":56,"flippedX":false,"flippedY":false,"uid":"56004563_29"}),
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":472,"y":56,"flippedX":false,"flippedY":false,"uid":"56004563_29","name":""}),
 // @ts-ignore
-ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":496,"y":40,"flippedX":false,"flippedY":false,"uid":"56004563_30"}),
+ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":496,"y":40,"flippedX":false,"flippedY":false,"uid":"56004563_30","name":""}),
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":472,"y":24,"flippedX":false,"flippedY":false,"uid":"55991906_31"})
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":472,"y":24,"flippedX":false,"flippedY":false,"uid":"55991906_31","name":""})
 };
 }
 };
@@ -961,7 +961,7 @@ PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":144,"y":144,"
 // @ts-ignore
 PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":144,"y":144,"flippedX":false,"flippedY":false,"uid":"63428932_9"}),
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":168,"y":144,"flippedX":false,"flippedY":false,"uid":"55991906_10"}),
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":168,"y":144,"flippedX":false,"flippedY":false,"uid":"55991906_10","name":""}),
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":104,"y":584,"width":128,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_11"}),
 // @ts-ignore
@@ -1138,6 +1138,28 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
+VBushRight: resolveDecalGameObject({
+    x: 193,
+y: 320,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+VBushLeft: resolveDecalGameObject({
+    x: 171,
+y: 319,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
 CloudLong: resolveDecalGameObject({
     x: 72,
 y: 96,
@@ -1240,15 +1262,19 @@ Block_5: resolveBlock({"type":"Block","x":368,"y":328,"width":160,"height":88,"f
 // @ts-ignore
 Block_6: resolveBlock({"type":"Block","x":528,"y":240,"width":48,"height":176,"flippedX":false,"flippedY":false,"uid":"55823268_28","name":""}),
 // @ts-ignore
-ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":456,"y":328,"flippedX":false,"flippedY":false,"uid":"56004563_34"}),
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":456,"y":328,"flippedX":false,"flippedY":false,"uid":"56004563_34","name":""}),
 // @ts-ignore
-ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":480,"y":328,"flippedX":false,"flippedY":false,"uid":"56004563_35"}),
+ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":480,"y":328,"flippedX":false,"flippedY":false,"uid":"56004563_35","name":""}),
 // @ts-ignore
-ValuableOrange_2: resolveValuableOrange({"type":"ValuableOrange","x":504,"y":328,"flippedX":false,"flippedY":false,"uid":"56004563_36"}),
+ValuableOrange_2: resolveValuableOrange({"type":"ValuableOrange","x":504,"y":328,"flippedX":false,"flippedY":false,"uid":"56004563_36","name":""}),
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":468,"y":318,"flippedX":false,"flippedY":false,"uid":"55991906_37"}),
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":468,"y":318,"flippedX":false,"flippedY":false,"uid":"55991906_37","name":""}),
 // @ts-ignore
-ValuableBlue_1: resolveValuableBlue({"type":"ValuableBlue","x":492,"y":318,"flippedX":false,"flippedY":false,"uid":"55991906_38"})
+ValuableBlue_1: resolveValuableBlue({"type":"ValuableBlue","x":492,"y":318,"flippedX":false,"flippedY":false,"uid":"55991906_38","name":""}),
+// @ts-ignore
+GrassyValuableBackground: resolveValuableOrange({"type":"ValuableOrange","x":184,"y":328,"flippedX":false,"flippedY":false,"uid":"56004563_39","name":"GrassyValuableBackground"}),
+// @ts-ignore
+BushValuableRegion: resolveRegion({"type":"Region","x":160,"y":312,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607_40","name":"BushValuableRegion"})
 };
 }
 };
@@ -1563,7 +1589,7 @@ PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":440,"y":176,"
 // @ts-ignore
 PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":432,"y":200,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_29","visible":false}),
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":240,"y":56,"flippedX":false,"flippedY":false,"uid":"55991906_32"}),
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":240,"y":56,"flippedX":false,"flippedY":false,"uid":"55991906_32","name":""}),
 // @ts-ignore
 BarAttendee: resolveNpc({"type":"NpcIguana","x":264,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_33","name":"BarAttendee","style":6}),
 // @ts-ignore
@@ -2428,7 +2454,7 @@ Boulder_1: resolveBoulder({"type":"Boulder","x":48,"y":340,"width":32,"height":3
 Block_11: resolveBlock({"type":"Block","x":0,"y":136,"width":48,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_55","name":""}),
 FromShop: {"type":"Checkpoint","x":472,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_56","name":"FromShop","faceRight":true},
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":1348,"y":130,"flippedX":false,"flippedY":false,"uid":"55991906_57"}),
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":1348,"y":130,"flippedX":false,"flippedY":false,"uid":"55991906_57","name":""}),
 // @ts-ignore
 Block_12: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_58","name":""})
 };

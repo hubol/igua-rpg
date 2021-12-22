@@ -96,7 +96,16 @@
           "values": {"visible": true}
         },
         {"name": "PipeLeftEnd", "id": 9, "_eid": "63428932", "x": 144, "y": 144, "originX": 16, "originY": 0},
-        {"name": "ValuableBlue", "id": 10, "_eid": "55991906", "x": 168, "y": 144, "originX": 8, "originY": 14},
+        {
+          "name": "ValuableBlue",
+          "id": 10,
+          "_eid": "55991906",
+          "x": 168,
+          "y": 144,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        },
         {"name": "SlopeRight", "id": 11, "_eid": "55824435", "x": 104, "y": 584, "width": 128, "height": 32, "originX": 0, "originY": 0, "flippedY": false},
         {"name": "PipeLeft", "id": 12, "_eid": "55866573", "x": 112, "y": 544, "width": 104, "height": 56, "originX": 0, "originY": 0},
         {"name": "PipeRight", "id": 13, "_eid": "55859676", "x": 112, "y": 472, "width": 120, "height": 72, "originX": 0, "originY": 0},

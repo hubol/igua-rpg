@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.3.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 496,
   "height": 256,
   "offsetX": 0,
@@ -152,7 +152,16 @@
           "originY": 0,
           "values": {"visible": false}
         },
-        {"name": "ValuableBlue", "id": 32, "_eid": "55991906", "x": 240, "y": 56, "originX": 8, "originY": 14},
+        {
+          "name": "ValuableBlue",
+          "id": 32,
+          "_eid": "55991906",
+          "x": 240,
+          "y": 56,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        },
         {
           "name": "NpcIguana",
           "id": 33,
@@ -502,8 +511,28 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 200, "y": 127, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "pa speaker.png", "originX": 0.5, "originY": 0.5},
-        {"x": 336, "y": 127, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "pa speaker.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 200,
+          "y": 127,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "pa speaker.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 336,
+          "y": 127,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "pa speaker.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },

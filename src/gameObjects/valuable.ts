@@ -7,18 +7,19 @@ import {GameObjectArgs} from "../../tools/gen-levelargs/types/gameObjectArgs";
 import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {scene} from "../igua/scene";
 import {player} from "./player";
+import {merge} from "../utils/merge";
 
 type ValuableType = keyof typeof valuableStyles;
 
 export function valuable(x, y, uid, type: ValuableType)
 {
     const valuableStyle = valuableStyles[type];
-    const sprite = Sprite.from(valuableStyle.texture);
+    const sprite = merge(Sprite.from(valuableStyle.texture), { collectible: true });
     sprite.position.set(x, y);
     sprite.anchor.set(0.5, 1);
 
     return sprite.withStep(() => {
-        if (player.collides(sprite))
+        if (sprite.collectible && player.collides(sprite))
         {
             const particle = smallPop(12);
             particle.position.set(sprite.x, sprite.y - 7);
@@ -42,8 +43,14 @@ function resolveValuable(e: GameObjectArgs)
     if (e.type === "ValuableOrange" || e.type === "ValuableBlue")
     {
         const uid = e.uid;
-        if (!progress.flags.objects.gotLevelValuable.has(uid))
-            return scene.gameObjectStage.addChild(valuable(e.x, e.y, uid, e.type));
+
+        if (!progress.flags.objects.gotLevelValuable.has(uid)) {
+            const v = valuable(e.x, e.y, uid, e.type);
+            // TODO pretty bad hack
+            if (e.name.toLowerCase().includes("background"))
+                return scene.backgroundGameObjectStage.addChildAt(v, 0);
+            return scene.gameObjectStage.addChild(v);
+        }
     }
 }
 

@@ -186,11 +186,78 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"name": "ValuableOrange", "id": 34, "_eid": "56004563", "x": 456, "y": 328, "originX": 8, "originY": 14},
-        {"name": "ValuableOrange", "id": 35, "_eid": "56004563", "x": 480, "y": 328, "originX": 8, "originY": 14},
-        {"name": "ValuableOrange", "id": 36, "_eid": "56004563", "x": 504, "y": 328, "originX": 8, "originY": 14},
-        {"name": "ValuableBlue", "id": 37, "_eid": "55991906", "x": 468, "y": 318, "originX": 8, "originY": 14},
-        {"name": "ValuableBlue", "id": 38, "_eid": "55991906", "x": 492, "y": 318, "originX": 8, "originY": 14}
+        {
+          "name": "ValuableOrange",
+          "id": 34,
+          "_eid": "56004563",
+          "x": 456,
+          "y": 328,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 35,
+          "_eid": "56004563",
+          "x": 480,
+          "y": 328,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 36,
+          "_eid": "56004563",
+          "x": 504,
+          "y": 328,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 37,
+          "_eid": "55991906",
+          "x": 468,
+          "y": 318,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 38,
+          "_eid": "55991906",
+          "x": 492,
+          "y": 318,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 39,
+          "_eid": "56004563",
+          "x": 184,
+          "y": 328,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "GrassyValuableBackground"}
+        },
+        {
+          "name": "Region",
+          "id": 40,
+          "_eid": "25971607",
+          "x": 160,
+          "y": 312,
+          "width": 40,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "BushValuableRegion"}
+        }
       ]
     },
     {
@@ -335,6 +402,28 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 193,
+          "y": 320,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "VBushRight"}
+        },
+        {
+          "x": 171,
+          "y": 319,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "VBushLeft"}
         }
       ],
       "folder": "..\\..\\src\\images"

@@ -245,9 +245,36 @@
           "originY": 0,
           "values": {"visible": false}
         },
-        {"name": "ValuableOrange", "id": 29, "_eid": "56004563", "x": 472, "y": 56, "originX": 8, "originY": 14},
-        {"name": "ValuableOrange", "id": 30, "_eid": "56004563", "x": 496, "y": 40, "originX": 8, "originY": 14},
-        {"name": "ValuableBlue", "id": 31, "_eid": "55991906", "x": 472, "y": 24, "originX": 8, "originY": 14}
+        {
+          "name": "ValuableOrange",
+          "id": 29,
+          "_eid": "56004563",
+          "x": 472,
+          "y": 56,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 30,
+          "_eid": "56004563",
+          "x": 496,
+          "y": 40,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 31,
+          "_eid": "55991906",
+          "x": 472,
+          "y": 24,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": ""}
+        }
       ]
     },
     {

@@ -1,6 +1,6 @@
 {
   "name": "IguaRPG",
-  "ogmoVersion": "3.3.0",
+  "ogmoVersion": "3.4.0-hubol",
   "levelPaths": [".\\levels"],
   "backgroundColor": "#4074c4ff",
   "gridColor": "#3c4049cc",
@@ -492,7 +492,9 @@
       "nodeDisplay": 0,
       "nodeGhost": true,
       "tags": [],
-      "values": [],
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ],
       "texture": "preview-images/blue valuable.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAOCAYAAADJ7fe0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAAoElEQVQ4T42TgQ2AIAwEmdsh3cFJlAKPl/IYmzRIsddv0VJgd7Xj7E47r77T2diXGmo+TUkZIkCshBDUIBngQIo50BaglnIrhMVZeGFVSucM4h0lcFXuhOTKnIGDUFGbCQOhwLXgFIzC7+2k62sg1z/jyxVTkao6CGa4fifSlPt3eymwShyIEM3gFyRgbEnPOflTiRRpiPlf+a2EoJ0CxR8xZp5aOy60mAAAAABJRU5ErkJggg=="
     },
@@ -530,7 +532,9 @@
       "nodeDisplay": 0,
       "nodeGhost": true,
       "tags": [],
-      "values": [],
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ],
       "texture": "preview-images/orange valuable.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAOCAYAAADJ7fe0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAArUlEQVQ4T4WTiw2AIAxEWdiJ3MBJ3EotpeV6HLEJIeXzuH5oDewxOw8faPflXuy532IkIu8wJAA2IwRAHbIAFCjWBGgPiJA4FITZ3jdayQFKxxzYxXGhzAM4Ifwy5kBBQJHnBCWaAhUCKqnnZ32pfA4S8Zf1UWZsk6koXlWQWbm1T4LWX2fp7EOjWcNJKyCEevJTwdKxTEs1CBGArZIMLZJLf4XV6HjwU/4ADPgCJ9F+/9ei3wwAAAAASUVORK5CYII="
     },

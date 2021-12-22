@@ -17,6 +17,7 @@ import {show} from "../cutscene/dialog";
 import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
 import {move} from "../cutscene/move";
+import {DisplayObject} from "pixi.js";
 
 function getDesertOutskirtsLevel()
 {
@@ -33,6 +34,40 @@ export function DesertOutskirts()
     scene.terrainColor = 0xE0D060;
 
     enrichUnlockTemple(level);
+    enrichGrassyValuable(level);
+}
+
+function enrichGrassyValuable(level: DesertOutskirtsLevel) {
+    const bushes = enrichBushes(!level.GrassyValuableBackground, level.VBushLeft, level.VBushRight);
+
+    if (!level.GrassyValuableBackground)
+        return;
+
+    level.GrassyValuableBackground.collectible = false;
+    level.BushValuableRegion.withInteraction(async () => {
+        const b = bushes.move();
+        await sleep(100);
+        await move(level.GrassyValuableBackground!).by([0, -1]).over(650);
+        await b;
+        level.GrassyValuableBackground!.collectible = true;
+    })
+}
+
+function enrichBushes(now: boolean, left: DisplayObject, right: DisplayObject) {
+    const leftDst = left.x - 8;
+    const rightDst = right.x + 8;
+    if (now) {
+        right.x = rightDst;
+        left.x = leftDst;
+    }
+    return {
+        move() {
+            return Promise.all([
+                lerp(right, "x").to(rightDst).over(300),
+                lerp(left, "x").to(leftDst).over(360),
+            ]);
+        }
+    }
 }
 
 function enrichUnlockTemple(level: DesertOutskirtsLevel)
@@ -45,12 +80,7 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
         .at({ x: 0, y: 8 }.add(level.TempleUnlockBlob));
     scene.backgroundGameObjectStage.addChildAt(leverObject, 0);
 
-    const targetBushRight = level.BushRight.x + 8;
-    const targetBushLeft = level.BushLeft.x - 8;
-    if (progress.flags.desert.unlockedTemple) {
-        level.BushRight.x = targetBushRight;
-        level.BushLeft.x = targetBushLeft;
-    }
+    const bushes = enrichBushes(progress.flags.desert.unlockedTemple, level.BushLeft, level.BushRight);
 
     level.TempleUnlockBlob.visible = false;
     leverObject.withInteraction(() => {
@@ -63,10 +93,7 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
         }
 
         cutscene.play(async () => {
-            await Promise.all([
-                lerp(level.BushRight, "x").to(targetBushRight).over(300),
-                lerp(level.BushLeft, "x").to(targetBushLeft).over(360),
-            ])
+            await bushes.move();
             await sleep(300);
             ActivateLever.play();
             await lerp(leverObject, "angle").to(onAngle).over(200);
