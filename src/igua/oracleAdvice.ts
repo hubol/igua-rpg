@@ -12,14 +12,14 @@ export async function oracleAdvice() {
         // await show(`Disaster fell when the protectors were rendered vulnerable and approached by a ferocious interloper.`);
         // await show(`Dedicated to maintaining the peace, they had already sealed away the great weapon, and could not defend themselves.`);
         // await show(`The interloper celebrated a temporary success.`);
-        // await show(`But without its protectors, the world succumbed to the harsh, unadultered elements.`);
+        // await show(`But without its protectors, the world succumbed to the harsh, unadulterated elements.`);
         // await show(`Intense fires, floods, winds. Only those who could bury themselves survived.`);
         // await show(`That is the history.`);
         // await show(`Today, you can find a monument to one of the protectors in the desert.`);
     }
     else if (!progress.flags.desert.unlockedTemple) {
         await show(`You must go to the temple in the east desert, but alas, it is locked.`);
-        return await show(`There is a mechanism to open the temple somewhere in the outskirts of the desert.`);
+        return await show(`There is a mechanism to open the temple in the far east outskirts of the desert.`);
     }
     else if (progress.flags.desert.bigKey.reward) {
         await show(`You repaired the big key and received the blessing of earth!`);
