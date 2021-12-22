@@ -2,11 +2,11 @@ import {Container} from "pixi.js";
 import {EscapeTickerAndExecute} from "../utils/asshatTicker";
 import {Gate} from "../sounds";
 import {progress} from "../igua/data/progress";
-import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {level} from "../igua/level/level";
 import {areRectanglesOverlapping} from "../utils/math/rectangle";
 import {scene} from "../igua/scene";
 import {player} from "./player";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 export const resolveGate = resolveGameObject("Gate", args => {
     const destination = {

@@ -23,7 +23,7 @@
           "y": 136,
           "originX": 11,
           "originY": 27,
-          "values": {"faceRight": true}
+          "values": {"faceRight": true, "name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -35,7 +35,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -47,7 +47,7 @@
           "height": 224,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -59,7 +59,7 @@
           "height": 120,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -71,9 +71,21 @@
           "height": 72,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "PuzzleWall"}
+          "values": {"name": "PuzzleWall", "depth": 0}
         },
-        {"name": "SlopeRight", "id": 32, "_eid": "55824435", "x": 128, "y": 72, "width": 96, "height": 64, "originX": 0, "originY": 0, "flippedY": false},
+        {
+          "name": "SlopeRight",
+          "id": 32,
+          "_eid": "55824435",
+          "x": 128,
+          "y": 72,
+          "width": 96,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Block",
           "id": 33,
@@ -84,7 +96,7 @@
           "height": 64,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Anchor",
@@ -94,7 +106,7 @@
           "y": 136,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "TorchA"}
+          "values": {"name": "TorchA", "depth": 0}
         },
         {
           "name": "Anchor",
@@ -104,7 +116,7 @@
           "y": 224,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Torch1"}
+          "values": {"name": "Torch1", "depth": 0}
         },
         {
           "name": "Anchor",
@@ -114,7 +126,7 @@
           "y": 224,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Torch2"}
+          "values": {"name": "Torch2", "depth": 0}
         },
         {
           "name": "Anchor",
@@ -124,7 +136,7 @@
           "y": 224,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "SnowmanSpawn"}
+          "values": {"name": "SnowmanSpawn", "depth": 0}
         }
       ]
     },

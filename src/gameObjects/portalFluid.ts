@@ -1,4 +1,3 @@
-import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {Container, Graphics} from "pixi.js";
 import {player} from "./player";
 import {playerCharacterHasControl} from "../igua/logic/playerCharacterKey";
@@ -15,6 +14,7 @@ import {SceneLocal} from "../igua/sceneLocal";
 import {BevelFilter} from "@pixi/filter-bevel";
 import {show} from "../cutscene/dialog";
 import {lerp} from "../cutscene/lerp";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 export const portalFluidConfig = {
     gotoLevelName: "Unknown"

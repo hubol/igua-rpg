@@ -25,7 +25,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Door",
@@ -35,7 +35,7 @@
           "y": 192,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "DesertField", "checkpointName": "FromTemple", "name": ""}
+          "values": {"levelName": "DesertField", "checkpointName": "FromTemple", "name": "", "depth": 0}
         },
         {
           "name": "Door",
@@ -45,7 +45,7 @@
           "y": 192,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "UnrealFlight", "checkpointName": "", "name": "Door1"}
+          "values": {"levelName": "UnrealFlight", "checkpointName": "", "name": "Door1", "depth": 0}
         },
         {
           "name": "Door",
@@ -55,7 +55,7 @@
           "y": 192,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "UnrealMimic", "checkpointName": "", "name": "Door2"}
+          "values": {"levelName": "UnrealMimic", "checkpointName": "", "name": "Door2", "depth": 0}
         },
         {
           "name": "Door",
@@ -65,10 +65,34 @@
           "y": 192,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "UnrealSnowman", "checkpointName": "", "name": "Door3"}
+          "values": {"levelName": "UnrealSnowman", "checkpointName": "", "name": "Door3", "depth": 0}
         },
-        {"name": "SlopeRight", "id": 5, "_eid": "55824435", "x": 296, "y": 0, "width": 40, "height": 152, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeLeft", "id": 6, "_eid": "55845599", "x": 240, "y": 0, "width": 40, "height": 152, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "SlopeRight",
+          "id": 5,
+          "_eid": "55824435",
+          "x": 296,
+          "y": 0,
+          "width": 40,
+          "height": 152,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 6,
+          "_eid": "55845599",
+          "x": 240,
+          "y": 0,
+          "width": 40,
+          "height": 152,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Block",
           "id": 7,
@@ -79,7 +103,7 @@
           "height": 152,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -91,7 +115,7 @@
           "height": 152,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -103,7 +127,7 @@
           "height": 72,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -115,7 +139,7 @@
           "height": 72,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Player",
@@ -125,7 +149,7 @@
           "y": 224,
           "originX": 11,
           "originY": 27,
-          "values": {"faceRight": true}
+          "values": {"faceRight": true, "name": "", "depth": 0}
         },
         {
           "name": "Sign",
@@ -135,7 +159,7 @@
           "y": 224,
           "originX": 14,
           "originY": 18,
-          "values": {"title": "Big Key", "message": ""}
+          "values": {"title": "Big Key", "message": "", "name": "", "depth": 0}
         },
         {
           "name": "Region",
@@ -147,7 +171,7 @@
           "height": 28,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "BigKey"}
+          "values": {"name": "BigKey", "depth": 0}
         }
       ]
     },

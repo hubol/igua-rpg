@@ -25,10 +25,32 @@
           "height": 16,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "PlayerFloorBlock"}
+          "values": {"name": "PlayerFloorBlock", "depth": 0}
         },
-        {"name": "PortalFluid", "id": 10, "_eid": "24775263", "x": 0, "y": 56, "width": 48, "height": 144, "originX": 0, "originY": 0},
-        {"name": "PortalFluid", "id": 11, "_eid": "24775263", "x": 208, "y": 56, "width": 48, "height": 144, "originX": 0, "originY": 0},
+        {
+          "name": "PortalFluid",
+          "id": 10,
+          "_eid": "24775263",
+          "x": 0,
+          "y": 56,
+          "width": 48,
+          "height": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PortalFluid",
+          "id": 11,
+          "_eid": "24775263",
+          "x": 208,
+          "y": 56,
+          "width": 48,
+          "height": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Player",
           "id": 12,
@@ -37,12 +59,60 @@
           "y": 120,
           "originX": 11,
           "originY": 27,
-          "values": {"faceRight": true}
+          "values": {"faceRight": true, "name": "", "depth": 0}
         },
-        {"name": "SlopeRight", "id": 13, "_eid": "55824435", "x": 48, "y": 200, "width": 80, "height": 56, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeLeft", "id": 14, "_eid": "55845599", "x": 128, "y": 200, "width": 80, "height": 56, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeLeft", "id": 15, "_eid": "55845599", "x": 128, "y": 0, "width": 80, "height": 56, "originX": 0, "originY": 0, "flippedY": false},
-        {"name": "SlopeRight", "id": 16, "_eid": "55824435", "x": 48, "y": 0, "width": 80, "height": 56, "originX": 0, "originY": 0, "flippedY": false},
+        {
+          "name": "SlopeRight",
+          "id": 13,
+          "_eid": "55824435",
+          "x": 48,
+          "y": 200,
+          "width": 80,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 14,
+          "_eid": "55845599",
+          "x": 128,
+          "y": 200,
+          "width": 80,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 15,
+          "_eid": "55845599",
+          "x": 128,
+          "y": 0,
+          "width": 80,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 16,
+          "_eid": "55824435",
+          "x": 48,
+          "y": 0,
+          "width": 80,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "NpcIguana",
           "id": 17,
@@ -52,12 +122,60 @@
           "originX": 11,
           "originY": 27,
           "flippedX": false,
-          "values": {"name": "Mimic", "style": 0}
+          "values": {"name": "Mimic", "style": 0, "depth": 0}
         },
-        {"name": "SlopeRight", "id": 19, "_eid": "55824435", "x": 208, "y": 0, "width": 80, "height": 56, "originX": 0, "originY": 0, "flippedY": false},
-        {"name": "SlopeLeft", "id": 20, "_eid": "55845599", "x": -32, "y": 0, "width": 80, "height": 56, "originX": 0, "originY": 0, "flippedY": false},
-        {"name": "SlopeRight", "id": 21, "_eid": "55824435", "x": 208, "y": 200, "width": 80, "height": 56, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeLeft", "id": 22, "_eid": "55845599", "x": -32, "y": 200, "width": 80, "height": 56, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "SlopeRight",
+          "id": 19,
+          "_eid": "55824435",
+          "x": 208,
+          "y": 0,
+          "width": 80,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 20,
+          "_eid": "55845599",
+          "x": -32,
+          "y": 0,
+          "width": 80,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 21,
+          "_eid": "55824435",
+          "x": 208,
+          "y": 200,
+          "width": 80,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 22,
+          "_eid": "55845599",
+          "x": -32,
+          "y": 200,
+          "width": 80,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Block",
           "id": 23,
@@ -68,7 +186,7 @@
           "height": 16,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -80,7 +198,7 @@
           "height": 16,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Region",
@@ -92,7 +210,7 @@
           "height": 8,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "BigKeyPiece"}
+          "values": {"name": "BigKeyPiece", "depth": 0}
         }
       ]
     },

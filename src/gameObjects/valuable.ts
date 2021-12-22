@@ -4,10 +4,9 @@ import {progress} from "../igua/data/progress";
 import {smallPop} from "./smallPop";
 import {CollectValuable, CollectValuableSmall} from "../sounds";
 import {GameObjectArgs} from "../../tools/gen-levelargs/types/gameObjectArgs";
-import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
-import {scene} from "../igua/scene";
 import {player} from "./player";
 import {merge} from "../utils/merge";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 type ValuableType = keyof typeof valuableStyles;
 
@@ -44,13 +43,8 @@ function resolveValuable(e: GameObjectArgs)
     {
         const uid = e.uid;
 
-        if (!progress.flags.objects.gotLevelValuable.has(uid)) {
-            const v = valuable(e.x, e.y, uid, e.type);
-            // TODO pretty bad hack
-            if (e.name.toLowerCase().includes("background"))
-                return scene.backgroundGameObjectStage.addChildAt(v, 0);
-            return scene.gameObjectStage.addChild(v);
-        }
+        if (!progress.flags.objects.gotLevelValuable.has(uid))
+            return valuable(e.x, e.y, uid, e.type);
     }
 }
 

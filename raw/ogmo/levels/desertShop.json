@@ -23,7 +23,7 @@
           "y": 192,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "DesertTown", "checkpointName": "FromShop", "name": ""}
+          "values": {"levelName": "DesertTown", "checkpointName": "FromShop", "name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -35,7 +35,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Floor"}
+          "values": {"name": "Floor", "depth": 0}
         },
         {
           "name": "Block",
@@ -47,7 +47,7 @@
           "height": 224,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -59,7 +59,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Player",
@@ -69,7 +69,7 @@
           "y": 224,
           "originX": 11,
           "originY": 27,
-          "values": {"faceRight": true}
+          "values": {"faceRight": true, "name": "", "depth": 0}
         },
         {
           "name": "NpcIguana",
@@ -80,11 +80,47 @@
           "originX": 11,
           "originY": 27,
           "flippedX": true,
-          "values": {"name": "Shopkeeper", "style": 5}
+          "values": {"name": "Shopkeeper", "style": 5, "depth": 0}
         },
-        {"name": "SlopeLeft", "id": 17, "_eid": "55845599", "x": 112, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeLeft", "id": 18, "_eid": "55845599", "x": 304, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeRight", "id": 19, "_eid": "55824435", "x": 240, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "SlopeLeft",
+          "id": 17,
+          "_eid": "55845599",
+          "x": 112,
+          "y": 32,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 18,
+          "_eid": "55845599",
+          "x": 304,
+          "y": 32,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 19,
+          "_eid": "55824435",
+          "x": 240,
+          "y": 32,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Block",
           "id": 20,
@@ -95,9 +131,21 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
-        {"name": "SlopeRight", "id": 21, "_eid": "55824435", "x": 432, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "SlopeRight",
+          "id": 21,
+          "_eid": "55824435",
+          "x": 432,
+          "y": 32,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Block",
           "id": 24,
@@ -108,7 +156,7 @@
           "height": 224,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Anchor",
@@ -118,7 +166,7 @@
           "y": 160,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "ShopLamp"}
+          "values": {"name": "ShopLamp", "depth": 0}
         },
         {
           "name": "Anchor",
@@ -128,7 +176,7 @@
           "y": 144,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "MiddleLamp"}
+          "values": {"name": "MiddleLamp", "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -139,7 +187,7 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": false}
+          "values": {"visible": false, "name": "", "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -150,7 +198,7 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": false}
+          "values": {"visible": false, "name": "", "depth": 0}
         },
         {
           "name": "ValuableBlue",
@@ -160,7 +208,7 @@
           "y": 56,
           "originX": 8,
           "originY": 14,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "NpcIguana",
@@ -171,7 +219,7 @@
           "originX": 11,
           "originY": 27,
           "flippedX": true,
-          "values": {"name": "BarAttendee", "style": 6}
+          "values": {"name": "BarAttendee", "style": 6, "depth": 0}
         },
         {
           "name": "Block",
@@ -183,7 +231,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "NpcIguana",
@@ -194,7 +242,7 @@
           "originX": 11,
           "originY": 27,
           "flippedX": false,
-          "values": {"name": "Digua", "style": 4}
+          "values": {"name": "Digua", "style": 4, "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -205,7 +253,7 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": false}
+          "values": {"visible": false, "name": "", "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -216,7 +264,7 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": false}
+          "values": {"visible": false, "name": "", "depth": 0}
         },
         {
           "name": "Region",
@@ -228,7 +276,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Window1"}
+          "values": {"name": "Window1", "depth": 0}
         },
         {
           "name": "Region",
@@ -240,7 +288,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Window2"}
+          "values": {"name": "Window2", "depth": 0}
         },
         {
           "name": "Region",
@@ -252,7 +300,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Window3"}
+          "values": {"name": "Window3", "depth": 0}
         },
         {
           "name": "Region",
@@ -264,7 +312,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Window4"}
+          "values": {"name": "Window4", "depth": 0}
         }
       ]
     },

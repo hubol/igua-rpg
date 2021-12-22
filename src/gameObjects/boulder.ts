@@ -1,11 +1,11 @@
 import { Boulder } from "../textures";
 import {Sprite} from "pixi.js";
 import {player} from "./player";
-import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {scene} from "../igua/scene";
 import {Vector} from "../utils/math/vector";
 import {BoulderBless, CharacterHitCeiling} from "../sounds";
 import {progress} from "../igua/data/progress";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 export const resolveBoulder =
     resolveGameObject("Boulder", e => {

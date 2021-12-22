@@ -5,11 +5,11 @@ import {merge} from "../utils/merge";
 import {isPlayerInteractingWith} from "../igua/logic/isPlayerInteractingWith";
 import {EscapeTickerAndExecute} from "../utils/asshatTicker";
 import {progress} from "../igua/data/progress";
-import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {level} from "../igua/level/level";
 import {scene} from "../igua/scene";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 export const resolveDoor =
     resolveGameObject("Door", e => door(e, e.levelName, e.checkpointName));

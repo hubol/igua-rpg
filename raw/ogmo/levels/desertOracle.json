@@ -25,7 +25,7 @@
           "height": 112,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -37,7 +37,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -49,7 +49,7 @@
           "height": 504,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -61,7 +61,7 @@
           "height": 584,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Door",
@@ -71,7 +71,7 @@
           "y": 200,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "DesertTown", "checkpointName": "FromLeftHouse", "name": ""}
+          "values": {"levelName": "DesertTown", "checkpointName": "FromLeftHouse", "name": "", "depth": 0}
         },
         {
           "name": "Player",
@@ -81,9 +81,20 @@
           "y": 232,
           "originX": 11,
           "originY": 27,
-          "values": {"faceRight": true}
+          "values": {"faceRight": true, "name": "", "depth": 0}
         },
-        {"name": "PipeLeft", "id": 7, "_eid": "55866573", "x": 176, "y": 144, "width": 56, "height": 40, "originX": 0, "originY": 0},
+        {
+          "name": "PipeLeft",
+          "id": 7,
+          "_eid": "55866573",
+          "x": 176,
+          "y": 144,
+          "width": 56,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "PipeHorizontal",
           "id": 8,
@@ -93,9 +104,18 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": true}
+          "values": {"visible": true, "name": "", "depth": 0}
         },
-        {"name": "PipeLeftEnd", "id": 9, "_eid": "63428932", "x": 144, "y": 144, "originX": 16, "originY": 0},
+        {
+          "name": "PipeLeftEnd",
+          "id": 9,
+          "_eid": "63428932",
+          "x": 144,
+          "y": 144,
+          "originX": 16,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "ValuableBlue",
           "id": 10,
@@ -104,14 +124,81 @@
           "y": 144,
           "originX": 8,
           "originY": 14,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
-        {"name": "SlopeRight", "id": 11, "_eid": "55824435", "x": 104, "y": 584, "width": 128, "height": 32, "originX": 0, "originY": 0, "flippedY": false},
-        {"name": "PipeLeft", "id": 12, "_eid": "55866573", "x": 112, "y": 544, "width": 104, "height": 56, "originX": 0, "originY": 0},
-        {"name": "PipeRight", "id": 13, "_eid": "55859676", "x": 112, "y": 472, "width": 120, "height": 72, "originX": 0, "originY": 0},
-        {"name": "PipeLeft", "id": 15, "_eid": "55866573", "x": 112, "y": 400, "width": 120, "height": 72, "originX": 0, "originY": 0},
-        {"name": "PipeRight", "id": 16, "_eid": "55859676", "x": 112, "y": 336, "width": 120, "height": 64, "originX": 0, "originY": 0},
-        {"name": "PipeLeft", "id": 17, "_eid": "55866573", "x": 168, "y": 288, "width": 64, "height": 48, "originX": 0, "originY": 0},
+        {
+          "name": "SlopeRight",
+          "id": 11,
+          "_eid": "55824435",
+          "x": 104,
+          "y": 584,
+          "width": 128,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeLeft",
+          "id": 12,
+          "_eid": "55866573",
+          "x": 112,
+          "y": 544,
+          "width": 104,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeRight",
+          "id": 13,
+          "_eid": "55859676",
+          "x": 112,
+          "y": 472,
+          "width": 120,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeLeft",
+          "id": 15,
+          "_eid": "55866573",
+          "x": 112,
+          "y": 400,
+          "width": 120,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeRight",
+          "id": 16,
+          "_eid": "55859676",
+          "x": 112,
+          "y": 336,
+          "width": 120,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeLeft",
+          "id": 17,
+          "_eid": "55866573",
+          "x": 168,
+          "y": 288,
+          "width": 64,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "PipeHorizontal",
           "id": 19,
@@ -121,9 +208,18 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": true}
+          "values": {"visible": true, "name": "", "depth": 0}
         },
-        {"name": "PipeLeftEnd", "id": 20, "_eid": "63428932", "x": 136, "y": 288, "originX": 16, "originY": 0},
+        {
+          "name": "PipeLeftEnd",
+          "id": 20,
+          "_eid": "63428932",
+          "x": 136,
+          "y": 288,
+          "originX": 16,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "NpcIguana",
           "id": 21,
@@ -133,9 +229,21 @@
           "originX": 11,
           "originY": 27,
           "flippedX": false,
-          "values": {"name": "Oracle", "style": 0}
+          "values": {"name": "Oracle", "style": 0, "depth": 0}
         },
-        {"name": "SlopeLeft", "id": 22, "_eid": "55845599", "x": 24, "y": 232, "width": 96, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "SlopeLeft",
+          "id": 22,
+          "_eid": "55845599",
+          "x": 24,
+          "y": 232,
+          "width": 96,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "PipeHorizontal",
           "id": 23,
@@ -145,14 +253,83 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": true}
+          "values": {"visible": true, "name": "", "depth": 0}
         },
-        {"name": "PipeLeftEnd", "id": 24, "_eid": "63428932", "x": 80, "y": 400, "originX": 16, "originY": 0},
-        {"name": "SlopeLeft", "id": 25, "_eid": "55845599", "x": 24, "y": 112, "width": 64, "height": 48, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeLeft", "id": 26, "_eid": "55845599", "x": 80, "y": 480, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeRight", "id": 27, "_eid": "55824435", "x": 48, "y": 480, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeRight", "id": 28, "_eid": "55824435", "x": 200, "y": 80, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeLeft", "id": 29, "_eid": "55845599", "x": 144, "y": 80, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "PipeLeftEnd",
+          "id": 24,
+          "_eid": "63428932",
+          "x": 80,
+          "y": 400,
+          "originX": 16,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 25,
+          "_eid": "55845599",
+          "x": 24,
+          "y": 112,
+          "width": 64,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 26,
+          "_eid": "55845599",
+          "x": 80,
+          "y": 480,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 27,
+          "_eid": "55824435",
+          "x": 48,
+          "y": 480,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 28,
+          "_eid": "55824435",
+          "x": 200,
+          "y": 80,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 29,
+          "_eid": "55845599",
+          "x": 144,
+          "y": 80,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Block",
           "id": 30,
@@ -163,7 +340,7 @@
           "height": 80,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -175,7 +352,7 @@
           "height": 80,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Region",
@@ -187,7 +364,7 @@
           "height": 24,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Window1"}
+          "values": {"name": "Window1", "depth": 0}
         },
         {
           "name": "Region",
@@ -199,7 +376,7 @@
           "height": 24,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Window2"}
+          "values": {"name": "Window2", "depth": 0}
         },
         {
           "name": "Region",
@@ -211,7 +388,7 @@
           "height": 24,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Window3"}
+          "values": {"name": "Window3", "depth": 0}
         },
         {
           "name": "Region",
@@ -223,7 +400,7 @@
           "height": 24,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Window4"}
+          "values": {"name": "Window4", "depth": 0}
         }
       ]
     },

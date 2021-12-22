@@ -2,12 +2,12 @@ import { Vector } from "../utils/math/vector";
 import {Container, Sprite} from "pixi.js";
 import {Sign} from "../textures";
 import {isPlayerInteractingWith} from "../igua/logic/isPlayerInteractingWith";
-import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {cutscene, Cutscene} from "../cutscene/cutscene";
 import {merge} from "../utils/merge";
 import {scene} from "../igua/scene";
 import {show} from "../cutscene/dialog";
 import {IguaText} from "../igua/text";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 export const resolveSign =
     resolveGameObject("Sign", e => scene.gameObjectStage.addChild(sign(e, e.title, e.message)));

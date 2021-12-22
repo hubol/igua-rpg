@@ -1,8 +1,8 @@
 import {Graphics, SCALE_MODES, SimpleMesh, Sprite} from "pixi.js";
 import {distance, dot, normalize, perpendicular, Vector} from "../utils/math/vector";
 import {LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
-import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {scene} from "../igua/scene";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 const walls: Wall[] = [];
 

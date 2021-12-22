@@ -25,7 +25,7 @@
           "height": 56,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -37,7 +37,7 @@
           "height": 184,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -49,7 +49,7 @@
           "height": 48,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Player",
@@ -59,15 +59,92 @@
           "y": 256,
           "originX": 11,
           "originY": 27,
-          "values": {"faceRight": true}
+          "values": {"faceRight": true, "name": "", "depth": 0}
         },
-        {"name": "PortalFluid", "id": 4, "_eid": "24775263", "x": 184, "y": 0, "width": 224, "height": 32, "originX": 0, "originY": 0},
-        {"name": "PortalFluid", "id": 5, "_eid": "24775263", "x": 184, "y": 144, "width": 160, "height": 168, "originX": 0, "originY": 0},
-        {"name": "PortalFluid", "id": 6, "_eid": "24775263", "x": 408, "y": 0, "width": 232, "height": 208, "originX": 0, "originY": 0},
-        {"name": "PortalFluid", "id": 7, "_eid": "24775263", "x": 344, "y": 280, "width": 384, "height": 32, "originX": 0, "originY": 0},
-        {"name": "PortalFluid", "id": 8, "_eid": "24775263", "x": 696, "y": 0, "width": 32, "height": 280, "originX": 0, "originY": 0},
-        {"name": "PortalFluid", "id": 9, "_eid": "24775263", "x": 440, "y": 208, "width": 200, "height": 8, "originX": 0, "originY": 0},
-        {"name": "PortalFluid", "id": 10, "_eid": "24775263", "x": 472, "y": 216, "width": 168, "height": 8, "originX": 0, "originY": 0},
+        {
+          "name": "PortalFluid",
+          "id": 4,
+          "_eid": "24775263",
+          "x": 184,
+          "y": 0,
+          "width": 224,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PortalFluid",
+          "id": 5,
+          "_eid": "24775263",
+          "x": 184,
+          "y": 144,
+          "width": 160,
+          "height": 168,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PortalFluid",
+          "id": 6,
+          "_eid": "24775263",
+          "x": 408,
+          "y": 0,
+          "width": 232,
+          "height": 208,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PortalFluid",
+          "id": 7,
+          "_eid": "24775263",
+          "x": 344,
+          "y": 280,
+          "width": 384,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PortalFluid",
+          "id": 8,
+          "_eid": "24775263",
+          "x": 696,
+          "y": 0,
+          "width": 32,
+          "height": 280,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PortalFluid",
+          "id": 9,
+          "_eid": "24775263",
+          "x": 440,
+          "y": 208,
+          "width": 200,
+          "height": 8,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PortalFluid",
+          "id": 10,
+          "_eid": "24775263",
+          "x": 472,
+          "y": 216,
+          "width": 168,
+          "height": 8,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Region",
           "id": 11,
@@ -78,7 +155,7 @@
           "height": 8,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "BigKeyPiece"}
+          "values": {"name": "BigKeyPiece", "depth": 0}
         }
       ]
     },

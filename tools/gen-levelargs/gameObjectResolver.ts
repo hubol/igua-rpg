@@ -1,12 +1,5 @@
-import {GameObjectArgs} from "./types/gameObjectArgs";
-
-export function resolveGameObject<T>(type: string, resolve: (args: GameObjectArgs) => T)
-{
-    const wrappedResolve: typeof resolve = function(e) {
-        return resolve(e);
-    };
-    (wrappedResolve as any).gameObjectResolverInfo = new GameObjectResolverInfo(type);
-    return wrappedResolve;
+export function makeGameObjectResolver(fn, type: string) {
+    fn.gameObjectResolverInfo = new GameObjectResolverInfo(type);
 }
 
 export function isGameObjectResolver(object: any)

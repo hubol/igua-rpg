@@ -23,7 +23,7 @@
           "y": 128,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "DesertTown", "checkpointName": "FromInn", "name": ""}
+          "values": {"levelName": "DesertTown", "checkpointName": "FromInn", "name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -35,7 +35,7 @@
           "height": 96,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -47,7 +47,7 @@
           "height": 160,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -59,7 +59,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Player",
@@ -69,7 +69,7 @@
           "y": 160,
           "originX": 11,
           "originY": 27,
-          "values": {"faceRight": true}
+          "values": {"faceRight": true, "name": "", "depth": 0}
         },
         {
           "name": "NpcIguana",
@@ -80,9 +80,21 @@
           "originX": 11,
           "originY": 27,
           "flippedX": true,
-          "values": {"name": "Innkeeper", "style": 3}
+          "values": {"name": "Innkeeper", "style": 3, "depth": 0}
         },
-        {"name": "SlopeLeft", "id": 7, "_eid": "55845599", "x": 16, "y": 32, "width": 32, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "SlopeLeft",
+          "id": 7,
+          "_eid": "55845599",
+          "x": 16,
+          "y": 32,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Block",
           "id": 8,
@@ -93,9 +105,21 @@
           "height": 64,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
-        {"name": "SlopeRight", "id": 9, "_eid": "55824435", "x": 120, "y": 32, "width": 104, "height": 64, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "SlopeRight",
+          "id": 9,
+          "_eid": "55824435",
+          "x": 120,
+          "y": 32,
+          "width": 104,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Block",
           "id": 10,
@@ -106,7 +130,7 @@
           "height": 64,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "RoomWall"}
+          "values": {"name": "RoomWall", "depth": 0}
         },
         {
           "name": "Block",
@@ -118,10 +142,34 @@
           "height": 128,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
-        {"name": "SlopeRight", "id": 12, "_eid": "55824435", "x": 400, "y": 32, "width": 80, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
-        {"name": "SlopeLeft", "id": 13, "_eid": "55845599", "x": 272, "y": 32, "width": 80, "height": 32, "originX": 0, "originY": 0, "flippedY": true},
+        {
+          "name": "SlopeRight",
+          "id": 12,
+          "_eid": "55824435",
+          "x": 400,
+          "y": 32,
+          "width": 80,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 13,
+          "_eid": "55845599",
+          "x": 272,
+          "y": 32,
+          "width": 80,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
         {
           "name": "Block",
           "id": 14,
@@ -132,7 +180,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": ""}
+          "values": {"name": "", "depth": 0}
         },
         {
           "name": "Anchor",
@@ -142,7 +190,7 @@
           "y": 152,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "SleepHere"}
+          "values": {"name": "SleepHere", "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -153,7 +201,7 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": false}
+          "values": {"visible": false, "name": "", "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -164,7 +212,7 @@
           "width": 56,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": false}
+          "values": {"visible": false, "name": "", "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -175,7 +223,7 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": false}
+          "values": {"visible": false, "name": "", "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -186,7 +234,7 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": false}
+          "values": {"visible": false, "name": "", "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -197,7 +245,7 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": false}
+          "values": {"visible": false, "name": "", "depth": 0}
         },
         {
           "name": "Region",
@@ -209,7 +257,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "Window"}
+          "values": {"name": "Window", "depth": 0}
         },
         {
           "name": "Checkpoint",
@@ -219,7 +267,7 @@
           "y": 160,
           "originX": 6,
           "originY": 12,
-          "values": {"name": "FromInnSave", "faceRight": false}
+          "values": {"name": "FromInnSave", "faceRight": false, "depth": 0}
         }
       ]
     },

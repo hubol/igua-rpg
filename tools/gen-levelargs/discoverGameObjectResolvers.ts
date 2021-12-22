@@ -1,5 +1,5 @@
 import {GameObjectResolver} from "./types/gameObjectResolver";
-import {getGameObjectResolverInfo, isGameObjectResolver} from "./resolveGameObject";
+import {getGameObjectResolverInfo, isGameObjectResolver} from "./gameObjectResolver";
 
 interface ModulesToSearch
 {

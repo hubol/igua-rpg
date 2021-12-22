@@ -6,13 +6,13 @@ import { lerp } from "../utils/math/number";
 import {isOnGround} from "./walls";
 import {player} from "./player";
 import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
-import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {ClownExplode, ClownHurt, CommonClownLand} from "../sounds";
 import {confetti} from "./confetti";
 import {progress} from "../igua/data/progress";
 import {valuable} from "./valuable";
 import {rng} from "../utils/rng";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 

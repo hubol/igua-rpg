@@ -1,9 +1,9 @@
-import {resolveGameObject} from "../../tools/gen-levelargs/resolveGameObject";
 import {cutscene, Cutscene} from "../cutscene/cutscene";
 import {merge} from "../utils/merge";
 import {isPlayerInteractingWith} from "../igua/logic/isPlayerInteractingWith";
 import {getNpcStyle} from "./npcStyles";
 import {scene} from "../igua/scene";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 export const resolveNpc = resolveGameObject("NpcIguana", e => {
     const n = scene.gameObjectStage.addChild(npc(e.x, e.y, e.style));
