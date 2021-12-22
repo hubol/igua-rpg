@@ -1,4 +1,4 @@
-import {getInitialProgress, Progress, progress, setProgress} from "./progress";
+import {getInitialProgress, progress, setProgress} from "./progress";
 import {show} from "../../cutscene/dialog";
 import {localStorageEntry} from "../../utils/browser/localStorageEntry";
 import {level} from "../level/level";
@@ -6,7 +6,9 @@ import {stringify} from "../../utils/stringify";
 import {Sprite} from "pixi.js";
 import {FloppyDisk} from "../../textures";
 import {game} from "../game";
-import { sleep } from "../../cutscene/sleep";
+import {sleep} from "../../cutscene/sleep";
+import {truncate} from "../../utils/truncate";
+import {readAndConvertProgressFile} from "./readAndConvertProgressFile";
 
 let currentSaveFile = "file1";
 
@@ -25,7 +27,7 @@ ${truncate(stringify(e), 60)}`);
     },
     async load(okIfEmpty = false, file = currentSaveFile) {
         try {
-            let progress = localStorageEntry<Progress>(file).read();
+            let progress = readAndConvertProgressFile(file);
             if (!progress) {
                 if (!okIfEmpty)
                     throw new Error(`${file} is empty.`);
@@ -42,12 +44,6 @@ ${truncate(stringify(e), 60)}`);
 ${truncate(stringify(e), 60)}`);
         }
     }
-}
-
-function truncate(string, length) {
-    if (string.length > length)
-        return string.slice(0, length - 3) + "...";
-    return string;
 }
 
 function showFloppy() {

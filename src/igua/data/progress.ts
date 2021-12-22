@@ -4,6 +4,7 @@ import {PotionType} from "../inventory/potions";
 export function getInitialProgress()
 {
     return {
+        version: 1,
         health: 100,
         maxHealth: 100,
         valuables: 100,
