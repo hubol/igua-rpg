@@ -7,13 +7,24 @@ import {GameObjectArgs} from "../../tools/gen-levelargs/types/gameObjectArgs";
 import {player} from "./player";
 import {merge} from "../utils/merge";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
+import {sleep} from "../cutscene/sleep";
 
 type ValuableType = keyof typeof valuableStyles;
 
 export function valuable(x, y, uid, type: ValuableType)
 {
     const valuableStyle = valuableStyles[type];
-    const sprite = merge(Sprite.from(valuableStyle.texture), { collectible: true });
+    const sprite = merge(Sprite.from(valuableStyle.texture),
+        {
+            collectible: true,
+            delayCollectible() {
+                sprite.collectible = false;
+                return sprite.withAsync(async () => {
+                    await sleep(250);
+                    sprite.collectible = true;
+                });
+            }
+        });
     sprite.position.set(x, y);
     sprite.anchor.set(0.5, 1);
 

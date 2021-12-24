@@ -9,7 +9,6 @@ import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {ClownExplode, ClownHurt, CommonClownLand} from "../sounds";
 import {confetti} from "./confetti";
-import {progress} from "../igua/data/progress";
 import {valuable} from "./valuable";
 import {rng} from "../utils/rng";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
@@ -31,7 +30,7 @@ export function commonClown() {
 
     const fullHealth = 5;
     let health = fullHealth;
-    let dropOdds = 0.67 - (progress.level - 1) * 0.075;
+    let dropOdds = 0.67;
 
     sprite.withStep(() => {
         const nearDeath = health < fullHealth && health <= player.strength;
@@ -88,7 +87,9 @@ export function commonClown() {
                     const realDropOdds = Math.max(0.1, dropOdds);
                     const drop = rng() < realDropOdds;
                     if (drop)
-                        scene.gameObjectStage.addChild(valuable(container.x, container.y, undefined, "ValuableOrange"));
+                        valuable(container.x, container.y, undefined, "ValuableOrange")
+                            .delayCollectible()
+                            .show();
 
                     scene.gameObjectStage.addChild(confetti().at(container))
                     return container.destroy();
