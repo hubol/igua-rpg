@@ -40,9 +40,9 @@ jobs:
     runs-on: macos-10.15
     steps:
       - run: >
-          curl -L -o butler.zip https://broth.itch.ovh/butler/darwin-amd64/LATEST/archive/default
-          unzip butler.zip
-          chmod +x butler
+          curl -L -o butler.zip https://broth.itch.ovh/butler/darwin-amd64/LATEST/archive/default &&
+          unzip butler.zip &&
+          chmod +x butler &&
           ./butler -V
   build-mac:
     runs-on: macos-10.15
