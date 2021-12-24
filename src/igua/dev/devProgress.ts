@@ -18,7 +18,7 @@ export function devProgress()
     progress.levelName = "DesertField";
     progress.checkpointName = "FromInnSave";
     progress.flags.desert.bigKey.reward = true;
-    range(12).forEach(() => inventory.push("WonderBallon"));
+    range(12).forEach(() => inventory.push("ClawPowder"));
     // progress.inventory = Object.keys(potions) as any;
     // progress.flags.diguaIsFollowing = true;
 }
