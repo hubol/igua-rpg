@@ -55,7 +55,9 @@ jobs:
           path: dist/win
   deploy-itch:
     needs: [build, build-win]
-    runs-on: ubuntu-latest
+    container: itchio/butler
+    env:
+      BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
     steps:
       - uses: actions/download-artifact@v2
         with:
@@ -65,20 +67,8 @@ jobs:
         with:
           name: build-win
           path: build-win
-      - uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: html5
-          ITCH_GAME: igua-rpg
-          ITCH_USER: hubol
-          PACKAGE: build
-      - uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: win
-          ITCH_GAME: igua-rpg
-          ITCH_USER: hubol
-          PACKAGE: build-win
+      - run: butler push "build" hubol/igua-rpg:html5
+      - run: butler push "build-win" hubol/igua-rpg:win
   deploy-heroku:
     needs: build
     runs-on: ubuntu-latest
