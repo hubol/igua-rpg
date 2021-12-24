@@ -88,6 +88,7 @@ export let RoseVase: PIXI.Texture;
 export let SignInn: PIXI.Texture;
 export let SignTavern: PIXI.Texture;
 export let Sign: PIXI.Texture;
+export let SmallDecorativeRock: PIXI.Texture;
 export let Snowman: PIXI.Texture;
 export let Sparkle: PIXI.Texture;
 export let SpicedNectarPotion: PIXI.Texture;
@@ -363,6 +364,9 @@ export function loadTexturesAsync()
     const SignPath = require("./images/sign.png");
     loader.add(SignPath); 
 
+    const SmallDecorativeRockPath = require("./images/small decorative rock.png");
+    loader.add(SmallDecorativeRockPath); 
+
     const SnowmanPath = require("./images/snowman.png");
     loader.add(SnowmanPath); 
 
@@ -486,6 +490,7 @@ export function loadTexturesAsync()
             SignInn = resources[SignInnPath]?.texture as PIXI.Texture;
             SignTavern = resources[SignTavernPath]?.texture as PIXI.Texture;
             Sign = resources[SignPath]?.texture as PIXI.Texture;
+            SmallDecorativeRock = resources[SmallDecorativeRockPath]?.texture as PIXI.Texture;
             Snowman = resources[SnowmanPath]?.texture as PIXI.Texture;
             Sparkle = resources[SparklePath]?.texture as PIXI.Texture;
             SpicedNectarPotion = resources[SpicedNectarPotionPath]?.texture as PIXI.Texture;

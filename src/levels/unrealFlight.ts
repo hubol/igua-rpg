@@ -44,5 +44,5 @@ function cloud()
         .at({ x: scene.camera.width * rng(), y: scene.camera.height * rng() }.add(scene.camera));
     if (rng.bool)
         sprite.scale.y *= -1;
-    scene.backgroundGameObjectStage.addChild(sprite);
+    scene.backgroundGameObjectStage.addChildAt(sprite, 0);
 }

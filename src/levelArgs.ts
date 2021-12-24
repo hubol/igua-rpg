@@ -5,17 +5,18 @@ import { resolveRegion } from "./gameObjects/region";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
+import { resolveDecalGameObject } from "./gameObjects/decal";
+import { SpikyBrushB } from "./textures";
+import { SmallDecorativeRock } from "./textures";
+import { SpikyBrushA } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveSign } from "./gameObjects/sign";
-import { resolveDecalGameObject } from "./gameObjects/decal";
 import { CloudLong } from "./textures";
 import { KeyRed } from "./textures";
-import { SpikyBrushB } from "./textures";
-import { SpikyBrushA } from "./textures";
 import { SignTavern } from "./textures";
 import { SignInn } from "./textures";
 import { CrudeHouse } from "./textures";
@@ -2466,7 +2467,51 @@ export const UnrealFlightArgs = {
 height: 312,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    SmallDecorativeRock: resolveDecalGameObject({
+    x: 128,
+y: 258,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SpikyBrushA: resolveDecalGameObject({
+    x: 40,
+y: 258,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SpikyBrushA
+}),
+SmallDecorativeRock_1: resolveDecalGameObject({
+    x: 24,
+y: 257,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SmallDecorativeRock
+}),
+SpikyBrushB: resolveDecalGameObject({
+    x: 144,
+y: 242,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+// @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":256,"width":152,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":152,"y":128,"width":32,"height":184,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
@@ -2485,8 +2530,6 @@ PortalFluid_3: resolvePortalFluid({"type":"PortalFluid","x":344,"y":280,"width":
 PortalFluid_4: resolvePortalFluid({"type":"PortalFluid","x":696,"y":0,"width":32,"height":280,"flippedX":false,"flippedY":false,"uid":"24775263_8","name":"","depth":0}),
 // @ts-ignore
 PortalFluid_5: resolvePortalFluid({"type":"PortalFluid","x":440,"y":208,"width":200,"height":8,"flippedX":false,"flippedY":false,"uid":"24775263_9","name":"","depth":0}),
-// @ts-ignore
-PortalFluid_6: resolvePortalFluid({"type":"PortalFluid","x":472,"y":216,"width":168,"height":8,"flippedX":false,"flippedY":false,"uid":"24775263_10","name":"","depth":0}),
 // @ts-ignore
 BigKeyPiece: resolveRegion({"type":"Region","x":643,"y":8,"width":50,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607_11","name":"BigKeyPiece","depth":0})
 };
