@@ -61,13 +61,6 @@ jobs:
       BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
     steps:
       - uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
-      - uses: actions/download-artifact@v2
-        with:
-          name: build-win
-          path: build-win
       - run: butler push "build" hubol/igua-rpg:html5
       - run: butler push "build-win" hubol/igua-rpg:win
   deploy-heroku:
