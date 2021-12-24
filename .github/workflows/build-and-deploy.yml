@@ -28,7 +28,6 @@ jobs:
     runs-on: windows-2019
     needs: build
     steps:
-      - uses: actions/checkout@v2
       - uses: hubol/electric-lizard@v1
         with:
           src-artifact: build
@@ -41,7 +40,6 @@ jobs:
     runs-on: macos-10.15
     needs: build
     steps:
-      - uses: actions/checkout@v2
       - uses: hubol/electric-lizard@v1
         with:
           src-artifact: build
