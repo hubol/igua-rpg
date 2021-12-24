@@ -55,6 +55,7 @@ jobs:
           path: dist/win
   deploy-itch:
     needs: [build, build-win]
+    runs-on: ubuntu-latest
     container: itchio/butler
     env:
       BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
