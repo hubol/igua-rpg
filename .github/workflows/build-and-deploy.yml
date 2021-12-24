@@ -41,6 +41,10 @@ jobs:
           node-version: '12'
           cache: 'npm'
       - run: npm ci
+      - uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: app
       - run: npm run build
         env:
           APP_ID: hubol.igua-rpg
