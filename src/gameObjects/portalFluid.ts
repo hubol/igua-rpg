@@ -56,13 +56,18 @@ function portalFluid({ width, height }: { width: number, height: number })
 
     fluidMask.value.addChild(wiggle);
 
-    return graphics
+    graphics
         .beginFill(0x20A090)
         .drawRect(0, 0, width, height)
         .withStep(() => {
             if (playerCharacterHasControl() && graphics.collides(player))
                 teleportToTheRoomOfDoors();
         });
+
+    if (width > 16 && height > 16)
+        graphics.hitbox = [4 / width, 4 / height, (width - 8) / width, (height - 8) / height];
+
+    return graphics;
 }
 
 export function teleportToTheRoomOfDoors() {

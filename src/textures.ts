@@ -81,6 +81,8 @@ export let PlayerBallonPop: PIXI.Texture;
 export let PlayerBalloon: PIXI.Texture;
 export let PotteryOrangeDamaged: PIXI.Texture;
 export let PotteryOrange: PIXI.Texture;
+export let Rainbow1: PIXI.Texture;
+export let Rainbow2: PIXI.Texture;
 export let RightPipeEnd: PIXI.Texture;
 export let RockCracks: PIXI.Texture;
 export let Rope: PIXI.Texture;
@@ -343,6 +345,12 @@ export function loadTexturesAsync()
     const PotteryOrangePath = require("./images/pottery orange.png");
     loader.add(PotteryOrangePath); 
 
+    const Rainbow1Path = require("./images/rainbow1.png");
+    loader.add(Rainbow1Path); 
+
+    const Rainbow2Path = require("./images/rainbow2.png");
+    loader.add(Rainbow2Path); 
+
     const RightPipeEndPath = require("./images/right pipe end.png");
     loader.add(RightPipeEndPath); 
 
@@ -483,6 +491,8 @@ export function loadTexturesAsync()
             PlayerBalloon = resources[PlayerBalloonPath]?.texture as PIXI.Texture;
             PotteryOrangeDamaged = resources[PotteryOrangeDamagedPath]?.texture as PIXI.Texture;
             PotteryOrange = resources[PotteryOrangePath]?.texture as PIXI.Texture;
+            Rainbow1 = resources[Rainbow1Path]?.texture as PIXI.Texture;
+            Rainbow2 = resources[Rainbow2Path]?.texture as PIXI.Texture;
             RightPipeEnd = resources[RightPipeEndPath]?.texture as PIXI.Texture;
             RockCracks = resources[RockCracksPath]?.texture as PIXI.Texture;
             Rope = resources[RopePath]?.texture as PIXI.Texture;

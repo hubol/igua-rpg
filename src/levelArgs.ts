@@ -6,6 +6,8 @@ import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveDecalGameObject } from "./gameObjects/decal";
+import { Rainbow1 } from "./textures";
+import { Rainbow2 } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
@@ -2511,13 +2513,145 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
+Rainbow1: resolveDecalGameObject({
+    x: 57,
+y: 120,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow1
+}),
+Rainbow2: resolveDecalGameObject({
+    x: 47,
+y: 48,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow2
+}),
+Rainbow2_1: resolveDecalGameObject({
+    x: 109,
+y: -14,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow2
+}),
+Rainbow1_1: resolveDecalGameObject({
+    x: 119,
+y: 58,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow1
+}),
+Rainbow1_2: resolveDecalGameObject({
+    x: -5,
+y: 182,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow1
+}),
+Rainbow2_2: resolveDecalGameObject({
+    x: -15,
+y: 110,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow2
+}),
+Rainbow2_3: resolveDecalGameObject({
+    x: 9,
+y: 286,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow2
+}),
+Rainbow1_3: resolveDecalGameObject({
+    x: 19,
+y: 358,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow1
+}),
+Rainbow1_4: resolveDecalGameObject({
+    x: 143,
+y: 234,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow1
+}),
+Rainbow2_4: resolveDecalGameObject({
+    x: 133,
+y: 162,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow2
+}),
+Rainbow2_5: resolveDecalGameObject({
+    x: 71,
+y: 224,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow2
+}),
+Rainbow1_5: resolveDecalGameObject({
+    x: 81,
+y: 296,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow1
+}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":256,"width":152,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":152,"y":128,"width":32,"height":184,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
 // @ts-ignore
 Block_2: resolveBlock({"type":"Block","x":152,"y":0,"width":32,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
-Player: {"type":"Player","x":72,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":true,"name":"","depth":0},
+Player: {"type":"Player","x":80,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":true,"name":"","depth":0},
 // @ts-ignore
 PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":184,"y":0,"width":224,"height":32,"flippedX":false,"flippedY":false,"uid":"24775263_4","name":"","depth":0}),
 // @ts-ignore
@@ -2529,7 +2663,7 @@ PortalFluid_3: resolvePortalFluid({"type":"PortalFluid","x":344,"y":280,"width":
 // @ts-ignore
 PortalFluid_4: resolvePortalFluid({"type":"PortalFluid","x":696,"y":0,"width":32,"height":280,"flippedX":false,"flippedY":false,"uid":"24775263_8","name":"","depth":0}),
 // @ts-ignore
-PortalFluid_5: resolvePortalFluid({"type":"PortalFluid","x":440,"y":208,"width":200,"height":8,"flippedX":false,"flippedY":false,"uid":"24775263_9","name":"","depth":0}),
+PortalFluid_5: resolvePortalFluid({"type":"PortalFluid","x":440,"y":192,"width":200,"height":24,"flippedX":false,"flippedY":false,"uid":"24775263_9","name":"","depth":0}),
 // @ts-ignore
 BigKeyPiece: resolveRegion({"type":"Region","x":643,"y":8,"width":50,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607_11","name":"BigKeyPiece","depth":0})
 };
