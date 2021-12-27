@@ -6,7 +6,7 @@ import {wait} from "../cutscene/wait";
 import {player} from "../gameObjects/player";
 import {lerp} from "../cutscene/lerp";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {Snowman, Torch} from "../textures";
+import {Snowman, SnowmanFlakes, SnowmanTwigs, Torch} from "../textures";
 import {Container, Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
 import {lerp as lerpNumber} from "../utils/math/number";
@@ -26,6 +26,8 @@ import {confetti} from "../gameObjects/confetti";
 import {ballons} from "../gameObjects/ballons";
 
 let holdingFlame = false;
+
+const flakes = subimageTextures(SnowmanFlakes, 3);
 
 export function UnrealSnowman() {
     const level = applyOgmoLevel(UnrealSnowmanArgs);
@@ -103,12 +105,27 @@ const dust = () => {
     return scene.gameObjectStage.addChild(graphics);
 }
 
+const flake = () => {
+    const sprite = Sprite.from(rng.choose(flakes));
+    sprite.anchor.set(0.5, 0.5);
+    let life = 10 + rng() * 10;
+
+    return sprite.withStep(() => {
+        if (life-- <= 0)
+            return sprite.destroy();
+
+        sprite.x += Math.sin(life) * 0.5;
+        sprite.y += 1;
+    });
+}
+
 const snowman = (groundY, retreatX) => {
     let pedometer = 0;
     const sprite = merge(Sprite.from(snowmanSubimages[0]), { hspeed: 0 });
     const foot1 = Sprite.from(snowmanSubimages[1]);
     const foot2 = Sprite.from(snowmanSubimages[2]);
     const mask = new Graphics().drawRect(1, 9, 19, 28);
+    const twigs = Sprite.from(SnowmanTwigs).at(-16, 16);
     let arriveVspeed = 0;
     let hspeed = 0;
     let phase = 0;
@@ -204,8 +221,14 @@ const snowman = (groundY, retreatX) => {
         await sleep(500);
         sprite.withStep(step);
     });
+    sprite.withAsync(async () => {
+        while (true) {
+            flake().at([rng.polarHalf * container.width, rng() * -container.height].add(container)).behind();
+            await sleep(50);
+        }
+    });
     const container = new Container();
-    container.addChild(foot1, foot2, sprite, mask);
+    container.addChild(twigs, foot1, foot2, sprite, mask);
     container.pivot.set(11, 42);
     return scene.gameObjectStage.addChild(container);
 }

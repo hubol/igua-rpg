@@ -91,6 +91,8 @@ export let SignInn: PIXI.Texture;
 export let SignTavern: PIXI.Texture;
 export let Sign: PIXI.Texture;
 export let SmallDecorativeRock: PIXI.Texture;
+export let SnowmanFlakes: PIXI.Texture;
+export let SnowmanTwigs: PIXI.Texture;
 export let Snowman: PIXI.Texture;
 export let Sparkle: PIXI.Texture;
 export let SpicedNectarPotion: PIXI.Texture;
@@ -375,6 +377,12 @@ export function loadTexturesAsync()
     const SmallDecorativeRockPath = require("./images/small decorative rock.png");
     loader.add(SmallDecorativeRockPath); 
 
+    const SnowmanFlakesPath = require("./images/snowman flakes.png");
+    loader.add(SnowmanFlakesPath); 
+
+    const SnowmanTwigsPath = require("./images/snowman twigs.png");
+    loader.add(SnowmanTwigsPath); 
+
     const SnowmanPath = require("./images/snowman.png");
     loader.add(SnowmanPath); 
 
@@ -501,6 +509,8 @@ export function loadTexturesAsync()
             SignTavern = resources[SignTavernPath]?.texture as PIXI.Texture;
             Sign = resources[SignPath]?.texture as PIXI.Texture;
             SmallDecorativeRock = resources[SmallDecorativeRockPath]?.texture as PIXI.Texture;
+            SnowmanFlakes = resources[SnowmanFlakesPath]?.texture as PIXI.Texture;
+            SnowmanTwigs = resources[SnowmanTwigsPath]?.texture as PIXI.Texture;
             Snowman = resources[SnowmanPath]?.texture as PIXI.Texture;
             Sparkle = resources[SparklePath]?.texture as PIXI.Texture;
             SpicedNectarPotion = resources[SpicedNectarPotionPath]?.texture as PIXI.Texture;
