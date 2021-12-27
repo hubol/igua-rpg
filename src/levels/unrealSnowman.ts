@@ -6,7 +6,7 @@ import {wait} from "../cutscene/wait";
 import {player} from "../gameObjects/player";
 import {lerp} from "../cutscene/lerp";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {Snowman, SnowmanFlakes, SnowmanTwigs, Torch} from "../textures";
+import {Snowman, SnowmanFace, SnowmanFlakes, SnowmanTwigs, Torch} from "../textures";
 import {Container, Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
 import {lerp as lerpNumber} from "../utils/math/number";
@@ -28,6 +28,7 @@ import {ballons} from "../gameObjects/ballons";
 let holdingFlame = false;
 
 const flakes = subimageTextures(SnowmanFlakes, 3);
+const faceTextures = subimageTextures(SnowmanFace, 4);
 
 export function UnrealSnowman() {
     const level = applyOgmoLevel(UnrealSnowmanArgs);
@@ -125,11 +126,13 @@ const snowman = (groundY, retreatX) => {
     const foot1 = Sprite.from(snowmanSubimages[1]);
     const foot2 = Sprite.from(snowmanSubimages[2]);
     const mask = new Graphics().drawRect(1, 9, 19, 28);
+    const face = Sprite.from(faceTextures[0]);
     const twigs = Sprite.from(SnowmanTwigs).at(-16, 16);
     let arriveVspeed = 0;
     let hspeed = 0;
     let phase = 0;
-    let health = 100;
+    const maxHealth = 100;
+    let health = maxHealth;
     let xx = 0;
     let retreat = 0;
 
@@ -209,7 +212,7 @@ const snowman = (groundY, retreatX) => {
         container.x = Math.round(xx += hspeed);
 
         if (hspeed !== 0) {
-            const scale = lerpNumber(0.25, 1, health / 100);
+            const scale = lerpNumber(0.25, 1, health / maxHealth);
             container.scale.x = scale * Math.sign(hspeed);
             container.scale.y = scale;
         }
@@ -227,6 +230,18 @@ const snowman = (groundY, retreatX) => {
             await sleep(50);
         }
     });
+    face.at(13, 13).withStep(() => {
+        face.scale.set(1 / container.scale.y);
+        const scale = container.scale.y;
+        if (scale < 0.25)
+            face.texture = faceTextures[3];
+        else if (scale < 0.5)
+            face.texture = faceTextures[2];
+        else if (scale < 0.75)
+            face.texture = faceTextures[1];
+    });
+    face.anchor.set(0.5, 0);
+    sprite.addChild(face);
     const container = new Container();
     container.addChild(twigs, foot1, foot2, sprite, mask);
     container.pivot.set(11, 42);
