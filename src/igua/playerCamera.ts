@@ -7,7 +7,7 @@ const target = { x: 0, y: 0 };
 
 export function stepPlayerCamera()
 {
-    if (!scene.camera.followPlayer)
+    if (!scene.camera.followPlayer || !player)
         return;
 
     const padding = 112;
@@ -38,6 +38,9 @@ export function stepPlayerCamera()
 
 export function centerPlayerCamera()
 {
+    if (!player)
+        return;
+
     target.x = player.x - game.width / 2;
     target.y = player.y - game.height / 2;
     clampCameraTarget();
