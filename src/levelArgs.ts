@@ -429,7 +429,9 @@ ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":472,"y":56,"f
 // @ts-ignore
 ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":496,"y":40,"flippedX":false,"flippedY":false,"uid":"56004563_30","name":"","depth":0}),
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":472,"y":24,"flippedX":false,"flippedY":false,"uid":"55991906_31","name":"","depth":0})
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":472,"y":24,"flippedX":false,"flippedY":false,"uid":"55991906_31","name":"","depth":0}),
+Tumbleweed1: {"type":"Anchor","x":272,"y":288,"flippedX":false,"flippedY":false,"uid":"25979726_32","name":"Tumbleweed1","depth":0},
+Tumbleweed2: {"type":"Anchor","x":920,"y":376,"flippedX":false,"flippedY":false,"uid":"25979726_33","name":"Tumbleweed2","depth":0}
 };
 }
 };
@@ -2464,7 +2466,9 @@ FromShop: {"type":"Checkpoint","x":472,"y":376,"flippedX":false,"flippedY":false
 // @ts-ignore
 ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":1348,"y":130,"flippedX":false,"flippedY":false,"uid":"55991906_57","name":"","depth":0}),
 // @ts-ignore
-Block_12: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_58","name":"","depth":0})
+Block_12: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_58","name":"","depth":0}),
+Tumbleweed1: {"type":"Anchor","x":320,"y":344,"flippedX":false,"flippedY":false,"uid":"25979726_59","name":"Tumbleweed1","depth":0},
+Tumbleweed2: {"type":"Anchor","x":1464,"y":408,"flippedX":false,"flippedY":false,"uid":"25979726_60","name":"Tumbleweed2","depth":0}
 };
 }
 };

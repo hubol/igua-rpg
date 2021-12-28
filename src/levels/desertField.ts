@@ -9,6 +9,8 @@ import {progress} from "../igua/data/progress";
 import {sleep} from "../cutscene/sleep";
 import {show} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
+import {rng} from "../utils/rng";
+import {tumbleweed} from "../gameObjects/tumbleweed";
 
 function getDesertFieldLevel()
 {
@@ -25,6 +27,7 @@ export function DesertField()
     scene.terrainColor = 0xE0D060;
 
     level.TempleDoor.locked = !progress.flags.desert.unlockedTemple;
+    [level.Tumbleweed1, level.Tumbleweed2].forEach(x => rng.bool && tumbleweed().at(x).show());
 
     enrichDigua(level);
 

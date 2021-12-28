@@ -15,7 +15,7 @@ export function devProgress()
     // progress.flags.desert.diguaIsFollowing = true;
     progress.valuables = 100;
     progress.poisonLevel = 0;
-    progress.levelName = "UnrealSnowman";
+    progress.levelName = "DesertTown";
     progress.checkpointName = "FromInnSave";
     progress.flags.desert.bigKey.reward = true;
     range(12).forEach(() => inventory.push("CommonPoison"));

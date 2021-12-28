@@ -619,6 +619,26 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 59,
+          "_eid": "25979726",
+          "x": 320,
+          "y": 344,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Tumbleweed1", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 60,
+          "_eid": "25979726",
+          "x": 1464,
+          "y": 408,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Tumbleweed2", "depth": 0}
         }
       ]
     },

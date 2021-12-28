@@ -21,6 +21,7 @@ import {wait} from "../cutscene/wait";
 import {rng} from "../utils/rng";
 import {inventory} from "../igua/inventory/inventory";
 import {persistence} from "../igua/data/persistence";
+import {tumbleweed} from "../gameObjects/tumbleweed";
 
 function getDesertTownLevel()
 {
@@ -50,6 +51,8 @@ export function DesertTown()
 
     enhanceCrateStacker(level);
     enhanceDigSpot(level);
+
+    [level.Tumbleweed1, level.Tumbleweed2].forEach(x => rng.bool && tumbleweed().at(x).show());
 }
 
 function addIntroduction(level: DesertTownLevel)
