@@ -1,4 +1,14 @@
 import {Vector} from "../../utils/math/vector";
+import {
+    crestShapes,
+    eyeShapes,
+    footShapes,
+    hornShapes,
+    mouthShapes,
+    nailShapes,
+    pupilShapes, tailShapes,
+    torsoShapes
+} from "./shapes";
 
 const p = 'placement' as const;
 const placement = (minX?: number, minY?: number, maxX?: number, maxY?: number) =>
@@ -7,8 +17,8 @@ const placement = (minX?: number, minY?: number, maxX?: number, maxY?: number) =
 const v = 'value' as const;
 const value = (min?: number, max?: number) => ({ min, max, kind: v });
 
-type ChoiceInput<T> = { options: T[], kind: 'choice' };
-const choice = <T> (options: T[]): ChoiceInput<T> => ({ options, kind: 'choice' });
+type ChoiceInput<T> = { options: ReadonlyArray<T>, kind: 'choice' };
+const choice = <T> (options: ReadonlyArray<T>): ChoiceInput<T> => ({ options, kind: 'choice' });
 
 const color = { kind: 'color' } as const;
 const bool = { kind: 'boolean' } as const;
@@ -18,16 +28,16 @@ type ValueInput = ReturnType<typeof value>;
 type ColorInput = typeof color;
 type BoolInput = typeof bool;
 
-type Input = ChoiceInput<unknown> | PlacementInput | ValueInput | ColorInput | BoolInput;
+export type LooksInput = ChoiceInput<unknown> | PlacementInput | ValueInput | ColorInput | BoolInput;
 
 const foot = {
     color,
-    shape: choice([]),
+    shape: choice(footShapes),
     flipH: bool,
     flipV: bool,
     nails: {
         color,
-        shape: choice([]),
+        shape: choice(nailShapes),
         placement: placement(),
     }
 }
@@ -39,17 +49,17 @@ const inputModel = {
         crest: {
             color,
             placement: placement(),
-            shape: choice([]),
+            shape: choice(crestShapes),
             flipH: bool,
             flipV: bool,
         },
         eyes: {
             placement: placement(),
             gap: value(),
-            shape: choice([]),
+            shape: choice(eyeShapes),
             pupils: {
                 placement: placement(),
-                shape: choice([]),
+                shape: choice(pupilShapes),
                 color,
                 mirroredPlacement: bool,
                 mirroredShape: bool,
@@ -62,24 +72,24 @@ const inputModel = {
         mouth: {
             color,
             placement: placement(),
-            shape: choice([]),
+            shape: choice(mouthShapes),
         },
         horn: {
             color,
             placement: placement(),
-            shape: choice([]),
+            shape: choice(hornShapes),
         }
     },
     body: {
         torso: {
             color,
             placement: placement(),
-            shape: choice([]),
+            shape: choice(torsoShapes),
         },
         tail: {
             color,
             placement: placement(),
-            shape: choice([]),
+            shape: choice(tailShapes),
         }
     },
     feet: {
@@ -105,9 +115,9 @@ type Map<T> = {
         : never;
 };
 
-type StyleInput = typeof inputModel;
-type StyleOutput = Map<typeof inputModel>;
+export type LooksInputModel = typeof inputModel;
+export type Looks = Map<typeof inputModel>;
 
-export function getStyleInput(): StyleInput {
+export function getLooksInputModel(): LooksInputModel {
     return JSON.parse(JSON.stringify(inputModel));
 }
