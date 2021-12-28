@@ -22,6 +22,9 @@ function createScene(isLevel: boolean)
     game.sceneStage.addChild(stage);
 
     return {
+        get isLevel() {
+            return isLevel;
+        },
         set backgroundColor(value: number) {
             backgroundGraphics.clear();
             backgroundGraphics.beginFill(value);
@@ -86,9 +89,9 @@ function onScenesModified()
 export let scene: Scene;
 
 export const sceneStack = {
-    push()
+    push(isLevel = scenes.length === 0)
     {
-        const newScene = createScene(scenes.length === 0);
+        const newScene = createScene(isLevel);
         scenes.push(newScene);
         onScenesModified();
     },
@@ -102,10 +105,6 @@ export const sceneStack = {
     toArray()
     {
         return [...scenes];
-    },
-    get isLevel()
-    {
-        return this.length === 1;
     },
     get length()
     {

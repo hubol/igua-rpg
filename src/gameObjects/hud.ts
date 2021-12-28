@@ -1,7 +1,7 @@
 import {Container, Graphics} from "pixi.js";
 import {progress} from "../igua/data/progress";
 import {player} from "./player";
-import {sceneStack} from "../igua/scene";
+import {scene} from "../igua/scene";
 import {IguaText} from "../igua/text";
 
 export function hud()
@@ -36,7 +36,7 @@ export function hud()
         .at(2, 24);
 
     const container = new Container()
-        .withStep(() => container.visible = !player.isDead && sceneStack.isLevel);
+        .withStep(() => container.visible = scene.isLevel && !player.isDead);
 
     container.addChild(healthbar, valuables, poisoned);
 
