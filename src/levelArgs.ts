@@ -2945,7 +2945,7 @@ PortalFluid_4: resolvePortalFluid({"type":"PortalFluid","x":440,"y":328,"width":
 // @ts-ignore
 BigKeyPiece: resolveRegion({"type":"Region","x":643,"y":144,"width":50,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607_11","name":"BigKeyPiece","depth":0}),
 // @ts-ignore
-CameraUnlockRegion: resolveRegion({"type":"Region","x":16,"y":120,"width":56,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_12","name":"CameraUnlockRegion","depth":0}),
+CameraUnlockRegion: resolveRegion({"type":"Region","x":16,"y":104,"width":40,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_12","name":"CameraUnlockRegion","depth":0}),
 // @ts-ignore
 Block_3: resolveBlock({"type":"Block","x":72,"y":104,"width":112,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_13","name":"","depth":0}),
 // @ts-ignore

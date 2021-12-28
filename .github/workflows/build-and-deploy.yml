@@ -95,7 +95,7 @@ jobs:
           git commit -am "${{ github.event.commits[0].message }}" &&
           git push heroku master -f
   cleanup:
-    needs: [deploy-itch, deploy-heroku]
+    needs: [deploy-itch, deploy-heroku, build-and-deploy-mac]
     runs-on: ubuntu-latest
     steps:
       - uses: geekyeggo/delete-artifact@v1
