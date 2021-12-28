@@ -57,7 +57,7 @@ export function DesertTemple()
 
 export const desertBigKeyTextures = subimageTextures(BigKey1, 3);
 
-export function desertBigKeyMeter()
+function desertBigKeyMeter()
 {
     const bigKey1Textures = desertBigKeyTextures;
     return bigKeyMeter(
