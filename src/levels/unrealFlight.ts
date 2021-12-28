@@ -10,6 +10,8 @@ import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
 import {rng} from "../utils/rng";
+import {firefly} from "../gameObjects/firefly";
+import {player} from "../gameObjects/player";
 
 export function UnrealFlight()
 {
@@ -27,6 +29,8 @@ export function UnrealFlight()
 
     for (let i = 0; i < 32; i++)
         cloud();
+
+    firefly().at(player).show();
 }
 
 function cloud()

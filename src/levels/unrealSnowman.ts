@@ -6,7 +6,7 @@ import {wait} from "../cutscene/wait";
 import {player} from "../gameObjects/player";
 import {lerp} from "../cutscene/lerp";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {Snowman, SnowmanFace, SnowmanFlakes, SnowmanTwigs, Torch} from "../textures";
+import {Snowman, SnowmanFace, SnowmanTwigs, Torch} from "../textures";
 import {Container, Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
 import {lerp as lerpNumber} from "../utils/math/number";
@@ -19,15 +19,15 @@ import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
 import {jukebox} from "../igua/jukebox";
-import { Hemaboss1 } from "../musics";
+import {Hemaboss1} from "../musics";
 import {FlameOff, FlameOn, SnowmanDie, SnowmanHurt, SnowmanLand} from "../sounds";
 import {rng} from "../utils/rng";
 import {confetti} from "../gameObjects/confetti";
 import {ballons} from "../gameObjects/ballons";
+import {flake} from "../gameObjects/flake";
 
 let holdingFlame = false;
 
-const flakes = subimageTextures(SnowmanFlakes, 3);
 const faceTextures = subimageTextures(SnowmanFace, 4);
 
 export function UnrealSnowman() {
@@ -104,20 +104,6 @@ const dust = () => {
                 .drawEllipse(0, 0, baseWidth, baseHeight * 2 * (1 - life));
         });
     return scene.gameObjectStage.addChild(graphics);
-}
-
-const flake = () => {
-    const sprite = Sprite.from(rng.choose(flakes));
-    sprite.anchor.set(0.5, 0.5);
-    let life = 10 + rng() * 10;
-
-    return sprite.withStep(() => {
-        if (life-- <= 0)
-            return sprite.destroy();
-
-        sprite.x += Math.sin(life) * 0.5;
-        sprite.y += 1;
-    });
 }
 
 const snowman = (groundY, retreatX) => {

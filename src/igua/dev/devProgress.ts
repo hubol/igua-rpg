@@ -15,10 +15,10 @@ export function devProgress()
     // progress.flags.desert.diguaIsFollowing = true;
     progress.valuables = 100;
     progress.poisonLevel = 0;
-    progress.levelName = "UnrealSnowman";
+    progress.levelName = "UnrealFlight";
     progress.checkpointName = "FromInnSave";
     progress.flags.desert.bigKey.reward = true;
-    range(12).forEach(() => inventory.push("WonderBallon"));
+    range(12).forEach(() => inventory.push("CommonPoison"));
     // progress.inventory = Object.keys(potions) as any;
     // progress.flags.diguaIsFollowing = true;
 }

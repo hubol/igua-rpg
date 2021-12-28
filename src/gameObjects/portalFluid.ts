@@ -15,6 +15,7 @@ import {BevelFilter} from "@pixi/filter-bevel";
 import {show} from "../cutscene/dialog";
 import {lerp} from "../cutscene/lerp";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
+import {consumeFirefly} from "./firefly";
 
 export const portalFluidConfig = {
     gotoLevelName: "Unknown"
@@ -60,7 +61,7 @@ function portalFluid({ width, height }: { width: number, height: number })
         .beginFill(0x20A090)
         .drawRect(0, 0, width, height)
         .withStep(() => {
-            if (playerCharacterHasControl() && graphics.collides(player))
+            if (playerCharacterHasControl() && graphics.collides(player) && playerIsWeakToPortalFluid())
                 teleportToTheRoomOfDoors();
         });
 
@@ -68,6 +69,12 @@ function portalFluid({ width, height }: { width: number, height: number })
         graphics.hitbox = [4 / width, 4 / height, (width - 8) / width, (height - 8) / height];
 
     return graphics;
+}
+
+function playerIsWeakToPortalFluid() {
+    if (player.invulnerableFrameCount > 0)
+        return false;
+    return !consumeFirefly();
 }
 
 export function teleportToTheRoomOfDoors() {

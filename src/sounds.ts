@@ -107,6 +107,11 @@ export const ConsumeElixir = new Howl({
     
 });
 
+export const ConsumeFirefly = new Howl({
+    src: [require("./sound/consume firefly.ogg"), require("./sound/consume firefly.mp3")],
+    
+});
+
 export const ConsumeMedicine = new Howl({
     src: [require("./sound/consume medicine.ogg"), require("./sound/consume medicine.mp3")],
     
