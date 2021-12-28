@@ -1,4 +1,3 @@
-import { mapObject } from "../../utils/mapObject";
 import {Vector} from "../../utils/math/vector";
 
 const p = 'placement' as const;
@@ -111,27 +110,4 @@ type StyleOutput = Map<typeof inputModel>;
 
 export function getStyleInput(): StyleInput {
     return JSON.parse(JSON.stringify(inputModel));
-}
-
-export function toStyleOutput(input: StyleInput): StyleOutput {
-    return deepMap(input, (x: Input) => {
-        switch (x.kind) {
-            case "color":
-                return 0xCCAE0A;
-            case "choice":
-                return "fix-me";
-            case "placement":
-                return [0, 0];
-            case "value":
-                return 0;
-            case "boolean":
-                return false;
-        }
-    })
-}
-
-function deepMap(obj, fn) {
-    const deepMapper = val => !("kind" in val) ? deepMap(val, fn) : fn(val);
-    if (!("kind" in obj)) return mapObject(obj, deepMapper);
-    return obj;
 }
