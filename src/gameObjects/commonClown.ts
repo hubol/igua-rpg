@@ -12,11 +12,14 @@ import {confetti} from "./confetti";
 import {valuable} from "./valuable";
 import {rng} from "../utils/rng";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
+import {bouncePlayer} from "../igua/bouncePlayer";
 
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
 export function commonClown() {
     const container = merge(new Container(), { hspeed: 0.75, vspeed: 0 });
+    const mask = new Graphics().beginFill(0x000000).drawRect(0, 0, 18, 15).at(-9, -16);
+    mask.visible = false;
     const sprite = Sprite.from(CommonClown);
     const spikeBall = Sprite.from(ClownSpikeBall);
     spikeBall.anchor.set(6/14, 3/14);
@@ -75,12 +78,16 @@ export function commonClown() {
         }
         container.y += container.vspeed;
 
-        if (player.collides(sprite) && isPlayerMoving()) {
-            container.vspeed = Math.min(-rng(), container.vspeed);
-            if (Math.abs(knockbackSpeed) < 0.5)
-                knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
-            if (invulnerable <= 0) {
+        if (player.collides(mask) && isPlayerMoving()) {
+            // container.vspeed = Math.min(-rng(), container.vspeed);
+            // if (Math.abs(knockbackSpeed) < 0.5)
+            //     knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
+            if (invulnerable <= 0 || (invulnerable <= 15 && player.vspeed > 1)) {
                 player.engine.knockback.x = (player.x - container.x) / 8;
+                if (Math.abs(player.engine.knockback.x) < 3) {
+                    bouncePlayer(container, 2);
+                    container.vspeed = -player.vspeed;
+                }
                 health -= player.strength;
                 if (health <= 0) {
                     ClownExplode.play();
@@ -112,6 +119,6 @@ export function commonClown() {
             player.engine.knockback.x = container.hspeed * 4;
         }
     })
-    container.addChild(graphics, spikeBall, sprite);
+    container.addChild(graphics, spikeBall, sprite, mask);
     return scene.gameObjectStage.addChild(container);
 }

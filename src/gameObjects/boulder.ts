@@ -1,11 +1,11 @@
-import { Boulder } from "../textures";
+import {Boulder} from "../textures";
 import {Sprite} from "pixi.js";
 import {player} from "./player";
 import {scene} from "../igua/scene";
-import {Vector} from "../utils/math/vector";
 import {BoulderBless, CharacterHitCeiling} from "../sounds";
 import {progress} from "../igua/data/progress";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
+import {bouncePlayer} from "../igua/bouncePlayer";
 
 export const resolveBoulder =
     resolveGameObject("Boulder", e => {
@@ -16,15 +16,6 @@ export const resolveBoulder =
         b.height = e.height;
         return scene.gameObjectStage.addChild(b);
     });
-
-function bouncePlayer(self: Vector, factor = 3) {
-    player.hspeed = 0;
-    player.engine.knockback.y = 0;
-
-    const dir = player.vcpy().add(0, -8).add(self, -1).normalize().scale(factor);
-    player.engine.knockback.x = dir.x;
-    player.vspeed = dir.y;
-}
 
 export function boulder(uid) {
     let dying = false;
