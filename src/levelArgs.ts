@@ -6,6 +6,14 @@ import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveDecalGameObject } from "./gameObjects/decal";
+import { OverheadLamp } from "./textures";
+import { Pipe } from "./textures";
+import { ColorfulBricks } from "./textures";
+import { RoseVase } from "./textures";
+import { LightShelf } from "./textures";
+import { FlyCage } from "./textures";
+import { FlyCageBroken } from "./textures";
+import { Cobweb } from "./textures";
 import { Rainbow1 } from "./textures";
 import { Rainbow2 } from "./textures";
 import { SpikyBrushB } from "./textures";
@@ -28,7 +36,6 @@ import { CrudeHouseB } from "./textures";
 import { GlowingCircle } from "./textures";
 import { Column } from "./textures";
 import { CracksA } from "./textures";
-import { Cobweb } from "./textures";
 import { PaSpeaker } from "./textures";
 import { GreenCable } from "./textures";
 import { DontPoster } from "./textures";
@@ -44,11 +51,9 @@ import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { Anchor } from "./textures";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
-import { RoseVase } from "./textures";
 import { OrnateCarpet } from "./textures";
 import { PotteryOrange } from "./textures";
 import { PotteryOrangeDamaged } from "./textures";
-import { LightShelf } from "./textures";
 import { Rope } from "./textures";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { DesertTemple } from "./textures";
@@ -2466,23 +2471,12 @@ Block_12: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":136,"flip
 
 export const UnrealFlightArgs = {
     width: 728,
-height: 312,
+height: 448,
 gameObjectsSupplier: () => {
   return {
-    SmallDecorativeRock: resolveDecalGameObject({
-    x: 128,
-y: 258,
-originX: 0.5,
-originY: 1,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "TerrainDecals",
-texture: SmallDecorativeRock
-}),
-SpikyBrushA: resolveDecalGameObject({
+    SpikyBrushA: resolveDecalGameObject({
     x: 40,
-y: 258,
+y: 394,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -2491,9 +2485,20 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: SpikyBrushA
 }),
+SmallDecorativeRock: resolveDecalGameObject({
+    x: 62,
+y: 394,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
 SmallDecorativeRock_1: resolveDecalGameObject({
     x: 24,
-y: 257,
+y: 393,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -2504,7 +2509,7 @@ texture: SmallDecorativeRock
 }),
 SpikyBrushB: resolveDecalGameObject({
     x: 144,
-y: 242,
+y: 378,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -2513,9 +2518,20 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
+Rainbow2: resolveDecalGameObject({
+    x: 9,
+y: 422,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Rainbow2
+}),
 Rainbow1: resolveDecalGameObject({
-    x: 57,
-y: 120,
+    x: 19,
+y: 494,
 originX: 0,
 originY: 0,
 scaleX: -1,
@@ -2523,32 +2539,10 @@ scaleY: -1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: Rainbow1
-}),
-Rainbow2: resolveDecalGameObject({
-    x: 47,
-y: 48,
-originX: 0,
-originY: 0,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "BackgroundDecals",
-texture: Rainbow2
-}),
-Rainbow2_1: resolveDecalGameObject({
-    x: 109,
-y: -14,
-originX: 0,
-originY: 0,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "BackgroundDecals",
-texture: Rainbow2
 }),
 Rainbow1_1: resolveDecalGameObject({
-    x: 119,
-y: 58,
+    x: 143,
+y: 370,
 originX: 0,
 originY: 0,
 scaleX: -1,
@@ -2557,75 +2551,20 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: Rainbow1
 }),
-Rainbow1_2: resolveDecalGameObject({
-    x: -5,
-y: 182,
+Rainbow2_1: resolveDecalGameObject({
+    x: 133,
+y: 298,
 originX: 0,
 originY: 0,
-scaleX: -1,
-scaleY: -1,
+scaleX: 1,
+scaleY: 1,
 rotation: 0,
 layerName: "BackgroundDecals",
-texture: Rainbow1
+texture: Rainbow2
 }),
 Rainbow2_2: resolveDecalGameObject({
-    x: -15,
-y: 110,
-originX: 0,
-originY: 0,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "BackgroundDecals",
-texture: Rainbow2
-}),
-Rainbow2_3: resolveDecalGameObject({
-    x: 9,
-y: 286,
-originX: 0,
-originY: 0,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "BackgroundDecals",
-texture: Rainbow2
-}),
-Rainbow1_3: resolveDecalGameObject({
-    x: 19,
-y: 358,
-originX: 0,
-originY: 0,
-scaleX: -1,
-scaleY: -1,
-rotation: 0,
-layerName: "BackgroundDecals",
-texture: Rainbow1
-}),
-Rainbow1_4: resolveDecalGameObject({
-    x: 143,
-y: 234,
-originX: 0,
-originY: 0,
-scaleX: -1,
-scaleY: -1,
-rotation: 0,
-layerName: "BackgroundDecals",
-texture: Rainbow1
-}),
-Rainbow2_4: resolveDecalGameObject({
-    x: 133,
-y: 162,
-originX: 0,
-originY: 0,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "BackgroundDecals",
-texture: Rainbow2
-}),
-Rainbow2_5: resolveDecalGameObject({
     x: 71,
-y: 224,
+y: 360,
 originX: 0,
 originY: 0,
 scaleX: 1,
@@ -2634,9 +2573,9 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: Rainbow2
 }),
-Rainbow1_5: resolveDecalGameObject({
+Rainbow1_2: resolveDecalGameObject({
     x: 81,
-y: 296,
+y: 432,
 originX: 0,
 originY: 0,
 scaleX: -1,
@@ -2645,27 +2584,385 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: Rainbow1
 }),
+ColorfulBricks: resolveDecalGameObject({
+    x: 0,
+y: 32,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_1: resolveDecalGameObject({
+    x: 32,
+y: 32,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_2: resolveDecalGameObject({
+    x: 32,
+y: 50,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_3: resolveDecalGameObject({
+    x: 80,
+y: 50,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_4: resolveDecalGameObject({
+    x: 80,
+y: 32,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_5: resolveDecalGameObject({
+    x: 48,
+y: 32,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_6: resolveDecalGameObject({
+    x: -32,
+y: 32,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_7: resolveDecalGameObject({
+    x: -32,
+y: 50,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_8: resolveDecalGameObject({
+    x: 112,
+y: 32,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_9: resolveDecalGameObject({
+    x: 144,
+y: 32,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_10: resolveDecalGameObject({
+    x: 144,
+y: 50,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_11: resolveDecalGameObject({
+    x: 96,
+y: 50,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_12: resolveDecalGameObject({
+    x: 96,
+y: 32,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_13: resolveDecalGameObject({
+    x: 16,
+y: 116,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_14: resolveDecalGameObject({
+    x: 0,
+y: 98,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_15: resolveDecalGameObject({
+    x: -32,
+y: 68,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_16: resolveDecalGameObject({
+    x: 48,
+y: 68,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_17: resolveDecalGameObject({
+    x: 32,
+y: 86,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_18: resolveDecalGameObject({
+    x: 32,
+y: 68,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+ColorfulBricks_19: resolveDecalGameObject({
+    x: 0,
+y: 68,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+Cobweb: resolveDecalGameObject({
+    x: 24,
+y: 40,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Cobweb
+}),
+Cobweb_1: resolveDecalGameObject({
+    x: 160,
+y: 40,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Cobweb
+}),
+ColorfulBricks_20: resolveDecalGameObject({
+    x: 32,
+y: 140,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+FlyCage: resolveDecalGameObject({
+    x: 104,
+y: 104,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: FlyCage
+}),
+FlyCageBroken: resolveDecalGameObject({
+    x: 152,
+y: 104,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: FlyCageBroken
+}),
+FlyCage_1: resolveDecalGameObject({
+    x: 128,
+y: 104,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: FlyCage
+}),
+LightShelf: resolveDecalGameObject({
+    x: 40,
+y: 68,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: LightShelf
+}),
+RoseVase: resolveDecalGameObject({
+    x: 33,
+y: 69,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: RoseVase
+}),
+ColorfulBricks_21: resolveDecalGameObject({
+    x: 0,
+y: 158,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: ColorfulBricks
+}),
+Pipe: resolveDecalGameObject({
+    x: 96,
+y: 24,
+originX: 1,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Pipe
+}),
+OverheadLamp: resolveDecalGameObject({
+    x: 96,
+y: 46,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: OverheadLamp
+}),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":256,"width":152,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":0,"y":392,"width":152,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":152,"y":128,"width":32,"height":184,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+Block_1: resolveBlock({"type":"Block","x":152,"y":264,"width":32,"height":184,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":152,"y":0,"width":32,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
-Player: {"type":"Player","x":80,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":true,"name":"","depth":0},
+Block_2: resolveBlock({"type":"Block","x":152,"y":120,"width":32,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+Player: {"type":"Player","x":104,"y":392,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":true,"name":"","depth":0},
 // @ts-ignore
-PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":184,"y":0,"width":224,"height":32,"flippedX":false,"flippedY":false,"uid":"24775263_4","name":"","depth":0}),
+PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":184,"y":136,"width":224,"height":32,"flippedX":false,"flippedY":false,"uid":"24775263_4","name":"","depth":0}),
 // @ts-ignore
-PortalFluid_1: resolvePortalFluid({"type":"PortalFluid","x":184,"y":144,"width":160,"height":168,"flippedX":false,"flippedY":false,"uid":"24775263_5","name":"","depth":0}),
+PortalFluid_1: resolvePortalFluid({"type":"PortalFluid","x":184,"y":280,"width":160,"height":168,"flippedX":false,"flippedY":false,"uid":"24775263_5","name":"","depth":0}),
 // @ts-ignore
-PortalFluid_2: resolvePortalFluid({"type":"PortalFluid","x":408,"y":0,"width":232,"height":208,"flippedX":false,"flippedY":false,"uid":"24775263_6","name":"","depth":0}),
+PortalFluid_2: resolvePortalFluid({"type":"PortalFluid","x":408,"y":136,"width":232,"height":208,"flippedX":false,"flippedY":false,"uid":"24775263_6","name":"","depth":0}),
 // @ts-ignore
-PortalFluid_3: resolvePortalFluid({"type":"PortalFluid","x":344,"y":280,"width":384,"height":32,"flippedX":false,"flippedY":false,"uid":"24775263_7","name":"","depth":0}),
+PortalFluid_3: resolvePortalFluid({"type":"PortalFluid","x":344,"y":416,"width":384,"height":32,"flippedX":false,"flippedY":false,"uid":"24775263_7","name":"","depth":0}),
 // @ts-ignore
-PortalFluid_4: resolvePortalFluid({"type":"PortalFluid","x":696,"y":0,"width":32,"height":280,"flippedX":false,"flippedY":false,"uid":"24775263_8","name":"","depth":0}),
+PortalFluid_4: resolvePortalFluid({"type":"PortalFluid","x":440,"y":328,"width":200,"height":24,"flippedX":false,"flippedY":false,"uid":"24775263_9","name":"","depth":0}),
 // @ts-ignore
-PortalFluid_5: resolvePortalFluid({"type":"PortalFluid","x":440,"y":192,"width":200,"height":24,"flippedX":false,"flippedY":false,"uid":"24775263_9","name":"","depth":0}),
+BigKeyPiece: resolveRegion({"type":"Region","x":643,"y":144,"width":50,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607_11","name":"BigKeyPiece","depth":0}),
 // @ts-ignore
-BigKeyPiece: resolveRegion({"type":"Region","x":643,"y":8,"width":50,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607_11","name":"BigKeyPiece","depth":0})
+CameraUnlockRegion: resolveRegion({"type":"Region","x":16,"y":120,"width":56,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_12","name":"CameraUnlockRegion","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":72,"y":104,"width":112,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_13","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":0,"y":0,"width":92,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_17","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":92,"y":0,"width":92,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_18","name":"","depth":0}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":168,"y":32,"width":16,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_19","name":"","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":0,"y":32,"width":16,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
+FireflySpawn: {"type":"Anchor","x":152,"y":72,"flippedX":false,"flippedY":false,"uid":"25979726_21","name":"FireflySpawn","depth":0},
+// @ts-ignore
+PortalFluid_5: resolvePortalFluid({"type":"PortalFluid","x":184,"y":32,"width":456,"height":104,"flippedX":false,"flippedY":false,"uid":"24775263_23","name":"","depth":0}),
+// @ts-ignore
+PortalFluid_6: resolvePortalFluid({"type":"PortalFluid","x":464,"y":0,"width":176,"height":32,"flippedX":false,"flippedY":false,"uid":"24775263_24","name":"","depth":0}),
+// @ts-ignore
+PortalFluid_7: resolvePortalFluid({"type":"PortalFluid","x":696,"y":0,"width":32,"height":416,"flippedX":false,"flippedY":false,"uid":"24775263_25","name":"","depth":0})
 };
 }
 };

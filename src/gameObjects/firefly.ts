@@ -11,7 +11,7 @@ import {container} from "../utils/pixi/container";
 import {now} from "../utils/now";
 import {flake} from "./flake";
 import {rng} from "../utils/rng";
-import { ConsumeFirefly } from "../sounds";
+import {CollectGeneric, ConsumeFirefly} from "../sounds";
 
 const [t0, t1, ...fireTextures] = subimageTextures(Firefly, 6);
 const flyTextures = [t0, t1];
@@ -23,7 +23,7 @@ function fireflyImpl() {
     let isFleeing = false;
     let ii = 0;
 
-    const c = merge(new Container(), { followPlayer: true, flee() {
+    const c = merge(new Container(), { followPlayer: false, flee() {
             if (!isFleeing) {
                 ConsumeFirefly.play();
             }
@@ -39,10 +39,17 @@ function fireflyImpl() {
                 const f = c.parent.addChildAt(flake().at(c), 0);
                 f.tint = rng.choose(flameColors);
             }
+
+            return;
         }
 
-        if (!c.followPlayer)
+        if (!c.followPlayer) {
+            if (c.collides(player)) {
+                CollectGeneric.play();
+                c.followPlayer = true;
+            }
             return;
+        }
 
         const target = [player.scale.x * -16, -12].add(player);
         const distance = c.vcpy().add(target, -1).vlength;

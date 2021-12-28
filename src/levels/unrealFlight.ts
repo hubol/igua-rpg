@@ -30,7 +30,17 @@ export function UnrealFlight()
     for (let i = 0; i < 32; i++)
         cloud();
 
-    firefly().at(player).show();
+    firefly().at(level.FireflySpawn).show();
+
+    let locked = true;
+    level.CameraUnlockRegion.withStep(() => {
+        const yy = level.CameraUnlockRegion.y;
+        if (locked) {
+            scene.camera.y = Math.max(yy, scene.camera.y);
+            if (level.CameraUnlockRegion.collides(player) || player.x > 512)
+                locked = false;
+        }
+    })
 }
 
 function cloud()

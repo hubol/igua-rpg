@@ -151,7 +151,7 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
 
                 if (result.hitCeiling && puppet.vspeed < 0)
                 {
-                    if (canPlaySounds)
+                    if (canPlaySounds && puppet.vspeed < -0.5)
                     {
                         CharacterHitCeiling.volume(0.33 + Math.min(0.67, vspeedBeforePush * -0.06));
                         CharacterHitCeiling.play();
