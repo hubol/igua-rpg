@@ -219,11 +219,11 @@ const snowman = (groundY, retreatX) => {
     face.at(13, 13).withStep(() => {
         face.scale.set(1 / container.scale.y);
         const scale = container.scale.y;
-        if (scale < 0.25)
+        if (scale < 0.4)
             face.texture = faceTextures[3];
-        else if (scale < 0.5)
+        else if (scale < 0.55)
             face.texture = faceTextures[2];
-        else if (scale < 0.75)
+        else if (scale < 0.79)
             face.texture = faceTextures[1];
     });
     face.anchor.set(0.5, 0);
