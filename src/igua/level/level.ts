@@ -1,21 +1,11 @@
-import {getSceneApplicator} from "./getSceneApplicator";
-import {progress} from "../data/progress";
-import {scene, sceneStack} from "../scene";
-import {recreatePlayer} from "../../gameObjects/player";
-import {SceneApplicator} from "./sceneApplicator";
+import {getSceneSource} from "./getSceneSource";
+import {sceneStack} from "../scene";
 
 export const level = {
     goto(levelName: string)
     {
         sceneStack.pop();
-        this.current = getSceneApplicator(levelName);
-        sceneStack.push(!this.current.isNotLevel);
-        if (scene.isLevel) {
-            recreatePlayer();
-            progress.levelName = levelName;
-        }
-        this.current();
-        scene.ticker.update();
+        const source = getSceneSource(levelName);
+        sceneStack.push(source);
     },
-    current: null as unknown as SceneApplicator
 }

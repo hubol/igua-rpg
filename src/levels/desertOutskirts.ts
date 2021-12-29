@@ -103,8 +103,7 @@ function enrichUnlockTemple(level: DesertOutskirtsLevel)
             TransitionSlide.play();
             await lerp(flashObject, "alpha").to(1).over(500);
 
-            sceneStack.push();
-            const field = DesertField();
+            const field = sceneStack.push(DesertField);
             scene.camera.x = 1296;
             const goalX = Math.round(field.TempleDoor.x - 128 + 15);
             const goalY = Math.round(field.TempleDoor.y - 128);

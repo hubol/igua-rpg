@@ -2,8 +2,14 @@ import {Container, DisplayObject, Graphics} from "pixi.js";
 import {game} from "./game";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {camera as createCamera} from "./camera";
+import {SceneSource} from "./level/sceneSource";
+import {recreatePlayer} from "../gameObjects/player";
+import {progress} from "./data/progress";
+import {defaults} from "../utils/defaults";
+import {merge} from "../utils/merge";
+import {defaultSceneMeta, SceneMeta} from "./level/sceneMeta";
 
-function createScene(isLevel: boolean)
+function createScene(source: SceneSource, args: Readonly<SceneMeta>)
 {
     const ticker = new AsshatTicker();
     const backgroundGraphics = new Graphics();
@@ -21,10 +27,8 @@ function createScene(isLevel: boolean)
     stage.addChild(backgroundGraphics, parallax1Stage, cameraStage);
     game.sceneStage.addChild(stage);
 
-    return {
-        get isLevel() {
-            return isLevel;
-        },
+    return merge(args, {
+        source,
         set backgroundColor(value: number) {
             backgroundGraphics.clear();
             backgroundGraphics.beginFill(value);
@@ -41,7 +45,7 @@ function createScene(isLevel: boolean)
             graphics.drawRect(0, 0, 4096, 4096);
             this.terrainFill = graphics;
         },
-        camera: createCamera(isLevel),
+        camera: createCamera(args.isLevel),
         trackedDisplayObjects: {},
         parallax1Stage,
         backgroundGameObjectStage,
@@ -68,7 +72,7 @@ function createScene(isLevel: boolean)
         },
         width: 0,
         height: 0
-    };
+    });
 }
 
 export type Scene = ReturnType<typeof createScene>;
@@ -86,14 +90,28 @@ function onScenesModified()
     scene.visible = true;
 }
 
+function onScenePushed() {
+    if (scene.isLevel) {
+        recreatePlayer();
+        progress.levelName = scene.source.name;
+    }
+    const result = scene.source();
+    scene.ticker.update();
+    return result;
+}
+
 export let scene: Scene;
 
 export const sceneStack = {
-    push(isLevel = scenes.length === 0)
+    push<T>(source: () => T, args: Partial<SceneMeta> = {}): T
     {
-        const newScene = createScene(isLevel);
+        const fullArgs: SceneMeta = defaults(defaults(defaultSceneMeta(), (source as any).meta ?? {}), args);
+        if (fullArgs.isLevel && scenes.length > 0)
+            throw new Error("It is not permitted to push a level beyond the first index of the sceneStack.");
+        const newScene = createScene(source, fullArgs);
         scenes.push(newScene);
         onScenesModified();
+        return onScenePushed() as any;
     },
     pop()
     {

@@ -13,7 +13,6 @@ import {merge} from "../utils/merge";
 import {progress} from "../igua/data/progress";
 import {gotoDeathScreen} from "../igua/gotoDeathScreen";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
-import {level} from "../igua/level/level";
 import {UnrealFlight} from "../levels/unrealFlight";
 import {scene} from "../igua/scene";
 import {followerNpc} from "./followerNpc";
@@ -180,7 +179,7 @@ function createPlayer()
                 player.hspeed *= 0.8;
         }
 
-        if (level.current === UnrealFlight)
+        if (scene.source === UnrealFlight)
         {
             if (playerKey.isDown("Space"))
                 player.vspeed -= 0.3;

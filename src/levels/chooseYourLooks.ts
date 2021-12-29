@@ -1,7 +1,7 @@
-import {withSceneApplicatorMeta} from "../igua/level/withSceneApplicatorMeta";
+import {sceneMeta} from "../igua/level/sceneMeta";
 
-function ChooseYourLooksImpl() {
+export function ChooseYourLooks() {
 
 }
 
-export const ChooseYourLooks = withSceneApplicatorMeta(ChooseYourLooksImpl, { isNotLevel: true });
+sceneMeta(ChooseYourLooks, { isLevel: false });
