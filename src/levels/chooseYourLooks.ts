@@ -1,7 +1,7 @@
-import {sceneMeta} from "../igua/level/sceneMeta";
+import {setSceneMeta} from "../igua/level/setSceneMeta";
 
 export function ChooseYourLooks() {
 
 }
 
-sceneMeta(ChooseYourLooks, { isLevel: false });
+setSceneMeta(ChooseYourLooks, { isLevel: false });

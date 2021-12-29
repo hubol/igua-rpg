@@ -7,7 +7,7 @@ import {recreatePlayer} from "../gameObjects/player";
 import {progress} from "./data/progress";
 import {defaults} from "../utils/defaults";
 import {merge} from "../utils/merge";
-import {defaultSceneMeta, SceneMeta} from "./level/sceneMeta";
+import {defaultSceneMeta, SceneMeta} from "./level/setSceneMeta";
 
 function createScene(source: SceneSource, args: Readonly<SceneMeta>)
 {
@@ -93,7 +93,7 @@ function onScenesModified()
 function onScenePushed() {
     if (scene.isLevel) {
         recreatePlayer();
-        progress.levelName = scene.source.name;
+        progress.levelName = scene.name!;
     }
     const result = scene.source();
     scene.ticker.update();
@@ -105,7 +105,9 @@ export let scene: Scene;
 export const sceneStack = {
     push<T>(source: () => T, args: Partial<SceneMeta> = {}): T
     {
-        const fullArgs: SceneMeta = defaults(defaults(defaultSceneMeta(), (source as any).meta ?? {}), args);
+        const fullArgs: SceneMeta = defaults(defaults(defaultSceneMeta(), {...(source as any).meta}), args);
+        if (fullArgs.isLevel && !fullArgs.name)
+            throw new Error("It is not permitted to push a level without a name.");
         if (fullArgs.isLevel && scenes.length > 0)
             throw new Error("It is not permitted to push a level beyond the first index of the sceneStack.");
         const newScene = createScene(source, fullArgs);
