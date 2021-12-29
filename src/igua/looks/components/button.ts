@@ -1,28 +1,26 @@
-import {Graphics, Sprite, Texture} from "pixi.js";
+import {Graphics, Sprite} from "pixi.js";
 import {merge} from "../../../utils/merge";
 import {IguaText} from "../../text";
-import {rng} from "../../../utils/rng";
-import { sleep } from "../../../cutscene/sleep";
 import {subimageTextures} from "../../../utils/pixi/simpleSpritesheet";
 import {ChooseYourLooksIcons} from "../../../textures";
 import {Key} from "../../../utils/browser/key";
-import {EscapeTickerAndExecute} from "../../../utils/asshatTicker";
 
-const [headIcon, bodyIcon, feetIcon, doneIcon, backIcon, floppyIcon] = subimageTextures(ChooseYourLooksIcons, 6);
+const [headIcon, bodyIcon, feetIcon, doneIcon, backIcon, floppyIcon, crestIcon, eyesIcon, mouthIcon, hornIcon] = subimageTextures(ChooseYourLooksIcons, 10);
+
+const icons = {
+    'head': headIcon,
+    'body': bodyIcon,
+    'feet': feetIcon,
+    'done': floppyIcon,
+    'back': backIcon,
+    'crest': crestIcon,
+    'eyes': eyesIcon,
+    'mouth': mouthIcon,
+    'horn': hornIcon,
+}
 
 function getIcon(text: string) {
-    switch (text.toLowerCase()) {
-        case 'head':
-            return headIcon;
-        case 'body':
-            return bodyIcon;
-        case 'feet':
-            return feetIcon;
-        case 'done':
-            return floppyIcon;
-        case 'back':
-            return backIcon;
-    }
+    return icons[text.toLowerCase()];
 }
 
 export function button(text: string, onPress: () => unknown, width = 96, height = 30) {

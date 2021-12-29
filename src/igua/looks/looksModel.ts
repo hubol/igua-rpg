@@ -69,16 +69,16 @@ const inputModel = {
             //     down: value(),
             // }
         },
+        horn: {
+            color,
+            placement: placement(),
+            // shape: choice(hornShapes),
+        },
         mouth: {
             color,
             placement: placement(),
             // shape: choice(mouthShapes),
         },
-        horn: {
-            color,
-            placement: placement(),
-            // shape: choice(hornShapes),
-        }
     },
     body: {
         torso: {
