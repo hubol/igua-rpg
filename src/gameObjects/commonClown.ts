@@ -88,6 +88,7 @@ export function commonClown() {
                     bouncePlayer(container, 2);
                     container.vspeed = -player.vspeed;
                 }
+                knockbackSpeed = -player.engine.knockback.x;
                 health -= player.strength;
                 if (health <= 0) {
                     ClownExplode.play();
