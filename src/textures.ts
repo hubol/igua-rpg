@@ -20,6 +20,7 @@ export let CharacterHead: PIXI.Texture;
 export let CharacterMouthV: PIXI.Texture;
 export let CharacterPupils: PIXI.Texture;
 export let CharacterWhites: PIXI.Texture;
+export let ChooseYourLooksIcons: PIXI.Texture;
 export let ClawPowderPotion: PIXI.Texture;
 export let CloudLong: PIXI.Texture;
 export let ClownSpikeBall: PIXI.Texture;
@@ -169,6 +170,9 @@ export function loadTexturesAsync()
 
     const CharacterWhitesPath = require("./images/character/whites.png");
     loader.add(CharacterWhitesPath); 
+
+    const ChooseYourLooksIconsPath = require("./images/choose your looks icons.png");
+    loader.add(ChooseYourLooksIconsPath); 
 
     const ClawPowderPotionPath = require("./images/claw powder potion.png");
     loader.add(ClawPowderPotionPath); 
@@ -462,6 +466,7 @@ export function loadTexturesAsync()
             CharacterMouthV = resources[CharacterMouthVPath]?.texture as PIXI.Texture;
             CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
+            ChooseYourLooksIcons = resources[ChooseYourLooksIconsPath]?.texture as PIXI.Texture;
             ClawPowderPotion = resources[ClawPowderPotionPath]?.texture as PIXI.Texture;
             CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
             ClownSpikeBall = resources[ClownSpikeBallPath]?.texture as PIXI.Texture;
