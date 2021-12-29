@@ -19,7 +19,9 @@ const [
     pupilsIcon,
     torsoIcon,
     tailIcon,
-    clubIcon] = subimageTextures(ChooseYourLooksIcons, 14);
+    clubIcon,
+    frontIcon,
+    hindIcon] = subimageTextures(ChooseYourLooksIcons, 16);
 
 const icons = {
     'head': headIcon,
@@ -35,6 +37,8 @@ const icons = {
     'torso': torsoIcon,
     'tail': tailIcon,
     'club': clubIcon,
+    'front': frontIcon,
+    'hind': hindIcon,
 }
 
 function getIcon(text: string) {

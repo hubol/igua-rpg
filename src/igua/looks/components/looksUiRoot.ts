@@ -68,7 +68,10 @@ export function looksUiRoot(defaultLooks: Looks) {
     const breadcrumbs = IguaText.Large()
         .at(3, 0)
         .withStep(() => {
-            breadcrumbs.text = c.path.map(capitalizeFirstLetter).join(" > ");
+            if (c.path.length === 0)
+                breadcrumbs.text = 'Choose your looks.';
+            else
+                breadcrumbs.text = c.path.map(capitalizeFirstLetter).join(" > ");
         });
     breadcrumbs.tint = 0xbbbbbb;
     c.addChild(breadcrumbs, pageContainer);
