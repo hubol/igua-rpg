@@ -13,5 +13,10 @@ export interface SceneMeta {
 }
 
 export function setSceneMeta<T>(scene: T, meta: Partial<SceneMeta>) {
-    return merge(scene, { meta });
+    if ('meta' in scene) {
+        // @ts-ignore
+        merge(scene.meta, meta);
+        return;
+    }
+    merge(scene, { meta });
 }
