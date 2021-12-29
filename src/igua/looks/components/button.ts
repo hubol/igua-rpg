@@ -5,7 +5,21 @@ import {subimageTextures} from "../../../utils/pixi/simpleSpritesheet";
 import {ChooseYourLooksIcons} from "../../../textures";
 import {Key} from "../../../utils/browser/key";
 
-const [headIcon, bodyIcon, feetIcon, doneIcon, backIcon, floppyIcon, crestIcon, eyesIcon, mouthIcon, hornIcon] = subimageTextures(ChooseYourLooksIcons, 10);
+const [
+    headIcon,
+    bodyIcon,
+    feetIcon,
+    doneIcon,
+    backIcon,
+    floppyIcon,
+    crestIcon,
+    eyesIcon,
+    mouthIcon,
+    hornIcon,
+    pupilsIcon,
+    torsoIcon,
+    tailIcon,
+    clubIcon] = subimageTextures(ChooseYourLooksIcons, 14);
 
 const icons = {
     'head': headIcon,
@@ -17,6 +31,10 @@ const icons = {
     'eyes': eyesIcon,
     'mouth': mouthIcon,
     'horn': hornIcon,
+    'pupils': pupilsIcon,
+    'torso': torsoIcon,
+    'tail': tailIcon,
+    'club': clubIcon,
 }
 
 function getIcon(text: string) {

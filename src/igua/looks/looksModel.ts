@@ -90,6 +90,11 @@ const inputModel = {
             color,
             placement: placement(),
             // shape: choice(tailShapes),
+            club: {
+                color,
+                placement: placement(),
+                // shape: choice(clubShapes),
+            }
         }
     },
     feet: {
