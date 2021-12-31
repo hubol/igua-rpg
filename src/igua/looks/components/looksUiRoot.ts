@@ -2,11 +2,10 @@ import {Container} from "pixi.js";
 import {merge} from "../../../utils/merge";
 import {IguaText} from "../../text";
 import {capitalizeFirstLetter} from "../../../utils/capitalizeFirstLetter";
-import {button} from "./button";
 import {getLooksInputModel, Looks} from "../looksModel";
 import {bindLooks} from "../bindLooks";
 import {page, PageState} from "./page";
-import {EscapeTickerAndExecute} from "../../../utils/asshatTicker";
+import {makeModelPageElements} from "./makeModelPageElements";
 
 export function looksUiRoot(defaultLooks: Looks) {
     const boundInputModel = getLooksInputModel();
@@ -52,12 +51,12 @@ export function looksUiRoot(defaultLooks: Looks) {
         pageContainer.removeAllChildren();
         const state = getStateForPath();
         const modelSlice = getModelSliceForPath();
-        const p = page({
+        const elements = makeModelPageElements({
             into,
             back: c.path.length > 0 ? back : undefined,
             done: c.path.length === 0 ? done : undefined,
-            state,
             boundInputModel: modelSlice });
+        const p = page(elements, state);
         pageContainer.addChild(p.at(3, 13));
         for (let i = 0; i < 2; i++)
             pageContainer.ticker.update();

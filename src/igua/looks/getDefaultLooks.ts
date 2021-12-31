@@ -37,7 +37,11 @@ export function getDefaultLooks(): Looks {
             },
             tail: {
                 color: 0,
-                placement: [0, 0]
+                placement: [0, 0],
+                club: {
+                    color: 0,
+                    placement: [0, 0],
+                }
             }
         },
         feet: {
