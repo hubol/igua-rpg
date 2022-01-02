@@ -17,26 +17,26 @@ const placement = (minX?: number, minY?: number, maxX?: number, maxY?: number) =
 const v = 'value' as const;
 const value = (min?: number, max?: number) => ({ min, max, kind: v });
 
-type ChoiceInput<T> = { options: ReadonlyArray<T>, kind: 'choice' };
+export type ChoiceInput<T> = { options: ReadonlyArray<T>, kind: 'choice' };
 const choice = <T> (options: ReadonlyArray<T>): ChoiceInput<T> => ({ options, kind: 'choice' });
 
 const color = { kind: 'color' } as const;
 const bool = { kind: 'boolean' } as const;
 
-type PlacementInput = ReturnType<typeof placement>;
-type ValueInput = ReturnType<typeof value>;
-type ColorInput = typeof color;
-type BoolInput = typeof bool;
+export type PlacementInput = ReturnType<typeof placement>;
+export type ValueInput = ReturnType<typeof value>;
+export type ColorInput = typeof color;
+export type BoolInput = typeof bool;
 
 export type LooksInput = ChoiceInput<unknown> | PlacementInput | ValueInput | ColorInput | BoolInput;
 
 const foot = {
-    color,
+    // color,
     // shape: choice(footShapes),
     flipH: bool,
     flipV: bool,
     nails: {
-        color,
+        // color,
         // shape: choice(nailShapes),
         placement: placement(),
     }
@@ -98,6 +98,8 @@ const inputModel = {
         }
     },
     feet: {
+        color,
+        nailColor: color,
         front: foot,
         hind: foot,
         gap: value(),

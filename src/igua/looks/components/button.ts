@@ -9,7 +9,7 @@ const [
     headIcon,
     bodyIcon,
     feetIcon,
-    doneIcon,
+    checkIcon,
     backIcon,
     floppyIcon,
     crestIcon,
@@ -41,6 +41,7 @@ const icons = {
     'front': frontIcon,
     'hind': hindIcon,
     'nails': nailsIcon,
+    'ok': checkIcon,
 }
 
 function getIcon(text: string) {

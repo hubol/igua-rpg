@@ -17,11 +17,10 @@ export function makeModelPageElements({ into, boundInputModel, back, done }: Arg
     const elements: PageElement[] = [];
     for (const [key, value] of Object.entries(boundInputModel)) {
         if ('kind' in value) {
-            // TODO impl
+            if (value.kind !== 'color')
+                continue;
         }
-        else {
-            elements.push(button(capitalizeFirstLetter(key), () => into(key)));
-        }
+        elements.push(button(capitalizeFirstLetter(key), () => into(key)));
     }
 
     if (back)

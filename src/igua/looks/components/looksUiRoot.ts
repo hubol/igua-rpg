@@ -4,8 +4,9 @@ import {IguaText} from "../../text";
 import {capitalizeFirstLetter} from "../../../utils/capitalizeFirstLetter";
 import {getLooksInputModel, Looks} from "../looksModel";
 import {bindLooks} from "../bindLooks";
-import {page, PageState} from "./page";
+import {page, PageElement, PageState} from "./page";
 import {makeModelPageElements} from "./makeModelPageElements";
+import {makeColorPageElements} from "./colorButton";
 
 export function looksUiRoot(defaultLooks: Looks) {
     const boundInputModel = getLooksInputModel();
@@ -27,9 +28,9 @@ export function looksUiRoot(defaultLooks: Looks) {
         loadPageForPath();
     }
 
-    function into(page: string) {
+    function into(page: string, elements?: PageElement[]) {
         c.path.push(page);
-        loadPageForPath();
+        loadPageForPath(elements);
     }
 
     const statesByPath = {};
@@ -47,16 +48,27 @@ export function looksUiRoot(defaultLooks: Looks) {
         return model as any;
     }
 
-    function loadPageForPath() {
-        pageContainer.removeAllChildren();
-        const state = getStateForPath();
+    function getElementsForPath() {
         const modelSlice = getModelSliceForPath();
-        const elements = makeModelPageElements({
+        if (modelSlice.kind) {
+            if (modelSlice.kind === 'color')
+                return makeColorPageElements({ model: boundInputModel, input: modelSlice, done: back });
+        }
+        return makeModelPageElements({
             into,
             back: c.path.length > 0 ? back : undefined,
             done: c.path.length === 0 ? done : undefined,
             boundInputModel: modelSlice });
+
+    }
+
+    function loadPageForPath(elements?: PageElement[]) {
+        pageContainer.removeAllChildren();
+        const state = getStateForPath();
+        if (!elements)
+            elements = getElementsForPath();
         const p = page(elements, state);
+
         pageContainer.addChild(p.at(3, 13));
         for (let i = 0; i < 2; i++)
             pageContainer.ticker.update();
