@@ -5,6 +5,7 @@ import {rng} from "../../../utils/rng";
 import {valueSlider} from "./valueSlider";
 import {colord} from "colord";
 import {toHexColorString} from "../../../utils/toHexColorString";
+import {Graphics} from "pixi.js";
 
 type Args = {
     input: ColorInput & { value };
@@ -20,7 +21,7 @@ function readHsv(input) {
 
 export function makeColorPageElements({ model, input, done }: Args) {
     const el: PageElement[] = [];
-    let {h, s, v} = readHsv(input);
+    let h: number, s: number, v: number;
 
     function writeColor() {
         const color = colord({ h, s, v, a: 1 });
@@ -57,12 +58,34 @@ export function makeColorPageElements({ model, input, done }: Args) {
         }
     }
 
+    function readColor() {
+        const hsv = readHsv(input)
+        h = hsv.h;
+        s = hsv.s;
+        v = hsv.v;
+    }
+
+    readColor();
+
     el.push(valueSlider('Hue', { min: 0, max: 359 }, hh, [5, 5, 7]));
     el.push(valueSlider('Saturation', { min: 0, max: 100 }, ss, [2, 2, 2]));
     el.push(valueSlider('Value', { min: 0, max: 100 }, vv, [2, 2, 2]));
-    el.push(button('Random', () => input.value = rng.int(0xFFFFFF + 1)));
+    el.push(button('Random', () => {
+        input.value = rng.int(0xFFFFFF + 1);
+        readColor();
+    }));
     el.push(button('Copy From...', () => {}));
     el.push(button('OK', done));
+
+    el[0].on('added', () => {
+        const gfx = new Graphics().withStep(() => {
+            gfx
+                .clear()
+                .beginFill(input.value, 1)
+                .drawRect(el[0].x + 96 + 3, el[0].y, 16, dy * 3 - 3);
+        })
+        el[0].parent.addChild(gfx);
+    });
 
     const dy = 33;
     el[1].y = dy;
