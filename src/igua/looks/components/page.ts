@@ -7,16 +7,55 @@ export type PageElement = Container & { selected: boolean };
 
 export function page(elements: PageElement[], state: PageState) {
     const c = new Container();
+    updateSelection();
+
+    function updateSelection() {
+        state.selectionIndex = cyclic(state.selectionIndex, 0, elements.length);
+        elements.forEach((x, i) => x.selected = state.selectionIndex === i)
+    }
+
+    function select(dx: number, dy: number) {
+        const selected = elements[state.selectionIndex];
+        dx = Math.sign(dx) * 16;
+        dy = Math.sign(dy) * 16;
+        let ax = dx;
+        let ay = dy;
+        let d = 0;
+        let fromBehind = false;
+        const dd = Math.abs(dx) + Math.abs(dy);
+        while (d < 600) {
+            const offset = [-ax, -ay];
+            for (let i = 0; i < elements.length; i++) {
+                if (i === state.selectionIndex)
+                    continue;
+                if (elements[i].collides(selected, offset)) {
+                    state.selectionIndex = i;
+                    return;
+                }
+            }
+            ax += dx;
+            ay += dy;
+            d += dd;
+            if (!fromBehind && d >= 256) {
+                ax = Math.sign(dx) * -256;
+                ay = Math.sign(dy) * -256;
+                fromBehind = true;
+            }
+        }
+    }
 
     c.addChild(...elements);
     c.withStep(() => {
         // TODO focus here should be disabled for certain inputs
         if (Key.justWentDown('ArrowUp'))
-           state.selectionIndex -= 1;
+           select(0, -1);
         if (Key.justWentDown('ArrowDown'))
-           state.selectionIndex += 1;
-        state.selectionIndex = cyclic(state.selectionIndex, 0, elements.length);
-        elements.forEach((x, i) => x.selected = state.selectionIndex === i)
+            select(0, 1);
+        if (Key.justWentDown('ArrowLeft'))
+            select(-1, 0);
+        if (Key.justWentDown('ArrowRight'))
+            select(1, 0);
+        updateSelection();
         // TODO sound
     });
 
