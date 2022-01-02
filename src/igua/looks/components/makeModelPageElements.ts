@@ -4,23 +4,17 @@ import {LooksInput, ValueInput} from "../looksModel";
 import {colorButton} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 import {valueSlider} from "./valueSlider";
+import {looksContext} from "./looksUiRoot";
 
 type BoundInput = { kind: LooksInput['kind'], value };
 type BoundInputModel = Record<string, BoundInput | {}>;
 
-type Args = {
-    boundInputModel: BoundInputModel;
-    back?();
-    done?();
-    into(page: string);
-}
-
-export function makeModelPageElements({ into, boundInputModel, back, done }: Args) {
+export function makeModelPageElements(boundInputModel: BoundInputModel) {
     function makePageElement(key: string, value: BoundInput) {
         const title = camelCaseToCapitalizedSpace(key);
         switch (value.kind) {
             case "color":
-                return colorButton(title, () => into(key), value);
+                return colorButton(title, () => looksContext.into(key), value);
             case "choice":
                 break;
             case "placement":
@@ -30,7 +24,7 @@ export function makeModelPageElements({ into, boundInputModel, back, done }: Arg
             case "boolean":
                 break;
             default:
-                return button(title, () => into(key));
+                return button(title, () => looksContext.into(key));
         }
     }
 
@@ -41,15 +35,14 @@ export function makeModelPageElements({ into, boundInputModel, back, done }: Arg
             elements.push(element);
     }
 
-    if (back)
-        elements.push(button('Back', back));
-    if (done)
-        elements.push(button('Done', done));
-    const hasSpecialElement = back || done;
+    if (looksContext.path.length > 0)
+        elements.push(button('Back', looksContext.back));
+    else
+        elements.push(button('Done', looksContext.save));
 
     let y = 0;
     for (const e of elements) {
-        if (hasSpecialElement && e === elements[elements.length - 1])
+        if (e === elements[elements.length - 1])
             y += 15;
         e.y = y;
         y += Math.max(30, e.height) + 3;

@@ -1,41 +1,58 @@
 import {Container} from "pixi.js";
-import {merge} from "../../../utils/merge";
 import {IguaText} from "../../text";
-import {getLooksInputModel, Looks} from "../looksModel";
+import {getLooksInputModel, Looks, LooksInputModel} from "../looksModel";
 import {bindLooks} from "../bindLooks";
 import {page, PageElement, PageState} from "./page";
 import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 
+export let looksContext: LooksContext;
+
+interface LooksContext {
+    path: ReadonlyArray<string>;
+    inputModel: LooksInputModel;
+    back();
+    into(page: string, elements?: PageElement[]);
+    save();
+}
+
 export function looksUiRoot(defaultLooks: Looks) {
     const boundInputModel = getLooksInputModel();
     bindLooks(boundInputModel, defaultLooks);
 
-    const c = merge(new Container(), {
-        path: [] as string[],
-    });
+    const path: string[] = [];
+
+    const c = new Container();
 
     const pageContainer = new Container();
 
-    function done() {
+    function save() {
         // TODO
     }
 
     function back() {
         getStateForPath().selectionIndex = 0;
-        c.path.pop();
+        path.pop();
         loadPageForPath();
     }
 
     function into(page: string, elements?: PageElement[]) {
-        c.path.push(page);
+        path.push(page);
         loadPageForPath(elements);
     }
 
+    looksContext = {
+        back,
+        into,
+        path,
+        save,
+        inputModel: boundInputModel,
+    };
+
     const statesByPath = {};
     function getStateForPath(): PageState {
-        const key = c.path.join('.');
+        const key = path.join('.');
         if (key in statesByPath)
             return statesByPath[key];
         return statesByPath[key] = { selectionIndex: 0 };
@@ -43,7 +60,7 @@ export function looksUiRoot(defaultLooks: Looks) {
 
     function getModelSliceForPath() {
         let model = boundInputModel;
-        for (const key of c.path)
+        for (const key of path)
             model = model[key];
         return model as any;
     }
@@ -52,13 +69,9 @@ export function looksUiRoot(defaultLooks: Looks) {
         const modelSlice = getModelSliceForPath();
         if (modelSlice.kind) {
             if (modelSlice.kind === 'color')
-                return makeColorPageElements({ model: boundInputModel, input: modelSlice, done: back });
+                return makeColorPageElements(modelSlice);
         }
-        return makeModelPageElements({
-            into,
-            back: c.path.length > 0 ? back : undefined,
-            done: c.path.length === 0 ? done : undefined,
-            boundInputModel: modelSlice });
+        return makeModelPageElements(modelSlice);
 
     }
 
@@ -79,12 +92,13 @@ export function looksUiRoot(defaultLooks: Looks) {
     const breadcrumbs = IguaText.Large()
         .at(3, 0)
         .withStep(() => {
-            if (c.path.length === 0)
+            if (path.length === 0)
                 breadcrumbs.text = 'Choose your looks.';
             else
-                breadcrumbs.text = c.path.map(camelCaseToCapitalizedSpace).join(" > ");
+                breadcrumbs.text = path.map(camelCaseToCapitalizedSpace).join(" > ");
         });
     breadcrumbs.tint = 0xbbbbbb;
     c.addChild(breadcrumbs, pageContainer);
+
     return c;
 }

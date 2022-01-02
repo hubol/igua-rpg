@@ -1,17 +1,12 @@
 import {button} from "./button";
 import {PageElement} from "./page";
-import {ColorInput, LooksInputModel} from "../looksModel";
+import {ColorInput} from "../looksModel";
 import {rng} from "../../../utils/rng";
 import {valueSlider} from "./valueSlider";
 import {colord} from "colord";
 import {toHexColorString} from "../../../utils/toHexColorString";
 import {Graphics} from "pixi.js";
-
-type Args = {
-    input: ColorInput & { value };
-    model: LooksInputModel;
-    done();
-}
+import {looksContext} from "./looksUiRoot";
 
 function readHsv(input) {
     const hex = toHexColorString(input.value);
@@ -25,7 +20,7 @@ export function colorButton(text: string, onPress: () => unknown, input :{ value
     return b;
 }
 
-export function makeColorPageElements({ model, input, done }: Args) {
+export function makeColorPageElements(input: ColorInput & { value }) {
     const el: PageElement[] = [];
     let h: number, s: number, v: number;
 
@@ -81,7 +76,7 @@ export function makeColorPageElements({ model, input, done }: Args) {
         readColor();
     }));
     el.push(button('Copy From...', () => {}));
-    el.push(button('OK', done));
+    el.push(button('OK', looksContext.back));
 
     el[0].on('added', () => {
         const gfx = new Graphics().withStep(() => {
