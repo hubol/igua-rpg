@@ -19,6 +19,12 @@ function readHsv(input) {
     return color.toHsv();
 }
 
+export function colorButton(text: string, onPress: () => unknown, input :{ value }) {
+    const b = button(text, onPress);
+    b.addChild(new Graphics().beginFill(input.value).drawPolygon([4, 4, 4, 26, 26, 4]));
+    return b;
+}
+
 export function makeColorPageElements({ model, input, done }: Args) {
     const el: PageElement[] = [];
     let h: number, s: number, v: number;
