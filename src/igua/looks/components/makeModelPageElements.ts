@@ -1,8 +1,9 @@
 import {button} from "./button";
 import {PageElement} from "./page";
-import {LooksInput} from "../looksModel";
+import {LooksInput, ValueInput} from "../looksModel";
 import {colorButton} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
+import {valueSlider} from "./valueSlider";
 
 type BoundInput = { kind: LooksInput['kind'], value };
 type BoundInputModel = Record<string, BoundInput | {}>;
@@ -15,15 +16,29 @@ type Args = {
 }
 
 export function makeModelPageElements({ into, boundInputModel, back, done }: Args) {
+    function makePageElement(key: string, value: BoundInput) {
+        const title = camelCaseToCapitalizedSpace(key);
+        switch (value.kind) {
+            case "color":
+                return colorButton(title, () => into(key), value);
+            case "choice":
+                break;
+            case "placement":
+                break;
+            case "value":
+                return valueSlider(title, value as any as ValueInput, { get: () => value.value, set: x => value.value = x });
+            case "boolean":
+                break;
+            default:
+                return button(title, () => into(key));
+        }
+    }
+
     const elements: PageElement[] = [];
     for (const [key, value] of Object.entries(boundInputModel)) {
-        const title = camelCaseToCapitalizedSpace(key);
-        if ('kind' in value) {
-            if (value.kind === 'color')
-                elements.push(colorButton(title, () => into(key), value));
-            continue;
-        }
-        elements.push(button(title, () => into(key)));
+        const element = makePageElement(key, value as any);
+        if (element)
+            elements.push(element);
     }
 
     if (back)

@@ -18,7 +18,7 @@ export function makeKeyRepeat(o: DisplayObject, keyCode: KeyCode) {
         else {
             keyDownFor++;
             justWentDown = keyDownFor === 1
-                || (keyDownFor % 2 === 0 && keyDownFor > 10);
+                || (keyDownFor % 2 === 0 && keyDownFor > 15);
             if (justWentDown)
                 repeats++;
         }

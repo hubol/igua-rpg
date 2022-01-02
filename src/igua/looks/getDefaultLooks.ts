@@ -13,7 +13,7 @@ export function getDefaultLooks(): Looks {
             },
             eyes: {
                 placement: [0, 0],
-                gap: 0x9957AF,
+                gap: 0,
                 pupils: {
                     color: 0x9957AF,
                     placement: [0, 0],
