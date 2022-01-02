@@ -1,8 +1,8 @@
 import {button} from "./button";
-import {capitalizeFirstLetter} from "../../../utils/capitalizeFirstLetter";
 import {PageElement} from "./page";
 import {LooksInput} from "../looksModel";
 import {colorButton} from "./colorButton";
+import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 
 type BoundInput = { kind: LooksInput['kind'], value };
 type BoundInputModel = Record<string, BoundInput | {}>;
@@ -17,7 +17,7 @@ type Args = {
 export function makeModelPageElements({ into, boundInputModel, back, done }: Args) {
     const elements: PageElement[] = [];
     for (const [key, value] of Object.entries(boundInputModel)) {
-        const title = capitalizeFirstLetter(key);
+        const title = camelCaseToCapitalizedSpace(key);
         if ('kind' in value) {
             if (value.kind === 'color')
                 elements.push(colorButton(title, () => into(key), value));

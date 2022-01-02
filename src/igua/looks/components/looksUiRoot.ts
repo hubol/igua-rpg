@@ -1,12 +1,12 @@
 import {Container} from "pixi.js";
 import {merge} from "../../../utils/merge";
 import {IguaText} from "../../text";
-import {capitalizeFirstLetter} from "../../../utils/capitalizeFirstLetter";
 import {getLooksInputModel, Looks} from "../looksModel";
 import {bindLooks} from "../bindLooks";
 import {page, PageElement, PageState} from "./page";
 import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
+import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 
 export function looksUiRoot(defaultLooks: Looks) {
     const boundInputModel = getLooksInputModel();
@@ -82,7 +82,7 @@ export function looksUiRoot(defaultLooks: Looks) {
             if (c.path.length === 0)
                 breadcrumbs.text = 'Choose your looks.';
             else
-                breadcrumbs.text = c.path.map(capitalizeFirstLetter).join(" > ");
+                breadcrumbs.text = c.path.map(camelCaseToCapitalizedSpace).join(" > ");
         });
     breadcrumbs.tint = 0xbbbbbb;
     c.addChild(breadcrumbs, pageContainer);
