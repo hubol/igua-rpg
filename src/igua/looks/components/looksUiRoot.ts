@@ -80,6 +80,9 @@ export function looksUiRoot(defaultLooks: Looks) {
         const state = getStateForPath();
         if (!elements)
             elements = getElementsForPath();
+        const selectedIndex = elements.findIndex(x => x.selected);
+        if (selectedIndex >= 0)
+            state.selectionIndex = selectedIndex;
         const p = page(elements, state);
 
         pageContainer.addChild(p.at(3, 13));
