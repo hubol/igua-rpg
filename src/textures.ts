@@ -20,7 +20,6 @@ export let CharacterHead: PIXI.Texture;
 export let CharacterMouthV: PIXI.Texture;
 export let CharacterPupils: PIXI.Texture;
 export let CharacterWhites: PIXI.Texture;
-export let ChooseYourLooksIcons: PIXI.Texture;
 export let ClawPowderPotion: PIXI.Texture;
 export let CloudLong: PIXI.Texture;
 export let ClownSpikeBall: PIXI.Texture;
@@ -107,6 +106,9 @@ export let SpikyBrushB: PIXI.Texture;
 export let SweetBerryPotion: PIXI.Texture;
 export let Torch: PIXI.Texture;
 export let Tumbleweed: PIXI.Texture;
+export let UiCheckbox: PIXI.Texture;
+export let UiChooseYourLooksIcons: PIXI.Texture;
+export let UiPlacementReticle: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
 export let WhiskeyGlass: PIXI.Texture;
 export let WonderBallonPotion: PIXI.Texture;
@@ -170,9 +172,6 @@ export function loadTexturesAsync()
 
     const CharacterWhitesPath = require("./images/character/whites.png");
     loader.add(CharacterWhitesPath); 
-
-    const ChooseYourLooksIconsPath = require("./images/choose your looks icons.png");
-    loader.add(ChooseYourLooksIconsPath); 
 
     const ClawPowderPotionPath = require("./images/claw powder potion.png");
     loader.add(ClawPowderPotionPath); 
@@ -432,6 +431,15 @@ export function loadTexturesAsync()
     const TumbleweedPath = require("./images/tumbleweed.png");
     loader.add(TumbleweedPath); 
 
+    const UiCheckboxPath = require("./images/ui/checkbox.png");
+    loader.add(UiCheckboxPath); 
+
+    const UiChooseYourLooksIconsPath = require("./images/ui/choose your looks icons.png");
+    loader.add(UiChooseYourLooksIconsPath); 
+
+    const UiPlacementReticlePath = require("./images/ui/placement reticle.png");
+    loader.add(UiPlacementReticlePath); 
+
     const ValuableIconPath = require("./images/valuable icon.png");
     loader.add(ValuableIconPath); 
 
@@ -466,7 +474,6 @@ export function loadTexturesAsync()
             CharacterMouthV = resources[CharacterMouthVPath]?.texture as PIXI.Texture;
             CharacterPupils = resources[CharacterPupilsPath]?.texture as PIXI.Texture;
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
-            ChooseYourLooksIcons = resources[ChooseYourLooksIconsPath]?.texture as PIXI.Texture;
             ClawPowderPotion = resources[ClawPowderPotionPath]?.texture as PIXI.Texture;
             CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
             ClownSpikeBall = resources[ClownSpikeBallPath]?.texture as PIXI.Texture;
@@ -553,6 +560,9 @@ export function loadTexturesAsync()
             SweetBerryPotion = resources[SweetBerryPotionPath]?.texture as PIXI.Texture;
             Torch = resources[TorchPath]?.texture as PIXI.Texture;
             Tumbleweed = resources[TumbleweedPath]?.texture as PIXI.Texture;
+            UiCheckbox = resources[UiCheckboxPath]?.texture as PIXI.Texture;
+            UiChooseYourLooksIcons = resources[UiChooseYourLooksIconsPath]?.texture as PIXI.Texture;
+            UiPlacementReticle = resources[UiPlacementReticlePath]?.texture as PIXI.Texture;
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
             WhiskeyGlass = resources[WhiskeyGlassPath]?.texture as PIXI.Texture;
             WonderBallonPotion = resources[WonderBallonPotionPath]?.texture as PIXI.Texture;

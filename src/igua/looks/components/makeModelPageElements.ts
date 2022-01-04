@@ -6,6 +6,7 @@ import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalized
 import {valueSlider} from "./valueSlider";
 import {looksContext} from "./looksUiRoot";
 import {placementInput} from "./placementInput";
+import {checkboxInput} from "./checkboxInput";
 
 type BoundInput = { kind: LooksInput['kind'], value };
 type BoundInputModel = Record<string, BoundInput | {}>;
@@ -23,7 +24,7 @@ export function makeModelPageElements(boundInputModel: BoundInputModel) {
             case "value":
                 return valueSlider(title, value as any as ValueInput, { get: () => value.value, set: x => value.value = x });
             case "boolean":
-                break;
+                return checkboxInput(title, value);
             default:
                 return button(title, () => looksContext.into(key));
         }

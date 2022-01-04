@@ -2,8 +2,8 @@ import {Graphics, Sprite} from "pixi.js";
 import {merge} from "../../../utils/merge";
 import {IguaText} from "../../text";
 import {subimageTextures} from "../../../utils/pixi/simpleSpritesheet";
-import {ChooseYourLooksIcons} from "../../../textures";
 import {Key} from "../../../utils/browser/key";
+import {UiChooseYourLooksIcons} from "../../../textures";
 
 const [
     headIcon,
@@ -22,7 +22,7 @@ const [
     clubIcon,
     frontIcon,
     hindIcon,
-    nailsIcon] = subimageTextures(ChooseYourLooksIcons, 17);
+    nailsIcon] = subimageTextures(UiChooseYourLooksIcons, 17);
 
 const icons = {
     'head': headIcon,
