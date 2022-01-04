@@ -49,7 +49,13 @@ function getIcon(text: string) {
 }
 
 export function button(text: string, onPress: () => unknown, width = 96, height = 30) {
-    const g = merge(new Graphics(), { selected: false }).withStep(() => {
+    function center() {
+        // @ts-ignore
+        font.anchor.x = 0.5;
+        font.x = width / 2;
+        return g;
+    }
+    const g = merge(new Graphics(), { selected: false, center }).withStep(() => {
         g.clear().beginFill(0x005870);
         if (g.selected)
             g.lineStyle(2, 0x00FF00, 1, 0);

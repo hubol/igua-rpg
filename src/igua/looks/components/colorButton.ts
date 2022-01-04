@@ -79,11 +79,26 @@ export function makeColorPageElements(input: ColorInput & { value }) {
     el.push(valueSlider('Hue', { min: 0, max: 359 }, hh, [5, 5, 7]));
     el.push(valueSlider('Saturation', { min: 0, max: 100 }, ss, [2, 2, 2]));
     el.push(valueSlider('Value', { min: 0, max: 100 }, vv, [2, 2, 2]));
-    el.push(button('Random', () => {
+
+    let jiggle = 0;
+    const random = button('Random', () => {
         input.value = rng.int(0xFFFFFF + 1);
         readColor();
-    }));
-    el.push(button('Copy From...', gotoCopyFrom));
+        jiggle = 5;
+    })
+        .center()
+        .withStep(() => {
+            if (jiggle > 0) {
+                jiggle -= 1;
+                if (jiggle === 0)
+                    random.pivot.set(0, 0);
+                else
+                    random.pivot.set((jiggle % 2) * 2 - 1, 0);
+            }
+    })
+
+    el.push(random);
+    el.push(button('Copy From...', gotoCopyFrom).center());
     el.push(button('OK', looksContext.back));
 
     el[0].on('added', () => {
