@@ -1,12 +1,13 @@
 import {Container} from "pixi.js";
 import {Key} from "../../../utils/browser/key";
 import {cyclic} from "../../../utils/math/number";
+import {merge} from "../../../utils/merge";
 
 export type PageState = { selectionIndex: number };
 export type PageElement = Container & { selected: boolean };
 
 export function page(elements: PageElement[], state: PageState) {
-    const c = new Container();
+    const c = merge(new Container(), { navigation: true });
     updateSelection();
 
     function updateSelection() {
@@ -46,18 +47,21 @@ export function page(elements: PageElement[], state: PageState) {
 
     c.addChild(...elements);
     c.withStep(() => {
-        // TODO focus here should be disabled for certain inputs
-        if (Key.justWentDown('ArrowUp'))
-           select(0, -1);
-        if (Key.justWentDown('ArrowDown'))
-            select(0, 1);
-        if (Key.justWentDown('ArrowLeft'))
-            select(-1, 0);
-        if (Key.justWentDown('ArrowRight'))
-            select(1, 0);
+        if (c.navigation) {
+            if (Key.justWentDown('ArrowUp'))
+                select(0, -1);
+            if (Key.justWentDown('ArrowDown'))
+                select(0, 1);
+            if (Key.justWentDown('ArrowLeft'))
+                select(-1, 0);
+            if (Key.justWentDown('ArrowRight'))
+                select(1, 0);
+        }
         updateSelection();
         // TODO sound
     });
 
     return c;
 }
+
+export type Page = ReturnType<typeof page>;

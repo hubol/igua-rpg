@@ -2,7 +2,7 @@ import {Container} from "pixi.js";
 import {IguaText} from "../../text";
 import {getLooksInputModel, Looks, LooksInputModel} from "../looksModel";
 import {bindLooks} from "../bindLooks";
-import {page, PageElement, PageState} from "./page";
+import {Page, page, PageElement, PageState} from "./page";
 import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
@@ -15,6 +15,7 @@ interface LooksContext {
     back();
     into(page: string, elements?: PageElement[]);
     save();
+    page: Page;
 }
 
 export function looksUiRoot(defaultLooks: Looks) {
@@ -48,6 +49,7 @@ export function looksUiRoot(defaultLooks: Looks) {
         path,
         save,
         inputModel: boundInputModel,
+        page: {} as any
     };
 
     const statesByPath = {};
@@ -84,6 +86,7 @@ export function looksUiRoot(defaultLooks: Looks) {
         if (selectedIndex >= 0)
             state.selectionIndex = selectedIndex;
         const p = page(elements, state);
+        looksContext.page = p;
 
         pageContainer.addChild(p.at(3, 13));
         for (let i = 0; i < 2; i++)

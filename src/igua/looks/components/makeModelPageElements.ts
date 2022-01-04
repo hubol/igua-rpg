@@ -5,6 +5,7 @@ import {colorButton} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 import {valueSlider} from "./valueSlider";
 import {looksContext} from "./looksUiRoot";
+import {placementInput} from "./placementInput";
 
 type BoundInput = { kind: LooksInput['kind'], value };
 type BoundInputModel = Record<string, BoundInput | {}>;
@@ -18,7 +19,7 @@ export function makeModelPageElements(boundInputModel: BoundInputModel) {
             case "choice":
                 break;
             case "placement":
-                break;
+                return placementInput(title, value);
             case "value":
                 return valueSlider(title, value as any as ValueInput, { get: () => value.value, set: x => value.value = x });
             case "boolean":
