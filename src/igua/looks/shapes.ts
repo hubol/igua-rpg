@@ -32,3 +32,5 @@ export const tailShapes = textures(LooksTail, 28, [17, 17]);
 export const clubShapes = textures(LooksClub, 12, [4, 4]);
 export const footShapes = textures(LooksFoot, 14, [6, 12]);
 export const nailsShapes = textures(LooksNails, 10, [6, 6]);
+
+console.log(nailsShapes[0].frame, nailsShapes[0].defaultAnchor, nailsShapes[0]);

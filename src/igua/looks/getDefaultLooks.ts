@@ -51,18 +51,18 @@ export function getDefaultLooks(): Looks {
                 flipV: false,
                 flipH: false,
                 nails: {
-                    placement: [0, 0],
+                    placement: 2,
                 }
             },
             hind: {
                 flipV: false,
                 flipH: false,
                 nails: {
-                    placement: [0, 0],
+                    placement: 2,
                 }
             },
-            gap: 0,
-            backOffset: 0
+            gap: 1,
+            backOffset: 3
         }
 
     }

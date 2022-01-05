@@ -19,6 +19,7 @@ export interface IguanaPuppetArgs
     eyes: IguanaEyes | DisplayObject;
     crest: DisplayObject;
     moveCrestWhenDucking?: boolean;
+    fromLooks?: boolean;
 }
 
 IguanaBlink.volume(0.06);
@@ -34,11 +35,13 @@ export function iguanaPuppet(args: IguanaPuppetArgs)
 }
 
 export function iguanaHead(args: IguanaPuppetArgs) {
-    args.crest.pivot.x += 3;
-    args.crest.pivot.y += 5;
+    if (!args.fromLooks) {
+        args.crest.pivot.x += 3;
+        args.crest.pivot.y += 5;
 
-    args.eyes.pivot.x += -7;
-    args.eyes.pivot.y += -3;
+        args.eyes.pivot.x += -7;
+        args.eyes.pivot.y += -3;
+    }
 
     const head = new Container();
 
@@ -48,22 +51,25 @@ export function iguanaHead(args: IguanaPuppetArgs) {
 
 export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
 {
-    args.body.pivot.y -= 5;
-
-    args.backLeftFoot.pivot.x += -6;
-    args.backLeftFoot.pivot.y += -21;
-
-    args.frontLeftFoot.pivot.x += -15;
-    args.frontLeftFoot.pivot.y += -21;
-
-    args.backRightFoot.pivot.x += -3;
-    args.backRightFoot.pivot.y += -21;
-
-    args.frontRightFoot.pivot.x += -12;
-    args.frontRightFoot.pivot.y += -21;
-
     const head = iguanaHead(args);
-    head.pivot.set(-15, -5);
+
+    if (!args.fromLooks) {
+        args.body.pivot.y -= 5;
+
+        args.backLeftFoot.pivot.x += -6;
+        args.backLeftFoot.pivot.y += -21;
+
+        args.frontLeftFoot.pivot.x += -15;
+        args.frontLeftFoot.pivot.y += -21;
+
+        args.backRightFoot.pivot.x += -3;
+        args.backRightFoot.pivot.y += -21;
+
+        args.frontRightFoot.pivot.x += -12;
+        args.frontRightFoot.pivot.y += -21;
+
+        head.pivot.set(-15, -5);
+    }
 
     const body = new Container();
     body.addChild(args.body, head);

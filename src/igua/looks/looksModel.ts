@@ -28,7 +28,7 @@ const foot = {
     nails: {
         // color,
         // shape: choice(nailShapes),
-        placement: placement(),
+        placement: value(),
     }
 }
 

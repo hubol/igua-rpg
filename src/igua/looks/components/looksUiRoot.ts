@@ -6,6 +6,10 @@ import {Page, page, PageElement, PageState} from "./page";
 import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
+import {makeIguanaPuppetArgsFromLooks} from "../makeIguanaPuppetArgsFromLooks";
+import {makeIguanaPuppetEngine} from "../../puppet/engine";
+import {iguanaPuppet} from "../../puppet/iguanaPuppet";
+import {playerPuppetArgs} from "../../../gameObjects/player";
 
 export let looksContext: LooksContext;
 
@@ -106,5 +110,15 @@ export function looksUiRoot(defaultLooks: Looks) {
     breadcrumbs.tint = 0xbbbbbb;
     c.addChild(breadcrumbs, pageContainer);
 
+    showPreview(c, defaultLooks);
+
     return c;
+}
+
+function showPreview(c: Container, looks: Looks) {
+    const args = makeIguanaPuppetArgsFromLooks(looks);
+    const og = iguanaPuppet(playerPuppetArgs()).at(160, 160);
+    og.alpha = 0.5;
+    const puppet = iguanaPuppet(args).at(160, 160);
+    c.addChild(og, puppet);
 }

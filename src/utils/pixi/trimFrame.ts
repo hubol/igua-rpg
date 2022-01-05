@@ -15,8 +15,10 @@ export function trimFrame(texture: Texture) {
     const height = y2 - y1 + 1;
     texture.frame = new Rectangle(originalFrame.x + x1, originalFrame.y + y1, width, height);
     const originalX = Math.round(texture.defaultAnchor.x * originalFrame.width);
-    const originalY = Math.round(texture.defaultAnchor.x * originalFrame.height);
-    texture.defaultAnchor.set(originalX / width, originalY / height);
+    const originalY = Math.round(texture.defaultAnchor.y * originalFrame.height);
+    const x = originalX - x1;
+    const y = originalY - y1;
+    texture.defaultAnchor.set(x / width, y / height);
     // @ts-ignore
     texture.__trimmedFrame = true;
     return texture;
