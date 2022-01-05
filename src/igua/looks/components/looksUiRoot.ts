@@ -7,7 +7,7 @@ import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 import {makeIguanaPuppetArgsFromLooks} from "../makeIguanaPuppetArgsFromLooks";
-import {iguanaPuppet} from "../../puppet/iguanaPuppet";
+import {iguanaHead, iguanaPuppet} from "../../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../../gameObjects/player";
 
 export let looksContext: LooksContext;
@@ -107,14 +107,14 @@ export function looksUiRoot(defaultLooks: Looks) {
                 breadcrumbs.text = path.map(camelCaseToCapitalizedSpace).join(" > ");
         });
     breadcrumbs.tint = 0xbbbbbb;
-    c.addChild(breadcrumbs, pageContainer, preview(defaultLooks).at(160, 160));
+    c.addChild(breadcrumbs, pageContainer, preview(defaultLooks).at(160, 160), preview(defaultLooks, iguanaHead as any).at(160, 40));
 
     return c;
 }
 
-function preview(looks: Looks) {
+function preview(looks: Looks, fn = iguanaPuppet) {
     const c = new Container();
-    const og = iguanaPuppet(playerPuppetArgs());
+    const og = fn(playerPuppetArgs());
     og.alpha = 0.5;
 
     c.addChild(og);
@@ -129,7 +129,7 @@ function preview(looks: Looks) {
         if (puppet)
             puppet.destroy();
         const args = makeIguanaPuppetArgsFromLooks(looks);
-        puppet = iguanaPuppet(args);
+        puppet = fn(args);
         c.addChild(puppet);
         lastLooksJson = currentLooksJson;
     });
