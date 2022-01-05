@@ -67,6 +67,14 @@ export function button(text: string, onPress: () => unknown, width = 96, height 
     if (icon)
         g.addChild(Sprite.from(icon));
     const font = IguaText.Large(text).at(32, (height - 14) / 2);
+    if (text.length > 11 && !text.includes('...')) {
+        font.text = text.replace(' ', '\n');
+        font.align = 'center';
+        // @ts-ignore
+        font.anchor.set(0.5, 0.5);
+        font.x += (width - font.x) / 2.5;
+        font.y = height / 2 - 1;
+    }
     g.addChild(font);
     return g;
 }
