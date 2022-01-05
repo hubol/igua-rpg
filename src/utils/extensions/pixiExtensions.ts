@@ -54,7 +54,7 @@ const lazyTickerHandler = {
         if (propKey === '_resolve') {
             return function (ticker: AsshatTicker) {
                 if (target._resolved) {
-                    console.error(`Attempt to resolve already resovled LazyTicker`, target);
+                    console.error(`Attempt to resolve already resolved LazyTicker`, target);
                     return;
                 }
                 target._queuedCalls.forEach(({ name, args }) => ticker[name](...args));
@@ -65,7 +65,7 @@ const lazyTickerHandler = {
         if (propKey === '_addReceiver') {
             return function (receiver) {
                 if (target._resolved) {
-                    console.error(`Attempt to add receiver to already-resovled LazyTicker`, target, receiver);
+                    console.error(`Attempt to add receiver to already-resolved LazyTicker`, target, receiver);
                     return;
                 }
                 target._receivers.push(receiver);
@@ -90,13 +90,13 @@ Object.defineProperty(PIXI.DisplayObject.prototype, "ticker", {
         if (this._ticker)
             return this._ticker;
 
-        if (this._lazyTicker)
-            return this._lazyTicker;
-
         if (this.parent) {
             const maybeTicker = this.parent.ticker;
             if (!isLazyTicker(maybeTicker))
                 return this._ticker = maybeTicker;
+
+            if (this._lazyTicker)
+                return this._lazyTicker;
 
             maybeTicker._addReceiver(ticker => {
                 this._ticker = ticker;

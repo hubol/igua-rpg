@@ -34,8 +34,11 @@ export function iguanaPuppet(args: IguanaPuppetArgs)
     return merge(puppetNoEngine, { engine, mods: makeIguanaMods(puppetNoEngine), walkTo: engine.walkTo });
 }
 
-export function iguanaHead(args: IguanaPuppetArgs) {
+export function iguanaHead(args: IguanaPuppetArgs, attachToBody = false) {
     if (args.fromLooks) {
+        if (!attachToBody)
+            args.head.pivot.set(0, 0);
+
         args.head.pivot.add(0, -15);
         return args.head;
     }
@@ -54,7 +57,7 @@ export function iguanaHead(args: IguanaPuppetArgs) {
 
 export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
 {
-    const head = iguanaHead(args);
+    const head = iguanaHead(args, true);
 
     if (!args.fromLooks) {
         args.body.pivot.y -= 5;

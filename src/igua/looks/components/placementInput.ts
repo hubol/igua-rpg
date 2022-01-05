@@ -65,7 +65,7 @@ export function placementInput(text: string, input: { value: Vector } & Placemen
             .beginFill(0x002C38);
 
         if (inputSelected)
-            g.lineStyle(2, 0x00FF00, 1, 0);
+            g.lineStyle(2, 0x00FF00, 1, 1);
 
         g.drawRect(0, 0, ss, ss);
         reticle.x = reticleVectorComponent(minX, maxX, input.value.x);

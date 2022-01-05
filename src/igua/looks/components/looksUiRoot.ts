@@ -7,8 +7,7 @@ import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 import {makeIguanaPuppetArgsFromLooks} from "../makeIguanaPuppetArgsFromLooks";
-import {iguanaHead, iguanaPuppet, IguanaPuppetArgs} from "../../puppet/iguanaPuppet";
-import {playerPuppetArgs} from "../../../gameObjects/player";
+import {iguanaPuppet, IguanaPuppetArgs} from "../../puppet/iguanaPuppet";
 import {sleep} from "../../../cutscene/sleep";
 
 export let looksContext: LooksContext;
@@ -108,7 +107,12 @@ export function looksUiRoot(defaultLooks: Looks) {
                 breadcrumbs.text = path.map(camelCaseToCapitalizedSpace).join(" > ");
         });
     breadcrumbs.tint = 0xbbbbbb;
-    c.addChild(breadcrumbs, pageContainer, preview(defaultLooks).at(160, 160), preview(defaultLooks, iguanaHead as any).at(160, 40));
+    c.addChild(
+        breadcrumbs,
+        pageContainer,
+        preview(defaultLooks).at(161, 160),
+        // preview(defaultLooks, iguanaHead as any).at(160, 40)
+    );
 
     return c;
 }
@@ -116,25 +120,26 @@ export function looksUiRoot(defaultLooks: Looks) {
 function previewIguanaPuppet(args: IguanaPuppetArgs) {
     const puppet = iguanaPuppet(args);
     return puppet.withAsync(async () => {
-        // while (true) {
-        //     await sleep(2000);
-        //     puppet.hspeed = puppet.engine.walkSpeed;
-        //     await sleep(2000);
-        //     puppet.hspeed = 0;
-        //     await sleep(2000);
-        //     puppet.isDucking = true;
-        //     await sleep(2000);
-        //     puppet.isDucking = false;
-        // }
-    })
+        setTimeout(() => console.log(puppet.ticker));
+        while (true) {
+            await sleep(2000);
+            puppet.hspeed = puppet.engine.walkSpeed;
+            await sleep(2000);
+            puppet.hspeed = 0;
+            await sleep(2000);
+            puppet.isDucking = true;
+            await sleep(2000);
+            puppet.isDucking = false;
+        }
+    });
 }
 
 function preview(looks: Looks, fn = previewIguanaPuppet) {
     const c = new Container();
-    const og = fn(playerPuppetArgs());
-    og.alpha = 0.5;
-
-    c.addChild(og);
+    // const og = fn(playerPuppetArgs());
+    // og.alpha = 0.5;
+    //
+    // c.addChild(og);
 
     let lastLooksJson: string;
     let puppet: DisplayObject;
