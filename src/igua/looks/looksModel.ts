@@ -71,14 +71,14 @@ const inputModel = {
         },
     },
     body: {
-        placement: placement(),
+        placement: placement(-4, -4, 4, 4),
         torso: {
             color,
             // shape: choice(torsoShapes),
         },
         tail: {
             color,
-            placement: placement(),
+            placement: placement(-8, -7, 4, 5),
             // shape: choice(tailShapes),
             club: {
                 color,

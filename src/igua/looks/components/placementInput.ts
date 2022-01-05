@@ -6,8 +6,9 @@ import {looksContext} from "./looksUiRoot";
 import {Vector} from "../../../utils/math/vector";
 import {makeKeyRepeat} from "../makeKeyRepeat";
 import {UiPlacementReticle} from "../../../textures";
+import {PlacementInput} from "../looksModel";
 
-export function placementInput(text: string, input: { value: Vector }, width = 96, height = 30) {
+export function placementInput(text: string, input: { value: Vector } & PlacementInput, width = 96, height = 30) {
     const c = merge(new Container(), { selected: false });
     const b = button(text, () => {});
 
@@ -22,8 +23,20 @@ export function placementInput(text: string, input: { value: Vector }, width = 9
     const reticle = Sprite.from(UiPlacementReticle);
     reticle.anchor.set(2/6, 2/6);
 
-    const ww = 22;
-    const hh = 22;
+    const ss = 22;
+
+    const minX = input.minX ?? -24;
+    const minY = input.minY ?? -24;
+    const maxX = input.maxX ?? 24;
+    const maxY = input.maxY ?? 24;
+
+    function reticleVectorComponent(min: number, max: number, v: number) {
+        const len = max - min;
+        if (len >= ss)
+            return v + ss / 2;
+        return ((v - min) / len) * ss;
+    }
+
     g.withStep(() => {
         if (inputSelected) {
             if (Key.isDown('ArrowLeft') && Key.isDown('ArrowRight')) {
@@ -43,6 +56,8 @@ export function placementInput(text: string, input: { value: Vector }, width = 9
                 v.y -= 1;
             if (down.justWentDown)
                 v.y += 1;
+            v.x = Math.max(minX, Math.min(maxX, v.x));
+            v.y = Math.max(minY, Math.min(maxY, v.y));
             input.value = v;
         }
 
@@ -52,9 +67,10 @@ export function placementInput(text: string, input: { value: Vector }, width = 9
         if (inputSelected)
             g.lineStyle(2, 0x00FF00, 1, 0);
 
-        g.drawRect(0, 0, ww, hh);
-        reticle.at(input.value.x + ww / 2, input.value.y + hh / 2);
-    }).at((30 - ww) / 2, (30 - hh) / 2);
+        g.drawRect(0, 0, ss, ss);
+        reticle.x = reticleVectorComponent(minX, maxX, input.value.x);
+        reticle.y = reticleVectorComponent(minY, maxY, input.value.y);
+    }).at((30 - ss) / 2, (30 - ss) / 2);
     g.addChild(reticle);
 
     c.withStep(() => {
