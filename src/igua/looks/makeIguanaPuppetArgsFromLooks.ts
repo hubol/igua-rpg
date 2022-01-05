@@ -1,7 +1,7 @@
 import {Looks} from "./looksModel";
 import {IguanaPuppetArgs} from "../puppet/iguanaPuppet";
 import {Sprite} from "pixi.js";
-import {footShapes, nailsShapes} from "./shapes";
+import {clubShapes, footShapes, nailsShapes, tailShapes, torsoShapes} from "./shapes";
 import {colord} from "colord";
 import {toHexColorString} from "../../utils/toHexColorString";
 import {container} from "../../utils/pixi/container";
@@ -11,9 +11,10 @@ export function makeIguanaPuppetArgsFromLooks(looks: Looks): IguanaPuppetArgs {
     const backRightFoot = makeFoot(looks.feet, "hind", false);
     const frontLeftFoot = makeFoot(looks.feet, "front", true);
     const frontRightFoot = makeFoot(looks.feet, "front", false);
+    const body = makeBody(looks.body);
 
     return {
-        body: container(),
+        body,
         crest: container(),
         eyes: container(),
         head: container(),
@@ -52,4 +53,21 @@ function makeFoot(feet: Feet, key: 'hind' | 'front', back: boolean) {
     nails.pivot.x -= foot.nails.placement;
     f.addChild(nails);
     return f;
+}
+
+type Body = Looks['body'];
+
+function makeBody(body: Body) {
+    const tail = Sprite.from(tailShapes[0]);
+    tail.tint = body.tail.color;
+    tail.pivot.set(5, 11).add(body.tail.placement, -1);
+    const club = Sprite.from(clubShapes[0]);
+    club.tint = body.tail.club.color;
+    club.pivot.at(tail.pivot).add(-3, 8).add(body.tail.club.placement, -1);
+    const torso = Sprite.from(torsoShapes[0]);
+    torso.tint = body.torso.color;
+    torso.pivot.set(-1, 5);
+    const c = container(tail, torso, club);
+    c.pivot.set(-body.placement.x, -body.placement.y);
+    return c;
 }

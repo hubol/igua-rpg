@@ -71,9 +71,9 @@ const inputModel = {
         },
     },
     body: {
+        placement: placement(),
         torso: {
             color,
-            placement: placement(),
             // shape: choice(torsoShapes),
         },
         tail: {

@@ -134,5 +134,7 @@ function preview(looks: Looks) {
         lastLooksJson = currentLooksJson;
     });
 
+    c.scale.set(3, 3);
+
     return c;
 }
