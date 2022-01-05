@@ -1,6 +1,6 @@
 import {button} from "./button";
 import {PageElement} from "./page";
-import {LooksInput, ValueInput} from "../looksModel";
+import {LooksInput} from "../looksModel";
 import {colorButton} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 import {valueSlider} from "./valueSlider";
@@ -20,9 +20,9 @@ export function makeModelPageElements(boundInputModel: BoundInputModel) {
             case "choice":
                 break;
             case "placement":
-                return placementInput(title, value);
+                return placementInput(title, value as any);
             case "value":
-                return valueSlider(title, value as any as ValueInput, { get: () => value.value, set: x => value.value = x });
+                return valueSlider(title, value as any, { get: () => value.value, set: x => value.value = x });
             case "boolean":
                 return checkboxInput(title, value);
             default:
@@ -46,7 +46,7 @@ export function makeModelPageElements(boundInputModel: BoundInputModel) {
     for (const e of elements) {
         if (e === elements[elements.length - 1])
             y += 15;
-        e.y = y;
+        e.y = Math.min(210, y);
         y += Math.max(30, e.height) + 3;
     }
 
