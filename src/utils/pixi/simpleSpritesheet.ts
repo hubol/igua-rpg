@@ -5,12 +5,12 @@ import {trimTextureFrame} from "./trimTextureFrame";
 
 export function subimageTextures(texture: Texture, subimages: number)
 {
-    const subimageWidth = texture.width / subimages;
+    const subimageWidth = texture.frame.width / subimages;
 
     const subimageTextures: Texture[] = [];
     for (let i = 0; i < subimages; i++)
     {
-        const subimageFrame = new Rectangle(i * subimageWidth, 0, subimageWidth, texture.height);
+        const subimageFrame = new Rectangle(texture.frame.x + i * subimageWidth, 0, subimageWidth, texture.height);
         const subimageTexture = new Texture(texture.baseTexture, subimageFrame);
         subimageTextures.push(subimageTexture);
     }
