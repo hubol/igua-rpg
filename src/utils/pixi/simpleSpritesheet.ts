@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js";
 import Texture = PIXI.Texture;
 import Rectangle = PIXI.Rectangle;
+import {trimTextureFrame} from "./trimTextureFrame";
 
 export function subimageTextures(texture: Texture, subimages: number)
 {
@@ -14,4 +15,10 @@ export function subimageTextures(texture: Texture, subimages: number)
         subimageTextures.push(subimageTexture);
     }
     return subimageTextures;
+}
+
+export function subimageTexturesTrim(texture: Texture, subimages: number) {
+    const textures = subimageTextures(texture, subimages)
+    textures.forEach(trimTextureFrame);
+    return textures;
 }

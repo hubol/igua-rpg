@@ -4,11 +4,11 @@ import {Hitbox} from "../types/hitbox";
 const canvas = document.createElement('canvas');
 const context = canvas.getContext('2d')!;
 
-export function getOpaquePixelsHitbox(texture: Texture) {
+export function getOpaquePixelsBounds(texture: Texture) {
     // @ts-ignore
-    const hitbox: Hitbox = texture.__opaquePixelsHitbox;
-    if (hitbox)
-        return hitbox;
+    const bounds: Hitbox = texture.__opaquePixelsBounds;
+    if (bounds)
+        return bounds;
     // @ts-ignore
     const image: HTMLImageElement | undefined = texture.baseTexture?.resource?.source;
     if (!image || !(image instanceof Image))
@@ -46,10 +46,10 @@ export function getOpaquePixelsHitbox(texture: Texture) {
     if (x1 === 0 && y1 === 0 && x2 === w - 1 && y2 === h - 1)
         return;
 
-    return setOpaquePixelsHitbox(texture, [x1 / w, y1 / h, x2 / w, y2 / h]);
+    return setOpaquePixelsBounds(texture, [x1, y1, x2, y2]);
 }
 
-function setOpaquePixelsHitbox(texture: Texture, hitbox: Hitbox): Hitbox {
+function setOpaquePixelsBounds(texture: Texture, hitbox: Hitbox): Hitbox {
     // @ts-ignore
-    return texture.__opaquePixelsHitbox = hitbox;
+    return texture.__opaquePixelsBounds = hitbox;
 }

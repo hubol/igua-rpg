@@ -2,7 +2,7 @@ import {Vector} from "../math/vector";
 import * as PIXI from "pixi.js";
 import {areRectanglesOverlapping, normalizeRectangle, rectangle as createRectangle} from "../math/rectangle";
 import {Hitbox} from "../types/hitbox";
-import {getOpaquePixelsHitbox} from "../pixi/getOpaquePixelsBounds";
+import {getOpaquePixelsBounds} from "../pixi/getOpaquePixelsBounds";
 
 declare global {
     namespace PIXI {
@@ -20,9 +20,13 @@ declare global {
 }
 
 PIXI.Sprite.prototype.trimHitbox = function () {
-    const hitbox = getOpaquePixelsHitbox(this.texture);
-    if (hitbox)
-        this.hitbox = [...hitbox];
+    const bounds = getOpaquePixelsBounds(this.texture);
+    if (bounds)
+        this.hitbox = [
+            bounds[0] / this.texture.width,
+            bounds[1] / this.texture.height,
+            bounds[2] / this.texture.width,
+            bounds[3] / this.texture.height];
     return this;
 }
 
