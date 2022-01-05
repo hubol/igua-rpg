@@ -92,8 +92,8 @@ const inputModel = {
         nailColor: color,
         front: foot,
         hind: foot,
-        gap: value(),
-        backOffset: value(),
+        gap: value(-3, 8),
+        backOffset: value(0, 7),
     }
 }
 

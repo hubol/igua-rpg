@@ -94,7 +94,10 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
         }
     });
     player.addChild(args.backLeftFoot, args.frontLeftFoot, body, args.backRightFoot, args.frontRightFoot);
-    player.pivot.set(11, 17);
+    if (!args.fromLooks)
+        player.pivot.set(11, 17);
+    else
+        player.pivot.set(1, -10);
 
     const canBlink = "closedUnit" in args.eyes;
 
