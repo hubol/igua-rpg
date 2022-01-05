@@ -51,6 +51,16 @@ export let KeyRed: PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture;
 export let LightShelf: PIXI.Texture;
 export let LockedDoor: PIXI.Texture;
+export let LooksClub: PIXI.Texture;
+export let LooksCrest: PIXI.Texture;
+export let LooksEye: PIXI.Texture;
+export let LooksFoot: PIXI.Texture;
+export let LooksHead: PIXI.Texture;
+export let LooksMouth: PIXI.Texture;
+export let LooksNails: PIXI.Texture;
+export let LooksPupil: PIXI.Texture;
+export let LooksTail: PIXI.Texture;
+export let LooksTorso: PIXI.Texture;
 export let MessageBox: PIXI.Texture;
 export let NpcBlueFoot2: PIXI.Texture;
 export let NpcBlueFootRear2: PIXI.Texture;
@@ -265,6 +275,36 @@ export function loadTexturesAsync()
 
     const LockedDoorPath = require("./images/locked door.png");
     loader.add(LockedDoorPath); 
+
+    const LooksClubPath = require("./images/looks/club.png");
+    loader.add(LooksClubPath); 
+
+    const LooksCrestPath = require("./images/looks/crest.png");
+    loader.add(LooksCrestPath); 
+
+    const LooksEyePath = require("./images/looks/eye.png");
+    loader.add(LooksEyePath); 
+
+    const LooksFootPath = require("./images/looks/foot.png");
+    loader.add(LooksFootPath); 
+
+    const LooksHeadPath = require("./images/looks/head.png");
+    loader.add(LooksHeadPath); 
+
+    const LooksMouthPath = require("./images/looks/mouth.png");
+    loader.add(LooksMouthPath); 
+
+    const LooksNailsPath = require("./images/looks/nails.png");
+    loader.add(LooksNailsPath); 
+
+    const LooksPupilPath = require("./images/looks/pupil.png");
+    loader.add(LooksPupilPath); 
+
+    const LooksTailPath = require("./images/looks/tail.png");
+    loader.add(LooksTailPath); 
+
+    const LooksTorsoPath = require("./images/looks/torso.png");
+    loader.add(LooksTorsoPath); 
 
     const MessageBoxPath = require("./images/message box.png");
     loader.add(MessageBoxPath); 
@@ -505,6 +545,16 @@ export function loadTexturesAsync()
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
             LightShelf = resources[LightShelfPath]?.texture as PIXI.Texture;
             LockedDoor = resources[LockedDoorPath]?.texture as PIXI.Texture;
+            LooksClub = resources[LooksClubPath]?.texture as PIXI.Texture;
+            LooksCrest = resources[LooksCrestPath]?.texture as PIXI.Texture;
+            LooksEye = resources[LooksEyePath]?.texture as PIXI.Texture;
+            LooksFoot = resources[LooksFootPath]?.texture as PIXI.Texture;
+            LooksHead = resources[LooksHeadPath]?.texture as PIXI.Texture;
+            LooksMouth = resources[LooksMouthPath]?.texture as PIXI.Texture;
+            LooksNails = resources[LooksNailsPath]?.texture as PIXI.Texture;
+            LooksPupil = resources[LooksPupilPath]?.texture as PIXI.Texture;
+            LooksTail = resources[LooksTailPath]?.texture as PIXI.Texture;
+            LooksTorso = resources[LooksTorsoPath]?.texture as PIXI.Texture;
             MessageBox = resources[MessageBoxPath]?.texture as PIXI.Texture;
             NpcBlueFoot2 = resources[NpcBlueFoot2Path]?.texture as PIXI.Texture;
             NpcBlueFootRear2 = resources[NpcBlueFootRear2Path]?.texture as PIXI.Texture;

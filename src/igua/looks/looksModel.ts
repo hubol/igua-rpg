@@ -1,14 +1,4 @@
 import {Vector} from "../../utils/math/vector";
-import {
-    crestShapes,
-    eyeShapes,
-    footShapes,
-    hornShapes,
-    mouthShapes,
-    nailShapes,
-    pupilShapes, tailShapes,
-    torsoShapes
-} from "./shapes";
 
 const p = 'placement' as const;
 const placement = (minX?: number, minY?: number, maxX?: number, maxY?: number) =>
