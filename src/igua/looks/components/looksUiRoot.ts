@@ -7,8 +7,9 @@ import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 import {makeIguanaPuppetArgsFromLooks} from "../makeIguanaPuppetArgsFromLooks";
-import {iguanaHead, iguanaPuppet} from "../../puppet/iguanaPuppet";
+import {iguanaHead, iguanaPuppet, IguanaPuppetArgs} from "../../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../../gameObjects/player";
+import {sleep} from "../../../cutscene/sleep";
 
 export let looksContext: LooksContext;
 
@@ -112,7 +113,23 @@ export function looksUiRoot(defaultLooks: Looks) {
     return c;
 }
 
-function preview(looks: Looks, fn = iguanaPuppet) {
+function previewIguanaPuppet(args: IguanaPuppetArgs) {
+    const puppet = iguanaPuppet(args);
+    return puppet.withAsync(async () => {
+        // while (true) {
+        //     await sleep(2000);
+        //     puppet.hspeed = puppet.engine.walkSpeed;
+        //     await sleep(2000);
+        //     puppet.hspeed = 0;
+        //     await sleep(2000);
+        //     puppet.isDucking = true;
+        //     await sleep(2000);
+        //     puppet.isDucking = false;
+        // }
+    })
+}
+
+function preview(looks: Looks, fn = previewIguanaPuppet) {
     const c = new Container();
     const og = fn(playerPuppetArgs());
     og.alpha = 0.5;

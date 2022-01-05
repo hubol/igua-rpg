@@ -35,13 +35,16 @@ export function iguanaPuppet(args: IguanaPuppetArgs)
 }
 
 export function iguanaHead(args: IguanaPuppetArgs) {
-    if (!args.fromLooks) {
-        args.crest.pivot.x += 3;
-        args.crest.pivot.y += 5;
-
-        args.eyes.pivot.x += -7;
-        args.eyes.pivot.y += -3;
+    if (args.fromLooks) {
+        args.head.pivot.add(0, -15);
+        return args.head;
     }
+
+    args.crest.pivot.x += 3;
+    args.crest.pivot.y += 5;
+
+    args.eyes.pivot.x += -7;
+    args.eyes.pivot.y += -3;
 
     const head = new Container();
 
@@ -70,6 +73,8 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
 
         head.pivot.set(-15, -5);
     }
+    else
+        head.pivot.add(-5, 22);
 
     const body = new Container();
     body.addChild(args.body, head);

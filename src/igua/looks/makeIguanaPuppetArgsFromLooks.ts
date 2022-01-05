@@ -1,7 +1,16 @@
 import {Looks} from "./looksModel";
 import {IguanaPuppetArgs} from "../puppet/iguanaPuppet";
 import {Sprite} from "pixi.js";
-import {clubShapes, footShapes, headShapes, mouthShapes, nailsShapes, tailShapes, torsoShapes} from "./shapes";
+import {
+    clubShapes,
+    footShapes,
+    faceShapes,
+    mouthShapes,
+    nailsShapes,
+    tailShapes,
+    torsoShapes,
+    crestShapes
+} from "./shapes";
 import {colord} from "colord";
 import {toHexColorString} from "../../utils/toHexColorString";
 import {container} from "../../utils/pixi/container";
@@ -12,11 +21,11 @@ export function makeIguanaPuppetArgsFromLooks(looks: Looks): IguanaPuppetArgs {
     const frontLeftFoot = makeFoot(looks.feet, "front", true);
     const frontRightFoot = makeFoot(looks.feet, "front", false);
     const body = makeBody(looks.body);
-    const head = makeHead(looks.head);
+    const { head, crest } = makeHead(looks.body, looks.head);
 
     return {
         body,
-        crest: container(),
+        crest,
         eyes: container(),
         head,
         backLeftFoot,
@@ -75,12 +84,27 @@ function makeBody(body: Body) {
 
 type Head = Looks['head'];
 
-function makeHead(head: Head) {
-    const face = Sprite.from(headShapes[0]);
+function makeHead(body: Body, head: Head) {
+    const face = Sprite.from(faceShapes[0]);
     face.tint = head.color;
     const mouth = Sprite.from(mouthShapes[0]);
     mouth.tint = head.mouth.color;
     mouth.pivot.set(-13, 1).add(head.mouth.placement, -1);
     face.addChild(mouth);
-    return face;
+
+    const crest = makeCrest(head.crest);
+    crest.pivot.add(-4, 13);
+    const h = container(crest, face);
+    h.pivot.add(body.placement, -1).add(head.placement, -1);
+
+    return { crest, head: h };
+}
+
+type Crest = Head['crest'];
+
+function makeCrest(crest: Crest) {
+    const c = Sprite.from(crestShapes[0]);
+    c.pivot.add(crest.placement, -1);
+    c.tint = crest.color;
+    return c;
 }
