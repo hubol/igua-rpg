@@ -1,4 +1,4 @@
-import {Container} from "pixi.js";
+import {Container, DisplayObject} from "pixi.js";
 import {IguaText} from "../../text";
 import {getLooksInputModel, Looks, LooksInputModel} from "../looksModel";
 import {bindLooks} from "../bindLooks";
@@ -7,7 +7,6 @@ import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 import {makeIguanaPuppetArgsFromLooks} from "../makeIguanaPuppetArgsFromLooks";
-import {makeIguanaPuppetEngine} from "../../puppet/engine";
 import {iguanaPuppet} from "../../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../../gameObjects/player";
 
@@ -108,17 +107,32 @@ export function looksUiRoot(defaultLooks: Looks) {
                 breadcrumbs.text = path.map(camelCaseToCapitalizedSpace).join(" > ");
         });
     breadcrumbs.tint = 0xbbbbbb;
-    c.addChild(breadcrumbs, pageContainer);
-
-    showPreview(c, defaultLooks);
+    c.addChild(breadcrumbs, pageContainer, preview(defaultLooks).at(160, 160));
 
     return c;
 }
 
-function showPreview(c: Container, looks: Looks) {
-    const args = makeIguanaPuppetArgsFromLooks(looks);
-    const og = iguanaPuppet(playerPuppetArgs()).at(160, 160);
+function preview(looks: Looks) {
+    const c = new Container();
+    const og = iguanaPuppet(playerPuppetArgs());
     og.alpha = 0.5;
-    const puppet = iguanaPuppet(args).at(160, 160);
-    c.addChild(og, puppet);
+
+    c.addChild(og);
+
+    let lastLooksJson: string;
+    let puppet: DisplayObject;
+    c.withStep(() => {
+        const currentLooksJson = JSON.stringify(looks);
+        if (puppet && currentLooksJson === lastLooksJson)
+            return;
+
+        if (puppet)
+            puppet.destroy();
+        const args = makeIguanaPuppetArgsFromLooks(looks);
+        puppet = iguanaPuppet(args);
+        c.addChild(puppet);
+        lastLooksJson = currentLooksJson;
+    });
+
+    return c;
 }

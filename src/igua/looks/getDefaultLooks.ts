@@ -61,7 +61,7 @@ export function getDefaultLooks(): Looks {
                     placement: 2,
                 }
             },
-            gap: 1,
+            gap: 2,
             backOffset: 3
         }
 

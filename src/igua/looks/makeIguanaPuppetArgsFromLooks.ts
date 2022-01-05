@@ -28,7 +28,7 @@ export function makeIguanaPuppetArgsFromLooks(looks: Looks): IguanaPuppetArgs {
 function makeFootTint(color: number, back: boolean) {
     if (!back)
         return color;
-    return colord(toHexColorString(color)).darken(0.2).saturate(0.1).toPixi();
+    return colord(toHexColorString(color)).saturate(0.1).darken(0.225).toPixi();
 }
 
 type Feet = Looks['feet'];
