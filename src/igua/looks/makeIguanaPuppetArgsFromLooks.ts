@@ -9,7 +9,7 @@ import {
     nailsShapes,
     tailShapes,
     torsoShapes,
-    crestShapes
+    crestShapes, eyeShapes, pupilShapes
 } from "./shapes";
 import {colord} from "colord";
 import {toHexColorString} from "../../utils/toHexColorString";
@@ -94,7 +94,10 @@ function makeHead(body: Body, head: Head) {
 
     const crest = makeCrest(head.crest);
     crest.pivot.add(-4, 13);
-    const h = container(crest, face);
+
+    const eyes = makeEyes(head.eyes);
+
+    const h = container(crest, face, eyes);
     h.pivot.add(body.placement, -1).add(head.placement, -1);
 
     return { crest, head: h };
@@ -107,4 +110,24 @@ function makeCrest(crest: Crest) {
     c.pivot.add(crest.placement, -1);
     c.tint = crest.color;
     return c;
+}
+
+type Eyes = Head['eyes'];
+type Pupils = Eyes['pupils'];
+
+function makeEye(eyes: Eyes, xscale: number) {
+    const eye = Sprite.from(eyeShapes[0]);
+    const pupil = Sprite.from(pupilShapes[0]);
+    pupil.pivot.add(eyes.pupils.placement, -1);
+    pupil.tint = eyes.pupils.color;
+    eye.addChild(pupil);
+    return eye;
+}
+
+function makeEyes(eyes: Eyes) {
+    const left = makeEye(eyes, 1);
+    const right = makeEye(eyes, -1);
+    const e = container(left, right);
+    e.pivot.add(eyes.placement, -1);
+    return e;
 }

@@ -24,8 +24,8 @@ function textures(texture: Texture, width: number, pixelAnchor: Vector) {
 }
 
 export const crestShapes = textures(LooksCrest, 16, [10, 10]);
-export const eyeShapes = textures(LooksEye, 8, [7, 8]);
-export const pupilShapes = textures(LooksPupil, 8, [8, 4]);
+export const eyeShapes = textures(LooksEye, 8, [7, 5]);
+export const pupilShapes = textures(LooksPupil, 8, [6, 4]);
 export const mouthShapes = textures(LooksMouth, 12, [7, 7]);
 export const torsoShapes = textures(LooksTorso, 24, [12, 17]);
 export const faceShapes = textures(LooksHead, 18, [0, 16]);
