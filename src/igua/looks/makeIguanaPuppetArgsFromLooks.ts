@@ -1,6 +1,6 @@
 import {Looks} from "./looksModel";
 import {IguanaPuppetArgs} from "../puppet/iguanaPuppet";
-import {Sprite} from "pixi.js";
+import {BaseRenderTexture, Graphics, RenderTexture, Sprite} from "pixi.js";
 import {
     clubShapes,
     footShapes,
@@ -14,6 +14,8 @@ import {
 import {colord} from "colord";
 import {toHexColorString} from "../../utils/toHexColorString";
 import {container} from "../../utils/pixi/container";
+import {game} from "../game";
+import {app} from "electron";
 
 export function makeIguanaPuppetArgsFromLooks(looks: Looks): IguanaPuppetArgs {
     const backLeftFoot = makeFoot(looks.feet, "hind", true);
@@ -113,21 +115,31 @@ function makeCrest(crest: Crest) {
 }
 
 type Eyes = Head['eyes'];
-type Pupils = Eyes['pupils'];
-
-function makeEye(eyes: Eyes, xscale: number) {
-    const eye = Sprite.from(eyeShapes[0]);
-    const pupil = Sprite.from(pupilShapes[0]);
-    pupil.pivot.add(eyes.pupils.placement, -1);
-    pupil.tint = eyes.pupils.color;
-    eye.addChild(pupil);
-    return eye;
-}
 
 function makeEyes(eyes: Eyes) {
-    const left = makeEye(eyes, 1);
-    const right = makeEye(eyes, -1);
-    const e = container(left, right);
-    e.pivot.add(eyes.placement, -1);
+    const leftShape = () => Sprite.from(eyeShapes[0]);
+    const rightShape = () => {
+        const sprite = leftShape();
+        sprite.scale.x = -1;
+        sprite.pivot.x += eyes.gap;
+        return sprite;
+    };
+    const pupil = () => {
+        const sprite = Sprite.from(pupilShapes[0]);
+        sprite.tint = eyes.pupils.color;
+        return sprite;
+    };
+
+    const leftPupil = pupil();
+    leftPupil.pivot.add(eyes.pupils.placement, -1);
+    leftPupil.mask = leftShape();
+    const rightPupil = pupil();
+    rightPupil.scale.x *= -1;
+    rightPupil.pivot.x += eyes.gap;
+    rightPupil.pivot.add(eyes.pupils.placement, -1);
+    rightPupil.mask = rightShape();
+
+    const e = container(leftShape(), rightShape(), leftPupil.mask, rightPupil.mask, leftPupil, rightPupil);
+    e.pivot.add(-12, 8).add(eyes.placement, -1);
     return e;
 }
