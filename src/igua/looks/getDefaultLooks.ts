@@ -17,8 +17,7 @@ export function getDefaultLooks(): Looks {
                 pupils: {
                     color: 0x9957AF,
                     placement: [0, 0],
-                    mirroredShape: false,
-                    mirroredPlacement: true
+                    mirrored: true,
                 }
             },
             horn: {

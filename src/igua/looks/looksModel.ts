@@ -51,8 +51,7 @@ const inputModel = {
                 placement: placement(),
                 // shape: choice(pupilShapes),
                 color,
-                mirroredPlacement: bool,
-                mirroredShape: bool,
+                mirrored: bool,
             },
             // lids: {
             //     up: value(),

@@ -134,9 +134,16 @@ function makeEyes(eyes: Eyes) {
     leftPupil.pivot.add(eyes.pupils.placement, -1);
     leftPupil.mask = leftShape();
     const rightPupil = pupil();
-    rightPupil.scale.x *= -1;
-    rightPupil.pivot.x += eyes.gap;
-    rightPupil.pivot.add(eyes.pupils.placement, -1);
+    if (eyes.pupils.mirrored) {
+        rightPupil.scale.x *= -1;
+        rightPupil.pivot.x += eyes.gap;
+        rightPupil.pivot.add(eyes.pupils.placement, -1);
+    }
+    else {
+        const fromLeft = leftPupil.getBounds().x - leftPupil.mask.getBounds().x;
+        rightPupil.pivot.x -= eyes.gap + leftPupil.width;
+        rightPupil.pivot.add(-fromLeft, -eyes.pupils.placement.y);
+    }
     rightPupil.mask = rightShape();
 
     const e = container(leftShape(), rightShape(), leftPupil.mask, rightPupil.mask, leftPupil, rightPupil);
