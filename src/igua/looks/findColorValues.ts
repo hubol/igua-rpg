@@ -18,7 +18,7 @@ export function findInputs(input: LooksInputModel, kind: LooksInput['kind'], res
         // @ts-ignore
         result.push(input);
     }
-    else if (typeof input === 'object') {
+    else if (typeof input === 'object' && input.constructor === Object) {
         const keys = Object.keys(input);
         keys.forEach(k => findInputs(input[k], kind, result));
     }

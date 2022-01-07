@@ -23,7 +23,7 @@ function inspirationPageElements(): PageElement[] {
     }
 
     function randomizeShapes() {
-        const inputs = findChoiceInputs(looksContext.inputModel);
+        const inputs = findChoiceInputs(looksContext.inputModel).filter(x => x !== looksContext.inputModel.head.mouth.shape);
         inputs.forEach(x => x.value = rng.int(x.options.length + (x.allowNone ? 1 : 0)) - (x.allowNone ? 1 : 0));
     }
 

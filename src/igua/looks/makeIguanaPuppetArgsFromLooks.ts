@@ -129,12 +129,11 @@ type Crest = Head['crest'];
 
 function makeCrest(crest: Crest) {
     const c = Sprite.from(crestShapes[crest.shape]);
-    c.pivot.add(-4, 13);
+    c.pivot.add(-4, 13).add(crest.placement, -1);
     if (crest.flipV)
         flipV(c);
     if (crest.flipH)
         flipH(c);
-    c.pivot.add(crest.placement, -1);
     c.tint = crest.color;
     return c;
 }

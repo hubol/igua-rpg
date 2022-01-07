@@ -53,7 +53,7 @@ export function getLooksInputModel() {
         shape: choice(footShapes),
         flipV: bool(),
         claws: {
-            shape: choice(clawsShapes),
+            shape: choice(clawsShapes, true),
             placement: value(),
         }
     });
