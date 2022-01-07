@@ -54,7 +54,7 @@ export function getLooksInputModel() {
         flipV: bool(),
         claws: {
             shape: choice(clawsShapes, true),
-            placement: value(),
+            placement: value(-3, 5),
         }
     });
 
@@ -71,7 +71,7 @@ export function getLooksInputModel() {
             },
             eyes: {
                 placement: placement(-7, -6, 3, 5),
-                gap: value(),
+                gap: value(0, 8),
                 // shape: choice(eyeShapes),
                 pupils: {
                     shape: choice(pupilShapes),

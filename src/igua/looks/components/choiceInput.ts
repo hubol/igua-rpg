@@ -40,21 +40,44 @@ export function choiceInput(input: ChoiceInput<Texture> & { value: number }, wid
     const maxHeight = Math.max(...options.map(x => x.height), allowNone ? 7 : 0);
 
     let choiceCount = 0;
+    let firstTime = true;
     function choice(texture: Texture, index: number) {
         const gw = maxWidth + 4;
-        const gh = 15;
-        const s = Sprite.from(texture).at(gw / 2, gh / 2);
+        const s = Sprite.from(texture);
+        s.x = gw / 2;
         s.x += choiceCount++ * (maxWidth + 2);
         s.anchor.set(Math.ceil(texture.width / 2) / texture.width, Math.ceil(texture.height / 2) / texture.height);
         const tint = index === -1 ? 0xD86050 : 0xffffff;
         s.withStep(() => {
-           s.tint = input.value === index ? tint : 0x002C38;
+            const selected = input.value === index;
+            s.tint = selected ? tint : 0x002C38;
+            if (selected) {
+                const childrenIndex = allowNone ? index + 1 : index;
+                const keepInside = choicesContainer.children[childrenIndex + 1] ?? s;
+
+                let iterations = firstTime ? 30 : 1;
+
+                while (iterations-- > 0) {
+                    const rightBounds = keepInside.getBounds();
+                    const left = s.getBounds().x;
+                    const right = rightBounds.x + rightBounds.width;
+
+                    if (left < maxWidth / 2)
+                        choicesContainer.x += 3;
+                    else if (right > 94)
+                        choicesContainer.x -= 3;
+                }
+
+                firstTime = false;
+            }
         });
         return s;
     }
 
     const choicesContainer = new Container();
+    choicesContainer.mask = new Graphics().beginFill(0xffffff).drawRect(2, 2, width - 4, height - 4);
 
+    choicesContainer.y = 15;
     if (maxWidth < 15 && maxHeight < 15)
         choicesContainer.scale.set(2, 2);
 
@@ -63,7 +86,7 @@ export function choiceInput(input: ChoiceInput<Texture> & { value: number }, wid
 
     choicesContainer.addChild(...choices)
 
-    c.addChild(g, choicesContainer);
+    c.addChild(g, choicesContainer.mask, choicesContainer);
 
     return c;
 }
