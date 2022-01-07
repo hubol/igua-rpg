@@ -153,6 +153,10 @@ function preview(looks: Looks, fn = previewIguanaPuppet) {
         const args = makeIguanaPuppetArgsFromLooks(looks);
         puppet = fn(args);
         c.addChild(puppet);
+        // const bounds = c.getBounds();
+        // const leftMargin = Math.floor((157 - bounds.width) / 2);
+        // const left = 99 + leftMargin;
+        // c.x += left - bounds.x;
         lastLooksJson = currentLooksJson;
     });
 
