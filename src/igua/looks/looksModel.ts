@@ -23,7 +23,6 @@ export type LooksInput = ChoiceInput<unknown> | PlacementInput | ValueInput | Co
 const foot = {
     // color,
     // shape: choice(footShapes),
-    flipH: bool,
     flipV: bool,
     nails: {
         // color,
@@ -34,7 +33,7 @@ const foot = {
 
 const inputModel = {
     head: {
-        placement: placement(),
+        placement: placement(-5, -8, 5, 2),
         color,
         crest: {
             color,
@@ -44,11 +43,11 @@ const inputModel = {
             flipV: bool,
         },
         eyes: {
-            placement: placement(),
+            placement: placement(-7, -6, 3, 5),
             gap: value(),
             // shape: choice(eyeShapes),
             pupils: {
-                placement: placement(),
+                placement: placement(-7, -7, 5, 5),
                 // shape: choice(pupilShapes),
                 color,
                 mirrored: bool,
@@ -65,7 +64,8 @@ const inputModel = {
         },
         mouth: {
             color,
-            placement: placement(),
+            placement: placement(-8, -5, 4, 4),
+            flipV: bool,
             // shape: choice(mouthShapes),
         },
     },
@@ -73,6 +73,7 @@ const inputModel = {
         placement: placement(-4, -4, 4, 4),
         torso: {
             color,
+            flipV: bool,
             // shape: choice(torsoShapes),
         },
         tail: {

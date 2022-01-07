@@ -27,12 +27,14 @@ export function getDefaultLooks(): Looks {
             mouth: {
                 color: 0x9957AF,
                 placement: [0, 0],
+                flipV: false,
             },
         },
         body: {
             placement: [0, 0],
             torso: {
                 color: 0xCC70BB,
+                flipV: false,
             },
             tail: {
                 color: 0xCC70BB,
@@ -48,14 +50,12 @@ export function getDefaultLooks(): Looks {
             nailColor: 0x92B233,
             front: {
                 flipV: false,
-                flipH: false,
                 nails: {
                     placement: 2,
                 }
             },
             hind: {
                 flipV: false,
-                flipH: false,
                 nails: {
                     placement: 2,
                 }

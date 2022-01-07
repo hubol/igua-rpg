@@ -54,12 +54,6 @@ type Feet = Looks['feet'];
 function makeFoot(feet: Feet, key: 'hind' | 'front', back: boolean) {
     const foot = feet[key];
     const f = Sprite.from(footShapes[0]);
-    if (foot.flipH)
-        f.scale.x = -1;
-    if (foot.flipV) {
-        f.pivot.y -= f.height;
-        f.scale.y = -1;
-    }
     if (back)
         f.pivot.x -= feet.backOffset;
     const gap = (7 + feet.gap) / 2;
@@ -69,6 +63,12 @@ function makeFoot(feet: Feet, key: 'hind' | 'front', back: boolean) {
     nails.tint = makeFootTint(feet.nailColor, back);
     nails.pivot.x -= foot.nails.placement;
     f.addChild(nails);
+    if (foot.flipV) {
+        f.pivot.y -= f.height;
+        f.scale.y = -1;
+        nails.scale.y = -1;
+        nails.pivot.y -= f.height;
+    }
     return f;
 }
 
@@ -84,6 +84,8 @@ function makeBody(body: Body) {
     const torso = Sprite.from(torsoShapes[0]);
     torso.tint = body.torso.color;
     torso.pivot.set(-1, 5);
+    if (body.torso.flipV)
+        flipV(torso);
     const c = container(tail, torso, club);
     c.pivot.set(-body.placement.x, -body.placement.y);
     return c;
@@ -97,10 +99,11 @@ function makeHead(body: Body, head: Head) {
     const mouth = Sprite.from(mouthShapes[0]);
     mouth.tint = head.mouth.color;
     mouth.pivot.set(-13, 1).add(head.mouth.placement, -1);
+    if (head.mouth.flipV)
+        flipV(mouth);
     face.addChild(mouth);
 
     const crest = makeCrest(head.crest);
-    crest.pivot.add(-4, 13);
 
     const eyes = makeEyes(head);
 
@@ -114,6 +117,11 @@ type Crest = Head['crest'];
 
 function makeCrest(crest: Crest) {
     const c = Sprite.from(crestShapes[0]);
+    c.pivot.add(-4, 13);
+    if (crest.flipV)
+        flipV(c);
+    if (crest.flipH)
+        flipH(c);
     c.pivot.add(crest.placement, -1);
     c.tint = crest.color;
     return c;
@@ -183,4 +191,23 @@ function makeEyes(head: Head) {
     eyes.pivot.add(-7, 12).add(head.eyes.placement, -1);
 
     return merge(eyes, eyelidsControl) as IguanaEyes;
+}
+
+function flipH(sprite: Sprite, flip: boolean = true) {
+    return flipXY(sprite, 'x', flip);
+}
+
+function flipV(sprite: Sprite, flip: boolean = true) {
+    return flipXY(sprite, 'y', flip);
+}
+
+function flipXY(sprite: Sprite, key: 'x' | 'y', flip: boolean = true) {
+    if (flip) {
+        const ogBounds = sprite.getBounds(false).vcpy();
+        sprite.scale[key] *= -1;
+        const bounds = sprite.getBounds(false).vcpy();
+        sprite.pivot.add(bounds.add(ogBounds, -1), -1);
+    }
+
+    return sprite;
 }
