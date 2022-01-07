@@ -6,7 +6,7 @@ import {
     footShapes,
     faceShapes,
     mouthShapes,
-    nailsShapes,
+    clawsShapes,
     tailShapes,
     torsoShapes,
     crestShapes, eyeShapes, pupilShapes
@@ -53,21 +53,26 @@ type Feet = Looks['feet'];
 
 function makeFoot(feet: Feet, key: 'hind' | 'front', back: boolean) {
     const foot = feet[key];
-    const f = Sprite.from(footShapes[0]);
+    const f = Sprite.from(footShapes[foot.shape]);
     if (back)
         f.pivot.x -= feet.backOffset;
     const gap = (7 + feet.gap) / 2;
     f.pivot.x += key === 'front' ? -Math.ceil(gap) : Math.floor(gap);
     f.tint = makeFootTint(feet.color, back);
-    const nails = Sprite.from(nailsShapes[0]);
-    nails.tint = makeFootTint(feet.clawColor, back);
-    nails.pivot.x -= foot.claws.placement;
-    f.addChild(nails);
+    const clawsShape = clawsShapes[foot.claws.shape];
+    const claws = clawsShape ? Sprite.from(clawsShape) : undefined;
+    if (claws) {
+        claws.tint = makeFootTint(feet.clawColor, back);
+        claws.pivot.x -= foot.claws.placement;
+        f.addChild(claws);
+    }
     if (foot.flipV) {
         f.pivot.y -= f.height;
         f.scale.y = -1;
-        nails.scale.y = -1;
-        nails.pivot.y -= f.height;
+        if (claws) {
+            claws.scale.y = -1;
+            claws.pivot.y -= f.height;
+        }
     }
     return f;
 }
@@ -75,18 +80,25 @@ function makeFoot(feet: Feet, key: 'hind' | 'front', back: boolean) {
 type Body = Looks['body'];
 
 function makeBody(body: Body) {
-    const tail = Sprite.from(tailShapes[0]);
+    const tail = Sprite.from(tailShapes[body.tail.shape]);
     tail.tint = body.tail.color;
     tail.pivot.set(5, 11).add(body.tail.placement, -1);
-    const club = Sprite.from(clubShapes[0]);
-    club.tint = body.tail.club.color;
-    club.pivot.at(tail.pivot).add(-3, 8).add(body.tail.club.placement, -1);
-    const torso = Sprite.from(torsoShapes[0]);
+    const torso = Sprite.from(torsoShapes[body.torso.shape]);
     torso.tint = body.torso.color;
     torso.pivot.set(-1, 5);
     if (body.torso.flipV)
         flipV(torso);
-    const c = container(tail, torso, club);
+
+    const c = container(tail, torso);
+
+    const clubShape = clubShapes[body.tail.club.shape];
+    if (clubShape) {
+        const club = Sprite.from(clubShape);
+        club.tint = body.tail.club.color;
+        club.pivot.at(tail.pivot).add(-3, 8).add(body.tail.club.placement, -1);
+        c.addChild(club);
+    }
+
     c.pivot.set(-body.placement.x, -body.placement.y);
     return c;
 }
@@ -96,7 +108,7 @@ type Head = Looks['head'];
 function makeHead(body: Body, head: Head) {
     const face = Sprite.from(faceShapes[0]);
     face.tint = head.color;
-    const mouth = Sprite.from(mouthShapes[0]);
+    const mouth = Sprite.from(mouthShapes[head.mouth.shape]);
     mouth.tint = head.mouth.color;
     mouth.pivot.set(-13, 1).add(head.mouth.placement, -1);
     if (head.mouth.flipV)
@@ -116,7 +128,7 @@ function makeHead(body: Body, head: Head) {
 type Crest = Head['crest'];
 
 function makeCrest(crest: Crest) {
-    const c = Sprite.from(crestShapes[0]);
+    const c = Sprite.from(crestShapes[crest.shape]);
     c.pivot.add(-4, 13);
     if (crest.flipV)
         flipV(c);
@@ -145,7 +157,7 @@ function makeEyesTexture(eyes: Eyes, mask: boolean) {
         return sprite;
     };
     const pupil = () => {
-        const sprite = Sprite.from(pupilShapes[0]);
+        const sprite = Sprite.from(pupilShapes[eyes.pupils.shape]);
         sprite.tint = eyes.pupils.color;
         sprite.visible = !mask;
         return sprite;

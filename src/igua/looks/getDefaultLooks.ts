@@ -6,6 +6,7 @@ export function getDefaultLooks(): Looks {
             color: 0xCCAE0A,
             placement: [0, 0],
             crest: {
+                shape: 0,
                 color: 0xCC2C42,
                 placement: [0, 0],
                 flipV: false,
@@ -15,6 +16,7 @@ export function getDefaultLooks(): Looks {
                 placement: [0, 0],
                 gap: 1,
                 pupils: {
+                    shape: 0,
                     color: 0x9957AF,
                     placement: [0, 0],
                     mirrored: true,
@@ -25,6 +27,7 @@ export function getDefaultLooks(): Looks {
                 placement: [0, 0]
             },
             mouth: {
+                shape: 0,
                 color: 0x9957AF,
                 placement: [0, 0],
                 flipV: false,
@@ -33,13 +36,16 @@ export function getDefaultLooks(): Looks {
         body: {
             placement: [0, 0],
             torso: {
+                shape: 0,
                 color: 0xCC70BB,
                 flipV: false,
             },
             tail: {
+                shape: 0,
                 color: 0xCC70BB,
                 placement: [0, 0],
                 club: {
+                    shape: -1,
                     color: 0x0C4CCC,
                     placement: [0, 0],
                 }
@@ -49,14 +55,18 @@ export function getDefaultLooks(): Looks {
             color: 0x0C4CCC,
             clawColor: 0x92B233,
             front: {
+                shape: 0,
                 flipV: false,
                 claws: {
+                    shape: 0,
                     placement: 2,
                 }
             },
             hind: {
+                shape: 0,
                 flipV: false,
                 claws: {
+                    shape: 0,
                     placement: 2,
                 }
             },

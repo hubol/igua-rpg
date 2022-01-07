@@ -120,7 +120,6 @@ export function looksUiRoot(defaultLooks: Looks) {
 function previewIguanaPuppet(args: IguanaPuppetArgs) {
     const puppet = iguanaPuppet(args);
     return puppet.withAsync(async () => {
-        setTimeout(() => console.log(puppet.ticker));
         while (true) {
             await sleep(2000);
             puppet.hspeed = puppet.engine.walkSpeed;
