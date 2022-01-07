@@ -111,7 +111,6 @@ export function looksUiRoot(defaultLooks: Looks) {
         breadcrumbs,
         pageContainer,
         preview(defaultLooks).at(161, 160),
-        // preview(defaultLooks, iguanaHead as any).at(160, 40)
     );
 
     return c;
@@ -135,29 +134,39 @@ function previewIguanaPuppet(args: IguanaPuppetArgs) {
 
 function preview(looks: Looks, fn = previewIguanaPuppet) {
     const c = new Container();
-    // const og = fn(playerPuppetArgs());
-    // og.alpha = 0.5;
-    //
-    // c.addChild(og);
+
+    let unchangedSteps = 0;
 
     let lastLooksJson: string;
     let puppet: DisplayObject;
     c.withStep(() => {
         const currentLooksJson = JSON.stringify(looks);
-        if (puppet && currentLooksJson === lastLooksJson)
+        if (puppet && currentLooksJson === lastLooksJson) {
+            unchangedSteps++;
             return;
+        }
+
+        unchangedSteps = 0;
 
         if (puppet)
             puppet.destroy();
         const args = makeIguanaPuppetArgsFromLooks(looks);
         puppet = fn(args);
         c.addChild(puppet);
-        // const bounds = c.getBounds();
-        // const leftMargin = Math.floor((157 - bounds.width) / 2);
-        // const left = 99 + leftMargin;
-        // c.x += left - bounds.x;
         lastLooksJson = currentLooksJson;
-    });
+    })
+        .withStep(() => {
+            if (unchangedSteps < 90)
+                return;
+
+            const b = c.getBounds();
+            const marginLeft = Math.floor((157 - b.width) / 2);
+            const left = 99 + marginLeft;
+            const diff = b.x - left;
+            const dx = Math.sign(diff) * Math.min(Math.abs(diff), 3);
+            if (Math.abs(dx) > 1)
+                c.x -= dx;
+        });
 
     c.scale.set(3, 3);
 
