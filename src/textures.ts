@@ -118,6 +118,7 @@ export let Torch: PIXI.Texture;
 export let Tumbleweed: PIXI.Texture;
 export let UiCheckbox: PIXI.Texture;
 export let UiChooseYourLooksIcons: PIXI.Texture;
+export let UiNoneChoice: PIXI.Texture;
 export let UiPlacementReticle: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
 export let WhiskeyGlass: PIXI.Texture;
@@ -477,6 +478,9 @@ export function loadTexturesAsync()
     const UiChooseYourLooksIconsPath = require("./images/ui/choose your looks icons.png");
     loader.add(UiChooseYourLooksIconsPath); 
 
+    const UiNoneChoicePath = require("./images/ui/none choice.png");
+    loader.add(UiNoneChoicePath); 
+
     const UiPlacementReticlePath = require("./images/ui/placement reticle.png");
     loader.add(UiPlacementReticlePath); 
 
@@ -612,6 +616,7 @@ export function loadTexturesAsync()
             Tumbleweed = resources[TumbleweedPath]?.texture as PIXI.Texture;
             UiCheckbox = resources[UiCheckboxPath]?.texture as PIXI.Texture;
             UiChooseYourLooksIcons = resources[UiChooseYourLooksIconsPath]?.texture as PIXI.Texture;
+            UiNoneChoice = resources[UiNoneChoicePath]?.texture as PIXI.Texture;
             UiPlacementReticle = resources[UiPlacementReticlePath]?.texture as PIXI.Texture;
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
             WhiskeyGlass = resources[WhiskeyGlassPath]?.texture as PIXI.Texture;

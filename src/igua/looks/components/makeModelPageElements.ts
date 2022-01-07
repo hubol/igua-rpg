@@ -8,6 +8,7 @@ import {looksContext} from "./looksUiRoot";
 import {placementInput} from "./placementInput";
 import {checkboxInput} from "./checkboxInput";
 import {inspirationButton} from "./inspirationButton";
+import {choiceInput} from "./choiceInput";
 
 type BoundInput = { kind: LooksInput['kind'], value };
 type BoundInputModel = Record<string, BoundInput | {}>;
@@ -19,7 +20,7 @@ export function makeModelPageElements(boundInputModel: BoundInputModel) {
             case "color":
                 return colorButton(title, () => looksContext.into(key), value);
             case "choice":
-                break;
+                return choiceInput(value as any);
             case "placement":
                 return placementInput(title, value as any);
             case "value":
