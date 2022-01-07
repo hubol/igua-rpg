@@ -3,6 +3,9 @@ import {Container, Graphics, Sprite, Texture} from "pixi.js";
 import {merge} from "../../../utils/merge";
 import { UiNoneChoice } from "../../../textures";
 import {trimFrame} from "../../../utils/pixi/trimFrame";
+import {makeKeyRepeat} from "../makeKeyRepeat";
+import {Key} from "../../../utils/browser/key";
+import {cyclic} from "../../../utils/math/number";
 
 const NoneChoice = trimFrame(UiNoneChoice);
 
@@ -11,10 +14,25 @@ export function choiceInput(input: ChoiceInput<Texture> & { value: number }, wid
     const c = merge(new Container(), { selected: false });
     const g = new Graphics();
 
+    const left = makeKeyRepeat(g, 'ArrowLeft');
+    const right = makeKeyRepeat(g, 'ArrowRight');
+
     g.withStep(() => {
         g.clear().beginFill(0x005870);
-        if (c.selected)
+        if (c.selected) {
             g.lineStyle(2, 0x00FF00, 1, 0);
+
+            if (Key.isDown('ArrowLeft') && Key.isDown('ArrowRight')) {
+                left.reset();
+                right.reset();
+            }
+            if (left.justWentDown)
+                input.value--;
+            else if (right.justWentDown)
+                input.value++;
+            input.value = cyclic(input.value, allowNone ? -1 : 0, options.length);
+        }
+
         g.drawRect(0, 0, width, height);
     });
 
