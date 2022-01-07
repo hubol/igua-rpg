@@ -1,5 +1,6 @@
 import {DisplayObject, Graphics, Container} from "pixi.js";
 import {merge} from "../../utils/merge";
+import {container} from "../../utils/pixi/container";
 
 interface IguanaEyesArgs
 {
@@ -12,10 +13,6 @@ export type IguanaEyes = DisplayObject & { closedUnit: number };
 
 export function iguanaEyes(args: IguanaEyesArgs)
 {
-    const eyes = new Container();
-
-    eyes.mask = args.eyeShape;
-
     const whitesGraphics = new Graphics();
     whitesGraphics.beginFill((args.eyeShape as any).tint ?? 0xFFFFFF);
     whitesGraphics.drawRect(0, 0, 16, 16);
@@ -23,12 +20,10 @@ export function iguanaEyes(args: IguanaEyesArgs)
 
     const { eyelidsGraphics, eyelidsLine, eyelidsControl } = iguanaEyelids(args.eyelidColor, 16, 8, 3);
 
-    eyes.addChild(args.eyeShape, whitesGraphics, args.pupils, eyelidsGraphics, eyelidsLine);
+    const eyes = container(args.eyeShape, whitesGraphics, args.pupils, eyelidsGraphics, eyelidsLine);
+    eyes.mask = args.eyeShape;
 
-    const iguanaEyes = merge(eyes, eyelidsControl) as IguanaEyes;
-    iguanaEyes.closedUnit = 0;
-
-    return iguanaEyes;
+    return merge(eyes, eyelidsControl) as IguanaEyes;
 }
 
 export function iguanaEyelids(color: number, width: number, height: number, lineY: number) {

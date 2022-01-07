@@ -1,6 +1,6 @@
 import {Looks} from "./looksModel";
 import {IguanaPuppetArgs} from "../puppet/iguanaPuppet";
-import {BaseRenderTexture, Graphics, RenderTexture, Sprite} from "pixi.js";
+import {RenderTexture, Sprite, Texture} from "pixi.js";
 import {
     clubShapes,
     footShapes,
@@ -15,7 +15,8 @@ import {colord} from "colord";
 import {toHexColorString} from "../../utils/toHexColorString";
 import {container} from "../../utils/pixi/container";
 import {game} from "../game";
-import {app} from "electron";
+import {iguanaEyelids, IguanaEyes} from "../puppet/eyes";
+import {merge} from "../../utils/merge";
 
 export function makeIguanaPuppetArgsFromLooks(looks: Looks): IguanaPuppetArgs {
     const backLeftFoot = makeFoot(looks.feet, "hind", true);
@@ -23,12 +24,12 @@ export function makeIguanaPuppetArgsFromLooks(looks: Looks): IguanaPuppetArgs {
     const frontLeftFoot = makeFoot(looks.feet, "front", true);
     const frontRightFoot = makeFoot(looks.feet, "front", false);
     const body = makeBody(looks.body);
-    const { head, crest } = makeHead(looks.body, looks.head);
+    const { head, crest, eyes } = makeHead(looks.body, looks.head);
 
     return {
         body,
         crest,
-        eyes: container(),
+        eyes,
         head,
         backLeftFoot,
         backRightFoot,
@@ -38,10 +39,14 @@ export function makeIguanaPuppetArgsFromLooks(looks: Looks): IguanaPuppetArgs {
     };
 }
 
+function darken(color: number, amount = 0.225) {
+    return colord(toHexColorString(color)).saturate(0.1).darken(amount).toPixi();
+}
+
 function makeFootTint(color: number, back: boolean) {
     if (!back)
         return color;
-    return colord(toHexColorString(color)).saturate(0.1).darken(0.225).toPixi();
+    return darken(color);
 }
 
 type Feet = Looks['feet'];
@@ -97,12 +102,12 @@ function makeHead(body: Body, head: Head) {
     const crest = makeCrest(head.crest);
     crest.pivot.add(-4, 13);
 
-    const eyes = makeEyes(head.eyes);
+    const eyes = makeEyes(head);
 
     const h = container(crest, face, eyes);
     h.pivot.add(body.placement, -1).add(head.placement, -1);
 
-    return { crest, head: h };
+    return { crest, head: h, eyes };
 }
 
 type Crest = Head['crest'];
@@ -116,7 +121,14 @@ function makeCrest(crest: Crest) {
 
 type Eyes = Head['eyes'];
 
-function makeEyes(eyes: Eyes) {
+const eyesTextures: Record<string, Texture> = {};
+
+function makeEyesTexture(eyes: Eyes, mask: boolean) {
+    const key = JSON.stringify({ ...eyes, mask });
+
+    if (eyesTextures[key])
+        return eyesTextures[key];
+
     const leftShape = () => Sprite.from(eyeShapes[0]);
     const rightShape = () => {
         const sprite = leftShape();
@@ -127,6 +139,7 @@ function makeEyes(eyes: Eyes) {
     const pupil = () => {
         const sprite = Sprite.from(pupilShapes[0]);
         sprite.tint = eyes.pupils.color;
+        sprite.visible = !mask;
         return sprite;
     };
 
@@ -154,7 +167,20 @@ function makeEyes(eyes: Eyes) {
     const texture = RenderTexture.create({ width: c.width, height: c.height });
     game.renderer.render(c, texture);
 
-    const e = Sprite.from(texture);
-    e.pivot.add(-7, 12).add(eyes.placement, -1);
-    return e;
+    return eyesTextures[key] = texture;
+}
+
+function makeEyes(head: Head) {
+    const texture = makeEyesTexture(head.eyes, false);
+    const maskTexture = makeEyesTexture(head.eyes, true);
+    const { eyelidsGraphics, eyelidsLine, eyelidsControl } =
+        iguanaEyelids(darken(head.color, 0.1), texture.width, texture.height, Math.floor(texture.height / 2));
+
+    const mask = Sprite.from(maskTexture);
+    const eyes = container(mask, Sprite.from(texture), eyelidsGraphics, eyelidsLine);
+    eyes.mask = mask;
+
+    eyes.pivot.add(-7, 12).add(head.eyes.placement, -1);
+
+    return merge(eyes, eyelidsControl) as IguanaEyes;
 }
