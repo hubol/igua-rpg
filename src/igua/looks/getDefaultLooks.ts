@@ -23,6 +23,7 @@ export function getDefaultLooks(): Looks {
                 }
             },
             horn: {
+                shape: -1,
                 color: 0xCC2C42,
                 placement: [0, 0]
             },

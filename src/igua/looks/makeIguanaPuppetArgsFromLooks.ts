@@ -9,7 +9,7 @@ import {
     clawsShapes,
     tailShapes,
     torsoShapes,
-    crestShapes, eyeShapes, pupilShapes
+    crestShapes, eyeShapes, pupilShapes, hornShapes
 } from "./shapes";
 import {colord} from "colord";
 import {toHexColorString} from "../../utils/toHexColorString";
@@ -120,6 +120,16 @@ function makeHead(body: Body, head: Head) {
     const eyes = makeEyes(head);
 
     const h = container(crest, face, eyes);
+
+    const hornShape = hornShapes[head.horn.shape];
+
+    if (hornShape) {
+        const horn = Sprite.from(hornShape);
+        horn.tint = head.horn.color;
+        horn.pivot.set(-12, 4).add(head.horn.placement, -1);
+        h.addChild(horn);
+    }
+
     h.pivot.add(body.placement, -1).add(head.placement, -1);
 
     return { crest, head: h, eyes };

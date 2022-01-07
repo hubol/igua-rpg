@@ -7,7 +7,7 @@ import {
     clawsShapes,
     pupilShapes,
     tailShapes,
-    torsoShapes
+    torsoShapes, hornShapes
 } from "./shapes";
 
 const p = 'placement' as const;
@@ -81,9 +81,9 @@ export function getLooksInputModel() {
                 },
             },
             horn: {
+                shape: choice(hornShapes, true),
                 color: color(),
-                placement: placement(),
-                // shape: choice(hornShapes, true),
+                placement: placement(-12, -10, 6, 4),
             },
             mouth: {
                 shape: choice(mouthShapes),

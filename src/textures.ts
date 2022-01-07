@@ -56,6 +56,7 @@ export let LooksCrest: PIXI.Texture;
 export let LooksEye: PIXI.Texture;
 export let LooksFoot: PIXI.Texture;
 export let LooksHead: PIXI.Texture;
+export let LooksHorn: PIXI.Texture;
 export let LooksMouth: PIXI.Texture;
 export let LooksNails: PIXI.Texture;
 export let LooksPupil: PIXI.Texture;
@@ -291,6 +292,9 @@ export function loadTexturesAsync()
 
     const LooksHeadPath = require("./images/looks/head.png");
     loader.add(LooksHeadPath); 
+
+    const LooksHornPath = require("./images/looks/horn.png");
+    loader.add(LooksHornPath); 
 
     const LooksMouthPath = require("./images/looks/mouth.png");
     loader.add(LooksMouthPath); 
@@ -554,6 +558,7 @@ export function loadTexturesAsync()
             LooksEye = resources[LooksEyePath]?.texture as PIXI.Texture;
             LooksFoot = resources[LooksFootPath]?.texture as PIXI.Texture;
             LooksHead = resources[LooksHeadPath]?.texture as PIXI.Texture;
+            LooksHorn = resources[LooksHornPath]?.texture as PIXI.Texture;
             LooksMouth = resources[LooksMouthPath]?.texture as PIXI.Texture;
             LooksNails = resources[LooksNailsPath]?.texture as PIXI.Texture;
             LooksPupil = resources[LooksPupilPath]?.texture as PIXI.Texture;

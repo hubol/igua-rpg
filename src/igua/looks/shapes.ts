@@ -2,7 +2,7 @@ import {
     LooksClub,
     LooksCrest,
     LooksEye,
-    LooksFoot, LooksHead,
+    LooksFoot, LooksHead, LooksHorn,
     LooksMouth, LooksNails,
     LooksPupil,
     LooksTail,
@@ -29,6 +29,7 @@ export const pupilShapes = textures(LooksPupil, 8, [6, 4]);
 export const mouthShapes = textures(LooksMouth, 12, [7, 7]);
 export const torsoShapes = textures(LooksTorso, 24, [12, 17]);
 export const faceShapes = textures(LooksHead, 18, [0, 16]);
+export const hornShapes = textures(LooksHorn, 8, [2, 6]);
 export const tailShapes = textures(LooksTail, 28, [17, 17]);
 export const clubShapes = textures(LooksClub, 12, [4, 4]);
 export const footShapes = textures(LooksFoot, 14, [6, 12]);
