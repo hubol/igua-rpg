@@ -24,7 +24,7 @@ const foot = {
     // color,
     // shape: choice(footShapes),
     flipV: bool,
-    nails: {
+    claws: {
         // color,
         // shape: choice(nailShapes),
         placement: value(),
@@ -89,7 +89,7 @@ const inputModel = {
     },
     feet: {
         color,
-        nailColor: color,
+        clawColor: color,
         front: foot,
         hind: foot,
         gap: value(-3, 8),

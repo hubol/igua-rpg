@@ -47,16 +47,16 @@ export function getDefaultLooks(): Looks {
         },
         feet: {
             color: 0x0C4CCC,
-            nailColor: 0x92B233,
+            clawColor: 0x92B233,
             front: {
                 flipV: false,
-                nails: {
+                claws: {
                     placement: 2,
                 }
             },
             hind: {
                 flipV: false,
-                nails: {
+                claws: {
                     placement: 2,
                 }
             },

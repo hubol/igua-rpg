@@ -60,8 +60,8 @@ function makeFoot(feet: Feet, key: 'hind' | 'front', back: boolean) {
     f.pivot.x += key === 'front' ? -Math.ceil(gap) : Math.floor(gap);
     f.tint = makeFootTint(feet.color, back);
     const nails = Sprite.from(nailsShapes[0]);
-    nails.tint = makeFootTint(feet.nailColor, back);
-    nails.pivot.x -= foot.nails.placement;
+    nails.tint = makeFootTint(feet.clawColor, back);
+    nails.pivot.x -= foot.claws.placement;
     f.addChild(nails);
     if (foot.flipV) {
         f.pivot.y -= f.height;
