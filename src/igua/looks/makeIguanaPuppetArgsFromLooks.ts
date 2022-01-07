@@ -146,7 +146,15 @@ function makeEyes(eyes: Eyes) {
     }
     rightPupil.mask = rightShape();
 
-    const e = container(leftShape(), rightShape(), leftPupil.mask, rightPupil.mask, leftPupil, rightPupil);
-    e.pivot.add(-12, 8).add(eyes.placement, -1);
+    const c = container(leftShape(), rightShape(), leftPupil.mask, rightPupil.mask, leftPupil, rightPupil);
+    const b = c.getBounds();
+
+    c.pivot.set(b.x, b.y);
+
+    const texture = RenderTexture.create({ width: c.width, height: c.height });
+    game.renderer.render(c, texture);
+
+    const e = Sprite.from(texture);
+    e.pivot.add(-7, 12).add(eyes.placement, -1);
     return e;
 }

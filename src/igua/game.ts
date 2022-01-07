@@ -44,7 +44,8 @@ function createGame(application: AsshatApplication)
         },
         get height() {
             return application.renderer.height;
-        }
+        },
+        renderer: application.renderer
     };
 }
 
