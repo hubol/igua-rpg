@@ -8,8 +8,11 @@ export const rng = merge(() => Math.random(),
         int(maxExclusive: number) {
             return Math.floor(Math.random() * maxExclusive);
         },
+        get color() {
+            return rng.int(0xFFFFFF + 1);
+        },
         choose<T>(array: Array<T>) {
-            return array[Math.floor(Math.random() * array.length)];
+            return array[rng.int(array.length)];
         },
         get polar() {
             return Math.random() * 2 - 1;

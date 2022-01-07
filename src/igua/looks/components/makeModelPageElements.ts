@@ -7,6 +7,7 @@ import {valueSlider} from "./valueSlider";
 import {looksContext} from "./looksUiRoot";
 import {placementInput} from "./placementInput";
 import {checkboxInput} from "./checkboxInput";
+import {inspirationButton} from "./inspirationButton";
 
 type BoundInput = { kind: LooksInput['kind'], value };
 type BoundInputModel = Record<string, BoundInput | {}>;
@@ -40,7 +41,7 @@ export function makeModelPageElements(boundInputModel: BoundInputModel) {
     if (looksContext.path.length > 0)
         elements.push(button('Back', looksContext.back));
     else
-        elements.push(button('Done', looksContext.save));
+        elements.push(inspirationButton(), button('Done', looksContext.save));
 
     let y = 0;
     for (const e of elements) {
