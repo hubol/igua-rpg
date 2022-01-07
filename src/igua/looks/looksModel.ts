@@ -60,12 +60,12 @@ export function getLooksInputModel() {
 
     return {
         head: {
-            placement: placement(-5, -8, 5, 2),
             color: color(),
+            placement: placement(-5, -8, 5, 2),
             crest: {
+                shape: choice(crestShapes),
                 color: color(),
                 placement: placement(),
-                shape: choice(crestShapes),
                 flipH: bool(),
                 flipV: bool(),
             },
@@ -74,9 +74,9 @@ export function getLooksInputModel() {
                 gap: value(),
                 // shape: choice(eyeShapes),
                 pupils: {
-                    placement: placement(-7, -7, 5, 5),
                     shape: choice(pupilShapes),
                     color: color(),
+                    placement: placement(-7, -7, 5, 5),
                     mirrored: bool(),
                 },
             },
