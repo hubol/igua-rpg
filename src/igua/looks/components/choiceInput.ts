@@ -53,13 +53,14 @@ export function choiceInput(input: ChoiceInput<Texture> & { value: number }, wid
             s.tint = selected ? tint : 0x002C38;
             if (selected) {
                 const childrenIndex = allowNone ? index + 1 : index;
-                const keepInside = choicesContainer.children[childrenIndex + 1] ?? s;
+                const keepInsideLeft = choicesContainer.children[childrenIndex - 1] ?? s;
+                const keepInsideRight = choicesContainer.children[childrenIndex + 1] ?? s;
 
                 let iterations = firstTime ? 30 : 1;
 
                 while (iterations-- > 0) {
-                    const rightBounds = keepInside.getBounds();
-                    const left = s.getBounds().x;
+                    const rightBounds = keepInsideRight.getBounds();
+                    const left = keepInsideLeft.getBounds().x;
                     const right = rightBounds.x + rightBounds.width;
 
                     if (left < maxWidth / 2)
