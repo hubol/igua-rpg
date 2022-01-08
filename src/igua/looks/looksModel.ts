@@ -93,7 +93,7 @@ export function getLooksInputModel() {
             },
         },
         body: {
-            placement: placement(-4, -4, 4, 4),
+            placement: placement(-4, -4, 4, 0),
             torso: {
                 shape: choice(torsoShapes),
                 color: color(),
@@ -115,7 +115,7 @@ export function getLooksInputModel() {
             clawColor: color(),
             front: foot(),
             hind: foot(),
-            gap: value(-3, 8),
+            gap: value(-1, 8),
             backOffset: value(0, 7),
         }
     }

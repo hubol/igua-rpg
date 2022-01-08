@@ -172,11 +172,11 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
             args.frontRightFoot.position.x += Math.round(roundedDuckUnit);
         }
 
-        if (args.moveCrestWhenDucking === undefined || args.moveCrestWhenDucking)
-        {
-            args.crest.x = Math.round(roundedDuckUnit * 2);
-            args.crest.y = Math.round(roundedDuckUnit * -1);
-        }
+        // if (args.moveCrestWhenDucking === undefined || args.moveCrestWhenDucking)
+        // {
+        //     args.crest.x = Math.round(roundedDuckUnit * 2);
+        //     args.crest.y = Math.round(roundedDuckUnit * -1);
+        // }
 
         head.y = Math.round(roundedDuckUnit * 2);
 
