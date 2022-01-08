@@ -35,12 +35,8 @@ export function getDefaultLooks(): Looks {
             },
         },
         body: {
+            color: 0xCC70BB,
             placement: [0, 0],
-            torso: {
-                shape: 0,
-                color: 0xCC70BB,
-                flipV: false,
-            },
             tail: {
                 shape: 0,
                 color: 0xCC70BB,

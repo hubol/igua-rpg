@@ -83,11 +83,9 @@ function makeBody(body: Body) {
     const tail = Sprite.from(tailShapes[body.tail.shape]);
     tail.tint = body.tail.color;
     tail.pivot.set(5, 11).add(body.tail.placement, -1);
-    const torso = Sprite.from(torsoShapes[body.torso.shape]);
-    torso.tint = body.torso.color;
+    const torso = Sprite.from(torsoShapes[0]);
+    torso.tint = body.color;
     torso.pivot.set(-1, 5);
-    if (body.torso.flipV)
-        flipV(torso);
 
     const c = container(tail, torso);
 
