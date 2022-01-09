@@ -36,8 +36,8 @@ export function choiceInput(input: ChoiceInput<Texture> & { value: number }, wid
         g.drawRect(0, 0, width, height);
     });
 
-    const maxWidth = Math.max(...options.map(x => x.width), allowNone ? 7 : 0 );
-    const maxHeight = Math.max(...options.map(x => x.height), allowNone ? 7 : 0);
+    const maxWidth = Math.max(...options.map(x => x.width), allowNone ? 7 : 5 );
+    const maxHeight = Math.max(...options.map(x => x.height), allowNone ? 7 : 5);
 
     let choiceCount = 0;
     let firstTime = true;
