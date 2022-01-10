@@ -90,6 +90,7 @@ export let OrangeValuable: PIXI.Texture;
 export let OrnateCarpet: PIXI.Texture;
 export let OverheadLampLight: PIXI.Texture;
 export let OverheadLamp: PIXI.Texture;
+export let OversizedAngel: PIXI.Texture;
 export let PaSpeaker: PIXI.Texture;
 export let Pipe: PIXI.Texture;
 export let PlayerBallonPop: PIXI.Texture;
@@ -395,6 +396,9 @@ export function loadTexturesAsync()
     const OverheadLampPath = require("./images/overhead lamp.png");
     loader.add(OverheadLampPath); 
 
+    const OversizedAngelPath = require("./images/oversized angel.png");
+    loader.add(OversizedAngelPath); 
+
     const PaSpeakerPath = require("./images/pa speaker.png");
     loader.add(PaSpeakerPath); 
 
@@ -592,6 +596,7 @@ export function loadTexturesAsync()
             OrnateCarpet = resources[OrnateCarpetPath]?.texture as PIXI.Texture;
             OverheadLampLight = resources[OverheadLampLightPath]?.texture as PIXI.Texture;
             OverheadLamp = resources[OverheadLampPath]?.texture as PIXI.Texture;
+            OversizedAngel = resources[OversizedAngelPath]?.texture as PIXI.Texture;
             PaSpeaker = resources[PaSpeakerPath]?.texture as PIXI.Texture;
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
             PlayerBallonPop = resources[PlayerBallonPopPath]?.texture as PIXI.Texture;

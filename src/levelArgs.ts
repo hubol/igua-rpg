@@ -19,9 +19,10 @@ import { Rainbow2 } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
+import { resolvePipeRightEnd } from "./gameObjects/walls";
+import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveBoulder } from "./gameObjects/boulder";
-import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveSign } from "./gameObjects/sign";
@@ -47,7 +48,6 @@ import { DinerTable } from "./textures";
 import { WoodenStool } from "./textures";
 import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
-import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { Anchor } from "./textures";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
@@ -2469,6 +2469,30 @@ ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":1348,"y":130,"flipp
 Block_12: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_58","name":"","depth":0}),
 Tumbleweed1: {"type":"Anchor","x":320,"y":344,"flippedX":false,"flippedY":false,"uid":"25979726_59","name":"Tumbleweed1","depth":0},
 Tumbleweed2: {"type":"Anchor","x":1464,"y":408,"flippedX":false,"flippedY":false,"uid":"25979726_60","name":"Tumbleweed2","depth":0}
+};
+}
+};
+
+export const OversizedClownArenaArgs = {
+    width: 512,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":512,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":424,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":336,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_2","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":304,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_3","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":168,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_4","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":136,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_5","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":152,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_6","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":32,"y":152,"flippedX":false,"flippedY":false,"uid":"63418353_7","name":"","depth":0})
 };
 }
 };
