@@ -22,6 +22,11 @@ export const BoulderBless = new Howl({
     
 });
 
+export const ChangeLooks = new Howl({
+    src: [require("./sound/change looks.ogg"), require("./sound/change looks.mp3")],
+    
+});
+
 export const CharacterHitCeiling = new Howl({
     src: [require("./sound/character hit ceiling.ogg"), require("./sound/character hit ceiling.mp3")],
     
@@ -179,6 +184,16 @@ export const InventoryClose = new Howl({
 
 export const InventoryOpen = new Howl({
     src: [require("./sound/inventory open.ogg"), require("./sound/inventory open.mp3")],
+    
+});
+
+export const LooksPageBack = new Howl({
+    src: [require("./sound/looks page back.ogg"), require("./sound/looks page back.mp3")],
+    
+});
+
+export const LooksPageInto = new Howl({
+    src: [require("./sound/looks page into.ogg"), require("./sound/looks page into.mp3")],
     
 });
 

@@ -9,6 +9,7 @@ import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalized
 import {makeIguanaPuppetArgsFromLooks} from "../makeIguanaPuppetArgsFromLooks";
 import {iguanaPuppet, IguanaPuppetArgs} from "../../puppet/iguanaPuppet";
 import {sleep} from "../../../cutscene/sleep";
+import {ChangeLooks, LooksPageBack, LooksPageInto, SelectOption} from "../../../sounds";
 
 export let looksContext: LooksContext;
 
@@ -139,8 +140,22 @@ function preview(looks: Looks, fn = previewIguanaPuppet) {
 
     let lastLooksJson: string;
     let puppet: DisplayObject;
+    let selectedIndex = 0;
+    let lastPathLength = 1;
+
     c.withStep(() => {
+        const nextPathLength = looksContext.path.length;
+        justWentInto = nextPathLength > lastPathLength;
+        justWentBack = nextPathLength < lastPathLength;
+        lastPathLength = nextPathLength;
+
+        const nextSelectedIndex = looksContext.page.state.selectionIndex;
+        selectionJustChanged = nextSelectedIndex !== selectedIndex
+            && (looksContext.path.length === 0 || !looksContext.path[looksContext.path.length - 1].includes('opy'));
+        selectedIndex = nextSelectedIndex;
+
         const currentLooksJson = JSON.stringify(looks);
+        looksJustChanged = currentLooksJson !== lastLooksJson;
         if (puppet && currentLooksJson === lastLooksJson) {
             unchangedSteps++;
             return;
@@ -155,18 +170,37 @@ function preview(looks: Looks, fn = previewIguanaPuppet) {
         c.addChild(puppet);
         lastLooksJson = currentLooksJson;
     })
-        .withStep(() => {
-            if (unchangedSteps < 90)
-                return;
+    .withStep(() => {
+        if (unchangedSteps < 90)
+            return;
 
-            const b = c.getBounds();
-            const marginLeft = Math.floor((157 - b.width) / 2);
-            const left = 99 + marginLeft;
-            const diff = b.x - left;
-            const dx = Math.sign(diff) * Math.min(Math.abs(diff), 3);
-            if (Math.abs(dx) > 1)
-                c.x -= dx;
-        });
+        const b = c.getBounds();
+        const marginLeft = Math.floor((157 - b.width) / 2);
+        const left = 99 + marginLeft;
+        const diff = b.x - left;
+        const dx = Math.sign(diff) * Math.min(Math.abs(diff), 3);
+        if (Math.abs(dx) > 1)
+            c.x -= dx;
+    })
+    .withStep(() => {
+        if (justWentInto) {
+            LooksPageInto.play();
+        }
+        else if (justWentBack) {
+            LooksPageBack.play();
+        }
+        else if (looksJustChanged) {
+            ChangeLooks.play();
+        }
+        else if (selectionJustChanged) {
+            SelectOption.play();
+        }
+    });
+
+    let selectionJustChanged = false;
+    let justWentBack = false;
+    let justWentInto = false;
+    let looksJustChanged = false;
 
     c.scale.set(3, 3);
 

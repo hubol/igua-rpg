@@ -7,7 +7,7 @@ export type PageState = { selectionIndex: number };
 export type PageElement = Container & { selected: boolean };
 
 export function page(elements: PageElement[], state: PageState) {
-    const c = merge(new Container(), { navigation: true });
+    const c = merge(new Container(), { navigation: true, state });
     updateSelection();
 
     function updateSelection() {
@@ -58,7 +58,6 @@ export function page(elements: PageElement[], state: PageState) {
                 select(1, 0);
         }
         updateSelection();
-        // TODO sound
     });
 
     return c;

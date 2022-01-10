@@ -7,10 +7,11 @@ import {Vector} from "../../../utils/math/vector";
 import {makeKeyRepeat} from "../makeKeyRepeat";
 import {UiPlacementReticle} from "../../../textures";
 import {PlacementInput} from "../looksModel";
+import {LooksPageBack, LooksPageInto} from "../../../sounds";
 
 export function placementInput(text: string, input: { value: Vector } & PlacementInput, width = 96, height = 30) {
     const c = merge(new Container(), { selected: false });
-    const b = button(text, () => {});
+    const b = button(text, () => {}, width, height);
 
     let inputSelected = false;
 
@@ -47,18 +48,22 @@ export function placementInput(text: string, input: { value: Vector } & Placemen
                 up.reset();
                 down.reset();
             }
-            const v = input.value.vcpy();
+
+            let dx = 0, dy = 0;
             if (left.justWentDown)
-                v.x -= 1;
+                dx -= 1;
             if (right.justWentDown)
-                v.x += 1;
+                dx += 1;
             if (up.justWentDown)
-                v.y -= 1;
+                dy -= 1;
             if (down.justWentDown)
-                v.y += 1;
-            v.x = Math.max(minX, Math.min(maxX, v.x));
-            v.y = Math.max(minY, Math.min(maxY, v.y));
-            input.value = v;
+                dy += 1;
+            if (dx !== 0 || dy !== 0) {
+                const v = input.value.vcpy();
+                v.x = Math.max(minX, Math.min(maxX, v.x + dx));
+                v.y = Math.max(minY, Math.min(maxY, v.y + dy));
+                input.value = v;
+            }
         }
 
         g.clear()
@@ -76,6 +81,7 @@ export function placementInput(text: string, input: { value: Vector } & Placemen
     c.withStep(() => {
         if (c.selected && Key.justWentDown("Space")) {
             inputSelected = !inputSelected;
+            (inputSelected ? LooksPageInto : LooksPageBack).play();
             looksContext.page.navigation = !inputSelected;
         }
 
