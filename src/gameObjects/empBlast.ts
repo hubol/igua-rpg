@@ -36,7 +36,7 @@ function hostile(radius: number, damage: number) {
             const x = origin.x + radius;
             const y = origin.y + radius;
             const p = player.getBounds();
-            if (rectangleCircleOverlap(radius, x, y, p.x, p.y, p.x + p.width, p.y + p.height))
+            if (rectangleCircleOverlap(radius - 8, x, y, p.x, p.y, p.x + p.width, p.y + p.height))
                 player.damage(damage);
         });
 
@@ -60,8 +60,11 @@ function hint(radius: number, safe: number) {
             if (life-- <= 0)
                 return g.destroy();
             const unit = life / initialLife;
+            let alpha = Math.min(1, unit * 4) * Math.max(0.2, 1 - safe);
+            if (safe < 0.01 && life % 16 < 8)
+                alpha *= 0.9;
             g.clear()
-                .beginFill(0xA0BCE8, Math.min(1, unit * 4) * Math.max(0.2, 1 - safe))
+                .beginFill(0xA0BCE8, alpha)
                 .drawCircle(0, 0, radius * Math.min(1, 1.875 - unit));
         });
     return g;

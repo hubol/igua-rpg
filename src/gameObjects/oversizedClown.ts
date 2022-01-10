@@ -14,13 +14,21 @@ const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture]
     subimageTextures(OversizedAngel, { width: 66 });
 
 export function oversizedClown() {
+    const faceState = { anger: 0 };
+
+    const fullHealth = 30;
+    let health = fullHealth;
+
     const head = Sprite.from(headTexture);
     head.hitbox = [0.2, 0.2, 0.8, 0.8];
     const hair = Sprite.from(hairTexture);
-    head.addChild(hair, face());
+    head.addChild(hair, face(faceState));
     const speed = [0, 0];
     head.withStep(() => {
+        if (health < fullHealth * 0.33)
+        faceState.anger = 1 - (health / fullHealth);
         if (player.collides(head)) {
+            health -= player.strength;
             bouncePlayer([33, 25].add(head));
             speed.x -= player.engine.knockback.x;
             speed.y -= player.vspeed;
@@ -33,16 +41,24 @@ export function oversizedClown() {
     return head;
 }
 
-function face() {
+function face(state: { anger: number }) {
     const f = Sprite.from(faceTexture);
-    const l = Sprite.from(leftBrowTexture);
-    const r = Sprite.from(rightBrowTexture);
+    const ll = Sprite.from(leftBrowTexture);
+    ll.anchor.set(32/66, 14/51);
+    const l = container(ll);
+    const rr = Sprite.from(rightBrowTexture);
+    rr.anchor.set(49/66, 14/51);
+    const r = container(rr);
 
     l.withStep(() => {
-        l.pivot.y = Math.sin(now.s * Math.PI * 2.3 + 2);
+        l.pivot.x = -32;
+        l.pivot.y = -14 + Math.sin(now.s * Math.PI * 2.3 + 2);
+        ll.angle = state.anger * 30 + Math.cos(now.s * Math.PI * 3.3 - 2) * 10 * state.anger;
     });
     r.withStep(() => {
-        r.pivot.y = Math.sin(now.s * Math.PI * 2.1 + 5);
+        r.pivot.x = -49;
+        r.pivot.y = -14 + Math.sin(now.s * Math.PI * 2.1 + 5);
+        rr.angle = state.anger * -30 + Math.cos(now.s * Math.PI * 2.9 - 4) * 10 * state.anger;
     });
 
     const c = container(f, l, r)
