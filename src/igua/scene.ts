@@ -8,6 +8,7 @@ import {progress} from "./data/progress";
 import {defaults} from "../utils/defaults";
 import {merge} from "../utils/merge";
 import {defaultSceneMeta, SceneMeta} from "./level/setSceneMeta";
+import {advanceKeyListener} from "../utils/browser/key";
 
 function createScene(source: SceneSource, args: Readonly<SceneMeta>)
 {
@@ -96,6 +97,7 @@ function onScenePushed() {
         progress.levelName = scene.name!;
     }
     const result = scene.source();
+    advanceKeyListener();
     scene.ticker.update();
     return result;
 }
