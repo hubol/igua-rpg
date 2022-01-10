@@ -32,6 +32,7 @@ export function getInitialFlags()
         },
         oracle: {
             lore1: false,
+            discussedOpeningDesertTemple: false,
         }
     };
 }

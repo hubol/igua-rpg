@@ -89,7 +89,7 @@ async function askImpl<T extends Answer>(question: string, answers: T[]): Promis
             const selectedGameObject = answerGameObjects[selectedIndex];
             cursor.position.set(selectedGameObject.x - 2, selectedGameObject.y + selectedGameObject.height);
         });
-        cursor.pivot.add(18, 7);
+        cursor.pivot.add(20, 7);
         dialogContainer.addChild(cursor);
     })
     .catch(e => {
