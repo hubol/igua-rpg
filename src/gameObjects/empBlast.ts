@@ -61,7 +61,7 @@ function hint(radius: number, safe: number) {
                 return g.destroy();
             const unit = life / initialLife;
             g.clear()
-                .beginFill(0xA0BCE8, unit * Math.max(0.2, 1 - safe))
+                .beginFill(0xA0BCE8, Math.min(1, unit * 4) * Math.max(0.2, 1 - safe))
                 .drawCircle(0, 0, radius * Math.min(1, 1.875 - unit));
         });
     return g;
