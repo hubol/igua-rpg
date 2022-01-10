@@ -27,7 +27,7 @@ ${truncate(stringify(e), 60)}`);
     },
     async load(okIfEmpty = false, file = currentSaveFile) {
         try {
-            let progress = readAndConvertProgressFile(file);
+            let progress = await readAndConvertProgressFile(file);
             if (!progress) {
                 if (!okIfEmpty)
                     throw new Error(`${file} is empty.`);

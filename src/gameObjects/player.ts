@@ -1,10 +1,4 @@
-import {Sprite, Container} from "pixi.js";
-import {
-    CharacterBody, CharacterCrest, CharacterFoot,
-    CharacterHead, CharacterMouthV, CharacterPupils, CharacterWhites
-} from "../textures";
-import {iguanaPuppet, IguanaPuppetArgs} from "../igua/puppet/iguanaPuppet";
-import {iguanaEyes} from "../igua/puppet/eyes";
+import {iguanaPuppet} from "../igua/puppet/iguanaPuppet";
 import {
     CharacterHurt, CharacterHurtDefense
 } from "../sounds";
@@ -20,46 +14,10 @@ import {npc} from "./npc";
 import {showUseMenu} from "../igua/inventory/showUseMenu";
 import {ballons, DisplayState} from "./ballons";
 import {game} from "../igua/game";
+import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
 
 export function playerPuppetArgs() {
-    const body = Sprite.from(CharacterBody);
-    body.tint = 0xCC70BB;
-
-    const backLeftFoot = Sprite.from(CharacterFoot);
-    backLeftFoot.tint = 0xC7D7D7;
-    const frontLeftFoot = Sprite.from(CharacterFoot);
-    frontLeftFoot.tint = 0xC7D7D7;
-
-    const backRightFoot = Sprite.from(CharacterFoot);
-    const frontRightFoot = Sprite.from(CharacterFoot);
-
-    const crest = Sprite.from(CharacterCrest);
-    crest.tint = 0xCC2C42;
-
-    const head = new Container();
-    const headSprite = Sprite.from(CharacterHead);
-    headSprite.tint = 0xCCAE0A;
-    const mouthSprite = Sprite.from(CharacterMouthV);
-    mouthSprite.pivot.set(-10, -11);
-    mouthSprite.tint = 0x9957AF;
-    head.addChild(headSprite, mouthSprite);
-
-    const pupils = Sprite.from(CharacterPupils);
-    pupils.tint = 0x9957AF;
-    pupils.pivot.set(-2, -3);
-
-    const eyes = iguanaEyes({ eyelidColor: 0xB29400, pupils, eyeShape: Sprite.from(CharacterWhites) });
-
-    return <IguanaPuppetArgs>{
-        backRightFoot,
-        frontLeftFoot,
-        backLeftFoot,
-        body,
-        crest,
-        head,
-        eyes,
-        frontRightFoot
-    };
+    return makeIguanaPuppetArgsFromLooks(progress.looks);
 }
 
 function playerPuppet() {

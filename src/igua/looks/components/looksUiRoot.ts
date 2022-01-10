@@ -10,6 +10,7 @@ import {makeIguanaPuppetArgsFromLooks} from "../makeIguanaPuppetArgsFromLooks";
 import {iguanaPuppet, IguanaPuppetArgs} from "../../puppet/iguanaPuppet";
 import {sleep} from "../../../cutscene/sleep";
 import {ChangeLooks, LooksPageBack, LooksPageInto, SelectOption} from "../../../sounds";
+import {advanceKeyListener} from "../../../utils/browser/key";
 
 export let looksContext: LooksContext;
 
@@ -22,7 +23,7 @@ interface LooksContext {
     page: Page;
 }
 
-export function looksUiRoot(defaultLooks: Looks) {
+export function looksUiRoot(defaultLooks: Looks, save: (looks: Looks) => unknown) {
     const boundInputModel = getLooksInputModel();
     bindLooks(boundInputModel, defaultLooks);
 
@@ -31,10 +32,6 @@ export function looksUiRoot(defaultLooks: Looks) {
     const c = new Container();
 
     const pageContainer = new Container();
-
-    function save() {
-        // TODO
-    }
 
     function back() {
         getStateForPath().selectionIndex = 0;
@@ -51,7 +48,7 @@ export function looksUiRoot(defaultLooks: Looks) {
         back,
         into,
         path,
-        save,
+        save: () => save(defaultLooks),
         inputModel: boundInputModel,
         page: {} as any
     };
@@ -93,8 +90,9 @@ export function looksUiRoot(defaultLooks: Looks) {
         looksContext.page = p;
 
         pageContainer.addChild(p.at(3, 13));
-        for (let i = 0; i < 2; i++)
-            pageContainer.ticker.update();
+
+        advanceKeyListener();
+        pageContainer.ticker.update();
     }
 
     loadPageForPath();

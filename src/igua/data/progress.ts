@@ -1,5 +1,6 @@
 import {getInitialFlags} from "./flags";
 import {PotionType} from "../inventory/potions";
+import {getDefaultLooks} from "../looks/getDefaultLooks";
 
 export function getInitialProgress()
 {
@@ -8,12 +9,13 @@ export function getInitialProgress()
         health: 100,
         maxHealth: 100,
         valuables: 100,
+        looks: getDefaultLooks(),
         level: 1,
         poisonLevel: 0,
         ballons: [] as number[],
         inventory: [] as (PotionType | undefined)[],
         shopPurchases: {} as Record<PotionType, number | undefined>,
-        levelName: "DesertTown",
+        levelName: "ChooseYourLooksBeginning",
         checkpointName: "none",
         flags: getInitialFlags(),
     };

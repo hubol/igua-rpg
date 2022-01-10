@@ -3,14 +3,22 @@ import {getInitialProgress, Progress} from "./progress";
 import serializeJavascript from "serialize-javascript";
 import {defaults} from "../../utils/defaults";
 import {detailedDiff} from "deep-object-diff";
+import {ChooseYourLooks} from "../../levels/chooseYourLooks";
+import {Looks} from "../looks/looksModel";
+import {sceneStack} from "../scene";
 
-export function readAndConvertProgressFile(file: string) {
-    const progress = localStorageEntry<any>(file).read();
+export async function readAndConvertProgressFile(file: string) {
+    const progress: Progress = localStorageEntry<any>(file).read();
     if (!progress)
         return;
     const beforeText = serializeJavascript(progress);
+    const hasLooks = !!progress.looks;
     upgradeProgressVersion(progress);
     const convertedProgress = defaults(getInitialProgress(), progress);
+    // TODO this can be safely removed at a later date
+    if (!hasLooks)
+        await chooseYourLooks(progress);
+
     const afterText = serializeJavascript(convertedProgress);
 
     if (beforeText !== afterText) {
@@ -19,6 +27,7 @@ export function readAndConvertProgressFile(file: string) {
         logObject('Added', added, 'background-color: #ccffcc;');
         logObject('Updated', updated, 'background-color: #ccccff;');
         logObject('Deleted', deleted, 'background-color: #ffcccc;');
+        localStorageEntry(file).write(progress);
     }
 
     return convertedProgress as Progress;
@@ -35,4 +44,14 @@ function upgradeProgressVersion(progress: Partial<Progress>) {
         case undefined:
             progress.version = 1;
     }
+}
+
+function chooseYourLooks(progress: Progress) {
+    return new Promise<void>(r => {
+        function save(looks: Looks) {
+            progress.looks = looks;
+            r();
+        }
+        sceneStack.push(() => ChooseYourLooks({ save }), { isLevel: false });
+    });
 }

@@ -14,6 +14,7 @@ import {wait} from "../cutscene/wait";
 import {cutscene} from "../cutscene/cutscene";
 import {BigKeyCollected, CollectGeneric} from "../sounds";
 import {sleep} from "../cutscene/sleep";
+import {persistence} from "../igua/data/persistence";
 
 export function DesertTemple()
 {
@@ -50,6 +51,7 @@ export function DesertTemple()
                 await show("You gathered all the pieces of the big key.");
                 CollectGeneric.play();
                 await show("Received Blessing of Earth.");
+                await persistence.save();
                 jukebox.currentSong?.play();
             });
         });
