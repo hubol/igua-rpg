@@ -19,5 +19,9 @@ export const rng = merge(() => Math.random(),
         },
         get polarHalf() {
             return Math.random() - 1/2;
+        },
+        get unitVector() {
+            const angle = Math.random() * Math.PI * 2;
+            return { x: Math.cos(angle), y: Math.sin(angle) };
         }
 });

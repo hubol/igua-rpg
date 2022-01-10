@@ -7,6 +7,8 @@ import {player} from "./player";
 import {approachLinear} from "../utils/math/number";
 import {scene} from "../igua/scene";
 import {bouncePlayer} from "../igua/bouncePlayer";
+import {empBlast} from "./empBlast";
+import {rng} from "../utils/rng";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -22,6 +24,7 @@ export function oversizedClown() {
             bouncePlayer([33, 25].add(head));
             speed.x -= player.engine.knockback.x;
             speed.y -= player.vspeed;
+            empBlast(128, rng.int(3) + 1, 50, 1000).at([33, 25].add(head)).show();
         }
 
         head.add(speed);

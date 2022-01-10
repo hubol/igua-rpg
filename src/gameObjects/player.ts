@@ -28,9 +28,6 @@ export let player: ReturnType<typeof createPlayer>;
 
 export function recreatePlayer()
 {
-    if (player?.destroy)
-        player.destroy({children: true});
-
     player = createPlayer();
     scene.playerStage.addChild(player);
 }
@@ -53,6 +50,8 @@ function createPlayer()
             },
             damage(health: number)
             {
+                if (player.isDead)
+                    return;
                 if (player.invulnerableFrameCount > 0)
                 {
                     // TODO SFX
