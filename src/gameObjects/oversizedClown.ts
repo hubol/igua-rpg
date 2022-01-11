@@ -9,6 +9,8 @@ import {scene} from "../igua/scene";
 import {bouncePlayer} from "../igua/bouncePlayer";
 import {empBlast} from "./empBlast";
 import {rng} from "../utils/rng";
+import {range} from "../utils/range";
+import {ballons} from "./ballons";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -25,20 +27,43 @@ export function oversizedClown() {
     const hair = Sprite.from(hairTexture);
     const c = container(head, hair, face(faceState));
     const speed = [0, 0];
+
+    const ballonsState = range(5).map(() => 1);
+
+    let initialY: number;
+
     c.withStep(() => {
+        if (initialY === undefined)
+            initialY = c.y;
         if (health < fullHealth * 0.33)
             faceState.anger = 1 - (health / fullHealth);
+
+        const ballonIndex = ballonsState.findIndex(x => x === 1);
+        const hasBallons = ballonIndex >= 0;
+
         if (player.collides(head)) {
             health -= player.strength;
             bouncePlayer([33, 25].add(c));
+            speed.x += player.hspeed;
             speed.x -= player.engine.knockback.x;
-            speed.y -= player.vspeed;
-            empBlast(128, rng.int(3) + 1, 50, 1000).at([33, 25].add(c)).show();
+            speed.y -= player.vspeed * 0.3;
+            ballonsState[ballonIndex] = 0;
+            if (!hasBallons)
+                empBlast(128, rng.int(3) + 1, 50, 1000).at([33, 25].add(c)).show();
         }
 
+        if (c.y > initialY && hasBallons)
+            speed.y -= 0.4;
+        if (c.y < initialY - 32)
+            speed.y += 0.4;
+        if (hasBallons)
+            speed.y += Math.sin(now.s) * 0.02;
         c.add(speed);
-        speed.scale(0.8);
+        speed.scale(0.875);
     });
+
+    ballons({ target: c, state: ballonsState, string: 32, offset: [33, 11] });
+
     return c;
 }
 
