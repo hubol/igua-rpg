@@ -53,24 +53,19 @@ function createPlayer()
                 if (player.isDead)
                     return;
                 if (player.invulnerableFrameCount > 0)
-                {
-                    // TODO SFX
-                    player.invulnerableFrameCount -= 1;
                     return false;
-                }
 
                 if (player.isDucking)
                 {
                     CharacterHurtDefense.play();
                     progress.health -= health * 0.8;
-                    player.invulnerableFrameCount = 30;
                 }
                 else
                 {
                     CharacterHurt.play();
                     progress.health -= health;
-                    player.invulnerableFrameCount = 60;
                 }
+                player.invulnerableFrameCount = 60;
 
                 conditionallyGotoDeathScreen();
 

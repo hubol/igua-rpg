@@ -152,6 +152,21 @@ export const DragRock = new Howl({
     
 });
 
+export const EmpPulseFinal = new Howl({
+    src: [require("./sound/emp pulse final.ogg"), require("./sound/emp pulse final.mp3")],
+    
+});
+
+export const EmpPulseFire = new Howl({
+    src: [require("./sound/emp pulse fire.ogg"), require("./sound/emp pulse fire.mp3")],
+    
+});
+
+export const EmpPulse = new Howl({
+    src: [require("./sound/emp pulse.ogg"), require("./sound/emp pulse.mp3")],
+    
+});
+
 export const FlameOff = new Howl({
     src: [require("./sound/flame off.ogg"), require("./sound/flame off.mp3")],
     

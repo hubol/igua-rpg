@@ -20,25 +20,26 @@ export function oversizedClown() {
     let health = fullHealth;
 
     const head = Sprite.from(headTexture);
-    head.hitbox = [0.2, 0.2, 0.8, 0.8];
+
+    head.hitbox = [0.2, 0.2, 0.8, 1];
     const hair = Sprite.from(hairTexture);
-    head.addChild(hair, face(faceState));
+    const c = container(head, hair, face(faceState));
     const speed = [0, 0];
-    head.withStep(() => {
+    c.withStep(() => {
         if (health < fullHealth * 0.33)
-        faceState.anger = 1 - (health / fullHealth);
+            faceState.anger = 1 - (health / fullHealth);
         if (player.collides(head)) {
             health -= player.strength;
-            bouncePlayer([33, 25].add(head));
+            bouncePlayer([33, 25].add(c));
             speed.x -= player.engine.knockback.x;
             speed.y -= player.vspeed;
-            empBlast(128, rng.int(3) + 1, 50, 1000).at([33, 25].add(head)).show();
+            empBlast(128, rng.int(3) + 1, 50, 1000).at([33, 25].add(c)).show();
         }
 
-        head.add(speed);
+        c.add(speed);
         speed.scale(0.8);
-    })
-    return head;
+    });
+    return c;
 }
 
 function face(state: { anger: number }) {
