@@ -1,5 +1,4 @@
 import {loadHowlAsync} from "../utils/resources/loadHowls";
-import {wait} from "pissant";
 import {getMusicVolume} from "./getMusicVolume";
 import {Howl} from "howler";
 
@@ -11,7 +10,7 @@ class Jukebox
 
     warm(...howls: Howl[])
     {
-        howls.forEach(x => setTimeout(async () => await this._howlsWarmer.warm(x)));
+        howls.forEach(x => setTimeout(() => this._howlsWarmer.warm(x)));
         return this;
     }
 
@@ -32,19 +31,18 @@ class Jukebox
         return this._currentHowl;
     }
 
-    private _tryingToChangeCurrentHowl: boolean = false;
+    private _desiredHowl?: Howl = undefined;
 
     async stopAsync()
     {
-        await wait(() => !this._tryingToChangeCurrentHowl);
+        this._desiredHowl = undefined;
 
-        this._tryingToChangeCurrentHowl = true;
         try
         {
             if (this._currentHowl)
             {
                 this._currentHowl.stop();
-                await this._howlsWarmer.warm(this._currentHowl);
+                this._howlsWarmer.warm(this._currentHowl);
             }
             this._currentHowl = undefined;
         }
@@ -52,29 +50,27 @@ class Jukebox
         {
             console.error("Failed to stop", this._currentHowl, e);
         }
-        finally
-        {
-            this._tryingToChangeCurrentHowl = false;
-        }
     }
 
     async playAsync(howl: Howl)
     {
-        await wait(() => !this._tryingToChangeCurrentHowl);
-
         if (howl === this._currentHowl)
             return;
 
-        this._tryingToChangeCurrentHowl = true;
+        this._desiredHowl = howl;
 
         try
         {
             await loadHowlAsync(howl);
+            if (this._desiredHowl !== howl)
+                return;
+
             if (this._currentHowl)
             {
-                await this._howlsWarmer.warm(this._currentHowl);
+                this._howlsWarmer.warm(this._currentHowl);
                 this._currentHowl.stop();
             }
+
             this._currentHowl = howl;
             const volume = getMusicVolume(howl);
             // @ts-ignore
@@ -83,10 +79,6 @@ class Jukebox
         catch (e)
         {
             console.error("Failed to play", howl, e);
-        }
-        finally
-        {
-            this._tryingToChangeCurrentHowl = false;
         }
     }
 }
@@ -97,21 +89,23 @@ class HowlsWarmer
 
     constructor(private readonly _maxWarmedHowlsCount: number) { }
 
-    async warm(howl: Howl)
+    warm(howl: Howl)
     {
-        try
-        {
-            await loadHowlAsync(howl);
-        }
-        catch (e)
-        {
-            console.error("Failed to load", howl, e);
-            return;
-        }
+        setTimeout(async () => {
+            try
+            {
+                await loadHowlAsync(howl);
+            }
+            catch (e)
+            {
+                console.error("Failed to warm", howl, e);
+                return;
+            }
 
-        this._warmedHowls.removeAll(howl);
-        this.unloadUntilAtLeastOneWarmedHowlsSlot();
-        this._warmedHowls.unshift(howl);
+            this._warmedHowls.removeAll(howl);
+            this.unloadUntilAtLeastOneWarmedHowlsSlot();
+            this._warmedHowls.unshift(howl);
+        });
     }
 
     private unloadUntilAtLeastOneWarmedHowlsSlot()

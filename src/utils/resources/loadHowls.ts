@@ -1,5 +1,7 @@
-import { Howl } from 'howler';
-import {wait} from "pissant";
+import { Howl, Howler } from 'howler';
+import {CancellationToken, sleep, wait} from "pissant";
+import {waitAsync} from "../waitAsync";
+import {rng} from "../rng";
 
 export async function loadHowlsAsync(sounds: Howl[])
 {
@@ -8,15 +10,46 @@ export async function loadHowlsAsync(sounds: Howl[])
 
 export async function loadHowlAsync(howl: Howl)
 {
-    await wait(() => {
+    let errors = 0;
+    let err: HowlLoadError;
+    await waitAsync(async () => {
         const state = howl.state();
 
-        if (state === "loaded")
+        if (state === "loaded") {
+            // @ts-ignore
+            howl._iguaError = false;
             return true;
+        }
 
-        if (state === "unloaded")
-            howl.load();
+        if (err?.isError) {
+            // @ts-ignore
+            howl._iguaError = true;
+            errors++;
+            if (errors >= 10)
+                throw { message: `Giving up loading Howl`, howl };
+            const ms = 150 + rng.int(250) + (errors - 1) * 250;
+            console.info(`Retrying Howl.load in ${ms}ms (${errors})...`);
+            await sleep(ms);
+        }
+
+        // @ts-ignore
+        if (state === "unloaded" || howl._iguaError)
+            err = load(howl);
 
         return false;
     }, 167);
 }
+
+function load(howl: Howl) {
+    const err = { soundId: -1, error: -1, isError: false };
+    howl.once('loaderror', (soundId, error) => {
+        console.error(`Howl.load caused loaderror. soundId=${soundId} error=${error}`);
+        err.soundId = soundId;
+        err.error = error as any;
+        err.isError = true;
+    });
+    howl.load();
+    return err;
+}
+
+type HowlLoadError = ReturnType<typeof load>;
