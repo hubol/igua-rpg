@@ -1,4 +1,4 @@
-# IguaRPG ![Iguana character](./misc/iguana.png)
+# IguaRPG ![Iguana character](./iguana.svg)
 ### A computer game of the ages
 This is a fangame of [Oddwarg Animal RPG](http://oddwarg.com/index.php?id=OARPG), a Game Maker game from 2003.
 

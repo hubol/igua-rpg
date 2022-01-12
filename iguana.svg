@@ -1,0 +1,12 @@
+<svg fill="none" viewBox="0 0 33 27" width="33" height="27" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <style>
+                img {
+                    image-rendering: pixelated;
+                }
+            </style>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAbCAYAAADyBeakAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAABRUlEQVRIS9WWOw7CMAyGOyM2rtGNGzCzcw3EUbpxB0QlVq6QOwU5wpXr2onjlEpEstq0fnz9nabtuoYR+lOk1pDKF8oBcO7L5ojSADYDKQFsAvJziHB9R2pSp4oQz10MGct2nwPgnAepEIXiHGwBowGYQSoBEGgCkQAoJdzPtqUAEL+DKkGvpdyWdaD1MbUmA4HFaFF+rR2iAgCKA7A0Fkpo8ostMUDcL2NEAwg6RyARorRQp/v/AkHlr2rHGkrwgtLbgeukrR2wwzr3CNNesZYauBgpLCzOBYS0X5ghjGpgYRWgGaISBFQQN8CqJ2df21lsy1d0DTUcP2lyCD7V/hxm/xaSUtSn6x+yxF4ySI6mtYn6JAA0b1EaR5PjOS9i8XGzSMk5iMWnqTW8wPA6prbA8TYckuQWn+TrHbQAFC5BaD61EB8Fye3VQQj6XgAAAABJRU5ErkJggg=="></img>
+        </div>
+    </foreignObject>
+</svg>
