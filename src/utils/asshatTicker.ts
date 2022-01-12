@@ -45,9 +45,8 @@ export class AsshatTicker
     {
         this._callbacks.filterInPlace(x => !x._removed);
 
-        for (let i = 0, len = this._callbacks.length; i < len; i++)
+        for (const callback of this._callbacks)
         {
-            const callback = this._callbacks[i];
             if (callback._removed)
                 continue;
 

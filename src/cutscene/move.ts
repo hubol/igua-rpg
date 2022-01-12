@@ -30,7 +30,7 @@ class Move
         const speed = getVector(arguments);
 
         return moveOver(async ms => {
-            let ticksUntilResolve = (ms / 1000) * game.applicationTicker.maxFPS;
+            let ticksUntilResolve = (ms / 1000) * game.maxFps;
 
             return await wait(() => {
                     this._vector.x += speed.x;
@@ -52,7 +52,7 @@ class Move
 
             return await wait(() => {
                     currentTick++;
-                    const currentMs = (currentTick * 1000) / game.applicationTicker.maxFPS;
+                    const currentMs = (currentTick * 1000) / game.maxFps;
                     const factor = Math.min(currentMs / ms, 1);
 
                     this._vector.x = start.x;

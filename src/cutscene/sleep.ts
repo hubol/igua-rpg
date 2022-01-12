@@ -3,7 +3,7 @@ import {wait} from "./wait";
 
 export function sleep(ms: number)
 {
-    let ticksUntilResolve = (ms / 1000) * game.applicationTicker.maxFPS;
+    let ticksUntilResolve = (ms / 1000) * game.maxFps;
 
     return wait(() => --ticksUntilResolve <= 0);
 }

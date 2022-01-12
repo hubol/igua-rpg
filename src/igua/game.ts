@@ -35,9 +35,7 @@ function createGame(application: AsshatApplication)
     return {
         hudStage,
         sceneStage,
-        get applicationTicker() {
-            return application.ticker;
-        },
+        maxFps: application.maxFps,
         ticker,
         get width() {
             return application.renderer.width;
