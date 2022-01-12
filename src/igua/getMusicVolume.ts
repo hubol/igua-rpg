@@ -1,4 +1,5 @@
 import * as music from "../musics";
+import {Howl} from "howler";
 
 type Title = keyof typeof music;
 

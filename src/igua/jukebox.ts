@@ -1,6 +1,7 @@
 import {loadHowlAsync} from "../utils/resources/loadHowls";
 import {wait} from "pissant";
 import {getMusicVolume} from "./getMusicVolume";
+import {Howl} from "howler";
 
 class Jukebox
 {
