@@ -1,4 +1,4 @@
-import {OversizedAngel} from "../textures";
+import {ClownSpikeBall, OversizedAngel} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {Sprite} from "pixi.js";
 import {now} from "../utils/now";
@@ -17,9 +17,25 @@ import {ClownExplode, ClownHurt} from "../sounds";
 import {confetti} from "./confetti";
 import {Vector} from "../utils/math/vector";
 import {valuable, ValuableType} from "./valuable";
+import {merge} from "../utils/merge";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
+
+function mace(angleOffset: number) {
+    const s = merge(Sprite.from(ClownSpikeBall), { active: false, angleOffset })
+        .withStep(() => {
+            if (s.active) {
+                s.alpha = 1;
+                if (player.collides(s))
+                    player.damage(20);
+            }
+            else
+                s.alpha = 0.25;
+        });
+    s.anchor.set(0.5, 0.5);
+    return s;
+}
 
 export function oversizedClown() {
     const faceState = { anger: 0, excited: 0 };
@@ -61,7 +77,7 @@ export function oversizedClown() {
             hints = 1;
         else if (unit < .67)
             hints = 2;
-        const emp = empBlast(128, hints, 50, 1000).at([33, 25].add(c)).show();
+        const emp = empBlast(128, hints, 50, 800).at([33, 25].add(c)).show();
         await wait(() => emp.destroyed);
     }
 
@@ -126,6 +142,10 @@ export function oversizedClown() {
         speed.scale(0.9);
     }
 
+    function makeMaces() {
+        return range(8).map(x => c.addChild(mace(x * .19 * 2)));
+    }
+
     function setBehavior(fn: () => void) {
         speed.x = 0;
         speed.y = 0;
@@ -134,6 +154,34 @@ export function oversizedClown() {
     let behavior = hostile;
 
     let invulnerable = 0;
+
+    let maceAngle = 0;
+    const maces: ReturnType<typeof mace>[] = [];
+
+    c.withStep(() => {
+       const shouldHaveMaces = behavior === hostile;
+       if (shouldHaveMaces) {
+           if (maces.length === 0) {
+               maceAngle = 0;
+               const newMaces = makeMaces();
+               maces.push(...newMaces);
+               c.withAsync(async () => {
+                   await sleep(1000);
+                   newMaces.forEach(x => x.active = true);
+               })
+           }
+           const radius = 90;
+           maces.forEach(x => {
+               const a = maceAngle + x.angleOffset;
+               x.at(33, 25).add([Math.cos(a), -Math.sin(a)].scale(radius));
+           });
+           maceAngle += .02;
+       }
+       else if (maces.length > 0) {
+           maces.forEach(x => x.destroy());
+           maces.length = 0;
+       }
+    });
 
     c.withStep(() => {
         if (health <= 0) {
@@ -146,7 +194,7 @@ export function oversizedClown() {
         }
         if (invulnerable > 0) {
             invulnerable--;
-            c.visible = invulnerable % 2 === 0;
+            c.visible = !c.visible;
         }
         else
             c.visible = true;
