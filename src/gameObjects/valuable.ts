@@ -9,7 +9,7 @@ import {merge} from "../utils/merge";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {sleep} from "../cutscene/sleep";
 
-type ValuableType = keyof typeof valuableStyles;
+export type ValuableType = keyof typeof valuableStyles;
 
 export function valuable(x, y, uid, type: ValuableType)
 {

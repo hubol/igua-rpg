@@ -13,7 +13,10 @@ import {push} from "./walls";
 import {sleep} from "../cutscene/sleep";
 import {empBlast} from "./empBlast";
 import {wait} from "../cutscene/wait";
-import {ClownHurt} from "../sounds";
+import {ClownExplode, ClownHurt} from "../sounds";
+import {confetti} from "./confetti";
+import {Vector} from "../utils/math/vector";
+import {valuable, ValuableType} from "./valuable";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -58,7 +61,7 @@ export function oversizedClown() {
             hints = 1;
         else if (unit < .67)
             hints = 2;
-        const emp = empBlast(128, hints, 34, 1000).at([33, 25].add(c)).show();
+        const emp = empBlast(128, hints, 50, 1000).at([33, 25].add(c)).show();
         await wait(() => emp.destroyed);
     }
 
@@ -133,6 +136,14 @@ export function oversizedClown() {
     let invulnerable = 0;
 
     c.withStep(() => {
+        if (health <= 0) {
+            ClownExplode.play();
+            const v = c.vcpy().add(33, 25);
+            confetti(32, 64).at(v.vcpy()).ahead();
+            scene.gameObjectStage.withAsync(() => spawnTreasure([0, 20].add(v)));
+            c.destroy();
+            return;
+        }
         if (invulnerable > 0) {
             invulnerable--;
             c.visible = invulnerable % 2 === 0;
@@ -145,6 +156,21 @@ export function oversizedClown() {
     ballons({ target: c, state: ballonsState, string: 32, offset: [33, 11] });
 
     return c;
+}
+
+function dropValuable(t: ValuableType = 'ValuableOrange') {
+    return valuable(0, 0, undefined, t)
+        .delayCollectible()
+        .show();
+}
+
+async function spawnTreasure(v: Vector) {
+    const offsets = [[-10, -24], [10, -24], [0, -7], [-10, 10], [10, 10]];
+    for (let i = 0; i < offsets.length; i++) {
+        const o = offsets[i];
+        dropValuable(i === 2 ? 'ValuableBlue' : 'ValuableOrange').at(o.add(v));
+        await sleep(67);
+    }
 }
 
 function face(state: { anger: number, excited: number }) {
