@@ -13,6 +13,7 @@ import {push} from "./walls";
 import {sleep} from "../cutscene/sleep";
 import {empBlast} from "./empBlast";
 import {wait} from "../cutscene/wait";
+import {ClownHurt} from "../sounds";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -80,6 +81,9 @@ export function oversizedClown() {
         await sleep(1000);
         faceState.excited = 0;
         setBehavior(fall);
+        speed.x = (player.x - (c.x + 33)) / 12;
+        speed.x = Math.sign(speed.x) * Math.min(3, Math.abs(speed.x));
+        speed.y = -3;
     }
 
     function hostile() {
@@ -91,7 +95,9 @@ export function oversizedClown() {
         const ballonIndex = ballonsState.findIndex(x => x === 1);
         const hasBallons = ballonIndex >= 0;
 
-        if (player.collides(head)) {
+        if (player.collides(head) && invulnerable <= 0) {
+            ClownHurt.play();
+            invulnerable = 15;
             health -= player.strength;
             bouncePlayer([33, 25].add(c));
             speed.x += player.hspeed;
@@ -114,16 +120,25 @@ export function oversizedClown() {
         if (hasBallons)
             speed.y += Math.sin(now.s) * 0.02;
         c.add(speed);
-        speed.scale(0.875);
+        speed.scale(0.9);
     }
 
     function setBehavior(fn: () => void) {
-        speed.at(0, 0);
+        speed.x = 0;
+        speed.y = 0;
         behavior = fn;
     }
     let behavior = hostile;
 
+    let invulnerable = 0;
+
     c.withStep(() => {
+        if (invulnerable > 0) {
+            invulnerable--;
+            c.visible = invulnerable % 2 === 0;
+        }
+        else
+            c.visible = true;
         behavior();
     });
 
@@ -160,7 +175,7 @@ function face(state: { anger: number, excited: number }) {
     c.scale.x = 1;
     let facing = 1;
     const c2 = container(c).withStep(() => {
-        const b = c2.getBounds();
+        const b = f.getBounds();
         const x = b.x + b.width / 2 + scene.camera.x;
         const facingUnbounded = (player.x - x) / 60;
         const facingTarget = (Math.min(1, Math.abs(facingUnbounded)) * Math.sign(facingUnbounded) + 1) / 2;
