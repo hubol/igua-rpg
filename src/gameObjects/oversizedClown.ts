@@ -1,6 +1,6 @@
 import {ClownSpikeBall, OversizedAngel} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {Sprite} from "pixi.js";
+import {Container, Sprite} from "pixi.js";
 import {now} from "../utils/now";
 import {container} from "../utils/pixi/container";
 import {player} from "./player";
@@ -194,10 +194,11 @@ export function oversizedClown() {
 
     c.withStep(() => {
         if (health <= 0) {
+            abortElectricBolts();
             ClownExplode.play();
             const v = c.vcpy().add(33, 25);
             confetti(32, 64).at(v.vcpy()).ahead();
-            scene.gameObjectStage.withAsync(() => spawnTreasure([0, 28].add(v)));
+            scene.gameObjectStage.withAsync(() => spawnTreasure([0, 36].add(v)));
             c.destroy();
             return;
         }
@@ -210,13 +211,18 @@ export function oversizedClown() {
         behavior();
     });
 
+    c.on('added', () => {
+        electricBoltContainer = scene.gameObjectStage.addChild(container());
+    });
+
     function shootElectricBolt() {
         if (behavior !== hostile)
             return;
-        electricContainer.addChild(electricBolt().at(33, 25));
+        electricContainer.addChild(electricBolt(electricBoltContainer).at(33, 25));
     }
 
     function abortElectricBolts() {
+        electricBoltContainer.removeAllChildren();
         electricContainer.removeAllChildren();
     }
 
@@ -229,6 +235,7 @@ export function oversizedClown() {
     })
 
     ballons({ target: c, state: ballonsState, string: 32, offset: [33, 11] });
+    let electricBoltContainer: Container;
 
     return c;
 }

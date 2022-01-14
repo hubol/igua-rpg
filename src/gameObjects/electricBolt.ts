@@ -1,5 +1,5 @@
 import {burst12pxTextures} from "./smallPop";
-import {Point, Sprite} from "pixi.js";
+import {Container, Point, Sprite} from "pixi.js";
 import {normalize, Vector} from "../utils/math/vector";
 import {ElectricBolt} from "../textures";
 import {player} from "./player";
@@ -7,7 +7,7 @@ import {scene} from "../igua/scene";
 import {now} from "../utils/now";
 import {ChargeElectricBolt, FireElectricBolt} from "../sounds";
 
-export function electricBolt(speed = 1 / 30) {
+export function electricBolt(boltParent: Container, speed = 1 / 30) {
     ChargeElectricBolt.play();
     let unit = 0;
     const s = Sprite.from(burst12pxTextures[3]).withStep(() => {
@@ -16,7 +16,7 @@ export function electricBolt(speed = 1 / 30) {
         unit += speed;
         if (unit >= 1) {
             const bounds = s.getBounds();
-            electricBoltHostile(bounds.add(6, 6).add(scene.camera));
+            electricBoltHostile(bounds.add(6, 6).add(scene.camera), boltParent);
             s.destroy();
         }
     });
@@ -25,7 +25,7 @@ export function electricBolt(speed = 1 / 30) {
     return s;
 }
 
-function electricBoltHostile(v: Vector) {
+function electricBoltHostile(v: Vector, parent: Container) {
     FireElectricBolt.play();
     const s = Sprite.from(ElectricBolt).at(v);
     s.hitbox = [0.3, 0.3, 0.7, 0.7];
@@ -40,5 +40,5 @@ function electricBoltHostile(v: Vector) {
         s.add(speed);
     });
     s.anchor.set(0.5);
-    s.show();
+    parent.addChild(s);
 }
