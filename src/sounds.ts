@@ -67,6 +67,11 @@ export const CharacterStep = new Howl({
     
 });
 
+export const ChargeElectricBolt = new Howl({
+    src: [require("./sound/charge electric bolt.ogg"), require("./sound/charge electric bolt.mp3")],
+    
+});
+
 export const ClownExplode = new Howl({
     src: [require("./sound/clown explode.ogg"), require("./sound/clown explode.mp3")],
     
@@ -164,6 +169,11 @@ export const EmpPulseFire = new Howl({
 
 export const EmpPulse = new Howl({
     src: [require("./sound/emp pulse.ogg"), require("./sound/emp pulse.mp3")],
+    
+});
+
+export const FireElectricBolt = new Howl({
+    src: [require("./sound/fire electric bolt.ogg"), require("./sound/fire electric bolt.mp3")],
     
 });
 

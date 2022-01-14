@@ -18,6 +18,7 @@ import {confetti} from "./confetti";
 import {Vector} from "../utils/math/vector";
 import {valuable, ValuableType} from "./valuable";
 import {merge} from "../utils/merge";
+import {electricBolt} from "./electricBolt";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -47,7 +48,8 @@ export function oversizedClown() {
 
     head.hitbox = [0.2, 0.2, 0.8, 1];
     const hair = Sprite.from(hairTexture);
-    const c = container(head, hair, face(faceState));
+    const electricContainer = container();
+    const c = container(head, hair, face(faceState), electricContainer);
     const speed = [0, 0];
 
     const ballonsState = range(5).map(() => 1);
@@ -55,6 +57,8 @@ export function oversizedClown() {
     let initialY: number;
 
     function nothing() { }
+
+    let fallCount = 0;
 
     function fall() {
         speed.y += 0.3;
@@ -149,6 +153,10 @@ export function oversizedClown() {
     function setBehavior(fn: () => void) {
         speed.x = 0;
         speed.y = 0;
+        if (fn === fall)
+            fallCount++;
+        if (fn !== hostile)
+            abortElectricBolts();
         behavior = fn;
     }
     let behavior = hostile;
@@ -159,7 +167,7 @@ export function oversizedClown() {
     const maces: ReturnType<typeof mace>[] = [];
 
     c.withStep(() => {
-       const shouldHaveMaces = behavior === hostile;
+       const shouldHaveMaces = behavior === hostile && health < fullHealth;
        if (shouldHaveMaces) {
            if (maces.length === 0) {
                maceAngle = 0;
@@ -175,7 +183,8 @@ export function oversizedClown() {
                const a = maceAngle + x.angleOffset;
                x.at(33, 25).add([Math.cos(a), -Math.sin(a)].scale(radius));
            });
-           maceAngle += .02;
+           const isEvenFallCount = fallCount % 2 === 0;
+           maceAngle += isEvenFallCount ? .02 : -.02;
        }
        else if (maces.length > 0) {
            maces.forEach(x => x.destroy());
@@ -188,7 +197,7 @@ export function oversizedClown() {
             ClownExplode.play();
             const v = c.vcpy().add(33, 25);
             confetti(32, 64).at(v.vcpy()).ahead();
-            scene.gameObjectStage.withAsync(() => spawnTreasure([0, 20].add(v)));
+            scene.gameObjectStage.withAsync(() => spawnTreasure([0, 28].add(v)));
             c.destroy();
             return;
         }
@@ -200,6 +209,24 @@ export function oversizedClown() {
             c.visible = true;
         behavior();
     });
+
+    function shootElectricBolt() {
+        if (behavior !== hostile)
+            return;
+        electricContainer.addChild(electricBolt().at(33, 25));
+    }
+
+    function abortElectricBolts() {
+        electricContainer.removeAllChildren();
+    }
+
+    c.withAsync(async () => {
+        while (true) {
+            await sleep(2_000);
+            await wait(() => Math.abs(player.x - (c.x + 33)) < 100);
+            shootElectricBolt();
+        }
+    })
 
     ballons({ target: c, state: ballonsState, string: 32, offset: [33, 11] });
 

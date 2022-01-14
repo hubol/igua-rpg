@@ -4,7 +4,7 @@ import {Sprite, Texture} from "pixi.js";
 import {scene} from "../igua/scene";
 
 const burst8pxTextures = subimageTextures(Burst, 4);
-const burst12pxTextures = subimageTextures(Burst2, 4);
+export const burst12pxTextures = subimageTextures(Burst2, 4);
 
 export function smallPop(size: 8 | 12 = 8, container = scene.gameObjectStage)
 {
