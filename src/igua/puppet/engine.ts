@@ -63,7 +63,7 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
                 {
                     const difference = puppet.x - current.x;
                     const distance = Math.abs(difference);
-                    if (distance === 0 || (distance < 5 && Math.sign(difference) === Math.sign(puppet.hspeed)))
+                    if (distance < 0.1 || (distance < 5 && Math.sign(difference) === Math.sign(puppet.hspeed)))
                     {
                         puppet.hspeed = 0;
                         current.resolve();
