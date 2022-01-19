@@ -19,6 +19,8 @@ import {Vector} from "../utils/math/vector";
 import {valuable, ValuableType} from "./valuable";
 import {merge} from "../utils/merge";
 import {electricBolt} from "./electricBolt";
+import {excitement} from "./excitement";
+import {track} from "../igua/track";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -38,7 +40,7 @@ function mace(angleOffset: number) {
     return s;
 }
 
-export function oversizedClown() {
+function oversizedClownImpl() {
     const faceState = { anger: 0, excited: 0 };
 
     const fullHealth = 30;
@@ -49,7 +51,7 @@ export function oversizedClown() {
     head.hitbox = [0.2, 0.2, 0.8, 1];
     const hair = Sprite.from(hairTexture);
     const electricContainer = container();
-    const c = container(head, hair, face(faceState), electricContainer);
+    const c = merge(container(head, hair, face(faceState), electricContainer), { aggressive: false });
     const speed = [0, 0];
 
     const ballonsState = range(5).map(() => 1);
@@ -119,6 +121,7 @@ export function oversizedClown() {
         const hasBallons = ballonIndex >= 0;
 
         if (player.collides(head) && invulnerable <= 0) {
+            c.aggressive = true;
             ClownHurt.play();
             invulnerable = 15;
             health -= player.strength;
@@ -166,31 +169,44 @@ export function oversizedClown() {
     let maceAngle = 0;
     const maces: ReturnType<typeof mace>[] = [];
 
-    c.withStep(() => {
-       const shouldHaveMaces = behavior === hostile && health < fullHealth;
-       if (shouldHaveMaces) {
-           if (maces.length === 0) {
-               maceAngle = 0;
-               const newMaces = makeMaces();
-               maces.push(...newMaces);
-               c.withAsync(async () => {
-                   await sleep(1000);
-                   newMaces.forEach(x => x.active = true);
-               })
-           }
-           const radius = 90;
-           maces.forEach(x => {
-               const a = maceAngle + x.angleOffset;
-               x.at(33, 25).add([Math.cos(a), -Math.sin(a)].scale(radius));
-           });
-           const isEvenFallCount = fallCount % 2 === 0;
-           maceAngle += isEvenFallCount ? .02 : -.02;
-       }
-       else if (maces.length > 0) {
-           maces.forEach(x => x.destroy());
-           maces.length = 0;
-       }
-    });
+    function controlMaces() {
+        const shouldHaveMaces = behavior === hostile && c.aggressive;
+        if (shouldHaveMaces) {
+            if (maces.length === 0) {
+                maceAngle = 0;
+                const newMaces = makeMaces();
+                maces.push(...newMaces);
+                c.withAsync(async () => {
+                    await sleep(1000);
+                    newMaces.forEach(x => x.active = true);
+                })
+            }
+            const radius = 90;
+            maces.forEach(x => {
+                const a = maceAngle + x.angleOffset;
+                x.at(33, 25).add([Math.cos(a), -Math.sin(a)].scale(radius));
+            });
+            const isEvenFallCount = fallCount % 2 === 0;
+            maceAngle += isEvenFallCount ? -.02 : .02;
+        }
+        else if (maces.length > 0) {
+            maces.forEach(x => x.destroy());
+            maces.length = 0;
+        }
+    }
+
+    c.withStep(controlMaces);
+
+    function showExcitement() {
+        let lastAggressive;
+        return () => {
+            if (c.aggressive && c.aggressive !== lastAggressive && lastAggressive !== undefined)
+                excitement().at([48, 4].add(c)).ahead();
+            lastAggressive = c.aggressive;
+        }
+    }
+
+    c.withStep(showExcitement());
 
     c.withStep(() => {
         if (health <= 0) {
@@ -227,6 +243,7 @@ export function oversizedClown() {
     }
 
     c.withAsync(async () => {
+        await wait(() => c.aggressive);
         while (true) {
             await sleep(2_000);
             await wait(() => Math.abs(player.x - (c.x + 33)) < 100);
@@ -281,8 +298,14 @@ function face(state: { anger: number, excited: number }) {
     });
     c.pivot.x = 41;
     c.scale.x = 1;
-    let facing = 1;
+    let facing = 0;
+    let once = false;
     const c2 = container(c).withStep(() => {
+        // @ts-ignore
+        if (once && !c2.parent.aggressive)
+            return;
+        once = true;
+
         const b = f.getBounds();
         const x = b.x + b.width / 2 + scene.camera.x;
         const facingUnbounded = (player.x - x) / 60;
@@ -295,3 +318,5 @@ function face(state: { anger: number, excited: number }) {
     });
     return c2;
 }
+
+export const oversizedClown = track(oversizedClownImpl);
