@@ -21,6 +21,8 @@ import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
+import { GlowingCircle } from "./textures";
+import { PoppingRocksBox } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { resolveGate } from "./gameObjects/gate";
@@ -34,7 +36,6 @@ import { CrudeHouse } from "./textures";
 import { CrudeHouseC } from "./textures";
 import { CrateWooden } from "./textures";
 import { CrudeHouseB } from "./textures";
-import { GlowingCircle } from "./textures";
 import { Column } from "./textures";
 import { CracksA } from "./textures";
 import { PaSpeaker } from "./textures";
@@ -2474,13 +2475,35 @@ Tumbleweed2: {"type":"Anchor","x":1464,"y":408,"flippedX":false,"flippedY":false
 };
 
 export const OversizedClownArenaArgs = {
-    width: 512,
+    width: 768,
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":224,"width":512,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
-Player: {"type":"Player","x":424,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
+    PoppingRocksBox: resolveDecalGameObject({
+    x: 624,
+y: 226,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: PoppingRocksBox
+}),
+DesertGlow: resolveDecalGameObject({
+    x: 776,
+y: 200,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1.4,
+scaleY: -0.9,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingCircle
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":768,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":720,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
 // @ts-ignore
 SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":336,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_2","name":"","depth":0}),
 // @ts-ignore
@@ -2492,7 +2515,13 @@ SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":136,"y":0,"width":32,"h
 // @ts-ignore
 PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":152,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_6","visible":true,"name":"","depth":0}),
 // @ts-ignore
-PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":32,"y":152,"flippedX":false,"flippedY":false,"uid":"63418353_7","name":"","depth":0})
+PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":32,"y":152,"flippedX":false,"flippedY":false,"uid":"63418353_7","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":512,"y":0,"width":256,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":632,"y":112,"width":136,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":512,"y":112,"width":120,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435_10","name":"","depth":0})
 };
 }
 };

@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 512,
+  "width": 768,
   "height": 256,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,7 +12,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 64,
+      "gridCellsX": 96,
       "gridCellsY": 32,
       "entities": [
         {
@@ -21,7 +21,7 @@
           "_eid": "55823268",
           "x": 0,
           "y": 224,
-          "width": 512,
+          "width": 768,
           "height": 32,
           "originX": 0,
           "originY": 0,
@@ -31,7 +31,7 @@
           "name": "Player",
           "id": 1,
           "_eid": "55988047",
-          "x": 424,
+          "x": 720,
           "y": 224,
           "originX": 11,
           "originY": 27,
@@ -109,6 +109,43 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 8,
+          "_eid": "55823268",
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 9,
+          "_eid": "55823268",
+          "x": 632,
+          "y": 112,
+          "width": 136,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 10,
+          "_eid": "55824435",
+          "x": 512,
+          "y": 112,
+          "width": 120,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -119,9 +156,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 64,
+      "gridCellsX": 96,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {"x": 624, "y": 226, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "popping rocks box.png", "originX": 0.5, "originY": 1}
+      ],
       "folder": "../../src/images"
     },
     {
@@ -131,9 +170,21 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 64,
+      "gridCellsX": 96,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 776,
+          "y": 200,
+          "scaleX": -1.4,
+          "scaleY": -0.9,
+          "rotation": 0,
+          "texture": "glowing circle.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "DesertGlow"}
+        }
+      ],
       "folder": "..\\..\\src\\images"
     },
     {
@@ -143,7 +194,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 64,
+      "gridCellsX": 96,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"

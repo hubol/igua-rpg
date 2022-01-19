@@ -31,3 +31,5 @@ export function makePseudo(seed) {
         color
     }
 }
+
+export type Pseudo = ReturnType<typeof makePseudo>;

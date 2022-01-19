@@ -4,6 +4,8 @@ import {PropertiesOf} from "../types/propertiesOf";
 import {CollectGeneric} from "../../sounds";
 import {player} from "../../gameObjects/player";
 import {scene} from "../../igua/scene";
+import {cutscene, Cutscene} from "../../cutscene/cutscene";
+import {show} from "../../cutscene/dialog";
 
 declare global {
     namespace PIXI {
@@ -12,6 +14,7 @@ declare global {
             show(): this;
             behind(): this;
             withInteraction(interaction: () => void): this;
+            withCutscene(cutscene: Cutscene): this;
             asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>);
         }
     }
@@ -48,6 +51,10 @@ PIXI.DisplayObject.prototype.withInteraction = function(interaction)
         if (isPlayerInteractingWith(this))
             interaction();
     })
+}
+
+PIXI.DisplayObject.prototype.withCutscene = function (scene) {
+    return this.withInteraction(() => cutscene.play(scene));
 }
 
 export default 0;
