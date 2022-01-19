@@ -21,6 +21,7 @@ import {merge} from "../utils/merge";
 import {electricBolt} from "./electricBolt";
 import {excitement} from "./excitement";
 import {track} from "../igua/track";
+import {rng} from "../utils/rng";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -201,7 +202,10 @@ function oversizedClownImpl() {
         let lastAggressive;
         return () => {
             if (c.aggressive && c.aggressive !== lastAggressive && lastAggressive !== undefined)
-                excitement().at([48, 4].add(c)).ahead();
+                excitement().at([48, 4].add(c)).ahead().withStep(() => {
+                    c.x += rng.polar;
+                    c.y += rng.polar;
+                });
             lastAggressive = c.aggressive;
         }
     }

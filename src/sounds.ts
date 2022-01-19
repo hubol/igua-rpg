@@ -227,6 +227,11 @@ export const MimicCorrect = new Howl({
     
 });
 
+export const PoppingRockPop = new Howl({
+    src: [require("./sound/popping rock pop.ogg"), require("./sound/popping rock pop.mp3")],
+    
+});
+
 export const PurchaseFail = new Howl({
     src: [require("./sound/purchase fail.ogg"), require("./sound/purchase fail.mp3")],
     

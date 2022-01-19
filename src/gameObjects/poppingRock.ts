@@ -3,7 +3,7 @@ import {PoppingRock} from "../textures";
 import {Sprite} from "pixi.js";
 import {smallPop} from "./smallPop";
 import {player} from "./player";
-import {BallonPop} from "../sounds";
+import {PoppingRockPop} from "../sounds";
 import {makePseudo} from "../utils/makePseudo";
 import {distance, Vector} from "../utils/math/vector";
 
@@ -13,7 +13,7 @@ export function poppingRock(pseudo = p) {
     const s = Sprite.from(PoppingRock).withStep(() => {
         if (player.collides(s)) {
             alertAngels(s);
-            BallonPop.play();
+            PoppingRockPop.play();
             smallPop(8, s.parent).at(s);
             s.destroy();
         }
