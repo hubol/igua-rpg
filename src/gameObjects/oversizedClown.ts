@@ -22,8 +22,9 @@ import {electricBolt} from "./electricBolt";
 import {excitement} from "./excitement";
 import {track} from "../igua/track";
 import {rng} from "../utils/rng";
+import {Sleepy} from "../igua/puppet/mods/sleepy";
 
-const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture] =
+const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture, sleepyFaceTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
 
 function mace(angleOffset: number) {
@@ -199,13 +200,23 @@ function oversizedClownImpl() {
     c.withStep(controlMaces);
 
     function showExcitement() {
+        let sleepy;
         let lastAggressive;
         return () => {
-            if (c.aggressive && c.aggressive !== lastAggressive && lastAggressive !== undefined)
+            if (c.aggressive && c.aggressive !== lastAggressive && lastAggressive !== undefined) {
+                if (sleepy) {
+                    sleepy.destroy();
+                    sleepy = undefined;
+                }
                 excitement().at([48, 4].add(c)).ahead().withStep(() => {
                     c.x += rng.polar;
                     c.y += rng.polar;
                 });
+            }
+            if (!c.aggressive && lastAggressive !== c.aggressive && sleepy === undefined) {
+                sleepy = Sleepy(c as any);
+                c.addChild(sleepy);
+            }
             lastAggressive = c.aggressive;
         }
     }
@@ -271,7 +282,7 @@ async function spawnTreasure(v: Vector) {
     const offsets = [[-10, -24], [10, -24], [0, -7], [-10, 10], [10, 10]];
     for (let i = 0; i < offsets.length; i++) {
         const o = offsets[i];
-        dropValuable(i === 2 ? 'ValuableBlue' : 'ValuableOrange').at(o.add(v));
+        dropValuable(i !== 2 ? 'ValuableBlue' : 'ValuableOrange').at(o.add(v));
         await sleep(67);
     }
 }
@@ -305,8 +316,10 @@ function face(state: { anger: number, excited: number }) {
     let facing = 0;
     let once = false;
     const c2 = container(c).withStep(() => {
+        const aggressive = (c2.parent as any).aggressive as boolean;
+        f.texture = aggressive ? faceTexture : sleepyFaceTexture;
         // @ts-ignore
-        if (once && !c2.parent.aggressive)
+        if (once && !aggressive)
             return;
         once = true;
 
