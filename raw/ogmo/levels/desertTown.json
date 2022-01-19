@@ -639,6 +639,28 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "Tumbleweed2", "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 61,
+          "_eid": "55920197",
+          "x": -16,
+          "y": 344,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "OversizedAngelArena", "checkpointName": "FromDesert", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 62,
+          "_eid": "55940370",
+          "x": 56,
+          "y": 376,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromArena", "faceRight": true, "depth": 0}
         }
       ]
     },

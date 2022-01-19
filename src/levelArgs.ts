@@ -19,13 +19,13 @@ import { Rainbow2 } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
+import { resolveGate } from "./gameObjects/gate";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { GlowingCircle } from "./textures";
 import { PoppingRocksBox } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveBoulder } from "./gameObjects/boulder";
-import { resolveGate } from "./gameObjects/gate";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveSign } from "./gameObjects/sign";
 import { CloudLong } from "./textures";
@@ -2469,7 +2469,10 @@ ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":1348,"y":130,"flipp
 // @ts-ignore
 Block_12: resolveBlock({"type":"Block","x":0,"y":0,"width":48,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_58","name":"","depth":0}),
 Tumbleweed1: {"type":"Anchor","x":320,"y":344,"flippedX":false,"flippedY":false,"uid":"25979726_59","name":"Tumbleweed1","depth":0},
-Tumbleweed2: {"type":"Anchor","x":1464,"y":408,"flippedX":false,"flippedY":false,"uid":"25979726_60","name":"Tumbleweed2","depth":0}
+Tumbleweed2: {"type":"Anchor","x":1464,"y":408,"flippedX":false,"flippedY":false,"uid":"25979726_60","name":"Tumbleweed2","depth":0},
+// @ts-ignore
+Gate_1: resolveGate({"type":"Gate","x":-16,"y":344,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_61","levelName":"OversizedAngelArena","checkpointName":"FromDesert","name":"","depth":0}),
+FromArena: {"type":"Checkpoint","x":56,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_62","name":"FromArena","faceRight":true,"depth":0}
 };
 }
 };
@@ -2503,7 +2506,7 @@ texture: GlowingCircle
 }),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":224,"width":768,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
-Player: {"type":"Player","x":720,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
+Player: {"type":"Player","x":696,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
 // @ts-ignore
 SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":336,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_2","name":"","depth":0}),
 // @ts-ignore
@@ -2521,7 +2524,9 @@ Block_1: resolveBlock({"type":"Block","x":512,"y":0,"width":256,"height":112,"fl
 // @ts-ignore
 Block_2: resolveBlock({"type":"Block","x":632,"y":112,"width":136,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":512,"y":112,"width":120,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435_10","name":"","depth":0})
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":512,"y":112,"width":120,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435_10","name":"","depth":0}),
+// @ts-ignore
+Gate: resolveGate({"type":"Gate","x":744,"y":192,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_11","levelName":"DesertTown","checkpointName":"FromArena","name":"","depth":0})
 };
 }
 };

@@ -31,7 +31,7 @@
           "name": "Player",
           "id": 1,
           "_eid": "55988047",
-          "x": 720,
+          "x": 696,
           "y": 224,
           "originX": 11,
           "originY": 27,
@@ -146,6 +146,18 @@
           "originY": 0,
           "flippedY": true,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 11,
+          "_eid": "55920197",
+          "x": 744,
+          "y": 192,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "DesertTown", "checkpointName": "FromArena", "name": "", "depth": 0}
         }
       ]
     },
