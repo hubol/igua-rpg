@@ -28,7 +28,8 @@ export function getInitialFlags()
                 piece2: false,
                 piece3: false,
                 reward: false,
-            }
+            },
+            defeatedOversizedAngel: false,
         },
         oracle: {
             lore1: false,

@@ -8,6 +8,7 @@ import {Hemaboss1} from "../musics";
 import {show} from "../cutscene/dialog";
 import {makePseudo} from "../utils/makePseudo";
 import {poppingRock} from "../gameObjects/poppingRock";
+import {progress} from "../igua/data/progress";
 
 export function OversizedAngelArena() {
     const level = applyOgmoLevel(OversizedClownArenaArgs);
@@ -19,7 +20,18 @@ export function OversizedAngelArena() {
         await show('An empty box of popping rocks. Not useful.');
     });
 
-    const clown = oversizedClown().at(256, 128).show();
+    const clownV = [256, 128];
+    if (!progress.flags.desert.defeatedOversizedAngel) {
+        const clown = oversizedClown().at(clownV).show();
+
+        scene.gameObjectStage.withAsync(async () => {
+            await wait(() => clown.aggressive);
+            jukebox.play(Hemaboss1);
+            await wait(() => clown.destroyed);
+            progress.flags.desert.defeatedOversizedAngel = true;
+            jukebox.currentSong?.fade(1, 0, 1000);
+        });
+    }
 
     const p = makePseudo(421);
     const v = [box.x - 16, box.y];
@@ -29,17 +41,10 @@ export function OversizedAngelArena() {
         const dy = -(p.int() % 2);
         poppingRock(p).at(v.x, v.y + dy).ahead();
         if (i === 4)
-            v.x = clown.x - 16;
+            v.x = clownV.x - 16;
     }
 
     jukebox.stop().warm(Hemaboss1);
     scene.backgroundColor = 0x2F4B5E;
     scene.terrainColor = 0x0F2061;
-
-    scene.gameObjectStage.withAsync(async () => {
-        await wait(() => clown.aggressive);
-        jukebox.play(Hemaboss1);
-        await wait(() => clown.destroyed);
-        jukebox.currentSong?.fade(1, 0, 1000);
-    })
 }
