@@ -16,11 +16,14 @@ export function OversizedAngelArena() {
     scene.terrainColor = 0x0F2061;
     const level = applyOgmoLevel(OversizedClownArenaArgs);
     level.DesertGlow.tint = 0xF0F0B0;
+    level.JungleGlow.tint = 0x8CC8F8;
 
-    level.RightBossWall.tint = 0xAD4A43;
-
-    const rightBossWall = slidingDoor(level.RightBossWall, false);
-    rightBossWall.openInstantly();
+    const doors = [level.RightBossWall, level.LeftBossWall].map(x => {
+        x.tint = 0xAD4A43;
+        const door = slidingDoor(x, false);
+        door.openInstantly();
+        return door;
+    });
 
     const box = level.PoppingRocksBox;
 
@@ -28,16 +31,16 @@ export function OversizedAngelArena() {
         await show('An empty box of popping rocks. Not useful.');
     });
 
-    const clownV = [256, 128];
+    const clownV = [256 + 80, 128];
     if (!progress.flags.desert.defeatedOversizedAngel) {
         const clown = oversizedClown().at(clownV).show();
 
         scene.gameObjectStage.withAsync(async () => {
             await wait(() => clown.aggressive);
-            rightBossWall.startClosing(2);
+            doors.forEach(x => x.startClosing(2));
             jukebox.play(Hemaboss1);
             await wait(() => clown.destroyed);
-            rightBossWall.startOpening(2);
+            doors.forEach(x => x.startOpening(2));
             progress.flags.desert.defeatedOversizedAngel = true;
             jukebox.currentSong?.fade(1, 0, 1000);
         });
