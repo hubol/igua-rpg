@@ -19,10 +19,11 @@ import {cutOutWindow} from "../igua/cutOutWindow";
 
 export function DesertInn()
 {
-    jukebox.play(Bluehouse).warm(Country);
-    const level = applyOgmoLevel(DesertInnArgs);
     scene.backgroundColor = 0xC08070;
     scene.terrainColor = 0x702010;
+
+    jukebox.play(Bluehouse).warm(Country);
+    const level = applyOgmoLevel(DesertInnArgs);
 
     level.GlowingCircle.tint = 0xF0F0B0;
     [ level.CracksA, level.CracksA_1, level.CracksA_2 ].forEach(x => x.tint = 0xA05040);

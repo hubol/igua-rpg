@@ -32,10 +32,10 @@ type DesertTownLevel = ReturnType<typeof getDesertTownLevel>;
 
 export function DesertTown()
 {
-    jukebox.play(Country).warm(Oracle, Bluehouse, Shop, DesertField);
-    const level = getDesertTownLevel();
     scene.backgroundColor = 0xF0F0B0;
     scene.terrainColor = 0xE0D060;
+    jukebox.play(Country).warm(Oracle, Bluehouse, Shop, DesertField);
+    const level = getDesertTownLevel();
 
     level.BarBuilding.tint = 0xA0C0C0;
     level.InnBuilding.tint = 0xE08060;

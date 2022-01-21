@@ -18,10 +18,10 @@ import {persistence} from "../igua/data/persistence";
 
 export function DesertTemple()
 {
-    jukebox.play(Temple).warm(Fly, Mimic, DesertTown);
-    const level = applyOgmoLevel(DesertTempleArgs);
     scene.backgroundColor = 0xCEA5A5;
     scene.terrainColor = 0x283741;
+    jukebox.play(Temple).warm(Fly, Mimic, DesertTown);
+    const level = applyOgmoLevel(DesertTempleArgs);
     [level.CracksA, level.CracksA_1].forEach(x => x.tint = 0xA66B6B);
     level.GlowingCircle.tint = 0xF0F0B0;
 

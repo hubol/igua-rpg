@@ -35,17 +35,7 @@ function createScene(source: SceneSource, args: Readonly<SceneMeta>)
             backgroundGraphics.beginFill(value);
             backgroundGraphics.drawRect(0, 0, 256, 256);
         },
-        set terrainFill(value: DisplayObject) {
-            terrainContainer.removeAllChildren();
-            value.mask = terrainStage;
-            terrainContainer.addChild(value);
-        },
-        set terrainColor(color: number) {
-            const graphics = new Graphics();
-            graphics.beginFill(color);
-            graphics.drawRect(0, 0, 4096, 4096);
-            this.terrainFill = graphics;
-        },
+        terrainColor: 0,
         camera: createCamera(args.isLevel),
         trackedDisplayObjects: {},
         parallax1Stage,

@@ -112,18 +112,6 @@
         },
         {
           "name": "Block",
-          "id": 8,
-          "_eid": "55823268",
-          "x": 512,
-          "y": 0,
-          "width": 256,
-          "height": 112,
-          "originX": 0,
-          "originY": 0,
-          "values": {"name": "", "depth": 0}
-        },
-        {
-          "name": "Block",
           "id": 9,
           "_eid": "55823268",
           "x": 632,
@@ -132,19 +120,6 @@
           "height": 64,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "", "depth": 0}
-        },
-        {
-          "name": "SlopeRight",
-          "id": 10,
-          "_eid": "55824435",
-          "x": 512,
-          "y": 112,
-          "width": 120,
-          "height": 64,
-          "originX": 0,
-          "originY": 0,
-          "flippedY": true,
           "values": {"name": "", "depth": 0}
         },
         {
@@ -158,6 +133,43 @@
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "DesertTown", "checkpointName": "FromArena", "name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 12,
+          "_eid": "55823268",
+          "x": 592,
+          "y": 152,
+          "width": 16,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "RightBossWall", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 13,
+          "_eid": "55824435",
+          "x": 512,
+          "y": 112,
+          "width": 120,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 14,
+          "_eid": "55823268",
+          "x": 512,
+          "y": 0,
+          "width": 256,
+          "height": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -171,7 +183,17 @@
       "gridCellsX": 96,
       "gridCellsY": 32,
       "decals": [
-        {"x": 624, "y": 226, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "popping rocks box.png", "originX": 0.5, "originY": 1}
+        {
+          "x": 624,
+          "y": 226,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "popping rocks box.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },

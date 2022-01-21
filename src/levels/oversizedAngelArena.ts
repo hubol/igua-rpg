@@ -9,10 +9,18 @@ import {show} from "../cutscene/dialog";
 import {makePseudo} from "../utils/makePseudo";
 import {poppingRock} from "../gameObjects/poppingRock";
 import {progress} from "../igua/data/progress";
+import {slidingDoor} from "../gameObjects/slidingDoor";
 
 export function OversizedAngelArena() {
+    scene.backgroundColor = 0x2F4B5E;
+    scene.terrainColor = 0x0F2061;
     const level = applyOgmoLevel(OversizedClownArenaArgs);
     level.DesertGlow.tint = 0xF0F0B0;
+
+    level.RightBossWall.tint = 0xAD4A43;
+
+    const rightBossWall = slidingDoor(level.RightBossWall, false);
+    rightBossWall.openInstantly();
 
     const box = level.PoppingRocksBox;
 
@@ -26,8 +34,10 @@ export function OversizedAngelArena() {
 
         scene.gameObjectStage.withAsync(async () => {
             await wait(() => clown.aggressive);
+            rightBossWall.startClosing(2);
             jukebox.play(Hemaboss1);
             await wait(() => clown.destroyed);
+            rightBossWall.startOpening(2);
             progress.flags.desert.defeatedOversizedAngel = true;
             jukebox.currentSong?.fade(1, 0, 1000);
         });
@@ -45,6 +55,4 @@ export function OversizedAngelArena() {
     }
 
     jukebox.stop().warm(Hemaboss1);
-    scene.backgroundColor = 0x2F4B5E;
-    scene.terrainColor = 0x0F2061;
 }

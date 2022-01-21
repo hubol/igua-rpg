@@ -15,12 +15,12 @@ import {player} from "../gameObjects/player";
 
 export function UnrealFlight()
 {
+    scene.backgroundColor = 0x60B0E0;
+    scene.terrainColor = 0x40A020;
+
     portalFluidConfig.gotoLevelName = "DesertTemple";
     jukebox.play(Fly);
     const level = applyOgmoLevel(UnrealFlightArgs);
-
-    scene.backgroundColor = 0x60B0E0;
-    scene.terrainColor = 0x40A020;
 
     scene.backgroundGameObjectStage.addChild(
         bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[0], "piece1")

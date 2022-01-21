@@ -11,10 +11,11 @@ import {cutOutWindow} from "../igua/cutOutWindow";
 
 export function DesertOracle()
 {
-    jukebox.play(Oracle);
-    const level = applyOgmoLevel(DesertOracleArgs);
     scene.backgroundColor = 0x609090;
     scene.terrainColor = 0x204040;
+
+    jukebox.play(Oracle);
+    const level = applyOgmoLevel(DesertOracleArgs);
 
     level.GlowingCircle.tint = 0xF0F0B0;
     cutOutWindow(0xF0F0B0, level.Window1, level.Window2, level.Window3, level.Window4);

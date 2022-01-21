@@ -125,7 +125,8 @@ export function block(x0: number, y0: number, x1: number, y1: number)
     const { width, xmax, xmin, ymin, ymax, height } = computeBox(x0, y0, x1, y1);
 
     const graphics = new Graphics();
-    graphics.beginFill();
+    graphics.tint = scene.terrainColor;
+    graphics.beginFill(0xffffff);
     graphics.drawRect(xmin, ymin, width, height);
     graphics.endFill();
 
@@ -163,7 +164,8 @@ export function slope(x0: number, y0: number, x1: number, y1: number, isGround: 
     const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1, isGround);
 
     const graphics = new Graphics();
-    graphics.beginFill();
+    graphics.tint = scene.terrainColor;
+    graphics.beginFill(0xffffff);
     graphics.moveTo(x0, y0);
 
     if ((isGround && y0 > y1) || (!isGround && y0 < y1))

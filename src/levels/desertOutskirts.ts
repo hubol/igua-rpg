@@ -28,10 +28,11 @@ type DesertOutskirtsLevel = ReturnType<typeof getDesertOutskirtsLevel>;
 
 export function DesertOutskirts()
 {
-    jukebox.play(DesertTown);
-    const level = getDesertOutskirtsLevel();
     scene.backgroundColor = 0xF0F0B0;
     scene.terrainColor = 0xE0D060;
+
+    jukebox.play(DesertTown);
+    const level = getDesertOutskirtsLevel();
 
     enrichUnlockTemple(level);
     enrichGrassyValuable(level);

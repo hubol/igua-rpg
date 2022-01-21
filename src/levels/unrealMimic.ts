@@ -26,12 +26,12 @@ type UnrealMimicLevel = ReturnType<typeof applyUnrealMimicLevel>;
 
 export function UnrealMimic()
 {
+    scene.backgroundColor = 0xF0C050;
+    scene.terrainColor = 0xF05050;
+
     jukebox.play(Mimic);
     portalFluidConfig.gotoLevelName = "DesertTemple";
     const level = applyUnrealMimicLevel();
-
-    scene.backgroundColor = 0xF0C050;
-    scene.terrainColor = 0xF05050;
 
     scene.backgroundGameObjectStage.addChild(
         bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[1], "piece2")

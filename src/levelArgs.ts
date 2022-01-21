@@ -2520,13 +2520,15 @@ PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":152,"wi
 // @ts-ignore
 PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":32,"y":152,"flippedX":false,"flippedY":false,"uid":"63418353_7","name":"","depth":0}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":512,"y":0,"width":256,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":"","depth":0}),
+Block_1: resolveBlock({"type":"Block","x":632,"y":112,"width":136,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":632,"y":112,"width":136,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
+Gate: resolveGate({"type":"Gate","x":744,"y":192,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_11","levelName":"DesertTown","checkpointName":"FromArena","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":512,"y":112,"width":120,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435_10","name":"","depth":0}),
+RightBossWall: resolveBlock({"type":"Block","x":592,"y":152,"width":16,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_12","name":"RightBossWall","depth":0}),
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":744,"y":192,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_11","levelName":"DesertTown","checkpointName":"FromArena","name":"","depth":0})
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":512,"y":112,"width":120,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435_13","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":512,"y":0,"width":256,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_14","name":"","depth":0})
 };
 }
 };

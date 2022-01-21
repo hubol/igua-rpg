@@ -21,10 +21,10 @@ type DesertFieldLevel = ReturnType<typeof getDesertFieldLevel>;
 
 export function DesertField()
 {
-    jukebox.play(DesertTown).warm(Temple, Country);
-    const level = getDesertFieldLevel();
     scene.backgroundColor = 0xF0F0B0;
     scene.terrainColor = 0xE0D060;
+    jukebox.play(DesertTown).warm(Temple, Country);
+    const level = getDesertFieldLevel();
 
     level.TempleDoor.locked = !progress.flags.desert.unlockedTemple;
     [level.Tumbleweed1, level.Tumbleweed2].forEach(x => rng.bool && tumbleweed().at(x).show());

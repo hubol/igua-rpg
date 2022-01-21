@@ -31,9 +31,9 @@ let holdingFlame = false;
 const faceTextures = subimageTextures(SnowmanFace, 4);
 
 export function UnrealSnowman() {
-    const level = applyOgmoLevel(UnrealSnowmanArgs);
     scene.backgroundColor = 0xC3C2EF;
     scene.terrainColor = 0xC43E4E;
+    const level = applyOgmoLevel(UnrealSnowmanArgs);
     portalFluidConfig.gotoLevelName = "DesertTemple";
 
     jukebox.stop().warm(Hemaboss1);
