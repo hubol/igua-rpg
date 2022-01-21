@@ -126,6 +126,8 @@ export let UiChooseYourLooksIcons: PIXI.Texture;
 export let UiNoneChoice: PIXI.Texture;
 export let UiPlacementReticle: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
+export let VineLarge: PIXI.Texture;
+export let VineSmall: PIXI.Texture;
 export let WhiskeyGlass: PIXI.Texture;
 export let WonderBallonPotion: PIXI.Texture;
 export let WoodenStool: PIXI.Texture;
@@ -507,6 +509,12 @@ export function loadTexturesAsync()
     const ValuableIconPath = require("./images/valuable icon.png");
     loader.add(ValuableIconPath); 
 
+    const VineLargePath = require("./images/vine large.png");
+    loader.add(VineLargePath); 
+
+    const VineSmallPath = require("./images/vine small.png");
+    loader.add(VineSmallPath); 
+
     const WhiskeyGlassPath = require("./images/whiskey glass.png");
     loader.add(WhiskeyGlassPath); 
 
@@ -644,6 +652,8 @@ export function loadTexturesAsync()
             UiNoneChoice = resources[UiNoneChoicePath]?.texture as PIXI.Texture;
             UiPlacementReticle = resources[UiPlacementReticlePath]?.texture as PIXI.Texture;
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
+            VineLarge = resources[VineLargePath]?.texture as PIXI.Texture;
+            VineSmall = resources[VineSmallPath]?.texture as PIXI.Texture;
             WhiskeyGlass = resources[WhiskeyGlassPath]?.texture as PIXI.Texture;
             WonderBallonPotion = resources[WonderBallonPotionPath]?.texture as PIXI.Texture;
             WoodenStool = resources[WoodenStoolPath]?.texture as PIXI.Texture;

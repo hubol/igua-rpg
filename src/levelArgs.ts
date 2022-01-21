@@ -22,7 +22,10 @@ import { SpikyBrushA } from "./textures";
 import { resolveGate } from "./gameObjects/gate";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
+import { CracksA } from "./textures";
 import { GlowingCircle } from "./textures";
+import { VineSmall } from "./textures";
+import { VineLarge } from "./textures";
 import { PoppingRocksBox } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveBoulder } from "./gameObjects/boulder";
@@ -37,7 +40,6 @@ import { CrudeHouseC } from "./textures";
 import { CrateWooden } from "./textures";
 import { CrudeHouseB } from "./textures";
 import { Column } from "./textures";
-import { CracksA } from "./textures";
 import { PaSpeaker } from "./textures";
 import { GreenCable } from "./textures";
 import { DontPoster } from "./textures";
@@ -2504,6 +2506,72 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: Cobweb
 }),
+VineLarge: resolveDecalGameObject({
+    x: 46,
+y: 131,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VineLarge
+}),
+VineLarge_1: resolveDecalGameObject({
+    x: 68,
+y: 165,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VineLarge
+}),
+VineLarge_2: resolveDecalGameObject({
+    x: 44,
+y: 214,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VineLarge
+}),
+VineSmall: resolveDecalGameObject({
+    x: 22,
+y: 127,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VineSmall
+}),
+VineSmall_1: resolveDecalGameObject({
+    x: 34,
+y: 60,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VineSmall
+}),
+VineSmall_2: resolveDecalGameObject({
+    x: 29,
+y: 171,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VineSmall
+}),
 DesertGlow: resolveDecalGameObject({
     x: 848,
 y: 200,
@@ -2525,6 +2593,61 @@ scaleY: -1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: GlowingCircle
+}),
+Cobweb_1: resolveDecalGameObject({
+    x: 88,
+y: 216,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Cobweb
+}),
+CracksA: resolveDecalGameObject({
+    x: 376,
+y: 40,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+CracksA_1: resolveDecalGameObject({
+    x: 624,
+y: 200,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+CracksA_2: resolveDecalGameObject({
+    x: 184,
+y: 200,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+CracksA_3: resolveDecalGameObject({
+    x: 104,
+y: 32,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
 }),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":80,"y":224,"width":768,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),

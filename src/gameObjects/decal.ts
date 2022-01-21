@@ -1,5 +1,6 @@
 import {Sprite, Texture} from "pixi.js";
 import {scene} from "../igua/scene";
+import {track} from "../igua/track";
 
 export interface DecalArgs
 {
@@ -14,7 +15,7 @@ export interface DecalArgs
     layerName: string;
 }
 
-export function resolveDecalGameObject(args: DecalArgs)
+function resolveDecalGameObjectImpl(args: DecalArgs)
 {
     const sprite = Sprite.from(args.texture);
     sprite.anchor.set(Math.round(sprite.width * args.originX) / sprite.width, Math.round(sprite.height * args.originY) / sprite.height);
@@ -23,6 +24,9 @@ export function resolveDecalGameObject(args: DecalArgs)
     sprite.rotation = args.rotation;
     return getStage(args.layerName).addChild(sprite);
 }
+
+export const resolveDecalGameObject = track(resolveDecalGameObjectImpl);
+export const decal = resolveDecalGameObject;
 
 function getStage(layerName: string)
 {

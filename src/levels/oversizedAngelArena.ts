@@ -10,6 +10,8 @@ import {makePseudo} from "../utils/makePseudo";
 import {poppingRock} from "../gameObjects/poppingRock";
 import {progress} from "../igua/data/progress";
 import {slidingDoor} from "../gameObjects/slidingDoor";
+import {decal} from "../gameObjects/decal";
+import {CracksA} from "../textures";
 
 export function OversizedAngelArena() {
     scene.backgroundColor = 0x2F4B5E;
@@ -24,6 +26,8 @@ export function OversizedAngelArena() {
         door.openInstantly();
         return door;
     });
+
+    decal.instances.filter(x => x.texture === CracksA).forEach(x => x.tint = 0x213E51);
 
     const box = level.PoppingRocksBox;
 
