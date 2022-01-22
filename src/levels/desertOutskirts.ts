@@ -45,7 +45,11 @@ function enrichGrassyValuable(level: DesertOutskirtsLevel) {
         return;
 
     level.GrassyValuableBackground.collectible = false;
+    let interacted = false;
     level.BushValuableRegion.withInteraction(async () => {
+        if (interacted)
+            return;
+        interacted = true;
         const b = bushes.move();
         await sleep(100);
         await move(level.GrassyValuableBackground!).by([0, -1]).over(650);
