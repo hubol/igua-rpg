@@ -257,7 +257,7 @@ SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":288,"y":16,"width":32,"he
 // @ts-ignore
 SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":384,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_50","name":"","depth":0}),
 // @ts-ignore
-MirrorRegion: resolveRegion({"type":"Region","x":336,"y":168,"width":48,"height":56,"flippedX":false,"flippedY":false,"uid":"25971607_51","name":"MirrorRegion","depth":0})
+MirrorRegion: resolveRegion({"type":"Region","x":336,"y":164,"width":48,"height":56,"flippedX":false,"flippedY":false,"uid":"25971607_51","name":"MirrorRegion","depth":0})
 };
 }
 };
