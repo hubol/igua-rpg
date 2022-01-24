@@ -15,6 +15,7 @@ export function devProgress()
     // progress.flags.desert.diguaIsFollowing = true;
     // progress.valuables = 100;
     // progress.poisonLevel = 4;
+    // progress.levelName = "ChooseYourLooksDev";
     progress.levelName = "DesertCostumer";
     progress.checkpointName = "FromInnSave";
     // progress.flags.desert.bigKey.reward = true;

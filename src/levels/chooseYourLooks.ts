@@ -1,6 +1,5 @@
 import {setSceneMeta} from "../igua/level/setSceneMeta";
 import {scene} from "../igua/scene";
-import {game} from "../igua/game";
 import {looksUiRoot} from "../igua/looks/components/looksUiRoot";
 import {getDefaultLooks} from "../igua/looks/getDefaultLooks";
 import {Looks} from "../igua/looks/looksModel";
@@ -31,4 +30,8 @@ export function ChooseYourLooksBeginning() {
         } })
 }
 
-[ChooseYourLooks, ChooseYourLooksBeginning].forEach(x => setSceneMeta(x, { isLevel: false }));
+export function ChooseYourLooksDev() {
+    ChooseYourLooks({ save: console.log })
+}
+
+[ChooseYourLooks, ChooseYourLooksBeginning, ChooseYourLooksDev].forEach(x => setSceneMeta(x, { isLevel: false }));

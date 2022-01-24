@@ -25,6 +25,9 @@ import {IguanaEyes, iguanaEyes} from "../igua/puppet/eyes";
 import {Vector} from "../utils/math/vector";
 import {makePseudo} from "../utils/makePseudo";
 import { filters } from "pixi.js";
+import {Looks} from "../igua/looks/looksModel";
+import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
+import {DesertCostumerLooks} from "./npcLooks";
 
 export type NpcStyle = ReturnType<typeof npcStyle>;
 const npcStyles: NpcStyle[] = [];
@@ -157,13 +160,12 @@ npcStyles[6] = genNpcStyle1(191, (args) => {
     args.pupils.texture = NpcPupilsCartoonishGapped;
     args.pupils.pivot.x -= 2;
 });
-// npcStyles[7] = genNpcStyle1(52);
-// npcStyles[9] = genNpcStyle1(95);
-// npcStyles[10] = genNpcStyle1(172);
-// npcStyles[11] = genNpcStyle1(191);
-// npcStyles[12] = genNpcStyle1(192);
-// npcStyles[13] = genNpcStyle1(261);
-// npcStyles[14] = genNpcStyle1(316);
+
+npcStyles[7] = fromLooks(DesertCostumerLooks);
+
+function fromLooks(looks: Looks) {
+    return () => iguanaPuppet(makeIguanaPuppetArgsFromLooks(looks))
+}
 
 function genNpcStyle1(seed: number, configure?: (args: ConfigureNpcStyleArgs) => void) {
     return () => {

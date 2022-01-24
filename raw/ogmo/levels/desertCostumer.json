@@ -92,7 +92,7 @@
           "originX": 11,
           "originY": 27,
           "flippedX": true,
-          "values": {"name": "Costumer", "style": 0, "depth": 0}
+          "values": {"name": "Costumer", "style": 7, "depth": 0}
         },
         {
           "name": "Region",

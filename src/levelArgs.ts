@@ -243,7 +243,7 @@ Window1: resolveRegion({"type":"Region","x":48,"y":88,"width":80,"height":32,"fl
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":32,"y":0,"width":464,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_42","name":"","depth":0}),
 // @ts-ignore
-Costumer: resolveNpc({"type":"NpcIguana","x":224,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_43","name":"Costumer","style":0,"depth":0}),
+Costumer: resolveNpc({"type":"NpcIguana","x":224,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_43","name":"Costumer","style":7,"depth":0}),
 // @ts-ignore
 Window2: resolveRegion({"type":"Region","x":184,"y":88,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_44","name":"Window2","depth":0}),
 // @ts-ignore
