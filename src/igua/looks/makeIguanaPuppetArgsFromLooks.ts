@@ -17,6 +17,7 @@ import {container} from "../../utils/pixi/container";
 import {game} from "../game";
 import {iguanaEyelids, IguanaEyes} from "../puppet/eyes";
 import {merge} from "../../utils/merge";
+import {textureToGraphics} from "../../utils/pixi/textureToGraphics";
 
 export function makeIguanaPuppetArgsFromLooks(looks: Looks): IguanaPuppetArgs {
     const backLeftFoot = makeFoot(looks.feet, "hind", true);
@@ -203,7 +204,7 @@ function makeEyes(head: Head) {
     const { eyelidsGraphics, eyelidsLine, eyelidsControl } =
         iguanaEyelids(darken(head.color, 0.1), texture.width, texture.height, Math.floor(texture.height / 2));
 
-    const mask = Sprite.from(maskTexture);
+    const mask = textureToGraphics(maskTexture);
     const eyes = container(mask, Sprite.from(texture), eyelidsGraphics, eyelidsLine);
     eyes.mask = mask;
 

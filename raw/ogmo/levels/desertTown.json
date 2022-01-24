@@ -661,6 +661,16 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromArena", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 63,
+          "_eid": "55940370",
+          "x": 1240,
+          "y": 440,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromCostumer", "faceRight": false, "depth": 0}
         }
       ]
     },

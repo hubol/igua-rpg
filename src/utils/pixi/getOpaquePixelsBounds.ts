@@ -1,35 +1,23 @@
 import {Texture} from "pixi.js";
 import {Hitbox} from "../types/hitbox";
-
-const canvas = document.createElement('canvas');
-const context = canvas.getContext('2d')!;
+import {textureToRgbaArray} from "./textureToRgbaArray";
 
 export function getOpaquePixelsBounds(texture: Texture) {
     // @ts-ignore
     const bounds: Hitbox = texture.__opaquePixelsBounds;
     if (bounds)
         return bounds;
-    // @ts-ignore
-    const image: HTMLImageElement | undefined = texture.baseTexture?.resource?.source;
-    if (!image || !(image instanceof Image))
-        return;
 
     const w = texture.width;
     const h = texture.height;
-
-    canvas.width = w;
-    canvas.height = h;
-
-    const dx = -texture.frame.x;
-    const dy = -texture.frame.y;
-    context.drawImage(image, dx, dy);
 
     let x1 = Number.MAX_VALUE;
     let y1 = Number.MAX_VALUE;
     let x2 = Number.MIN_VALUE;
     let y2 = Number.MIN_VALUE;
 
-    const data = context.getImageData(0, 0, w, h).data;
+    const data = textureToRgbaArray(texture);
+
     for (let x = 0; x < w; x++) {
         for (let y = 0; y < h; y++) {
             const i = y * w + x;
