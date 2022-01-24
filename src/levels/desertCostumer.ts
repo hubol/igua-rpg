@@ -6,6 +6,7 @@ import {DesertCostumerArgs} from "../levelArgs";
 import {cutOutWindow} from "../igua/cutOutWindow";
 import {decal} from "../gameObjects/decal";
 import {CracksA} from "../textures";
+import {mirror} from "../gameObjects/mirror";
 
 export function DesertCostumer()
 {
@@ -16,4 +17,6 @@ export function DesertCostumer()
     decal.instances.filter(x => x.texture === CracksA).forEach(x => x.tint = 0x5D8799);
 
     cutOutWindow(0xF0F0B0, level.Window1, level.Window2, level.Window3);
+
+    mirror(level.MirrorRegion.width, level.MirrorRegion.height).at(level.MirrorRegion).behind();
 }
