@@ -61,6 +61,205 @@ import { Rope } from "./textures";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { DesertTemple } from "./textures";
 
+export const DesertCostumerArgs = {
+    width: 448,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    PotteryOrange: resolveDecalGameObject({
+    x: 184,
+y: 217,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: PotteryOrange
+}),
+PotteryOrangeDamaged: resolveDecalGameObject({
+    x: 264,
+y: 217,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: PotteryOrangeDamaged
+}),
+Cobweb: resolveDecalGameObject({
+    x: 40,
+y: 40,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: Cobweb
+}),
+OrnateCarpet: resolveDecalGameObject({
+    x: 224,
+y: 229,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: OrnateCarpet
+}),
+SpikyBrushB: resolveDecalGameObject({
+    x: 184,
+y: 211,
+originX: 0.5,
+originY: 1,
+scaleX: 0.5,
+scaleY: 0.5,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SpikyBrushB
+}),
+BehindCostumerGlow: resolveDecalGameObject({
+    x: 224,
+y: 224,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingCircle
+}),
+CracksA: resolveDecalGameObject({
+    x: 154,
+y: 146,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+CracksA_1: resolveDecalGameObject({
+    x: 224,
+y: 56,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+CracksA_2: resolveDecalGameObject({
+    x: 400,
+y: 136,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CracksA
+}),
+CloudLong: resolveDecalGameObject({
+    x: 80,
+y: 88,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 120,
+y: 96,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 32,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_3: resolveDecalGameObject({
+    x: 272,
+y: 104,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_4: resolveDecalGameObject({
+    x: 336,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_5: resolveDecalGameObject({
+    x: 400,
+y: 128,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":48,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"DesertTown","checkpointName":"FromCostumer","name":"","depth":0}),
+// @ts-ignore
+Floor: resolveBlock({"type":"Block","x":0,"y":224,"width":496,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"Floor","depth":0}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":0,"width":32,"height":224,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+Player: {"type":"Player","x":96,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_4","faceRight":true,"name":"","depth":0},
+// @ts-ignore
+Window1: resolveRegion({"type":"Region","x":48,"y":88,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_38","name":"Window1","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":32,"y":0,"width":464,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_42","name":"","depth":0}),
+// @ts-ignore
+Costumer: resolveNpc({"type":"NpcIguana","x":224,"y":224,"flippedX":true,"flippedY":false,"uid":"26367058_43","name":"Costumer","style":0,"depth":0}),
+// @ts-ignore
+Window2: resolveRegion({"type":"Region","x":184,"y":88,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_44","name":"Window2","depth":0}),
+// @ts-ignore
+Window3: resolveRegion({"type":"Region","x":320,"y":104,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_45","name":"Window3","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":320,"y":32,"width":128,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_46","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":416,"y":48,"width":32,"height":176,"flippedX":false,"flippedY":false,"uid":"55823268_47","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":288,"y":16,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_49","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":384,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_50","name":"","depth":0})
+};
+}
+};
+
 export const DesertFieldArgs = {
     width: 1552,
 height: 472,
@@ -2391,7 +2590,7 @@ Block_5: resolveBlock({"type":"Block","x":752,"y":392,"width":200,"height":176,"
 // @ts-ignore
 LeftHouseDoor: resolveDoor({"type":"Door","x":832,"y":312,"flippedX":false,"flippedY":false,"uid":"55913988_9","levelName":"DesertOracle","checkpointName":"","name":"LeftHouseDoor","depth":0}),
 // @ts-ignore
-RightHouseDoor: resolveDoor({"type":"Door","x":1256,"y":408,"flippedX":false,"flippedY":false,"uid":"55913988_10","levelName":"","checkpointName":"","name":"RightHouseDoor","depth":0}),
+RightHouseDoor: resolveDoor({"type":"Door","x":1256,"y":408,"flippedX":false,"flippedY":false,"uid":"55913988_10","levelName":"DesertCostumer","checkpointName":"","name":"RightHouseDoor","depth":0}),
 Player: {"type":"Player","x":984,"y":392,"flippedX":false,"flippedY":false,"uid":"55988047_11","faceRight":false,"name":"","depth":0},
 // @ts-ignore
 Sign: resolveSign({"type":"Sign","x":1056,"y":392,"flippedX":false,"flippedY":false,"uid":"86706091_12","title":"Town","message":"Welcome to the desert town.","name":"","depth":0}),

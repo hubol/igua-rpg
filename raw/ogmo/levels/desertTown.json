@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0-hubol",
+  "ogmoVersion": "3.4.0",
   "width": 2040,
   "height": 568,
   "offsetX": 0,
@@ -144,7 +144,7 @@
           "y": 408,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "RightHouseDoor", "depth": 0}
+          "values": {"levelName": "DesertCostumer", "checkpointName": "", "name": "RightHouseDoor", "depth": 0}
         },
         {
           "name": "Player",
