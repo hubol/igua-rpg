@@ -11,6 +11,7 @@ import {show} from "../cutscene/dialog";
 import {Lazy} from "../igua/puppet/mods/lazy";
 import {Sprite} from "pixi.js";
 import {progress} from "../igua/data/progress";
+import {sparkly} from "../gameObjects/sparkleSmall";
 
 export function DesertCostumer()
 {
@@ -44,12 +45,21 @@ export function DesertCostumer()
 
     cutOutWindow(0xF0F0B0, level.Window1, level.Window2, level.Window3);
 
-    const m = mirror(level.MirrorRegion.width, level.MirrorRegion.height).at(level.MirrorRegion).behind().withCutscene(async () => {
-        if (flags.repaired) {
-            // TODO
-        }
-        else
-            await show("It seems to be broken.");
-    });
+    const m = mirror(level.MirrorRegion.width, level.MirrorRegion.height).at(level.MirrorRegion).behind()
+        .withCutscene(async () => {
+            if (flags.repaired) {
+                // TODO
+            }
+            else if (flags.shardCollected) {
+                flags.repaired = true;
+                await show("Used giant mirror shard.")
+            }
+            else
+                await show("It seems to be broken.");
+        })
+        .withStep(() => {
+            if (flags.repaired)
+                sparkly(m);
+        });
     const broken = Sprite.from(MirrorBroken).at(m).behind().withStep(() => broken.visible = !flags.repaired);
 }

@@ -116,6 +116,7 @@ export let SnowmanFace: PIXI.Texture;
 export let SnowmanFlakes: PIXI.Texture;
 export let SnowmanTwigs: PIXI.Texture;
 export let Snowman: PIXI.Texture;
+export let SparkleSmallLight: PIXI.Texture;
 export let Sparkle: PIXI.Texture;
 export let SpicedNectarPotion: PIXI.Texture;
 export let SpikyBrushA: PIXI.Texture;
@@ -481,6 +482,9 @@ export function loadTexturesAsync()
     const SnowmanPath = require("./images/snowman.png");
     loader.add(SnowmanPath); 
 
+    const SparkleSmallLightPath = require("./images/sparkle small light.png");
+    loader.add(SparkleSmallLightPath); 
+
     const SparklePath = require("./images/sparkle.png");
     loader.add(SparklePath); 
 
@@ -650,6 +654,7 @@ export function loadTexturesAsync()
             SnowmanFlakes = resources[SnowmanFlakesPath]?.texture as PIXI.Texture;
             SnowmanTwigs = resources[SnowmanTwigsPath]?.texture as PIXI.Texture;
             Snowman = resources[SnowmanPath]?.texture as PIXI.Texture;
+            SparkleSmallLight = resources[SparkleSmallLightPath]?.texture as PIXI.Texture;
             Sparkle = resources[SparklePath]?.texture as PIXI.Texture;
             SpicedNectarPotion = resources[SpicedNectarPotionPath]?.texture as PIXI.Texture;
             SpikyBrushA = resources[SpikyBrushAPath]?.texture as PIXI.Texture;

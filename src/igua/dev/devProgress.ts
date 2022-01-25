@@ -11,6 +11,9 @@ export function devProgress()
     progress.flags.desert.key.fromTopOfCrateStack = true;
     progress.flags.desert.key.fromInn = true;
     progress.flags.desert.key.fromDiggingInTown = true;
+
+    progress.flags.desert.costumeMirror.shardCollected = true;
+    // progress.flags.desert.costumeMirror.repaired = true;
     // range(12).forEach(() => progress.ballons.push(1));
     // progress.flags.desert.diguaIsFollowing = true;
     // progress.valuables = 100;
