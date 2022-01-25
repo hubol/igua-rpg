@@ -41,7 +41,6 @@ export function DesertTown()
     level.InnBuilding.tint = 0xE08060;
     level.RightHouse.tint = 0xE08060;
     level.LeftHouse.tint = 0xA0C0C0;
-    level.RightHouseDoor.locked = true;
 
     if (!progress.flags.desert.heardIntroduction)
     {

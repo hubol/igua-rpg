@@ -30,6 +30,10 @@ export function getInitialFlags()
                 reward: false,
             },
             defeatedOversizedAngel: false,
+            costumeMirror: {
+                shardCollected: false,
+                repaired: false,
+            }
         },
         oracle: {
             lore1: false,

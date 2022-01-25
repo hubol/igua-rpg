@@ -64,6 +64,8 @@ export let LooksPupil: PIXI.Texture;
 export let LooksTail: PIXI.Texture;
 export let LooksTorso: PIXI.Texture;
 export let MessageBox: PIXI.Texture;
+export let MirrorBroken: PIXI.Texture;
+export let MirrorShard: PIXI.Texture;
 export let NpcBlueFoot2: PIXI.Texture;
 export let NpcBlueFootRear2: PIXI.Texture;
 export let NpcBlueFootRear: PIXI.Texture;
@@ -322,6 +324,12 @@ export function loadTexturesAsync()
 
     const MessageBoxPath = require("./images/message box.png");
     loader.add(MessageBoxPath); 
+
+    const MirrorBrokenPath = require("./images/mirror broken.png");
+    loader.add(MirrorBrokenPath); 
+
+    const MirrorShardPath = require("./images/mirror shard.png");
+    loader.add(MirrorShardPath); 
 
     const NpcBlueFoot2Path = require("./images/npc/blue foot 2.png");
     loader.add(NpcBlueFoot2Path); 
@@ -590,6 +598,8 @@ export function loadTexturesAsync()
             LooksTail = resources[LooksTailPath]?.texture as PIXI.Texture;
             LooksTorso = resources[LooksTorsoPath]?.texture as PIXI.Texture;
             MessageBox = resources[MessageBoxPath]?.texture as PIXI.Texture;
+            MirrorBroken = resources[MirrorBrokenPath]?.texture as PIXI.Texture;
+            MirrorShard = resources[MirrorShardPath]?.texture as PIXI.Texture;
             NpcBlueFoot2 = resources[NpcBlueFoot2Path]?.texture as PIXI.Texture;
             NpcBlueFootRear2 = resources[NpcBlueFootRear2Path]?.texture as PIXI.Texture;
             NpcBlueFootRear = resources[NpcBlueFootRearPath]?.texture as PIXI.Texture;
