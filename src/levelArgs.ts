@@ -25,7 +25,6 @@ import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { CracksA } from "./textures";
 import { GlowingCircle } from "./textures";
 import { VineSmall } from "./textures";
-import { VineLarge } from "./textures";
 import { PoppingRocksBox } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveBoulder } from "./gameObjects/boulder";
@@ -60,6 +59,8 @@ import { PotteryOrangeDamaged } from "./textures";
 import { Rope } from "./textures";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { DesertTemple } from "./textures";
+import { CandleSmallRed } from "./textures";
+import { BookCollection } from "./textures";
 
 export const DesertCostumerArgs = {
     width: 448,
@@ -121,6 +122,17 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: SpikyBrushB
 }),
+RoseVase: resolveDecalGameObject({
+    x: 400,
+y: 219,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: RoseVase
+}),
 BehindCostumerGlow: resolveDecalGameObject({
     x: 224,
 y: 224,
@@ -156,14 +168,69 @@ texture: CracksA
 }),
 CracksA_2: resolveDecalGameObject({
     x: 400,
-y: 136,
+y: 104,
 originX: 0,
 originY: 0,
 scaleX: -1,
-scaleY: 1,
+scaleY: -1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: CracksA
+}),
+LightShelf: resolveDecalGameObject({
+    x: 304,
+y: 188,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: LightShelf
+}),
+BookCollection: resolveDecalGameObject({
+    x: 298,
+y: 184,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: BookCollection
+}),
+LightShelf_1: resolveDecalGameObject({
+    x: 128,
+y: 188,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: LightShelf
+}),
+CandleSmallRed: resolveDecalGameObject({
+    x: 136,
+y: 184,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CandleSmallRed
+}),
+CandleSmallRed_1: resolveDecalGameObject({
+    x: 120,
+y: 184,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CandleSmallRed
 }),
 CloudLong: resolveDecalGameObject({
     x: 80,
@@ -257,7 +324,17 @@ SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":288,"y":16,"width":32,"he
 // @ts-ignore
 SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":384,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_50","name":"","depth":0}),
 // @ts-ignore
-MirrorRegion: resolveRegion({"type":"Region","x":336,"y":164,"width":48,"height":56,"flippedX":false,"flippedY":false,"uid":"25971607_51","name":"MirrorRegion","depth":0})
+MirrorRegion: resolveRegion({"type":"Region","x":336,"y":164,"width":48,"height":56,"flippedX":false,"flippedY":false,"uid":"25971607_51","name":"MirrorRegion","depth":0}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":112,"y":184,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_52","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":288,"y":184,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_53","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":48,"y":120,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_54","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":184,"y":120,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_55","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":320,"y":136,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_56","visible":false,"name":"","depth":0})
 };
 }
 };
@@ -2708,68 +2785,13 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: Cobweb
 }),
-VineLarge: resolveDecalGameObject({
-    x: 46,
-y: 131,
-originX: 0.5,
-originY: 0.5,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "TerrainDecals",
-texture: VineLarge
-}),
-VineLarge_1: resolveDecalGameObject({
-    x: 68,
-y: 165,
-originX: 0.5,
-originY: 0.5,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "TerrainDecals",
-texture: VineLarge
-}),
-VineLarge_2: resolveDecalGameObject({
-    x: 44,
-y: 214,
-originX: 0.5,
-originY: 0.5,
-scaleX: -1,
-scaleY: 1,
-rotation: 0,
-layerName: "TerrainDecals",
-texture: VineLarge
-}),
 VineSmall: resolveDecalGameObject({
-    x: 22,
-y: 127,
-originX: 0.5,
-originY: 0.5,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "TerrainDecals",
-texture: VineSmall
-}),
-VineSmall_1: resolveDecalGameObject({
     x: 34,
 y: 60,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
 scaleY: -1,
-rotation: 0,
-layerName: "TerrainDecals",
-texture: VineSmall
-}),
-VineSmall_2: resolveDecalGameObject({
-    x: 29,
-y: 171,
-originX: 0.5,
-originY: 0.5,
-scaleX: -1,
-scaleY: 1,
 rotation: 0,
 layerName: "TerrainDecals",
 texture: VineSmall

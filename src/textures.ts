@@ -8,11 +8,13 @@ export let BigKey1: PIXI.Texture;
 export let BitterMedicinePotion: PIXI.Texture;
 export let BlueGradient: PIXI.Texture;
 export let BlueValuable: PIXI.Texture;
+export let BookCollection: PIXI.Texture;
 export let Bottle1: PIXI.Texture;
 export let Bottle2: PIXI.Texture;
 export let Boulder: PIXI.Texture;
 export let Burst: PIXI.Texture;
 export let Burst2: PIXI.Texture;
+export let CandleSmallRed: PIXI.Texture;
 export let CharacterBody: PIXI.Texture;
 export let CharacterCrest: PIXI.Texture;
 export let CharacterFoot: PIXI.Texture;
@@ -158,6 +160,9 @@ export function loadTexturesAsync()
     const BlueValuablePath = require("./images/blue valuable.png");
     loader.add(BlueValuablePath); 
 
+    const BookCollectionPath = require("./images/book collection.png");
+    loader.add(BookCollectionPath); 
+
     const Bottle1Path = require("./images/bottle1.png");
     loader.add(Bottle1Path); 
 
@@ -172,6 +177,9 @@ export function loadTexturesAsync()
 
     const Burst2Path = require("./images/burst2.png");
     loader.add(Burst2Path); 
+
+    const CandleSmallRedPath = require("./images/candle small red.png");
+    loader.add(CandleSmallRedPath); 
 
     const CharacterBodyPath = require("./images/character/body.png");
     loader.add(CharacterBodyPath); 
@@ -546,11 +554,13 @@ export function loadTexturesAsync()
             BitterMedicinePotion = resources[BitterMedicinePotionPath]?.texture as PIXI.Texture;
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
             BlueValuable = resources[BlueValuablePath]?.texture as PIXI.Texture;
+            BookCollection = resources[BookCollectionPath]?.texture as PIXI.Texture;
             Bottle1 = resources[Bottle1Path]?.texture as PIXI.Texture;
             Bottle2 = resources[Bottle2Path]?.texture as PIXI.Texture;
             Boulder = resources[BoulderPath]?.texture as PIXI.Texture;
             Burst = resources[BurstPath]?.texture as PIXI.Texture;
             Burst2 = resources[Burst2Path]?.texture as PIXI.Texture;
+            CandleSmallRed = resources[CandleSmallRedPath]?.texture as PIXI.Texture;
             CharacterBody = resources[CharacterBodyPath]?.texture as PIXI.Texture;
             CharacterCrest = resources[CharacterCrestPath]?.texture as PIXI.Texture;
             CharacterFoot = resources[CharacterFootPath]?.texture as PIXI.Texture;

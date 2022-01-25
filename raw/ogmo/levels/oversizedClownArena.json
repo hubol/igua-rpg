@@ -267,65 +267,10 @@
           "values": {"name": ""}
         },
         {
-          "x": 46,
-          "y": 131,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "vine large.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"name": ""}
-        },
-        {
-          "x": 68,
-          "y": 165,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "vine large.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"name": ""}
-        },
-        {
-          "x": 44,
-          "y": 214,
-          "scaleX": -1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "vine large.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"name": ""}
-        },
-        {
-          "x": 22,
-          "y": 127,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "vine small.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"name": ""}
-        },
-        {
           "x": 34,
           "y": 60,
           "scaleX": 1,
           "scaleY": -1,
-          "rotation": 0,
-          "texture": "vine small.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"name": ""}
-        },
-        {
-          "x": 29,
-          "y": 171,
-          "scaleX": -1,
-          "scaleY": 1,
           "rotation": 0,
           "texture": "vine small.png",
           "originX": 0.5,
