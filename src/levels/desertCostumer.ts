@@ -1,6 +1,6 @@
 import {jukebox} from "../igua/jukebox";
 import {Country, DesertTown, Temple} from "../musics";
-import {scene} from "../igua/scene";
+import {scene, sceneStack} from "../igua/scene";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertCostumerArgs} from "../levelArgs";
 import {cutOutWindow} from "../igua/cutOutWindow";
@@ -12,6 +12,7 @@ import {Lazy} from "../igua/puppet/mods/lazy";
 import {Sprite} from "pixi.js";
 import {progress} from "../igua/data/progress";
 import {sparkly} from "../gameObjects/sparkleSmall";
+import {ChooseYourLooksFromMirror} from "./chooseYourLooks";
 
 export function DesertCostumer()
 {
@@ -48,7 +49,7 @@ export function DesertCostumer()
     const m = mirror(level.MirrorRegion.width, level.MirrorRegion.height).at(level.MirrorRegion).behind()
         .withCutscene(async () => {
             if (flags.repaired) {
-                // TODO
+                sceneStack.push(ChooseYourLooksFromMirror);
             }
             else if (flags.shardCollected) {
                 flags.repaired = true;

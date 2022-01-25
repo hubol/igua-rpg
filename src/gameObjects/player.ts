@@ -32,6 +32,15 @@ export function recreatePlayer()
     scene.playerStage.addChild(player);
 }
 
+export function recreatePlayerInPlace() {
+    const { x, y, scale } = player;
+    player.destroy();
+    recreatePlayer();
+    player.x = x;
+    player.y = y;
+    player.scale.x = scale.x;
+}
+
 function conditionallyGotoDeathScreen() {
     if (progress.health <= 0)
         gotoDeathScreen();

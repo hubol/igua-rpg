@@ -1,11 +1,12 @@
 import {setSceneMeta} from "../igua/level/setSceneMeta";
-import {scene} from "../igua/scene";
+import {scene, sceneStack} from "../igua/scene";
 import {looksUiRoot} from "../igua/looks/components/looksUiRoot";
 import {getDefaultLooks} from "../igua/looks/getDefaultLooks";
 import {Looks} from "../igua/looks/looksModel";
 import {defaults} from "../utils/defaults";
 import {progress} from "../igua/data/progress";
 import {level} from "../igua/level/level";
+import {recreatePlayerInPlace} from "../gameObjects/player";
 
 function defaultArgs() {
     return ({
@@ -30,8 +31,18 @@ export function ChooseYourLooksBeginning() {
         } })
 }
 
+export function ChooseYourLooksFromMirror() {
+    ChooseYourLooks({ save: x => {
+            progress.looks = x;
+            sceneStack.pop();
+            recreatePlayerInPlace();
+        },
+        defaultLooks: JSON.parse(JSON.stringify(progress.looks))
+    });
+}
+
 export function ChooseYourLooksDev() {
     ChooseYourLooks({ save: console.log })
 }
 
-[ChooseYourLooks, ChooseYourLooksBeginning, ChooseYourLooksDev].forEach(x => setSceneMeta(x, { isLevel: false }));
+[ChooseYourLooks, ChooseYourLooksBeginning, ChooseYourLooksDev, ChooseYourLooksFromMirror].forEach(x => setSceneMeta(x, { isLevel: false }));
