@@ -16,12 +16,20 @@ declare global {
             withInteraction(interaction: () => void): this;
             withCutscene(cutscene: Cutscene): this;
             asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>);
+            liveFor(frames: number): this;
         }
     }
 }
 
 PIXI.DisplayObject.prototype.show = function () {
     return scene.gameObjectStage.addChild(this);
+}
+
+PIXI.DisplayObject.prototype.liveFor = function (frames) {
+    return this.withStep(() => {
+        if (frames-- <= 0)
+            this.destroy();
+    });
 }
 
 PIXI.DisplayObject.prototype.behind = function () {

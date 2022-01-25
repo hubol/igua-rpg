@@ -20,6 +20,10 @@ declare global {
             hueShift: number;
         }
 
+        export interface Sprite {
+            anchorCenter(): this;
+        }
+
         export interface Container {
             removeAllChildren();
             addChild<T extends DisplayObject>(child: T): T;
@@ -150,6 +154,11 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
         configurable: true,
     },
 });
+
+PIXI.Sprite.prototype.anchorCenter = function () {
+    this.anchor.set(0.5, 0.5);
+    return this;
+}
 
 PIXI.Container.prototype.withTicker = function(ticker)
 {

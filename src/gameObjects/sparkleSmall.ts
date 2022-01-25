@@ -7,14 +7,10 @@ import {rng} from "../utils/rng";
 
 const textures = subimageTextures(SparkleSmallLight, 3);
 
-export function sparkle(life = 60) {
-    const sprite = animatedSprite(textures, 1 / 11)
-        .withStep(() => {
-            if (life -- <= 0)
-                sprite.destroy();
-        });
-    sprite.anchor.set(0.5, 0.5);
-    return sprite;
+function sparkle() {
+    return animatedSprite(textures, 1 / 11)
+        .liveFor(60)
+        .anchorCenter();
 }
 
 export function sparkly(o: Container) {
