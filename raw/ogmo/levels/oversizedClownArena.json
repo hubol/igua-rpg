@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0-hubol",
+  "ogmoVersion": "3.4.0",
   "width": 848,
   "height": 256,
   "offsetX": 0,
@@ -310,7 +310,17 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 34, "y": 60, "scaleX": 1, "scaleY": -1, "rotation": 0, "texture": "vine small.png", "originX": 0.5, "originY": 0.5},
+        {
+          "x": 34,
+          "y": 60,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
         {
           "x": 29,
           "y": 171,
@@ -401,7 +411,17 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 104, "y": 32, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cracks a.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 104,
+          "y": 32,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cracks a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },

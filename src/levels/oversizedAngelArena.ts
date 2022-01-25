@@ -11,7 +11,13 @@ import {poppingRock} from "../gameObjects/poppingRock";
 import {progress} from "../igua/data/progress";
 import {slidingDoor} from "../gameObjects/slidingDoor";
 import {decal} from "../gameObjects/decal";
-import {CracksA} from "../textures";
+import {CracksA, MirrorShard} from "../textures";
+import {Sprite} from "pixi.js";
+import {trimFrame} from "../utils/pixi/trimFrame";
+import {player} from "../gameObjects/player";
+import {cutscene} from "../cutscene/cutscene";
+import {sparkly} from "../gameObjects/sparkleSmall";
+import {CollectGeneric} from "../sounds";
 
 export function OversizedAngelArena() {
     scene.backgroundColor = 0x2F4B5E;
@@ -50,6 +56,9 @@ export function OversizedAngelArena() {
         });
     }
 
+    if (!progress.flags.desert.costumeMirror.shardCollected)
+        mirrorShard().at(clownV).show();
+
     const p = makePseudo(421);
     const v = [box.x - 16, box.y];
 
@@ -62,4 +71,36 @@ export function OversizedAngelArena() {
     }
 
     jukebox.stop().warm(Hemaboss1);
+}
+
+const Shard = trimFrame(MirrorShard);
+
+function mirrorShard() {
+    const flags = progress.flags.desert.costumeMirror;
+    let visibleFrames = 0;
+    const s = Sprite.from(Shard)
+        .withStep(() => {
+            const clown = oversizedClown.instances[0];
+            if (clown)
+                s.at(clown).add(66, 25);
+
+            s.x = Math.max(88, Math.min(s.x, 576));
+            s.y = Math.max(40, Math.min(s.y, 208));
+        })
+        .withStep(() => {
+            s.visible = !flags.shardCollected && progress.flags.desert.defeatedOversizedAngel;
+            if (s.visible) {
+                sparkly(s);
+                visibleFrames++;
+            }
+            if (s.visible && visibleFrames > 10 && player.collides(s)) {
+                CollectGeneric.play();
+                flags.shardCollected = true;
+                s.destroy();
+                cutscene.play(async () => {
+                    await show('Got giant mirror shard.');
+                })
+            }
+        });
+    return s;
 }

@@ -10,7 +10,7 @@ const textures = subimageTextures(SparkleSmallLight, 3);
 function sparkle() {
     return animatedSprite(textures, 1 / 11)
         .liveFor(60)
-        .anchorCenter();
+        .centerAnchor();
 }
 
 export function sparkly(o: Container) {

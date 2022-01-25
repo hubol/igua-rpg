@@ -11,16 +11,18 @@ export function devProgress()
     progress.flags.desert.key.fromTopOfCrateStack = true;
     progress.flags.desert.key.fromInn = true;
     progress.flags.desert.key.fromDiggingInTown = true;
+    progress.flags.desert.bigKey.reward = true;
 
-    progress.flags.desert.costumeMirror.shardCollected = true;
+    // progress.flags.desert.costumeMirror.shardCollected = true;
     // progress.flags.desert.costumeMirror.repaired = true;
     // range(12).forEach(() => progress.ballons.push(1));
     // progress.flags.desert.diguaIsFollowing = true;
     // progress.valuables = 100;
     // progress.poisonLevel = 4;
     // progress.levelName = "ChooseYourLooksDev";
-    progress.levelName = "DesertCostumer";
+    progress.levelName = "OversizedAngelArena";
     progress.checkpointName = "FromInnSave";
+    progress.level = 3;
     // progress.flags.desert.bigKey.reward = true;
     range(12).forEach(() => inventory.push("CommonPoison"));
     // progress.inventory = Object.keys(potions) as any;
