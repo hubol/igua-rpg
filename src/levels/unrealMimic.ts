@@ -2,7 +2,6 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {UnrealMimicArgs} from "../levelArgs";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
 import {scene} from "../igua/scene";
-import { filters } from "pixi.js";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
@@ -83,13 +82,11 @@ const playerMotion = {
 
 function enrichMimic(level: UnrealMimicLevel)
 {
-    const colorMatrixFilter = new filters.ColorMatrixFilter();
-    colorMatrixFilter.matrix = [0, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0, .875, 0, 0, 0, 0, 1, 0];
-    level.Mimic.filters = [colorMatrixFilter];
+    level.Mimic.opaqueTint = rng.color;
     level.Mimic.canBlink = false;
 
     const correct = () => {
-        colorMatrixFilter.matrix = [0, 0, 0, 0, rng(), 0, 0, 0, rng(), 0, 0, 0, 0, rng(), 0, 0, 0, 0, 1, 0];
+        level.Mimic.opaqueTint = rng.color;
         MimicCorrect.play();
     }
 

@@ -4,6 +4,8 @@ import {CancellationToken} from "pissant";
 import {AsshatTicker} from "../asshatTicker";
 import {PromiseFn, runInIguaZone} from "../../cutscene/runInIguaZone";
 import { filters } from "pixi.js";
+import {toHexColorString} from "../toHexColorString";
+import {colord} from "colord";
 
 declare global {
     namespace PIXI {
@@ -18,6 +20,7 @@ declare global {
             destroyed: boolean;
             ticker: AsshatTicker;
             hueShift: number;
+            opaqueTint: number;
         }
 
         export interface Sprite {
@@ -149,6 +152,32 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
             if (!this.filters) this.filters = [];
             this.filters.push(colorMatrixFilter);
             this.__hueShiftFilter = colorMatrixFilter;
+        },
+        enumerable: false,
+        configurable: true,
+    },
+});
+
+Object.defineProperties(PIXI.DisplayObject.prototype, {
+    opaqueTint: {
+        get: function () {
+            return this.__opaqueTint ?? 0;
+        },
+        set: function (value) {
+            this.__opaqueTint = value;
+            if (!this.__opaqueTintFilter) {
+                this.__opaqueTintFilter = new filters.ColorMatrixFilter();
+                this.__opaqueTintFilter.matrix = [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0];
+
+                if (!this.filters) this.filters = [];
+                this.filters.push(this.__opaqueTintFilter);
+            }
+
+            const { r, g, b } = colord(toHexColorString(value)).rgba;
+
+            this.__opaqueTintFilter.matrix[4] = r / 255;
+            this.__opaqueTintFilter.matrix[8] = g / 255;
+            this.__opaqueTintFilter.matrix[13] = b / 255;
         },
         enumerable: false,
         configurable: true,
