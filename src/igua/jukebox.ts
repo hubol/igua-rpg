@@ -110,21 +110,21 @@ class HowlsWarmer
 
     private unloadUntilAtLeastOneWarmedHowlsSlot()
     {
-        while (this._warmedHowls.length > this._maxWarmedHowlsCount - 1)
-        {
-            const warmedHowl = this._warmedHowls.pop();
-            if (!warmedHowl)
-                continue;
-
-            try
-            {
-                warmedHowl.unload();
-            }
-            catch (e)
-            {
-                console.error("Failed to unload", warmedHowl, e);
-            }
-        }
+        // while (this._warmedHowls.length > this._maxWarmedHowlsCount - 1)
+        // {
+        //     const warmedHowl = this._warmedHowls.pop();
+        //     if (!warmedHowl)
+        //         continue;
+        //
+        //     try
+        //     {
+        //         warmedHowl.unload();
+        //     }
+        //     catch (e)
+        //     {
+        //         console.error("Failed to unload", warmedHowl, e);
+        //     }
+        // }
     }
 }
 
