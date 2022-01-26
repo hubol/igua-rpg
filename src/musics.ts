@@ -51,3 +51,8 @@ export const TickingTime = new Howl({
     src: [require("./music/ticking time.ogg"), require("./music/ticking time.mp3")],
     preload: false
 });
+
+export const Witch = new Howl({
+    src: [require("./music/witch.ogg"), require("./music/witch.mp3")],
+    preload: false
+});

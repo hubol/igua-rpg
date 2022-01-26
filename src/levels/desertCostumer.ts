@@ -1,5 +1,5 @@
 import {jukebox} from "../igua/jukebox";
-import {Country, DesertTown, Temple} from "../musics";
+import {Country, Witch} from "../musics";
 import {scene, sceneStack} from "../igua/scene";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertCostumerArgs} from "../levelArgs";
@@ -19,7 +19,7 @@ export function DesertCostumer()
 {
     scene.backgroundColor = 0x8FACC1;
     scene.terrainColor = 0xC15B60;
-    jukebox.play(DesertTown).warm(Temple, Country);
+    jukebox.play(Witch).warm(Country);
     const level = applyOgmoLevel(DesertCostumerArgs);
     decal.instances.filter(x => x.texture === CracksA).forEach(x => x.tint = 0x5D8799);
 
