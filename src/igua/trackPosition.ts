@@ -1,11 +1,10 @@
 import {DisplayObject} from "pixi.js";
-import {Vector} from "../utils/math/vector";
 
 export function trackPosition(target: DisplayObject) {
     let firstStep = false;
-    const current = {} as Vector;
-    const previous = {} as Vector;
-    const diff = {} as Vector;
+    const current = target.vcpy();
+    const previous = target.vcpy();
+    const diff = [0, 0].vcpy();
     target.withStep(() => {
         firstStep = true;
         previous.at(current)

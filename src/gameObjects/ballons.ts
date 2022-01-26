@@ -14,6 +14,7 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {smallPopTextures} from "./smallPop";
 import {BallonPop} from "../sounds";
 import { lerp } from "../utils/math/number";
+import {sleep} from "../cutscene/sleep";
 
 interface BallonDisplayState {
     color: number;
@@ -42,12 +43,9 @@ function ballon(hacks) {
     const r = rng();
     const sprite = Sprite.from(PlayerBalloon);
     sprite.anchor.set(0.5, 1);
-    let life = 1 + rng.int(8);
 
     const gfx = new Graphics().withStep(() => {
-        if (hacks.dead && life-- <= 0)
-            return c.die();
-        if (!hacks.animate || hacks.dead)
+        if (!hacks.animate)
             return;
         sprite.y = Math.round(Math.sin(now.s * 2 + r) * 1.7);
         gfx.clear()
@@ -67,36 +65,27 @@ function ballon(hacks) {
             p.hueShift = c.hueShift;
             BallonPop.play();
             c.destroy();
-        } });
+        },
+        async delayAndDie() {
+            await sleep(16 + rng.int(150));
+            c.die();
+        }});
     return c;
 }
 
 export function ballons({ target, offset, state, string, displayState = [], ticker }: Args) {
     const objs: ReturnType<typeof ballon>[] = [];
 
-    const hacks = { animate: true, dead: false };
+    const hacks = { animate: true };
     const t = trackPosition(target);
 
     let allowedToAnimateWhenTargetTickerDisabled = false;
+    let targetWasEverPlayer;
+    let isDestroying = false;
 
-    const c = new Container().withStep(() => {
-        hacks.dead = target.destroyed || (target === player && player.isDead);
-
-        if (hacks.dead && objs.every(x => x.destroyed))
-            return c.destroy();
-
-        if (target.ticker.doNextUpdate)
-            allowedToAnimateWhenTargetTickerDisabled = false;
-        else if (state.length !== displayState.length)
-            allowedToAnimateWhenTargetTickerDisabled = true;
-
-        hacks.animate = target.ticker.doNextUpdate || allowedToAnimateWhenTargetTickerDisabled;
-
-        if (!hacks.animate)
-            return;
-
-        let deadIndex;
-        while ((deadIndex = state.findIndex((x, i) => x <= 0 || (objs[i] && objs[i].destroyed))) > -1) {
+    function manageInstances1() {
+        const deadIndex = state.findIndex(x => x <= 0);
+        if (deadIndex > -1) {
             state.splice(deadIndex, 1);
             displayState.splice(deadIndex, 1);
             objs.splice(deadIndex, 1)[0]?.die();
@@ -105,11 +94,15 @@ export function ballons({ target, offset, state, string, displayState = [], tick
         while (displayState.length < state.length) {
             displayState.push({ color: rng() * 360, offset: [rng.polar * 2, 0] });
         }
+
         while (objs.length < displayState.length) {
             const b = c.addChild(ballon(hacks));
             b.at(displayState[objs.length].offset);
             objs.push(b);
         }
+    }
+
+    function applyFubarMotionAndLimitToStringLength2() {
         for (let i = 0; i < displayState.length; i++) {
             const ii = displayState[i];
             if (ii.offset.vlength < string)
@@ -147,8 +140,10 @@ export function ballons({ target, offset, state, string, displayState = [], tick
             if (ii.offset.vlength > string * 0.7 && ii.offset.y > -10)
                 ii.offset.y -= 1;
         }
+    }
 
-        displayState!.forEach((x, i) => {
+    function updateObjsWithDisplayState3() {
+        displayState.forEach((x, i) => {
             objs[i].hueShift = x.color;
             const len = objs[i].vlength;
             const delta1 = 1 - (len / string);
@@ -156,7 +151,9 @@ export function ballons({ target, offset, state, string, displayState = [], tick
             const delta = lerp(delta1, delta2, Math.max(0, Math.min(1, (len - string) / string)));
             objs[i].moveTowards(x.offset, delta);
         });
+    }
 
+    function trackTargetMotion4() {
         c.at(t.current).add(offset);
         if (((Math.abs(t.diff.x) < 0.1 && Math.abs(t.diff.y) < 0.1)))
             return;
@@ -168,6 +165,39 @@ export function ballons({ target, offset, state, string, displayState = [], tick
             objs[i].x += dx;
             objs[i].y += dy;
         }
+    }
+
+    const c = new Container().withStep(() => {
+        if (isDestroying) return;
+
+        if (target === player)
+            targetWasEverPlayer = true;
+        if (targetWasEverPlayer && target.destroyed)
+            return c.destroy();
+
+        isDestroying = target.destroyed || (targetWasEverPlayer && player.isDead);
+
+        if (isDestroying) {
+            return c.withAsync(async () => {
+                await Promise.all(objs.map(x => x.delayAndDie()));
+                c.destroy();
+            });
+        }
+
+        if (target.ticker.doNextUpdate)
+            allowedToAnimateWhenTargetTickerDisabled = false;
+        else if (state.length !== displayState.length)
+            allowedToAnimateWhenTargetTickerDisabled = true;
+
+        hacks.animate = target.ticker.doNextUpdate || allowedToAnimateWhenTargetTickerDisabled;
+
+        if (!hacks.animate)
+            return;
+
+        manageInstances1();
+        applyFubarMotionAndLimitToStringLength2();
+        updateObjsWithDisplayState3();
+        trackTargetMotion4();
     });
 
     if (ticker)
