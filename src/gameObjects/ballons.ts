@@ -82,6 +82,9 @@ export function ballons({ target, offset, state, string, displayState = [], tick
     const c = new Container().withStep(() => {
         hacks.dead = target.destroyed || (target === player && player.isDead);
 
+        if (hacks.dead && objs.every(x => x.destroyed))
+            return c.destroy();
+
         if (target.ticker.doNextUpdate)
             allowedToAnimateWhenTargetTickerDisabled = false;
         else if (state.length !== displayState.length)
@@ -92,8 +95,8 @@ export function ballons({ target, offset, state, string, displayState = [], tick
         if (!hacks.animate)
             return;
 
-        const deadIndex = state.findIndex(x => x <= 0);
-        if (deadIndex > -1) {
+        let deadIndex;
+        while ((deadIndex = state.findIndex((x, i) => x <= 0 || (objs[i] && objs[i].destroyed))) > -1) {
             state.splice(deadIndex, 1);
             displayState.splice(deadIndex, 1);
             objs.splice(deadIndex, 1)[0]?.die();
