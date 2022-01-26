@@ -227,6 +227,11 @@ export const MimicCorrect = new Howl({
     
 });
 
+export const MirrorShardUse = new Howl({
+    src: [require("./sound/mirror shard use.ogg"), require("./sound/mirror shard use.mp3")],
+    
+});
+
 export const PoppingRockPop = new Howl({
     src: [require("./sound/popping rock pop.ogg"), require("./sound/popping rock pop.mp3")],
     

@@ -13,6 +13,7 @@ import {Sprite} from "pixi.js";
 import {progress} from "../igua/data/progress";
 import {sparkly} from "../gameObjects/sparkleSmall";
 import {ChooseYourLooksFromMirror} from "./chooseYourLooks";
+import { MirrorShardUse } from "../sounds";
 
 export function DesertCostumer()
 {
@@ -52,6 +53,7 @@ export function DesertCostumer()
                 sceneStack.push(ChooseYourLooksFromMirror);
             }
             else if (flags.shardCollected) {
+                MirrorShardUse.play();
                 flags.repaired = true;
                 await show("Used giant mirror shard.")
             }
