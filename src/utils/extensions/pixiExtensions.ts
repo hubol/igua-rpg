@@ -160,6 +160,13 @@ PIXI.Sprite.prototype.centerAnchor = function () {
     return this;
 }
 
+const _containerDestroy = PIXI.Container.prototype.destroy;
+const defaultContainerOptions = { children: true };
+
+PIXI.Container.prototype.destroy = function (options = defaultContainerOptions) {
+    _containerDestroy.call(this, options);
+}
+
 PIXI.Container.prototype.withTicker = function(ticker)
 {
     (this as any)._ticker = ticker;
