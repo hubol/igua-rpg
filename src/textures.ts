@@ -50,6 +50,7 @@ export let FlyCage: PIXI.Texture;
 export let GlowingCircle: PIXI.Texture;
 export let GreenCable: PIXI.Texture;
 export let HotTerrain: PIXI.Texture;
+export let IguaRpgTitle: PIXI.Texture;
 export let KeyRed: PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture;
 export let LightShelf: PIXI.Texture;
@@ -285,6 +286,9 @@ export function loadTexturesAsync()
 
     const HotTerrainPath = require("./images/hot terrain.png");
     loader.add(HotTerrainPath); 
+
+    const IguaRpgTitlePath = require("./images/igua rpg title.png");
+    loader.add(IguaRpgTitlePath); 
 
     const KeyRedPath = require("./images/key red.png");
     loader.add(KeyRedPath); 
@@ -596,6 +600,7 @@ export function loadTexturesAsync()
             GlowingCircle = resources[GlowingCirclePath]?.texture as PIXI.Texture;
             GreenCable = resources[GreenCablePath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
+            IguaRpgTitle = resources[IguaRpgTitlePath]?.texture as PIXI.Texture;
             KeyRed = resources[KeyRedPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
             LightShelf = resources[LightShelfPath]?.texture as PIXI.Texture;
