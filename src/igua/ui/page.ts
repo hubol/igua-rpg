@@ -1,7 +1,7 @@
 import {Container} from "pixi.js";
-import {Key} from "../../../utils/browser/key";
-import {cyclic} from "../../../utils/math/number";
-import {merge} from "../../../utils/merge";
+import {Key} from "../../utils/browser/key";
+import {cyclic} from "../../utils/math/number";
+import {merge} from "../../utils/merge";
 
 export type PageState = { selectionIndex: number };
 export type PageElement = Container & { selected: boolean };

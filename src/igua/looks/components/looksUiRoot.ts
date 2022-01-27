@@ -2,7 +2,7 @@ import {Container, DisplayObject} from "pixi.js";
 import {IguaText} from "../../text";
 import {getLooksInputModel, Looks, LooksInputModel} from "../looksModel";
 import {bindLooks} from "../bindLooks";
-import {Page, page, PageElement, PageState} from "./page";
+import {Page, PageElement, PageState} from "../../ui/page";
 import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
@@ -10,7 +10,7 @@ import {makeIguanaPuppetArgsFromLooks} from "../makeIguanaPuppetArgsFromLooks";
 import {iguanaPuppet, IguanaPuppetArgs} from "../../puppet/iguanaPuppet";
 import {sleep} from "../../../cutscene/sleep";
 import {ChangeLooks, LooksPageBack, LooksPageInto, SelectOption} from "../../../sounds";
-import {advanceKeyListener} from "../../../utils/browser/key";
+import {pageRoot} from "../../ui/pageRoot";
 
 export let looksContext: LooksContext;
 
@@ -31,7 +31,7 @@ export function looksUiRoot(defaultLooks: Looks, save: (looks: Looks) => unknown
 
     const c = new Container();
 
-    const pageContainer = new Container();
+    const root = pageRoot();
 
     function back() {
         getStateForPath().selectionIndex = 0;
@@ -79,20 +79,13 @@ export function looksUiRoot(defaultLooks: Looks, save: (looks: Looks) => unknown
     }
 
     function loadPageForPath(elements?: PageElement[]) {
-        pageContainer.removeAllChildren();
         const state = getStateForPath();
         if (!elements)
             elements = getElementsForPath();
         const selectedIndex = elements.findIndex(x => x.selected);
         if (selectedIndex >= 0)
             state.selectionIndex = selectedIndex;
-        const p = page(elements, state);
-        looksContext.page = p;
-
-        pageContainer.addChild(p.at(3, 13));
-
-        advanceKeyListener();
-        pageContainer.ticker.update();
+        looksContext.page = root.goto(elements, state).at(3, 13);
     }
 
     loadPageForPath();
@@ -108,7 +101,7 @@ export function looksUiRoot(defaultLooks: Looks, save: (looks: Looks) => unknown
     breadcrumbs.tint = 0xbbbbbb;
     c.addChild(
         breadcrumbs,
-        pageContainer,
+        root,
         preview(defaultLooks).at(161, 160),
     );
 

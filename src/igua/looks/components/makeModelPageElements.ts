@@ -1,5 +1,5 @@
 import {button} from "./button";
-import {PageElement} from "./page";
+import {PageElement} from "../../ui/page";
 import {LooksInput} from "../looksModel";
 import {colorButton} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";

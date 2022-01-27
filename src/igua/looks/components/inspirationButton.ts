@@ -1,7 +1,7 @@
 import {button} from "./button";
 import {Sprite} from "pixi.js";
 import {MessageBox} from "../../../textures";
-import {PageElement} from "./page";
+import {PageElement} from "../../ui/page";
 import {findChoiceInputs, findColorInputs} from "../findColorValues";
 import {looksContext} from "./looksUiRoot";
 import {rng} from "../../../utils/rng";

@@ -1,5 +1,5 @@
 import {button} from "./button";
-import {PageElement} from "./page";
+import {PageElement} from "../../ui/page";
 import {ColorInput} from "../looksModel";
 import {rng} from "../../../utils/rng";
 import {valueSlider} from "./valueSlider";
