@@ -1,4 +1,4 @@
-import {Container, DisplayObject, Graphics} from "pixi.js";
+import {Container, Graphics} from "pixi.js";
 import {game} from "./game";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {camera as createCamera} from "./camera";
@@ -113,6 +113,11 @@ export const sceneStack = {
         poppedScene?.destroy();
         onScenesModified();
         return poppedScene;
+    },
+    replace<T>(source: () => T, args: Partial<SceneMeta> = {}): T {
+        while (scenes.length > 0)
+            this.pop();
+        return this.push(source, args);
     },
     toArray()
     {

@@ -8,8 +8,9 @@ import {getInitialProgress, progress, setProgress} from "./data/progress";
 import {AsshatApplication} from "../utils/pixi/createApplication";
 import {environment} from "./environment";
 import {devProgress} from "./dev/devProgress";
-import {scene} from "./scene";
+import {scene, sceneStack} from "./scene";
 import {devWindow} from "./dev/devWindow";
+import {TitleScreen} from "../levels/titleScreen";
 
 export let game: ReturnType<typeof createGame>;
 function createGame(application: AsshatApplication)
@@ -55,7 +56,7 @@ export function startGame(application: AsshatApplication)
     game.hudStage.addChild(hud());
 
     if (environment.isProduction) {
-        level.goto('TitleScreen');
+        sceneStack.replace(TitleScreen);
     }
     else {
         loadDevProgress();

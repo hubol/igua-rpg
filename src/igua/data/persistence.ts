@@ -9,6 +9,8 @@ import {game} from "../game";
 import {sleep} from "../../cutscene/sleep";
 import {truncate} from "../../utils/truncate";
 import {readAndConvertProgressFile} from "./readAndConvertProgressFile";
+import {ChooseYourLooksBeginning} from "../../levels/chooseYourLooks";
+import {sceneStack} from "../scene";
 
 export enum SaveFile {
     Slot1 = "file1",
@@ -46,7 +48,7 @@ ${truncate(stringify(e), 60)}`);
     new(file: SaveFile) {
           currentSaveFile = file;
           setProgress(getInitialProgress());
-          level.goto('ChooseYourLooksBeginning');
+          sceneStack.replace(ChooseYourLooksBeginning);
     },
     async save() {
         try {

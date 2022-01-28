@@ -1,9 +1,9 @@
 import {EscapeTickerAndExecute} from "../../utils/asshatTicker";
-import {scene} from "../scene";
+import {scene, sceneStack} from "../scene";
 import {game} from "../game";
 import {container} from "../../utils/pixi/container";
 import {ask} from "../../cutscene/ask";
-import {level} from "../level/level";
+import {TitleScreen} from "../../levels/titleScreen";
 
 export function showQuitMenu() {
     throw new EscapeTickerAndExecute(quitMenu);
@@ -15,7 +15,7 @@ function quitMenu() {
         const yes = await ask('Do you want to quit to the title screen?');
         c.destroy();
         if (yes)
-            level.goto('TitleScreen');
+            sceneStack.replace(TitleScreen);
         else
             scene.ticker.doNextUpdate = true;
     });
