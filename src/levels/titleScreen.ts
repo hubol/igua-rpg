@@ -84,7 +84,8 @@ export async function TitleScreen() {
     }
 
     function newButton(text: string, file: SaveFile) {
-        return button(text, () => persistence.new(file)).center().showLooks(file, peek && !!peek[file]);
+        const exists = peek && !!peek[file];
+        return button(exists ? 'Overwrite' : text, () => persistence.new(file)).center().showLooks(file, exists);
     }
 
     function newPage() {
