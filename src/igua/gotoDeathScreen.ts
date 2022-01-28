@@ -14,13 +14,12 @@ export function gotoDeathScreen()
     scene.cameraStage.children.filter(x => x !== scene.playerStage).forEach(x => x.destroy());
     scene.parallax1Stage.removeAllChildren();
     scene.backgroundColor = 0x000000;
-    setTimeout(revive,
-    4_000)
+    setTimeout(revive, 4_000)
 }
 
 async function revive() {
     if (environment.isProduction)
-        await persistence.load(false);
+        await persistence.load();
     else
         loadDevProgress();
 }

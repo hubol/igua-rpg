@@ -10,14 +10,50 @@ import {sleep} from "../../cutscene/sleep";
 import {truncate} from "../../utils/truncate";
 import {readAndConvertProgressFile} from "./readAndConvertProgressFile";
 
-let currentSaveFile = "file1";
+export enum SaveFile {
+    Slot1 = "file1",
+    Slot2 = "file2",
+    Slot3 = "file3",
+}
+
+let currentSaveFile = SaveFile.Slot1;
+const lastPlayedSaveFileEntry = localStorageEntry<SaveFile>('lastLoadedSaveFile');
+
+function saveLastPlayedSaveFile() {
+    lastPlayedSaveFileEntry.write(currentSaveFile);
+}
 
 export const persistence = {
+    async peek() {
+        try {
+            const file1 = await readAndConvertProgressFile(SaveFile.Slot1);
+            const file2 = await readAndConvertProgressFile(SaveFile.Slot2);
+            const file3 = await readAndConvertProgressFile(SaveFile.Slot3);
+            const lastPlayedSaveFile = lastPlayedSaveFileEntry.read() ?? (file1 && SaveFile.Slot1);
+            return {
+                file1,
+                file2,
+                file3,
+                lastPlayedSaveFile
+            }
+        }
+        catch (e) {
+            console.error(`Error while peeking at save files`, e);
+            await show(`A fatal error occurred while reading save files.
+${truncate(stringify(e), 60)}`);
+        }
+    },
+    new(file: SaveFile) {
+          currentSaveFile = file;
+          setProgress(getInitialProgress());
+          level.goto('ChooseYourLooksBeginning');
+    },
     async save() {
         try {
             showFloppy();
             localStorageEntry(currentSaveFile).write(progress);
             localStorageEntry(currentSaveFile).read();
+            saveLastPlayedSaveFile();
         }
         catch (e) {
             console.error(`Error while saving ${currentSaveFile}`, e);
@@ -25,17 +61,15 @@ export const persistence = {
 ${truncate(stringify(e), 60)}`);
         }
     },
-    async load(okIfEmpty = false, file = currentSaveFile) {
+    async load(file = currentSaveFile) {
         try {
             let progress = await readAndConvertProgressFile(file);
-            if (!progress) {
-                if (!okIfEmpty)
-                    throw new Error(`${file} is empty.`);
-                progress = getInitialProgress();
-            }
+            if (!progress)
+                throw new Error(`${file} is empty.`);
 
             setProgress(progress);
             currentSaveFile = file;
+            saveLastPlayedSaveFile();
             level.goto(progress.levelName);
         }
         catch (e) {

@@ -15,7 +15,7 @@ export async function readAndConvertProgressFile(file: string) {
     const afterText = serializeJavascript(convertedProgress);
 
     if (beforeText !== afterText) {
-        console.log(`The save file was modified to reflect a new version and/or defaults.`);
+        console.log(`The save file (${file}) was modified to reflect a new version and/or defaults.`);
         const { added, updated, deleted } = detailedDiff(eval(`(${beforeText})`), eval(`(${afterText})`)) as any;
         logObject('Added', added, 'background-color: #ccffcc;');
         logObject('Updated', updated, 'background-color: #ccccff;');
