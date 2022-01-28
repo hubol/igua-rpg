@@ -25,6 +25,7 @@ function createGame(application: AsshatApplication)
     application.ticker.add(() => {
         ticker.update();
         scene.ticker.update();
+        stepPlayerCamera();
     });
 
     const sceneStage = new Container();
@@ -50,8 +51,6 @@ function createGame(application: AsshatApplication)
 export function startGame(application: AsshatApplication)
 {
     game = createGame(application);
-
-    game.ticker.add(stepPlayerCamera);
 
     game.hudStage.addChild(hud());
 
