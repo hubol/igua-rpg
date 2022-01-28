@@ -31,7 +31,7 @@ export function looksUiRoot(defaultLooks: Looks, save: (looks: Looks) => unknown
 
     const c = new Container();
 
-    const root = pageRoot();
+    const root = pageRoot({ playSounds: false });
 
     function back() {
         getStateForPath().selectionIndex = 0;
