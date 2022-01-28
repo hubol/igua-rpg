@@ -64,7 +64,14 @@ export async function TitleScreen() {
     }
 
     function loadButton(text: string, file: SaveFile) {
-        return button(text, () => persistence.load(file)).center().showLooks(file);
+        const disabled = !peek || !peek[file];
+        const fn = disabled ? () => {} : () => persistence.load(file);
+        const b = button(text, fn).center().showLooks(file);
+        if (disabled) {
+            b.alpha = 0.5;
+            b.jiggle();
+        }
+        return b;
     }
 
     function loadPage() {
