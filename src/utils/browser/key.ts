@@ -25,6 +25,7 @@ export type KeyCode =
     | "ArrowLeft"
     | "Space"
     | "KeyU"
+    | "Escape"
     | string;
 
 interface KeysState

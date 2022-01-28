@@ -15,6 +15,7 @@ import {showUseMenu} from "../igua/inventory/showUseMenu";
 import {ballons, DisplayState} from "./ballons";
 import {game} from "../igua/game";
 import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
+import {showQuitMenu} from "../igua/inventory/showQuitMenu";
 
 export function playerPuppetArgs() {
     return makeIguanaPuppetArgsFromLooks(progress.looks);
@@ -91,9 +92,6 @@ function createPlayer()
     let ballonLifeTick = 0;
 
     const step = () => {
-        if (playerKey.justWentDown("KeyU"))
-            showUseMenu();
-
         if (player.invulnerableFrameCount <= 0)
             player.visible = true;
         else
@@ -112,6 +110,11 @@ function createPlayer()
             engine.on = false;
             return;
         }
+
+        if (playerKey.justWentDown("KeyU"))
+            showUseMenu();
+        if (playerKey.justWentDown("Escape"))
+            showQuitMenu();
 
         if (playerCharacterHasControl() && progress.health > 5 && progress.poisonLevel > 0)
             player.drain(Math.min(progress.health - 5, 0.01 * Math.pow(progress.poisonLevel, 2)));
