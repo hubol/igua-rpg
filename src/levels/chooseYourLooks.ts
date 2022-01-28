@@ -17,7 +17,7 @@ function defaultArgs() {
 
 type Args = ReturnType<typeof defaultArgs>;
 
-export function ChooseYourLooks(args: Partial<Args> = {}) {
+function ChooseYourLooks(args: Partial<Args> = {}) {
     const { defaultLooks, save } = defaults(defaultArgs(), args) as Args;
     scene.backgroundColor = 0x002C38;
     scene.gameObjectStage.addChild(looksUiRoot(defaultLooks, save));
