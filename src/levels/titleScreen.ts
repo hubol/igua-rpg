@@ -25,6 +25,7 @@ export async function TitleScreen() {
     const info = saveFileInfo().show();
 
     const peek = await persistence.peek();
+    const noExistingFiles = !peek || (!peek.file1 && !peek.file2 && !peek.file3);
 
     const root = pageRoot().show().at(20, 123);
 
@@ -50,9 +51,16 @@ export async function TitleScreen() {
             return button;
         }
 
+        function disabled() {
+            button.onPress = () => { PurchaseFail.play() };
+            button.alpha = 0.5;
+            button.jiggle();
+            return button;
+        }
+
         let lastSelected = false;
 
-        const button = merge(uiButton(fn, 80, 25), { center, showLooks }).withStep(() => {
+        const button = merge(uiButton(fn, 80, 25), { center, showLooks, disabled }).withStep(() => {
             if (button.selected !== lastSelected && button.selected) {
                 c.showLooks(looks, looksScared);
                 if (progress)
@@ -71,21 +79,25 @@ export async function TitleScreen() {
     }
 
     function rootPage() {
-        return [
+        const e = [
             button('Continue', () => persistence.load()).center().showLooks(peek?.lastPlayedSaveFile),
             button('Load Game', () => goto(loadPage())).center().at(0, 30),
             button('New Game', () => goto(newPage())).center().at(0, 60),
         ];
+
+        if (noExistingFiles) {
+            e[0].disabled();
+            e[1].disabled();
+        }
+
+        return e;
     }
 
     function loadButton(text: string, file: SaveFile) {
         const disabled = !peek || !peek[file];
-        const fn = disabled ? () => { PurchaseFail.play() } : () => persistence.load(file);
-        const b = button(text, fn).center().showLooks(file);
-        if (disabled) {
-            b.alpha = 0.5;
-            b.jiggle();
-        }
+        const b = button(text, () => persistence.load(file)).center().showLooks(file);
+        if (disabled)
+            b.disabled();
         return b;
     }
 
@@ -108,14 +120,11 @@ export async function TitleScreen() {
             newButton('File 1', SaveFile.Slot1),
             newButton('File 2', SaveFile.Slot2).at(0, 30),
             newButton('File 3', SaveFile.Slot3).at(0, 60),
-            button('Back', () => {
-                const elements = rootPage();
-                goto(elements, elements.length - 1);
-            }).center().at(0, 95),
+            button('Back', () => goto(rootPage(), 2)).center().at(0, 95),
         ];
     }
 
-    goto(rootPage());
+    goto(rootPage(), noExistingFiles ? 2 : 0);
 }
 
 function character() {

@@ -12,7 +12,7 @@ export function button(onPress: () => unknown, width = 96, height = 30) {
 
     let factor = 0;
 
-    const g = merge(new Graphics(), { selected: false, jiggle }).withStep(() => {
+    const g = merge(new Graphics(), { selected: false, jiggle, onPress }).withStep(() => {
         g.clear().beginFill(0x005870);
         if (g.selected)
             g.lineStyle(2, 0x00FF00, 1, 0);
@@ -26,7 +26,7 @@ export function button(onPress: () => unknown, width = 96, height = 30) {
             g.pivot.x = 0;
 
         if (g.selected && Key.justWentDown('Space')) {
-            onPress();
+            g.onPress();
             if (jigglesOnPress)
                 factor = 8;
         }
