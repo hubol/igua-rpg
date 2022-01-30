@@ -19,6 +19,7 @@ import {handleIguaPromiseRejection} from "./utils/rejection";
 import {make2dCanvasSink} from "./utils/browser/make2dCanvasSink";
 import {handlePromiseCancellation} from "pissant";
 import {Howl} from "howler";
+import {useDynamicsCompressor} from "./utils/browser/useDynamicsCompressor";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -31,6 +32,7 @@ async function initialize()
 
         const howls = Object.values(require("./sounds")) as Howl[];
         await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
+        useDynamicsCompressor();
         require("./utils/extensions/**/*.*");
         if (publishGameObjectResolversIsRequested())
             discoverAndPublishGameObjectResolvers();

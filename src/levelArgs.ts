@@ -19,6 +19,7 @@ import { Rainbow2 } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
+import { resolveSign } from "./gameObjects/sign";
 import { resolveGate } from "./gameObjects/gate";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
@@ -29,7 +30,6 @@ import { PoppingRocksBox } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { resolveDoor } from "./gameObjects/door";
-import { resolveSign } from "./gameObjects/sign";
 import { CloudLong } from "./textures";
 import { KeyRed } from "./textures";
 import { SignTavern } from "./textures";
@@ -2802,7 +2802,7 @@ y: 200,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
-scaleY: 1,
+scaleY: 3,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: GlowingCircle
@@ -2813,7 +2813,7 @@ y: 88,
 originX: 0.5,
 originY: 0.5,
 scaleX: -1,
-scaleY: -1,
+scaleY: 3,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: GlowingCircle
@@ -2907,7 +2907,9 @@ LeftBossWall: resolveBlock({"type":"Block","x":64,"y":32,"width":16,"height":80,
 // @ts-ignore
 Block_5: resolveBlock({"type":"Block","x":0,"y":0,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_22","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":48,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_23","name":"","depth":0})
+SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":48,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_23","name":"","depth":0}),
+// @ts-ignore
+Sign: resolveSign({"type":"Sign","x":32,"y":112,"flippedX":false,"flippedY":false,"uid":"86706091_24","title":"Demo","message":"This is the end of the IguaRPG Demo. Thanks for playing!","name":"","depth":0})
 };
 }
 };
