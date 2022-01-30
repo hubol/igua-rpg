@@ -16,6 +16,7 @@ import {PageElement} from "../igua/ui/page";
 import {sleep} from "../cutscene/sleep";
 import {Progress} from "../igua/data/progress";
 import {PurchaseFail} from "../sounds";
+import {getDemoCompletion} from "../igua/data/getCompletion";
 
 export async function TitleScreen() {
     scene.backgroundColor = 0x002C38;
@@ -152,11 +153,12 @@ function character() {
 
 function saveFileInfo() {
     const level = IguaText.Large('');
-    const valuableIcon = Sprite.from(ValuableIcon).at(0, 13);
-    const valuables = IguaText.Large('').at(11, 10);
+    const valuableIcon = Sprite.from(ValuableIcon).at(26, 13);
+    const valuables = IguaText.Large('').at(valuableIcon.x + 11, 10);
     const headContainer = container().at(85, 5);
+    const completion = IguaText.Large('').at(0, 10);
     headContainer.scale.x = -1;
-    const c = merge(container(level, valuableIcon, valuables, headContainer), {
+    const c = merge(container(headContainer, level, valuableIcon, valuables, completion), {
         clear() {
             c.visible = false;
         },
@@ -165,6 +167,7 @@ function saveFileInfo() {
             headContainer.removeAllChildren();
             headContainer.addChild(iguanaHead(makeIguanaPuppetArgsFromLooks(progress.looks)));
             level.text = `Claw Level ${progress.level}`;
+            completion.text = Math.floor(getDemoCompletion(progress) * 100).toFixed(0) + '%';
             valuables.text = progress.valuables.toString();
             return c;
         }
