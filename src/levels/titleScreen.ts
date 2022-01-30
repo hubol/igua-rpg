@@ -1,12 +1,12 @@
 import {setSceneMeta} from "../igua/level/setSceneMeta";
 import {scene} from "../igua/scene";
-import {IguaRpgTitle} from "../textures";
+import {IguaRpgTitle, ValuableIcon} from "../textures";
 import {Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/merge";
 import {getDefaultLooks} from "../igua/looks/getDefaultLooks";
 import {Looks} from "../igua/looks/looksModel";
-import {iguanaPuppet} from "../igua/puppet/iguanaPuppet";
+import {iguanaHead, iguanaPuppet} from "../igua/puppet/iguanaPuppet";
 import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
 import {pageRoot} from "../igua/ui/pageRoot";
 import {button as uiButton} from "../igua/ui/button";
@@ -14,11 +14,14 @@ import {IguaText} from "../igua/text";
 import {persistence, SaveFile} from "../igua/data/persistence";
 import {PageElement} from "../igua/ui/page";
 import {sleep} from "../cutscene/sleep";
+import {Progress} from "../igua/data/progress";
+import {PurchaseFail} from "../sounds";
 
 export async function TitleScreen() {
     scene.backgroundColor = 0x002C38;
     const t = title().at(0, 80).show();
     const c = character().show().at(138, t.getBounds().y - 10);
+    const info = saveFileInfo().show();
 
     const peek = await persistence.peek();
 
@@ -26,6 +29,7 @@ export async function TitleScreen() {
 
     function button(text: string, fn: () => unknown) {
         const font = IguaText.Large(text).at(6, 6);
+        let progress: Progress | undefined;
         let looks = getDefaultLooks();
         let looksScared = false;
 
@@ -37,15 +41,25 @@ export async function TitleScreen() {
         }
 
         function showLooks(file?: SaveFile, scared = false) {
-            if (file && peek && peek[file])
-                looks = peek[file]!.looks;
+            if (file && peek && peek[file]) {
+                progress = peek[file]!;
+                looks = progress!.looks;
+            }
             looksScared = scared;
             return button;
         }
 
+        let lastSelected = false;
+
         const button = merge(uiButton(fn, 80, 25), { center, showLooks }).withStep(() => {
-            if (button.selected)
+            if (button.selected !== lastSelected && button.selected) {
                 c.showLooks(looks, looksScared);
+                if (progress)
+                    info.set(progress).at(button.getBounds().add(90, 1));
+                else
+                    info.clear();
+            }
+            lastSelected = button.selected;
         });
         button.addChild(font);
         return button;
@@ -65,7 +79,7 @@ export async function TitleScreen() {
 
     function loadButton(text: string, file: SaveFile) {
         const disabled = !peek || !peek[file];
-        const fn = disabled ? () => {} : () => persistence.load(file);
+        const fn = disabled ? () => { PurchaseFail.play() } : () => persistence.load(file);
         const b = button(text, fn).center().showLooks(file);
         if (disabled) {
             b.alpha = 0.5;
@@ -133,6 +147,28 @@ function character() {
 
     c.showLooks(getDefaultLooks());
 
+    return c;
+}
+
+function saveFileInfo() {
+    const level = IguaText.Large('');
+    const valuableIcon = Sprite.from(ValuableIcon).at(0, 13);
+    const valuables = IguaText.Large('').at(11, 10);
+    const headContainer = container().at(85, 5);
+    headContainer.scale.x = -1;
+    const c = merge(container(level, valuableIcon, valuables, headContainer), {
+        clear() {
+            c.visible = false;
+        },
+        set(progress: Progress) {
+            c.visible = true;
+            headContainer.removeAllChildren();
+            headContainer.addChild(iguanaHead(makeIguanaPuppetArgsFromLooks(progress.looks)));
+            level.text = `Claw Level ${progress.level}`;
+            valuables.text = progress.valuables.toString();
+            return c;
+        }
+    });
     return c;
 }
 
