@@ -128,15 +128,8 @@ export async function TitleScreen() {
 }
 
 function character() {
-    let lastLooks;
-    let lastScared;
-
     const c = merge(container(), {
         showLooks(looks: Looks, scared = false) {
-            if (looks === lastLooks && scared === lastScared)
-                return;
-            lastLooks = looks;
-            lastScared = scared;
             c.removeAllChildren();
             const puppet = iguanaPuppet(makeIguanaPuppetArgsFromLooks(looks));
             if (scared) {
