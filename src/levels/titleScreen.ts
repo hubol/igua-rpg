@@ -24,6 +24,8 @@ export async function TitleScreen() {
     const c = character().show().at(138, t.getBounds().y - 10);
     const info = saveFileInfo().show();
 
+    showDemoText();
+
     const peek = await persistence.peek();
     const noExistingFiles = !peek || (!peek.file1 && !peek.file2 && !peek.file3);
 
@@ -188,6 +190,12 @@ function title() {
     c.addChild(Sprite.from(IguaRpgTitle).at(128, 0).centerAnchor());
 
     return c;
+}
+
+function showDemoText() {
+    const demo = IguaText.Large('Demo', {tint: 0x005870}).at(254, 255).show();
+    // @ts-ignore
+    demo.anchor.set(1);
 }
 
 setSceneMeta(TitleScreen, { isLevel: false })
