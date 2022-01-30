@@ -17,7 +17,7 @@ function makeDoUpscale(canvas: HTMLCanvasElement)
         if (viewport.min === lastSeenViewportMin)
             return;
 
-        const padding = viewport.min * 0.125;
+        const padding = 20;
         const availableWidth = viewport.width - padding;
         const availableHeight = viewport.height - padding;
 
