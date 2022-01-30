@@ -69,20 +69,6 @@ function addStartGameElements()
     };
 
     document.body.appendChild(buttonElement);
-
-    if (localStorage.getItem("file1")) {
-        const aElement = document.createElement("button");
-        aElement.style.marginTop = "3em";
-        aElement.textContent = "Click me to erase save data ^_^";
-        aElement.onclick = () => {
-            localStorage.clear();
-            alert("All gone!");
-            aElement.remove();
-        };
-        buttonElement.addEventListener('click', () => aElement.remove());
-
-        document.body.appendChild(aElement);
-    }
 }
 
 function addGameCanvasToDocument(element: HTMLCanvasElement)
