@@ -26,20 +26,31 @@ const application = createApplication({width: 256, height: 256, maxFps: 60, show
 
 async function initialize()
 {
-    upscaleGameCanvas(addGameCanvasToDocument(application.canvasElement));
+    try {
+        upscaleGameCanvas(addGameCanvasToDocument(application.canvasElement));
 
-    const howls = Object.values(require("./sounds")) as Howl[];
-    await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
-    require("./utils/extensions/**/*.*");
-    if (publishGameObjectResolversIsRequested())
-        discoverAndPublishGameObjectResolvers();
-    else
-        require("./igua/game").startGame(application);
+        const howls = Object.values(require("./sounds")) as Howl[];
+        await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
+        require("./utils/extensions/**/*.*");
+        if (publishGameObjectResolversIsRequested())
+            discoverAndPublishGameObjectResolvers();
+        else
+            require("./igua/game").startGame(application);
 
-    if (!environment.isProduction) {
-        devMute();
-        require("./igua/dev/devPersistence").devPersistence();
+        if (!environment.isProduction) {
+            devMute();
+            require("./igua/dev/devPersistence").devPersistence();
+        }
     }
+    catch (e) {
+        showFatalError(e);
+    }
+}
+
+function showFatalError(error) {
+    const message = typeof error === 'string' ? error : ( error.message ? error.message : JSON.stringify(error) );
+    document.body.innerHTML = `<h1>Fatal Error</h1>
+<h2>${message}</h2>`;
 }
 
 if (environment.isProduction && !environment.isElectron)
