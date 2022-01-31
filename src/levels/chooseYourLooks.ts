@@ -7,6 +7,8 @@ import {defaults} from "../utils/defaults";
 import {progress} from "../igua/data/progress";
 import {level} from "../igua/level/level";
 import {recreatePlayerInPlace} from "../gameObjects/player";
+import {jukebox} from "../igua/jukebox";
+import {Country} from "../musics";
 
 function defaultArgs() {
     return ({
@@ -25,6 +27,7 @@ function ChooseYourLooks(args: Partial<Args> = {}) {
 
 export function ChooseYourLooksBeginning() {
     ChooseYourLooks({ save: x => {
+            jukebox.warm(Country);
             progress.looks = x;
             progress.levelName = 'DesertTown';
             level.goto(progress.levelName);
