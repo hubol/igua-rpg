@@ -17,8 +17,11 @@ import {sleep} from "../cutscene/sleep";
 import {Progress} from "../igua/data/progress";
 import {PurchaseFail} from "../sounds";
 import {getDemoCompletion} from "../igua/data/getCompletion";
+import {jukebox} from "../igua/jukebox";
+import {TitleScreen as Music} from "../musics";
 
 export async function TitleScreen() {
+    jukebox.play(Music);
     scene.backgroundColor = 0x002C38;
     const t = title().at(0, 80).show();
     const c = character().show().at(138, t.getBounds().y - 10);
