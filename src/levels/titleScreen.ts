@@ -83,24 +83,30 @@ export async function TitleScreen() {
         root.goto(elements, { selectionIndex });
     }
 
+    async function loadFile(file: SaveFile) {
+        jukebox.stop();
+        await persistence.load(file);
+    }
+
     function rootPage() {
         const e = [
-            button('Continue', () => persistence.load()).center().showLooks(peek?.lastPlayedSaveFile),
+            button('Continue', () => loadFile(peek?.lastPlayedSaveFile!)).center().showLooks(peek?.lastPlayedSaveFile),
             button('Load Game', () => goto(loadPage())).center().at(0, 30),
             button('New Game', () => goto(newPage())).center().at(0, 60),
         ];
 
-        if (noExistingFiles) {
+        if (!peek?.lastPlayedSaveFile)
             e[0].disabled();
+
+        if (noExistingFiles)
             e[1].disabled();
-        }
 
         return e;
     }
 
     function loadButton(text: string, file: SaveFile) {
         const disabled = !peek || !peek[file];
-        const b = button(text, () => persistence.load(file)).center().showLooks(file);
+        const b = button(text, () => loadFile(file)).center().showLooks(file);
         if (disabled)
             b.disabled();
         return b;
