@@ -1,0 +1,97 @@
+{
+    "head": {
+        "color": 15422087,
+        "placement": {
+            "x": -2,
+            "y": -3
+        },
+        "crest": {
+            "shape": 2,
+            "color": 6072301,
+            "placement": {
+                "x": 2,
+                "y": 1
+            },
+            "flipV": true,
+            "flipH": false
+        },
+        "eyes": {
+            "placement": {
+                "x": -1,
+                "y": 0
+            },
+            "gap": 2,
+            "pupils": {
+                "shape": 6,
+                "color": 8728625,
+                "placement": {
+                    "x": -1,
+                    "y": 2
+                },
+                "mirrored": false
+            }
+        },
+        "horn": {
+            "shape": 0,
+            "color": 6072301,
+            "placement": {
+                "x": -8,
+                "y": 2
+            }
+        },
+        "mouth": {
+            "shape": 1,
+            "color": 8728625,
+            "placement": {
+                "x": 0,
+                "y": 0
+            },
+            "flipV": false
+        }
+    },
+    "body": {
+        "color": 9807416,
+        "placement": {
+            "x": 0,
+            "y": 0
+        },
+        "tail": {
+            "shape": 0,
+            "color": 8095542,
+            "placement": {
+                "x": -4,
+                "y": 0
+            },
+            "club": {
+                "shape": -1,
+                "color": 2828760,
+                "placement": [
+                    0,
+                    0
+                ]
+            }
+        }
+    },
+    "feet": {
+        "color": 8728625,
+        "clawColor": 13222529,
+        "front": {
+            "shape": 2,
+            "flipV": false,
+            "claws": {
+                "shape": 0,
+                "placement": 2
+            }
+        },
+        "hind": {
+            "shape": 3,
+            "flipV": false,
+            "claws": {
+                "shape": 0,
+                "placement": 3
+            }
+        },
+        "gap": 4,
+        "backOffset": 4
+    }
+}
