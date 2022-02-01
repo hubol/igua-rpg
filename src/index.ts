@@ -45,6 +45,7 @@ async function initialize()
         }
     }
     catch (e) {
+        console.error(e);
         showFatalError(e);
     }
 }
