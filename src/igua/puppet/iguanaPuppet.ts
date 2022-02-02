@@ -154,7 +154,8 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
 
         if (!barelyWalking || player.vspeed !== 0) {
             const t =trip * 0.1;
-            body.position.y = Math.round(Math.sin(t + 2));
+            if (player.vspeed === 0)
+                body.position.y = Math.round(Math.sin(t + 2));
             args.backLeftFoot.position.y = Math.round(Math.abs(Math.sin(t + 1)) * -2);
             args.backRightFoot.position.y = Math.round(Math.abs(Math.sin(t)) * -2);
             args.frontLeftFoot.position.y = Math.round(Math.abs(Math.cos(t + 1)) * -2);

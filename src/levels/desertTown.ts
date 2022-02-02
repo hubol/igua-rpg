@@ -126,6 +126,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
         level.Stacker.mods.add(Sleepy);
     }
 
+    level.CrateStackKey.y += 28 - player.height;
     level.CrateStackKey.asCollectible(progress.flags.desert.key, "fromTopOfCrateStack");
 
     let tiredOfWorking = progress.flags.desert.stackedAllCrates;
