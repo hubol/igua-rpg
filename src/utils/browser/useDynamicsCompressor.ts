@@ -1,7 +1,7 @@
 import {Howler} from "howler";
 
 export function useDynamicsCompressor() {
-    if (!Howler.masterGain)
+    if (!Howler.masterGain || !DynamicsCompressorNode)
         return;
     const destination = Howler.ctx.destination;
     const compressor = new DynamicsCompressorNode(Howler.ctx);

@@ -26,8 +26,8 @@ function ChooseYourLooks(args: Partial<Args> = {}) {
 }
 
 export function ChooseYourLooksBeginning() {
+    jukebox.warm(Country);
     ChooseYourLooks({ save: x => {
-            jukebox.warm(Country);
             progress.looks = x;
             progress.levelName = 'DesertTown';
             level.goto(progress.levelName);
