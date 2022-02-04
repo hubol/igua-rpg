@@ -25,18 +25,25 @@ function playerPuppet() {
     return iguanaPuppet(playerPuppetArgs());
 }
 
-export let player: ReturnType<typeof createPlayer>;
+type Player = ReturnType<typeof createPlayer>;
+export let player: Player;
 
-export function recreatePlayer()
-{
-    player = createPlayer();
-    scene.playerStage.addChild(player);
+export function setPlayer(newPlayer: Player) {
+    return player = newPlayer;
+}
+
+export function createStagedPlayer() {
+    setPlayer(createPlayer()).ahead();
+}
+
+export function createStagedFakePlayer() {
+    setPlayer(createPlayer(false)).at(-10000, -10000).ahead();
 }
 
 export function recreatePlayerInPlace() {
     const { x, y, scale } = player;
     player.destroy();
-    recreatePlayer();
+    createStagedPlayer();
     player.x = x;
     player.y = y;
     player.scale.x = scale.x;
@@ -47,11 +54,11 @@ function conditionallyGotoDeathScreen() {
         gotoDeathScreen();
 }
 
-function createPlayer()
+function createPlayer(behavior = true)
 {
     const player = merge(playerPuppet(),
         {
-            follower: createFollower(),
+            follower: behavior && createFollower(),
             invulnerableFrameCount: 0,
             isDead: false,
             drain(health: number) {
@@ -85,6 +92,9 @@ function createPlayer()
                 return 1 + (progress.level - 1) * 0.6;
             }
         });
+
+    if (!behavior)
+        return player;
 
     const engine = player.engine;
 

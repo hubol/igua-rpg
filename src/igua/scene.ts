@@ -3,7 +3,7 @@ import {game} from "./game";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {camera as createCamera} from "./camera";
 import {SceneSource} from "./level/sceneSource";
-import {recreatePlayer} from "../gameObjects/player";
+import {player, createStagedPlayer, setPlayer, createStagedFakePlayer} from "../gameObjects/player";
 import {progress} from "./data/progress";
 import {defaults} from "../utils/defaults";
 import {merge} from "../utils/merge";
@@ -47,6 +47,7 @@ function createScene(source: SceneSource, args: Readonly<SceneMeta>)
         gameObjectStage,
         playerStage,
         ticker,
+        ext: {} as Record<string, any>,
         destroy()
         {
             stage.destroy({ children: true });
@@ -79,13 +80,19 @@ function onScenesModified()
         scenes[i].visible = false;
     scene = scenes[scenes.length - 1];
     scene.visible = true;
+    setPlayer(scene.ext.__player);
 }
 
 function onScenePushed() {
     if (scene.isLevel) {
-        recreatePlayer();
+        createStagedPlayer();
         progress.levelName = scene.name!;
     }
+    else {
+        createStagedFakePlayer();
+    }
+
+    scene.ext.__player = player;
     const result = scene.source();
     advanceKeyListener();
     scene.ticker.update();
