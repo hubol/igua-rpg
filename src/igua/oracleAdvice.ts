@@ -7,7 +7,9 @@ export async function oracleAdvice() {
         oracle.lore1 = true;
         await show(`Long ago, our ancient protectors left us a special weapon. But over the ages, its exact location has fallen into obscurity.`);
         await show(`Throughout the world are monuments to the protectors. If you visit them all, perhaps the great weapon can be found.`);
-        return await show(`Go to the temple in the east desert.`);
+        if (!desert.unlockedTemple)
+            await show(`Go to the temple in the east desert.`);
+        return;
 
         // await show(`Centuries ago, the world was protected by great beings.`);
         // await show(`Disaster fell when the protectors were rendered vulnerable and approached by a ferocious interloper.`);
@@ -21,7 +23,7 @@ export async function oracleAdvice() {
     else {
         if (!desert.unlockedTemple) {
                 await show(`You must go to the temple in the east desert, but alas, it is locked.`);
-                return await show(`There is a mechanism to open the temple in the far east outskirts of the desert.`);
+                return await show(`There is a mechanism to open the temple in the grassy outskirts of the desert.`);
             }
             else if (desert.bigKey.reward) {
                 await show(`You repaired the big key and received the blessing of earth!`);
