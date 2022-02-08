@@ -5,6 +5,7 @@ import {Graphics} from "pixi.js";
 import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles} from "../textures";
 import {resolveBlock} from "../gameObjects/walls";
+import {spider} from "../gameObjects/spider";
 
 export function JungleFromDesert() {
     scene.backgroundColor = 0x97D8D8;
@@ -18,4 +19,6 @@ export function JungleFromDesert() {
         resolveBlock({ x, y, width: 32, height: 8 } as any);
     }
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0x877856);
+    if (level.SpiderValuable)
+        spider(level.SpiderValuable, -160, { downUnit: 0.05 }).show();
 }

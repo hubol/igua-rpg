@@ -26,11 +26,11 @@ import { CracksA } from "./textures";
 import { GlowingCircle } from "./textures";
 import { VineSmall } from "./textures";
 import { PoppingRocksBox } from "./textures";
+import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { resolveJungleTree } from "./gameObjects/jungleTree";
 import { GroundSpeckles } from "./textures";
-import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { resolveDoor } from "./gameObjects/door";
 import { CloudLong } from "./textures";
@@ -2761,7 +2761,7 @@ FromCostumer: {"type":"Checkpoint","x":1240,"y":440,"flippedX":false,"flippedY":
 };
 
 export const JungleFromDesertArgs = {
-    width: 1024,
+    width: 1184,
 height: 512,
 gameObjectsSupplier: () => {
   return {
@@ -2842,6 +2842,17 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
+GroundSpeckles_3: resolveDecalGameObject({
+    x: 1016,
+y: 408,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
 ToCave: resolveDecalGameObject({
     x: 552,
 y: 512,
@@ -2891,7 +2902,7 @@ SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":384,"y":472,"width":120,"hei
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":384,"y":408,"width":128,"height":40,"flippedX":false,"flippedY":true,"uid":"55824435_2","name":"","depth":0}),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":512,"y":408,"width":512,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":512,"y":408,"width":672,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
 // @ts-ignore
 SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":512,"y":448,"width":96,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435_4","name":"","depth":0}),
 Player: {"type":"Player","x":432,"y":488,"flippedX":false,"flippedY":false,"uid":"55988047_6","faceRight":false,"name":"","depth":0},
@@ -2916,15 +2927,17 @@ JungleTree_4: resolveJungleTree({"type":"JungleTree","x":448,"y":512,"height":36
 // @ts-ignore
 JungleTree_5: resolveJungleTree({"type":"JungleTree","x":56,"y":480,"height":320,"flippedX":false,"flippedY":false,"uid":"25711099_20","name":"","depth":4}),
 // @ts-ignore
-CommonClown: resolveCommonClown({"type":"CommonClown","x":616,"y":376,"flippedX":false,"flippedY":false,"uid":"68762216_21","name":"","depth":0}),
+CommonClown: resolveCommonClown({"type":"CommonClown","x":832,"y":376,"flippedX":false,"flippedY":false,"uid":"68762216_21","name":"","depth":0}),
 // @ts-ignore
-CommonClown_1: resolveCommonClown({"type":"CommonClown","x":728,"y":384,"flippedX":false,"flippedY":false,"uid":"68762216_22","name":"","depth":0}),
+CommonClown_1: resolveCommonClown({"type":"CommonClown","x":944,"y":384,"flippedX":false,"flippedY":false,"uid":"68762216_22","name":"","depth":0}),
 // @ts-ignore
 ToCaveBackground: resolveRegion({"type":"Region","x":384,"y":408,"width":224,"height":168,"flippedX":false,"flippedY":false,"uid":"25971607_23","name":"ToCaveBackground","depth":0}),
 // @ts-ignore
 Sign: resolveSign({"type":"Sign","x":430,"y":408,"flippedX":false,"flippedY":false,"uid":"86706091_24","title":"Jungle","message":"Welcome to the jungle.","name":"","depth":0}),
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":504,"y":472,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_25","levelName":"OversizedAngelArena","checkpointName":"FromJungle","name":"","depth":0})
+Gate: resolveGate({"type":"Gate","x":504,"y":472,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_25","levelName":"OversizedAngelArena","checkpointName":"FromJungle","name":"","depth":0}),
+// @ts-ignore
+SpiderValuable: resolveValuableBlue({"type":"ValuableBlue","x":688,"y":408,"flippedX":false,"flippedY":false,"uid":"55991906_26","name":"SpiderValuable","depth":0})
 };
 }
 };

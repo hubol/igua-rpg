@@ -126,6 +126,7 @@ export let Snowman: PIXI.Texture;
 export let SparkleSmallLight: PIXI.Texture;
 export let Sparkle: PIXI.Texture;
 export let SpicedNectarPotion: PIXI.Texture;
+export let Spider: PIXI.Texture;
 export let SpikyBrushA: PIXI.Texture;
 export let SpikyBrushB: PIXI.Texture;
 export let SweetBerryPotion: PIXI.Texture;
@@ -519,6 +520,9 @@ export function loadTexturesAsync()
     const SpicedNectarPotionPath = require("./images/spiced nectar potion.png");
     loader.add(SpicedNectarPotionPath); 
 
+    const SpiderPath = require("./images/spider.png");
+    loader.add(SpiderPath); 
+
     const SpikyBrushAPath = require("./images/spiky brush a.png");
     loader.add(SpikyBrushAPath); 
 
@@ -692,6 +696,7 @@ export function loadTexturesAsync()
             SparkleSmallLight = resources[SparkleSmallLightPath]?.texture as PIXI.Texture;
             Sparkle = resources[SparklePath]?.texture as PIXI.Texture;
             SpicedNectarPotion = resources[SpicedNectarPotionPath]?.texture as PIXI.Texture;
+            Spider = resources[SpiderPath]?.texture as PIXI.Texture;
             SpikyBrushA = resources[SpikyBrushAPath]?.texture as PIXI.Texture;
             SpikyBrushB = resources[SpikyBrushBPath]?.texture as PIXI.Texture;
             SweetBerryPotion = resources[SweetBerryPotionPath]?.texture as PIXI.Texture;

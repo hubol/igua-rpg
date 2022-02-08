@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0",
-  "width": 1024,
+  "width": 1184,
   "height": 512,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,7 +12,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 128,
+      "gridCellsX": 148,
       "gridCellsY": 64,
       "entities": [
         {
@@ -47,7 +47,7 @@
           "_eid": "55823268",
           "x": 512,
           "y": 408,
-          "width": 512,
+          "width": 672,
           "height": 40,
           "originX": 0,
           "originY": 0,
@@ -195,7 +195,7 @@
           "name": "CommonClown",
           "id": 21,
           "_eid": "68762216",
-          "x": 616,
+          "x": 832,
           "y": 376,
           "originX": 8,
           "originY": 62,
@@ -205,7 +205,7 @@
           "name": "CommonClown",
           "id": 22,
           "_eid": "68762216",
-          "x": 728,
+          "x": 944,
           "y": 384,
           "originX": 8,
           "originY": 62,
@@ -244,6 +244,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "OversizedAngelArena", "checkpointName": "FromJungle", "name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 26,
+          "_eid": "55991906",
+          "x": 688,
+          "y": 408,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "SpiderValuable", "depth": 0}
         }
       ]
     },
@@ -254,7 +264,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 128,
+      "gridCellsX": 148,
       "gridCellsY": 64,
       "decals": [
         {
@@ -312,8 +322,29 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 136, "y": 472, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0},
-        {"x": 688, "y": 408, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0}
+        {
+          "x": 136,
+          "y": 472,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 688,
+          "y": 408,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"x": 1016, "y": 408, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0}
       ],
       "folder": "../../src/images"
     },
@@ -324,7 +355,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 128,
+      "gridCellsX": 148,
       "gridCellsY": 64,
       "decals": [
         {
@@ -381,7 +412,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 128,
+      "gridCellsX": 148,
       "gridCellsY": 64,
       "decals": [],
       "folder": "../../src/images"
