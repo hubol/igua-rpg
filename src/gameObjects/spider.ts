@@ -4,17 +4,21 @@ import {container} from "../utils/pixi/container";
 import {now} from "../utils/now";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {player} from "./player";
+import {Vector} from "../utils/math/vector";
+import {trimFrame} from "../utils/pixi/trimFrame";
 
-export function spider(target: DisplayObject, yOffset: number, { activate = 48, baseUnit = 0.5, downUnit = 0.01, upUnit = 0.03 } = {}) {
-    const w = Sprite.from(Cobweb).at([0, yOffset].add(target)).centerAnchor();
+const spiderTexture = trimFrame(Spider);
+
+export function spider(target: DisplayObject, offset: Vector, { activate = 48, baseUnit = 0.5, downUnit = 0.01, upUnit = 0.03 } = {}) {
+    const w = Sprite.from(Cobweb).at(offset.vcpy().add(target)).centerAnchor();
     let unit = 0.5;
     const g = new Graphics().withStep(() => {
         g.clear().lineStyle(1, 0xffffff).moveTo(w.x, w.y - 5).lineTo(s.x, s.y);
     }).at(1, 0);
     let behaviorIndex = 0;
-    let offset = [].vcpy();
-    const s = Sprite.from(Spider).at(w).withStep(() => {
-        s.y = w.y + Math.round(unit * -yOffset);
+    let targetGrabOffset = [].vcpy();
+    const s = Sprite.from(spiderTexture).at(w).withStep(() => {
+        s.y = w.y + Math.round(unit * -offset.y);
 
         if (target.destroyed) {
             unit += Math.sin(now.s * Math.PI * 4) * 0.002;
@@ -31,10 +35,10 @@ export function spider(target: DisplayObject, yOffset: number, { activate = 48, 
         }
         if (behaviorIndex < 2 && target.collides(s)) {
             behaviorIndex = 2;
-            offset.at(target).add(s, -1);
+            targetGrabOffset.at(target).add(s, -1);
         }
         if (behaviorIndex === 2) {
-            target.at(s).add(offset);
+            target.at(s).add(targetGrabOffset);
             unit -= upUnit;
             if (unit <= 0) {
                 unit = 0;
@@ -42,6 +46,6 @@ export function spider(target: DisplayObject, yOffset: number, { activate = 48, 
             }
         }
     });
-    s.anchor.set(4/12, 2/6);
+    s.anchor.set(4/9, 2/4   );
     return container(w, g, s);
 }

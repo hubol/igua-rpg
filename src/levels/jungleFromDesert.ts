@@ -20,5 +20,5 @@ export function JungleFromDesert() {
     }
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0x877856);
     if (level.SpiderValuable)
-        spider(level.SpiderValuable, -160, { downUnit: 0.05 }).show();
+        spider(level.SpiderValuable, [-1, -160], { downUnit: 0.05 }).show();
 }
