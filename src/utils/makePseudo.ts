@@ -1,6 +1,6 @@
 // https://github.com/tvalentius/pseudo-random/blob/master/index.js
 export function makePseudo(seed) {
-    let _seed = seed % 2147483647;
+    let _seed = Math.round(seed) % 2147483647;
     if (_seed) _seed += 2147483646;
 
     function int() {
@@ -15,7 +15,7 @@ export function makePseudo(seed) {
         return unit() > 0.5;
     }
 
-    function choose(...args) {
+    function choose<T>(...args: T[]) {
         return args[int() % args.length];
     }
 

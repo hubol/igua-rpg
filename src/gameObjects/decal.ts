@@ -28,6 +28,10 @@ function resolveDecalGameObjectImpl(args: DecalArgs)
 export const resolveDecalGameObject = track(resolveDecalGameObjectImpl);
 export const decal = resolveDecalGameObject;
 
+export function decalsOf(texture: Texture) {
+    return decal.instances.filter(x => x.texture === texture);
+}
+
 function getStage(layerName: string)
 {
     switch (layerName)

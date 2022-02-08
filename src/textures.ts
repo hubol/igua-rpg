@@ -49,8 +49,12 @@ export let FlyCageBroken: PIXI.Texture;
 export let FlyCage: PIXI.Texture;
 export let GlowingCircle: PIXI.Texture;
 export let GreenCable: PIXI.Texture;
+export let GroundSpeckles: PIXI.Texture;
 export let HotTerrain: PIXI.Texture;
 export let IguaRpgTitle: PIXI.Texture;
+export let JungleTreeBranch: PIXI.Texture;
+export let JungleTreeFoliage: PIXI.Texture;
+export let JungleTreeTrunk: PIXI.Texture;
 export let KeyRed: PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture;
 export let LightShelf: PIXI.Texture;
@@ -284,11 +288,23 @@ export function loadTexturesAsync()
     const GreenCablePath = require("./images/green cable.png");
     loader.add(GreenCablePath); 
 
+    const GroundSpecklesPath = require("./images/ground speckles.png");
+    loader.add(GroundSpecklesPath); 
+
     const HotTerrainPath = require("./images/hot terrain.png");
     loader.add(HotTerrainPath); 
 
     const IguaRpgTitlePath = require("./images/igua rpg title.png");
     loader.add(IguaRpgTitlePath); 
+
+    const JungleTreeBranchPath = require("./images/jungle/tree branch.png");
+    loader.add(JungleTreeBranchPath); 
+
+    const JungleTreeFoliagePath = require("./images/jungle/tree foliage.png");
+    loader.add(JungleTreeFoliagePath); 
+
+    const JungleTreeTrunkPath = require("./images/jungle/tree trunk.png");
+    loader.add(JungleTreeTrunkPath); 
 
     const KeyRedPath = require("./images/key red.png");
     loader.add(KeyRedPath); 
@@ -599,8 +615,12 @@ export function loadTexturesAsync()
             FlyCage = resources[FlyCagePath]?.texture as PIXI.Texture;
             GlowingCircle = resources[GlowingCirclePath]?.texture as PIXI.Texture;
             GreenCable = resources[GreenCablePath]?.texture as PIXI.Texture;
+            GroundSpeckles = resources[GroundSpecklesPath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             IguaRpgTitle = resources[IguaRpgTitlePath]?.texture as PIXI.Texture;
+            JungleTreeBranch = resources[JungleTreeBranchPath]?.texture as PIXI.Texture;
+            JungleTreeFoliage = resources[JungleTreeFoliagePath]?.texture as PIXI.Texture;
+            JungleTreeTrunk = resources[JungleTreeTrunkPath]?.texture as PIXI.Texture;
             KeyRed = resources[KeyRedPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
             LightShelf = resources[LightShelfPath]?.texture as PIXI.Texture;

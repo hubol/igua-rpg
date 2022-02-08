@@ -1,0 +1,390 @@
+{
+  "ogmoVersion": "3.4.0",
+  "width": 1024,
+  "height": 512,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 128,
+      "gridCellsY": 64,
+      "entities": [
+        {
+          "name": "SlopeLeft",
+          "id": 0,
+          "_eid": "55845599",
+          "x": 384,
+          "y": 472,
+          "width": 120,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 2,
+          "_eid": "55824435",
+          "x": 384,
+          "y": 408,
+          "width": 128,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 3,
+          "_eid": "55823268",
+          "x": 512,
+          "y": 408,
+          "width": 512,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 4,
+          "_eid": "55824435",
+          "x": 512,
+          "y": 448,
+          "width": 96,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 6,
+          "_eid": "55988047",
+          "x": 432,
+          "y": 488,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "JungleTree",
+          "id": 8,
+          "_eid": "25711099",
+          "x": 656,
+          "y": 408,
+          "height": 168,
+          "originX": 8,
+          "originY": 168,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "JungleTree",
+          "id": 10,
+          "_eid": "25711099",
+          "x": 312,
+          "y": 472,
+          "height": 200,
+          "originX": 8,
+          "originY": 200,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "JungleTree",
+          "id": 12,
+          "_eid": "25711099",
+          "x": 176,
+          "y": 472,
+          "height": 80,
+          "originX": 8,
+          "originY": 80,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 14,
+          "_eid": "55823268",
+          "x": 608,
+          "y": 448,
+          "width": 168,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 15,
+          "_eid": "55845599",
+          "x": 32,
+          "y": 440,
+          "width": 72,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 16,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 440,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 17,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 472,
+          "width": 384,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "JungleTree",
+          "id": 18,
+          "_eid": "25711099",
+          "x": 208,
+          "y": 496,
+          "height": 368,
+          "originX": 8,
+          "originY": 368,
+          "values": {"name": "", "depth": 4}
+        },
+        {
+          "name": "JungleTree",
+          "id": 19,
+          "_eid": "25711099",
+          "x": 448,
+          "y": 512,
+          "height": 368,
+          "originX": 8,
+          "originY": 368,
+          "values": {"name": "", "depth": 4}
+        },
+        {
+          "name": "JungleTree",
+          "id": 20,
+          "_eid": "25711099",
+          "x": 56,
+          "y": 480,
+          "height": 320,
+          "originX": 8,
+          "originY": 320,
+          "values": {"name": "", "depth": 4}
+        },
+        {
+          "name": "CommonClown",
+          "id": 21,
+          "_eid": "68762216",
+          "x": 616,
+          "y": 376,
+          "originX": 8,
+          "originY": 62,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "CommonClown",
+          "id": 22,
+          "_eid": "68762216",
+          "x": 728,
+          "y": 384,
+          "originX": 8,
+          "originY": 62,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 23,
+          "_eid": "25971607",
+          "x": 384,
+          "y": 408,
+          "width": 224,
+          "height": 168,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "ToCaveBackground", "depth": 0}
+        },
+        {
+          "name": "Sign",
+          "id": 24,
+          "_eid": "86706091",
+          "x": 430,
+          "y": 408,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "Jungle", "message": "Welcome to the jungle.", "name": "", "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 25,
+          "_eid": "55920197",
+          "x": 504,
+          "y": 472,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "OversizedAngelArena", "checkpointName": "FromJungle", "name": "", "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 128,
+      "gridCellsY": 64,
+      "decals": [
+        {
+          "x": 424,
+          "y": 432,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 472,
+          "y": 448,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 408,
+          "y": 478,
+          "scaleX": 0.8,
+          "scaleY": 0.8,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 424,
+          "y": 486,
+          "scaleX": -0.8,
+          "scaleY": 0.8,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 360,
+          "y": 472,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"x": 136, "y": 472, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0},
+        {"x": 688, "y": 408, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0}
+      ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 128,
+      "gridCellsY": 64,
+      "decals": [
+        {
+          "x": 552,
+          "y": 512,
+          "scaleX": 3,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "glowing circle.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "ToCave"}
+        },
+        {
+          "x": 630,
+          "y": 400,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 336,
+          "y": 464,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 147,
+          "y": 464,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 128,
+      "gridCellsY": 64,
+      "decals": [],
+      "folder": "../../src/images"
+    }
+  ]
+}

@@ -233,14 +233,26 @@
           "values": {"name": "", "depth": 0}
         },
         {
-          "name": "Sign",
-          "id": 24,
-          "_eid": "86706091",
-          "x": 32,
+          "name": "Gate",
+          "id": 25,
+          "_eid": "55920197",
+          "x": 0,
+          "y": 80,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "JungleFromDesert", "checkpointName": "FromCave", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 26,
+          "_eid": "55940370",
+          "x": 64,
           "y": 112,
-          "originX": 14,
-          "originY": 18,
-          "values": {"title": "Demo", "message": "This is the end of the IguaRPG Demo. Thanks for playing!", "name": "", "depth": 0}
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromJungle", "faceRight": true, "depth": 0}
         }
       ]
     },

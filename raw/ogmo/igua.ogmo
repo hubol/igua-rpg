@@ -1,6 +1,6 @@
 {
   "name": "IguaRPG",
-  "ogmoVersion": "3.4.0-hubol",
+  "ogmoVersion": "3.4.0",
   "levelPaths": [".\\levels"],
   "backgroundColor": "#4074c4ff",
   "gridColor": "#3c4049cc",
@@ -928,6 +928,47 @@
       ],
       "texture": "preview-images/boulder.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAArUlEQVRYR+2XSw7AIAhEvXbv0av0fDQ0IbH+8INgogtXLc5jbCrjAMBx67kvqF3cXuFzVhwLasXD92pgigC9wi0gKgAIlHMjCyDVPeeGOoAPhK5EALM6T+37A9AUJq11ACy6J83vG9gbwLJ71Da1/wAcB44Daziw9a94nevY6hiikUzzYqIpOTmUzgRpSkbSIKlswEYzKYjmYOIXjEKUMiLrABWPQIgA9IJwCfkFWn4zSlo6CMsAAAAASUVORK5CYII="
+    },
+    {
+      "exportID": "25711099",
+      "name": "JungleTree",
+      "limit": -1,
+      "size": {"x": 16, "y": 64},
+      "origin": {"x": 8, "y": 64},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": true,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
+      ],
+      "texture": "preview-images/jungle tree.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAABACAMAAAAkowekAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURYlyrQAAAKDLjqgAAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAENJREFUOE/dyFsKACAIRFHd/6aznF4UCGVBzdfcQ4wR3l0gC0qfhNrLIP03ZNkCiBdoj6DyJiRxApTMhijU9hy6MXMAYFMCmVkyXjwAAAAASUVORK5CYII="
     }
   ],
   "tilesets": []
