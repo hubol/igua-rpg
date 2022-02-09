@@ -2,18 +2,27 @@
   "name": "igua-rpg",
   "version": "1.0.0",
   "description": "A fangame of Oddwarg Animal RPG.",
-  "main": "index.js",
   "browserslist": [
     "last 31 Chrome versions"
   ],
   "scripts": {
     "serve": "parcel src/index.html --open",
-    "build": "npm run gen:sounds -- --build && npm run gen:music -- --build && parcel build --public-url ./ src/index.html",
-    "watch-gen:assets": "concurrently \"npm run gen:textures\" \"npm run gen:sounds\" \"npm run gen:music\"",
+    "build": "run-p -l \"gen:sounds -- --build\" \"gen:music -- --build\" && parcel build",
+    "watch-gen:assets": "run-p -l gen:textures gen:sounds gen:music",
     "gen:textures": "generate-textures src/images src/textures.ts",
     "gen:sounds": "generate-howls raw/sound src/sound src/sounds.ts",
     "gen:music": "generate-howls raw/music src/music src/musics.ts --dontPreload",
-    "gen:levelargs": "rimraf ./tools/write-levelargs/.bin && cross-env NODE_ENV=development PUBLISH_GAME_OBJECT_RESOLVERS=true parcel build --public-url ./ src/index.html --out-dir ./tools/write-levelargs/.bin/.app --cache-dir ./.gen/cache --no-minify --no-content-hash --no-source-maps && npm start --prefix ./tools/write-levelargs"
+    "gen:levelargs": "run-s -n args:*",
+    "args:clean": "rimraf ./tools/write-levelargs/.bin",
+    "args:build-app": "cross-env NODE_ENV=development PUBLISH_GAME_OBJECT_RESOLVERS=true parcel build --dist-dir ./tools/write-levelargs/.bin/.app --no-optimize --no-content-hash --no-source-maps",
+    "args:start-tool": "npm start --prefix ./tools/write-levelargs"
+  },
+  "targets": {
+    "default": {
+      "source": "src/index.html",
+      "publicUrl": "./",
+      "scopeHoist": false
+    }
   },
   "repository": {
     "type": "git",
@@ -22,14 +31,15 @@
   "author": "Hubol",
   "license": "ISC",
   "devDependencies": {
+    "@parcel/resolver-glob": "^2.2.1",
+    "@parcel/transformer-raw": "^2.2.1",
     "@types/howler": "^2.2.4",
     "@types/serialize-javascript": "^4.0.0",
-    "concurrently": "^5.1.0",
     "cross-env": "^7.0.2",
     "generate-howls": "^0.2.4",
     "generate-textures": "^0.1.2",
-    "onchange": "^7.0.2",
-    "parcel-bundler": "^1.12.4",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^2.2.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.4.2"
   },
