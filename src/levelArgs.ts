@@ -26,10 +26,11 @@ import { CracksA } from "./textures";
 import { GlowingCircle } from "./textures";
 import { VineSmall } from "./textures";
 import { PoppingRocksBox } from "./textures";
+import { resolvePool } from "./gameObjects/pool";
+import { resolveJungleTree } from "./gameObjects/jungleTree";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveCommonClown } from "./gameObjects/commonClown";
-import { resolveJungleTree } from "./gameObjects/jungleTree";
 import { GroundSpeckles } from "./textures";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { resolveDoor } from "./gameObjects/door";
@@ -2761,12 +2762,12 @@ FromCostumer: {"type":"Checkpoint","x":1240,"y":440,"flippedX":false,"flippedY":
 };
 
 export const JungleFromDesertArgs = {
-    width: 1184,
+    width: 1232,
 height: 512,
 gameObjectsSupplier: () => {
   return {
     VineSmall: resolveDecalGameObject({
-    x: 424,
+    x: 472,
 y: 432,
 originX: 0.5,
 originY: 0.5,
@@ -2777,7 +2778,7 @@ layerName: "TerrainDecals",
 texture: VineSmall
 }),
 VineSmall_1: resolveDecalGameObject({
-    x: 472,
+    x: 520,
 y: 448,
 originX: 0.5,
 originY: 0.5,
@@ -2788,7 +2789,7 @@ layerName: "TerrainDecals",
 texture: VineSmall
 }),
 SmallDecorativeRock: resolveDecalGameObject({
-    x: 408,
+    x: 456,
 y: 478,
 originX: 0.5,
 originY: 0.5,
@@ -2799,7 +2800,7 @@ layerName: "TerrainDecals",
 texture: SmallDecorativeRock
 }),
 SmallDecorativeRock_1: resolveDecalGameObject({
-    x: 424,
+    x: 472,
 y: 486,
 originX: 0.5,
 originY: 0.5,
@@ -2810,7 +2811,7 @@ layerName: "TerrainDecals",
 texture: SmallDecorativeRock
 }),
 GroundSpeckles: resolveDecalGameObject({
-    x: 360,
+    x: 408,
 y: 472,
 originX: 0.5,
 originY: 0,
@@ -2821,7 +2822,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 GroundSpeckles_1: resolveDecalGameObject({
-    x: 136,
+    x: 184,
 y: 472,
 originX: 0.5,
 originY: 0,
@@ -2832,7 +2833,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 GroundSpeckles_2: resolveDecalGameObject({
-    x: 688,
+    x: 736,
 y: 408,
 originX: 0.5,
 originY: 0,
@@ -2843,7 +2844,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 GroundSpeckles_3: resolveDecalGameObject({
-    x: 1016,
+    x: 1064,
 y: 408,
 originX: 0.5,
 originY: 0,
@@ -2854,7 +2855,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 ToCave: resolveDecalGameObject({
-    x: 552,
+    x: 600,
 y: 512,
 originX: 0.5,
 originY: 0.5,
@@ -2865,7 +2866,7 @@ layerName: "BackgroundDecals",
 texture: GlowingCircle
 }),
 SpikyBrushB: resolveDecalGameObject({
-    x: 630,
+    x: 678,
 y: 400,
 originX: 0.5,
 originY: 0.5,
@@ -2876,7 +2877,7 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
 SpikyBrushB_1: resolveDecalGameObject({
-    x: 336,
+    x: 384,
 y: 464,
 originX: 0.5,
 originY: 0.5,
@@ -2887,7 +2888,7 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
 SpikyBrushB_2: resolveDecalGameObject({
-    x: 147,
+    x: 195,
 y: 464,
 originX: 0.5,
 originY: 0.5,
@@ -2898,46 +2899,54 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
 // @ts-ignore
-SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":384,"y":472,"width":120,"height":40,"flippedX":false,"flippedY":false,"uid":"55845599_0","name":"","depth":0}),
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":432,"y":472,"width":120,"height":40,"flippedX":false,"flippedY":false,"uid":"55845599_0","name":"","depth":0}),
 // @ts-ignore
-SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":384,"y":408,"width":128,"height":40,"flippedX":false,"flippedY":true,"uid":"55824435_2","name":"","depth":0}),
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":432,"y":408,"width":128,"height":40,"flippedX":false,"flippedY":true,"uid":"55824435_2","name":"","depth":0}),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":512,"y":408,"width":672,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":560,"y":408,"width":672,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":512,"y":448,"width":96,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435_4","name":"","depth":0}),
-Player: {"type":"Player","x":432,"y":488,"flippedX":false,"flippedY":false,"uid":"55988047_6","faceRight":false,"name":"","depth":0},
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":560,"y":448,"width":96,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435_4","name":"","depth":0}),
+Player: {"type":"Player","x":480,"y":488,"flippedX":false,"flippedY":false,"uid":"55988047_6","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-JungleTree: resolveJungleTree({"type":"JungleTree","x":656,"y":408,"height":168,"flippedX":false,"flippedY":false,"uid":"25711099_8","name":"","depth":0}),
+JungleTree: resolveJungleTree({"type":"JungleTree","x":704,"y":408,"height":168,"flippedX":false,"flippedY":false,"uid":"25711099_8","name":"","depth":0}),
 // @ts-ignore
-JungleTree_1: resolveJungleTree({"type":"JungleTree","x":312,"y":472,"height":200,"flippedX":false,"flippedY":false,"uid":"25711099_10","name":"","depth":0}),
+JungleTree_1: resolveJungleTree({"type":"JungleTree","x":352,"y":472,"height":200,"flippedX":false,"flippedY":false,"uid":"25711099_10","name":"","depth":0}),
 // @ts-ignore
-JungleTree_2: resolveJungleTree({"type":"JungleTree","x":176,"y":472,"height":80,"flippedX":false,"flippedY":false,"uid":"25711099_12","name":"","depth":0}),
+JungleTree_2: resolveJungleTree({"type":"JungleTree","x":208,"y":472,"height":80,"flippedX":false,"flippedY":false,"uid":"25711099_12","name":"","depth":0}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":608,"y":448,"width":168,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_14","name":"","depth":0}),
+Block_1: resolveBlock({"type":"Block","x":656,"y":448,"width":168,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_14","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":32,"y":440,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_15","name":"","depth":0}),
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":80,"y":440,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_15","name":"","depth":0}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":0,"y":440,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"","depth":0}),
+Block_2: resolveBlock({"type":"Block","x":0,"y":440,"width":80,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"","depth":0}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":0,"y":472,"width":384,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_17","name":"","depth":0}),
+Block_3: resolveBlock({"type":"Block","x":48,"y":472,"width":384,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_17","name":"","depth":0}),
 // @ts-ignore
-JungleTree_3: resolveJungleTree({"type":"JungleTree","x":208,"y":496,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_18","name":"","depth":4}),
+JungleTree_3: resolveJungleTree({"type":"JungleTree","x":254,"y":496,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_18","name":"","depth":4}),
 // @ts-ignore
-JungleTree_4: resolveJungleTree({"type":"JungleTree","x":448,"y":512,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_19","name":"","depth":4}),
+JungleTree_4: resolveJungleTree({"type":"JungleTree","x":496,"y":512,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_19","name":"","depth":4}),
 // @ts-ignore
 JungleTree_5: resolveJungleTree({"type":"JungleTree","x":56,"y":480,"height":320,"flippedX":false,"flippedY":false,"uid":"25711099_20","name":"","depth":4}),
 // @ts-ignore
-CommonClown: resolveCommonClown({"type":"CommonClown","x":832,"y":376,"flippedX":false,"flippedY":false,"uid":"68762216_21","name":"","depth":0}),
+CommonClown: resolveCommonClown({"type":"CommonClown","x":880,"y":376,"flippedX":false,"flippedY":false,"uid":"68762216_21","name":"","depth":0}),
 // @ts-ignore
-CommonClown_1: resolveCommonClown({"type":"CommonClown","x":944,"y":384,"flippedX":false,"flippedY":false,"uid":"68762216_22","name":"","depth":0}),
+CommonClown_1: resolveCommonClown({"type":"CommonClown","x":992,"y":384,"flippedX":false,"flippedY":false,"uid":"68762216_22","name":"","depth":0}),
 // @ts-ignore
-ToCaveBackground: resolveRegion({"type":"Region","x":384,"y":408,"width":224,"height":168,"flippedX":false,"flippedY":false,"uid":"25971607_23","name":"ToCaveBackground","depth":0}),
+ToCaveBackground: resolveRegion({"type":"Region","x":432,"y":408,"width":224,"height":168,"flippedX":false,"flippedY":false,"uid":"25971607_23","name":"ToCaveBackground","depth":0}),
 // @ts-ignore
-Sign: resolveSign({"type":"Sign","x":430,"y":408,"flippedX":false,"flippedY":false,"uid":"86706091_24","title":"Jungle","message":"Welcome to the jungle.","name":"","depth":0}),
+Sign: resolveSign({"type":"Sign","x":478,"y":408,"flippedX":false,"flippedY":false,"uid":"86706091_24","title":"Jungle","message":"Welcome to the jungle.","name":"","depth":0}),
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":504,"y":472,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_25","levelName":"OversizedAngelArena","checkpointName":"FromJungle","name":"","depth":0}),
+Gate: resolveGate({"type":"Gate","x":552,"y":472,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_25","levelName":"OversizedAngelArena","checkpointName":"FromJungle","name":"","depth":0}),
 // @ts-ignore
-SpiderValuable: resolveValuableBlue({"type":"ValuableBlue","x":688,"y":408,"flippedX":false,"flippedY":false,"uid":"55991906_26","name":"SpiderValuable","depth":0})
+SpiderValuable: resolveValuableBlue({"type":"ValuableBlue","x":736,"y":408,"flippedX":false,"flippedY":false,"uid":"55991906_26","name":"SpiderValuable","depth":0}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":0,"y":472,"width":48,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_27","name":"","depth":0}),
+// @ts-ignore
+JungleTree_6: resolveJungleTree({"type":"JungleTree","x":920,"y":520,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_28","name":"","depth":4}),
+// @ts-ignore
+Pool: resolvePool({"type":"Pool","x":824,"y":464,"width":408,"height":48,"flippedX":false,"flippedY":false,"uid":"38353047_29","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":824,"y":448,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_31","name":"","depth":0})
 };
 }
 };

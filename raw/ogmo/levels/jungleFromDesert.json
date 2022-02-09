@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0",
-  "width": 1184,
+  "width": 1232,
   "height": 512,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,14 +12,14 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 148,
+      "gridCellsX": 154,
       "gridCellsY": 64,
       "entities": [
         {
           "name": "SlopeLeft",
           "id": 0,
           "_eid": "55845599",
-          "x": 384,
+          "x": 432,
           "y": 472,
           "width": 120,
           "height": 40,
@@ -32,7 +32,7 @@
           "name": "SlopeRight",
           "id": 2,
           "_eid": "55824435",
-          "x": 384,
+          "x": 432,
           "y": 408,
           "width": 128,
           "height": 40,
@@ -45,7 +45,7 @@
           "name": "Block",
           "id": 3,
           "_eid": "55823268",
-          "x": 512,
+          "x": 560,
           "y": 408,
           "width": 672,
           "height": 40,
@@ -57,7 +57,7 @@
           "name": "SlopeRight",
           "id": 4,
           "_eid": "55824435",
-          "x": 512,
+          "x": 560,
           "y": 448,
           "width": 96,
           "height": 64,
@@ -70,7 +70,7 @@
           "name": "Player",
           "id": 6,
           "_eid": "55988047",
-          "x": 432,
+          "x": 480,
           "y": 488,
           "originX": 11,
           "originY": 27,
@@ -80,7 +80,7 @@
           "name": "JungleTree",
           "id": 8,
           "_eid": "25711099",
-          "x": 656,
+          "x": 704,
           "y": 408,
           "height": 168,
           "originX": 8,
@@ -91,7 +91,7 @@
           "name": "JungleTree",
           "id": 10,
           "_eid": "25711099",
-          "x": 312,
+          "x": 352,
           "y": 472,
           "height": 200,
           "originX": 8,
@@ -102,7 +102,7 @@
           "name": "JungleTree",
           "id": 12,
           "_eid": "25711099",
-          "x": 176,
+          "x": 208,
           "y": 472,
           "height": 80,
           "originX": 8,
@@ -113,7 +113,7 @@
           "name": "Block",
           "id": 14,
           "_eid": "55823268",
-          "x": 608,
+          "x": 656,
           "y": 448,
           "width": 168,
           "height": 64,
@@ -125,7 +125,7 @@
           "name": "SlopeLeft",
           "id": 15,
           "_eid": "55845599",
-          "x": 32,
+          "x": 80,
           "y": 440,
           "width": 72,
           "height": 32,
@@ -140,7 +140,7 @@
           "_eid": "55823268",
           "x": 0,
           "y": 440,
-          "width": 32,
+          "width": 80,
           "height": 32,
           "originX": 0,
           "originY": 0,
@@ -150,7 +150,7 @@
           "name": "Block",
           "id": 17,
           "_eid": "55823268",
-          "x": 0,
+          "x": 48,
           "y": 472,
           "width": 384,
           "height": 40,
@@ -162,7 +162,7 @@
           "name": "JungleTree",
           "id": 18,
           "_eid": "25711099",
-          "x": 208,
+          "x": 254,
           "y": 496,
           "height": 368,
           "originX": 8,
@@ -173,7 +173,7 @@
           "name": "JungleTree",
           "id": 19,
           "_eid": "25711099",
-          "x": 448,
+          "x": 496,
           "y": 512,
           "height": 368,
           "originX": 8,
@@ -195,7 +195,7 @@
           "name": "CommonClown",
           "id": 21,
           "_eid": "68762216",
-          "x": 832,
+          "x": 880,
           "y": 376,
           "originX": 8,
           "originY": 62,
@@ -205,7 +205,7 @@
           "name": "CommonClown",
           "id": 22,
           "_eid": "68762216",
-          "x": 944,
+          "x": 992,
           "y": 384,
           "originX": 8,
           "originY": 62,
@@ -215,7 +215,7 @@
           "name": "Region",
           "id": 23,
           "_eid": "25971607",
-          "x": 384,
+          "x": 432,
           "y": 408,
           "width": 224,
           "height": 168,
@@ -227,7 +227,7 @@
           "name": "Sign",
           "id": 24,
           "_eid": "86706091",
-          "x": 430,
+          "x": 478,
           "y": 408,
           "originX": 14,
           "originY": 18,
@@ -237,7 +237,7 @@
           "name": "Gate",
           "id": 25,
           "_eid": "55920197",
-          "x": 504,
+          "x": 552,
           "y": 472,
           "width": 32,
           "height": 32,
@@ -249,11 +249,59 @@
           "name": "ValuableBlue",
           "id": 26,
           "_eid": "55991906",
-          "x": 688,
+          "x": 736,
           "y": 408,
           "originX": 8,
           "originY": 14,
           "values": {"name": "SpiderValuable", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 27,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 472,
+          "width": 48,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "JungleTree",
+          "id": 28,
+          "_eid": "25711099",
+          "x": 920,
+          "y": 520,
+          "height": 368,
+          "originX": 8,
+          "originY": 368,
+          "values": {"name": "", "depth": 4}
+        },
+        {
+          "name": "Pool",
+          "id": 29,
+          "_eid": "38353047",
+          "x": 824,
+          "y": 464,
+          "width": 408,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 31,
+          "_eid": "55845599",
+          "x": 824,
+          "y": 448,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -264,11 +312,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 148,
+      "gridCellsX": 154,
       "gridCellsY": 64,
       "decals": [
         {
-          "x": 424,
+          "x": 472,
           "y": 432,
           "scaleX": 1,
           "scaleY": 1,
@@ -279,7 +327,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 472,
+          "x": 520,
           "y": 448,
           "scaleX": 1,
           "scaleY": 1,
@@ -290,7 +338,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 408,
+          "x": 456,
           "y": 478,
           "scaleX": 0.8,
           "scaleY": 0.8,
@@ -301,7 +349,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 424,
+          "x": 472,
           "y": 486,
           "scaleX": -0.8,
           "scaleY": 0.8,
@@ -312,7 +360,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 360,
+          "x": 408,
           "y": 472,
           "scaleX": 1,
           "scaleY": 1,
@@ -323,7 +371,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 136,
+          "x": 184,
           "y": 472,
           "scaleX": 1,
           "scaleY": 1,
@@ -334,7 +382,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 688,
+          "x": 736,
           "y": 408,
           "scaleX": 1,
           "scaleY": 1,
@@ -344,7 +392,17 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 1016, "y": 408, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0}
+        {
+          "x": 1064,
+          "y": 408,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },
@@ -355,11 +413,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 148,
+      "gridCellsX": 154,
       "gridCellsY": 64,
       "decals": [
         {
-          "x": 552,
+          "x": 600,
           "y": 512,
           "scaleX": 3,
           "scaleY": 1,
@@ -370,7 +428,7 @@
           "values": {"name": "ToCave"}
         },
         {
-          "x": 630,
+          "x": 678,
           "y": 400,
           "scaleX": 1,
           "scaleY": 1,
@@ -381,7 +439,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 336,
+          "x": 384,
           "y": 464,
           "scaleX": 1,
           "scaleY": 1,
@@ -392,7 +450,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 147,
+          "x": 195,
           "y": 464,
           "scaleX": 1,
           "scaleY": 1,
@@ -412,7 +470,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 148,
+      "gridCellsX": 154,
       "gridCellsY": 64,
       "decals": [],
       "folder": "../../src/images"
