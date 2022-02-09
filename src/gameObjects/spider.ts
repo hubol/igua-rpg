@@ -4,7 +4,7 @@ import {container} from "../utils/pixi/container";
 import {now} from "../utils/now";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {player} from "./player";
-import {Vector} from "../utils/math/vector";
+import {Vector, vnew} from "../utils/math/vector";
 import {trimFrame} from "../utils/pixi/trimFrame";
 
 const spiderTexture = trimFrame(Spider);
@@ -16,7 +16,7 @@ export function spider(target: DisplayObject, offset: Vector, { activate = 48, b
         g.clear().lineStyle(1, 0xffffff).moveTo(w.x, w.y - 5).lineTo(s.x, s.y);
     }).at(1, 0);
     let behaviorIndex = 0;
-    let targetGrabOffset = [].vcpy();
+    let targetGrabOffset = vnew();
     const s = Sprite.from(spiderTexture).at(w).withStep(() => {
         s.y = w.y + Math.round(unit * -offset.y);
 

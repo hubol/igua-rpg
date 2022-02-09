@@ -1,13 +1,14 @@
 import {Rectangle} from "./rectangle";
 import {DisplayObject, Rectangle as PixiRectangle} from "pixi.js";
+import {vnew} from "./vector";
 
-const c1 = [].vcpy();
-const c2 = [].vcpy();
+const c1 = vnew();
+const c2 = vnew();
 
-const e1 = [].vcpy();
-const e2 = [].vcpy();
+const e1 = vnew();
+const e2 = vnew();
 
-const r = [].vcpy();
+const r = vnew();
 
 const pr1 = new PixiRectangle();
 const pr2 = new PixiRectangle();

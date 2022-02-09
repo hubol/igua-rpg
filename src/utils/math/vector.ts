@@ -11,6 +11,10 @@ export function vector(vec: Vector)
     return { x: vec.x, y: vec.y };
 }
 
+export function vnew(): Vector {
+    return { x: 0, y: 0 };
+}
+
 export function perpendicular(vec: Vector) {
     const tmp = vec.x;
     vec.x = vec.y;
