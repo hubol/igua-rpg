@@ -7,12 +7,19 @@
   ],
   "scripts": {
     "serve": "parcel src/index.html --open",
-    "build": "npm run gen:sounds -- --build && npm run gen:music -- --build && parcel build --public-url ./ src/index.html",
+    "build": "npm run gen:sounds -- --build && npm run gen:music -- --build && parcel build",
     "watch-gen:assets": "concurrently \"npm run gen:textures\" \"npm run gen:sounds\" \"npm run gen:music\"",
     "gen:textures": "generate-textures src/images src/textures.ts",
     "gen:sounds": "generate-howls raw/sound src/sound src/sounds.ts",
     "gen:music": "generate-howls raw/music src/music src/musics.ts --dontPreload",
-    "gen:levelargs": "rimraf ./tools/write-levelargs/.bin && cross-env NODE_ENV=development PUBLISH_GAME_OBJECT_RESOLVERS=true parcel build --public-url ./ src/index.html --dist-dir ./tools/write-levelargs/.bin/.app --cache-dir ./.gen/cache --no-optimize --no-content-hash --no-source-maps --no-scope-hoist && npm start --prefix ./tools/write-levelargs"
+    "gen:levelargs": "rimraf ./tools/write-levelargs/.bin && cross-env NODE_ENV=development PUBLISH_GAME_OBJECT_RESOLVERS=true parcel build --dist-dir ./tools/write-levelargs/.bin/.app --no-optimize --no-content-hash --no-source-maps && npm start --prefix ./tools/write-levelargs"
+  },
+  "targets": {
+    "default": {
+      "source": "src/index.html",
+      "publicUrl": "./",
+      "scopeHoist": false
+    }
   },
   "repository": {
     "type": "git",
