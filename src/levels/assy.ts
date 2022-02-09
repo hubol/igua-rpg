@@ -6,12 +6,9 @@ import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles} from "../textures";
 import {resolveBlock} from "../gameObjects/walls";
 import {spider} from "../gameObjects/spider";
-import {gate} from "../gameObjects/gate";
-import {player} from "../gameObjects/player";
-import {level} from "../igua/level/level";
 
-export function JungleFromDesert() {
-    scene.backgroundColor = 0x97D8D8;
+export function Assy() {
+    scene.backgroundColor = 0;
     scene.terrainColor = 0x79962E;
     const level = applyOgmoLevel(JungleFromDesertArgs);
     level.ToCave.tint = 0x2F4B5E;
@@ -24,10 +21,4 @@ export function JungleFromDesert() {
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0x877856);
     if (level.SpiderValuable)
         spider(level.SpiderValuable, [-1, -160], { downUnit: 0.05 }).show();
-
-    fu();
-}
-
-function fu() {
-    setTimeout(() => level.goto('Assy'), 4000);
 }

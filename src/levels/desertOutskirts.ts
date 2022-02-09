@@ -9,7 +9,7 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {DesertTempleLever} from "../textures";
 import {cutscene} from "../cutscene/cutscene";
 import {ActivateLever, TempleDoorOpen, TransitionSlide} from "../sounds";
-import {ShockwaveFilter} from "@pixi/filter-shockwave";
+import {ShockwaveFilter} from "pixi-filters";
 import {game} from "../igua/game";
 import {jukebox} from "../igua/jukebox";
 import {DesertTown} from "../musics";

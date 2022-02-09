@@ -4,7 +4,7 @@ src/music/
 .DS_Store
 
 .idea/
-.cache/
+.parcel-cache
 .gen/
 .tscache/
 dist/

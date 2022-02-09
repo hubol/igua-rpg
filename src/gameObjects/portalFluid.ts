@@ -11,7 +11,7 @@ import {filters} from "pixi.js";
 import {now} from "../utils/now";
 import {Rectangle} from "../utils/math/rectangle";
 import {SceneLocal} from "../igua/sceneLocal";
-import {BevelFilter} from "@pixi/filter-bevel";
+import {BevelFilter} from "pixi-filters";
 import {show} from "../cutscene/dialog";
 import {lerp} from "../cutscene/lerp";
 import {resolveGameObject} from "../igua/level/resolveGameObject";

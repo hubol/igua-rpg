@@ -8,6 +8,7 @@ export function waitForGlobal<T>(browserWindow: BrowserWindow)
         while (true)
         {
             const property = await browserWindow.webContents.executeJavaScript(globalProperty);
+            console.log(property);
             if (property !== undefined)
                 return property as T;
             await sleep(67);

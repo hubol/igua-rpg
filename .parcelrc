@@ -1,0 +1,7 @@
+{
+    "extends": "@parcel/config-default",
+    "transformers": {
+        "*.{fnt,ogg,mp3,png}": ["@parcel/transformer-raw"]
+    },
+    "resolvers": ["@parcel/resolver-glob", "..."]
+}
