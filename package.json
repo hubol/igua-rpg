@@ -2,11 +2,9 @@
   "name": "igua-rpg",
   "version": "1.0.0",
   "description": "A fangame of Oddwarg Animal RPG.",
-  "browserslist": [
-    "last 31 Chrome versions"
-  ],
+  "browserslist": "Chrome 54",
   "scripts": {
-    "serve": "parcel src/index.html --open",
+    "serve": "parcel --open",
     "build": "run-p -l \"gen:sounds -- --build\" \"gen:music -- --build\" && parcel build",
     "watch-gen:assets": "run-p -l gen:textures gen:sounds gen:music",
     "gen:textures": "generate-textures src/images src/textures.ts",
