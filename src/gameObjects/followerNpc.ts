@@ -11,6 +11,8 @@ export function followerNpc(npc: Npc)
     const vspeeds: number[] = [];
     const followerNpc = merge(npc, { isFollowing: true });
 
+    const scaleXHistory: number[] = [];
+
     return followerNpc.withStep(() => {
         if (!followerNpc.isFollowing)
             return;
@@ -40,6 +42,11 @@ export function followerNpc(npc: Npc)
             if (vspeed < 0)
                 npc.vspeed = vspeed;
         }
+    }).withStep(() => {
+        scaleXHistory.push(npc.scale.x);
+        if (scaleXHistory.length > 3)
+            scaleXHistory.shift();
+        npc.scale.x = Math.sign(((scaleXHistory[0] ?? 0) + (scaleXHistory[1] ?? 0) + (scaleXHistory[2] ?? 0)) / scaleXHistory.length);
     });
 }
 
