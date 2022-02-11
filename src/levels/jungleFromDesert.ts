@@ -6,8 +6,11 @@ import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles} from "../textures";
 import {resolveBlock} from "../gameObjects/walls";
 import {spider} from "../gameObjects/spider";
+import {jukebox} from "../igua/jukebox";
+import {JungleMusic} from "../musics";
 
 export function JungleFromDesert() {
+    jukebox.play(JungleMusic);
     scene.backgroundColor = 0x97D8D8;
     scene.terrainColor = 0x79962E;
     const level = applyOgmoLevel(JungleFromDesertArgs);

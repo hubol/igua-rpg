@@ -2928,7 +2928,7 @@ JungleTree_4: resolveJungleTree({"type":"JungleTree","x":496,"y":512,"height":36
 // @ts-ignore
 JungleTree_5: resolveJungleTree({"type":"JungleTree","x":56,"y":480,"height":320,"flippedX":false,"flippedY":false,"uid":"25711099_20","name":"","depth":4}),
 // @ts-ignore
-CommonClown: resolveCommonClown({"type":"CommonClown","x":880,"y":376,"flippedX":false,"flippedY":false,"uid":"68762216_21","name":"","depth":0}),
+CommonClown: resolveCommonClown({"type":"CommonClown","x":872,"y":376,"flippedX":false,"flippedY":false,"uid":"68762216_21","name":"","depth":0}),
 // @ts-ignore
 CommonClown_1: resolveCommonClown({"type":"CommonClown","x":992,"y":384,"flippedX":false,"flippedY":false,"uid":"68762216_22","name":"","depth":0}),
 // @ts-ignore

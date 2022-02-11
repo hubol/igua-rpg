@@ -4,7 +4,7 @@ import {scene} from "../igua/scene";
 import {oversizedClown} from "../gameObjects/oversizedClown";
 import {wait} from "../cutscene/wait";
 import {jukebox} from "../igua/jukebox";
-import {Hemaboss1} from "../musics";
+import {Country, Hemaboss1, JungleMusic} from "../musics";
 import {show} from "../cutscene/dialog";
 import {makePseudo} from "../utils/makePseudo";
 import {poppingRock} from "../gameObjects/poppingRock";
@@ -70,7 +70,7 @@ export function OversizedAngelArena() {
             v.x = clownV.x - 16;
     }
 
-    jukebox.stop().warm(Hemaboss1);
+    jukebox.stop().warm(Hemaboss1, Country, JungleMusic);
 }
 
 const Shard = trimFrame(MirrorShard);
