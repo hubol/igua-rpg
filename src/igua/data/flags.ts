@@ -5,6 +5,11 @@ export function getInitialFlags()
             gotLevelValuable: new Set<string>(),
             clearedBoulder: new Set<string>(),
         },
+        jungle: {
+            sickIguana: {
+                requestedHelp: false,
+            }
+        },
         desert: {
             heardIntroduction: false,
             stackedAllCrates: false,

@@ -2855,6 +2855,17 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
+SmallDecorativeRock_2: resolveDecalGameObject({
+    x: 1192,
+y: 410,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
 ToCave: resolveDecalGameObject({
     x: 600,
 y: 512,
@@ -2964,7 +2975,7 @@ Door: resolveDoor({"type":"Door","x":1240,"y":376,"flippedX":false,"flippedY":fa
 // @ts-ignore
 PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":1204,"y":352,"width":78,"flippedX":false,"flippedY":false,"uid":"55841307_33","visible":false,"name":"","depth":0}),
 // @ts-ignore
-JungleTree_7: resolveJungleTree({"type":"JungleTree","x":1264,"y":352,"height":64,"flippedX":false,"flippedY":false,"uid":"25711099_34","name":"","depth":0}),
+JungleTree_7: resolveJungleTree({"type":"JungleTree","x":1265,"y":352,"height":64,"flippedX":false,"flippedY":false,"uid":"25711099_34","name":"","depth":0}),
 FromHouse: {"type":"Checkpoint","x":1208,"y":408,"flippedX":false,"flippedY":false,"uid":"55940370_35","name":"FromHouse","faceRight":false,"depth":0}
 };
 }
@@ -3053,7 +3064,7 @@ layerName: "BackgroundDecals",
 texture: RoseVase
 }),
 VineSmall: resolveDecalGameObject({
-    x: 56,
+    x: 58,
 y: 88,
 originX: 0.5,
 originY: 0.5,
@@ -3064,7 +3075,7 @@ layerName: "BackgroundDecals",
 texture: VineSmall
 }),
 VineSmall_1: resolveDecalGameObject({
-    x: 72,
+    x: 74,
 y: 96,
 originX: 0.5,
 originY: 0.5,
@@ -3075,7 +3086,7 @@ layerName: "BackgroundDecals",
 texture: VineSmall
 }),
 VineSmall_2: resolveDecalGameObject({
-    x: 40,
+    x: 42,
 y: 96,
 originX: 0.5,
 originY: 0.5,

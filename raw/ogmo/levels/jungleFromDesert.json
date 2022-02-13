@@ -328,7 +328,7 @@
           "name": "JungleTree",
           "id": 34,
           "_eid": "25711099",
-          "x": 1264,
+          "x": 1265,
           "y": 352,
           "height": 64,
           "originX": 8,
@@ -443,6 +443,17 @@
           "texture": "ground speckles.png",
           "originX": 0.5,
           "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1192,
+          "y": 410,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 1,
           "values": {"name": ""}
         }
       ],
