@@ -1,0 +1,295 @@
+{
+  "ogmoVersion": "3.4.0",
+  "width": 256,
+  "height": 256,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 0,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 176,
+          "width": 256,
+          "height": 80,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 1,
+          "_eid": "55913988",
+          "x": 40,
+          "y": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "JungleFromDesert", "checkpointName": "FromHouse", "name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 2,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 80,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 3,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 80,
+          "width": 32,
+          "height": 96,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 4,
+          "_eid": "55823268",
+          "x": 224,
+          "y": 80,
+          "width": 32,
+          "height": 96,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 5,
+          "_eid": "26367058",
+          "x": 192,
+          "y": 176,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "", "style": 8, "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 6,
+          "_eid": "55988047",
+          "x": 88,
+          "y": 176,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 7,
+          "_eid": "55841307",
+          "x": 80,
+          "y": 120,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 8,
+          "_eid": "55841307",
+          "x": 136,
+          "y": 170,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 9,
+          "_eid": "25971607",
+          "x": 136,
+          "y": 96,
+          "width": 72,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window", "depth": 0}
+        },
+        {
+          "name": "JungleTree",
+          "id": 10,
+          "_eid": "25711099",
+          "x": 192,
+          "y": 200,
+          "height": 168,
+          "originX": 8,
+          "originY": 168,
+          "values": {"name": "", "depth": 4}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 11,
+          "_eid": "55841307",
+          "x": 136,
+          "y": 128,
+          "width": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [
+        {"x": 152, "y": 178, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "diner table.png", "originX": 0.5, "originY": 1},
+        {
+          "x": 164,
+          "y": 188,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [
+        {
+          "x": 160,
+          "y": 170,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "rose vase.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 144,
+          "y": 170,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "rose vase.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 96,
+          "y": 124,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "light shelf.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 88,
+          "y": 120,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "rose vase.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 104,
+          "y": 120,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "rose vase.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 56,
+          "y": 88,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 72,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 40,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 216, "y": 88, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "vine small.png", "originX": 0.5, "originY": 0.5}
+      ],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    }
+  ]
+}

@@ -52,6 +52,7 @@ export let GreenCable: PIXI.Texture;
 export let GroundSpeckles: PIXI.Texture;
 export let HotTerrain: PIXI.Texture;
 export let IguaRpgTitle: PIXI.Texture;
+export let JungleHouse1: PIXI.Texture;
 export let JungleTreeBranch: PIXI.Texture;
 export let JungleTreeFoliage: PIXI.Texture;
 export let JungleTreeTrunk: PIXI.Texture;
@@ -297,6 +298,9 @@ export function loadTexturesAsync()
 
     const IguaRpgTitlePath = require("./images/igua rpg title.png");
     loader.add(IguaRpgTitlePath); 
+
+    const JungleHouse1Path = require("./images/jungle/house1.png");
+    loader.add(JungleHouse1Path); 
 
     const JungleTreeBranchPath = require("./images/jungle/tree branch.png");
     loader.add(JungleTreeBranchPath); 
@@ -622,6 +626,7 @@ export function loadTexturesAsync()
             GroundSpeckles = resources[GroundSpecklesPath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             IguaRpgTitle = resources[IguaRpgTitlePath]?.texture as PIXI.Texture;
+            JungleHouse1 = resources[JungleHouse1Path]?.texture as PIXI.Texture;
             JungleTreeBranch = resources[JungleTreeBranchPath]?.texture as PIXI.Texture;
             JungleTreeFoliage = resources[JungleTreeFoliagePath]?.texture as PIXI.Texture;
             JungleTreeTrunk = resources[JungleTreeTrunkPath]?.texture as PIXI.Texture;

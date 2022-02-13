@@ -267,6 +267,16 @@ export const SnowmanLand = new Howl({
     
 });
 
+export const SpiderDown = new Howl({
+    src: [require("./sound/spider down.ogg"), require("./sound/spider down.mp3")],
+    
+});
+
+export const SpiderUp = new Howl({
+    src: [require("./sound/spider up.ogg"), require("./sound/spider up.mp3")],
+    
+});
+
 export const Teleported = new Howl({
     src: [require("./sound/teleported.ogg"), require("./sound/teleported.mp3")],
     

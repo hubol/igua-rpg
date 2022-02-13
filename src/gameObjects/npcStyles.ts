@@ -27,7 +27,7 @@ import {makePseudo} from "../utils/makePseudo";
 import { filters } from "pixi.js";
 import {Looks} from "../igua/looks/looksModel";
 import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
-import {DesertCostumerLooks} from "./npcLooks";
+import {DesertCostumerLooks, SickIguanaLooks} from "./npcLooks";
 
 export type NpcStyle = ReturnType<typeof npcStyle>;
 const npcStyles: NpcStyle[] = [];
@@ -162,6 +162,7 @@ npcStyles[6] = genNpcStyle1(191, (args) => {
 });
 
 npcStyles[7] = fromLooks(DesertCostumerLooks);
+npcStyles[8] = fromLooks(SickIguanaLooks);
 
 function fromLooks(looks: Looks) {
     return () => iguanaPuppet(makeIguanaPuppetArgsFromLooks(looks))

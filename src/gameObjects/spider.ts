@@ -6,6 +6,7 @@ import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {player} from "./player";
 import {Vector, vnew} from "../utils/math/vector";
 import {trimFrame} from "../utils/pixi/trimFrame";
+import {SpiderDown, SpiderUp} from "../sounds";
 
 const spiderTexture = trimFrame(Spider);
 
@@ -27,13 +28,16 @@ export function spider(target: DisplayObject, offset: Vector, { activate = 48, b
 
         if (behaviorIndex === 0) {
             unit = baseUnit + Math.sin(now.s * Math.PI * 4) * 0.025 * Math.abs(Math.sin(now.s * Math.PI * 1.3 - 4));
-            if (rectangleDistance(player, target) < activate && Math.abs(player.hspeed) > 2)
+            if (rectangleDistance(player, target) < activate && Math.abs(player.hspeed) > 2) {
+                SpiderDown.play();
                 behaviorIndex = 1;
+            }
         }
         if (behaviorIndex === 1 || target.destroyed) {
             unit += downUnit;
         }
         if (behaviorIndex < 2 && target.collides(s)) {
+            SpiderUp.play();
             behaviorIndex = 2;
             targetGrabOffset.at(target).add(s, -1);
         }
