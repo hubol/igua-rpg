@@ -288,7 +288,7 @@
           "height": 48,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "", "depth": 0}
+          "values": {"name": "", "depth": 2}
         },
         {
           "name": "SlopeLeft",
@@ -317,9 +317,9 @@
           "name": "PipeHorizontal",
           "id": 33,
           "_eid": "55841307",
-          "x": 1204,
+          "x": 1194,
           "y": 352,
-          "width": 78,
+          "width": 92,
           "originX": 0,
           "originY": 0,
           "values": {"visible": false, "name": "", "depth": 0}
@@ -344,6 +344,41 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromHouse", "faceRight": false, "depth": 0}
+        },
+        {
+          "name": "JungleTree",
+          "id": 38,
+          "_eid": "25711099",
+          "x": 1128,
+          "y": 512,
+          "height": 368,
+          "originX": 8,
+          "originY": 368,
+          "values": {"name": "", "depth": 4}
+        },
+        {
+          "name": "JungleTree",
+          "id": 39,
+          "_eid": "25711099",
+          "x": 1360,
+          "y": 520,
+          "height": 368,
+          "originX": 8,
+          "originY": 368,
+          "values": {"name": "", "depth": 4}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 43,
+          "_eid": "55824435",
+          "x": 1504,
+          "y": 448,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -454,6 +489,83 @@
           "texture": "small decorative rock.png",
           "originX": 0.5,
           "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1152,
+          "y": 464,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1168,
+          "y": 460,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1280,
+          "y": 464,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1296,
+          "y": 460,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1032,
+          "y": 460,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1016,
+          "y": 464,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1392,
+          "y": 408,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0,
           "values": {"name": ""}
         }
       ],

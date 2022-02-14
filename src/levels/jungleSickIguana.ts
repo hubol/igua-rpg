@@ -9,13 +9,14 @@ import {cutOutWindow} from "../igua/cutOutWindow";
 import {show} from "../cutscene/dialog";
 import {getCost, potions} from "../igua/inventory/potions";
 import {Sickly} from "../igua/puppet/mods/sickly";
-import {ClownExplode, CollectValuable, ConsumeMedicine} from "../sounds";
+import {ClownExplode, ConsumeMedicine} from "../sounds";
 import {progress} from "../igua/data/progress";
 import {ask} from "../cutscene/ask";
 import {inventory} from "../igua/inventory/inventory";
 import {sleep} from "../cutscene/sleep";
 import {Sprite} from "pixi.js";
 import {confetti} from "../gameObjects/confetti";
+import {giftValuables} from "../cutscene/giftValuables";
 
 export function JungleSickIguana() {
     jukebox.play(TickingTime);
@@ -36,10 +37,8 @@ export function JungleSickIguana() {
         if (!sickIguana.requestedHelp) {
             await show(`I'm sick.`);
             if (await ask(`Can you bring me some ${potions.BitterMedicine.name}? I can give you valuables for it.`)) {
-                CollectValuable.play();
                 const cost = getCost('BitterMedicine');
-                progress.valuables += cost;
-                await show(`Received ${cost} valuables.`);
+                await giftValuables(cost);
                 await show(`That should cover it. Please bring the potion as soon as possible.`);
                 sickIguana.requestedHelp = true;
             }
@@ -50,7 +49,7 @@ export function JungleSickIguana() {
         else {
             if (inventory.count('BitterMedicine') > 0) {
                 sickIguana.healed = true;
-                await show(`Thank you for bringing the medicine.`);
+                await show(`Oh, you have the medicine.`);
                 await sleep(250);
                 ConsumeMedicine.play();
                 await sleep(500);
@@ -63,7 +62,7 @@ export function JungleSickIguana() {
                 await sleep(150);
                 createJungleKey();
                 ClownExplode.play();
-                confetti().at(level.SecretVase).show();
+                confetti().at([0, -5].add(level.SecretVase)).show();
                 level.SecretVase.destroy();
                 await sleep(250);
                 await show(`You can have that old key as a reward. You are always welcome in my home.`);
