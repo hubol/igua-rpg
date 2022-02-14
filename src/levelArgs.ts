@@ -3052,7 +3052,7 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: RoseVase
 }),
-RoseVase_3: resolveDecalGameObject({
+SecretVase: resolveDecalGameObject({
     x: 104,
 y: 120,
 originX: 0.5,

@@ -162,7 +162,17 @@
       "gridCellsX": 32,
       "gridCellsY": 32,
       "decals": [
-        {"x": 152, "y": 178, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "diner table.png", "originX": 0.5, "originY": 1},
+        {
+          "x": 152,
+          "y": 178,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "diner table.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
         {
           "x": 164,
           "y": 188,
@@ -240,7 +250,7 @@
           "texture": "rose vase.png",
           "originX": 0.5,
           "originY": 1,
-          "values": {"name": ""}
+          "values": {"name": "SecretVase"}
         },
         {
           "x": 58,
@@ -275,7 +285,17 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 216, "y": 88, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "vine small.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 216,
+          "y": 88,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },

@@ -8,6 +8,10 @@ export function getInitialFlags()
         jungle: {
             sickIguana: {
                 requestedHelp: false,
+                healed: false,
+            },
+            key: {
+                fromSickIguana: false,
             }
         },
         desert: {
