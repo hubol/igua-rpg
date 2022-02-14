@@ -184,9 +184,21 @@ function createPlayer(behavior = true)
         player.vspeed = Math.max(-4, player.vspeed);
     };
 
+    let _x: number | undefined;
+    let _y: number | undefined;
+
     player
+        .withStep(() => {
+            if (_x !== undefined && _y !== undefined)
+                player.position.set(_x, _y);
+        })
         .withStep(step)
-        .withStep(() => engine.step());
+        .withStep(() => engine.step())
+        .withStep(() => {
+            _x = player.x;
+            _y = player.y;
+            player.position.set(Math.round(_x), Math.round(_y));
+        });
 
     const offset = {
         x: 0,
