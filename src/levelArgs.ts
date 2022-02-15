@@ -3374,6 +3374,20 @@ FromJungle: {"type":"Checkpoint","x":64,"y":112,"flippedX":false,"flippedY":fals
 }
 };
 
+export const UnrealClownDodgerArgs = {
+    width: 912,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":912,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":32,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":-48,"y":56,"width":80,"height":80,"flippedX":false,"flippedY":false,"uid":"24775263_15","name":"","depth":0})
+};
+}
+};
+
 export const UnrealFlightArgs = {
     width: 728,
 height: 448,
