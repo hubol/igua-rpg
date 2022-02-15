@@ -3400,7 +3400,15 @@ Block_1: resolveBlock({"type":"Block","x":0,"y":104,"width":80,"height":16,"flip
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":0,"y":120,"width":40,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_17","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":40,"y":120,"width":40,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_18","name":"","depth":0})
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":40,"y":120,"width":40,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_18","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":312,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_19","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":344,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_20","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":576,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_21","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":608,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_22","name":"","depth":0})
 };
 }
 };

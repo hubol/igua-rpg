@@ -6,12 +6,12 @@ import {commonClown} from "../gameObjects/commonClown";
 import {BevelFilter} from "pixi-filters";
 import {sleep} from "../cutscene/sleep";
 import {AsshatTicker} from "../utils/asshatTicker";
-import {runInIguaZone} from "../cutscene/runInIguaZone";
 
 export async function UnrealClownDodger() {
-    scene.backgroundColor = 0x97D8D8;
-    scene.terrainColor = 0x79962E;
+    scene.backgroundColor = 0x3E2F2F;
+    scene.terrainColor = 0x912F24;
     const level = applyOgmoLevel(UnrealClownDodgerArgs);
+    level.GroundSpeckles.tint = 0x3E2F2F;
 
     const ticker = new AsshatTicker();
     const c = container()
@@ -35,13 +35,10 @@ export async function UnrealClownDodger() {
 
     scene.ext.simulated = true;
     scene.gameObjectStage.addChild(c);
-
-    await runInIguaZone('simulated', async () => {
-        for (let i = 0; i < 1600; i++) {
-            ticker.update();
-            await Promise.resolve();
-        }
-    }, {} as any)
+    for (let i = 0; i < 1600; i++) {
+        ticker.update();
+        await Promise.resolve();
+    }
     scene.ext.simulated = false;
 
     scene.gameObjectStage
