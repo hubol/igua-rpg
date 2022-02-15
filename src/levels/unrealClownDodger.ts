@@ -14,8 +14,12 @@ export function UnrealClownDodger() {
     const c = container();
     c.filters = [new BevelFilter({ thickness: 1, rotation: 45, lightColor: 0x28C9B3, shadowColor: 0x0E7F70, lightAlpha: 1, shadowAlpha: 1 })];
     range(7).forEach(x => {
-        const clown = c.addChild(commonClown().at(96 + x * 96, 200));
-        clown.opaqueTint = 0x20A090;
+        const clown = c.addChild(commonClown({ hspeed: -.75, limitedRangeEnabled: false, portal: true, dangerous: false }).
+            at(96 + x * 96, 200))
+            .withStep(() => {
+                if (clown.y >= 256)
+                    clown.destroy();
+            });
     })
     scene.gameObjectStage.addChild(c);
 }

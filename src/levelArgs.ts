@@ -3380,10 +3380,16 @@ height: 256,
 gameObjectsSupplier: () => {
   return {
     // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":224,"width":912,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
-Player: {"type":"Player","x":32,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
+Block: resolveBlock({"type":"Block","x":80,"y":224,"width":912,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":32,"y":104,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":-48,"y":56,"width":80,"height":80,"flippedX":false,"flippedY":false,"uid":"24775263_15","name":"","depth":0})
+PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":0,"y":224,"width":80,"height":80,"flippedX":false,"flippedY":false,"uid":"24775263_15","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":104,"width":80,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":0,"y":120,"width":40,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_17","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":40,"y":120,"width":40,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_18","name":"","depth":0})
 };
 }
 };
