@@ -71,7 +71,7 @@ function portalFluid({ width, height }: { width: number, height: number })
     return graphics;
 }
 
-function playerIsWeakToPortalFluid() {
+export function playerIsWeakToPortalFluid() {
     if (player.invulnerableFrameCount > 0)
         return false;
     return !consumeFirefly();

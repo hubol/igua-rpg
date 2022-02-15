@@ -98,7 +98,19 @@
       "gridCellHeight": 8,
       "gridCellsX": 114,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 803,
+          "y": 236,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {

@@ -19,6 +19,7 @@ import { Rainbow2 } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
+import { GroundSpeckles } from "./textures";
 import { resolveGate } from "./gameObjects/gate";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
@@ -28,7 +29,6 @@ import { VineSmall } from "./textures";
 import { PoppingRocksBox } from "./textures";
 import { resolveJungleTree } from "./gameObjects/jungleTree";
 import { resolveDoor } from "./gameObjects/door";
-import { GroundSpeckles } from "./textures";
 import { DinerTable } from "./textures";
 import { resolvePool } from "./gameObjects/pool";
 import { resolveValuableBlue } from "./gameObjects/valuable";
@@ -3379,7 +3379,18 @@ export const UnrealClownDodgerArgs = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    GroundSpeckles: resolveDecalGameObject({
+    x: 803,
+y: 236,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+// @ts-ignore
 Block: resolveBlock({"type":"Block","x":80,"y":224,"width":912,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 Player: {"type":"Player","x":32,"y":104,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
 // @ts-ignore

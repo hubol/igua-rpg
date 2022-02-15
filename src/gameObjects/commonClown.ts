@@ -13,6 +13,7 @@ import {valuable} from "./valuable";
 import {rng} from "../utils/rng";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {bouncePlayer} from "../igua/bouncePlayer";
+import {playerIsWeakToPortalFluid, teleportToTheRoomOfDoors} from "./portalFluid";
 
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
@@ -38,7 +39,7 @@ export function commonClown({ hspeed = 0.75, limitedRangeEnabled = true, dangero
     let health = fullHealth;
     let dropOdds = 0.67;
 
-    sprite.withStep(() => {
+    container.withStep(() => {
         const nearDeath = health < fullHealth && health <= player.strength;
         const xPrevious = container.x;
         unit = lerp(unit, container.vspeed < 0 ? 1 : 0, 0.0875);
@@ -73,7 +74,7 @@ export function commonClown({ hspeed = 0.75, limitedRangeEnabled = true, dangero
         const radius = Math.max(8, container.vspeed);
         const pushable = { x: container.x, y: container.y + spring - radius };
         if (container.vspeed > 0 && isOnGround(pushable, radius)) {
-            if (isOnScreen(container))
+            if (isOnScreen(container) && !scene.ext.simulated)
                 CommonClownLand.play();
             container.vspeed = nearDeath ? -9 : -6;
             if (!limitedRangeEnabled)
@@ -125,10 +126,10 @@ export function commonClown({ hspeed = 0.75, limitedRangeEnabled = true, dangero
             player.engine.knockback.x = container.hspeed * 4;
         }
 
-        if (portal) {
-            // TODO impl
+        if (portal && playerIsWeakToPortalFluid() && (player.collides(spikeBall) || player.collides(mask))) {
+            teleportToTheRoomOfDoors();
         }
     })
     container.addChild(graphics, spikeBall, sprite, mask);
-    return scene.gameObjectStage.addChild(container);
+    return container;
 }
