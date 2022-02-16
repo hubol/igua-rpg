@@ -9,8 +9,11 @@ import {AsshatTicker} from "../utils/asshatTicker";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {jungleBigKeyTextures} from "./jungleTemple";
+import {jukebox} from "../igua/jukebox";
+import {ClownDodgerMusic} from "../musics";
 
 export async function UnrealClownDodger() {
+    jukebox.play(ClownDodgerMusic);
     scene.backgroundColor = 0x3E2F2F;
     scene.terrainColor = 0x912F24;
     const level = applyOgmoLevel(UnrealClownDodgerArgs);

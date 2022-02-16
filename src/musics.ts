@@ -7,6 +7,11 @@ export const Bluehouse = new Howl({
     preload: false
 });
 
+export const ClownDodgerMusic = new Howl({
+    src: [require("./music/clown-dodger-music.ogg"), require("./music/clown-dodger-music.mp3")],
+    preload: false
+});
+
 export const Country = new Howl({
     src: [require("./music/country.ogg"), require("./music/country.mp3")],
     preload: false
