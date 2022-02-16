@@ -14,11 +14,14 @@ import {rng} from "../utils/rng";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {bouncePlayer} from "../igua/bouncePlayer";
 import {playerIsWeakToPortalFluid, teleportToTheRoomOfDoors} from "./portalFluid";
+import {track} from "../igua/track";
 
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
-export function commonClown({ hspeed = 0.75, limitedRangeEnabled = true, dangerous = true, portal = false } = {}) {
-    const container = merge(new Container(), { hspeed, vspeed: 0 });
+export const commonClown = track(commonClownImpl);
+
+function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous = true, portal = false } = {}) {
+    const container = merge(new Container(), { hspeed, vspeed: 0, portal, dangerous });
     const mask = new Graphics().beginFill(0x000000).drawRect(0, 0, 18, 15).at(-9, -16);
     mask.visible = false;
     const sprite = Sprite.from(CommonClown);
@@ -26,9 +29,6 @@ export function commonClown({ hspeed = 0.75, limitedRangeEnabled = true, dangero
     spikeBall.anchor.set(6/14, 3/14);
     const graphics = new Graphics();
     sprite.anchor.set(.5, 1);
-
-    if (portal)
-        container.opaqueTint = 0x20A090;
 
     let unit = 0;
     let distanceTraveled = 0;
@@ -40,6 +40,11 @@ export function commonClown({ hspeed = 0.75, limitedRangeEnabled = true, dangero
     let dropOdds = 0.67;
 
     container.withStep(() => {
+        if (container.portal && !container.hasFilter)
+            container.opaqueTint = 0x20A090;
+        else if (!container.portal && container.hasFilter)
+            container.filters = [];
+
         const nearDeath = health < fullHealth && health <= player.strength;
         const xPrevious = container.x;
         unit = lerp(unit, container.vspeed < 0 ? 1 : 0, 0.0875);
@@ -84,7 +89,7 @@ export function commonClown({ hspeed = 0.75, limitedRangeEnabled = true, dangero
         }
         container.y += container.vspeed;
 
-        if (player.collides(mask) && isPlayerMoving() && dangerous) {
+        if (player.collides(mask) && isPlayerMoving() && container.dangerous) {
             // container.vspeed = Math.min(-rng(), container.vspeed);
             // if (Math.abs(knockbackSpeed) < 0.5)
             //     knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
@@ -121,12 +126,12 @@ export function commonClown({ hspeed = 0.75, limitedRangeEnabled = true, dangero
         }
 
         container.visible = true;
-        if (dangerous && player.collides(spikeBall) && player.damage(20)) {
+        if (container.dangerous && player.collides(spikeBall) && player.damage(20)) {
             dropOdds *= 0.33;
             player.engine.knockback.x = container.hspeed * 4;
         }
 
-        if (portal && playerIsWeakToPortalFluid() && (player.collides(spikeBall) || player.collides(mask))) {
+        if (container.portal && playerIsWeakToPortalFluid() && (player.collides(spikeBall) || player.collides(mask))) {
             teleportToTheRoomOfDoors();
         }
     })

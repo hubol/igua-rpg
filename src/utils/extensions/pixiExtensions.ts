@@ -21,6 +21,7 @@ declare global {
             ticker: AsshatTicker;
             hueShift: number;
             opaqueTint: number;
+            readonly hasFilter: boolean;
         }
 
         export interface Sprite {
@@ -134,6 +135,16 @@ export function doNowOrOnAdded<T extends PIXI.DisplayObject>(displayObject: T, o
         onAdded();
     return displayObject.on("added", onAdded);
 }
+
+Object.defineProperties(PIXI.DisplayObject.prototype, {
+    hasFilter: {
+        get: function () {
+            return !!this.filters && this.filters.length > 0;
+        },
+        enumerable: false,
+        configurable: true,
+    },
+});
 
 Object.defineProperties(PIXI.DisplayObject.prototype, {
     hueShift: {
