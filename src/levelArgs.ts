@@ -3380,7 +3380,7 @@ height: 256,
 gameObjectsSupplier: () => {
   return {
     GroundSpeckles: resolveDecalGameObject({
-    x: 803,
+    x: 795,
 y: 236,
 originX: 0.5,
 originY: 0.5,

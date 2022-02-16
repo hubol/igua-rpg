@@ -6,12 +6,17 @@ import {commonClown} from "../gameObjects/commonClown";
 import {BevelFilter} from "pixi-filters";
 import {sleep} from "../cutscene/sleep";
 import {AsshatTicker} from "../utils/asshatTicker";
+import {bigKeyPiece} from "../gameObjects/bigKey";
+import {progress} from "../igua/data/progress";
+import {jungleBigKeyTextures} from "./jungleTemple";
 
 export async function UnrealClownDodger() {
     scene.backgroundColor = 0x3E2F2F;
     scene.terrainColor = 0x912F24;
     const level = applyOgmoLevel(UnrealClownDodgerArgs);
     level.GroundSpeckles.tint = 0x3E2F2F;
+
+    bigKeyPiece(progress.flags.jungle.bigKey, jungleBigKeyTextures[0], 'piece1').at(scene.width - 48, 160).show();
 
     const ticker = new AsshatTicker();
     const c = container()
@@ -34,7 +39,7 @@ export async function UnrealClownDodger() {
     }
 
     scene.ext.simulated = true;
-    scene.gameObjectStage.addChild(c);
+    scene.gameObjectStage.addChildAt(c, 0);
     for (let i = 0; i < 1600; i++) {
         ticker.update();
         await Promise.resolve();

@@ -12,7 +12,13 @@ export function getInitialFlags()
             },
             key: {
                 fromSickIguana: false,
-            }
+            },
+            bigKey: {
+                piece1: false,
+                piece2: false,
+                piece3: false,
+                reward: false,
+            },
         },
         desert: {
             heardIntroduction: false,

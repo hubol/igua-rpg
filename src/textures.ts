@@ -5,6 +5,7 @@ import * as PIXI from "pixi.js";
 export let Anchor: PIXI.Texture;
 export let BackpackIcon: PIXI.Texture;
 export let BigKey1: PIXI.Texture;
+export let BigKey2: PIXI.Texture;
 export let BitterMedicinePotion: PIXI.Texture;
 export let BlueGradient: PIXI.Texture;
 export let BlueValuable: PIXI.Texture;
@@ -158,6 +159,9 @@ export function loadTexturesAsync()
 
     const BigKey1Path = require("./images/big key1.png");
     loader.add(BigKey1Path); 
+
+    const BigKey2Path = require("./images/big key2.png");
+    loader.add(BigKey2Path); 
 
     const BitterMedicinePotionPath = require("./images/bitter medicine potion.png");
     loader.add(BitterMedicinePotionPath); 
@@ -583,6 +587,7 @@ export function loadTexturesAsync()
             Anchor = resources[AnchorPath]?.texture as PIXI.Texture;
             BackpackIcon = resources[BackpackIconPath]?.texture as PIXI.Texture;
             BigKey1 = resources[BigKey1Path]?.texture as PIXI.Texture;
+            BigKey2 = resources[BigKey2Path]?.texture as PIXI.Texture;
             BitterMedicinePotion = resources[BitterMedicinePotionPath]?.texture as PIXI.Texture;
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
             BlueValuable = resources[BlueValuablePath]?.texture as PIXI.Texture;
