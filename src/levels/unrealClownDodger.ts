@@ -57,7 +57,7 @@ export async function UnrealClownDodger() {
 
     scene.ext.simulated = true;
     scene.gameObjectStage.addChildAt(c, 0);
-    for (let i = 0; i < 1600; i++) {
+    for (let i = 0; i < 1100; i++) {
         ticker.update();
         await Promise.resolve();
     }
