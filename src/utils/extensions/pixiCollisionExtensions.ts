@@ -3,6 +3,7 @@ import * as PIXI from "pixi.js";
 import {areRectanglesOverlapping, normalizeRectangle, rectangle as createRectangle} from "../math/rectangle";
 import {Hitbox} from "../types/hitbox";
 import {getOpaquePixelsBounds} from "../pixi/getOpaquePixelsBounds";
+import {DisplayObject} from "pixi.js";
 
 declare global {
     namespace PIXI {
@@ -43,9 +44,12 @@ PIXI.DisplayObject.prototype.moveUntilCollides = function (speed, otherContainer
     return moveUntilCollides(this, speed, otherContainerOrContainers);
 }
 
-PIXI.DisplayObject.prototype.collides = function(otherContainerOrContainers, offset)
+PIXI.DisplayObject.prototype.collides = function(others, offset)
 {
-    return collides(this, otherContainerOrContainers, offset);
+    // Hack for DisplayObjects with different collides implementation (e.g. player) to be preferred
+    if (others instanceof DisplayObject && others.hasExt && others.ext.preferMyCollides)
+        return others.collides(this, offset);
+    return collides(this, others, offset);
 }
 
 function moveUntilCollides(container, speed, otherContainerOrContainers)

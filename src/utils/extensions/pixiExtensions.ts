@@ -3,7 +3,7 @@ import * as PIXI from "pixi.js";
 import {CancellationToken} from "pissant";
 import {AsshatTicker} from "../asshatTicker";
 import {PromiseFn, runInIguaZone} from "../../cutscene/runInIguaZone";
-import { filters } from "pixi.js";
+import {Container, filters} from "pixi.js";
 import {toHexColorString} from "../toHexColorString";
 import {colord} from "colord";
 
@@ -22,6 +22,8 @@ declare global {
             hueShift: number;
             opaqueTint: number;
             readonly hasFilter: boolean;
+            readonly ext: Record<string, any>;
+            readonly hasExt: boolean;
         }
 
         export interface Sprite {
@@ -32,6 +34,7 @@ declare global {
             removeAllChildren();
             addChild<T extends DisplayObject>(child: T): T;
             withTicker(ticker: AsshatTicker): this;
+            find<T extends DisplayObject = DisplayObject>(predicate: (displayObject: DisplayObject) => boolean): DisplayObject[];
         }
 
         export interface Transform {
@@ -147,6 +150,28 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
 });
 
 Object.defineProperties(PIXI.DisplayObject.prototype, {
+    hasExt: {
+        get: function () {
+            return !!this._ext;
+        },
+        enumerable: false,
+        configurable: true,
+    },
+});
+
+Object.defineProperties(PIXI.DisplayObject.prototype, {
+    ext: {
+        get: function () {
+            if (!this._ext)
+                this._ext = {};
+            return this._ext;
+        },
+        enumerable: false,
+        configurable: true,
+    },
+});
+
+Object.defineProperties(PIXI.DisplayObject.prototype, {
     hueShift: {
         get: function () {
             return this.__hueShiftAngle ?? 0;
@@ -212,6 +237,23 @@ PIXI.Container.prototype.withTicker = function(ticker)
     (this as any)._ticker = ticker;
     (this as any)._lazyTicker?._resolve(ticker);
     return this;
+}
+
+PIXI.Container.prototype.find = function(predicate) {
+    return findImpl(this, predicate);
+}
+
+function findImpl(container: Container, predicate, result: any[] = []) {
+    const next = [container];
+    while (next.length > 0) {
+        next.pop()!.children.forEach(x => {
+            if (x instanceof Container)
+                next.push(x);
+            if (predicate(x))
+                result.push(x);
+        });
+    }
+    return result;
 }
 
 PIXI.DisplayObject.prototype.moveTowards = function(other, speed)

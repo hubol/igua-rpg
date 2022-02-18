@@ -22,7 +22,17 @@ export function playerPuppetArgs() {
 }
 
 function playerPuppet() {
-    return iguanaPuppet(playerPuppetArgs());
+    const puppet = iguanaPuppet(playerPuppetArgs());
+
+    const defaultCollides = puppet.collides;
+    const precise = puppet.find(x => x.ext.precise);
+    puppet.ext.preferMyCollides = true;
+
+    puppet.collides = (...args) => {
+        return defaultCollides.apply(puppet, args) && precise.some(x => x.collides(...args));
+    };
+
+    return puppet;
 }
 
 type Player = ReturnType<typeof createPlayer>;

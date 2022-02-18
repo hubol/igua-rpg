@@ -60,6 +60,7 @@ function makeFoot(feet: Feet, key: 'hind' | 'front', back: boolean) {
     const gap = (7 + feet.gap) / 2;
     f.pivot.x += key === 'front' ? -Math.ceil(gap) : Math.floor(gap);
     f.tint = makeFootTint(feet.color, back);
+    f.ext.precise = true;
     const clawsShape = clawsShapes[foot.claws.shape];
     const claws = clawsShape ? Sprite.from(clawsShape) : undefined;
     if (claws) {
@@ -88,11 +89,15 @@ function makeBody(body: Body) {
     torso.tint = body.color;
     torso.pivot.set(-1, 5);
 
+    tail.ext.precise = true;
+    torso.ext.precise = true;
+
     const c = container(tail, torso);
 
     const clubShape = clubShapes[body.tail.club.shape];
     if (clubShape) {
         const club = Sprite.from(clubShape);
+        club.ext.precise = true;
         club.tint = body.tail.club.color;
         club.pivot.at(tail.pivot).add(-3, 8).add(body.tail.club.placement, -1);
         c.addChild(club);
@@ -118,6 +123,8 @@ function makeHead(body: Body, head: Head) {
 
     const eyes = makeEyes(head);
 
+    face.ext.precise = true;
+
     const h = container(crest, face, eyes);
 
     const hornShape = hornShapes[head.horn.shape];
@@ -138,6 +145,7 @@ type Crest = Head['crest'];
 
 function makeCrest(crest: Crest) {
     const c = Sprite.from(crestShapes[crest.shape]);
+    c.ext.precise = true;
     c.pivot.add(-4, 13).add(crest.placement, -1);
     if (crest.flipV)
         flipV(c);
