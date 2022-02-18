@@ -12,7 +12,7 @@
     "gen:music": "generate-howls raw/music src/music src/musics.ts --dontPreload",
     "gen:levelargs": "run-s -n args:*",
     "args:clean": "rimraf ./tools/write-levelargs/.bin",
-    "args:check-serve": "wait-on http://localhost:1234/index.html",
+    "args:check-serve": "wait-on http://localhost:1234/index.html --t 1000",
     "args:start-tool": "npm start --prefix ./tools/write-levelargs"
   },
   "targets": {
