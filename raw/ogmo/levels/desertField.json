@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0-hubol",
+  "ogmoVersion": "3.4.0",
   "width": 1552,
   "height": 472,
   "offsetX": 0,
@@ -395,6 +395,18 @@
           "values": {"name": "Tumbleweed2", "depth": 0}
         }
       ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 194,
+      "gridCellsY": 59,
+      "decals": [],
+      "folder": "../../src/images"
     },
     {
       "name": "TerrainDecals",

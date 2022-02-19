@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0-hubol",
+  "ogmoVersion": "3.4.0",
   "width": 728,
   "height": 448,
   "offsetX": 0,
@@ -254,6 +254,18 @@
           "values": {"name": "", "depth": 0}
         }
       ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 91,
+      "gridCellsY": 56,
+      "decals": [],
+      "folder": "../../src/images"
     },
     {
       "name": "TerrainDecals",
@@ -630,7 +642,17 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 32, "y": 140, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "colorful bricks.png", "originX": 0, "originY": 0},
+        {
+          "x": 32,
+          "y": 140,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "colorful bricks.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
         {
           "x": 104,
           "y": 104,
@@ -653,7 +675,17 @@
           "originY": 1,
           "values": {"name": ""}
         },
-        {"x": 128, "y": 104, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "fly cage.png", "originX": 0.5, "originY": 1},
+        {
+          "x": 128,
+          "y": 104,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "fly cage.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
         {
           "x": 40,
           "y": 68,
@@ -676,7 +708,17 @@
           "originY": 1,
           "values": {"name": ""}
         },
-        {"x": 0, "y": 158, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "colorful bricks.png", "originX": 0, "originY": 0},
+        {
+          "x": 0,
+          "y": 158,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "colorful bricks.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
         {
           "x": 96,
           "y": 24,

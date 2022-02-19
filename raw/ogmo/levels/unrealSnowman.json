@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0-hubol",
+  "ogmoVersion": "3.4.0",
   "width": 512,
   "height": 256,
   "offsetX": 0,
@@ -139,6 +139,18 @@
           "values": {"name": "SnowmanSpawn", "depth": 0}
         }
       ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
     },
     {
       "name": "TerrainDecals",

@@ -238,6 +238,18 @@
       ]
     },
     {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 56,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
       "name": "TerrainDecals",
       "_eid": "53244458",
       "offsetX": 0,
@@ -414,7 +426,17 @@
           "originY": 1,
           "values": {"name": ""}
         },
-        {"x": 120, "y": 184, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "candle small red.png", "originX": 0.5, "originY": 1}
+        {
+          "x": 120,
+          "y": 184,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "candle small red.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },

@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0-hubol",
+  "ogmoVersion": "3.4.0",
   "width": 576,
   "height": 416,
   "offsetX": 0,
@@ -365,6 +365,18 @@
           "values": {"name": "BushValuableRegion", "depth": 0}
         }
       ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 72,
+      "gridCellsY": 52,
+      "decals": [],
+      "folder": "../../src/images"
     },
     {
       "name": "TerrainDecals",
