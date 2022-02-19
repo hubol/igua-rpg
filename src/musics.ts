@@ -47,6 +47,11 @@ export const Oracle = new Howl({
     preload: false
 });
 
+export const RoyalChamberMusic = new Howl({
+    src: [require("./music/royal-chamber-music.ogg"), require("./music/royal-chamber-music.mp3")],
+    preload: false
+});
+
 export const Shop = new Howl({
     src: [require("./music/shop.ogg"), require("./music/shop.mp3")],
     preload: false
