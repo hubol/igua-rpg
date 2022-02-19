@@ -40,6 +40,8 @@ function getStage(layerName: string)
             return scene.parallax1Stage;
         case "TerrainDecals":
             return scene.gameObjectStage;
+        case "FrontDecals":
+            return scene.playerStage;
         default:
             return scene.backgroundGameObjectStage;
     }

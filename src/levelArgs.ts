@@ -1,11 +1,13 @@
 // This file is generated. Do not touch.
 import { resolveBlock } from "./gameObjects/walls";
 import { resolveSlopeRight } from "./gameObjects/walls";
-import { resolveRegion } from "./gameObjects/region";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
-import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveDecalGameObject } from "./gameObjects/decal";
+import { GlowingCircle } from "./textures";
+import { Column } from "./textures";
+import { resolveRegion } from "./gameObjects/region";
+import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { OverheadLamp } from "./textures";
 import { Pipe } from "./textures";
 import { ColorfulBricks } from "./textures";
@@ -24,7 +26,6 @@ import { resolveGate } from "./gameObjects/gate";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { CracksA } from "./textures";
-import { GlowingCircle } from "./textures";
 import { VineSmall } from "./textures";
 import { PoppingRocksBox } from "./textures";
 import { resolveJungleTree } from "./gameObjects/jungleTree";
@@ -44,7 +45,6 @@ import { CrudeHouse } from "./textures";
 import { CrudeHouseC } from "./textures";
 import { CrateWooden } from "./textures";
 import { CrudeHouseB } from "./textures";
-import { Column } from "./textures";
 import { PaSpeaker } from "./textures";
 import { GreenCable } from "./textures";
 import { DontPoster } from "./textures";
@@ -3947,6 +3947,169 @@ Block: resolveBlock({"type":"Block","x":120,"y":40,"width":16,"height":16,"flipp
 Block_1: resolveBlock({"type":"Block","x":120,"y":200,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_24","name":"","depth":0}),
 // @ts-ignore
 BigKeyPiece: resolveRegion({"type":"Region","x":56,"y":152,"width":50,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607_25","name":"BigKeyPiece","depth":0})
+};
+}
+};
+
+export const UnrealRoyalChamberArgs = {
+    width: 704,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    Column: resolveDecalGameObject({
+    x: 160,
+y: 96,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 2.05,
+rotation: 0,
+layerName: "FrontDecals",
+texture: Column
+}),
+Column_1: resolveDecalGameObject({
+    x: 288,
+y: 96,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 2.05,
+rotation: 0,
+layerName: "FrontDecals",
+texture: Column
+}),
+Column_2: resolveDecalGameObject({
+    x: 128,
+y: 96,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 2,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Column
+}),
+Column_3: resolveDecalGameObject({
+    x: 320,
+y: 96,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 2,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Column
+}),
+GlowingCircle: resolveDecalGameObject({
+    x: 16,
+y: 32,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+GlowingCircle_1: resolveDecalGameObject({
+    x: 112,
+y: 208,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+GlowingCircle_2: resolveDecalGameObject({
+    x: 232,
+y: 96,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+GlowingCircle_3: resolveDecalGameObject({
+    x: 408,
+y: 232,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+GlowingCircle_4: resolveDecalGameObject({
+    x: 480,
+y: 8,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+GlowingCircle_5: resolveDecalGameObject({
+    x: 592,
+y: 136,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+GlowingCircle_6: resolveDecalGameObject({
+    x: 720,
+y: 208,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":704,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":40,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":true,"name":"","depth":0},
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":104,"y":64,"width":248,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+// @ts-ignore
+SecretWorshipper1: resolveNpc({"type":"NpcIguana","x":128,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_3","name":"SecretWorshipper1","style":9,"depth":0}),
+// @ts-ignore
+SecretWorshipper2: resolveNpc({"type":"NpcIguana","x":192,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_4","name":"SecretWorshipper2","style":10,"depth":0}),
+// @ts-ignore
+SecretWorshipper3: resolveNpc({"type":"NpcIguana","x":256,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_5","name":"SecretWorshipper3","style":8,"depth":0}),
+// @ts-ignore
+Worshipper: resolveNpc({"type":"NpcIguana","x":320,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_6","name":"Worshipper","style":2,"depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":352,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_7","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":384,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_8","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":352,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_10","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":384,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_11","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":416,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_12","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_3: resolveSlopeLeft({"type":"SlopeLeft","x":40,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_13","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_4: resolveSlopeLeft({"type":"SlopeLeft","x":72,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_14","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":72,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_15","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":40,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_16","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_4: resolveSlopeRight({"type":"SlopeRight","x":8,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_17","name":"","depth":0})
 };
 }
 };

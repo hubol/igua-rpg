@@ -7,7 +7,7 @@
   "anglesRadians": true,
   "directoryDepth": 5,
   "layerGridDefaultSize": {"x": 8, "y": 8},
-  "levelDefaultSize": {"x": 320, "y": 240},
+  "levelDefaultSize": {"x": 256, "y": 256},
   "levelMinSize": {"x": 128, "y": 128},
   "levelMaxSize": {"x": 4096, "y": 4096},
   "levelValues": [],
@@ -24,6 +24,19 @@
       "exportID": "55827504",
       "requiredTags": [],
       "excludedTags": []
+    },
+    {
+      "definition": "decal",
+      "name": "FrontDecals",
+      "gridSize": {"x": 8, "y": 8},
+      "exportID": "23130474",
+      "folder": "../../src/images",
+      "includeImageSequence": true,
+      "scaleable": true,
+      "rotatable": true,
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ]
     },
     {
       "definition": "decal",
