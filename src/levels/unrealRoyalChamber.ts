@@ -36,7 +36,7 @@ export function UnrealRoyalChamber() {
         b.alpha = 0;
         await lerp(scene.camera, 'x').to(scene.width - 256).over(1000);
         duck.aggressive = true;
-    })
+    });
 }
 
 function createBigKeyPiece() {

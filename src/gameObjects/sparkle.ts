@@ -8,10 +8,10 @@ export const sparkles = (x, y, count, initialRadius, life) => {
     circle(x, y, initialRadius, count).forEach(x => scene.gameObjectStage.addChild(sparkle(x.xUnit, x.yUnit, life).at(x)));
 };
 
-const textures = subimageTextures(Sparkle, 3);
+export const sparkleTextures = subimageTextures(Sparkle, 3);
 
 function sparkle(hspeed, vspeed, life) {
-    const sprite = animatedSprite(textures, 1 / 6)
+    const sprite = animatedSprite(sparkleTextures, 1 / 6)
         .withStep(() => {
             sprite.x += hspeed;
             sprite.y += vspeed;

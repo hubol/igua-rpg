@@ -1,5 +1,8 @@
 import {Vector} from "../utils/math/vector";
 import {player} from "../gameObjects/player";
+import {rectangleCircleOverlap} from "../utils/math/rectangleCircleOverlap";
+import {Rectangle} from "pixi.js";
+import {scene} from "./scene";
 
 export function bouncePlayer(self: Vector, factor = 3) {
     player.hspeed = 0;
@@ -8,4 +11,15 @@ export function bouncePlayer(self: Vector, factor = 3) {
     const dir = player.vcpy().add(0, -8).add(self, -1).normalize().scale(factor);
     player.engine.knockback.x = dir.x;
     player.vspeed = dir.y;
+}
+
+const r = new Rectangle();
+
+export function bouncePlayerCircleConditionally(self: Vector, radius: number, factor = 3) {
+    player.getBounds(false, r);
+    if (rectangleCircleOverlap(radius, self.x - scene.camera.x, self.y - scene.camera.y, r.x, r.y, r.x + r.width, r.y + r.height)) {
+        bouncePlayer(self, factor);
+        return true;
+    }
+    return false;
 }
