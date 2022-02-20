@@ -11,6 +11,9 @@ import {jungleBigKeyTextures} from "./jungleTemple";
 import {wait} from "../cutscene/wait";
 import {block} from "../gameObjects/walls";
 import {lerp} from "../cutscene/lerp";
+import {computePlayerCameraTarget} from "../igua/playerCamera";
+import {container} from "../utils/pixi/container";
+import {lerp as lerpNumber} from "../utils/math/number";
 
 export function UnrealRoyalChamber() {
     scene.backgroundColor = 0x7B598E;
@@ -41,5 +44,24 @@ export function UnrealRoyalChamber() {
         const b = scene.terrainStage.addChild(block(scene.width - 256 - 32, 0, scene.width - 256, scene.height));
         b.alpha = 0;
         await lerp(scene.camera, 'x').to(scene.width - 256).over(1000);
+        worshippers.forEach(x => x.destroy());
+        await wait(() => duck.defeated);
+        b.destroy();
+        jukebox.currentSong?.fade(1, 0, 500);
+
+        const cameraX = scene.camera.x;
+        let factor = 0;
+        const lerper = container().withStep(() => {
+            const { x } = computePlayerCameraTarget();
+            scene.camera.x = lerpNumber(cameraX, x, factor);
+            factor += 1 / 30;
+            if (factor >= 1)
+                lerper.destroy();
+        }).show();
+
+        await wait(() => lerper.destroyed);
+
+        scene.camera.followPlayer = true;
+        jukebox.play(RoyalChamberMusic);
     });
 }

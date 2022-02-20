@@ -6,9 +6,10 @@ import {rng} from "../utils/rng";
 import {rectangleCircleOverlap} from "../utils/math/rectangleCircleOverlap";
 import {player} from "./player";
 import {EmpPulse, EmpPulseFinal, EmpPulseFire} from "../sounds";
+import {merge} from "../utils/merge";
 
 export function empBlast(radius: number, hintsCount: number, damage: number, hostileMs: number) {
-    const c = container()
+    const c = merge(container(), { wentHostile: false })
         .withAsync(async () => {
             const initialHintsCount = hintsCount;
             while (hintsCount > 0) {
@@ -17,6 +18,7 @@ export function empBlast(radius: number, hintsCount: number, damage: number, hos
                 await sleep(1000);
             }
             c.addChild(hostile(radius, damage));
+            c.wentHostile = true;
             await sleep(hostileMs);
             c.destroy();
         });

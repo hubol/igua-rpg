@@ -7,13 +7,18 @@ import {container} from "../utils/pixi/container";
 import {sleep} from "../cutscene/sleep";
 import {merge} from "../utils/merge";
 import {now} from "../utils/now";
-import {ChangeLooks, CharacterHitCeiling, DuckQuack} from "../sounds";
+import {BeepTiny, ChangeLooks, CharacterHitCeiling, ConsumeBallon, DuckQuack, SparkleAppear} from "../sounds";
 import {scene} from "../igua/scene";
 import {IguaText} from "../igua/text";
 import {spawnAndRotate} from "./spawnAndRotate";
 import {animatedSprite} from "../igua/animatedSprite";
 import {sparkleTextures} from "./sparkle";
 import {bouncePlayerCircleConditionally} from "../igua/bouncePlayer";
+import {empBlast} from "./empBlast";
+import {progress} from "../igua/data/progress";
+import {ballons} from "./ballons";
+import {distance} from "../utils/math/vector";
+import {valuable} from "./valuable";
 
 const [tailTexture, neutralTexture, agapeTexture] = subimageTextures(DuckGiant, 3);
 
@@ -41,11 +46,27 @@ export function giantDuck() {
     mouth.scale.set(0.1);
     mouth.alpha = 0;
 
-    let rootHack;
+    const root = merge(container(), {
+        defeated: false,
+        aggressive: false,
+        async quack() {
+            jump = -2;
+            agape = true;
+            excited = true;
+            DuckQuack.play();
+            await sleep(500);
+            agape = false;
+            excited = false;
+        },
+        charge() {
+            agape = true;
+            excited = true;
+        }
+    });
 
     const c = container(tc, body)
         .withAsync(async () => {
-            await wait(() => rootHack?.aggressive && Math.sign(player.x - rootHack?.x) === Math.sign(rootHack?.scale.x));
+            await wait(() => root.aggressive && Math.sign(player.x - root.x) === Math.sign(root.scale.x));
             await root.quack();
             await sleep(500);
             const shield = createSparkleShield();
@@ -53,6 +74,33 @@ export function giantDuck() {
             await root.quack();
             root.charge();
             const r = reticle(mouth);
+            await sleep(3000);
+            const b = empBlast(96, 4, progress.maxHealth, 1000).withStep(() => b.at(player)).show();
+            await wait(() => b.wentHostile);
+            r.destroy();
+            const playerHealth = progress.health;
+            await wait(() => progress.health <= Math.max(playerHealth - 78, 0));
+            root.defeated = true;
+            agape = false;
+            excited = false;
+            shield.destroy();
+            ConsumeBallon.play();
+            ballons({ target: root, offset: [0, -24], state: [1, 1, 1], string: 32 });
+            await sleep(2000);
+            excited = true;
+            let vsp = -0.5;
+            const lastDropV = root.vcpy().add(32, 32);
+            let dropCount = 0;
+            root.withStep(() => {
+                root.x -= 0.5;
+                root.y += vsp;
+                vsp -= 0.005;
+                if (dropCount < 5 && distance(root, lastDropV) > 24) {
+                    valuable(Math.round(root.x), Math.round(root.y), undefined, 'ValuableBlue').behind();
+                    lastDropV.at(root);
+                    dropCount++;
+                }
+            });
         })
         .withAsync(async () => {
             while (true) {
@@ -78,27 +126,11 @@ export function giantDuck() {
 
     c.pivot.set(27, 48);
 
-    const root = merge(container(c, mouth), {
-        aggressive: false,
-        async quack() {
-            jump = -2;
-            agape = true;
-            excited = true;
-            DuckQuack.play();
-            await sleep(500);
-            agape = false;
-            excited = false;
-        },
-        charge() {
-            agape = true;
-            excited = true;
-        }
-    });
-
-    rootHack = root;
-
     function createSparkleShield() {
-        const shield = spawnAndRotate(() => animatedSprite(sparkleTextures, 1 / 12).centerAnchor(), 8, 45, Math.PI / 96, 125)
+        const shield = spawnAndRotate(() => {
+            SparkleAppear.play();
+            return animatedSprite(sparkleTextures, 1 / 12).centerAnchor();
+        }, 8, 45, Math.PI / 96, 125)
             .withStep(() => {
                 shield.at(root).add(0, -16);
                 if (bouncePlayerCircleConditionally(shield, shield.radius)) {
@@ -110,7 +142,16 @@ export function giantDuck() {
         return shield;
     }
 
+    root.addChild(c, mouth);
+
     return root;
+}
+
+function getPlayerCenter() {
+    const dbounds = player.getBounds();
+    const dx = Math.round(dbounds.x + dbounds.width / 2);
+    const dy = Math.round(dbounds.y + dbounds.height / 2);
+    return [dx, dy];
 }
 
 function reticle(source: DisplayObject) {
@@ -120,24 +161,18 @@ function reticle(source: DisplayObject) {
         const sbounds = source.worldTransform;
         const sx = sbounds.tx;
         const sy = sbounds.ty;
-        const dbounds = player.getBounds();
-        const dx = Math.round(dbounds.x + dbounds.width / 2);
-        const dy = Math.round(dbounds.y + dbounds.height / 2);
+        const d = getPlayerCenter();
 
-        const diff = [dx, dy].add([sx, sy], -1);
+        const diff = d.vcpy().add([sx, sy], -1);
         const length = diff.vlength;
         diff.normalize().scale(length - 26);
 
-        g.clear().lineStyle(1, color, 1, 1)
-            // .moveTo(sx, sy)
-            // .lineTo(sx + diff.x, sy + diff.y)
-        // console.log(sx, sy, sx + diff.x, sy + diff.y);
-        // g.moveTo(sx + -16.240734169861422, sy + 51.5063283672748).lineTo(sx + -18.646495255649008, sy + 59.13602781077257);
+        g.clear().lineStyle(1, color, 1, 1);
         dashedLine(g, sx, sy, sx + diff.x, sy + diff.y, introprog < 1 ? 0 : now.s * 32);
 
-        g.drawCircle(dx, dy, 22);
+        g.drawCircle(d.x, d.y, 22);
 
-        t.at(dx + 30, dy - 11);
+        t.at(d.x + 30, d.y - 11);
     });
     let tprog = 0;
     let lastTextLength = 0;
@@ -154,6 +189,7 @@ ${player.isDucking ? 20 : 0}%`;
         lastTextLength = newLength;
     });
     t.tint = color;
+    let lastVisible = false;
     const c = container(g, t).ahead().withStep(() => {
         c.at(scene.camera);
         if (introprog < 1) {
@@ -162,6 +198,10 @@ ${player.isDucking ? 20 : 0}%`;
         }
         else
             c.visible = true;
+
+        if (c.visible && !lastVisible)
+            BeepTiny.play();
+        lastVisible = c.visible;
     });
     return c;
 }

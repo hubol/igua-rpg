@@ -12,6 +12,11 @@ export const BallonPop = new Howl({
     
 });
 
+export const BeepTiny = new Howl({
+    src: [require("./sound/beep tiny.ogg"), require("./sound/beep tiny.mp3")],
+    
+});
+
 export const BigKeyCollected = new Howl({
     src: [require("./sound/big key collected.ogg"), require("./sound/big key collected.mp3")],
     
@@ -269,6 +274,11 @@ export const SnowmanHurt = new Howl({
 
 export const SnowmanLand = new Howl({
     src: [require("./sound/snowman land.ogg"), require("./sound/snowman land.mp3")],
+    
+});
+
+export const SparkleAppear = new Howl({
+    src: [require("./sound/sparkle appear.ogg"), require("./sound/sparkle appear.mp3")],
     
 });
 

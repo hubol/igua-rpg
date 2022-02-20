@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0",
-  "width": 1024,
+  "width": 1248,
   "height": 256,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,14 +12,14 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 128,
+      "gridCellsX": 156,
       "gridCellsY": 32,
       "entities": [
         {
           "name": "Block",
           "id": 0,
           "_eid": "55823268",
-          "x": 0,
+          "x": 224,
           "y": 224,
           "width": 1024,
           "height": 32,
@@ -31,7 +31,7 @@
           "name": "Player",
           "id": 1,
           "_eid": "55988047",
-          "x": 24,
+          "x": 32,
           "y": 224,
           "originX": 11,
           "originY": 27,
@@ -41,7 +41,7 @@
           "name": "Block",
           "id": 2,
           "_eid": "55823268",
-          "x": 424,
+          "x": 648,
           "y": 64,
           "width": 248,
           "height": 32,
@@ -53,7 +53,7 @@
           "name": "NpcIguana",
           "id": 3,
           "_eid": "26367058",
-          "x": 448,
+          "x": 672,
           "y": 64,
           "originX": 11,
           "originY": 27,
@@ -64,7 +64,7 @@
           "name": "NpcIguana",
           "id": 4,
           "_eid": "26367058",
-          "x": 512,
+          "x": 736,
           "y": 64,
           "originX": 11,
           "originY": 27,
@@ -75,7 +75,7 @@
           "name": "NpcIguana",
           "id": 5,
           "_eid": "26367058",
-          "x": 576,
+          "x": 800,
           "y": 64,
           "originX": 11,
           "originY": 27,
@@ -86,7 +86,7 @@
           "name": "NpcIguana",
           "id": 6,
           "_eid": "26367058",
-          "x": 640,
+          "x": 864,
           "y": 64,
           "originX": 11,
           "originY": 27,
@@ -97,7 +97,7 @@
           "name": "SlopeRight",
           "id": 7,
           "_eid": "55824435",
-          "x": 672,
+          "x": 896,
           "y": 32,
           "width": 32,
           "height": 32,
@@ -110,7 +110,7 @@
           "name": "SlopeRight",
           "id": 8,
           "_eid": "55824435",
-          "x": 704,
+          "x": 928,
           "y": 0,
           "width": 32,
           "height": 32,
@@ -123,7 +123,7 @@
           "name": "SlopeLeft",
           "id": 10,
           "_eid": "55845599",
-          "x": 672,
+          "x": 896,
           "y": 64,
           "width": 32,
           "height": 32,
@@ -136,7 +136,7 @@
           "name": "SlopeLeft",
           "id": 11,
           "_eid": "55845599",
-          "x": 704,
+          "x": 928,
           "y": 32,
           "width": 32,
           "height": 32,
@@ -149,7 +149,7 @@
           "name": "SlopeLeft",
           "id": 12,
           "_eid": "55845599",
-          "x": 736,
+          "x": 960,
           "y": 0,
           "width": 32,
           "height": 32,
@@ -162,7 +162,7 @@
           "name": "SlopeLeft",
           "id": 13,
           "_eid": "55845599",
-          "x": 360,
+          "x": 584,
           "y": 0,
           "width": 32,
           "height": 32,
@@ -175,7 +175,7 @@
           "name": "SlopeLeft",
           "id": 14,
           "_eid": "55845599",
-          "x": 392,
+          "x": 616,
           "y": 32,
           "width": 32,
           "height": 32,
@@ -188,7 +188,7 @@
           "name": "SlopeRight",
           "id": 15,
           "_eid": "55824435",
-          "x": 392,
+          "x": 616,
           "y": 64,
           "width": 32,
           "height": 32,
@@ -201,7 +201,7 @@
           "name": "SlopeRight",
           "id": 16,
           "_eid": "55824435",
-          "x": 360,
+          "x": 584,
           "y": 32,
           "width": 32,
           "height": 32,
@@ -214,7 +214,7 @@
           "name": "SlopeRight",
           "id": 17,
           "_eid": "55824435",
-          "x": 328,
+          "x": 552,
           "y": 0,
           "width": 32,
           "height": 32,
@@ -227,7 +227,7 @@
           "name": "SlopeRight",
           "id": 19,
           "_eid": "55824435",
-          "x": 960,
+          "x": 1184,
           "y": 128,
           "width": 32,
           "height": 32,
@@ -240,7 +240,7 @@
           "name": "Block",
           "id": 20,
           "_eid": "55823268",
-          "x": 992,
+          "x": 1216,
           "y": 128,
           "width": 32,
           "height": 96,
@@ -252,7 +252,7 @@
           "name": "Anchor",
           "id": 22,
           "_eid": "25979726",
-          "x": 984,
+          "x": 1208,
           "y": 128,
           "originX": 0,
           "originY": 0,
@@ -262,7 +262,7 @@
           "name": "Anchor",
           "id": 24,
           "_eid": "25979726",
-          "x": 880,
+          "x": 1104,
           "y": 152,
           "originX": 0,
           "originY": 0,
@@ -272,10 +272,22 @@
           "name": "PortalFluid",
           "id": 25,
           "_eid": "24775263",
-          "x": 16,
-          "y": 112,
-          "width": 72,
+          "x": 144,
+          "y": 224,
+          "width": 80,
           "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 26,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 224,
+          "width": 144,
+          "height": 32,
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
@@ -289,11 +301,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 128,
+      "gridCellsX": 156,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 480,
+          "x": 704,
           "y": 96,
           "scaleX": 1,
           "scaleY": 2.05,
@@ -304,7 +316,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 608,
+          "x": 832,
           "y": 96,
           "scaleX": 1,
           "scaleY": 2.05,
@@ -314,8 +326,29 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 240, "y": 96, "scaleX": 1, "scaleY": 2.05, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 0},
-        {"x": 112, "y": 96, "scaleX": 1, "scaleY": 2.05, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 0}
+        {
+          "x": 464,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 2.05,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 336,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 2.05,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"x": 240, "y": 96, "scaleX": 1, "scaleY": 2.05, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 0}
       ],
       "folder": "../../src/images"
     },
@@ -326,7 +359,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 128,
+      "gridCellsX": 156,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"
@@ -338,11 +371,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 128,
+      "gridCellsX": 156,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 448,
+          "x": 672,
           "y": 96,
           "scaleX": 1,
           "scaleY": 2,
@@ -353,7 +386,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 640,
+          "x": 864,
           "y": 96,
           "scaleX": 1,
           "scaleY": 2,
@@ -363,8 +396,29 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 344, "y": 96, "scaleX": 1, "scaleY": 2, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 0},
-        {"x": 152, "y": 96, "scaleX": 1, "scaleY": 2, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 0}
+        {
+          "x": 568,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 2,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 376,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 2,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"x": 104, "y": 96, "scaleX": 1, "scaleY": 2, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 0}
       ],
       "folder": "..\\..\\src\\images"
     },
@@ -375,11 +429,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 128,
+      "gridCellsX": 156,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 336,
+          "x": 560,
           "y": 32,
           "scaleX": 1,
           "scaleY": 1,
@@ -390,7 +444,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 432,
+          "x": 656,
           "y": 208,
           "scaleX": 1,
           "scaleY": 1,
@@ -401,7 +455,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 552,
+          "x": 776,
           "y": 96,
           "scaleX": 1,
           "scaleY": 1,
@@ -412,7 +466,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 728,
+          "x": 952,
           "y": 232,
           "scaleX": 1,
           "scaleY": 1,
@@ -423,7 +477,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 800,
+          "x": 1024,
           "y": 8,
           "scaleX": 1,
           "scaleY": 1,
@@ -434,7 +488,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 912,
+          "x": 1136,
           "y": 136,
           "scaleX": 1,
           "scaleY": 1,
@@ -445,7 +499,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 1040,
+          "x": 1264,
           "y": 208,
           "scaleX": 1,
           "scaleY": 1,
@@ -455,10 +509,52 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 216, "y": 184, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "glowing circle.png", "originX": 0.5, "originY": 0.5},
-        {"x": 88, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "glowing circle.png", "originX": 0.5, "originY": 0.5},
-        {"x": -24, "y": -16, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "glowing circle.png", "originX": 0.5, "originY": 0.5},
-        {"x": -96, "y": 208, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "glowing circle.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 440,
+          "y": 184,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "glowing circle.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 312,
+          "y": 112,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "glowing circle.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 200,
+          "y": -16,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "glowing circle.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 128,
+          "y": 208,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "glowing circle.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 0, "y": 72, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "glowing circle.png", "originX": 0.5, "originY": 0.5},
+        {"x": -216, "y": 8, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "glowing circle.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../src/images"
     }

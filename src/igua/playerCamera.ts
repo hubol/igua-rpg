@@ -10,6 +10,17 @@ export function stepPlayerCamera()
     if (!scene.camera.followPlayer || !player)
         return;
 
+    computePlayerCameraTarget();
+
+    lerp(scene.camera, target, Math.min(player.engine.walkSpeed * 0.132, 0.9));
+    if (distance(scene.camera, target) < 1)
+    {
+        scene.camera.x = Math.round(target.x);
+        scene.camera.y = Math.round(target.y);
+    }
+}
+
+export function computePlayerCameraTarget() {
     const padding = 112;
 
     const x0 = scene.camera.x + padding;
@@ -28,12 +39,7 @@ export function stepPlayerCamera()
         target.y = scene.camera.y + player.y - y1;
 
     clampCameraTarget();
-    lerp(scene.camera, target, Math.min(player.engine.walkSpeed * 0.132, 0.9));
-    if (distance(scene.camera, target) < 1)
-    {
-        scene.camera.x = Math.round(target.x);
-        scene.camera.y = Math.round(target.y);
-    }
+    return target;
 }
 
 export function centerPlayerCamera()
