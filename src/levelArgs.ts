@@ -1,13 +1,13 @@
 // This file is generated. Do not touch.
 import { resolveBlock } from "./gameObjects/walls";
 import { resolveSlopeRight } from "./gameObjects/walls";
+import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { GlowingCircle } from "./textures";
 import { Column } from "./textures";
 import { resolveRegion } from "./gameObjects/region";
-import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { OverheadLamp } from "./textures";
 import { Pipe } from "./textures";
 import { ColorfulBricks } from "./textures";
@@ -4202,7 +4202,10 @@ SlopeRight_4: resolveSlopeRight({"type":"SlopeRight","x":328,"y":0,"width":32,"h
 SlopeRight_5: resolveSlopeRight({"type":"SlopeRight","x":960,"y":128,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_19","name":"","depth":0}),
 // @ts-ignore
 Block_2: resolveBlock({"type":"Block","x":992,"y":128,"width":32,"height":96,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
-DuckSpawn: {"type":"Anchor","x":984,"y":128,"flippedX":false,"flippedY":false,"uid":"25979726_22","name":"DuckSpawn","depth":0}
+DuckSpawn: {"type":"Anchor","x":984,"y":128,"flippedX":false,"flippedY":false,"uid":"25979726_22","name":"DuckSpawn","depth":0},
+KeySpawn: {"type":"Anchor","x":880,"y":152,"flippedX":false,"flippedY":false,"uid":"25979726_24","name":"KeySpawn","depth":0},
+// @ts-ignore
+PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":16,"y":112,"width":72,"height":56,"flippedX":false,"flippedY":false,"uid":"24775263_25","name":"","depth":0})
 };
 }
 };
