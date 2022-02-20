@@ -157,6 +157,11 @@ export const DragRock = new Howl({
     
 });
 
+export const DuckQuack = new Howl({
+    src: [require("./sound/duck quack.ogg"), require("./sound/duck quack.mp3")],
+    
+});
+
 export const EmpPulseFinal = new Howl({
     src: [require("./sound/emp pulse final.ogg"), require("./sound/emp pulse final.mp3")],
     

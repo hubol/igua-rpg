@@ -3952,12 +3952,12 @@ BigKeyPiece: resolveRegion({"type":"Region","x":56,"y":152,"width":50,"height":8
 };
 
 export const UnrealRoyalChamberArgs = {
-    width: 704,
+    width: 1024,
 height: 256,
 gameObjectsSupplier: () => {
   return {
     Column: resolveDecalGameObject({
-    x: 160,
+    x: 480,
 y: 96,
 originX: 0.5,
 originY: 0,
@@ -3968,7 +3968,7 @@ layerName: "FrontDecals",
 texture: Column
 }),
 Column_1: resolveDecalGameObject({
-    x: 288,
+    x: 608,
 y: 96,
 originX: 0.5,
 originY: 0,
@@ -3979,7 +3979,29 @@ layerName: "FrontDecals",
 texture: Column
 }),
 Column_2: resolveDecalGameObject({
-    x: 128,
+    x: 240,
+y: 96,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 2.05,
+rotation: 0,
+layerName: "FrontDecals",
+texture: Column
+}),
+Column_3: resolveDecalGameObject({
+    x: 112,
+y: 96,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 2.05,
+rotation: 0,
+layerName: "FrontDecals",
+texture: Column
+}),
+Column_4: resolveDecalGameObject({
+    x: 448,
 y: 96,
 originX: 0.5,
 originY: 0,
@@ -3989,8 +4011,30 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: Column
 }),
-Column_3: resolveDecalGameObject({
-    x: 320,
+Column_5: resolveDecalGameObject({
+    x: 640,
+y: 96,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 2,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Column
+}),
+Column_6: resolveDecalGameObject({
+    x: 344,
+y: 96,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 2,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Column
+}),
+Column_7: resolveDecalGameObject({
+    x: 152,
 y: 96,
 originX: 0.5,
 originY: 0,
@@ -4001,7 +4045,7 @@ layerName: "BackgroundDecals",
 texture: Column
 }),
 GlowingCircle: resolveDecalGameObject({
-    x: 16,
+    x: 336,
 y: 32,
 originX: 0.5,
 originY: 0.5,
@@ -4012,7 +4056,7 @@ layerName: "Parallax1Decals",
 texture: GlowingCircle
 }),
 GlowingCircle_1: resolveDecalGameObject({
-    x: 112,
+    x: 432,
 y: 208,
 originX: 0.5,
 originY: 0.5,
@@ -4023,7 +4067,7 @@ layerName: "Parallax1Decals",
 texture: GlowingCircle
 }),
 GlowingCircle_2: resolveDecalGameObject({
-    x: 232,
+    x: 552,
 y: 96,
 originX: 0.5,
 originY: 0.5,
@@ -4034,7 +4078,7 @@ layerName: "Parallax1Decals",
 texture: GlowingCircle
 }),
 GlowingCircle_3: resolveDecalGameObject({
-    x: 408,
+    x: 728,
 y: 232,
 originX: 0.5,
 originY: 0.5,
@@ -4045,7 +4089,7 @@ layerName: "Parallax1Decals",
 texture: GlowingCircle
 }),
 GlowingCircle_4: resolveDecalGameObject({
-    x: 480,
+    x: 800,
 y: 8,
 originX: 0.5,
 originY: 0.5,
@@ -4056,7 +4100,7 @@ layerName: "Parallax1Decals",
 texture: GlowingCircle
 }),
 GlowingCircle_5: resolveDecalGameObject({
-    x: 592,
+    x: 912,
 y: 136,
 originX: 0.5,
 originY: 0.5,
@@ -4067,7 +4111,51 @@ layerName: "Parallax1Decals",
 texture: GlowingCircle
 }),
 GlowingCircle_6: resolveDecalGameObject({
-    x: 720,
+    x: 1040,
+y: 208,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+GlowingCircle_7: resolveDecalGameObject({
+    x: 216,
+y: 184,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+GlowingCircle_8: resolveDecalGameObject({
+    x: 88,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+GlowingCircle_9: resolveDecalGameObject({
+    x: -24,
+y: -16,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: GlowingCircle
+}),
+GlowingCircle_10: resolveDecalGameObject({
+    x: -96,
 y: 208,
 originX: 0.5,
 originY: 0.5,
@@ -4078,38 +4166,43 @@ layerName: "Parallax1Decals",
 texture: GlowingCircle
 }),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":224,"width":704,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
-Player: {"type":"Player","x":40,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":true,"name":"","depth":0},
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":1024,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":24,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":true,"name":"","depth":0},
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":104,"y":64,"width":248,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+Block_1: resolveBlock({"type":"Block","x":424,"y":64,"width":248,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
 // @ts-ignore
-SecretWorshipper1: resolveNpc({"type":"NpcIguana","x":128,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_3","name":"SecretWorshipper1","style":9,"depth":0}),
+SecretWorshipper1: resolveNpc({"type":"NpcIguana","x":448,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_3","name":"SecretWorshipper1","style":9,"depth":0}),
 // @ts-ignore
-SecretWorshipper2: resolveNpc({"type":"NpcIguana","x":192,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_4","name":"SecretWorshipper2","style":10,"depth":0}),
+SecretWorshipper2: resolveNpc({"type":"NpcIguana","x":512,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_4","name":"SecretWorshipper2","style":10,"depth":0}),
 // @ts-ignore
-SecretWorshipper3: resolveNpc({"type":"NpcIguana","x":256,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_5","name":"SecretWorshipper3","style":8,"depth":0}),
+SecretWorshipper3: resolveNpc({"type":"NpcIguana","x":576,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_5","name":"SecretWorshipper3","style":8,"depth":0}),
 // @ts-ignore
-Worshipper: resolveNpc({"type":"NpcIguana","x":320,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_6","name":"Worshipper","style":2,"depth":0}),
+Worshipper: resolveNpc({"type":"NpcIguana","x":640,"y":64,"flippedX":false,"flippedY":false,"uid":"26367058_6","name":"Worshipper","style":2,"depth":0}),
 // @ts-ignore
-SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":352,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_7","name":"","depth":0}),
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":672,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_7","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":384,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_8","name":"","depth":0}),
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":704,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_8","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":352,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_10","name":"","depth":0}),
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":672,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_10","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":384,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_11","name":"","depth":0}),
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":704,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_11","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":416,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_12","name":"","depth":0}),
+SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":736,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_12","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft_3: resolveSlopeLeft({"type":"SlopeLeft","x":40,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_13","name":"","depth":0}),
+SlopeLeft_3: resolveSlopeLeft({"type":"SlopeLeft","x":360,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_13","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft_4: resolveSlopeLeft({"type":"SlopeLeft","x":72,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_14","name":"","depth":0}),
+SlopeLeft_4: resolveSlopeLeft({"type":"SlopeLeft","x":392,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_14","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":72,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_15","name":"","depth":0}),
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":392,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_15","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":40,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_16","name":"","depth":0}),
+SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":360,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_16","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_4: resolveSlopeRight({"type":"SlopeRight","x":8,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_17","name":"","depth":0})
+SlopeRight_4: resolveSlopeRight({"type":"SlopeRight","x":328,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_17","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_5: resolveSlopeRight({"type":"SlopeRight","x":960,"y":128,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_19","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":992,"y":128,"width":32,"height":96,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
+DuckSpawn: {"type":"Anchor","x":984,"y":128,"flippedX":false,"flippedY":false,"uid":"25979726_22","name":"DuckSpawn","depth":0}
 };
 }
 };
