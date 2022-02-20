@@ -14,7 +14,7 @@ import {lerp} from "../cutscene/lerp";
 
 export function UnrealRoyalChamber() {
     scene.backgroundColor = 0x7B598E;
-    scene.terrainColor = 0xD3A832;
+    scene.terrainColor = 0xCCAE0A;
     const level = applyOgmoLevel(UnrealRoyalChamberArgs);
     jukebox.play(RoyalChamberMusic);
 
