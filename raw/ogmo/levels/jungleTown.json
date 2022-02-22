@@ -343,16 +343,6 @@
         },
         {
           "name": "ValuableBlue",
-          "id": 30,
-          "_eid": "55991906",
-          "x": 58,
-          "y": 160,
-          "originX": 8,
-          "originY": 14,
-          "values": {"name": "", "depth": 0}
-        },
-        {
-          "name": "ValuableBlue",
           "id": 31,
           "_eid": "55991906",
           "x": 239,
@@ -437,6 +427,16 @@
           "originX": 8,
           "originY": 368,
           "values": {"name": "", "depth": 4}
+        },
+        {
+          "name": "Anchor",
+          "id": 39,
+          "_eid": "25979726",
+          "x": 56,
+          "y": 237,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "TempleLever", "depth": 0}
         }
       ]
     },

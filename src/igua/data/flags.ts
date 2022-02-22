@@ -19,6 +19,10 @@ export function getInitialFlags()
                 piece3: false,
                 reward: false,
             },
+            templeLever: {
+                on: false,
+                position: 0
+            }
         },
         desert: {
             heardIntroduction: false,

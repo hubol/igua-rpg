@@ -3530,9 +3530,7 @@ PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":222,"y":237
 // @ts-ignore
 PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":75,"y":316,"width":147,"flippedX":false,"flippedY":false,"uid":"55841307_29","visible":false,"name":"","depth":0}),
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":58,"y":160,"flippedX":false,"flippedY":false,"uid":"55991906_30","name":"","depth":0}),
-// @ts-ignore
-ValuableBlue_1: resolveValuableBlue({"type":"ValuableBlue","x":239,"y":160,"flippedX":false,"flippedY":false,"uid":"55991906_31","name":"","depth":0}),
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":239,"y":160,"flippedX":false,"flippedY":false,"uid":"55991906_31","name":"","depth":0}),
 // @ts-ignore
 JungleTree: resolveJungleTree({"type":"JungleTree","x":1216,"y":456,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_32","name":"","depth":4}),
 // @ts-ignore
@@ -3546,7 +3544,8 @@ JungleTree_4: resolveJungleTree({"type":"JungleTree","x":408,"y":496,"height":36
 // @ts-ignore
 JungleTree_5: resolveJungleTree({"type":"JungleTree","x":96,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_37","name":"","depth":4}),
 // @ts-ignore
-JungleTree_6: resolveJungleTree({"type":"JungleTree","x":272,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_38","name":"","depth":4})
+JungleTree_6: resolveJungleTree({"type":"JungleTree","x":272,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_38","name":"","depth":4}),
+TempleLever: {"type":"Anchor","x":56,"y":237,"flippedX":false,"flippedY":false,"uid":"25979726_39","name":"TempleLever","depth":0}
 };
 }
 };
