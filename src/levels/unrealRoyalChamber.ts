@@ -7,7 +7,7 @@ import {Hemaboss1, RoyalChamberMusic} from "../musics";
 import {giantDuck} from "../gameObjects/giantDuck";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
-import {jungleBigKeyTextures} from "./jungleTemple";
+import {advanceTempleMovingWall, jungleBigKeyTextures} from "./jungleTemple";
 import {wait} from "../cutscene/wait";
 import {block} from "../gameObjects/walls";
 import {lerp} from "../cutscene/lerp";
@@ -16,6 +16,8 @@ import {container} from "../utils/pixi/container";
 import {lerp as lerpNumber} from "../utils/math/number";
 
 export function UnrealRoyalChamber() {
+    advanceTempleMovingWall(true);
+
     scene.backgroundColor = 0x7B598E;
     scene.terrainColor = 0xCCAE0A;
     const level = applyOgmoLevel(UnrealRoyalChamberArgs);

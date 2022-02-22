@@ -9,6 +9,7 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {JungleTempleArgs} from "../levelArgs";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
 import {approachLinear} from "../utils/math/number";
+import {DragRock} from "../sounds";
 
 export function JungleTemple() {
     scene.backgroundColor = 0x755E9B;
@@ -35,11 +36,49 @@ export function JungleTemple() {
     advanceTempleMovingWall();
 }
 
-export function advanceTempleMovingWall() {
+export function advanceTempleMovingWall(silent = false, distant = false) {
+    const { templeLever } = progress.flags.jungle;
+
+    const playSound = () => {
+        const id = DragRock.play();
+        const volume = distant ? 0.2 : 0.8;
+        DragRock.rate(0.8, id);
+        DragRock.volume(volume, id);
+        DragRock.loop(true, id);
+        return {
+            stop: () => {
+                DragRock.fade(volume, 0, 300, id);
+                setTimeout(() => DragRock.stop(id), 300);
+                sound = undefined;
+            }
+        }
+    };
+
+    let sound: ReturnType<typeof playSound> | undefined;
+    let isAdvancing = false;
+
     scene.gameObjectStage.withStep(() => {
-        const { templeLever } = progress.flags.jungle;
-        templeLever.position = approachLinear(templeLever.position, templeLever.on ? 1 : 0, 1 / (60 * 6));
-    });
+            const prevPosition = templeLever.position;
+            templeLever.position = approachLinear(templeLever.position, templeLever.on ? 1 : 0, 1 / (60 * 6));
+            isAdvancing = prevPosition !== templeLever.position;
+            if (silent)
+                return;
+
+            if (isAdvancing) {
+                if (!sound)
+                    sound = playSound();
+            }
+            else if (sound) {
+                sound.stop();
+            }
+        })
+        .on('removed', () => sound && sound.stop());
+
+    return {
+        get isAdvancing() {
+            return isAdvancing;
+        }
+    }
 }
 
 export const jungleBigKeyTextures = subimageTextures(BigKey2, 3);

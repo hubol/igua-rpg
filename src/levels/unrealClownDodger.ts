@@ -8,12 +8,14 @@ import {sleep} from "../cutscene/sleep";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
-import {jungleBigKeyTextures} from "./jungleTemple";
+import {advanceTempleMovingWall, jungleBigKeyTextures} from "./jungleTemple";
 import {jukebox} from "../igua/jukebox";
 import {ClownDodgerMusic} from "../musics";
 import {wait} from "../cutscene/wait";
 
 export async function UnrealClownDodger() {
+    advanceTempleMovingWall(true);
+
     jukebox.play(ClownDodgerMusic);
     scene.backgroundColor = 0x3E2F2F;
     scene.terrainColor = 0x912F24;

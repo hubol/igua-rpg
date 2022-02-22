@@ -12,8 +12,8 @@ import {lever} from "../gameObjects/lever";
 import {Sprite} from "pixi.js";
 import {progress} from "../igua/data/progress";
 import {ActivateLever} from "../sounds";
-import {show} from "../cutscene/dialog";
 import {approachLinear} from "../utils/math/number";
+import {sleep} from "../cutscene/sleep";
 
 export function JungleTown() {
     jukebox.play(JungleMusic);
@@ -25,12 +25,22 @@ export function JungleTown() {
 
     jungleTempleLever().at(level.TempleLever).show();
 
-    advanceTempleMovingWall();
+    const wall = advanceTempleMovingWall(false, true);
+    level.JungleTempleExterior.withAsync(async () => {
+        while (true) {
+            if (wall.isAdvancing) {
+                level.JungleTempleExterior.x -= 1;
+                await sleep(100);
+                level.JungleTempleExterior.x += 1;
+            }
+            await sleep(100);
+        }
+    })
 }
 
 function jungleTempleLever() {
     const { templeLever } = progress.flags.jungle;
-    const offAngle = -45;
+    const offAngle = 45;
 
     const getTargetAngle = () => templeLever.on ? -offAngle : offAngle;
 
