@@ -276,7 +276,7 @@
           "y": 352,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "JungleTemple", "checkpointName": "", "name": "", "depth": 0}
         },
         {
           "name": "Checkpoint",
@@ -450,7 +450,17 @@
       "gridCellsX": 169,
       "gridCellsY": 56,
       "decals": [
-        {"x": 592, "y": 392, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "vine small.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 592,
+          "y": 392,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },
@@ -475,7 +485,17 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 741, "y": 334, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "sign/neon inn.png", "originX": 0, "originY": 0}
+        {
+          "x": 741,
+          "y": 334,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "sign/neon inn.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },
@@ -500,9 +520,39 @@
           "originY": 1,
           "values": {"name": ""}
         },
-        {"x": 912, "y": 294, "scaleX": 0.5, "scaleY": 1, "rotation": 0, "texture": "jungle/plank.png", "originX": 0, "originY": 0},
-        {"x": 912, "y": 304, "scaleX": 0.5, "scaleY": 1, "rotation": 0, "texture": "jungle/plank.png", "originX": 0, "originY": 0},
-        {"x": 912, "y": 315, "scaleX": 0.5, "scaleY": 1, "rotation": 0, "texture": "jungle/plank.png", "originX": 0, "originY": 0},
+        {
+          "x": 912,
+          "y": 294,
+          "scaleX": 0.5,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/plank.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 912,
+          "y": 304,
+          "scaleX": 0.5,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/plank.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 912,
+          "y": 315,
+          "scaleX": 0.5,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/plank.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
         {
           "x": 928,
           "y": 307,
@@ -525,8 +575,28 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 700, "y": 304, "scaleX": 2.25, "scaleY": 1, "rotation": 0, "texture": "jungle/plank.png", "originX": 0, "originY": 0},
-        {"x": 690, "y": 315, "scaleX": 2.875, "scaleY": 1, "rotation": 0, "texture": "jungle/plank.png", "originX": 0, "originY": 0},
+        {
+          "x": 700,
+          "y": 304,
+          "scaleX": 2.25,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/plank.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 690,
+          "y": 315,
+          "scaleX": 2.875,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/plank.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
         {
           "x": 776,
           "y": 376,

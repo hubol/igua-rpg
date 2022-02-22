@@ -31,6 +31,9 @@ export const inventory = {
         else
             progress.inventory.push(potion);
     },
+    find(potion: PotionType) {
+        return progress.inventory.indexOf(potion);
+    },
     count(potion: PotionType) {
         return progress.inventory.filter(x => x === potion).length;
     },

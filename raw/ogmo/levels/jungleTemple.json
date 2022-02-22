@@ -1,0 +1,271 @@
+{
+  "ogmoVersion": "3.4.0",
+  "width": 512,
+  "height": 256,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 0,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 224,
+          "width": 512,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 1,
+          "_eid": "55913988",
+          "x": 32,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "JungleTown", "checkpointName": "FromTemple", "name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 2,
+          "_eid": "55913988",
+          "x": 192,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "UnrealClownDodger", "checkpointName": "", "name": "Door1", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 3,
+          "_eid": "55913988",
+          "x": 272,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "UnrealRoyalChamber", "checkpointName": "", "name": "Door2", "depth": 3}
+        },
+        {
+          "name": "Door",
+          "id": 4,
+          "_eid": "55913988",
+          "x": 352,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "", "checkpointName": "", "name": "Door3", "depth": 3}
+        },
+        {
+          "name": "Block",
+          "id": 7,
+          "_eid": "55823268",
+          "x": 488,
+          "y": 0,
+          "width": 24,
+          "height": 152,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 9,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 152,
+          "width": 24,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 10,
+          "_eid": "55823268",
+          "x": 488,
+          "y": 152,
+          "width": 24,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 11,
+          "_eid": "55988047",
+          "x": 80,
+          "y": 224,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "Sign",
+          "id": 12,
+          "_eid": "86706091",
+          "x": 128,
+          "y": 224,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "Big Key", "message": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 14,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 0,
+          "width": 24,
+          "height": 152,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 15,
+          "_eid": "55823268",
+          "x": 80,
+          "y": 0,
+          "width": 352,
+          "height": 152,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 17,
+          "_eid": "25971607",
+          "x": 263,
+          "y": 112,
+          "width": 50,
+          "height": 28,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "BigKey", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 18,
+          "_eid": "55823268",
+          "x": 328,
+          "y": 184,
+          "width": 80,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "MovingWall", "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "decals": [
+        {
+          "x": 52,
+          "y": 0,
+          "scaleX": 8,
+          "scaleY": 2,
+          "rotation": 0,
+          "texture": "glowing circle.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 208,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key yellow.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "Key1"}
+        },
+        {
+          "x": 288,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key yellow.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "Key2"}
+        },
+        {
+          "x": 368,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key yellow.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "Key3"}
+        },
+        {"x": 460, "y": 0, "scaleX": 8, "scaleY": 2, "rotation": 0, "texture": "glowing circle.png", "originX": 0.5, "originY": 0.5}
+      ],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    }
+  ]
+}

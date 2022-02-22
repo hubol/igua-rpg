@@ -75,11 +75,12 @@ export function giantDuck() {
             root.charge();
             const r = reticle(mouth);
             await sleep(3000);
-            const b = empBlast(96, 4, progress.maxHealth, 1000).withStep(() => b.at(player)).show();
+            const b = empBlast(96, 4, 0, 1000).withStep(() => b.at(player)).show();
             await wait(() => b.wentHostile);
             r.destroy();
-            const playerHealth = progress.health;
-            await wait(() => progress.health <= Math.max(playerHealth - 78, 0));
+            player.damage(progress.health);
+            if (player.isDead)
+                return;
             root.defeated = true;
             agape = false;
             excited = false;

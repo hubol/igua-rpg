@@ -38,6 +38,7 @@ import { JunglePlank } from "./textures";
 import { JungleHouse1 } from "./textures";
 import { SignNeonInn } from "./textures";
 import { SignNeonBar } from "./textures";
+import { KeyYellow } from "./textures";
 import { DinerTable } from "./textures";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { resolveBoulder } from "./gameObjects/boulder";
@@ -3224,6 +3225,97 @@ PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":136,"y":128
 }
 };
 
+export const JungleTempleArgs = {
+    width: 512,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    GlowingCircle: resolveDecalGameObject({
+    x: 52,
+y: 0,
+originX: 0.5,
+originY: 0.5,
+scaleX: 8,
+scaleY: 2,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingCircle
+}),
+Key1: resolveDecalGameObject({
+    x: 208,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: KeyYellow
+}),
+Key2: resolveDecalGameObject({
+    x: 288,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: KeyYellow
+}),
+Key3: resolveDecalGameObject({
+    x: 368,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: KeyYellow
+}),
+GlowingCircle_1: resolveDecalGameObject({
+    x: 460,
+y: 0,
+originX: 0.5,
+originY: 0.5,
+scaleX: 8,
+scaleY: 2,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingCircle
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":512,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":32,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_1","levelName":"JungleTown","checkpointName":"FromTemple","name":"","depth":0}),
+// @ts-ignore
+Door1: resolveDoor({"type":"Door","x":192,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_2","levelName":"UnrealClownDodger","checkpointName":"","name":"Door1","depth":0}),
+// @ts-ignore
+Door2: resolveDoor({"type":"Door","x":272,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_3","levelName":"UnrealRoyalChamber","checkpointName":"","name":"Door2","depth":3}),
+// @ts-ignore
+Door3: resolveDoor({"type":"Door","x":352,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"","checkpointName":"","name":"Door3","depth":3}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":488,"y":0,"width":24,"height":152,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":152,"width":24,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":488,"y":152,"width":24,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_10","name":"","depth":0}),
+Player: {"type":"Player","x":80,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_11","faceRight":true,"name":"","depth":0},
+// @ts-ignore
+Sign: resolveSign({"type":"Sign","x":128,"y":224,"flippedX":false,"flippedY":false,"uid":"86706091_12","title":"Big Key","message":"","name":"","depth":0}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":0,"y":0,"width":24,"height":152,"flippedX":false,"flippedY":false,"uid":"55823268_14","name":"","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":80,"y":0,"width":352,"height":152,"flippedX":false,"flippedY":false,"uid":"55823268_15","name":"","depth":0}),
+// @ts-ignore
+BigKey: resolveRegion({"type":"Region","x":263,"y":112,"width":50,"height":28,"flippedX":false,"flippedY":false,"uid":"25971607_17","name":"BigKey","depth":0}),
+// @ts-ignore
+MovingWall: resolveBlock({"type":"Block","x":328,"y":184,"width":80,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_18","name":"MovingWall","depth":0})
+};
+}
+};
+
 export const JungleTownArgs = {
     width: 1352,
 height: 448,
@@ -3427,7 +3519,7 @@ Block_6: resolveBlock({"type":"Block","x":0,"y":384,"width":288,"height":64,"fli
 // @ts-ignore
 Pool: resolvePool({"type":"Pool","x":288,"y":416,"width":576,"height":32,"flippedX":false,"flippedY":false,"uid":"38353047_22","name":"","depth":2}),
 // @ts-ignore
-Door_2: resolveDoor({"type":"Door","x":160,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_23","levelName":"","checkpointName":"","name":"","depth":0}),
+Door_2: resolveDoor({"type":"Door","x":160,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_23","levelName":"JungleTemple","checkpointName":"","name":"","depth":0}),
 FromBar: {"type":"Checkpoint","x":912,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_24","name":"FromBar","faceRight":false,"depth":0},
 FromInn: {"type":"Checkpoint","x":672,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_25","name":"FromInn","faceRight":false,"depth":0},
 FromTemple: {"type":"Checkpoint","x":216,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_26","name":"FromTemple","faceRight":true,"depth":0},

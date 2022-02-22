@@ -47,9 +47,11 @@ export function JungleSickIguana() {
             await show('You are always welcome in my home.');
         }
         else {
-            if (inventory.count('BitterMedicine') > 0) {
+            const medicineIndex = inventory.find('BitterMedicine');
+            if (medicineIndex > -1) {
                 sickIguana.healed = true;
                 await show(`Oh, you have the medicine.`);
+                inventory.remove(medicineIndex);
                 await sleep(250);
                 ConsumeMedicine.play();
                 await sleep(500);
