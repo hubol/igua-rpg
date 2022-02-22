@@ -1,4 +1,3 @@
-import {Vector} from "../utils/math/vector";
 import {Sprite} from "pixi.js";
 import {LockedDoor, OpenDoor} from "../textures";
 import {merge} from "../utils/merge";
@@ -27,7 +26,7 @@ function door(levelName: string, checkpointName: string)
                             level.goto(sprite.levelName);
                         });
 
-                cutscene.play(async () => await show("The door is locked."));
+                cutscene.play(async () => await show("Closed."));
             }
         });
     return sprite;

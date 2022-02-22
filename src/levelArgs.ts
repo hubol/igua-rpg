@@ -3481,11 +3481,11 @@ Block: resolveBlock({"type":"Block","x":1088,"y":416,"width":264,"height":32,"fl
 SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":1088,"y":384,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_1","name":"","depth":0}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":864,"y":384,"width":224,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
-Player: {"type":"Player","x":1264,"y":416,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":false,"name":"","depth":0},
+Player: {"type":"Player","x":1272,"y":416,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":false,"name":"","depth":0},
 // @ts-ignore
 Gate: resolveGate({"type":"Gate","x":1320,"y":384,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_4","levelName":"JungleFromDesert","checkpointName":"FromTown","name":"","depth":0}),
 // @ts-ignore
-Sign: resolveSign({"type":"Sign","x":1000,"y":384,"flippedX":false,"flippedY":false,"uid":"86706091_5","title":"Town","message":"This is the jungle town.","name":"","depth":0}),
+Sign: resolveSign({"type":"Sign","x":1200,"y":416,"flippedX":false,"flippedY":false,"uid":"86706091_5","title":"Town","message":"This is the jungle town.","name":"","depth":0}),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":936,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_6","levelName":"","checkpointName":"","name":"","depth":0}),
 // @ts-ignore
