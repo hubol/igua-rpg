@@ -29,13 +29,17 @@ import { CracksA } from "./textures";
 import { VineSmall } from "./textures";
 import { PoppingRocksBox } from "./textures";
 import { resolveJungleTree } from "./gameObjects/jungleTree";
-import { resolveDoor } from "./gameObjects/door";
-import { DinerTable } from "./textures";
-import { resolvePool } from "./gameObjects/pool";
 import { resolveValuableBlue } from "./gameObjects/valuable";
+import { resolveDoor } from "./gameObjects/door";
+import { resolvePool } from "./gameObjects/pool";
 import { resolveSign } from "./gameObjects/sign";
-import { resolveCommonClown } from "./gameObjects/commonClown";
+import { JungleTempleExterior } from "./textures";
+import { JunglePlank } from "./textures";
 import { JungleHouse1 } from "./textures";
+import { SignNeonInn } from "./textures";
+import { SignNeonBar } from "./textures";
+import { DinerTable } from "./textures";
+import { resolveCommonClown } from "./gameObjects/commonClown";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { CloudLong } from "./textures";
 import { KeyRed } from "./textures";
@@ -3059,7 +3063,10 @@ JungleTree_8: resolveJungleTree({"type":"JungleTree","x":1128,"y":512,"height":3
 // @ts-ignore
 JungleTree_9: resolveJungleTree({"type":"JungleTree","x":1360,"y":520,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_39","name":"","depth":4}),
 // @ts-ignore
-SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":1504,"y":448,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_43","name":"","depth":0})
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":1504,"y":448,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_43","name":"","depth":0}),
+// @ts-ignore
+Gate_1: resolveGate({"type":"Gate","x":0,"y":408,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_44","levelName":"JungleTown","checkpointName":"FromDesert","name":"","depth":0}),
+FromTown: {"type":"Checkpoint","x":72,"y":440,"flippedX":false,"flippedY":false,"uid":"55940370_45","name":"FromTown","faceRight":true,"depth":0}
 };
 }
 };
@@ -3213,6 +3220,241 @@ Window: resolveRegion({"type":"Region","x":136,"y":96,"width":72,"height":32,"fl
 JungleTree: resolveJungleTree({"type":"JungleTree","x":192,"y":200,"height":168,"flippedX":false,"flippedY":false,"uid":"25711099_10","name":"","depth":4}),
 // @ts-ignore
 PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":136,"y":128,"width":72,"flippedX":false,"flippedY":false,"uid":"55841307_11","visible":false,"name":"","depth":0})
+};
+}
+};
+
+export const JungleTownArgs = {
+    width: 1352,
+height: 448,
+gameObjectsSupplier: () => {
+  return {
+    VineSmall: resolveDecalGameObject({
+    x: 592,
+y: 392,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "FrontDecals",
+texture: VineSmall
+}),
+SignNeonBar: resolveDecalGameObject({
+    x: 904,
+y: 341,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SignNeonBar
+}),
+SignNeonInn: resolveDecalGameObject({
+    x: 741,
+y: 334,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SignNeonInn
+}),
+JungleHouse1: resolveDecalGameObject({
+    x: 928,
+y: 384,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleHouse1
+}),
+JunglePlank: resolveDecalGameObject({
+    x: 912,
+y: 294,
+originX: 0,
+originY: 0,
+scaleX: 0.5,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlank
+}),
+JunglePlank_1: resolveDecalGameObject({
+    x: 912,
+y: 304,
+originX: 0,
+originY: 0,
+scaleX: 0.5,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlank
+}),
+JunglePlank_2: resolveDecalGameObject({
+    x: 912,
+y: 315,
+originX: 0,
+originY: 0,
+scaleX: 0.5,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlank
+}),
+VineSmall_1: resolveDecalGameObject({
+    x: 928,
+y: 307,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VineSmall
+}),
+JungleHouse1_1: resolveDecalGameObject({
+    x: 736,
+y: 344,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleHouse1
+}),
+JunglePlank_3: resolveDecalGameObject({
+    x: 700,
+y: 304,
+originX: 0,
+originY: 0,
+scaleX: 2.25,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlank
+}),
+JunglePlank_4: resolveDecalGameObject({
+    x: 690,
+y: 315,
+originX: 0,
+originY: 0,
+scaleX: 2.875,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlank
+}),
+SpikyBrushB: resolveDecalGameObject({
+    x: 776,
+y: 376,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+JungleTempleExterior: resolveDecalGameObject({
+    x: 40,
+y: 384,
+originX: 0,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleTempleExterior
+}),
+WiggleVine: resolveDecalGameObject({
+    x: 608,
+y: 380,
+originX: 0.5,
+originY: 0,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VineSmall
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":1088,"y":416,"width":264,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":1088,"y":384,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_1","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":864,"y":384,"width":224,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+Player: {"type":"Player","x":1264,"y":416,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+Gate: resolveGate({"type":"Gate","x":1320,"y":384,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_4","levelName":"JungleFromDesert","checkpointName":"FromTown","name":"","depth":0}),
+// @ts-ignore
+Sign: resolveSign({"type":"Sign","x":1000,"y":384,"flippedX":false,"flippedY":false,"uid":"86706091_5","title":"Town","message":"This is the jungle town.","name":"","depth":0}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":936,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_6","levelName":"","checkpointName":"","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":882,"y":328,"width":92,"flippedX":false,"flippedY":false,"uid":"55841307_7","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":904,"y":294,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_8","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":800,"y":384,"width":64,"flippedX":false,"flippedY":false,"uid":"55841307_10","visible":true,"name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":672,"y":384,"width":128,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_11","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":728,"y":376,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_12","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":672,"y":376,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_13","name":"","depth":0}),
+// @ts-ignore
+Door_1: resolveDoor({"type":"Door","x":696,"y":344,"flippedX":false,"flippedY":false,"uid":"55913988_14","levelName":"","checkpointName":"","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":700,"y":304,"width":72,"flippedX":false,"flippedY":false,"uid":"55841307_15","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":576,"y":376,"width":96,"flippedX":false,"flippedY":false,"uid":"55841307_16","visible":true,"name":"","depth":0}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":448,"y":376,"width":128,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_17","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_5: resolvePipeHorizontal({"type":"PipeHorizontal","x":288,"y":384,"width":96,"flippedX":false,"flippedY":false,"uid":"55841307_18","visible":true,"name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":384,"y":376,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_19","name":"","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":384,"y":384,"width":104,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
+// @ts-ignore
+Block_6: resolveBlock({"type":"Block","x":0,"y":384,"width":288,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_21","name":"","depth":0}),
+// @ts-ignore
+Pool: resolvePool({"type":"Pool","x":288,"y":416,"width":576,"height":32,"flippedX":false,"flippedY":false,"uid":"38353047_22","name":"","depth":2}),
+// @ts-ignore
+Door_2: resolveDoor({"type":"Door","x":160,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_23","levelName":"","checkpointName":"","name":"","depth":0}),
+FromBar: {"type":"Checkpoint","x":912,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_24","name":"FromBar","faceRight":false,"depth":0},
+FromInn: {"type":"Checkpoint","x":672,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_25","name":"FromInn","faceRight":false,"depth":0},
+FromTemple: {"type":"Checkpoint","x":216,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_26","name":"FromTemple","faceRight":true,"depth":0},
+// @ts-ignore
+PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":40,"y":237,"width":35,"flippedX":false,"flippedY":false,"uid":"55841307_27","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":222,"y":237,"width":35,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":75,"y":316,"width":147,"flippedX":false,"flippedY":false,"uid":"55841307_29","visible":false,"name":"","depth":0}),
+// @ts-ignore
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":58,"y":160,"flippedX":false,"flippedY":false,"uid":"55991906_30","name":"","depth":0}),
+// @ts-ignore
+ValuableBlue_1: resolveValuableBlue({"type":"ValuableBlue","x":239,"y":160,"flippedX":false,"flippedY":false,"uid":"55991906_31","name":"","depth":0}),
+// @ts-ignore
+JungleTree: resolveJungleTree({"type":"JungleTree","x":1216,"y":456,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_32","name":"","depth":4}),
+// @ts-ignore
+JungleTree_1: resolveJungleTree({"type":"JungleTree","x":1008,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_33","name":"","depth":4}),
+// @ts-ignore
+JungleTree_2: resolveJungleTree({"type":"JungleTree","x":848,"y":472,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_34","name":"","depth":4}),
+// @ts-ignore
+JungleTree_3: resolveJungleTree({"type":"JungleTree","x":616,"y":496,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_35","name":"","depth":4}),
+// @ts-ignore
+JungleTree_4: resolveJungleTree({"type":"JungleTree","x":408,"y":496,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_36","name":"","depth":4}),
+// @ts-ignore
+JungleTree_5: resolveJungleTree({"type":"JungleTree","x":96,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_37","name":"","depth":4}),
+// @ts-ignore
+JungleTree_6: resolveJungleTree({"type":"JungleTree","x":272,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_38","name":"","depth":4})
 };
 }
 };

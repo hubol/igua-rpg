@@ -55,6 +55,8 @@ export let GroundSpeckles: PIXI.Texture;
 export let HotTerrain: PIXI.Texture;
 export let IguaRpgTitle: PIXI.Texture;
 export let JungleHouse1: PIXI.Texture;
+export let JunglePlank: PIXI.Texture;
+export let JungleTempleExterior: PIXI.Texture;
 export let JungleTreeBranch: PIXI.Texture;
 export let JungleTreeFoliage: PIXI.Texture;
 export let JungleTreeTrunk: PIXI.Texture;
@@ -119,6 +121,8 @@ export let RightPipeEnd: PIXI.Texture;
 export let RockCracks: PIXI.Texture;
 export let Rope: PIXI.Texture;
 export let RoseVase: PIXI.Texture;
+export let SignNeonBar: PIXI.Texture;
+export let SignNeonInn: PIXI.Texture;
 export let SignInn: PIXI.Texture;
 export let SignTavern: PIXI.Texture;
 export let Sign: PIXI.Texture;
@@ -310,6 +314,12 @@ export function loadTexturesAsync()
 
     const JungleHouse1Path = require("./images/jungle/house1.png");
     loader.add(JungleHouse1Path); 
+
+    const JunglePlankPath = require("./images/jungle/plank.png");
+    loader.add(JunglePlankPath); 
+
+    const JungleTempleExteriorPath = require("./images/jungle/temple exterior.png");
+    loader.add(JungleTempleExteriorPath); 
 
     const JungleTreeBranchPath = require("./images/jungle/tree branch.png");
     loader.add(JungleTreeBranchPath); 
@@ -503,6 +513,12 @@ export function loadTexturesAsync()
     const RoseVasePath = require("./images/rose vase.png");
     loader.add(RoseVasePath); 
 
+    const SignNeonBarPath = require("./images/sign/neon bar.png");
+    loader.add(SignNeonBarPath); 
+
+    const SignNeonInnPath = require("./images/sign/neon inn.png");
+    loader.add(SignNeonInnPath); 
+
     const SignInnPath = require("./images/sign inn.png");
     loader.add(SignInnPath); 
 
@@ -641,6 +657,8 @@ export function loadTexturesAsync()
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             IguaRpgTitle = resources[IguaRpgTitlePath]?.texture as PIXI.Texture;
             JungleHouse1 = resources[JungleHouse1Path]?.texture as PIXI.Texture;
+            JunglePlank = resources[JunglePlankPath]?.texture as PIXI.Texture;
+            JungleTempleExterior = resources[JungleTempleExteriorPath]?.texture as PIXI.Texture;
             JungleTreeBranch = resources[JungleTreeBranchPath]?.texture as PIXI.Texture;
             JungleTreeFoliage = resources[JungleTreeFoliagePath]?.texture as PIXI.Texture;
             JungleTreeTrunk = resources[JungleTreeTrunkPath]?.texture as PIXI.Texture;
@@ -705,6 +723,8 @@ export function loadTexturesAsync()
             RockCracks = resources[RockCracksPath]?.texture as PIXI.Texture;
             Rope = resources[RopePath]?.texture as PIXI.Texture;
             RoseVase = resources[RoseVasePath]?.texture as PIXI.Texture;
+            SignNeonBar = resources[SignNeonBarPath]?.texture as PIXI.Texture;
+            SignNeonInn = resources[SignNeonInnPath]?.texture as PIXI.Texture;
             SignInn = resources[SignInnPath]?.texture as PIXI.Texture;
             SignTavern = resources[SignTavernPath]?.texture as PIXI.Texture;
             Sign = resources[SignPath]?.texture as PIXI.Texture;

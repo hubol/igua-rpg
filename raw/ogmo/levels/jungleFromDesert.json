@@ -379,6 +379,28 @@
           "originY": 0,
           "flippedY": true,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 44,
+          "_eid": "55920197",
+          "x": 0,
+          "y": 408,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "JungleTown", "checkpointName": "FromDesert", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 45,
+          "_eid": "55940370",
+          "x": 72,
+          "y": 440,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromTown", "faceRight": true, "depth": 0}
         }
       ]
     },
