@@ -157,6 +157,11 @@ export const Dig = new Howl({
     
 });
 
+export const DragRockLow = new Howl({
+    src: [require("./sound/drag rock low.ogg"), require("./sound/drag rock low.mp3")],
+    
+});
+
 export const DragRock = new Howl({
     src: [require("./sound/drag rock.ogg"), require("./sound/drag rock.mp3")],
     

@@ -9,7 +9,7 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {JungleTempleArgs} from "../levelArgs";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
 import {approachLinear} from "../utils/math/number";
-import {DragRock} from "../sounds";
+import {DragRockLow} from "../sounds";
 
 export function JungleTemple() {
     scene.backgroundColor = 0x755E9B;
@@ -40,15 +40,14 @@ export function advanceTempleMovingWall(silent = false, distant = false) {
     const { templeLever } = progress.flags.jungle;
 
     const playSound = () => {
-        const id = DragRock.play();
-        const volume = distant ? 0.2 : 0.8;
-        DragRock.rate(0.8, id);
-        DragRock.volume(volume, id);
-        DragRock.loop(true, id);
+        const id = DragRockLow.play();
+        const volume = distant ? 0.2 : 0.6;
+        DragRockLow.volume(volume, id);
+        DragRockLow.loop(true, id);
         return {
             stop: () => {
-                DragRock.fade(volume, 0, 300, id);
-                setTimeout(() => DragRock.stop(id), 300);
+                DragRockLow.fade(volume, 0, 300, id);
+                setTimeout(() => DragRockLow.stop(id), 300);
                 sound = undefined;
             }
         }
