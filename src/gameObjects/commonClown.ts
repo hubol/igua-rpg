@@ -90,9 +90,8 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
         container.y += container.vspeed;
 
         if (player.collides(mask) && isPlayerMoving() && container.dangerous) {
-            // container.vspeed = Math.min(-rng(), container.vspeed);
-            // if (Math.abs(knockbackSpeed) < 0.5)
-            //     knockbackSpeed = Math.max(2, Math.abs(player.hspeed) * 2) * Math.sign(player.scale.x);
+            if (invulnerable > 0 && container.vspeed < 0 && player.vspeed >= 0)
+                player.y += container.vspeed;
             if (invulnerable <= 0 || (invulnerable <= 15 && player.vspeed > 1)) {
                 player.engine.knockback.x = (player.x - container.x) / 8;
                 if (Math.abs(player.engine.knockback.x) < 3) {
@@ -114,8 +113,6 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
                     return container.destroy();
                 }
                 ClownHurt.play();
-                // player.vspeed *= -1;
-                // player.vspeed += Math.sign(player.y - (container.y + sprite.y)) * 1.7;
                 invulnerable = 30;
             }
         }
