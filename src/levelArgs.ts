@@ -3294,7 +3294,7 @@ Door1: resolveDoor({"type":"Door","x":192,"y":192,"flippedX":false,"flippedY":fa
 // @ts-ignore
 Door2: resolveDoor({"type":"Door","x":272,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_3","levelName":"UnrealRoyalChamber","checkpointName":"","name":"Door2","depth":3}),
 // @ts-ignore
-Door3: resolveDoor({"type":"Door","x":352,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"","checkpointName":"","name":"Door3","depth":3}),
+Door3: resolveDoor({"type":"Door","x":352,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"UnrealBalls","checkpointName":"","name":"Door3","depth":3}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":488,"y":0,"width":24,"height":152,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
 // @ts-ignore
@@ -3703,6 +3703,24 @@ SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":48,"y":32,"width":32,"heig
 // @ts-ignore
 Gate_1: resolveGate({"type":"Gate","x":0,"y":80,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_25","levelName":"JungleFromDesert","checkpointName":"FromCave","name":"","depth":0}),
 FromJungle: {"type":"Checkpoint","x":64,"y":112,"flippedX":false,"flippedY":false,"uid":"55940370_26","name":"FromJungle","faceRight":true,"depth":0}
+};
+}
+};
+
+export const UnrealBallsArgs = {
+    width: 256,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":256,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":32,"width":32,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":224,"y":32,"width":32,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+Player: {"type":"Player","x":128,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_4","faceRight":false,"name":"","depth":0}
 };
 }
 };

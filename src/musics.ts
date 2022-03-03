@@ -32,6 +32,11 @@ export const Hemaboss1 = new Howl({
     preload: false
 });
 
+export const JungleUnreal3 = new Howl({
+    src: [require("./music/jungle unreal 3.ogg"), require("./music/jungle unreal 3.mp3")],
+    preload: false
+});
+
 export const JungleMusic = new Howl({
     src: [require("./music/jungle-music.ogg"), require("./music/jungle-music.mp3")],
     preload: false

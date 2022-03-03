@@ -4,7 +4,7 @@ import {progress} from "../igua/data/progress";
 import {makeTempleLevelUtil} from "../igua/gameplay/templeLevelUtil";
 import {scene} from "../igua/scene";
 import {jukebox} from "../igua/jukebox";
-import {ClownDodgerMusic, JungleMusic, RoyalChamberMusic, Temple} from "../musics";
+import {ClownDodgerMusic, JungleMusic, JungleUnreal3, RoyalChamberMusic, Temple} from "../musics";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {JungleTempleArgs} from "../levelArgs";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
@@ -17,7 +17,7 @@ export function JungleTemple() {
 
     portalFluidConfig.gotoLevelName = 'JungleTemple';
 
-    jukebox.play(Temple).warm(ClownDodgerMusic, RoyalChamberMusic, JungleMusic);
+    jukebox.play(Temple).warm(ClownDodgerMusic, RoyalChamberMusic, JungleMusic, JungleUnreal3);
     const level = applyOgmoLevel(JungleTempleArgs);
 
     const { key, bigKey, templeLever } = progress.flags.jungle;
