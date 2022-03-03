@@ -5,7 +5,6 @@ import {CollectGeneric} from "../../sounds";
 import {player} from "../../gameObjects/player";
 import {scene} from "../../igua/scene";
 import {cutscene, Cutscene} from "../../cutscene/cutscene";
-import {show} from "../../cutscene/dialog";
 
 declare global {
     namespace PIXI {

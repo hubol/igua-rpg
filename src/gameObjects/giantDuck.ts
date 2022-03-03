@@ -1,6 +1,6 @@
 import {DuckGiant, MessageBox} from "../textures";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
-import { wait } from "../cutscene/wait";
+import {wait} from "../cutscene/wait";
 import {player} from "./player";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {container} from "../utils/pixi/container";
@@ -19,6 +19,7 @@ import {progress} from "../igua/data/progress";
 import {ballons} from "./ballons";
 import {distance} from "../utils/math/vector";
 import {valuable} from "./valuable";
+import {getPlayerCenter} from "../igua/gameplay/getCenter";
 
 const [tailTexture, neutralTexture, agapeTexture] = subimageTextures(DuckGiant, 3);
 
@@ -146,13 +147,6 @@ export function giantDuck() {
     root.addChild(c, mouth);
 
     return root;
-}
-
-function getPlayerCenter() {
-    const dbounds = player.getBounds();
-    const dx = Math.round(dbounds.x + dbounds.width / 2);
-    const dy = Math.round(dbounds.y + dbounds.height / 2);
-    return [dx, dy];
 }
 
 function reticle(source: DisplayObject) {

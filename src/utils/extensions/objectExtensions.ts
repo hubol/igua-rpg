@@ -3,6 +3,7 @@ import {normalize, Vector} from "../math/vector";
 declare global {
     interface Object {
         vcpy(): Vector;
+        vround(): Vector;
         add(x: number): Vector;
         add(x: number, y: number): Vector;
         add(vector: Vector): Vector;
@@ -106,6 +107,16 @@ Object.defineProperties(Object.prototype, {
     vcpy: {
         value: function () {
             return { x: this.x, y: this.y };
+        },
+        enumerable: false,
+        configurable: true,
+        writable: true,
+    },
+    vround: {
+        value: function () {
+            this.x = Math.round(this.x);
+            this.y = Math.round(this.y);
+            return this;
         },
         enumerable: false,
         configurable: true,

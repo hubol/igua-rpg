@@ -3,7 +3,7 @@ import * as PIXI from "pixi.js";
 import {CancellationToken} from "pissant";
 import {AsshatTicker} from "../asshatTicker";
 import {PromiseFn, runInIguaZone} from "../../cutscene/runInIguaZone";
-import {Container, filters} from "pixi.js";
+import {Container, filters, Rectangle} from "pixi.js";
 import {toHexColorString} from "../toHexColorString";
 import {colord} from "colord";
 
@@ -40,6 +40,11 @@ declare global {
         export interface Transform {
             onPositionChanged(cb: () => void): this;
             onScaleChanged(cb: () => void): this;
+        }
+
+        export interface Rectangle {
+            anchor(x: number, y: number): Vector;
+            center: Vector;
         }
     }
 }
@@ -344,5 +349,23 @@ PIXI.Transform.prototype.onScaleChanged = function(cb) {
     (this.scale as any).cb = () => { cb(); (this as any).onChange(); };
     return this;
 }
+
+Object.defineProperties(Rectangle.prototype, {
+    center: {
+        get: function () {
+            return this.anchor(0.5, 0.5);
+        },
+        enumerable: false,
+        configurable: true,
+    },
+    anchor: {
+        value: function (x, y) {
+            return { x: this.x + this.width * x, y: this.y + this.height * y };
+        },
+        enumerable: false,
+        configurable: true,
+        writable: true,
+    },
+});
 
 export default 0;
