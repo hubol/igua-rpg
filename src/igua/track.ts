@@ -25,6 +25,9 @@ export const track = <T extends (...args: any) => any>(fn: T) => {
     return merge(wrappedFn, {
         get instances() {
             return getTrackedDisplayObjects(trackingId) as ReturnType<typeof fn>[];
+        },
+        destroyAll() {
+            [...this.instances].forEach(x => x.destroy());
         }
     });
 }
