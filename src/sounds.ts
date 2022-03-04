@@ -27,6 +27,11 @@ export const BoulderBless = new Howl({
     
 });
 
+export const BounceBall = new Howl({
+    src: [require("./sound/bounce ball.ogg"), require("./sound/bounce ball.mp3")],
+    
+});
+
 export const ChangeLooks = new Howl({
     src: [require("./sound/change looks.ogg"), require("./sound/change looks.mp3")],
     
@@ -139,6 +144,11 @@ export const ConsumePoison = new Howl({
 
 export const ConsumePowder = new Howl({
     src: [require("./sound/consume powder.ogg"), require("./sound/consume powder.mp3")],
+    
+});
+
+export const CrackBall = new Howl({
+    src: [require("./sound/crack ball.ogg"), require("./sound/crack ball.mp3")],
     
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "IguaRPG",
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "levelPaths": [".\\levels"],
   "backgroundColor": "#4074c4ff",
   "gridColor": "#3c4049cc",
@@ -1023,6 +1023,47 @@
       ],
       "texture": "preview-images/pool.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURT2XzgAAAOg3z4kAAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAADdJREFUOE/tyzEOACAIQ9F6/0tL8KfRREe3vgla0DAZQfNCB8LCSL5bBQdkp27qgPXu8RsRf0kTCIoARKXZHu0AAAAASUVORK5CYII="
+    },
+    {
+      "exportID": "35514037",
+      "name": "Spike",
+      "limit": -1,
+      "size": {"x": 14, "y": 14},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
+      ],
+      "texture": "../../src/images/clown spike ball.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAAoklEQVQ4T2M4ePnufwYSAIp6EIeQAVjVvJq8BqwRmySyOEgdhuPQNTcfWfL/xu2VYAzSjFUTyBSQBLJmZI0gzTg18srUgCVBGMT2rzvwH10zhjNBTgEpRsYgjeiasYYoumYJk11gjTDNINsxAg/mPHRbQXyYYpABWP2JTRO+aIL7F5s/0UMaa+DA4grdZrya0SMYWyqCORvFidjSOK4Ih0UJAImcSLfdq4ygAAAAAElFTkSuQmCC"
     }
   ],
   "tilesets": []
