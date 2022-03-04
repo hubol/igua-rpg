@@ -1,5 +1,5 @@
 import {bouncePlayerCircleConditionally} from "../igua/bouncePlayer";
-import {Graphics} from "pixi.js";
+import {Container, Graphics} from "pixi.js";
 import {distance, Vector, vnew} from "../utils/math/vector";
 import {getCenter, getPlayerCenter} from "../igua/gameplay/getCenter";
 import {progress} from "../igua/data/progress";
@@ -14,16 +14,22 @@ import {scene} from "../igua/scene";
 import {colord} from "colord";
 import {sparkleOnce} from "./sparkleSmall";
 import {BounceBall, ClownExplode, CrackBall} from "../sounds";
+import {container} from "../utils/pixi/container";
+import {merge} from "../utils/merge";
 
 type Crack = { path: [start: Vector, ...tail: Vector[]], deps: Crack[], isChild?: boolean, color: number };
 
-export function shatterball(radius = 20) {
+export function shatterBall(radius = 20) {
+    const b = new Graphics().beginFill(0x0D1C7C).drawCircle(0, 0, radius).endFill();
+    const stage = new Container();
     const g = new Graphics();
+
+    const c = merge(container(b, stage, g), { stage, dead: false });
 
     const cracks: Crack[] = [];
 
     function render() {
-        g.clear().beginFill(0x0D1C7C).drawCircle(0, 0, radius).endFill();
+        g.clear();
         for (const { path: [ head, ...tail ], color } of cracks) {
             g.lineStyle(1, color).moveTo(head.x, head.y)
             for (const { x, y } of tail) {
@@ -57,8 +63,10 @@ export function shatterball(radius = 20) {
     async function die() {
         dying = true;
         ClownExplode.play();
-        confetti(radius, radius * 2).show().at(g);
+        confetti(radius, radius * 2).show().at(c);
         await sleep(250);
+        c.dead = true;
+        b.destroy();
         g.destroy();
     }
 
@@ -66,9 +74,9 @@ export function shatterball(radius = 20) {
         if (dying)
             return;
 
-        const dv = getPlayerCenter().add(getCenter(g), -1);
+        const dv = getPlayerCenter().add(getCenter(c), -1);
         dv.vlength = radius;
-        const p = smallPop(12, scene.playerStage).at(dv.vcpy().add(g));
+        const p = smallPop(12, scene.playerStage).at(dv.vcpy().add(c));
         p.life = 0.5;
 
         const crack = findNextCrack(dv.vcpy());
@@ -76,7 +84,7 @@ export function shatterball(radius = 20) {
         advanceCrack(crack, dv);
 
         if (countTerminalCracks() >= 1)
-            g.withAsync(die);
+            c.withAsync(die);
 
         render();
     }
@@ -138,16 +146,16 @@ export function shatterball(radius = 20) {
         if (jiggle < 1) {
             jiggle += 0.1;
             const f = Math.min(1, Math.sin(jiggle * Math.PI) * 1.25) * 0.05;
-            g.scale.set(1 + Math.sin(now.s * Math.PI * 4 + 1) * f, 1 + Math.cos(now.s * Math.PI * 4 + 2) * f)
+            c.scale.set(1 + Math.sin(now.s * Math.PI * 4 + 1) * f, 1 + Math.cos(now.s * Math.PI * 4 + 2) * f)
         }
         else {
-            g.scale.set(1, 1);
+            c.scale.set(1, 1);
         }
 
         if (!p)
-            p = g.vcpy();
+            p = c.vcpy();
         p.add(sp);
-        g.at(p).vround();
+        c.at(p).vround();
         sp.scale(0.99);
         // if (Math.abs(player.x - g.x) < radius * 2) {
         //     if (player.x < g.x)
@@ -157,7 +165,7 @@ export function shatterball(radius = 20) {
         // }
         // sp.x += Math.sin(now.s * Math.PI) * 0.05;
 
-        if (bouncePlayerCircleConditionally(g, radius, 2)) {
+        if (bouncePlayerCircleConditionally(c, radius, 2)) {
             CrackBall.play();
             bounce();
             crack();
@@ -180,10 +188,10 @@ export function shatterball(radius = 20) {
         .withAsync(async () => {
             while (true) {
                 if (sp.vlength > 1)
-                    sparkleOnce(g, scene.parallax1Stage);
+                    sparkleOnce(c, scene.parallax1Stage);
                 await sleep(50 + rng.int(25));
             }
         });
 
-    return g;
+    return c;
 }

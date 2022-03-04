@@ -18,13 +18,14 @@ export function bigKeyMeter<T>(...pieces: [Texture, boolean][])
 export function bigKeyPiece<T>(progress: T, texture: Texture, key: keyof PropertiesOf<T, boolean>)
 {
     const sprite = merge(new Sprite(texture), {
-        onCollect() { }
+        onCollect() { },
+        collectible: true,
     }).trimHitbox();
     if (progress[key])
         sprite.alpha = 0.5;
     return sprite
         .withStep(() => {
-            if (sprite.collides(player))
+            if (sprite.collectible && sprite.collides(player))
             {
                 CollectGeneric.play();
                 (progress as any)[key] = true;

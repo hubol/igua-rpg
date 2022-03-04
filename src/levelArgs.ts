@@ -3721,7 +3721,7 @@ Block_1: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":64,"flipp
 Block_2: resolveBlock({"type":"Block","x":0,"y":32,"width":32,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
 // @ts-ignore
 Block_3: resolveBlock({"type":"Block","x":224,"y":32,"width":32,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
-Player: {"type":"Player","x":120,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_4","faceRight":false,"name":"","depth":0},
+Player: {"type":"Player","x":120,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_4","faceRight":true,"name":"","depth":0},
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":192,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_5","name":"","depth":0}),
 // @ts-ignore
