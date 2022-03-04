@@ -174,7 +174,7 @@ function reticle(source: DisplayObject) {
     const t = IguaText.Large('').withStep(() => {
         if (tprog < 1 && introprog >= 1)
             tprog += 0.05;
-        const text = `Armor:
+        const text = `Guard:
 ${player.isDucking ? 20 : 0}%`;
         const newLength = Math.floor(text.length * tprog);
         if (newLength !== lastTextLength) {

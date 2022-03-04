@@ -12,7 +12,7 @@ import {PoppingRockPop} from "../sounds";
 import {player} from "../gameObjects/player";
 import {trimFrame} from "../utils/pixi/trimFrame";
 import {Texture} from "pixi.js";
-import {jungleBigKeyTextures} from "./jungleTemple";
+import {advanceTempleMovingWall, jungleBigKeyTextures} from "./jungleTemple";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {teleportToTheRoomOfDoors} from "../gameObjects/portalFluid";
@@ -20,6 +20,8 @@ import {teleportToTheRoomOfDoors} from "../gameObjects/portalFluid";
 const keyPieceTexture = trimFrame(new Texture(jungleBigKeyTextures[2].baseTexture, jungleBigKeyTextures[2].frame));
 
 export function UnrealBalls() {
+    advanceTempleMovingWall(true);
+
     scene.backgroundColor = 0x55B3C4;
     scene.terrainColor = 0xCC2C42;
     applyOgmoLevel(UnrealBallsArgs);
