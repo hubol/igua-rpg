@@ -2,7 +2,7 @@ import {scene} from "../igua/scene";
 import {JungleTownArgs} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {jukebox} from "../igua/jukebox";
-import {JungleMusic} from "../musics";
+import {JungleMusic, Temple} from "../musics";
 import {mirror} from "../gameObjects/mirror";
 import {now} from "../utils/now";
 import {advanceTempleMovingWall} from "./jungleTemple";
@@ -16,7 +16,7 @@ import {approachLinear} from "../utils/math/number";
 import {sleep} from "../cutscene/sleep";
 
 export function JungleTown() {
-    jukebox.play(JungleMusic);
+    jukebox.play(JungleMusic).warm(Temple);
     scene.backgroundColor = 0x97D8D8;
     scene.terrainColor = 0x79962E;
     const level = applyOgmoLevel(JungleTownArgs);
