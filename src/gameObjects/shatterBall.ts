@@ -64,7 +64,7 @@ export function shatterBall(radius = 20) {
         dying = true;
         ClownExplode.play();
         confetti(radius, radius * 2).show().at(c);
-        await sleep(250);
+        await sleep(125);
         c.dead = true;
         b.destroy();
         g.destroy();
@@ -98,7 +98,7 @@ export function shatterBall(radius = 20) {
         }
 
         if (branch) {
-            const newCrack = createCrack(crack.path[crack.path.length - 1], true, crack.color);
+            const newCrack = createCrack(crack.path[crack.path.length - 1].vcpy(), true, crack.color);
             // if (rng() < 0.3)
             //     crack.deps.push(newCrack);
             advanceCrack(newCrack, dv, false);
