@@ -92,7 +92,7 @@
           "y": 352,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "JungleBar", "checkpointName": "", "name": "", "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -172,7 +172,7 @@
           "y": 344,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "JungleInn", "checkpointName": "", "name": "", "depth": 0}
         },
         {
           "name": "PipeHorizontal",
@@ -292,7 +292,7 @@
           "name": "Checkpoint",
           "id": 25,
           "_eid": "55940370",
-          "x": 672,
+          "x": 676,
           "y": 376,
           "originX": 6,
           "originY": 12,

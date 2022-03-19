@@ -42,6 +42,9 @@ import { SignNeonInn } from "./textures";
 import { SignNeonBar } from "./textures";
 import { KeyYellow } from "./textures";
 import { DinerTable } from "./textures";
+import { JunglePlankDecoration } from "./textures";
+import { BookCollection } from "./textures";
+import { DontPoster } from "./textures";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { CloudLong } from "./textures";
@@ -54,7 +57,6 @@ import { CrateWooden } from "./textures";
 import { CrudeHouseB } from "./textures";
 import { PaSpeaker } from "./textures";
 import { GreenCable } from "./textures";
-import { DontPoster } from "./textures";
 import { Bottle2 } from "./textures";
 import { Bottle1 } from "./textures";
 import { WhiskeyGlass } from "./textures";
@@ -71,7 +73,6 @@ import { PotteryOrangeDamaged } from "./textures";
 import { Rope } from "./textures";
 import { DesertTemple } from "./textures";
 import { CandleSmallRed } from "./textures";
-import { BookCollection } from "./textures";
 
 export const DesertCostumerArgs = {
     width: 448,
@@ -3074,6 +3075,311 @@ FromTown: {"type":"Checkpoint","x":72,"y":440,"flippedX":false,"flippedY":false,
 }
 };
 
+export const JungleInnArgs = {
+    width: 512,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    GroundSpeckles: resolveDecalGameObject({
+    x: 80,
+y: 157,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_1: resolveDecalGameObject({
+    x: 352,
+y: 221,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+SmallDecorativeRock: resolveDecalGameObject({
+    x: 165,
+y: 146,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_1: resolveDecalGameObject({
+    x: 152,
+y: 146,
+originX: 0.5,
+originY: 1,
+scaleX: -0.8,
+scaleY: 0.8,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+VineSmall: resolveDecalGameObject({
+    x: 424,
+y: 128,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VineSmall
+}),
+VineSmall_1: resolveDecalGameObject({
+    x: 366,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VineSmall
+}),
+GlowingCircle: resolveDecalGameObject({
+    x: 80,
+y: 32,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingCircle
+}),
+GlowingCircle_1: resolveDecalGameObject({
+    x: 232,
+y: 128,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingCircle
+}),
+GlowingCircle_2: resolveDecalGameObject({
+    x: 392,
+y: 72,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingCircle
+}),
+GlowingCircle_3: resolveDecalGameObject({
+    x: 512,
+y: 200,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingCircle
+}),
+DontPoster: resolveDecalGameObject({
+    x: 112,
+y: 104,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: DontPoster
+}),
+JunglePlank: resolveDecalGameObject({
+    x: 48,
+y: 88,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 0.75,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlank
+}),
+BookCollection: resolveDecalGameObject({
+    x: 40,
+y: 78,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: BookCollection
+}),
+OverheadLamp: resolveDecalGameObject({
+    x: 160,
+y: 88,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: OverheadLamp
+}),
+Pipe: resolveDecalGameObject({
+    x: 160,
+y: 82,
+originX: 1,
+originY: 1,
+scaleX: 1,
+scaleY: 10,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Pipe
+}),
+JunglePlankDecoration: resolveDecalGameObject({
+    x: 424,
+y: 160,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlankDecoration
+}),
+JunglePlankDecoration_1: resolveDecalGameObject({
+    x: 376,
+y: 160,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlankDecoration
+}),
+JunglePlankDecoration_2: resolveDecalGameObject({
+    x: 328,
+y: 160,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlankDecoration
+}),
+JunglePlankDecoration_3: resolveDecalGameObject({
+    x: 280,
+y: 160,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlankDecoration
+}),
+JunglePlankDecoration_4: resolveDecalGameObject({
+    x: 232,
+y: 160,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlankDecoration
+}),
+JunglePlankDecoration_5: resolveDecalGameObject({
+    x: 461,
+y: 112,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlankDecoration
+}),
+JunglePlankDecoration_6: resolveDecalGameObject({
+    x: 509,
+y: 112,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlankDecoration
+}),
+Cobweb: resolveDecalGameObject({
+    x: 456,
+y: 128,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Cobweb
+}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":32,"y":112,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"JungleTown","checkpointName":"FromInn","name":"","depth":0}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":-8,"y":144,"width":256,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":0,"width":16,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":16,"y":0,"width":496,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+Player: {"type":"Player","x":80,"y":144,"flippedX":false,"flippedY":false,"uid":"55988047_4","faceRight":true,"name":"","depth":0},
+// @ts-ignore
+Innkeeper: resolveNpc({"type":"NpcIguana","x":160,"y":130,"flippedX":true,"flippedY":false,"uid":"26367058_5","name":"Innkeeper","style":11,"depth":0}),
+SleepHere: {"type":"Anchor","x":400,"y":200,"flippedX":false,"flippedY":false,"uid":"25979726_15","name":"SleepHere","depth":0},
+FromInnSave: {"type":"Checkpoint","x":392,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370_23","name":"FromInnSave","faceRight":false,"depth":0},
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":248,"y":144,"width":96,"height":64,"flippedX":false,"flippedY":false,"uid":"55845599_24","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":248,"y":208,"width":264,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_25","name":"","depth":0}),
+// @ts-ignore
+MovingWall: resolveBlock({"type":"Block","x":216,"y":28,"width":16,"height":120,"flippedX":false,"flippedY":false,"uid":"55823268_26","name":"MovingWall","depth":0}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":8,"y":24,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_28","name":"","depth":0}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":496,"y":16,"width":16,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_29","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":472,"y":184,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_30","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":288,"y":32,"width":80,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_31","name":"","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":368,"y":32,"width":128,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_32","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":472,"y":56,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_33","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":143,"y":137,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_34","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":32,"y":83,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_35","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":144,"y":88,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_36","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":344,"y":160,"width":128,"flippedX":false,"flippedY":false,"uid":"55841307_37","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":413,"y":112,"width":88,"flippedX":false,"flippedY":false,"uid":"55841307_38","visible":false,"name":"","depth":0}),
+// @ts-ignore
+Sign: resolveSign({"type":"Sign","x":472,"y":112,"flippedX":false,"flippedY":false,"uid":"86706091_39","title":"Inn","message":"It's the sign the inn used before they switched to neon.","name":"","depth":0})
+};
+}
+};
+
 export const JungleSickIguanaArgs = {
     width: 256,
 height: 256,
@@ -3500,7 +3806,7 @@ Gate: resolveGate({"type":"Gate","x":1320,"y":384,"width":32,"height":32,"flippe
 // @ts-ignore
 Sign: resolveSign({"type":"Sign","x":1200,"y":416,"flippedX":false,"flippedY":false,"uid":"86706091_5","title":"Town","message":"This is the jungle town.","name":"","depth":0}),
 // @ts-ignore
-Door: resolveDoor({"type":"Door","x":936,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_6","levelName":"","checkpointName":"","name":"","depth":0}),
+Door: resolveDoor({"type":"Door","x":936,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_6","levelName":"JungleBar","checkpointName":"","name":"","depth":0}),
 // @ts-ignore
 PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":882,"y":328,"width":92,"flippedX":false,"flippedY":false,"uid":"55841307_7","visible":false,"name":"","depth":0}),
 // @ts-ignore
@@ -3514,7 +3820,7 @@ SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":728,"y":376,"width":64,"he
 // @ts-ignore
 Block_3: resolveBlock({"type":"Block","x":672,"y":376,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_13","name":"","depth":0}),
 // @ts-ignore
-Door_1: resolveDoor({"type":"Door","x":696,"y":344,"flippedX":false,"flippedY":false,"uid":"55913988_14","levelName":"","checkpointName":"","name":"","depth":0}),
+Door_1: resolveDoor({"type":"Door","x":696,"y":344,"flippedX":false,"flippedY":false,"uid":"55913988_14","levelName":"JungleInn","checkpointName":"","name":"","depth":0}),
 // @ts-ignore
 PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":700,"y":304,"width":72,"flippedX":false,"flippedY":false,"uid":"55841307_15","visible":false,"name":"","depth":0}),
 // @ts-ignore
@@ -3534,7 +3840,7 @@ Pool: resolvePool({"type":"Pool","x":288,"y":416,"width":576,"height":32,"flippe
 // @ts-ignore
 Door_2: resolveDoor({"type":"Door","x":160,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_23","levelName":"JungleTemple","checkpointName":"","name":"","depth":0}),
 FromBar: {"type":"Checkpoint","x":912,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_24","name":"FromBar","faceRight":false,"depth":0},
-FromInn: {"type":"Checkpoint","x":672,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_25","name":"FromInn","faceRight":false,"depth":0},
+FromInn: {"type":"Checkpoint","x":676,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_25","name":"FromInn","faceRight":false,"depth":0},
 FromTemple: {"type":"Checkpoint","x":216,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_26","name":"FromTemple","faceRight":true,"depth":0},
 // @ts-ignore
 PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":40,"y":237,"width":35,"flippedX":false,"flippedY":false,"uid":"55841307_27","visible":false,"name":"","depth":0}),
