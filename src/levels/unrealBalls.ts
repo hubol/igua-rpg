@@ -35,6 +35,7 @@ export function UnrealBalls() {
     scene.gameObjectStage.withAsync(async () => {
         await wait(() => ball.dead);
         player.invulnerableFrameCount += 30;
+        player.withStep(() => player.visible = true);
         jukebox.currentSong?.fade(1, 0, 1000);
         const spikes = [...spike.instances];
         for (const s of spikes) {
