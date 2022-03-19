@@ -42,6 +42,11 @@ export const JungleUnreal3 = new Howl({
     preload: false
 });
 
+export const JungleInn = new Howl({
+    src: [require("./music/jungle-inn.ogg"), require("./music/jungle-inn.mp3")],
+    preload: false
+});
+
 export const JungleMusic = new Howl({
     src: [require("./music/jungle-music.ogg"), require("./music/jungle-music.mp3")],
     preload: false

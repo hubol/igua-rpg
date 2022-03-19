@@ -27,7 +27,14 @@ import {makePseudo} from "../utils/makePseudo";
 import { filters } from "pixi.js";
 import {Looks} from "../igua/looks/looksModel";
 import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
-import {DesertCostumerLooks, SickIguanaLooks, HappyDweebLooks, DepressedWitchLooks} from "./npcLooks";
+import {
+    DesertCostumerLooks,
+    SickIguanaLooks,
+    HappyDweebLooks,
+    DepressedWitchLooks,
+    HappyWizardLooks,
+    FireLizardLooks, JungleOracleLooks
+} from "./npcLooks";
 
 export type NpcStyle = ReturnType<typeof npcStyle>;
 const npcStyles: NpcStyle[] = [];
@@ -36,6 +43,9 @@ npcStyles[7] = fromLooks(DesertCostumerLooks);
 npcStyles[8] = fromLooks(SickIguanaLooks);
 npcStyles[9] = fromLooks(HappyDweebLooks);
 npcStyles[10] = fromLooks(DepressedWitchLooks);
+npcStyles[11] = fromLooks(HappyWizardLooks);
+npcStyles[12] = fromLooks(FireLizardLooks);
+npcStyles[13] = fromLooks(JungleOracleLooks);
 
 npcStyles[0] = npcStyle(args => {
     args.body = Sprite.from(NpcWeirdBody);

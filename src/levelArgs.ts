@@ -3546,7 +3546,9 @@ JungleTree_4: resolveJungleTree({"type":"JungleTree","x":408,"y":496,"height":36
 JungleTree_5: resolveJungleTree({"type":"JungleTree","x":96,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_37","name":"","depth":4}),
 // @ts-ignore
 JungleTree_6: resolveJungleTree({"type":"JungleTree","x":272,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_38","name":"","depth":4}),
-TempleLever: {"type":"Anchor","x":58,"y":237,"flippedX":false,"flippedY":false,"uid":"25979726_39","name":"TempleLever","depth":0}
+TempleLever: {"type":"Anchor","x":58,"y":237,"flippedX":false,"flippedY":false,"uid":"25979726_39","name":"TempleLever","depth":0},
+// @ts-ignore
+JungleOracle: resolveNpc({"type":"NpcIguana","x":528,"y":376,"flippedX":true,"flippedY":false,"uid":"26367058_40","name":"JungleOracle","style":13,"depth":0})
 };
 }
 };
