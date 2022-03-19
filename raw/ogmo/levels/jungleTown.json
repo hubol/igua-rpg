@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 1352,
   "height": 448,
   "offsetX": 0,
@@ -437,6 +437,17 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "TempleLever", "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 40,
+          "_eid": "26367058",
+          "x": 528,
+          "y": 376,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "JungleOracle", "style": 13, "depth": 0}
         }
       ]
     },
@@ -495,7 +506,8 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": ""}
-        }
+        },
+        {"x": 505, "y": 359, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "jungle/tent.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../src/images"
     },

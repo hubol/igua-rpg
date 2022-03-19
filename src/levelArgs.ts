@@ -37,6 +37,7 @@ import { resolveSign } from "./gameObjects/sign";
 import { JungleTempleExterior } from "./textures";
 import { JunglePlank } from "./textures";
 import { JungleHouse1 } from "./textures";
+import { JungleTent } from "./textures";
 import { SignNeonInn } from "./textures";
 import { SignNeonBar } from "./textures";
 import { KeyYellow } from "./textures";
@@ -3354,6 +3355,17 @@ scaleY: 1,
 rotation: 0,
 layerName: "TerrainDecals",
 texture: SignNeonInn
+}),
+JungleTent: resolveDecalGameObject({
+    x: 505,
+y: 359,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: JungleTent
 }),
 JungleHouse1: resolveDecalGameObject({
     x: 928,
