@@ -81,6 +81,9 @@ jobs:
           heroku_email: hubol.gordon@gmail.com
           justlogin: true
       - run: >
+          heroku plugins:install heroku-repo &&
+          heroku repo:reset -a igua-rpg
+      - run: >
           git init &&
           heroku git:remote -a igua-rpg
       - uses: actions/download-artifact@v2
