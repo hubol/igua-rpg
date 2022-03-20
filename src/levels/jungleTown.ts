@@ -2,26 +2,28 @@ import {scene} from "../igua/scene";
 import {JungleTownArgs} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {jukebox} from "../igua/jukebox";
-import {JungleInn, JungleMusic, Temple} from "../musics";
+import {FunTimes, JungleInn, JungleMusic, Temple} from "../musics";
 import {mirror} from "../gameObjects/mirror";
 import {now} from "../utils/now";
 import {advanceTempleMovingWall} from "./jungleTemple";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {JungleLever} from "../textures";
+import {GroundSpeckles, JungleLever} from "../textures";
 import {lever} from "../gameObjects/lever";
 import {Sprite} from "pixi.js";
 import {progress} from "../igua/data/progress";
 import {ActivateLever} from "../sounds";
 import {approachLinear} from "../utils/math/number";
 import {sleep} from "../cutscene/sleep";
+import {decalsOf} from "../gameObjects/decal";
 
 export function JungleTown() {
-    jukebox.play(JungleMusic).warm(Temple, JungleInn);
+    jukebox.play(JungleMusic).warm(FunTimes, JungleInn, Temple);
     scene.backgroundColor = 0x97D8D8;
     scene.terrainColor = 0x79962E;
     const level = applyOgmoLevel(JungleTownArgs);
     mirror(38, 30, 0xB7B7E2, 0xD2D2EC).at([-9, -2].add(level.SignNeonInn)).behind();
     level.WiggleVine.withStep(() => level.WiggleVine.angle = Math.round(Math.sin(now.s * Math.PI)) * 4);
+    decalsOf(GroundSpeckles).forEach(x => x.tint = 0x877856);
 
     jungleTempleLever().at(level.TempleLever).show();
 

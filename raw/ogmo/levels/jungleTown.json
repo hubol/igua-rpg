@@ -282,11 +282,11 @@
           "name": "Checkpoint",
           "id": 24,
           "_eid": "55940370",
-          "x": 912,
+          "x": 992,
           "y": 384,
           "originX": 6,
           "originY": 12,
-          "values": {"name": "FromBar", "faceRight": false, "depth": 0}
+          "values": {"name": "FromBar", "faceRight": true, "depth": 0}
         },
         {
           "name": "Checkpoint",
@@ -507,7 +507,61 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 505, "y": 359, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "jungle/tent.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 505,
+          "y": 359,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/tent.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 202,
+          "y": 396,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 546,
+          "y": 389,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 895,
+          "y": 397,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1237,
+          "y": 428,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },
