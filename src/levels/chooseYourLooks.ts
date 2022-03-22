@@ -44,8 +44,23 @@ export function ChooseYourLooksFromMirror() {
     });
 }
 
-export function ChooseYourLooksDev() {
-    ChooseYourLooks({ save: console.log })
+async function getClipboardLooks() {
+    try {
+        const text = await navigator.clipboard.readText();
+        const json = JSON.parse(text);
+        if (typeof json === 'object')
+            return json as Looks;
+    }
+    catch (e) {
+
+    }
+
+    return getDefaultLooks();
+}
+
+export async function ChooseYourLooksDev() {
+    const defaultLooks = await getClipboardLooks();
+    ChooseYourLooks({ save: console.log, defaultLooks })
 }
 
 [ChooseYourLooks, ChooseYourLooksBeginning, ChooseYourLooksDev, ChooseYourLooksFromMirror].forEach(x => setSceneMeta(x, { isLevel: false }));
