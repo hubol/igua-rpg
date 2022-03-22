@@ -47,6 +47,7 @@ import { BookCollection } from "./textures";
 import { DontPoster } from "./textures";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { PaSpeaker } from "./textures";
+import { CocktailGlass } from "./textures";
 import { Bottle1 } from "./textures";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { CloudLong } from "./textures";
@@ -60,7 +61,6 @@ import { CrudeHouseB } from "./textures";
 import { GreenCable } from "./textures";
 import { Bottle2 } from "./textures";
 import { WhiskeyGlass } from "./textures";
-import { CocktailGlass } from "./textures";
 import { WoodenStool } from "./textures";
 import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
@@ -2929,6 +2929,17 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: SmallDecorativeRock
 }),
+CocktailGlass: resolveDecalGameObject({
+    x: 104,
+y: 118,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: CocktailGlass
+}),
 GroundSpeckles: resolveDecalGameObject({
     x: 208,
 y: 112,
@@ -3665,6 +3676,28 @@ scaleY: 1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: Cobweb
+}),
+JunglePlankDecoration_7: resolveDecalGameObject({
+    x: 368,
+y: 64,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlankDecoration
+}),
+JunglePlankDecoration_8: resolveDecalGameObject({
+    x: 320,
+y: 64,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JunglePlankDecoration
 }),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":32,"y":112,"flippedX":false,"flippedY":false,"uid":"55913988_0","levelName":"JungleTown","checkpointName":"FromInn","name":"","depth":0}),
