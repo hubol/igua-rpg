@@ -3085,7 +3085,9 @@ BigMirror: resolveRegion({"type":"Region","x":16,"y":141,"width":224,"height":43
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":224,"y":16,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_14","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":0,"y":16,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_15","name":"","depth":0})
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":0,"y":16,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_15","name":"","depth":0}),
+// @ts-ignore
+Patron: resolveNpc({"type":"NpcIguana","x":128,"y":127,"flippedX":true,"flippedY":false,"uid":"26367058_16","name":"Patron","style":14,"depth":0})
 };
 }
 };

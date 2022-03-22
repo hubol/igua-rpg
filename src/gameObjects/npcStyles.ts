@@ -33,7 +33,7 @@ import {
     HappyDweebLooks,
     DepressedWitchLooks,
     HappyWizardLooks,
-    FireLizardLooks, JungleOracleLooks
+    FireLizardLooks, JungleOracleLooks, PerturbedCutieLooks
 } from "./npcLooks";
 
 export type NpcStyle = ReturnType<typeof npcStyle>;
@@ -46,6 +46,7 @@ npcStyles[10] = fromLooks(DepressedWitchLooks);
 npcStyles[11] = fromLooks(HappyWizardLooks);
 npcStyles[12] = fromLooks(FireLizardLooks);
 npcStyles[13] = fromLooks(JungleOracleLooks);
+npcStyles[14] = fromLooks(PerturbedCutieLooks);
 
 npcStyles[0] = npcStyle(args => {
     args.body = Sprite.from(NpcWeirdBody);

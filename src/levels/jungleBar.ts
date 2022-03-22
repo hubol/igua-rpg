@@ -6,14 +6,24 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {shop} from "../igua/inventory/shop";
 import {show} from "../cutscene/dialog";
 import {decalsOf} from "../gameObjects/decal";
-import {GroundSpeckles} from "../textures";
+import {GroundSpeckles, JunglePlank} from "../textures";
 import {mirror} from "../gameObjects/mirror";
+import {cigarette} from "../gameObjects/cigarette";
 
 export function JungleBar() {
     jukebox.play(FunTimes);
     scene.backgroundColor = 0xBDA2CA;
     scene.terrainColor = 0x8972AD;
     const level = applyOgmoLevel(JungleBarArgs);
+
+    const c = cigarette().at([-14, -11].add(level.Patron)).show();
+    c.scale.x = -1;
+
+    level.Patron.cutscene = async () => {
+        await show(`My friend lives in the desert, but I haven't been able to see him since all of the angels showed up.`);
+    }
+
+    // decalsOf(JunglePlank).forEach(x => x.hueShift = 210);
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0x8972AD);
     mirror(level.BigMirror.width, level.BigMirror.height, 0xB7B7E2, 0xD2D2EC).at(level.BigMirror).behind();
     level.Barkeeper.cutscene = async () => {
