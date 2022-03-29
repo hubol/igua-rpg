@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 1536,
   "height": 512,
   "offsetX": 0,
@@ -401,6 +401,82 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromTown", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 46,
+          "_eid": "55823268",
+          "x": 536,
+          "y": 160,
+          "width": 112,
+          "height": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 47,
+          "_eid": "25979726",
+          "x": 600,
+          "y": 160,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "BiguaSpawn", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 48,
+          "_eid": "55841307",
+          "x": 504,
+          "y": 288,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeLeftEnd",
+          "id": 49,
+          "_eid": "63428932",
+          "x": 504,
+          "y": 288,
+          "originX": 16,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 50,
+          "_eid": "55841307",
+          "x": 504,
+          "y": 216,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeLeftEnd",
+          "id": 51,
+          "_eid": "63428932",
+          "x": 504,
+          "y": 216,
+          "originX": 16,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 52,
+          "_eid": "25971607",
+          "x": 536,
+          "y": 352,
+          "width": 112,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "BehindPillar", "depth": 0}
         }
       ]
     },
@@ -413,7 +489,19 @@
       "gridCellHeight": 8,
       "gridCellsX": 192,
       "gridCellsY": 64,
-      "decals": [],
+      "decals": [
+        {
+          "x": 392,
+          "y": 338,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {
