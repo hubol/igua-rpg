@@ -63,4 +63,9 @@ export async function ChooseYourLooksDev() {
     ChooseYourLooks({ save: console.log, defaultLooks })
 }
 
-[ChooseYourLooks, ChooseYourLooksBeginning, ChooseYourLooksDev, ChooseYourLooksFromMirror].forEach(x => setSceneMeta(x, { isLevel: false }));
+export async function ChooseYourBiguaDev() {
+    scene.ext.largeCharacterMode = true;
+    await ChooseYourLooksDev();
+}
+
+[ChooseYourLooks, ChooseYourLooksBeginning, ChooseYourLooksDev, ChooseYourBiguaDev, ChooseYourLooksFromMirror].forEach(x => setSceneMeta(x, { isLevel: false }));

@@ -7,10 +7,12 @@ import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
 import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
 import {makeIguanaPuppetArgsFromLooks} from "../makeIguanaPuppetArgsFromLooks";
-import {iguanaPuppet, IguanaPuppetArgs} from "../../puppet/iguanaPuppet";
+import {iguanaPuppet} from "../../puppet/iguanaPuppet";
 import {sleep} from "../../../cutscene/sleep";
 import {ChangeLooks, LooksPageBack, LooksPageInto, SelectOption} from "../../../sounds";
 import {pageRoot} from "../../ui/pageRoot";
+import {scene} from "../../scene";
+import {bigua} from "../../../gameObjects/bigua";
 
 export let looksContext: LooksContext;
 
@@ -50,7 +52,7 @@ export function looksUiRoot(defaultLooks: Looks, save: (looks: Looks) => unknown
         path,
         save: () => save(defaultLooks),
         inputModel: boundInputModel,
-        page: {} as any
+        page: {} as any,
     };
 
     const statesByPath = {};
@@ -102,14 +104,16 @@ export function looksUiRoot(defaultLooks: Looks, save: (looks: Looks) => unknown
     c.addChild(
         breadcrumbs,
         root,
-        preview(defaultLooks).at(161, 160),
+        preview(defaultLooks, scene.ext.largeCharacterMode && previewBigua ),
     );
 
     return c;
 }
 
-function previewIguanaPuppet(args: IguanaPuppetArgs) {
+function previewIguanaPuppet(looks: Looks) {
+    const args = makeIguanaPuppetArgsFromLooks(looks);
     const puppet = iguanaPuppet(args);
+    puppet.scale.set(3);
     return puppet.withAsync(async () => {
         while (true) {
             await sleep(2000);
@@ -121,7 +125,19 @@ function previewIguanaPuppet(args: IguanaPuppetArgs) {
             await sleep(2000);
             puppet.isDucking = false;
         }
-    });
+    }).at(161, 160);
+}
+
+function previewBigua(looks: Looks) {
+    const puppet = bigua(looks);
+    return puppet.withAsync(async () => {
+        while (true) {
+            await sleep(2000);
+            puppet.isDucking = true;
+            await sleep(2000);
+            puppet.isDucking = false;
+        }
+    }).at(161, 160);
 }
 
 function preview(looks: Looks, fn = previewIguanaPuppet) {
@@ -156,8 +172,7 @@ function preview(looks: Looks, fn = previewIguanaPuppet) {
 
         if (puppet)
             puppet.destroy();
-        const args = makeIguanaPuppetArgsFromLooks(looks);
-        puppet = fn(args);
+        puppet = fn(looks);
         c.addChild(puppet);
         lastLooksJson = currentLooksJson;
     })
@@ -192,8 +207,6 @@ function preview(looks: Looks, fn = previewIguanaPuppet) {
     let justWentBack = false;
     let justWentInto = false;
     let looksJustChanged = false;
-
-    c.scale.set(3, 3);
 
     return c;
 }

@@ -1,19 +1,20 @@
-import {filters, Graphics, Sprite} from "pixi.js";
+import {Container, DisplayObject, filters, Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {BiguaCrests, BiguaEye, BiguaFace, BiguaFeet, BiguaPupils, BiguaTorso} from "../textures";
 import {mapRgb} from "../utils/pixi/mapRgb";
 import {merge} from "../utils/merge";
-import {JungleOracleLooks} from "./npcLooks";
-import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
+import {BiguaJungleLooks} from "./npcLooks";
 import {sleep} from "pissant";
 import {rng} from "../utils/rng";
 import {pcolord} from "../utils/toHexColorString";
+import {flipH, flipV} from "../utils/pixi/flip";
+import {shapeTextures} from "../igua/looks/shapes";
 
-const crests = subimageTextures(BiguaCrests, { width: 48 });
-const pupils = subimageTextures(BiguaPupils, { width: 20 });
+const crests = shapeTextures(BiguaCrests, 48, [27, 47]);
+const pupils = shapeTextures(BiguaPupils, 20, [19, 16]);
 
-export function bigua(looks = JungleOracleLooks) {
-    const c = merge(container(), { isDucking: false, duckUnit: 0, blinkControl: true, isClosingEyes: false, baseClosedEyesUnit: 0 });
+export function bigua(looks = BiguaJungleLooks) {
+    const c = merge(container(), { isDucking: false, duckUnit: 0, blinkControl: true, isClosingEyes: false, baseClosedEyesUnit: 0, torso: {} as DisplayObject });
 
     let closedEyesUnit = 0;
 
@@ -28,10 +29,11 @@ export function bigua(looks = JungleOracleLooks) {
     function body() {
         const body = container();
         const t = Sprite.from(BiguaTorso).tinted(looks.body.color);
-        const h = head().at(24, -28);
+        c.torso = t;
+        const h = head().at([24, -28].add(looks.head.placement, 2));
         c.ext.head = h;
         body.addChild(t, h);
-        h.ext.down = t.getBounds().y - (h.getBounds().y + h.getBounds().height);
+        h.ext.down = (t.getBounds().y + t.getBounds().height) - (h.getBounds().y + h.getBounds().height);
         return body;
     }
 
@@ -39,19 +41,43 @@ export function bigua(looks = JungleOracleLooks) {
         const f = Sprite.from(BiguaFace);
         f.filters = [mapRgb(new filters.ColorMatrixFilter(), looks.head.color, looks.head.mouth.color)];
 
-        const crest = Sprite.from(crests[looks.head.crest.shape] ?? crests[0]).centerAnchor().tinted(looks.head.crest.color).at(32, -20);
+        const crest = Sprite.from(crests[looks.head.crest.shape] ?? crests[0]).centerAnchor().tinted(looks.head.crest.color)
+            .at([32, -12].add(looks.head.crest.placement));
+        flipH(crest, looks.head.crest.flipH);
+        flipV(crest, looks.head.crest.flipV);
 
-        const e1 = eye().at(24, 5);
-        const e2 = eye().at([e1.width * 2 + looks.head.eyes.gap].add(e1));
+        const e1 = eye();
+        const e2 = eye(e1).at(65, 5);
+
+        e1.at([-40 - looks.head.eyes.gap].add(e2))
+
         e2.scale.x = -1;
 
         return container(crest, f, e1, e2);
     }
 
-    function eye() {
+    function eye(leftEye: Container | null = null) {
         const e = Sprite.from(BiguaEye);
-        const p = Sprite.from(pupils[looks.head.eyes.pupils.shape] ?? pupils[0]);
-        p.tint = looks.head.eyes.pupils.color;
+        const p = Sprite.from(pupils[looks.head.eyes.pupils.shape] ?? pupils[0])
+            .tinted(looks.head.eyes.pupils.color)
+            .at(19, 14 + looks.head.eyes.pupils.placement.y);
+
+        const isRight = !!leftEye;
+        if (isRight && !looks.head.eyes.pupils.mirrored) {
+            const ebl = leftEye.children[0].getBounds();
+            const pbl = leftEye.children[1].getBounds();
+            const fromLeft = pbl.x - ebl.x;
+
+            const eb = e.getBounds();
+            const pb = e.getBounds();
+            // TODO no idea why + 1... haha
+            p.x += (pb.x - eb.x) - fromLeft + 1;
+        }
+        else
+            p.x += looks.head.eyes.pupils.placement.x;
+
+        flipH(p, isRight && !looks.head.eyes.pupils.mirrored);
+
         const lidColor = pcolord(looks.head.color).saturate(0.1).darken(0.1).toPixi();
         const l = new Graphics()
             .withStep(() => {
@@ -68,7 +94,7 @@ export function bigua(looks = JungleOracleLooks) {
     c.withStep(() => {
        c.duckUnit = Math.max(0, Math.min(1, c.duckUnit + (c.isDucking ? 0.05 : -0.05)));
        closedEyesUnit = Math.max(c.baseClosedEyesUnit, Math.min(1, closedEyesUnit + (c.isClosingEyes ? 0.125 : -0.1)));
-       c.ext.head.pivot.y = Math.round(c.duckUnit * (c.ext.head.ext.down + 4));
+       c.ext.head.pivot.y = Math.round(c.duckUnit * (-c.ext.head.ext.down + 4));
        b.pivot.y = Math.round(c.duckUnit * -10);
     })
         .withAsync(async () => {

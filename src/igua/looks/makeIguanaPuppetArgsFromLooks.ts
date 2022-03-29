@@ -2,14 +2,17 @@ import {Looks} from "./looksModel";
 import {IguanaPuppetArgs} from "../puppet/iguanaPuppet";
 import {RenderTexture, Sprite, Texture} from "pixi.js";
 import {
-    clubShapes,
-    footShapes,
-    faceShapes,
-    mouthShapes,
     clawsShapes,
+    clubShapes,
+    crestShapes,
+    eyeShapes,
+    faceShapes,
+    footShapes,
+    hornShapes,
+    mouthShapes,
+    pupilShapes,
     tailShapes,
-    torsoShapes,
-    crestShapes, eyeShapes, pupilShapes, hornShapes
+    torsoShapes
 } from "./shapes";
 import {colord} from "colord";
 import {toHexColorString} from "../../utils/toHexColorString";
@@ -18,6 +21,7 @@ import {game} from "../game";
 import {iguanaEyelids, IguanaEyes} from "../puppet/eyes";
 import {merge} from "../../utils/merge";
 import {textureToGraphics} from "../../utils/pixi/textureToGraphics";
+import {flipH, flipV} from "../../utils/pixi/flip";
 
 export function makeIguanaPuppetArgsFromLooks(looks: Looks): IguanaPuppetArgs {
     const backLeftFoot = makeFoot(looks.feet, "hind", true);
@@ -221,21 +225,3 @@ function makeEyes(head: Head) {
     return merge(eyes, eyelidsControl) as IguanaEyes;
 }
 
-function flipH(sprite: Sprite, flip: boolean = true) {
-    return flipXY(sprite, 'x', flip);
-}
-
-function flipV(sprite: Sprite, flip: boolean = true) {
-    return flipXY(sprite, 'y', flip);
-}
-
-function flipXY(sprite: Sprite, key: 'x' | 'y', flip: boolean = true) {
-    if (flip) {
-        const ogBounds = sprite.getBounds(false).vcpy();
-        sprite.scale[key] *= -1;
-        const bounds = sprite.getBounds(false).vcpy();
-        sprite.pivot.add(bounds.add(ogBounds, -1), -1);
-    }
-
-    return sprite;
-}
