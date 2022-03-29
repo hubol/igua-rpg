@@ -28,6 +28,7 @@ declare global {
 
         export interface Sprite {
             centerAnchor(): this;
+            tinted(tint: number): this;
         }
 
         export interface Container {
@@ -227,6 +228,11 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
 
 PIXI.Sprite.prototype.centerAnchor = function () {
     this.anchor.set(0.5, 0.5);
+    return this;
+}
+
+PIXI.Sprite.prototype.tinted = function (tint) {
+    this.tint = tint;
     return this;
 }
 
