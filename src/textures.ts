@@ -7,9 +7,10 @@ export let BackpackIcon: PIXI.Texture;
 export let BigKey1: PIXI.Texture;
 export let BigKey2: PIXI.Texture;
 export let BiguaCrests: PIXI.Texture;
-export let BiguaEyes: PIXI.Texture;
+export let BiguaEye: PIXI.Texture;
 export let BiguaFace: PIXI.Texture;
 export let BiguaFeet: PIXI.Texture;
+export let BiguaPupils: PIXI.Texture;
 export let BiguaTorso: PIXI.Texture;
 export let BitterMedicinePotion: PIXI.Texture;
 export let BlueGradient: PIXI.Texture;
@@ -179,14 +180,17 @@ export function loadTexturesAsync()
     const BiguaCrestsPath = require("./images/bigua/crests.png");
     loader.add(BiguaCrestsPath); 
 
-    const BiguaEyesPath = require("./images/bigua/eyes.png");
-    loader.add(BiguaEyesPath); 
+    const BiguaEyePath = require("./images/bigua/eye.png");
+    loader.add(BiguaEyePath); 
 
     const BiguaFacePath = require("./images/bigua/face.png");
     loader.add(BiguaFacePath); 
 
     const BiguaFeetPath = require("./images/bigua/feet.png");
     loader.add(BiguaFeetPath); 
+
+    const BiguaPupilsPath = require("./images/bigua/pupils.png");
+    loader.add(BiguaPupilsPath); 
 
     const BiguaTorsoPath = require("./images/bigua/torso.png");
     loader.add(BiguaTorsoPath); 
@@ -641,9 +645,10 @@ export function loadTexturesAsync()
             BigKey1 = resources[BigKey1Path]?.texture as PIXI.Texture;
             BigKey2 = resources[BigKey2Path]?.texture as PIXI.Texture;
             BiguaCrests = resources[BiguaCrestsPath]?.texture as PIXI.Texture;
-            BiguaEyes = resources[BiguaEyesPath]?.texture as PIXI.Texture;
+            BiguaEye = resources[BiguaEyePath]?.texture as PIXI.Texture;
             BiguaFace = resources[BiguaFacePath]?.texture as PIXI.Texture;
             BiguaFeet = resources[BiguaFeetPath]?.texture as PIXI.Texture;
+            BiguaPupils = resources[BiguaPupilsPath]?.texture as PIXI.Texture;
             BiguaTorso = resources[BiguaTorsoPath]?.texture as PIXI.Texture;
             BitterMedicinePotion = resources[BitterMedicinePotionPath]?.texture as PIXI.Texture;
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
