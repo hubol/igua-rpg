@@ -1,7 +1,7 @@
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {JungleFromDesertArgs} from "../levelArgs";
 import {scene} from "../igua/scene";
-import {Graphics, Sprite} from "pixi.js";
+import {Sprite} from "pixi.js";
 import {decalsOf} from "../gameObjects/decal";
 import {CloudLong, GroundSpeckles} from "../textures";
 import {resolveBlock, resolvePipeHorizontal} from "../gameObjects/walls";
@@ -43,13 +43,13 @@ function secretCloud(d: Sprite) {
     d.withStep(() => {
         if (rectangleDistance(d, player) < 64)
             framesNear++;
-        if (framesNear === 3 * 60) {
+        if (framesNear === 4 * 60) {
             const b = d.getBounds();
             const p = resolvePipeHorizontal({x: scene.camera.x + b.x, y: Math.round(scene.camera.y + b.y + b.height / 2), width: b.width, height: 8} as any);
             p.visible = false;
             spawnedPipe = true;
         }
         const targetAlpha = !spawnedPipe ? 0 : 1 - (rectangleDistance(d, player) / 128);
-        d.alpha = approachLinear(d.alpha, targetAlpha, 0.01);
+        d.alpha = Math.max(0, approachLinear(d.alpha, targetAlpha, 0.01));
     })
 }
