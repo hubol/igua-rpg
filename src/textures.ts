@@ -11,6 +11,7 @@ export let BiguaEye: PIXI.Texture;
 export let BiguaFace: PIXI.Texture;
 export let BiguaFeet: PIXI.Texture;
 export let BiguaPupils: PIXI.Texture;
+export let BiguaTails: PIXI.Texture;
 export let BiguaTorso: PIXI.Texture;
 export let BitterMedicinePotion: PIXI.Texture;
 export let BlueGradient: PIXI.Texture;
@@ -191,6 +192,9 @@ export function loadTexturesAsync()
 
     const BiguaPupilsPath = require("./images/bigua/pupils.png");
     loader.add(BiguaPupilsPath); 
+
+    const BiguaTailsPath = require("./images/bigua/tails.png");
+    loader.add(BiguaTailsPath); 
 
     const BiguaTorsoPath = require("./images/bigua/torso.png");
     loader.add(BiguaTorsoPath); 
@@ -649,6 +653,7 @@ export function loadTexturesAsync()
             BiguaFace = resources[BiguaFacePath]?.texture as PIXI.Texture;
             BiguaFeet = resources[BiguaFeetPath]?.texture as PIXI.Texture;
             BiguaPupils = resources[BiguaPupilsPath]?.texture as PIXI.Texture;
+            BiguaTails = resources[BiguaTailsPath]?.texture as PIXI.Texture;
             BiguaTorso = resources[BiguaTorsoPath]?.texture as PIXI.Texture;
             BitterMedicinePotion = resources[BitterMedicinePotionPath]?.texture as PIXI.Texture;
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;

@@ -11,7 +11,10 @@ export function biguaInJungle() {
             await show('If you find something you need bigger, bring it to me.');
         })
         .withStep(() => {
-            b.isDucking = rectangleDistance(b, player) > 32;
+            if (b.isDucking)
+                b.isDucking = rectangleDistance(b, player) > 32;
+            else
+                b.isDucking = rectangleDistance(b, player) > 48;
         });
     return b;
 }

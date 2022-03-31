@@ -9,6 +9,7 @@ import {rng} from "../utils/rng";
 import {pcolord} from "../utils/toHexColorString";
 import {flipH, flipV} from "../utils/pixi/flip";
 import {shapeTextures} from "../igua/looks/shapes";
+import {biguaTail} from "../igua/physics/biguaTail";
 
 const crests = shapeTextures(BiguaCrests, 48, [27, 47]);
 const pupils = shapeTextures(BiguaPupils, 20, [19, 16]);
@@ -27,13 +28,17 @@ export function bigua(looks = BiguaJungleLooks) {
     c.addChild(fb, b, ff);
 
     function body() {
+        const tail = biguaTail(-1).at(looks.body.tail.placement);
+        tail.pivot.set(0, -14);
+        tail.color = looks.body.tail.color;
+
         const body = container();
-        const t = Sprite.from(BiguaTorso).tinted(looks.body.color);
-        c.torso = t;
+        const torso = Sprite.from(BiguaTorso).tinted(looks.body.color);
+        c.torso = torso;
         const h = head().at([24, -28].add(looks.head.placement, 2));
         c.ext.head = h;
-        body.addChild(t, h);
-        h.ext.down = (t.getBounds().y + t.getBounds().height) - (h.getBounds().y + h.getBounds().height);
+        body.addChild(tail, torso, h);
+        h.ext.down = (torso.getBounds().y + torso.getBounds().height) - (h.getBounds().y + h.getBounds().height);
         return body;
     }
 
