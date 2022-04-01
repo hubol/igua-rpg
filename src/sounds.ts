@@ -92,6 +92,16 @@ export const ClownHurt = new Howl({
     
 });
 
+export const ClownSneeze = new Howl({
+    src: [require("./sound/clown sneeze.ogg"), require("./sound/clown sneeze.mp3")],
+    
+});
+
+export const ClownSniffle = new Howl({
+    src: [require("./sound/clown sniffle.ogg"), require("./sound/clown sniffle.mp3")],
+    
+});
+
 export const CollectGeneric = new Howl({
     src: [require("./sound/collect generic.ogg"), require("./sound/collect generic.mp3")],
     

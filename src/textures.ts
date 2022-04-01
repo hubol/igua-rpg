@@ -32,6 +32,7 @@ export let CharacterPupils: PIXI.Texture;
 export let CharacterWhites: PIXI.Texture;
 export let ClawPowderPotion: PIXI.Texture;
 export let CloudLong: PIXI.Texture;
+export let ClownSneezy: PIXI.Texture;
 export let ClownSpikeBall: PIXI.Texture;
 export let Cobweb: PIXI.Texture;
 export let CocktailGlass: PIXI.Texture;
@@ -255,6 +256,9 @@ export function loadTexturesAsync()
 
     const CloudLongPath = require("./images/cloud long.png");
     loader.add(CloudLongPath); 
+
+    const ClownSneezyPath = require("./images/clown sneezy.png");
+    loader.add(ClownSneezyPath); 
 
     const ClownSpikeBallPath = require("./images/clown spike ball.png");
     loader.add(ClownSpikeBallPath); 
@@ -674,6 +678,7 @@ export function loadTexturesAsync()
             CharacterWhites = resources[CharacterWhitesPath]?.texture as PIXI.Texture;
             ClawPowderPotion = resources[ClawPowderPotionPath]?.texture as PIXI.Texture;
             CloudLong = resources[CloudLongPath]?.texture as PIXI.Texture;
+            ClownSneezy = resources[ClownSneezyPath]?.texture as PIXI.Texture;
             ClownSpikeBall = resources[ClownSpikeBallPath]?.texture as PIXI.Texture;
             Cobweb = resources[CobwebPath]?.texture as PIXI.Texture;
             CocktailGlass = resources[CocktailGlassPath]?.texture as PIXI.Texture;

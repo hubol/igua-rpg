@@ -53,7 +53,7 @@ Object.defineProperties(Object.prototype, {
             return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y,2));
         },
         set: function (l) {
-            normalize(this).scale(l);
+            normalize(this).scale(Math.max(0, l));
         },
         enumerable: false,
         configurable: true,
