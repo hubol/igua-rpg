@@ -2,7 +2,7 @@ import {container} from "../utils/pixi/container";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {ClownSneezy} from "../textures";
 import {merge} from "../utils/merge";
-import {Graphics, Sprite} from "pixi.js";
+import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/rng";
 import {ClownSneeze, ClownSniffle} from "../sounds";
@@ -12,11 +12,13 @@ import {Vector, vnew} from "../utils/math/vector";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {push} from "./walls";
+import {cyclic} from "../utils/math/number";
 
 const textures = subimageTextures(ClownSneezy, { width: 24 });
 
 export function clownSneezy() {
     const head = makeHead();
+    const propeller = makePropeller(head);
     const g = new Graphics().beginFill().drawRect(0, 0, 1, 1);
 
     function play(howl: Howl) {
@@ -53,7 +55,7 @@ export function clownSneezy() {
 
     const sneezeDp = vnew();
 
-    const c = container(head, g)
+    const c = container(propeller, head, g)
         .withStep(() => {
             c.add(sneezeDp);
             push(c, 16);
@@ -84,6 +86,21 @@ function deadlySneeze(dp: Vector, radius = 16) {
                 player.damage(25);
         });
     return container(b, m);
+}
+
+const propellerIndices = [5, 6, 7, 8, 9, 10, 11, 10, 9, 8, 7, 6, 5];
+
+function makePropeller(head: DisplayObject) {
+    let i = 0;
+    const s = merge(Sprite.from(textures[5]), { speed: 1 })
+        .withStep(() => {
+            i += s.speed;
+            const index = propellerIndices[cyclic(Math.round(i), 0, propellerIndices.length)];
+            s.texture = textures[index];
+            s.x = head.scale.x === 1 ? 0 : 1;
+        });
+    s.pivot.set(12, 22);
+    return s;
 }
 
 function makeHead() {
