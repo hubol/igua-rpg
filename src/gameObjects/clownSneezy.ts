@@ -5,7 +5,7 @@ import {merge} from "../utils/merge";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/rng";
-import {ClownSneeze, ClownSniffle} from "../sounds";
+import {ClownHurt, ClownSneeze, ClownSniffle} from "../sounds";
 import {Howl} from "howler";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {Vector, vnew} from "../utils/math/vector";
@@ -14,13 +14,25 @@ import {player} from "./player";
 import {push} from "./walls";
 import {cyclic} from "../utils/math/number";
 import {confetti} from "./confetti";
+import {bouncePlayer} from "../igua/bouncePlayer";
+import {dieClown} from "./utils/clownUtils";
 
 const textures = subimageTextures(ClownSneezy, { width: 24 });
 
-export function clownSneezy() {
+export function clownSneezy({ fullHealth = 7 } = { }) {
     const head = makeHead();
     const propeller = makePropeller(head);
-    const g = new Graphics().beginFill().drawRect(0, 0, 1, 1);
+    const g = new Graphics().beginFill().drawRect(-10, -17, 19, 17);
+    g.visible = false;
+
+    let health = fullHealth;
+    let invulnerable = 0;
+    let dropOdds = 0.8;
+
+    function hurtPlayer(damage: number) {
+        player.damage(damage);
+        dropOdds = Math.max(dropOdds - 0.5, 0.1);
+    }
 
     function play(howl: Howl) {
         if (!isOnScreen(c))
@@ -47,7 +59,7 @@ export function clownSneezy() {
         ClownSneeze.play();
         const storedSneezeDp = getPlayerCenterWorld().add(c, -1).normalize();
         head.facePlayer = false;
-        sneezeDp.at(storedSneezeDp).scale(-1);
+        knockbackSpeed.at(storedSneezeDp).scale(-1);
         confetti(8, 8).at(c).show();
         deadlySneeze(storedSneezeDp.scale(6)).at(c).show();
         await sleep(500);
@@ -55,13 +67,27 @@ export function clownSneezy() {
         head.facePlayer = true;
     }
 
-    const sneezeDp = vnew();
+    const knockbackSpeed = vnew();
 
     const c = container(propeller, head, g)
         .withStep(() => {
-            c.add(sneezeDp);
+            if (invulnerable <= 0 && g.collides(player)) {
+                bouncePlayer([0, -9].add(c));
+                health -= player.strength;
+                if (health <= 0) {
+                    const drop = rng() < dropOdds;
+                    return dieClown(c, drop);
+                }
+                invulnerable = 30;
+                ClownHurt.play();
+                knockbackSpeed.at(-player.engine.knockback.x, -player.vspeed);
+            }
+            c.add(knockbackSpeed);
             push(c, 16);
-            sneezeDp.vlength -= 0.05;
+            knockbackSpeed.vlength -= 0.05;
+            c.visible = invulnerable ? !c.visible : true;
+            if (invulnerable > 0)
+                invulnerable--;
         })
         .withAsync(async () => {
             while (true) {
@@ -82,7 +108,7 @@ export function clownSneezy() {
                 if (life-- <= 0 || c.destroyed)
                     return b.parent.destroy();
                 if (m.collides(player))
-                    player.damage(25);
+                    hurtPlayer(25);
             });
         return container(b, m);
     }

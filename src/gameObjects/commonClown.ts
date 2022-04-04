@@ -7,14 +7,13 @@ import {isOnGround} from "./walls";
 import {player} from "./player";
 import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
 import {isOnScreen} from "../igua/logic/isOnScreen";
-import {ClownExplode, ClownHurt, CommonClownLand} from "../sounds";
-import {confetti} from "./confetti";
-import {valuable} from "./valuable";
+import {ClownHurt, CommonClownLand} from "../sounds";
 import {rng} from "../utils/rng";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {bouncePlayer} from "../igua/bouncePlayer";
 import {playerIsWeakToPortalFluid, teleportToTheRoomOfDoors} from "./portalFluid";
 import {track} from "../igua/track";
+import {dieClown} from "./utils/clownUtils";
 
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
@@ -101,16 +100,10 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
                 knockbackSpeed = -player.engine.knockback.x;
                 health -= player.strength;
                 if (health <= 0) {
-                    ClownExplode.play();
                     const realDropOdds = Math.max(0.1, dropOdds);
                     const drop = rng() < realDropOdds;
-                    if (drop)
-                        valuable(container.x, container.y, undefined, "ValuableOrange")
-                            .delayCollectible()
-                            .show();
 
-                    scene.gameObjectStage.addChild(confetti().at(container))
-                    return container.destroy();
+                    return dieClown(container, drop);
                 }
                 ClownHurt.play();
                 invulnerable = 30;
