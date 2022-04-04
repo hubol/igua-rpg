@@ -1,6 +1,6 @@
 import {container} from "../utils/pixi/container";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {ClownSneezy} from "../textures";
+import {ClownPropellerProjectile, ClownSneezy} from "../textures";
 import {merge} from "../utils/merge";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
@@ -8,7 +8,7 @@ import {rng} from "../utils/rng";
 import {ClownHurt, ClownSneeze, ClownSniffle} from "../sounds";
 import {Howl} from "howler";
 import {isOnScreen} from "../igua/logic/isOnScreen";
-import {Vector, vnew} from "../utils/math/vector";
+import {distance, Vector, vnew} from "../utils/math/vector";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {push} from "./walls";
@@ -16,8 +16,10 @@ import {cyclic} from "../utils/math/number";
 import {confetti} from "./confetti";
 import {bouncePlayer} from "../igua/bouncePlayer";
 import {dieClown} from "./utils/clownUtils";
+import {lerp} from "../cutscene/lerp";
 
 const textures = subimageTextures(ClownSneezy, { width: 24 });
+const propellerProjectileTextures = subimageTextures(ClownPropellerProjectile, { width: 8 });
 
 export function clownSneezy({ fullHealth = 7 } = { }) {
     const head = makeHead();
@@ -28,6 +30,9 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
     let health = fullHealth;
     let invulnerable = 0;
     let dropOdds = 0.8;
+    let spawnPropellerProjectiles = false;
+    let spawnPropellerUnit = 0;
+    let slowlyMoveTowardsPlayer = false;
 
     function hurtPlayer(damage: number) {
         player.damage(damage);
@@ -67,6 +72,21 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
         head.facePlayer = true;
     }
 
+    async function charge() {
+        head.face.subimage = 11;
+        const accel = lerp(propeller, 'speed').to(3).over(1000);
+        const startSpawn = sleep(500).then(() => { spawnPropellerUnit = 0; spawnPropellerProjectiles = true; });
+        slowlyMoveTowardsPlayer = true;
+        head.facePlayer = true;
+        await Promise.all([ accel, startSpawn ]);
+        await sleep(3000);
+        await lerp(propeller, 'speed').to(1).over(1000);
+        head.face.subimage = 0;
+        head.facePlayer = false;
+        slowlyMoveTowardsPlayer = false;
+        spawnPropellerProjectiles = false;
+    }
+
     const knockbackSpeed = vnew();
 
     const c = container(propeller, head, g)
@@ -82,6 +102,18 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
                 ClownHurt.play();
                 knockbackSpeed.at(-player.engine.knockback.x, -player.vspeed);
             }
+            if (slowlyMoveTowardsPlayer) {
+                const d = distance(c, player);
+                const f = Math.min(1, d * .005);
+                if (c.x < player.x - 16)
+                    c.x += f;
+                if (c.x > player.x + 16)
+                    c.x -= f;
+                if (c.y > player.y - 4)
+                    c.y -= f;
+                if (c.y < player.y - 16)
+                    c.y += f;
+            }
             c.add(knockbackSpeed);
             push(c, 16);
             knockbackSpeed.vlength -= 0.05;
@@ -89,11 +121,24 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
             if (invulnerable > 0)
                 invulnerable--;
         })
+        .withStep(() => {
+            if (!spawnPropellerProjectiles)
+                return;
+            const previous = spawnPropellerUnit;
+            spawnPropellerUnit += Math.abs(propeller.speed);
+            const denom = 30;
+            const current = Math.floor(spawnPropellerUnit / denom);
+            if (Math.floor(previous / denom) === current)
+                return;
+            const xscale = current % 2 == 0 ? 1 : -1;
+            showPropellerProjectile(xscale);
+        })
         .withAsync(async () => {
             while (true) {
                 await sleep(500 + rng.int(1500));
-                if (isOnScreen(c))
-                    await sneeze();
+                await charge();
+                // if (isOnScreen(c))
+                //     await sneeze();
             }
         });
 
@@ -111,6 +156,28 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
                     hurtPlayer(25);
             });
         return container(b, m);
+    }
+
+    function showPropellerProjectile(xscale = 1) {
+        let noEffectLife = 10;
+        let life = 60;
+        const s = Sprite.from(propellerProjectileTextures[0])
+            .withStep(() => {
+                s.x += xscale * 3;
+                if (c.destroyed || life-- <= 0)
+                    return s.destroy();
+                if (noEffectLife-- === 0) {
+                    s.texture = propellerProjectileTextures[1];
+                    s.withStep(() => {
+                       if (s.collides(player))
+                           hurtPlayer(20);
+                    });
+                }
+            });
+        s.scale.x = xscale;
+        s.anchor.set(0, 0.5);
+        s.at(c).add(0, 7);
+        return s.show();
     }
 
     return c;
