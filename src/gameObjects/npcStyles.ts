@@ -19,12 +19,10 @@ import {
     NpcYellowFoot,
     NpcYellowFootRear,
     NpcPupilsWeird,
-    NpcLongTailBody, NpcBlueFoot2, NpcBlueFootRear2, NpcHornedCrest, CharacterCrest, CharacterBody, NpcPupilsCartoonishGapped
+    NpcLongTailBody, NpcBlueFoot2, NpcBlueFootRear2, NpcHornedCrest
 } from "../textures";
 import {IguanaEyes, iguanaEyes} from "../igua/puppet/eyes";
 import {Vector} from "../utils/math/vector";
-import {makePseudo} from "../utils/makePseudo";
-import { filters } from "pixi.js";
 import {Looks} from "../igua/looks/looksModel";
 import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
 import {
@@ -33,12 +31,14 @@ import {
     HappyDweebLooks,
     DepressedWitchLooks,
     HappyWizardLooks,
-    FireLizardLooks, JungleOracleLooks, PerturbedCutieLooks
+    FireLizardLooks, JungleOracleLooks, PerturbedCutieLooks, DesertBarkeeperLooks, DesertBarGayLooks
 } from "./npcLooks";
 
 export type NpcStyle = ReturnType<typeof npcStyle>;
 const npcStyles: NpcStyle[] = [];
 
+npcStyles[5] = fromLooks(DesertBarkeeperLooks);
+npcStyles[6] = fromLooks(DesertBarGayLooks);
 npcStyles[7] = fromLooks(DesertCostumerLooks);
 npcStyles[8] = fromLooks(SickIguanaLooks);
 npcStyles[9] = fromLooks(HappyDweebLooks);
@@ -170,55 +170,8 @@ npcStyles[4] = npcStyle(args => {
     args.eyelidColor = 0x60B0D0;
 });
 
-npcStyles[5] = genNpcStyle1(172, (args) => {
-    args.pupils.pivot.y -= 1;
-});
-npcStyles[6] = genNpcStyle1(191, (args) => {
-    args.pupils.texture = NpcPupilsCartoonishGapped;
-    args.pupils.pivot.x -= 2;
-});
-
 function fromLooks(looks: Looks) {
     return () => iguanaPuppet(makeIguanaPuppetArgsFromLooks(looks))
-}
-
-function genNpcStyle1(seed: number, configure?: (args: ConfigureNpcStyleArgs) => void) {
-    return () => {
-        const pseudo = makePseudo(seed);
-        const npcContainer = npcStyle(args => {
-            args.body = Sprite.from(pseudo.choose(NpcLongTailBody, NpcShortTailBody, NpcStrangeBody, NpcGreenPolkaBody, NpcWeirdBody, CharacterBody));
-            args.body.pivot.x += -2 + pseudo.int() % 4;
-            args.body.pivot.y += -2 + pseudo.int() % 6 + 3;
-            args.body.tint = pseudo.color();
-
-            args.frontRightFoot = Sprite.from(pseudo.choose(NpcBlueFoot2, NpcYellowFoot, NpcBlueFoot, NpcPinkFoot, NpcRedFoot));
-
-            args.backRightFoot = Sprite.from(pseudo.choose(NpcBlueFootRear2, NpcBlueFootRear, NpcPinkFootRear, NpcYellowFootRear, NpcRedFootRear));
-            args.backRightFoot.pivot.y = 1 + pseudo.int() % 2;
-
-            args.crest = Sprite.from(pseudo.choose(NpcCurvedCrest, NpcCurvedCrest2, NpcHornedCrest, CharacterCrest));
-            args.crest.pivot.set(-6 + pseudo.int() % 8, 6 - pseudo.int() % 8);
-            if (pseudo.bool())
-                args.crest.scale.y *= -1;
-            args.crest.tint = pseudo.color();
-
-            args.headOffset.y += pseudo.int() % 2;
-
-            args.headSprite.tint = pseudo.color();
-            args.mouthSprite.tint = pseudo.color();
-
-            args.pupils = Sprite.from(pseudo.choose(NpcPupilsCartoonish, NpcPupilsWeird));
-            args.pupils.tint = pseudo.color();
-            args.eyelidColor = pseudo.color();
-
-            if (configure)
-                configure(args);
-        })();
-        const colorMatrixFilter = new filters.ColorMatrixFilter();
-        colorMatrixFilter.hue(pseudo.int() % 360, false);
-        npcContainer.filters = [colorMatrixFilter];
-        return npcContainer;
-    }
 }
 
 function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)

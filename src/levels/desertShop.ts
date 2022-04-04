@@ -50,7 +50,7 @@ export function DesertShop() {
 
     [light1, light2].forEach(x => enrichLight(x, level));
 
-    const c = cigarette().at([-17, -8].add(level.BarAttendee)).show();
+    const c = cigarette().at([-16, -12].add(level.BarAttendee)).show();
     c.scale.x = -1;
 
     if (!progress.flags.desert.diguaIsInBar) {
