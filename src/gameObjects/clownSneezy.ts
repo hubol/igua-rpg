@@ -11,6 +11,7 @@ import {isOnScreen} from "../igua/logic/isOnScreen";
 import {Vector, vnew} from "../utils/math/vector";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {player} from "./player";
+import {push} from "./walls";
 
 const textures = subimageTextures(ClownSneezy, { width: 24 });
 
@@ -26,7 +27,7 @@ export function clownSneezy() {
 
     async function sniffle(index = 0) {
         head.face.subimage = 1 + index;
-        play(ClownSniffle);
+        ClownSniffle.play();
         await sleep(333);
         head.face.subimage = 0;
         await sleep(333);
@@ -42,8 +43,8 @@ export function clownSneezy() {
         head.shaking = false;
         head.hat.bounce();
         head.face.subimage = 3;
-        play(ClownSneeze);
-        sneezeDp.at(storedSneezeDp).scale(-3);
+        ClownSneeze.play();
+        sneezeDp.at(storedSneezeDp).scale(-1);
         deadlySneeze(storedSneezeDp.scale(6)).at(c).show();
         await sleep(500);
         head.face.subimage = 0;
@@ -55,12 +56,14 @@ export function clownSneezy() {
     const c = container(head, g)
         .withStep(() => {
             c.add(sneezeDp);
-            sneezeDp.vlength -= 0.3;
+            push(c, 16);
+            sneezeDp.vlength -= 0.05;
         })
         .withAsync(async () => {
             while (true) {
                 await sleep(500 + rng.int(1500));
-                await sneeze();
+                if (isOnScreen(c))
+                    await sneeze();
             }
         });
 
