@@ -13,6 +13,7 @@ import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {push} from "./walls";
 import {cyclic} from "../utils/math/number";
+import {confetti} from "./confetti";
 
 const textures = subimageTextures(ClownSneezy, { width: 24 });
 
@@ -39,14 +40,15 @@ export function clownSneezy() {
         head.facePlayer = true;
         await sniffle();
         head.shaking = true;
-        const storedSneezeDp = getPlayerCenterWorld().add(c, -1).normalize();
-        head.facePlayer = false;
         await sniffle(1);
         head.shaking = false;
         head.hat.bounce();
         head.face.subimage = 3;
         ClownSneeze.play();
+        const storedSneezeDp = getPlayerCenterWorld().add(c, -1).normalize();
+        head.facePlayer = false;
         sneezeDp.at(storedSneezeDp).scale(-1);
+        confetti(8, 8).at(c).show();
         deadlySneeze(storedSneezeDp.scale(6)).at(c).show();
         await sleep(500);
         head.face.subimage = 0;
@@ -69,23 +71,23 @@ export function clownSneezy() {
             }
         });
 
-    return c;
-}
+    function deadlySneeze(dp: Vector, radius = 16) {
+        const e = radius * 0.7;
+        const m = new Graphics().beginFill().drawRect(-e / 2, -e / 2, e, e);
+        m.visible = false;
+        let life = 60 * 5;
+        const b = new Graphics().beginFill(0xffffff).drawCircle(0, 0, radius)
+            .withStep(() => {
+                b.parent.add(dp);
+                if (life-- <= 0 || c.destroyed)
+                    return b.parent.destroy();
+                if (m.collides(player))
+                    player.damage(25);
+            });
+        return container(b, m);
+    }
 
-function deadlySneeze(dp: Vector, radius = 16) {
-    const e = radius * 0.7;
-    const m = new Graphics().beginFill().drawRect(-e / 2, -e / 2, e, e);
-    m.visible = false;
-    let life = 60 * 5;
-    const b = new Graphics().beginFill(0xffffff).drawCircle(0, 0, radius)
-        .withStep(() => {
-            b.parent.add(dp);
-            if (life-- <= 0)
-                return b.parent.destroy();
-            if (m.collides(player))
-                player.damage(25);
-        });
-    return container(b, m);
+    return c;
 }
 
 const propellerIndices = [5, 6, 7, 8, 9, 10, 11, 10, 9, 8, 7, 6, 5];
