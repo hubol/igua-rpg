@@ -69,9 +69,11 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
         head.facePlayer = true;
     }
 
+    let windUp = -1;
+
     async function charge() {
         head.face.subimage = 11;
-        SneezyPropellerWindUp.play();
+        windUp = SneezyPropellerWindUp.play();
         const accel = lerp(propeller, 'speed').to(3).over(1000);
         const startSpawn = sleep(500).then(() => { spawnPropellerUnit = 0; spawnPropellerProjectiles = true; });
         slowlyMoveTowardsPlayer = true;
@@ -183,7 +185,8 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
                 start.at(c);
                 startIdle();
             }
-        });
+        })
+        .on('removed', () => SneezyPropellerWindUp.stop(windUp));
 
     function deadlySneeze(dp: Vector, radius = 16) {
         const e = radius * 0.7;
