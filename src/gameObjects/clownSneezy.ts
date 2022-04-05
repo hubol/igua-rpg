@@ -101,13 +101,15 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
                 invulnerable = 30;
                 ClownHurt.play();
                 knockbackSpeed.at(-player.engine.knockback.x, -player.vspeed);
+                if (knockbackSpeed.y < -.5)
+                    head.hat.bounce();
             }
             if (slowlyMoveTowardsPlayer) {
                 const d = distance(c, player);
-                const f = Math.min(1, d * .005);
-                if (c.x < player.x - 16)
+                const f = Math.min(1, d * .0075);
+                if (c.x < player.x - 24)
                     c.x += f;
-                if (c.x > player.x + 16)
+                if (c.x > player.x + 24)
                     c.x -= f;
                 if (c.y > player.y - 4)
                     c.y -= f;
@@ -126,7 +128,7 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
                 return;
             const previous = spawnPropellerUnit;
             spawnPropellerUnit += Math.abs(propeller.speed);
-            const denom = 30;
+            const denom = 6;
             const current = Math.floor(spawnPropellerUnit / denom);
             if (Math.floor(previous / denom) === current)
                 return;
@@ -159,11 +161,11 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
     }
 
     function showPropellerProjectile(xscale = 1) {
-        let noEffectLife = 10;
-        let life = 60;
+        let noEffectLife = 6;
+        let life = 15;
         const s = Sprite.from(propellerProjectileTextures[0])
             .withStep(() => {
-                s.x += xscale * 3;
+                s.x += xscale * 4;
                 if (c.destroyed || life-- <= 0)
                     return s.destroy();
                 if (noEffectLife-- === 0) {
