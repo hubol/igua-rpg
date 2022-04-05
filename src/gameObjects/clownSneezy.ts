@@ -5,9 +5,7 @@ import {merge} from "../utils/merge";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/rng";
-import {ClownHurt, ClownSneeze, ClownSniffle} from "../sounds";
-import {Howl} from "howler";
-import {isOnScreen} from "../igua/logic/isOnScreen";
+import {ClownHurt, ClownSneeze, ClownSniffle, SneezyPropellerBlast, SneezyPropellerWindUp} from "../sounds";
 import {distance, Vector, vnew} from "../utils/math/vector";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {player} from "./player";
@@ -44,12 +42,6 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
         dropOdds = Math.max(dropOdds - 0.5, 0.1);
     }
 
-    function play(howl: Howl) {
-        if (!isOnScreen(c))
-            return;
-        howl.play();
-    }
-
     async function sniffle(index = 0) {
         head.face.subimage = 1 + index;
         ClownSniffle.play();
@@ -79,6 +71,7 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
 
     async function charge() {
         head.face.subimage = 11;
+        SneezyPropellerWindUp.play();
         const accel = lerp(propeller, 'speed').to(3).over(1000);
         const startSpawn = sleep(500).then(() => { spawnPropellerUnit = 0; spawnPropellerProjectiles = true; });
         slowlyMoveTowardsPlayer = true;
@@ -209,6 +202,7 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
     }
 
     function showPropellerProjectile(xscale = 1) {
+        SneezyPropellerBlast.play();
         let noEffectLife = 6;
         let life = 15;
         const s = Sprite.from(propellerProjectileTextures[0])

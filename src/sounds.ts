@@ -287,6 +287,16 @@ export const SelectOption = new Howl({
     
 });
 
+export const SneezyPropellerBlast = new Howl({
+    src: [require("./sound/sneezy propeller blast.ogg"), require("./sound/sneezy propeller blast.mp3")],
+    
+});
+
+export const SneezyPropellerWindUp = new Howl({
+    src: [require("./sound/sneezy propeller wind up.ogg"), require("./sound/sneezy propeller wind up.mp3")],
+    
+});
+
 export const SnowmanDie = new Howl({
     src: [require("./sound/snowman die.ogg"), require("./sound/snowman die.mp3")],
     
