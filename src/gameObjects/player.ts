@@ -85,7 +85,10 @@ function createPlayer(behavior = true)
                 if (player.isDucking)
                 {
                     CharacterHurtDefense.play();
+                    const preventDeath = progress.health > 1;
                     progress.health -= health * 0.8;
+                    if (preventDeath)
+                        progress.health = Math.max(progress.health, 1);
                 }
                 else
                 {
