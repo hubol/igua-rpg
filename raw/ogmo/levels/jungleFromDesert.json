@@ -193,16 +193,6 @@
         },
         {
           "name": "CommonClown",
-          "id": 21,
-          "_eid": "68762216",
-          "x": 872,
-          "y": 376,
-          "originX": 8,
-          "originY": 62,
-          "values": {"name": "", "depth": 0}
-        },
-        {
-          "name": "CommonClown",
           "id": 22,
           "_eid": "68762216",
           "x": 992,
@@ -477,6 +467,26 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "BehindPillar", "depth": 0}
+        },
+        {
+          "name": "ClownSneezy",
+          "id": 53,
+          "_eid": "11949926",
+          "x": 856,
+          "y": 384,
+          "originX": 12,
+          "originY": 22,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ClownSneezy",
+          "id": 54,
+          "_eid": "11949926",
+          "x": 224,
+          "y": 448,
+          "originX": 12,
+          "originY": 22,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },

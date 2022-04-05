@@ -17,9 +17,14 @@ import {confetti} from "./confetti";
 import {bouncePlayer} from "../igua/bouncePlayer";
 import {dieClown} from "./utils/clownUtils";
 import {lerp} from "../cutscene/lerp";
+import {wait} from "../cutscene/wait";
+import {rectangleDistance} from "../utils/math/rectangleDistance";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 const textures = subimageTextures(ClownSneezy, { width: 24 });
 const propellerProjectileTextures = subimageTextures(ClownPropellerProjectile, { width: 8 });
+
+export const resolveClownSneezy = resolveGameObject("ClownSneezy", (e) => clownSneezy().at(e));
 
 export function clownSneezy({ fullHealth = 7 } = { }) {
     const head = makeHead();
@@ -79,8 +84,9 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
         slowlyMoveTowardsPlayer = true;
         head.facePlayer = true;
         await Promise.all([ accel, startSpawn ]);
-        await sleep(3000);
-        await lerp(propeller, 'speed').to(1).over(1000);
+        const previousHealth = health;
+        await Promise.race([ sleep(3000), wait(() => health < previousHealth) ]);
+        await lerp(propeller, 'speed').to(1).over(500);
         head.face.subimage = 0;
         head.facePlayer = false;
         slowlyMoveTowardsPlayer = false;
@@ -89,8 +95,25 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
 
     const knockbackSpeed = vnew();
 
+    const start = vnew();
+    let startIsSet = false;
+
+    let idle = true;
+    let idleDirection = 1;
+
+    function startIdle() {
+        idle = true;
+        idleDirection = (c.x < start.x || (c.x === start.x && rng.bool)) ? 1 : -1;
+    }
+
+    let movesHistory = 0;
+
     const c = container(propeller, head, g)
         .withStep(() => {
+            if (!startIsSet) {
+                start.at(c);
+                startIsSet = true;
+            }
             if (invulnerable <= 0 && g.collides(player)) {
                 bouncePlayer([0, -9].add(c));
                 health -= player.strength;
@@ -109,7 +132,7 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
                 const f = Math.min(1, d * .0075);
                 if (c.x < player.x - 24)
                     c.x += f;
-                if (c.x > player.x + 24)
+                if (c.x > player.x - 23)
                     c.x -= f;
                 if (c.y > player.y - 4)
                     c.y -= f;
@@ -117,13 +140,24 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
                     c.y += f;
             }
             c.add(knockbackSpeed);
-            push(c, 16);
             knockbackSpeed.vlength -= 0.05;
             c.visible = invulnerable ? !c.visible : true;
             if (invulnerable > 0)
                 invulnerable--;
         })
         .withStep(() => {
+            if (!idle)
+                return;
+
+            c.x += idleDirection;
+            if ((idleDirection < 0 && c.x < start.x - 64)
+                || (idleDirection > 0 && c.x > start.x + 64))
+                idleDirection *= -1;
+            head.scale.x = idleDirection;
+        })
+        .withStep(() => {
+            push(c, 16);
+
             if (!spawnPropellerProjectiles)
                 return;
             const previous = spawnPropellerUnit;
@@ -137,10 +171,24 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
         })
         .withAsync(async () => {
             while (true) {
-                await sleep(500 + rng.int(1500));
-                await charge();
-                // if (isOnScreen(c))
-                //     await sneeze();
+                if (rectangleDistance(player, c) > 128)
+                    await sleep(100 + rng.int(200));
+                const doSneeze = rng() < (player.y < c.y - 32 ? 0.8 : 0.3);
+                if ((doSneeze || movesHistory === -2) && movesHistory !== 2) {
+                    await wait(() => rectangleDistance(player, c) < 64);
+                    idle = false;
+                    await sneeze();
+                    await sleep(200 + rng.int(200));
+                    movesHistory = Math.max(1, movesHistory + 1);
+                }
+                else {
+                    await wait(() => rectangleDistance(player, c) < 32);
+                    idle = false;
+                    await charge();
+                    movesHistory = Math.min(-1, movesHistory - 1);
+                }
+                start.at(c);
+                startIdle();
             }
         });
 

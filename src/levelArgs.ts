@@ -45,6 +45,7 @@ import { DinerTable } from "./textures";
 import { JunglePlankDecoration } from "./textures";
 import { BookCollection } from "./textures";
 import { DontPoster } from "./textures";
+import { resolveClownSneezy } from "./gameObjects/clownSneezy";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { CloudLong } from "./textures";
@@ -3380,9 +3381,7 @@ JungleTree_4: resolveJungleTree({"type":"JungleTree","x":496,"y":512,"height":36
 // @ts-ignore
 JungleTree_5: resolveJungleTree({"type":"JungleTree","x":56,"y":480,"height":320,"flippedX":false,"flippedY":false,"uid":"25711099_20","name":"","depth":4}),
 // @ts-ignore
-CommonClown: resolveCommonClown({"type":"CommonClown","x":872,"y":376,"flippedX":false,"flippedY":false,"uid":"68762216_21","name":"","depth":0}),
-// @ts-ignore
-CommonClown_1: resolveCommonClown({"type":"CommonClown","x":992,"y":384,"flippedX":false,"flippedY":false,"uid":"68762216_22","name":"","depth":0}),
+CommonClown: resolveCommonClown({"type":"CommonClown","x":992,"y":384,"flippedX":false,"flippedY":false,"uid":"68762216_22","name":"","depth":0}),
 // @ts-ignore
 ToCaveBackground: resolveRegion({"type":"Region","x":432,"y":408,"width":224,"height":168,"flippedX":false,"flippedY":false,"uid":"25971607_23","name":"ToCaveBackground","depth":0}),
 // @ts-ignore
@@ -3427,7 +3426,11 @@ PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":504,"y":216
 // @ts-ignore
 PipeLeftEnd_1: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":504,"y":216,"flippedX":false,"flippedY":false,"uid":"63428932_51","name":"","depth":0}),
 // @ts-ignore
-BehindPillar: resolveRegion({"type":"Region","x":536,"y":352,"width":112,"height":56,"flippedX":false,"flippedY":false,"uid":"25971607_52","name":"BehindPillar","depth":0})
+BehindPillar: resolveRegion({"type":"Region","x":536,"y":352,"width":112,"height":56,"flippedX":false,"flippedY":false,"uid":"25971607_52","name":"BehindPillar","depth":0}),
+// @ts-ignore
+ClownSneezy: resolveClownSneezy({"type":"ClownSneezy","x":856,"y":384,"flippedX":false,"flippedY":false,"uid":"11949926_53","name":"","depth":0}),
+// @ts-ignore
+ClownSneezy_1: resolveClownSneezy({"type":"ClownSneezy","x":224,"y":448,"flippedX":false,"flippedY":false,"uid":"11949926_54","name":"","depth":0})
 };
 }
 };
