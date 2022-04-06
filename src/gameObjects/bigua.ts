@@ -15,7 +15,7 @@ const crests = shapeTextures(BiguaCrests, 48, [27, 47]);
 const pupils = shapeTextures(BiguaPupils, 20, [19, 16]);
 
 export function bigua(looks = BiguaJungleLooks) {
-    const c = merge(container(), { isDucking: false, duckUnit: 0, blinkControl: true, isClosingEyes: false, baseClosedEyesUnit: 0, torso: {} as DisplayObject });
+    const c = merge(container(), { isDucking: false, duckUnit: 0, blinkControl: true, isClosingEyes: false, baseClosedEyesUnit: 0, torso: {} as DisplayObject, tail: {} as ReturnType<typeof biguaTail> });
 
     let closedEyesUnit = 0;
 
@@ -29,6 +29,7 @@ export function bigua(looks = BiguaJungleLooks) {
 
     function body() {
         const tail = biguaTail(-1).at(looks.body.tail.placement);
+        c.tail = tail;
         tail.pivot.set(0, -14);
         tail.color = looks.body.tail.color;
 

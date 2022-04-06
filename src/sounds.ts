@@ -22,6 +22,11 @@ export const BigKeyCollected = new Howl({
     
 });
 
+export const BiguaMagic = new Howl({
+    src: [require("./sound/bigua magic.ogg"), require("./sound/bigua magic.mp3")],
+    
+});
+
 export const BoulderBless = new Howl({
     src: [require("./sound/boulder bless.ogg"), require("./sound/boulder bless.mp3")],
     

@@ -39,14 +39,15 @@ PIXI.DisplayObject.prototype.ahead = function () {
     return scene.playerStage.addChild(this);
 }
 
-PIXI.DisplayObject.prototype.asCollectible = function (object, key, action: () => {})
+PIXI.DisplayObject.prototype.asCollectible = function (object, key, action)
 {
     return this.withStep(() => {
         if (!object[key] && this.collides(player))
         {
             (object as any)[key] = true;
             CollectGeneric.play();
-            action();
+            if (action)
+                action();
         }
         if (object[key])
            this.destroy();

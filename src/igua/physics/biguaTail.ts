@@ -39,15 +39,20 @@ export function biguaTail(right = 1, base = 4, length = 40) {
     function twitch() {
         const i = rng.int(chain.nodes.length);
         const n = chain.nodes[i || 1];
-        const f = rng() > 0.9 ? 3 : 1;
+        let f = rng() > 0.9 ? 3 : 1;
+        if (c.twitch)
+            f *= 3;
         n.vspeed += rng.polar * f;
         n.hspeed += rng.polar * f;
     }
 
-    const c = merge(container(), { color: 0 } )
+    const c = merge(container(), { color: 0, twitch: false } )
         .withAsync(async () => {
             while (true) {
-                await sleep(500 + rng.int(500));
+                if (c.twitch)
+                    await sleep(67);
+                else
+                    await sleep(500 + rng.int(500));
                 twitch();
             }
         });

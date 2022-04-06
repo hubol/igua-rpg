@@ -9,7 +9,7 @@ import {KeyYellow, KeyYellowShrunken} from "../textures";
 import {Graphics, Sprite} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
 import {wait} from "../cutscene/wait";
-import {ClownExplode} from "../sounds";
+import {BiguaMagic, ClownExplode, ConsumeMedicine} from "../sounds";
 import {confetti} from "./confetti";
 import {rng} from "../utils/rng";
 import {jukebox} from "../igua/jukebox";
@@ -35,6 +35,8 @@ export function biguaInJungle() {
                 await show('If you find something else you need bigger, bring it to me.');
             }
             else if (jungle.key.shrunkenKey) {
+                b.tail.twitch = true;
+                ConsumeMedicine.play();
                 await show('Gave shrunken temple key.');
                 jungle.bigua.repairedKey = true;
                 const r = repairingKey().at(v());
@@ -43,6 +45,7 @@ export function biguaInJungle() {
                 b.blinkControl = false;
                 jukebox.currentSong?.fade(1, 0, 500);
                 await wait(() => r.destroyed);
+                b.tail.twitch = false;
                 await sleep(250);
                 b.isClosingEyes = false;
                 await sleep(250);
@@ -84,6 +87,7 @@ function repairingKey() {
     g.alpha = 0;
     let vibrate = false;
     const s1 = Sprite.from(KeyYellowShrunken).centerAnchor().withAsync(async () => {
+        const id = BiguaMagic.play();
         await Promise.all([
             lerp(s1, 'alpha').to(1).over(250),
             lerp(g, 'alpha').to(1).over(250),
@@ -92,6 +96,7 @@ function repairingKey() {
         vibrate = true;
         await sleep(750 - 125);
         await lerp(s1.scale, 'x').to(1.4).over(125);
+        BiguaMagic.stop(id);
         ClownExplode.play();
         confetti().at(s1).show();
         repairedKey().at(s1);
