@@ -24,7 +24,7 @@ const propellerProjectileTextures = subimageTextures(ClownPropellerProjectile, {
 
 export const resolveClownSneezy = resolveGameObject("ClownSneezy", (e) => clownSneezy().at(e));
 
-export function clownSneezy({ fullHealth = 7 } = { }) {
+export function clownSneezy({ fullHealth = 8 } = { }) {
     const head = makeHead();
     const propeller = makePropeller(head);
     const g = new Graphics().beginFill().drawRect(-10, -17, 19, 17);
@@ -38,8 +38,8 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
     let slowlyMoveTowardsPlayer = false;
 
     function hurtPlayer(damage: number) {
-        player.damage(damage);
         dropOdds = Math.max(dropOdds - 0.5, 0.1);
+        return player.damage(damage);
     }
 
     async function sniffle(index = 0) {
@@ -216,8 +216,8 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
                 if (noEffectLife-- === 0) {
                     s.texture = propellerProjectileTextures[1];
                     s.withStep(() => {
-                       if (s.collides(player))
-                           hurtPlayer(20);
+                       if (s.collides(player) && hurtPlayer(20))
+                           player.engine.knockback.x = xscale * 3;
                     });
                 }
             });
