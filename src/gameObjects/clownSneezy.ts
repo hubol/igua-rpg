@@ -169,7 +169,7 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
                 if (rectangleDistance(player, c) > 128)
                     await sleep(100 + rng.int(200));
                 const doSneeze = rng() < (player.y < c.y - 32 ? 0.8 : 0.3);
-                if ((doSneeze || movesHistory === -2) && movesHistory !== 2) {
+                if ((doSneeze || movesHistory === -1) && movesHistory !== 2) {
                     await wait(() => rectangleDistance(player, c) < 64);
                     idle = false;
                     await sneeze();
