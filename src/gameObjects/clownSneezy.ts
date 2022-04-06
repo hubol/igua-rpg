@@ -205,7 +205,8 @@ export function clownSneezy({ fullHealth = 8 } = { }) {
     }
 
     function showPropellerProjectile(xscale = 1) {
-        SneezyPropellerBlast.play();
+        if (rectangleDistance(c, player) < 320)
+            SneezyPropellerBlast.play();
         let noEffectLife = 6;
         let life = 15;
         const s = Sprite.from(propellerProjectileTextures[0])
