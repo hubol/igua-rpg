@@ -74,12 +74,12 @@ export function clownSneezy({ fullHealth = 7 } = { }) {
     async function charge() {
         head.face.subimage = 11;
         windUp = SneezyPropellerWindUp.play();
+        const previousHealth = health;
         const accel = lerp(propeller, 'speed').to(3).over(1000);
         const startSpawn = sleep(500).then(() => { spawnPropellerUnit = 0; spawnPropellerProjectiles = true; });
         slowlyMoveTowardsPlayer = true;
         head.facePlayer = true;
         await Promise.all([ accel, startSpawn ]);
-        const previousHealth = health;
         await Promise.race([ sleep(3000), wait(() => health < previousHealth) ]);
         await lerp(propeller, 'speed').to(1).over(500);
         head.face.subimage = 0;
