@@ -89,7 +89,7 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
         container.y += container.vspeed;
 
         if (player.collides(mask) && isPlayerMoving() && container.dangerous) {
-            if (invulnerable > 0 && container.vspeed < 0 && player.vspeed >= 0)
+            if (invulnerable > 0 && container.vspeed < 0 && player.vspeed >= -1)
                 player.y += container.vspeed;
             if (invulnerable <= 0 || (invulnerable <= 15 && player.vspeed > 1)) {
                 player.engine.knockback.x = (player.x - container.x) / 8;
