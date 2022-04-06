@@ -16,6 +16,8 @@ import {approachLinear} from "../utils/math/number";
 import {sleep} from "../cutscene/sleep";
 import {decalsOf} from "../gameObjects/decal";
 import {wallpaper} from "../gameObjects/wallpaper";
+import {cutscene} from "../cutscene/cutscene";
+import {show} from "../cutscene/dialog";
 
 export function JungleTown() {
     jukebox.play(JungleMusic).warm(FunTimes, JungleInn, Temple);
@@ -27,6 +29,8 @@ export function JungleTown() {
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0x877856);
     decalsOf(CracksA).forEach(x => x.tint = 0x28340C);
     scene.backgroundGameObjectStage.addChildAt(wallpaper(level.BehindPillar, 0x4B5B1D), 0);
+    level.KeyYellowShrunken.asCollectible(progress.flags.jungle.key, 'shrunkenKey', () =>
+        cutscene.play(() => show('Found shrunken temple key.')));
 
     jungleTempleLever().at(level.TempleLever).show();
 

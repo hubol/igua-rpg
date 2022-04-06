@@ -14,7 +14,7 @@ declare global {
             behind(): this;
             withInteraction(interaction: () => void): this;
             withCutscene(cutscene: Cutscene): this;
-            asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>);
+            asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>, action?: () => void);
             liveFor(frames: number): this;
         }
     }
@@ -39,13 +39,14 @@ PIXI.DisplayObject.prototype.ahead = function () {
     return scene.playerStage.addChild(this);
 }
 
-PIXI.DisplayObject.prototype.asCollectible = function (object, key)
+PIXI.DisplayObject.prototype.asCollectible = function (object, key, action: () => {})
 {
     return this.withStep(() => {
         if (!object[key] && this.collides(player))
         {
             (object as any)[key] = true;
             CollectGeneric.play();
+            action();
         }
         if (object[key])
            this.destroy();

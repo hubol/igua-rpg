@@ -6,12 +6,18 @@ export function getInitialFlags()
             clearedBoulder: new Set<string>(),
         },
         jungle: {
+            bigua: {
+                met: false,
+                repairedKey: false,
+            },
             sickIguana: {
                 requestedHelp: false,
                 healed: false,
             },
             key: {
+                shrunkenKey: false,
                 fromSickIguana: false,
+                fromBiguaRepair: false,
             },
             bigKey: {
                 piece1: false,

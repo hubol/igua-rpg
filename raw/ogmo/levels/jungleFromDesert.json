@@ -487,6 +487,16 @@
           "originX": 12,
           "originY": 22,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 55,
+          "_eid": "55940370",
+          "x": 512,
+          "y": 288,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "TestBigua", "faceRight": true, "depth": 0}
         }
       ]
     },

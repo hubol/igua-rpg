@@ -3431,7 +3431,8 @@ BehindPillar: resolveRegion({"type":"Region","x":536,"y":352,"width":112,"height
 // @ts-ignore
 ClownSneezy: resolveClownSneezy({"type":"ClownSneezy","x":856,"y":384,"flippedX":false,"flippedY":false,"uid":"11949926_53","name":"","depth":0}),
 // @ts-ignore
-ClownSneezy_1: resolveClownSneezy({"type":"ClownSneezy","x":224,"y":448,"flippedX":false,"flippedY":false,"uid":"11949926_54","name":"","depth":0})
+ClownSneezy_1: resolveClownSneezy({"type":"ClownSneezy","x":224,"y":448,"flippedX":false,"flippedY":false,"uid":"11949926_54","name":"","depth":0}),
+TestBigua: {"type":"Checkpoint","x":512,"y":288,"flippedX":false,"flippedY":false,"uid":"55940370_55","name":"TestBigua","faceRight":true,"depth":0}
 };
 }
 };
