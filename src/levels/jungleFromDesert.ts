@@ -24,7 +24,7 @@ export function JungleFromDesert() {
         const {x, y} = level.ToCaveBackground;
         const w = wallpaper(level.ToCaveBackground, 0x877856);
         scene.backgroundGameObjectStage.addChildAt(w, 0);
-        resolveBlock({ x, y, width: 32, height: 8 } as any);
+        resolveBlock({ x, y, width: 64, height: 16 } as any);
     }
     wallpaper(level.BehindPillar, 0x4B5B1D).behind();
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0x877856);

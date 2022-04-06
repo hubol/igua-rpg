@@ -7,7 +7,7 @@ import {mirror} from "../gameObjects/mirror";
 import {now} from "../utils/now";
 import {advanceTempleMovingWall} from "./jungleTemple";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {GroundSpeckles, JungleLever} from "../textures";
+import {CracksA, GroundSpeckles, JungleLever} from "../textures";
 import {lever} from "../gameObjects/lever";
 import {Sprite} from "pixi.js";
 import {progress} from "../igua/data/progress";
@@ -15,6 +15,7 @@ import {ActivateLever} from "../sounds";
 import {approachLinear} from "../utils/math/number";
 import {sleep} from "../cutscene/sleep";
 import {decalsOf} from "../gameObjects/decal";
+import {wallpaper} from "../gameObjects/wallpaper";
 
 export function JungleTown() {
     jukebox.play(JungleMusic).warm(FunTimes, JungleInn, Temple);
@@ -24,6 +25,8 @@ export function JungleTown() {
     mirror(38, 30, 0xB7B7E2, 0xD2D2EC).at([-9, -2].add(level.SignNeonInn)).behind();
     level.WiggleVine.withStep(() => level.WiggleVine.angle = Math.round(Math.sin(now.s * Math.PI)) * 4);
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0x877856);
+    decalsOf(CracksA).forEach(x => x.tint = 0x28340C);
+    scene.backgroundGameObjectStage.addChildAt(wallpaper(level.BehindPillar, 0x4B5B1D), 0);
 
     jungleTempleLever().at(level.TempleLever).show();
 
