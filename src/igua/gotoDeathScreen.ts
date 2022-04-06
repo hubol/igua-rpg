@@ -12,6 +12,7 @@ export function gotoDeathScreen()
     jukebox.stop();
     player.isDead = true;
     scene.cameraStage.children.filter(x => x !== scene.playerStage).forEach(x => x.destroy());
+    scene.playerStage.children.filter(x => x !== player).forEach(x => x.destroy());
     scene.parallax1Stage.removeAllChildren();
     scene.backgroundColor = 0x000000;
     setTimeout(revive, 4_000)
