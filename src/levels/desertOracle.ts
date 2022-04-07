@@ -6,7 +6,7 @@ import {scene} from "../igua/scene";
 import {show} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
 import {sleep} from "../cutscene/sleep";
-import {oracleAdvice} from "../igua/oracleAdvice";
+import {oracleAdviceDesert} from "../igua/oracleAdvice";
 import {cutOutWindow} from "../igua/cutOutWindow";
 
 export function DesertOracle()
@@ -34,7 +34,7 @@ export function DesertOracle()
             talkedAlready = true;
         }
         if (await ask("Would you like some advice?"))
-            await oracleAdvice();
+            await oracleAdviceDesert();
         else
             await show("That is okay.");
     };

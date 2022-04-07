@@ -18,6 +18,8 @@ import {decalsOf} from "../gameObjects/decal";
 import {wallpaper} from "../gameObjects/wallpaper";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
+import {ask} from "../cutscene/ask";
+import {oracleAdviceJungle} from "../igua/oracleAdvice";
 
 export function JungleTown() {
     jukebox.play(JungleMusic).warm(FunTimes, JungleInn, Temple);
@@ -26,6 +28,7 @@ export function JungleTown() {
     const level = applyOgmoLevel(JungleTownArgs);
     mirror(38, 30, 0xB7B7E2, 0xD2D2EC).at([-9, -2].add(level.SignNeonInn)).behind();
     level.WiggleVine.withStep(() => level.WiggleVine.angle = Math.round(Math.sin(now.s * Math.PI)) * 4);
+    level.JungleOracle.withCutscene(jungleOracleCutscene);
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0x877856);
     decalsOf(CracksA).forEach(x => x.tint = 0x28340C);
     scene.backgroundGameObjectStage.addChildAt(wallpaper(level.BehindPillar, 0x4B5B1D), 0);
@@ -66,4 +69,19 @@ function jungleTempleLever() {
     s.anchor.set(0.5, 1);
     l.addChildAt(s, 0);
     return l;
+}
+
+async function jungleOracleCutscene() {
+    const { oracle } = progress.flags;
+    if (!oracle.lore2) {
+        oracle.lore2 = true;
+        await show(`I see you are on a mission to fix the world.`);
+        await show(`I have heard rumors of the great weapon, but I don't believe it is here in the jungle.`);
+        await show(`A blessing from the jungle guardian might lead the way.`);
+    }
+
+    if (await ask("Would you like some advice?"))
+        await oracleAdviceJungle();
+    else
+        await show("I will be here if you change your mind.");
 }

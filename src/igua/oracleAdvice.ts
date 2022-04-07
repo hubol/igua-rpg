@@ -1,7 +1,7 @@
 import {progress} from "./data/progress";
 import {show} from "../cutscene/dialog";
 
-export async function oracleAdvice() {
+export async function oracleAdviceDesert() {
     const { oracle, desert } = progress.flags;
     if (!oracle.lore1) {
         oracle.lore1 = true;
@@ -66,5 +66,46 @@ export async function oracleAdvice() {
                 return;
             }
     }
+    await show("I don't have any advice right now.");
+}
+
+export async function oracleAdviceJungle() {
+    const { desert, jungle } = progress.flags;
+    if (jungle.bigKey.reward) {
+
+    }
+
+    const allKeys = jungle.key.fromSickIguana && jungle.key.fromBiguaRepair && jungle.key.fromSpider;
+    if (allKeys) {
+        await show(`You need to find the big key pieces by entering the unreal worlds.`);
+        if (!desert.bigKey.piece1) {
+            return await show(`One piece requires you to dodge common angels.`);
+        }
+        if (!desert.bigKey.piece2) {
+            return await show(`One piece requires you to defend yourself.`);
+        }
+        if (!desert.bigKey.piece3) {
+            return await show(`One piece requires you to destroy a ball.`);
+        }
+    }
+    else {
+        await show(`You will need to acquire some keys to continue your mission.`);
+        if (!jungle.key.fromSickIguana) {
+            return await show(`One is with a sick iguana in the jungle.`);
+        }
+        if (!jungle.key.fromBiguaRepair) {
+            if (!jungle.key.shrunkenKey)
+                return await show(`A damaged one is above the jungle town.`);
+            if (!jungle.bigua.met) {
+                await show(`The damaged one can be repaired by the jungle's fallen sorcerer.`);
+                return await show(`The sorcerer waits on top of the earth pillar.`);
+            }
+            return await show(`Take the damaged key to Bigua of the jungle.`);
+        }
+        if (!jungle.key.fromSpider) {
+            return await show(`One is monitored closely by a cautious spider.`);
+        }
+    }
+
     await show("I don't have any advice right now.");
 }
