@@ -19,5 +19,5 @@ const u = vnew();
 export function rayToPlayerIntersectsWall(start: Vector) {
     const diff = u.at(player).add(start, -1);
     const length = diff.vlength;
-    rayIntersectsWall(start, diff.normalize(), length);
+    return rayIntersectsWall(start, diff.normalize(), length);
 }
