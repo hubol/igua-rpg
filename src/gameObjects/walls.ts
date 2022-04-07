@@ -51,28 +51,29 @@ export const resolvePipeLeftEnd = resolveGameObject("PipeLeftEnd", e => {
     return scene.pipeStage.addChild(sprite);
 });
 
-export function isOnGround(xy: Pushable, radius: number) {
-    return walls.some(s => {
-        // TODO bad copy-pastey, but it's probably a poor idea to extract a function that returns an object
-        const offset = {x: xy.x - s.x, y: xy.y - s.y};
-        const offsetDotNormal = dot(offset, s.normal);
-        const offsetDotForward = dot(offset, s.forward);
-        const alongForward = offsetDotForward > 0 && offsetDotForward < s.length;
-        const absOffsetDotNormal = Math.abs(offsetDotNormal);
-
-        const canCorrectPosition = !s.isPipe
-            || (xy.vspeed === undefined || (xy.vspeed > 0 && offsetDotNormal >= 0) || (xy.vspeed === 0 && offsetDotNormal >= radius * .9))
-            || (s.normal.x !== 0 && xy.hspeed !== undefined && (xy.hspeed !== 0 && Math.sign(s.normal.x) !== Math.sign(xy.hspeed)));
-        const isGround = s.isGround && canCorrectPosition;
-
-        return (alongForward && absOffsetDotNormal < radius + 0.1 && isGround);
-    });
+function empty(result: PushResult) {
+    delete result.hitWall;
+    delete result.hitCeiling;
+    delete result.hitGround;
+    delete result.isOnGround;
 }
 
-export function push(xy: Pushable, radius: number) {
-    const result: PushResult = {};
+const isOnGroundResult: PushResult = {};
+export function isOnGround(xy: Pushable, radius: number) {
+    empty(isOnGroundResult);
+    pushImpl(xy, radius, isOnGroundResult, false, true);
+    return !!isOnGroundResult.isOnGround;
+}
 
-    walls.forEach(s => {
+const pushResult: PushResult = {};
+export function push(xy: Pushable, radius: number) {
+    empty(pushResult);
+    return pushImpl(xy, radius, pushResult);
+}
+
+function pushImpl(xy: Pushable, radius: number, result: PushResult, correctPosition = true, stopIfOnGround = false) {
+    for (let i = 0; i < walls.length; i++) {
+        const s = walls[i];
         const offset = {x: xy.x - s.x, y: xy.y - s.y};
         const offsetDotNormal = dot(offset, s.normal);
         const offsetDotForward = dot(offset, s.forward);
@@ -86,9 +87,11 @@ export function push(xy: Pushable, radius: number) {
 
         if (alongForward && absOffsetDotNormal < radius + 0.1 && isGround) {
             result.isOnGround = true;
+            if (stopIfOnGround)
+                break;
         }
 
-        if (canCorrectPosition && absOffsetDotNormal < radius) {
+        if (correctPosition && canCorrectPosition && absOffsetDotNormal < radius) {
             if (alongForward) {
                 if (isGround)
                     result.hitGround = true;
@@ -101,7 +104,7 @@ export function push(xy: Pushable, radius: number) {
                 xy.y = s.y + s.forward.y * offsetDotForward + s.normal.y * radius;
             }
         }
-    });
+    }
 
     return result;
 }
