@@ -18,6 +18,7 @@ export function getInitialFlags()
                 shrunkenKey: false,
                 fromSickIguana: false,
                 fromBiguaRepair: false,
+                fromSpider: false,
             },
             bigKey: {
                 piece1: false,

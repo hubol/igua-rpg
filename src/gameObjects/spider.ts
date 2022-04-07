@@ -25,6 +25,9 @@ export function spider(target: DisplayObject, offset: Vector, { activate = 48, b
             unit += Math.sin(now.s * Math.PI * 4) * 0.002;
             return;
         }
+        else if (behaviorIndex >= 2) {
+            target.at(s).add(targetGrabOffset);
+        }
 
         if (behaviorIndex === 0) {
             unit = baseUnit + Math.sin(now.s * Math.PI * 4) * 0.025 * Math.abs(Math.sin(now.s * Math.PI * 1.3 - 4));
@@ -42,7 +45,6 @@ export function spider(target: DisplayObject, offset: Vector, { activate = 48, b
             targetGrabOffset.at(target).add(s, -1);
         }
         if (behaviorIndex === 2) {
-            target.at(s).add(targetGrabOffset);
             unit -= upUnit;
             if (unit <= 0) {
                 unit = 0;

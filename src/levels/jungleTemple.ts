@@ -25,7 +25,7 @@ export function JungleTemple() {
     const util = makeTempleLevelUtil(
         [key.fromSickIguana, bigKey.piece1, [level.Key1, level.Door1]],
         [key.fromBiguaRepair, bigKey.piece2, [level.Key2, level.Door2]],
-        [key.fromSickIguana, bigKey.piece3, [level.Key3, level.Door3]]);
+        [key.fromSpider, bigKey.piece3, [level.Key3, level.Door3]]);
 
     const defaultX = level.MovingWall.x;
     level.MovingWall.withStep(() => level.MovingWall.x = defaultX - Math.round(templeLever.position * 80));

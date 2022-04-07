@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 1536,
+  "width": 1720,
   "height": 512,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,7 +12,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 192,
+      "gridCellsX": 215,
       "gridCellsY": 64,
       "entities": [
         {
@@ -47,7 +47,7 @@
           "_eid": "55823268",
           "x": 560,
           "y": 408,
-          "width": 976,
+          "width": 1160,
           "height": 40,
           "originX": 0,
           "originY": 0,
@@ -297,7 +297,7 @@
           "name": "Door",
           "id": 32,
           "_eid": "55913988",
-          "x": 1240,
+          "x": 1224,
           "y": 376,
           "originX": 0,
           "originY": 0,
@@ -307,7 +307,7 @@
           "name": "PipeHorizontal",
           "id": 33,
           "_eid": "55841307",
-          "x": 1194,
+          "x": 1178,
           "y": 352,
           "width": 92,
           "originX": 0,
@@ -318,7 +318,7 @@
           "name": "JungleTree",
           "id": 34,
           "_eid": "25711099",
-          "x": 1265,
+          "x": 1249,
           "y": 352,
           "height": 64,
           "originX": 8,
@@ -329,7 +329,7 @@
           "name": "Checkpoint",
           "id": 35,
           "_eid": "55940370",
-          "x": 1208,
+          "x": 1192,
           "y": 408,
           "originX": 6,
           "originY": 12,
@@ -497,6 +497,41 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "TestBigua", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 57,
+          "_eid": "55823268",
+          "x": 1536,
+          "y": 448,
+          "width": 184,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 58,
+          "_eid": "55823268",
+          "x": 1440,
+          "y": 392,
+          "width": 160,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "JungleTree",
+          "id": 59,
+          "_eid": "25711099",
+          "x": 1520,
+          "y": 392,
+          "height": 192,
+          "originX": 8,
+          "originY": 192,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -507,7 +542,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 192,
+      "gridCellsX": 215,
       "gridCellsY": 64,
       "decals": [
         {
@@ -517,6 +552,17 @@
           "scaleY": 1,
           "rotation": 0,
           "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1526,
+          "y": 384,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key yellow.png",
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
@@ -531,9 +577,10 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 192,
+      "gridCellsX": 215,
       "gridCellsY": 64,
       "decals": [
+        {"x": 1545, "y": 392, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0},
         {
           "x": 472,
           "y": 432,
@@ -623,7 +670,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 1192,
+          "x": 1176,
           "y": 410,
           "scaleX": 1,
           "scaleY": 1,
@@ -709,7 +756,42 @@
           "originX": 0.5,
           "originY": 0,
           "values": {"name": ""}
-        }
+        },
+        {
+          "x": 1496,
+          "y": 392,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/tree root.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1530,
+          "y": 398,
+          "scaleX": -0.7,
+          "scaleY": 0.7,
+          "rotation": 0.47251802957156447,
+          "texture": "jungle/tree root.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1542,
+          "y": 393,
+          "scaleX": 1,
+          "scaleY": 2,
+          "rotation": -2.8821316932937546,
+          "texture": "jungle/tree root.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 1499, "y": 406, "scaleX": -0.7, "scaleY": 0.7, "rotation": 1.8231748641613885, "texture": "jungle/tree root.png", "originX": 0.5, "originY": 0.5},
+        {"x": 1515, "y": 406, "scaleX": -0.7, "scaleY": -0.7, "rotation": 1.5205832193689774, "texture": "jungle/tree root.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../src/images"
     },
@@ -720,7 +802,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 192,
+      "gridCellsX": 215,
       "gridCellsY": 64,
       "decals": [
         {
@@ -768,7 +850,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 1240,
+          "x": 1224,
           "y": 408,
           "scaleX": 1,
           "scaleY": 1,
@@ -776,6 +858,40 @@
           "texture": "jungle/house1.png",
           "originX": 0.5,
           "originY": 1,
+          "values": {"name": ""}
+        },
+        {"x": 1548, "y": 390, "scaleX": -1, "scaleY": 1, "rotation": 0.1657513292706501, "texture": "jungle/tree root.png", "originX": 0.5, "originY": 0.5},
+        {
+          "x": 1456,
+          "y": 384,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1360,
+          "y": 400,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1616,
+          "y": 400,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
           "values": {"name": ""}
         }
       ],
@@ -788,7 +904,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 192,
+      "gridCellsX": 215,
       "gridCellsY": 64,
       "decals": [],
       "folder": "../../src/images"
