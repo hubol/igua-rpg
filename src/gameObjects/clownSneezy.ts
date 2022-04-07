@@ -18,6 +18,7 @@ import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
+import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 
 const textures = subimageTextures(ClownSneezy, { width: 24 });
 const propellerProjectileTextures = subimageTextures(ClownPropellerProjectile, { width: 8 });
@@ -166,8 +167,10 @@ export function clownSneezy({ fullHealth = 8 } = { }) {
         })
         .withAsync(async () => {
             while (true) {
-                if (rectangleDistance(player, c) > 128)
+                if (rectangleDistance(player, c) > 128 || rayToPlayerIntersectsWall(c)) {
                     await sleep(100 + rng.int(200));
+                    continue;
+                }
                 const doSneeze = rng() < (player.y < c.y - 32 ? 0.8 : 0.3);
                 if ((doSneeze || movesHistory === -1) && movesHistory !== 2) {
                     await wait(() => rectangleDistance(player, c) < 64);
