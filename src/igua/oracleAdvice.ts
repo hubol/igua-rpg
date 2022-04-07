@@ -70,7 +70,7 @@ export async function oracleAdviceDesert() {
 }
 
 export async function oracleAdviceJungle() {
-    const { desert, jungle } = progress.flags;
+    const { jungle } = progress.flags;
     if (jungle.bigKey.reward) {
 
     }
@@ -78,13 +78,13 @@ export async function oracleAdviceJungle() {
     const allKeys = jungle.key.fromSickIguana && jungle.key.fromBiguaRepair && jungle.key.fromSpider;
     if (allKeys) {
         await show(`You need to find the big key pieces by entering the unreal worlds.`);
-        if (!desert.bigKey.piece1) {
+        if (!jungle.bigKey.piece1) {
             return await show(`One piece requires you to dodge common angels.`);
         }
-        if (!desert.bigKey.piece2) {
+        if (!jungle.bigKey.piece2) {
             return await show(`One piece requires you to defend yourself.`);
         }
-        if (!desert.bigKey.piece3) {
+        if (!jungle.bigKey.piece3) {
             return await show(`One piece requires you to destroy a ball.`);
         }
     }
