@@ -54,6 +54,7 @@ export function recreatePlayerInPlace() {
     const { x, y, scale } = player;
     player.destroy();
     createStagedPlayer();
+    scene.ext.__player = player;
     player.x = x;
     player.y = y;
     player.scale.x = scale.x;
