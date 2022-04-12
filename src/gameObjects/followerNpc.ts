@@ -29,7 +29,7 @@ export function followerNpc(npc: Npc)
         }
 
         const dx = desired.position.x - npc.x;
-        npc.hspeed = Math.abs(dx) < 1 ? dx : dx * .9;
+        npc.hspeed = dx;
 
         // TODO lame copypaste:
         // TODO Need finer control over order of steps attached to game objects
@@ -52,6 +52,6 @@ export function followerNpc(npc: Npc)
 
 const desired = {
     get position() {
-        return { x: player.scale.x * -34, y: 0 }.add(player);
+        return { x: player.scale.x * -(Math.abs(player.width) + 4), y: 0 }.add(player);
     }
 };

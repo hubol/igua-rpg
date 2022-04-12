@@ -155,6 +155,8 @@ export function ballons({ target, offset, state, string, displayState = [], tick
 
     function trackTargetMotion4() {
         c.at(t.current).add(offset);
+        c.x = Math.floor(c.x);
+        c.y = Math.floor(c.y);
         if (((Math.abs(t.diff.x) < 0.1 && Math.abs(t.diff.y) < 0.1)))
             return;
         for (let i = 0; i < displayState.length; i++) {

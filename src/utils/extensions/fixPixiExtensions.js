@@ -2,6 +2,72 @@ import {Sprite, Mesh, Transform} from "pixi.js";
 
 // Temporary solution until https://github.com/pixijs/pixijs/pull/7495 is merged
 
+Transform.prototype.updateLocalTransform = function ()
+    {
+        const lt = this.localTransform;
+
+        if (this._localID !== this._currentLocalID)
+        {
+            // get the matrix values of the displayobject based on its transform properties..
+            lt.a = this._cx * this.scale.x;
+            lt.b = this._sx * this.scale.x;
+            lt.c = this._cy * this.scale.y;
+            lt.d = this._sy * this.scale.y;
+
+            lt.tx = Math.round(this.position.x - ((this.pivot.x * lt.a) + (this.pivot.y * lt.c)));
+            lt.ty = Math.round(this.position.y - ((this.pivot.x * lt.b) + (this.pivot.y * lt.d)));
+            this._currentLocalID = this._localID;
+
+            // force an update..
+            this._parentID = -1;
+        }
+}
+
+/**
+ * Updates the local and the world transformation matrices.
+ *
+ * @param parentTransform - The parent transform
+ */
+Transform.prototype.updateTransform = function (parentTransform)
+    {
+        const lt = this.localTransform;
+
+        if (this._localID !== this._currentLocalID)
+        {
+            // get the matrix values of the displayobject based on its transform properties..
+            lt.a = this._cx * this.scale.x;
+            lt.b = this._sx * this.scale.x;
+            lt.c = this._cy * this.scale.y;
+            lt.d = this._sy * this.scale.y;
+
+            lt.tx = Math.round(this.position.x - ((this.pivot.x * lt.a) + (this.pivot.y * lt.c)));
+            lt.ty = Math.round(this.position.y - ((this.pivot.x * lt.b) + (this.pivot.y * lt.d)));
+            this._currentLocalID = this._localID;
+
+            // force an update..
+            this._parentID = -1;
+        }
+
+        if (this._parentID !== parentTransform._worldID)
+        {
+            // concat the parent matrix with the objects transform.
+            const pt = parentTransform.worldTransform;
+            const wt = this.worldTransform;
+
+            wt.a = (lt.a * pt.a) + (lt.b * pt.c);
+            wt.b = (lt.a * pt.b) + (lt.b * pt.d);
+            wt.c = (lt.c * pt.a) + (lt.d * pt.c);
+            wt.d = (lt.c * pt.b) + (lt.d * pt.d);
+            wt.tx = Math.round((lt.tx * pt.a) + (lt.ty * pt.c) + pt.tx);
+            wt.ty = Math.round((lt.tx * pt.b) + (lt.ty * pt.d) + pt.ty);
+
+            this._parentID = parentTransform._worldID;
+
+            // update the id of the transform..
+            this._worldID++;
+        }
+}
+
 Sprite.prototype.calculateVertices = function calculateVertices() {
     const texture = this._texture;
 
