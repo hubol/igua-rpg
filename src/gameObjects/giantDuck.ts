@@ -79,6 +79,7 @@ export function giantDuck() {
             const b = empBlast(96, 4, 0, 1000).withStep(() => b.at(player)).show();
             await wait(() => b.wentHostile);
             r.destroy();
+            progress.health = Math.max(2, progress.health);
             player.damage(progress.health);
             if (player.isDead)
                 return;

@@ -54,7 +54,7 @@ function fireflyImpl() {
         const target = [player.scale.x * -16, -12].add(player);
         const distance = c.vcpy().add(target, -1).vlength;
         const speed = lerp(1, distance * 0.25, Math.min(1, distance / 16));
-        c.moveTowards(target, speed);
+        c.moveTowards(target, Math.max(4, speed));
     });
     const t = trackPosition(c);
 
