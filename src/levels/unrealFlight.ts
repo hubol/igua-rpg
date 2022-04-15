@@ -12,6 +12,7 @@ import {desertBigKeyTextures} from "./desertTemple";
 import {rng} from "../utils/rng";
 import {firefly} from "../gameObjects/firefly";
 import {player} from "../gameObjects/player";
+import {computePlayerCameraTarget} from "../igua/playerCamera";
 
 export function UnrealFlight()
 {
@@ -32,14 +33,21 @@ export function UnrealFlight()
 
     firefly().at(level.FireflySpawn).show();
 
+    scene.camera.followPlayer = false;
+
     let locked = true;
+    let lockY = level.CameraUnlockRegion.y;
     level.CameraUnlockRegion.withStep(() => {
-        const yy = level.CameraUnlockRegion.y;
-        if (locked) {
-            scene.camera.y = Math.max(yy, scene.camera.y);
-            if (level.CameraUnlockRegion.collides(player) || player.x > 512)
-                locked = false;
-        }
+        const t = computePlayerCameraTarget();
+        scene.camera.at(t);
+
+        scene.camera.y = Math.max(lockY, scene.camera.y);
+
+        if (!locked && lockY > 0)
+            lockY -= 3;
+
+        if (level.CameraUnlockRegion.collides(player) || player.x > 512)
+            locked = false;
     })
 }
 
