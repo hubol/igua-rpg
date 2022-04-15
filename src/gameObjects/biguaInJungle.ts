@@ -14,6 +14,7 @@ import {confetti} from "./confetti";
 import {rng} from "../utils/rng";
 import {jukebox} from "../igua/jukebox";
 import {cutscene} from "../cutscene/cutscene";
+import {moveCameraToPlayerTarget} from "../igua/camera";
 
 export function biguaInJungle() {
     const { jungle } = progress.flags;
@@ -62,7 +63,10 @@ export function biguaInJungle() {
             jungle.bigua.met = true;
 
             await moveCamera;
-            scene.camera.followPlayer = true;
+            scene.gameObjectStage.withAsync(async () => {
+                await moveCameraToPlayerTarget(2);
+                scene.camera.followPlayer = true;
+            });
         })
         .withStep(() => {
             if (cutscene.isPlaying)
