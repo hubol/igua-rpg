@@ -1,5 +1,4 @@
 import {game} from "./game";
-import {distance, lerp} from "../utils/math/vector";
 import {scene} from "./scene";
 import {player} from "../gameObjects/player";
 
@@ -11,13 +10,7 @@ export function stepPlayerCamera()
         return;
 
     computePlayerCameraTarget();
-
-    lerp(scene.camera, target, 1);
-    if (distance(scene.camera, target) < 1)
-    {
-        scene.camera.x = Math.round(target.x);
-        scene.camera.y = Math.round(target.y);
-    }
+    scene.camera.at(target);
 }
 
 export function computePlayerCameraTarget() {

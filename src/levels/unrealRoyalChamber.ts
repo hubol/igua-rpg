@@ -11,9 +11,7 @@ import {advanceTempleMovingWall, jungleBigKeyTextures} from "./jungleTemple";
 import {wait} from "../cutscene/wait";
 import {block} from "../gameObjects/walls";
 import {lerp} from "../cutscene/lerp";
-import {computePlayerCameraTarget} from "../igua/playerCamera";
-import {container} from "../utils/pixi/container";
-import {lerp as lerpNumber} from "../utils/math/number";
+import {moveCameraToPlayerTarget} from "../igua/camera";
 
 export function UnrealRoyalChamber() {
     advanceTempleMovingWall(true);
@@ -51,17 +49,7 @@ export function UnrealRoyalChamber() {
         b.destroy();
         jukebox.currentSong?.fade(1, 0, 500);
 
-        const cameraX = scene.camera.x;
-        let factor = 0;
-        const lerper = container().withStep(() => {
-            const { x } = computePlayerCameraTarget();
-            scene.camera.x = lerpNumber(cameraX, x, factor);
-            factor += 1 / 30;
-            if (factor >= 1)
-                lerper.destroy();
-        }).show();
-
-        await wait(() => lerper.destroyed);
+        await moveCameraToPlayerTarget(2);
 
         scene.camera.followPlayer = true;
         jukebox.play(RoyalChamberMusic);
