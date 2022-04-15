@@ -28,9 +28,12 @@ export function camera(followPlayer: boolean)
 }
 
 export function moveCameraToPlayerTarget(speed: number) {
+    const tp = computePlayerCameraTarget().vcpy();
     const c = new Container().withStep(() => {
         const t = computePlayerCameraTarget();
+        scene.camera.add(t.vcpy().add(tp, -1));
         moveTowards(scene.camera, t, speed);
+        tp.at(t);
         if (scene.camera.x === t.x && scene.camera.y === t.y)
             c.destroy();
     }).show();

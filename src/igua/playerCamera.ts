@@ -52,4 +52,5 @@ function clampCameraTarget()
 {
     target.x = Math.min(scene.width - game.width, Math.max(target.x, 0));
     target.y = Math.min(scene.height - game.height, Math.max(target.y, 0));
+    target.vround();
 }
