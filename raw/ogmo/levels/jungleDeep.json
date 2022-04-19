@@ -1,0 +1,589 @@
+{
+  "ogmoVersion": "3.4.0-hubol",
+  "width": 696,
+  "height": 632,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 87,
+      "gridCellsY": 79,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 58,
+          "_eid": "55823268",
+          "x": 200,
+          "y": 392,
+          "width": 208,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "JungleTree",
+          "id": 59,
+          "_eid": "25711099",
+          "x": 280,
+          "y": 392,
+          "height": 192,
+          "originX": 8,
+          "originY": 192,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 60,
+          "_eid": "55823268",
+          "x": -152,
+          "y": 544,
+          "width": 848,
+          "height": 88,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 61,
+          "_eid": "55988047",
+          "x": 80,
+          "y": 528,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "ClownSneezy",
+          "id": 62,
+          "_eid": "11949926",
+          "x": 232,
+          "y": 512,
+          "originX": 12,
+          "originY": 22,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ClownSneezy",
+          "id": 64,
+          "_eid": "11949926",
+          "x": 360,
+          "y": 472,
+          "originX": 12,
+          "originY": 22,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 65,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 528,
+          "width": 112,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 66,
+          "_eid": "55920197",
+          "x": -16,
+          "y": 496,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "JungleFromDesert", "checkpointName": "FromDeep", "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 68,
+          "_eid": "55841307",
+          "x": 552,
+          "y": 480,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 70,
+          "_eid": "55841307",
+          "x": 464,
+          "y": 416,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "ClownSneezy",
+          "id": 71,
+          "_eid": "11949926",
+          "x": 472,
+          "y": 344,
+          "originX": 12,
+          "originY": 22,
+          "values": {"name": "", "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 87,
+      "gridCellsY": 79,
+      "decals": [
+        {
+          "x": 286,
+          "y": 384,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key yellow.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 87,
+      "gridCellsY": 79,
+      "decals": [
+        {
+          "x": 377,
+          "y": 420,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 256,
+          "y": 392,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/tree root.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 290,
+          "y": 398,
+          "scaleX": -0.7,
+          "scaleY": 0.7,
+          "rotation": 0.47251802957156447,
+          "texture": "jungle/tree root.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 302,
+          "y": 393,
+          "scaleX": 1,
+          "scaleY": 2,
+          "rotation": -2.8821316932937546,
+          "texture": "jungle/tree root.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 259,
+          "y": 406,
+          "scaleX": -0.7,
+          "scaleY": 0.7,
+          "rotation": 1.8231748641613885,
+          "texture": "jungle/tree root.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 275,
+          "y": 406,
+          "scaleX": -0.7,
+          "scaleY": -0.7,
+          "rotation": 1.5205832193689774,
+          "texture": "jungle/tree root.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 552,
+          "y": 480,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/plank.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 0,
+          "y": 528,
+          "scaleX": 3.5,
+          "scaleY": 1.25,
+          "rotation": 0,
+          "texture": "jungle/plank.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 464,
+          "y": 416,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/plank.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 0,
+          "y": 544,
+          "scaleX": 2,
+          "scaleY": 1.25,
+          "rotation": 0,
+          "texture": "jungle/plank.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 0,
+          "y": 560,
+          "scaleX": 2.75,
+          "scaleY": 1.25,
+          "rotation": 0,
+          "texture": "jungle/plank.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 144.04919845434281,
+          "y": 556.7072757230868,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 309.8328129090413,
+          "y": 556.7072757230868,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 506.1093966186209,
+          "y": 555.6557940246427,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 430.90489497945504,
+          "y": 541.0247251968416,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 87,
+      "gridCellsY": 79,
+      "decals": [
+        {
+          "x": 308,
+          "y": 390,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0.1657513292706501,
+          "texture": "jungle/tree root.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 216,
+          "y": 384,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 88,
+          "y": 496,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 88,
+          "y": 416,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 168,
+          "y": 496,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 176,
+          "y": 432,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 264,
+          "y": 504,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 464,
+          "y": 496,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 560,
+          "y": 504,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 536,
+          "y": 440,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 616,
+          "y": 456,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 688,
+          "y": 520,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 680,
+          "y": 424,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": -8,
+          "y": 480,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/brush heavy.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 28,
+          "y": 377,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 108,
+          "y": 458,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 403,
+          "y": 460,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 627,
+          "y": 482,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 643,
+          "y": 488,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "vine small.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 417.2701569786264,
+          "y": 541.6588990573454,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 87,
+      "gridCellsY": 79,
+      "decals": [],
+      "folder": "../../src/images"
+    }
+  ]
+}

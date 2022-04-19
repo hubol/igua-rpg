@@ -59,10 +59,12 @@ export let FloppyDisk: PIXI.Texture;
 export let FlyCageBroken: PIXI.Texture;
 export let FlyCage: PIXI.Texture;
 export let GlowingCircle: PIXI.Texture;
+export let GlowingEdge: PIXI.Texture;
 export let GreenCable: PIXI.Texture;
 export let GroundSpeckles: PIXI.Texture;
 export let HotTerrain: PIXI.Texture;
 export let IguaRpgTitle: PIXI.Texture;
+export let JungleBrushHeavy: PIXI.Texture;
 export let JungleHouse1: PIXI.Texture;
 export let JungleLever: PIXI.Texture;
 export let JunglePlankDecoration: PIXI.Texture;
@@ -341,6 +343,9 @@ export function loadTexturesAsync()
     const GlowingCirclePath = require("./images/glowing circle.png");
     loader.add(GlowingCirclePath); 
 
+    const GlowingEdgePath = require("./images/glowing edge.png");
+    loader.add(GlowingEdgePath); 
+
     const GreenCablePath = require("./images/green cable.png");
     loader.add(GreenCablePath); 
 
@@ -352,6 +357,9 @@ export function loadTexturesAsync()
 
     const IguaRpgTitlePath = require("./images/igua rpg title.png");
     loader.add(IguaRpgTitlePath); 
+
+    const JungleBrushHeavyPath = require("./images/jungle/brush heavy.png");
+    loader.add(JungleBrushHeavyPath); 
 
     const JungleHouse1Path = require("./images/jungle/house1.png");
     loader.add(JungleHouse1Path); 
@@ -717,10 +725,12 @@ export function loadTexturesAsync()
             FlyCageBroken = resources[FlyCageBrokenPath]?.texture as PIXI.Texture;
             FlyCage = resources[FlyCagePath]?.texture as PIXI.Texture;
             GlowingCircle = resources[GlowingCirclePath]?.texture as PIXI.Texture;
+            GlowingEdge = resources[GlowingEdgePath]?.texture as PIXI.Texture;
             GreenCable = resources[GreenCablePath]?.texture as PIXI.Texture;
             GroundSpeckles = resources[GroundSpecklesPath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
             IguaRpgTitle = resources[IguaRpgTitlePath]?.texture as PIXI.Texture;
+            JungleBrushHeavy = resources[JungleBrushHeavyPath]?.texture as PIXI.Texture;
             JungleHouse1 = resources[JungleHouse1Path]?.texture as PIXI.Texture;
             JungleLever = resources[JungleLeverPath]?.texture as PIXI.Texture;
             JunglePlankDecoration = resources[JunglePlankDecorationPath]?.texture as PIXI.Texture;

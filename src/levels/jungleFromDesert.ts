@@ -13,7 +13,6 @@ import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {player} from "../gameObjects/player";
 import {approachLinear} from "../utils/math/number";
 import {wallpaper} from "../gameObjects/wallpaper";
-import {progress} from "../igua/data/progress";
 
 export function JungleFromDesert() {
     jukebox.play(JungleMusic).warm(TickingTime);
@@ -34,8 +33,7 @@ export function JungleFromDesert() {
     const b = biguaInJungle().at(level.BiguaSpawn).show();
     b.scale.x = -1;
     decalsOf(CloudLong).forEach(secretCloud);
-    level.KeyYellow.asCollectible(progress.flags.jungle.key, 'fromSpider');
-    spider(level.KeyYellow, [-1, -160], { downUnit: 0.09, upUnit: 0.075 }).ahead();
+    level.DeepGlow.tint = 0x29444E;
 }
 
 function secretCloud(d: Sprite) {

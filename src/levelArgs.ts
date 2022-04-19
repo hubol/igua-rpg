@@ -50,8 +50,10 @@ import { BookCollection } from "./textures";
 import { DontPoster } from "./textures";
 import { resolveClownSneezy } from "./gameObjects/clownSneezy";
 import { resolveCommonClown } from "./gameObjects/commonClown";
-import { JungleTreeRoot } from "./textures";
+import { JungleBrushHeavy } from "./textures";
+import { GlowingEdge } from "./textures";
 import { CloudLong } from "./textures";
+import { JungleTreeRoot } from "./textures";
 import { PaSpeaker } from "./textures";
 import { CocktailGlass } from "./textures";
 import { Bottle1 } from "./textures";
@@ -3106,8 +3108,434 @@ Patron: resolveNpc({"type":"NpcIguana","x":128,"y":127,"flippedX":true,"flippedY
 }
 };
 
+export const JungleDeepArgs = {
+    width: 696,
+height: 632,
+gameObjectsSupplier: () => {
+  return {
+    KeyYellow: resolveDecalGameObject({
+    x: 286,
+y: 384,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "FrontDecals",
+texture: KeyYellow
+}),
+GroundSpeckles: resolveDecalGameObject({
+    x: 377,
+y: 420,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+JungleTreeRoot: resolveDecalGameObject({
+    x: 256,
+y: 392,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: JungleTreeRoot
+}),
+JungleTreeRoot_1: resolveDecalGameObject({
+    x: 290,
+y: 398,
+originX: 0.5,
+originY: 0.5,
+scaleX: -0.7,
+scaleY: 0.7,
+rotation: 0.47251802957156447,
+layerName: "TerrainDecals",
+texture: JungleTreeRoot
+}),
+JungleTreeRoot_2: resolveDecalGameObject({
+    x: 302,
+y: 393,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 2,
+rotation: -2.8821316932937546,
+layerName: "TerrainDecals",
+texture: JungleTreeRoot
+}),
+JungleTreeRoot_3: resolveDecalGameObject({
+    x: 259,
+y: 406,
+originX: 0.5,
+originY: 0.5,
+scaleX: -0.7,
+scaleY: 0.7,
+rotation: 1.8231748641613885,
+layerName: "TerrainDecals",
+texture: JungleTreeRoot
+}),
+JungleTreeRoot_4: resolveDecalGameObject({
+    x: 275,
+y: 406,
+originX: 0.5,
+originY: 0.5,
+scaleX: -0.7,
+scaleY: -0.7,
+rotation: 1.5205832193689774,
+layerName: "TerrainDecals",
+texture: JungleTreeRoot
+}),
+JunglePlank: resolveDecalGameObject({
+    x: 552,
+y: 480,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: JunglePlank
+}),
+JunglePlank_1: resolveDecalGameObject({
+    x: 0,
+y: 528,
+originX: 0,
+originY: 0,
+scaleX: 3.5,
+scaleY: 1.25,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: JunglePlank
+}),
+JunglePlank_2: resolveDecalGameObject({
+    x: 464,
+y: 416,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: JunglePlank
+}),
+JunglePlank_3: resolveDecalGameObject({
+    x: 0,
+y: 544,
+originX: 0,
+originY: 0,
+scaleX: 2,
+scaleY: 1.25,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: JunglePlank
+}),
+JunglePlank_4: resolveDecalGameObject({
+    x: 0,
+y: 560,
+originX: 0,
+originY: 0,
+scaleX: 2.75,
+scaleY: 1.25,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: JunglePlank
+}),
+GroundSpeckles_1: resolveDecalGameObject({
+    x: 144.04919845434281,
+y: 556.7072757230868,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_2: resolveDecalGameObject({
+    x: 309.8328129090413,
+y: 556.7072757230868,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_3: resolveDecalGameObject({
+    x: 506.1093966186209,
+y: 555.6557940246427,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+SmallDecorativeRock: resolveDecalGameObject({
+    x: 430.90489497945504,
+y: 541.0247251968416,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+JungleTreeRoot_5: resolveDecalGameObject({
+    x: 308,
+y: 390,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0.1657513292706501,
+layerName: "BackgroundDecals",
+texture: JungleTreeRoot
+}),
+SpikyBrushB: resolveDecalGameObject({
+    x: 216,
+y: 384,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+JungleBrushHeavy: resolveDecalGameObject({
+    x: 88,
+y: 496,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_1: resolveDecalGameObject({
+    x: 88,
+y: 416,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_2: resolveDecalGameObject({
+    x: 168,
+y: 496,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_3: resolveDecalGameObject({
+    x: 176,
+y: 432,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_4: resolveDecalGameObject({
+    x: 264,
+y: 504,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_5: resolveDecalGameObject({
+    x: 464,
+y: 496,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_6: resolveDecalGameObject({
+    x: 560,
+y: 504,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_7: resolveDecalGameObject({
+    x: 536,
+y: 440,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_8: resolveDecalGameObject({
+    x: 616,
+y: 456,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_9: resolveDecalGameObject({
+    x: 688,
+y: 520,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_10: resolveDecalGameObject({
+    x: 680,
+y: 424,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+JungleBrushHeavy_11: resolveDecalGameObject({
+    x: -8,
+y: 480,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleBrushHeavy
+}),
+VineSmall: resolveDecalGameObject({
+    x: 28,
+y: 377,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VineSmall
+}),
+VineSmall_1: resolveDecalGameObject({
+    x: 108,
+y: 458,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VineSmall
+}),
+VineSmall_2: resolveDecalGameObject({
+    x: 403,
+y: 460,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VineSmall
+}),
+VineSmall_3: resolveDecalGameObject({
+    x: 627,
+y: 482,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VineSmall
+}),
+VineSmall_4: resolveDecalGameObject({
+    x: 643,
+y: 488,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VineSmall
+}),
+SpikyBrushB_1: resolveDecalGameObject({
+    x: 417.2701569786264,
+y: 541.6588990573454,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":200,"y":392,"width":208,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_58","name":"","depth":0}),
+// @ts-ignore
+JungleTree: resolveJungleTree({"type":"JungleTree","x":280,"y":392,"height":192,"flippedX":false,"flippedY":false,"uid":"25711099_59","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":-152,"y":544,"width":848,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_60","name":"","depth":0}),
+Player: {"type":"Player","x":80,"y":528,"flippedX":false,"flippedY":false,"uid":"55988047_61","faceRight":true,"name":"","depth":0},
+// @ts-ignore
+ClownSneezy: resolveClownSneezy({"type":"ClownSneezy","x":232,"y":512,"flippedX":false,"flippedY":false,"uid":"11949926_62","name":"","depth":0}),
+// @ts-ignore
+ClownSneezy_1: resolveClownSneezy({"type":"ClownSneezy","x":360,"y":472,"flippedX":false,"flippedY":false,"uid":"11949926_64","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":528,"width":112,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_65","name":"","depth":0}),
+// @ts-ignore
+Gate: resolveGate({"type":"Gate","x":-16,"y":496,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_66","levelName":"JungleFromDesert","checkpointName":"FromDeep","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":552,"y":480,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_68","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":464,"y":416,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_70","visible":false,"name":"","depth":0}),
+// @ts-ignore
+ClownSneezy_2: resolveClownSneezy({"type":"ClownSneezy","x":472,"y":344,"flippedX":false,"flippedY":false,"uid":"11949926_71","name":"","depth":0})
+};
+}
+};
+
 export const JungleFromDesertArgs = {
-    width: 1720,
+    width: 1568,
 height: 512,
 gameObjectsSupplier: () => {
   return {
@@ -3121,28 +3549,6 @@ scaleY: 1,
 rotation: 0,
 layerName: "FrontDecals",
 texture: CloudLong
-}),
-KeyYellow: resolveDecalGameObject({
-    x: 1526,
-y: 384,
-originX: 0.5,
-originY: 0.5,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "FrontDecals",
-texture: KeyYellow
-}),
-GroundSpeckles: resolveDecalGameObject({
-    x: 1545,
-y: 392,
-originX: 0.5,
-originY: 0,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "TerrainDecals",
-texture: GroundSpeckles
 }),
 VineSmall: resolveDecalGameObject({
     x: 472,
@@ -3188,7 +3594,7 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: SmallDecorativeRock
 }),
-GroundSpeckles_1: resolveDecalGameObject({
+GroundSpeckles: resolveDecalGameObject({
     x: 408,
 y: 472,
 originX: 0.5,
@@ -3199,7 +3605,7 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
-GroundSpeckles_2: resolveDecalGameObject({
+GroundSpeckles_1: resolveDecalGameObject({
     x: 184,
 y: 472,
 originX: 0.5,
@@ -3210,7 +3616,7 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
-GroundSpeckles_3: resolveDecalGameObject({
+GroundSpeckles_2: resolveDecalGameObject({
     x: 736,
 y: 408,
 originX: 0.5,
@@ -3221,7 +3627,7 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
-GroundSpeckles_4: resolveDecalGameObject({
+GroundSpeckles_3: resolveDecalGameObject({
     x: 1064,
 y: 408,
 originX: 0.5,
@@ -3309,7 +3715,7 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: VineSmall
 }),
-GroundSpeckles_5: resolveDecalGameObject({
+GroundSpeckles_4: resolveDecalGameObject({
     x: 1392,
 y: 408,
 originX: 0.5,
@@ -3320,60 +3726,38 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
-JungleTreeRoot: resolveDecalGameObject({
-    x: 1496,
-y: 392,
-originX: 0.5,
-originY: 0.5,
-scaleX: 1,
-scaleY: 1,
+JunglePlank: resolveDecalGameObject({
+    x: 1480,
+y: 408,
+originX: 0,
+originY: 0,
+scaleX: 2.75,
+scaleY: 1.25,
 rotation: 0,
 layerName: "TerrainDecals",
-texture: JungleTreeRoot
+texture: JunglePlank
 }),
-JungleTreeRoot_1: resolveDecalGameObject({
-    x: 1530,
-y: 398,
-originX: 0.5,
-originY: 0.5,
-scaleX: -0.7,
-scaleY: 0.7,
-rotation: 0.47251802957156447,
+JunglePlank_1: resolveDecalGameObject({
+    x: 1512,
+y: 424,
+originX: 0,
+originY: 0,
+scaleX: 2.75,
+scaleY: 1.25,
+rotation: 0,
 layerName: "TerrainDecals",
-texture: JungleTreeRoot
+texture: JunglePlank
 }),
-JungleTreeRoot_2: resolveDecalGameObject({
-    x: 1542,
-y: 393,
-originX: 0.5,
-originY: 0.5,
-scaleX: 1,
-scaleY: 2,
-rotation: -2.8821316932937546,
+JunglePlank_2: resolveDecalGameObject({
+    x: 1536,
+y: 440,
+originX: 0,
+originY: 0,
+scaleX: 2.75,
+scaleY: 1.25,
+rotation: 0,
 layerName: "TerrainDecals",
-texture: JungleTreeRoot
-}),
-JungleTreeRoot_3: resolveDecalGameObject({
-    x: 1499,
-y: 406,
-originX: 0.5,
-originY: 0.5,
-scaleX: -0.7,
-scaleY: 0.7,
-rotation: 1.8231748641613885,
-layerName: "TerrainDecals",
-texture: JungleTreeRoot
-}),
-JungleTreeRoot_4: resolveDecalGameObject({
-    x: 1515,
-y: 406,
-originX: 0.5,
-originY: 0.5,
-scaleX: -0.7,
-scaleY: -0.7,
-rotation: 1.5205832193689774,
-layerName: "TerrainDecals",
-texture: JungleTreeRoot
+texture: JunglePlank
 }),
 ToCave: resolveDecalGameObject({
     x: 600,
@@ -3430,28 +3814,6 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: JungleHouse1
 }),
-JungleTreeRoot_5: resolveDecalGameObject({
-    x: 1548,
-y: 390,
-originX: 0.5,
-originY: 0.5,
-scaleX: -1,
-scaleY: 1,
-rotation: 0.1657513292706501,
-layerName: "BackgroundDecals",
-texture: JungleTreeRoot
-}),
-SpikyBrushB_3: resolveDecalGameObject({
-    x: 1456,
-y: 384,
-originX: 0.5,
-originY: 0.5,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "BackgroundDecals",
-texture: SpikyBrushB
-}),
 SpikyBrushA: resolveDecalGameObject({
     x: 1360,
 y: 400,
@@ -3463,16 +3825,27 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
-SpikyBrushB_4: resolveDecalGameObject({
-    x: 1616,
-y: 400,
+DeepGlow: resolveDecalGameObject({
+    x: 1504,
+y: 0,
+originX: 0,
+originY: 0,
+scaleX: 2,
+scaleY: 13,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingEdge
+}),
+JungleBrushHeavy: resolveDecalGameObject({
+    x: 1560,
+y: 392,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
 layerName: "BackgroundDecals",
-texture: SpikyBrushB
+texture: JungleBrushHeavy
 }),
 // @ts-ignore
 SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":432,"y":472,"width":120,"height":40,"flippedX":false,"flippedY":false,"uid":"55845599_0","name":"","depth":0}),
@@ -3558,9 +3931,8 @@ TestBigua: {"type":"Checkpoint","x":512,"y":288,"flippedX":false,"flippedY":fals
 // @ts-ignore
 Block_6: resolveBlock({"type":"Block","x":1536,"y":448,"width":184,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_57","name":"","depth":0}),
 // @ts-ignore
-Block_7: resolveBlock({"type":"Block","x":1440,"y":392,"width":160,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_58","name":"","depth":0}),
-// @ts-ignore
-JungleTree_10: resolveJungleTree({"type":"JungleTree","x":1520,"y":392,"height":192,"flippedX":false,"flippedY":false,"uid":"25711099_59","name":"","depth":0})
+Gate_2: resolveGate({"type":"Gate","x":1536,"y":376,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_60","levelName":"JungleDeep","checkpointName":"","name":"","depth":0}),
+FromDeep: {"type":"Checkpoint","x":1488,"y":408,"flippedX":false,"flippedY":false,"uid":"55940370_61","name":"FromDeep","faceRight":false,"depth":0}
 };
 }
 };
