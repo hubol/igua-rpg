@@ -19,6 +19,7 @@ import {wait} from "../cutscene/wait";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
+import {trackPosition} from "../igua/trackPosition";
 
 const textures = subimageTextures(ClownSneezy, { width: 24 });
 const propellerProjectileTextures = subimageTextures(ClownPropellerProjectile, { width: 8 });
@@ -152,6 +153,7 @@ export function clownSneezy({ fullHealth = 8 } = { }) {
             head.scale.x = idleDirection;
         })
         .withStep(() => {
+            c.vspeed = position.diff.y;
             push(c, 16);
 
             if (!spawnPropellerProjectiles)
@@ -174,6 +176,7 @@ export function clownSneezy({ fullHealth = 8 } = { }) {
                 const doSneeze = rng() < (player.y < c.y - 32 ? 0.8 : 0.3);
                 if ((doSneeze || movesHistory === -1) && movesHistory !== 2) {
                     await wait(() => rectangleDistance(player, c) < 64);
+                    await wait(() => !rayToPlayerIntersectsWall(c));
                     idle = false;
                     await sneeze();
                     await sleep(200 + rng.int(200));
@@ -190,6 +193,8 @@ export function clownSneezy({ fullHealth = 8 } = { }) {
             }
         })
         .on('removed', () => SneezyPropellerWindUp.stop(windUp));
+
+    const position = trackPosition(c);
 
     function deadlySneeze(dp: Vector, radius = 16) {
         const e = radius * 0.7;
