@@ -9,6 +9,7 @@ import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles, JunglePlank} from "../textures";
 import {mirror} from "../gameObjects/mirror";
 import {cigarette} from "../gameObjects/cigarette";
+import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 
 export function JungleBar() {
     jukebox.play(FunTimes);
@@ -33,4 +34,7 @@ export function JungleBar() {
         else
             await show("Come back later!");
     }
+
+    level.Barkeeper.withStep(() => level.Barkeeper.isDucking = rayToPlayerIntersectsWall(level.Barkeeper));
+    level.Barkeeper.duckImmediately();
 }
