@@ -103,7 +103,7 @@ export async function oracleAdviceJungle() {
             return await show(`Take the damaged key to Bigua of the jungle.`);
         }
         if (!jungle.key.fromSpider) {
-            return await show(`One is monitored closely by a cautious spider.`);
+            return await show(`One is monitored closely by a cautious spider in the deep jungle.`);
         }
     }
 

@@ -3,14 +3,14 @@ import {JungleDeepArgs} from "../levelArgs";
 import {scene} from "../igua/scene";
 import {spider} from "../gameObjects/spider";
 import {jukebox} from "../igua/jukebox";
-import {JungleMusic} from "../musics";
+import {ForestDeepMusic, JungleMusic} from "../musics";
 import {progress} from "../igua/data/progress";
 import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles, VineSmall} from "../textures";
 import {now} from "../utils/now";
 
 export function JungleDeep() {
-    jukebox.play(JungleMusic);
+    jukebox.play(ForestDeepMusic).warm(JungleMusic);
     scene.backgroundColor = 0x29444E;
     scene.terrainColor = 0x467022;
     const level = applyOgmoLevel(JungleDeepArgs);

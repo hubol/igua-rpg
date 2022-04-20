@@ -7,7 +7,7 @@ import {CloudLong, GroundSpeckles} from "../textures";
 import {resolveBlock, resolvePipeHorizontal} from "../gameObjects/walls";
 import {spider} from "../gameObjects/spider";
 import {jukebox} from "../igua/jukebox";
-import {JungleMusic, TickingTime} from "../musics";
+import {ForestDeepMusic, JungleMusic, TickingTime} from "../musics";
 import {biguaInJungle} from "../gameObjects/biguaInJungle";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {player} from "../gameObjects/player";
@@ -15,7 +15,7 @@ import {approachLinear} from "../utils/math/number";
 import {wallpaper} from "../gameObjects/wallpaper";
 
 export function JungleFromDesert() {
-    jukebox.play(JungleMusic).warm(TickingTime);
+    jukebox.play(JungleMusic).warm(TickingTime, ForestDeepMusic);
     scene.backgroundColor = 0x97D8D8;
     scene.terrainColor = 0x79962E;
     const level = applyOgmoLevel(JungleFromDesertArgs);

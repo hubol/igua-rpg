@@ -27,6 +27,11 @@ export const Fly = new Howl({
     preload: false
 });
 
+export const ForestDeepMusic = new Howl({
+    src: [require("./music/forest-deep-music.ogg"), require("./music/forest-deep-music.mp3")],
+    preload: false
+});
+
 export const FunTimes = new Howl({
     src: [require("./music/fun times.ogg"), require("./music/fun times.mp3")],
     preload: false
