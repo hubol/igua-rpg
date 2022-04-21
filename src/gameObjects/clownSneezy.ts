@@ -13,7 +13,7 @@ import {push} from "./walls";
 import {cyclic} from "../utils/math/number";
 import {confetti} from "./confetti";
 import {bouncePlayer} from "../igua/bouncePlayer";
-import {dieClown} from "./utils/clownUtils";
+import {clownHealth, dieClown} from "./utils/clownUtils";
 import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
@@ -32,7 +32,8 @@ export function clownSneezy({ fullHealth = 8 } = { }) {
     const g = new Graphics().beginFill().drawRect(-10, -17, 19, 17);
     g.visible = false;
 
-    let health = fullHealth;
+    const health = clownHealth(fullHealth);
+
     let invulnerable = 0;
     let dropOdds = 0.8;
     let spawnPropellerProjectiles = false;
@@ -76,13 +77,13 @@ export function clownSneezy({ fullHealth = 8 } = { }) {
     async function charge() {
         head.face.subimage = 11;
         windUp = SneezyPropellerWindUp.play();
-        const previousHealth = health;
+        const previousHealth = health.health;
         const accel = lerp(propeller, 'speed').to(3).over(1000);
         const startSpawn = sleep(500).then(() => { spawnPropellerUnit = 0; spawnPropellerProjectiles = true; });
         slowlyMoveTowardsPlayer = true;
         head.facePlayer = true;
         await Promise.all([ accel, startSpawn ]);
-        await Promise.race([ sleep(3000), wait(() => health < previousHealth) ]);
+        await Promise.race([ sleep(3000), wait(() => health.health < previousHealth) ]);
         await lerp(propeller, 'speed').to(1).over(500);
         head.face.subimage = 0;
         head.facePlayer = false;
@@ -113,8 +114,7 @@ export function clownSneezy({ fullHealth = 8 } = { }) {
             }
             if (invulnerable <= 0 && g.collides(player)) {
                 bouncePlayer([0, -9].add(c));
-                health -= player.strength;
-                if (health <= 0) {
+                if (health.damage()) {
                     const drop = rng() < dropOdds;
                     return dieClown(c, drop);
                 }

@@ -23,6 +23,7 @@ import {excitement} from "./excitement";
 import {track} from "../igua/track";
 import {rng} from "../utils/rng";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
+import {clownHealth} from "./utils/clownUtils";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture, sleepyFaceTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -45,8 +46,7 @@ function mace(angleOffset: number) {
 function oversizedClownImpl() {
     const faceState = { anger: 0, excited: 0 };
 
-    const fullHealth = 30;
-    let health = fullHealth;
+    const health = clownHealth(30);
 
     const head = Sprite.from(headTexture);
 
@@ -79,7 +79,7 @@ function oversizedClownImpl() {
     }
 
     async function doEmpBlast() {
-        const unit = health / fullHealth;
+        const unit = health.unit;
         let hints = 3;
         if (unit < .33)
             hints = 1;
@@ -116,8 +116,8 @@ function oversizedClownImpl() {
     function hostile() {
         if (initialY === undefined)
             initialY = c.y;
-        if (health < fullHealth * 0.33)
-            faceState.anger = 1 - (health / fullHealth);
+        if (health.unit < 0.33)
+            faceState.anger = 1 - health.unit;
 
         const ballonIndex = ballonsState.findIndex(x => x === 1);
         const hasBallons = ballonIndex >= 0;
@@ -126,7 +126,7 @@ function oversizedClownImpl() {
             c.aggressive = true;
             ClownHurt.play();
             invulnerable = 15;
-            health -= player.strength;
+            health.damage();
             bouncePlayer([33, 25].add(c));
             speed.x += player.hspeed;
             speed.x -= player.engine.knockback.x;
@@ -224,7 +224,7 @@ function oversizedClownImpl() {
     c.withStep(showExcitement());
 
     c.withStep(() => {
-        if (health <= 0) {
+        if (health.isDead) {
             abortElectricBolts();
             ClownExplode.play();
             const v = c.vcpy().add(33, 25);

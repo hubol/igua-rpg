@@ -13,7 +13,7 @@ import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {bouncePlayer} from "../igua/bouncePlayer";
 import {playerIsWeakToPortalFluid, teleportToTheRoomOfDoors} from "./portalFluid";
 import {track} from "../igua/track";
-import {dieClown} from "./utils/clownUtils";
+import {clownHealth, dieClown} from "./utils/clownUtils";
 
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
@@ -34,8 +34,8 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
     let invulnerable = -1;
     let knockbackSpeed = 0;
 
-    const fullHealth = 5;
-    let health = fullHealth;
+    const health = clownHealth(5);
+
     let dropOdds = 0.67;
 
     container.withStep(() => {
@@ -44,10 +44,9 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
         else if (!container.portal && container.hasFilter)
             container.filters = [];
 
-        const nearDeath = health < fullHealth && health <= player.strength;
         const xPrevious = container.x;
         unit = lerp(unit, container.vspeed < 0 ? 1 : 0, 0.0875);
-        container.vspeed += nearDeath ? 0.5 : 0.25;
+        container.vspeed += health.nearDeath ? 0.5 : 0.25;
 
         const radians = Math.PI * unit * 2;
         const scale = 0.5 + unit * 2;
@@ -66,7 +65,7 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
         container.x += knockbackSpeed;
         knockbackSpeed = lerp(knockbackSpeed, 0, 0.1);
         if (container.vspeed > -5 && container.vspeed < 5)
-            container.x += container.hspeed * (nearDeath ? 2 : 1);
+            container.x += container.hspeed * (health.nearDeath ? 2 : 1);
 
         distanceTraveled += container.x - xPrevious;
 
@@ -80,7 +79,7 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
         if (container.vspeed > 0 && isOnGround(pushable, radius)) {
             if (isOnScreen(container) && !scene.ext.simulated)
                 CommonClownLand.play();
-            container.vspeed = nearDeath ? -9 : -6;
+            container.vspeed = health.nearDeath ? -9 : -6;
             if (!limitedRangeEnabled)
                 return;
             if ((distanceTraveled > 128 && container.hspeed > 0) || (distanceTraveled <= 0 && container.hspeed < 0))
@@ -98,8 +97,7 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
                     container.vspeed = -player.vspeed;
                 }
                 knockbackSpeed = -player.engine.knockback.x;
-                health -= player.strength;
-                if (health <= 0) {
+                if (health.damage()) {
                     const realDropOdds = Math.max(0.1, dropOdds);
                     const drop = rng() < realDropOdds;
 
