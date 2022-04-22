@@ -103,7 +103,7 @@ function createPlayer(behavior = true)
                 return true;
             },
             get strength() {
-                return 10 + (progress.level - 1) * 6;
+                return 10 + (progress.level - 1) * 5;
             }
         });
 
