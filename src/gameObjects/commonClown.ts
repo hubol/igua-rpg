@@ -34,7 +34,7 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
     let invulnerable = -1;
     let knockbackSpeed = 0;
 
-    const health = clownHealth(5);
+    const health = clownHealth(50);
 
     let dropOdds = 0.67;
 

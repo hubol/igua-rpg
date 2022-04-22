@@ -26,7 +26,7 @@ const propellerProjectileTextures = subimageTextures(ClownPropellerProjectile, {
 
 export const resolveClownSneezy = resolveGameObject("ClownSneezy", (e) => clownSneezy().at(e));
 
-export function clownSneezy({ fullHealth = 8 } = { }) {
+export function clownSneezy({ fullHealth = 80 } = { }) {
     const head = makeHead();
     const propeller = makePropeller(head);
     const g = new Graphics().beginFill().drawRect(-10, -17, 19, 17);

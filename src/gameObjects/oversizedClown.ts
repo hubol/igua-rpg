@@ -46,7 +46,7 @@ function mace(angleOffset: number) {
 function oversizedClownImpl() {
     const faceState = { anger: 0, excited: 0 };
 
-    const health = clownHealth(30);
+    const health = clownHealth(300);
 
     const head = Sprite.from(headTexture);
 
