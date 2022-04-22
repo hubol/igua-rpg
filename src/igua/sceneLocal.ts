@@ -1,24 +1,19 @@
-import {scene, Scene, sceneStack} from "./scene";
+import {scene, Scene} from "./scene";
+import {getOrEmpty} from "../utils/getOrEmpty";
 
 export class SceneLocal<T>
 {
-    private readonly _scenes: Scene[] = [];
-    private readonly _values: T[] = [];
+    private static _idSource = 0;
 
-    constructor(private readonly _factory: (scene: Scene) => T) { }
+    constructor(private readonly _factory: (scene: Scene) => T, private readonly _sceneExtKey = `Anonymous@${SceneLocal._idSource++}`) { }
 
     get value(): T
     {
-        const indexOfScene = this._scenes.indexOf(scene);
-        if (indexOfScene > -1)
-            return this._values[indexOfScene];
-        if (sceneStack.length === 1)
-        {
-            this._scenes.length = 0;
-            this._values.length = 0;
-        }
+        const ext = getOrEmpty(scene.ext, 'sceneLocal');
+        const value = ext[this._sceneExtKey];
+        if (value)
+            return value;
 
-        this._scenes.push(scene);
-        return this._values[this._scenes.length - 1] = this._factory(scene);
+        return ext[this._sceneExtKey] = this._factory(scene);
     }
 }
