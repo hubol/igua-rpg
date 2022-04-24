@@ -24,6 +24,8 @@ import {oracleAdviceJungle} from "../igua/oracleAdvice";
 export function JungleTown() {
     jukebox.play(JungleMusic).warm(FunTimes, JungleInn, Temple);
     scene.backgroundColor = 0x97D8D8;
+    scene.ext.jungleTree = { x: 160 };
+
     scene.terrainColor = 0x79962E;
     const level = applyOgmoLevel(JungleTownArgs);
     mirror(38, 30, 0xB7B7E2, 0xD2D2EC).at([-9, -2].add(level.SignNeonInn)).behind();

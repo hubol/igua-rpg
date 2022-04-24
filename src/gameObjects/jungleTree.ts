@@ -16,7 +16,9 @@ const foliageTextures = subimageTextures(JungleTreeFoliage, 4).map(trimFrame);
 export const resolveJungleTree = resolveGameObject('JungleTree', e => jungleTree(e, e.height));
 
 export function jungleTree(vec: Vector, height: number) {
-    const p = makePseudo(height + Math.sin(vec.x * 1.33) * 4.3 + vec.x * 5.17 + vec.y * 8.43);
+    const xx = vec.x + (scene.ext.jungleTree?.x ?? 0);
+    const yy = vec.y + (scene.ext.jungleTree?.y ?? 0);
+    const p = makePseudo(height + Math.sin(xx * 1.33) * 4.3 + xx * 5.17 + yy * 8.43);
 
     const trunk = Sprite.from(JungleTreeTrunk);
     trunk.height = height;

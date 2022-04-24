@@ -1105,6 +1105,49 @@
       ],
       "texture": "preview-images/clownSneezy.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAgCAMAAAA/gEgKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAbUExURafBcoOeStFRWQ0cfP////SIpbeELNuhPQAAAE2lTXgAAAAJdFJOU///////////AFNPeBIAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC8SURBVDhPjZELDsIwDEPXNiu9/4mxnU87hAQeSpr3qkzAtZSr4eGhIU5UkMayVGUoNMigIjIQ5AqRotslMAdP0XsHR+2EqL1LkGTIFYg4feYvMcaomqvM7CyIvxyTGa6ObBJL2AhRvHHVFripBx//gj+Fyq12Cn+r2c12CN3MfrsoE9vEJXIZISWRi22Kh9gq8Bb5t8RUIjDjwEWgTImYd1Jk+EtUHmK+5ozzQwBvE4Jkfl11blHOVUfWegOuKg4TCwCqzAAAAABJRU5ErkJggg=="
+    },
+    {
+      "exportID": "77429484",
+      "name": "TreeStump",
+      "limit": -1,
+      "size": {"x": 128, "y": 64},
+      "origin": {"x": 60, "y": 16},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "levelName", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "checkpointName", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
+      ],
+      "texture": "preview-images/tree stump.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABACAMAAADlCI9NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAASUExURYlyrXlhpb+z4qSSx5ODrQAAANdivoIAAAAGdFJOU///////ALO/pL8AAAAJcEhZcwAADsMAAA7DAcdvqGQAAALnSURBVGhD5ZaJbuMwDETtOPn/X14eI4mkKEeysw3QPhQ175kcBbq95pHZ8cLKqcbK1k7D2zba2HYEa6wY2B6P4zGAGv//HdhI5TgSD1I8fsAAvQUqF5Dy8LM5Z80Avwc5x/jLcc6igT0zweLcw9gaFwyAFu4S8t/IBa4biGZ+zoC+4GaAc/nB2BorW0UIINhrEWNrLBoQQejZQJ4YW2NhS0S8rv84MLfG7NZOiJQR58D+xugaZ1ssamlSxkB5CFhcod+BWgJUGBPbMoEr0wwXIGqAgjA2sGpharzTfwf2ZpiexWmhr6To2BuuGEDFe8IzgtExswZwj0CBQEEIqUWHRywbQM6goL9boUeaAz5qgJEsgFbKpAFcyvTrs/BMXKCVMGUAVwg6XuG8PBEKPKMFqSvaSpgxgBuEHAdaqJE3QDWJ2zLSjrcGsK9EAy2qCUaMItoDpXMDWC1QpTlAAVFNnp2Bcwd5FWCxIDUIaE9DzGmcGDh1kBYB1gqoFoFWsQae/UdAPM1EIC0qulRAEQZ8SVKNqKsDkhWoJBuJWlIq2BW7ygKtI7R0aAD3JLX0lYKbnzXAPe1LCkSfCFtCVyjwsGmauDcQZgmfFQOZg5gX4s0oEJpE+fMQ3LTt8CRCxWcVOYlY8Gnockq5EXK7zpoOt76brPgZwebcDK9Ku06pQPppXUkNyMWwZE1zmBsgJDBIYewgMyAH3WskmgGNUgNcjRY0DcXGyAA/3amgb082fS16Mc18zdAb4HNFw6yhVKVMMxrwakhczdAZ8NfqWhMupAZ0IRPLakxmABErNBE8K6bZG6hrjaQkJAYQ6CkJ+zGRQJP1W38kNKrHy+G1VBF9VKRcelMGRnQG8PSXUv2C019maOD0lfxmA5V5A+wA0QVurFb+vAH+lxfhBT5hgN4ChBe4b4C+kF81wH8Qdz6Duwbk362vG7jzGdw0wOr3vgSfMXDjzAcMMH/XQOHrBq7f+ZSBi7xe/wDTO4ZhKlSWbgAAAABJRU5ErkJggg=="
     }
   ],
   "tilesets": []
