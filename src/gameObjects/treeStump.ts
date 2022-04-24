@@ -17,6 +17,7 @@ import {merge} from "../utils/merge";
 import {progress} from "../igua/data/progress";
 import {level} from "../igua/level/level";
 import {scene} from "../igua/scene";
+import {StumpTeleportArrive, StumpTeleportFlash, StumpTeleportGo, StumpTeleportStart} from "../sounds";
 
 export const resolveTreeStump = resolveGameObject('TreeStump', e => treeStump(e as any).at(e));
 
@@ -44,6 +45,7 @@ function treeStumpImpl(e: { name: string, levelName: string, checkpointName: str
 }
 
 async function descendPlayer() {
+    StumpTeleportStart.play();
     const f = whiten(player);
     const c = container().show();
     c.withStep(() => {
@@ -61,17 +63,21 @@ async function descendPlayer() {
     });
 
     for (let i = 0; i < 3; i++) {
+        const f = StumpTeleportFlash.play();
+        StumpTeleportFlash.rate(2 - i * 0.5, f);
         await sleep(70)
         g.visible = false;
         await sleep(50);
         g.visible = true;
         g.scale.x -= 0.1;
-        dy += 0.5;
+        dy += 0.7;
     }
 
-    dy += 0.5;
+    StumpTeleportGo.play();
+
+    dy += 0.8;
     await lerp(g.scale, 'x').to(0.2).over(250);
-    g.withStep(() => dy += 0.1);
+    g.withStep(() => dy += 0.4);
     await wait(() => !isOnScreen(g))
     await sleep(250);
 }
@@ -103,7 +109,12 @@ async function ascendPlayer() {
             else if (diff > 16)
                 f = 0.75;
 
+            let px = g.scale.x;
             g.scale.set(f);
+            if (px !== g.scale.x && f > 0.4) {
+                const s = StumpTeleportFlash.play();
+                StumpTeleportFlash.rate(1 + (f - .5) * 2 , s);
+            }
         })
         .show();
     const pcv = getPlayerCenterWorld();
@@ -111,6 +122,8 @@ async function ascendPlayer() {
     g.y = scene.camera.y + 256 + g.height;
 
     await wait(() => g.destroyed);
+
+    StumpTeleportArrive.play();
 
     const f = whiten(player);
     f.factor = 1;

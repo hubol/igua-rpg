@@ -332,6 +332,26 @@ export const SpiderUp = new Howl({
     
 });
 
+export const StumpTeleportArrive = new Howl({
+    src: [require("./sound/stump teleport arrive.ogg"), require("./sound/stump teleport arrive.mp3")],
+    
+});
+
+export const StumpTeleportFlash = new Howl({
+    src: [require("./sound/stump teleport flash.ogg"), require("./sound/stump teleport flash.mp3")],
+    
+});
+
+export const StumpTeleportGo = new Howl({
+    src: [require("./sound/stump teleport go.ogg"), require("./sound/stump teleport go.mp3")],
+    
+});
+
+export const StumpTeleportStart = new Howl({
+    src: [require("./sound/stump teleport start.ogg"), require("./sound/stump teleport start.mp3")],
+    
+});
+
 export const Teleported = new Howl({
     src: [require("./sound/teleported.ogg"), require("./sound/teleported.mp3")],
     
