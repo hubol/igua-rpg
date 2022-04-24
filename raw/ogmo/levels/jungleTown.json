@@ -669,7 +669,7 @@
           "y": 368,
           "originX": 60,
           "originY": 16,
-          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "", "checkpointName": "", "name": "HolyStump", "depth": 0}
         },
         {
           "name": "Pool",

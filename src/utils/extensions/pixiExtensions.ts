@@ -17,6 +17,7 @@ declare global {
             withAsync(async: PromiseFn): this;
             at(vector: Vector): this;
             at(x: number, y: number): this;
+            hide(): this;
             destroyed: boolean;
             ticker: AsshatTicker;
             hueShift: number;
@@ -228,6 +229,11 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
 
 PIXI.Sprite.prototype.centerAnchor = function () {
     this.anchor.set(0.5, 0.5);
+    return this;
+}
+
+PIXI.DisplayObject.prototype.hide = function () {
+    this.visible = false;
     return this;
 }
 

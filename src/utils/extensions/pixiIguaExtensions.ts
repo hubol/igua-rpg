@@ -10,7 +10,7 @@ declare global {
     namespace PIXI {
         export interface DisplayObject {
             ahead(): this;
-            show(): this;
+            show(parent?: Container): this;
             behind(): this;
             withInteraction(interaction: () => void): this;
             withCutscene(cutscene: Cutscene): this;
@@ -20,8 +20,8 @@ declare global {
     }
 }
 
-PIXI.DisplayObject.prototype.show = function () {
-    return scene.gameObjectStage.addChild(this);
+PIXI.DisplayObject.prototype.show = function (parent = scene.gameObjectStage) {
+    return parent.addChild(this);
 }
 
 PIXI.DisplayObject.prototype.liveFor = function (frames) {
