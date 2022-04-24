@@ -3109,6 +3109,20 @@ Patron: resolveNpc({"type":"NpcIguana","x":128,"y":127,"flippedX":true,"flippedY
 }
 };
 
+export const JungleBossArenaArgs = {
+    width: 256,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":216,"width":256,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+Stump: resolveTreeStump({"type":"TreeStump","x":192,"y":216,"flippedX":false,"flippedY":false,"uid":"77429484_1","levelName":"JungleTown","checkpointName":"HolyStump","name":"Stump","depth":0,"faceRight":false}),
+Player: {"type":"Player","x":40,"y":216,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0}
+};
+}
+};
+
 export const JungleDeepArgs = {
     width: 696,
 height: 632,
@@ -5055,7 +5069,7 @@ ValuableOrange_2: resolveValuableOrange({"type":"ValuableOrange","x":320,"y":40,
 // @ts-ignore
 Block_11: resolveBlock({"type":"Block","x":0,"y":368,"width":160,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_75","name":"","depth":0}),
 // @ts-ignore
-HolyStump: resolveTreeStump({"type":"TreeStump","x":80,"y":368,"flippedX":false,"flippedY":false,"uid":"77429484_76","levelName":"","checkpointName":"","name":"HolyStump","depth":0}),
+HolyStump: resolveTreeStump({"type":"TreeStump","x":80,"y":368,"flippedX":false,"flippedY":false,"uid":"77429484_76","levelName":"JungleBossArena","checkpointName":"Stump","name":"HolyStump","depth":0,"faceRight":false}),
 // @ts-ignore
 Pool_1: resolvePool({"type":"Pool","x":0,"y":408,"width":160,"height":40,"flippedX":false,"flippedY":false,"uid":"38353047_77","name":"","depth":3}),
 // @ts-ignore

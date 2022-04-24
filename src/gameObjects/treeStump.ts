@@ -13,13 +13,16 @@ import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {container} from "../utils/pixi/container";
 import {wait} from "../cutscene/wait";
 import {isOnScreen} from "../igua/logic/isOnScreen";
+import {merge} from "../utils/merge";
+import {progress} from "../igua/data/progress";
+import {level} from "../igua/level/level";
 
-export const resolveTreeStump = resolveGameObject('TreeStump', e => treeStump().at(e));
+export const resolveTreeStump = resolveGameObject('TreeStump', e => treeStump(e as any).at(e));
 
 export const treeStump = track(treeStumpImpl);
 
-function treeStumpImpl() {
-    const s = Sprite.from(JungleTreeStump)
+function treeStumpImpl(e: { name: string, levelName: string, checkpointName: string, faceRight: boolean }) {
+    const s = merge(Sprite.from(JungleTreeStump), e)
         .withAsync(async () => {
             resolvePipeHorizontal({ x: s.x - 17, y: s.y - 14, width: 32, visible: false } as any)
         });
@@ -28,7 +31,9 @@ function treeStumpImpl() {
         .withAsync(async () => {
             await waitHold(() => player.isDucking && player.y < s.y - 8 && mask.collides(player), 10);
             cutscene.play(async () => {
-                await flashPlayer();
+                await descendPlayer();
+                progress.checkpointName = s.checkpointName;
+                level.goto(s.levelName);
             })
         })
 
@@ -36,7 +41,7 @@ function treeStumpImpl() {
     return s;
 }
 
-async function flashPlayer() {
+async function descendPlayer() {
     const f = whiten(player);
     const c = container().show();
     c.withStep(() => {
