@@ -59,7 +59,9 @@ function clownHealthBar() {
             g.beginFill(0xff0000);
             g.drawRect(0, 0, width, height);
             g.beginFill(0x0000ff);
-            g.drawRect(0, 0, clownHealth.unit * width, height);
+            const w = clownHealth.unit * width;
+            if (w > 0)
+                g.drawRect(0, 0, Math.ceil(w), height);
         })
         .at((256 - width) / 2, 240);
 
