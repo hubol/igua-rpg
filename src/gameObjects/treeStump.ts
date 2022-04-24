@@ -16,6 +16,7 @@ import {isOnScreen} from "../igua/logic/isOnScreen";
 import {merge} from "../utils/merge";
 import {progress} from "../igua/data/progress";
 import {level} from "../igua/level/level";
+import {scene} from "../igua/scene";
 
 export const resolveTreeStump = resolveGameObject('TreeStump', e => treeStump(e as any).at(e));
 
@@ -29,11 +30,12 @@ function treeStumpImpl(e: { name: string, levelName: string, checkpointName: str
 
     const mask = new Graphics().beginFill(0xffffff).drawRect(-17, -24, 32, 10).show(s).hide()
         .withAsync(async () => {
-            await waitHold(() => player.isDucking && player.y < s.y - 8 && mask.collides(player), 10);
+            await waitHold(() => !cutscene.isPlaying && player.isDucking && player.y < s.y - 8 && mask.collides(player), 10);
             cutscene.play(async () => {
                 await descendPlayer();
                 progress.checkpointName = s.checkpointName;
                 level.goto(s.levelName);
+                await ascendPlayer();
             })
         })
 
@@ -72,4 +74,50 @@ async function descendPlayer() {
     g.withStep(() => dy += 0.1);
     await wait(() => !isOnScreen(g))
     await sleep(250);
+}
+
+async function ascendPlayer() {
+    const hide = container()
+        .show()
+        .withStep(() => player.visible = false)
+
+    const duck = container()
+        .show()
+        .withStep(() => player.isDucking = true)
+
+    let dy = 0;
+    const g = new Graphics().beginFill(0xffffff).drawCircle(0, 0, Math.abs(player.width) / 2 + 2)
+        .withStep(() => {
+            if (g.y === pcv.y)
+                return g.destroy();
+            dy = Math.max(dy - 0.3, -4);
+            g.y = Math.max(g.y + dy, pcv.y);
+
+            let f = 1;
+            const diff = Math.abs(pcv.y - g.y);
+
+            if (diff > 64)
+                f = 0.2;
+            else if (diff > 48)
+                f = 0.5;
+            else if (diff > 16)
+                f = 0.75;
+
+            g.scale.set(f);
+        })
+        .show();
+    const pcv = getPlayerCenterWorld();
+    g.x = pcv.x;
+    g.y = scene.camera.y + 256 + g.height;
+
+    await wait(() => g.destroyed);
+
+    const f = whiten(player);
+    f.factor = 1;
+
+    hide.destroy();
+
+    await lerp(f, 'factor').to(0).over(250);
+
+    duck.destroy();
 }
