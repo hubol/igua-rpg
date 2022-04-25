@@ -22,14 +22,14 @@ export function computePlayerCameraTarget() {
     const y1 = scene.camera.y + game.height - padding;
 
     if (player.x - x0 < 0)
-        target.x = scene.camera.x + player.x - x0;
+        target.x = scene.camera.x + Math.round(player.x) - x0;
     else if (player.x - x1 > 0)
-        target.x = scene.camera.x + player.x - x1;
+        target.x = scene.camera.x + Math.round(player.x) - x1;
 
     if (player.y - y0 < 0)
-        target.y = scene.camera.y + player.y - y0;
+        target.y = scene.camera.y + Math.round(player.y) - y0;
     else if (player.y - y1 > 0)
-        target.y = scene.camera.y + player.y - y1;
+        target.y = scene.camera.y + Math.round(player.y) - y1;
 
     clampCameraTarget();
     return target;
