@@ -20,16 +20,19 @@ export function computePlayerCameraTarget() {
     const y0 = scene.camera.y + padding;
     const x1 = scene.camera.x + game.width - padding;
     const y1 = scene.camera.y + game.height - padding;
+    
+    const px = Math.round(player.x);
+    const py = Math.round(player.y);
 
-    if (player.x - x0 < 0)
-        target.x = scene.camera.x + Math.round(player.x) - x0;
-    else if (player.x - x1 > 0)
-        target.x = scene.camera.x + Math.round(player.x) - x1;
+    if (px - x0 < 0)
+        target.x = scene.camera.x + Math.round(px) - x0;
+    else if (px - x1 > 0)
+        target.x = scene.camera.x + Math.round(px) - x1;
 
-    if (player.y - y0 < 0)
-        target.y = scene.camera.y + Math.round(player.y) - y0;
-    else if (player.y - y1 > 0)
-        target.y = scene.camera.y + Math.round(player.y) - y1;
+    if (py - y0 < 0)
+        target.y = scene.camera.y + Math.round(py) - y0;
+    else if (py - y1 > 0)
+        target.y = scene.camera.y + Math.round(py) - y1;
 
     clampCameraTarget();
     return target;
