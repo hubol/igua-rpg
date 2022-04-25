@@ -170,6 +170,8 @@ export function ballons({ target, offset, state, string, displayState = [], tick
     }
 
     const c = new Container().withStep(() => {
+        c.visible = target.ext.hideBallons !== true;
+
         if (isDestroying) return;
 
         if (target === player)

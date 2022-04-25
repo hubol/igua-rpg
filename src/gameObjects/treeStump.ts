@@ -52,6 +52,7 @@ async function descendPlayer() {
         player.isDucking = true;
     });
     await lerp(f, 'factor').to(1).over(250);
+    player.ext.hideBallons = true;
     c.withStep(() => {
         player.visible = false;
     })
@@ -83,6 +84,8 @@ async function descendPlayer() {
 }
 
 async function ascendPlayer() {
+    player.ext.hideBallons = true;
+
     const hide = container()
         .show()
         .withStep(() => player.visible = false)
@@ -130,6 +133,7 @@ async function ascendPlayer() {
 
     hide.destroy();
 
+    player.ext.hideBallons = false;
     await lerp(f, 'factor').to(0).over(250);
 
     duck.destroy();
