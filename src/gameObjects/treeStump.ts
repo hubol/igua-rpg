@@ -31,7 +31,7 @@ function treeStumpImpl(e: { name: string, levelName: string, checkpointName: str
 
     const mask = new Graphics().beginFill(0xffffff).drawRect(-17, -24, 32, 10).show(s).hide()
         .withAsync(async () => {
-            await waitHold(() => !cutscene.isPlaying && player.isDucking && player.y < s.y - 8 && mask.collides(player), 10);
+            await waitHold(() => progress.flags.jungle.bigKey.reward && !cutscene.isPlaying && player.isDucking && player.y < s.y - 8 && mask.collides(player), 10);
             cutscene.play(async () => {
                 await descendPlayer();
                 progress.checkpointName = s.checkpointName;

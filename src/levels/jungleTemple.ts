@@ -3,7 +3,6 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {progress} from "../igua/data/progress";
 import {makeTempleLevelUtil} from "../igua/gameplay/templeLevelUtil";
 import {scene} from "../igua/scene";
-import {jukebox} from "../igua/jukebox";
 import {ClownDodgerMusic, JungleMusic, JungleUnreal3, RoyalChamberMusic, Temple} from "../musics";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {JungleTempleArgs} from "../levelArgs";
@@ -17,7 +16,6 @@ export function JungleTemple() {
 
     portalFluidConfig.gotoLevelName = 'JungleTemple';
 
-    jukebox.play(Temple).warm(ClownDodgerMusic, RoyalChamberMusic, JungleMusic, JungleUnreal3);
     const level = applyOgmoLevel(JungleTempleArgs);
 
     const { key, bigKey, templeLever } = progress.flags.jungle;
@@ -27,11 +25,15 @@ export function JungleTemple() {
         [key.fromBiguaRepair, bigKey.piece2, [level.Key2, level.Door2]],
         [key.fromSpider, bigKey.piece3, [level.Key3, level.Door3]]);
 
+    util.playMusic().warm(ClownDodgerMusic, RoyalChamberMusic, JungleMusic, JungleUnreal3);
+
     const defaultX = level.MovingWall.x;
     level.MovingWall.withStep(() => level.MovingWall.x = defaultX - Math.round(templeLever.position * 80));
 
     level.Sign.cutscene = util.signCutscene;
     util.makeBigKeyMeter(jungleBigKeyTextures).at(level.BigKey).ahead();
+
+    util.tryGiveReward(bigKey, 'reward', level.BigKey, 'Blessing of Jungle');
 
     advanceTempleMovingWall();
 }
