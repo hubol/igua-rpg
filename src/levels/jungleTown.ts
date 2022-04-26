@@ -20,6 +20,14 @@ import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
 import {oracleAdviceJungle} from "../igua/oracleAdvice";
+import {npc} from "../gameObjects/npc";
+import {rectangleDistance} from "../utils/math/rectangleDistance";
+import {player} from "../gameObjects/player";
+import {wait} from "../cutscene/wait";
+
+function jungleTownLevel() {
+    return applyOgmoLevel(JungleTownArgs);
+}
 
 export function JungleTown() {
     jukebox.play(JungleMusic).warm(FunTimes, JungleInn, Temple);
@@ -27,7 +35,7 @@ export function JungleTown() {
     scene.ext.jungleTree = { x: 160 };
 
     scene.terrainColor = 0x79962E;
-    const level = applyOgmoLevel(JungleTownArgs);
+    const level = jungleTownLevel();
     mirror(38, 30, 0xB7B7E2, 0xD2D2EC).at([-9, -2].add(level.SignNeonInn)).behind();
     level.WiggleVine.withStep(() => level.WiggleVine.angle = Math.round(Math.sin(now.s * Math.PI)) * 4);
     level.JungleOracle.withCutscene(jungleOracleCutscene);
@@ -50,6 +58,9 @@ export function JungleTown() {
             await sleep(100);
         }
     })
+
+    if (!progress.flags.jungle.usedBlessing && progress.flags.jungle.bigKey.reward)
+        treeSpirit(level);
 }
 
 function jungleTempleLever() {
@@ -86,4 +97,32 @@ async function jungleOracleCutscene() {
         await oracleAdviceJungle();
     else
         await show("I will be here if you change your mind.");
+}
+
+function treeSpirit(level: ReturnType<typeof jungleTownLevel>) {
+    const n = npc(0, 0, 11).at([0, -2].add(level.SpiritSpawn)).show();
+    n.ext.opaqueAlpha = 0.75;
+
+    const stump = level.HolyStump;
+
+    n.withStep(() => {
+        n.ext.opaqueAlpha = approachLinear(n.ext.opaqueAlpha, stump.playerIsOn ? 0 : 0.75, 0.05);
+        n.opaqueTint = 0x59771B;
+    });
+
+    n.engine.walkSpeed = 3;
+
+    n.scale.x = -1;
+    n.withAsync(async () => {
+        await wait(() => rectangleDistance(n, player) < 8 && player.hspeed === 0 && player.vspeed === 0);
+        await n.walkTo(n.x - 256);
+        await wait(() => player.x < n.x + 24);
+        await n.walkTo(stump.x + 40);
+        await wait(() => player.x < n.x + 24);
+        n.vspeed = -2;
+        await n.walkTo(stump.x);
+        await wait(() => n.vspeed === 0);
+        await sleep(250);
+        n.isDucking = true;
+    })
 }

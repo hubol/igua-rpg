@@ -221,6 +221,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
             this.__opaqueTintFilter.matrix[4] = r / 255;
             this.__opaqueTintFilter.matrix[8] = g / 255;
             this.__opaqueTintFilter.matrix[13] = b / 255;
+            this.__opaqueTintFilter.matrix[18] = this.ext.opaqueAlpha ?? 1;
         },
         enumerable: false,
         configurable: true,

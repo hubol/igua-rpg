@@ -5083,7 +5083,8 @@ JungleTree_11: resolveJungleTree({"type":"JungleTree","x":32,"y":488,"height":36
 // @ts-ignore
 SlopeLeft_5: resolveSlopeLeft({"type":"SlopeLeft","x":8,"y":392,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_87","name":"","depth":0}),
 // @ts-ignore
-Block_12: resolveBlock({"type":"Block","x":0,"y":400,"width":16,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_88","name":"","depth":0})
+Block_12: resolveBlock({"type":"Block","x":0,"y":400,"width":16,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_88","name":"","depth":0}),
+SpiritSpawn: {"type":"Anchor","x":1116,"y":328,"flippedX":false,"flippedY":false,"uid":"25979726_89","name":"SpiritSpawn","depth":0}
 };
 }
 };

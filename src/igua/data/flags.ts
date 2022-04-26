@@ -29,7 +29,8 @@ export function getInitialFlags()
             templeLever: {
                 on: false,
                 position: 0
-            }
+            },
+            usedBlessing: false,
         },
         desert: {
             heardIntroduction: false,

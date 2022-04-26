@@ -24,14 +24,17 @@ export const resolveTreeStump = resolveGameObject('TreeStump', e => treeStump(e 
 export const treeStump = track(treeStumpImpl);
 
 function treeStumpImpl(e: { name: string, levelName: string, checkpointName: string, faceRight: boolean }) {
-    const s = merge(Sprite.from(JungleTreeStump), e)
+    const s = merge(Sprite.from(JungleTreeStump), { ...e, playerIsOn: false})
         .withAsync(async () => {
             resolvePipeHorizontal({ x: s.x - 17, y: s.y - 14, width: 32, visible: false } as any)
         });
 
     const mask = new Graphics().beginFill(0xffffff).drawRect(-17, -24, 32, 10).show(s).hide()
+        .withStep(() => {
+            s.playerIsOn = player.y < s.y - 8 && mask.collides(player);
+        })
         .withAsync(async () => {
-            await waitHold(() => progress.flags.jungle.bigKey.reward && !cutscene.isPlaying && player.isDucking && player.y < s.y - 8 && mask.collides(player), 10);
+            await waitHold(() => progress.flags.jungle.bigKey.reward && !cutscene.isPlaying && player.isDucking && s.playerIsOn, 10);
             cutscene.play(async () => {
                 await descendPlayer();
                 progress.checkpointName = s.checkpointName;

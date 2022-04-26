@@ -72,7 +72,8 @@ export async function oracleAdviceDesert() {
 export async function oracleAdviceJungle() {
     const { jungle } = progress.flags;
     if (jungle.bigKey.reward) {
-
+        await show(`You repaired the big key and received the blessing of jungle!`);
+        return await show(`Follow the jungle spirit to continue your task.`);
     }
 
     const allKeys = jungle.key.fromSickIguana && jungle.key.fromBiguaRepair && jungle.key.fromSpider;
