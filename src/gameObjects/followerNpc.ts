@@ -12,6 +12,7 @@ export function followerNpc(npc: Npc)
     const followerNpc = merge(npc, { isFollowing: true });
 
     const scaleXHistory: number[] = [];
+    npc.engine.walkSpeed = 3;
 
     return followerNpc.withStep(() => {
         if (!followerNpc.isFollowing)
