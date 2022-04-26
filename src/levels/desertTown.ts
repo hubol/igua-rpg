@@ -22,6 +22,7 @@ import {rng} from "../utils/rng";
 import {inventory} from "../igua/inventory/inventory";
 import {persistence} from "../igua/data/persistence";
 import {tumbleweed} from "../gameObjects/tumbleweed";
+import {moveCameraToPlayerTarget} from "../igua/camera";
 
 function getDesertTownLevel()
 {
@@ -74,6 +75,8 @@ function addIntroduction(level: DesertTownLevel)
         await show("You can save by resting at an inn.");
         await show("In the town there is an oracle if you need advice. Good luck.");
         await lizard.walkTo(level.LeftHouseDoor.x - 128);
+        await moveCameraToPlayerTarget(5);
+
         lizard.destroy();
         await persistence.save();
 
