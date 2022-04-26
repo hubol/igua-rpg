@@ -100,7 +100,7 @@ async function jungleOracleCutscene() {
 }
 
 function treeSpirit(level: ReturnType<typeof jungleTownLevel>) {
-    const n = npc(0, 0, 11).at([0, -2].add(level.SpiritSpawn)).show();
+    const n = npc(0, 0, 15).at([0, -2].add(level.SpiritSpawn)).show();
     n.ext.opaqueAlpha = 0.75;
 
     const stump = level.HolyStump;
