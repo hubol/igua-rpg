@@ -19,6 +19,7 @@ import {cutscene} from "../cutscene/cutscene";
 import {sparkly} from "../gameObjects/sparkleSmall";
 import {CollectGeneric} from "../sounds";
 import {persistence} from "../igua/data/persistence";
+import {valuable} from "../gameObjects/valuable";
 
 export function OversizedAngelArena() {
     scene.backgroundColor = 0x2F4B5E;
@@ -53,9 +54,12 @@ export function OversizedAngelArena() {
             await wait(() => clown.destroyed);
             doors.forEach(x => x.startOpening(2));
             progress.flags.desert.defeatedOversizedAngel = true;
+            jukebox.currentSong?.fade(1, 0, 1000);
+
             progress.checkpointName = 'DefeatedBoss';
             await persistence.save();
-            jukebox.currentSong?.fade(1, 0, 1000);
+            await wait(() => valuable.instances.length === 0);
+            await persistence.save();
         });
     }
 

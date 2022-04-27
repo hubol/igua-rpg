@@ -8,10 +8,13 @@ import {player} from "./player";
 import {merge} from "../utils/merge";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {sleep} from "../cutscene/sleep";
+import {track} from "../igua/track";
 
 export type ValuableType = keyof typeof valuableStyles;
 
-export function valuable(x, y, uid, type: ValuableType)
+export const valuable = track(valuableImpl);
+
+function valuableImpl(x, y, uid, type: ValuableType)
 {
     const valuableStyle = valuableStyles[type];
     const sprite = merge(Sprite.from(valuableStyle.texture),
