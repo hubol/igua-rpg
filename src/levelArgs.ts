@@ -70,6 +70,7 @@ import { GreenCable } from "./textures";
 import { Bottle2 } from "./textures";
 import { WhiskeyGlass } from "./textures";
 import { WoodenStool } from "./textures";
+import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { Anchor } from "./textures";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
@@ -1322,7 +1323,7 @@ Window4: resolveRegion({"type":"Region","x":100,"y":188,"width":24,"height":24,"
 };
 
 export const DesertOutskirtsArgs = {
-    width: 576,
+    width: 752,
 height: 416,
 gameObjectsSupplier: () => {
   return {
@@ -1469,6 +1470,28 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
+SpikyBrushA_4: resolveDecalGameObject({
+    x: 689.8792460234883,
+y: 146.41175695405192,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushA
+}),
+SpikyBrushB_2: resolveDecalGameObject({
+    x: 600.1087478070684,
+y: 145.9212077834704,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: SpikyBrushB
+}),
 CloudLong: resolveDecalGameObject({
     x: 72,
 y: 96,
@@ -1524,6 +1547,28 @@ rotation: 0,
 layerName: "Parallax1Decals",
 texture: CloudLong
 }),
+CloudLong_5: resolveDecalGameObject({
+    x: 560,
+y: 48,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_6: resolveDecalGameObject({
+    x: 640,
+y: 96,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":328,"width":368,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
@@ -1555,7 +1600,7 @@ PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":256,"y":128
 // @ts-ignore
 PipeLeftEnd_1: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":256,"y":128,"flippedX":false,"flippedY":false,"uid":"63428932_20","name":"","depth":0}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":368,"y":0,"width":208,"height":240,"flippedX":false,"flippedY":false,"uid":"55823268_21","name":"","depth":0}),
+Block_3: resolveBlock({"type":"Block","x":368,"y":0,"width":80,"height":176,"flippedX":false,"flippedY":false,"uid":"55823268_21","name":"","depth":0}),
 // @ts-ignore
 Boulder: resolveBoulder({"type":"Boulder","x":376,"y":284,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"15952797_22","name":"","depth":0}),
 // @ts-ignore
@@ -1583,7 +1628,31 @@ ValuableBlue_1: resolveValuableBlue({"type":"ValuableBlue","x":492,"y":318,"flip
 // @ts-ignore
 GrassyValuableBackground: resolveValuableOrange({"type":"ValuableOrange","x":184,"y":328,"flippedX":false,"flippedY":false,"uid":"56004563_39","name":"GrassyValuableBackground","depth":3}),
 // @ts-ignore
-BushValuableRegion: resolveRegion({"type":"Region","x":160,"y":312,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607_40","name":"BushValuableRegion","depth":0})
+BushValuableRegion: resolveRegion({"type":"Region","x":160,"y":312,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"25971607_40","name":"BushValuableRegion","depth":0}),
+// @ts-ignore
+Block_7: resolveBlock({"type":"Block","x":368,"y":192,"width":208,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_41","name":"","depth":0}),
+// @ts-ignore
+FakeWall: resolveFakeWall({"type":"FakeWall","x":368,"y":176,"width":152,"height":16,"flippedX":false,"flippedY":false,"uid":"02672398_42","name":"","depth":0}),
+// @ts-ignore
+Block_8: resolveBlock({"type":"Block","x":520,"y":176,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_43","name":"","depth":0}),
+// @ts-ignore
+FakeWall_1: resolveFakeWall({"type":"FakeWall","x":448,"y":104,"width":24,"height":72,"flippedX":false,"flippedY":false,"uid":"02672398_45","name":"","depth":0}),
+// @ts-ignore
+FakeWall_2: resolveFakeWall({"type":"FakeWall","x":472,"y":104,"width":104,"height":16,"flippedX":false,"flippedY":false,"uid":"02672398_46","name":"","depth":0}),
+// @ts-ignore
+Block_9: resolveBlock({"type":"Block","x":472,"y":120,"width":104,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_47","name":"","depth":0}),
+// @ts-ignore
+Block_10: resolveBlock({"type":"Block","x":448,"y":0,"width":128,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_48","name":"","depth":0}),
+// @ts-ignore
+Block_11: resolveBlock({"type":"Block","x":576,"y":152,"width":144,"height":264,"flippedX":false,"flippedY":false,"uid":"55823268_49","name":"","depth":0}),
+// @ts-ignore
+Stump: resolveTreeStump({"type":"TreeStump","x":648,"y":152,"flippedX":false,"flippedY":false,"uid":"77429484_50","levelName":"DesertOutskirts","checkpointName":"Stump","name":"Stump","depth":0,"faceRight":false}),
+// @ts-ignore
+Block_12: resolveBlock({"type":"Block","x":720,"y":0,"width":32,"height":416,"flippedX":false,"flippedY":false,"uid":"55823268_51","name":"","depth":0}),
+// @ts-ignore
+ValuableBlue_2: resolveValuableBlue({"type":"ValuableBlue","x":632,"y":88,"flippedX":false,"flippedY":false,"uid":"55991906_52","name":"","depth":0}),
+// @ts-ignore
+ValuableOrange_3: resolveValuableOrange({"type":"ValuableOrange","x":664,"y":88,"flippedX":false,"flippedY":false,"uid":"56004563_53","name":"","depth":0})
 };
 }
 };

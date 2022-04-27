@@ -1,6 +1,6 @@
 {
-  "ogmoVersion": "3.4.0",
-  "width": 576,
+  "ogmoVersion": "3.4.0-hubol",
+  "width": 752,
   "height": 416,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,7 +12,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 72,
+      "gridCellsX": 94,
       "gridCellsY": 52,
       "entities": [
         {
@@ -200,8 +200,8 @@
           "_eid": "55823268",
           "x": 368,
           "y": 0,
-          "width": 208,
-          "height": 240,
+          "width": 80,
+          "height": 176,
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
@@ -363,6 +363,144 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "BushValuableRegion", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 41,
+          "_eid": "55823268",
+          "x": 368,
+          "y": 192,
+          "width": 208,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "FakeWall",
+          "id": 42,
+          "_eid": "02672398",
+          "x": 368,
+          "y": 176,
+          "width": 152,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 43,
+          "_eid": "55823268",
+          "x": 520,
+          "y": 176,
+          "width": 56,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "FakeWall",
+          "id": 45,
+          "_eid": "02672398",
+          "x": 448,
+          "y": 104,
+          "width": 24,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "FakeWall",
+          "id": 46,
+          "_eid": "02672398",
+          "x": 472,
+          "y": 104,
+          "width": 104,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 47,
+          "_eid": "55823268",
+          "x": 472,
+          "y": 120,
+          "width": 104,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 48,
+          "_eid": "55823268",
+          "x": 448,
+          "y": 0,
+          "width": 128,
+          "height": 104,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 49,
+          "_eid": "55823268",
+          "x": 576,
+          "y": 152,
+          "width": 144,
+          "height": 264,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "TreeStump",
+          "id": 50,
+          "_eid": "77429484",
+          "x": 648,
+          "y": 152,
+          "originX": 60,
+          "originY": 16,
+          "values": {"levelName": "DesertOutskirts", "checkpointName": "Stump", "name": "Stump", "depth": 0, "faceRight": false}
+        },
+        {
+          "name": "Block",
+          "id": 51,
+          "_eid": "55823268",
+          "x": 720,
+          "y": 0,
+          "width": 32,
+          "height": 416,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 52,
+          "_eid": "55991906",
+          "x": 632,
+          "y": 88,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 53,
+          "_eid": "56004563",
+          "x": 664,
+          "y": 88,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -373,7 +511,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 72,
+      "gridCellsX": 94,
       "gridCellsY": 52,
       "decals": [],
       "folder": "../../src/images"
@@ -385,7 +523,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 72,
+      "gridCellsX": 94,
       "gridCellsY": 52,
       "decals": [],
       "folder": "../../src/images"
@@ -397,7 +535,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 72,
+      "gridCellsX": 94,
       "gridCellsY": 52,
       "decals": [
         {
@@ -542,6 +680,28 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": "VBushLeft"}
+        },
+        {
+          "x": 689.8792460234883,
+          "y": 146.41175695405192,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 600.1087478070684,
+          "y": 145.9212077834704,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "spiky brush b.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "..\\..\\src\\images"
@@ -553,7 +713,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 72,
+      "gridCellsX": 94,
       "gridCellsY": 52,
       "decals": [
         {
@@ -603,6 +763,28 @@
         {
           "x": 248,
           "y": 72,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 560,
+          "y": 48,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 640,
+          "y": 96,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": 0,

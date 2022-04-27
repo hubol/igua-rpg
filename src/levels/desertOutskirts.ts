@@ -18,6 +18,8 @@ import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
 import {move} from "../cutscene/move";
 import {DisplayObject} from "pixi.js";
+import {cameraLock} from "../gameObjects/cameraLock";
+import {player} from "../gameObjects/player";
 
 function getDesertOutskirtsLevel()
 {
@@ -36,6 +38,10 @@ export function DesertOutskirts()
 
     enrichUnlockTemple(level);
     enrichGrassyValuable(level);
+
+    if (player.x < 576)
+        cameraLock({ maxX: 576 },
+            () => player.x >= 576 - 32 && player.y < level.Stump.y);
 }
 
 function enrichGrassyValuable(level: DesertOutskirtsLevel) {

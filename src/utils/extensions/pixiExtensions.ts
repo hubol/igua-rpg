@@ -32,6 +32,10 @@ declare global {
             tinted(tint: number): this;
         }
 
+        export interface Graphics {
+            tinted(tint: number): this;
+        }
+
         export interface Container {
             removeAllChildren();
             addChild<T extends DisplayObject>(child: T): T;
@@ -239,6 +243,11 @@ PIXI.DisplayObject.prototype.hide = function () {
 }
 
 PIXI.Sprite.prototype.tinted = function (tint) {
+    this.tint = tint;
+    return this;
+}
+
+PIXI.Graphics.prototype.tinted = function (tint) {
     this.tint = tint;
     return this;
 }
