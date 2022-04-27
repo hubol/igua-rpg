@@ -87,6 +87,12 @@ function addIntroduction(level: DesertTownLevel)
 function enhanceCrateStacker(level: DesertTownLevel)
 {
     const crates = [ level.Crate0, level.Crate1, level.Crate2, level.Crate3, level.Crate4, level.Crate5, level.Crate6, level.Crate7, level.Crate8, level.Crate9 ];
+
+    crates.forEach(x => {
+        const pipe = resolvePipeHorizontal({ ...x.vcpy(), width: x.width, visible: false } as any);
+        x.on('removed', () => pipe.destroy());
+    })
+
     let cratesLeftToStack = crates.length;
 
     let lastStackedCrate: Sprite | null;
