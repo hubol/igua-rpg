@@ -42,7 +42,7 @@ function secretCloud(d: Sprite) {
 
     d.alpha = 0;
     d.withStep(() => {
-        if (rectangleDistance(d, player) < 64)
+        if (rectangleDistance(d, player) < 64 && player.x >= d.x)
             framesNear++;
         if (framesNear === 4 * 60) {
             const b = d.getBounds();
