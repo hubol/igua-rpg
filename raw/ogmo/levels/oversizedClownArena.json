@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 848,
   "height": 256,
   "offsetX": 0,
@@ -253,6 +253,16 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromJungle", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 27,
+          "_eid": "55940370",
+          "x": 344,
+          "y": 224,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "DefeatedBoss", "faceRight": true, "depth": 0}
         }
       ]
     },

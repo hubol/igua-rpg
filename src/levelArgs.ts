@@ -5310,7 +5310,8 @@ Block_5: resolveBlock({"type":"Block","x":0,"y":0,"width":80,"height":32,"flippe
 SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":48,"y":32,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_23","name":"","depth":0}),
 // @ts-ignore
 Gate_1: resolveGate({"type":"Gate","x":0,"y":80,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_25","levelName":"JungleFromDesert","checkpointName":"FromCave","name":"","depth":0}),
-FromJungle: {"type":"Checkpoint","x":64,"y":112,"flippedX":false,"flippedY":false,"uid":"55940370_26","name":"FromJungle","faceRight":true,"depth":0}
+FromJungle: {"type":"Checkpoint","x":64,"y":112,"flippedX":false,"flippedY":false,"uid":"55940370_26","name":"FromJungle","faceRight":true,"depth":0},
+DefeatedBoss: {"type":"Checkpoint","x":344,"y":224,"flippedX":false,"flippedY":false,"uid":"55940370_27","name":"DefeatedBoss","faceRight":true,"depth":0}
 };
 }
 };
