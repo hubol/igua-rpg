@@ -1,73 +1,43 @@
-import {Sprite, Mesh, Transform} from "pixi.js";
+import {Sprite, Mesh, Graphics} from "pixi.js";
 
 // Temporary solution until https://github.com/pixijs/pixijs/pull/7495 is merged
 
-Transform.prototype.updateLocalTransform = function ()
+// Without this, the slopes will look bad
+Graphics.prototype.calculateVertices = function ()
+{
+    const wtID = this.transform._worldID;
+
+    if (this._transformID === wtID)
     {
-        const lt = this.localTransform;
+        return;
+    }
 
-        if (this._localID !== this._currentLocalID)
-        {
-            // get the matrix values of the displayobject based on its transform properties..
-            lt.a = this._cx * this.scale.x;
-            lt.b = this._sx * this.scale.x;
-            lt.c = this._cy * this.scale.y;
-            lt.d = this._sy * this.scale.y;
+    this._transformID = wtID;
 
-            lt.tx = Math.round(this.position.x - ((this.pivot.x * lt.a) + (this.pivot.y * lt.c)));
-            lt.ty = Math.round(this.position.y - ((this.pivot.x * lt.b) + (this.pivot.y * lt.d)));
-            this._currentLocalID = this._localID;
+    const wt = this.transform.worldTransform;
+    const a = wt.a;
+    const b = wt.b;
+    const c = wt.c;
+    const d = wt.d;
+    const tx = Math.round(wt.tx);
+    const ty = Math.round(wt.ty);
 
-            // force an update..
-            this._parentID = -1;
-        }
+    const data = this._geometry.points;// batch.vertexDataOriginal;
+    const vertexData = this.vertexData;
+
+    let count = 0;
+
+    for (let i = 0; i < data.length; i += 2)
+    {
+        const x = data[i];
+        const y = data[i + 1];
+
+        vertexData[count++] = (a * x) + (c * y) + tx;
+        vertexData[count++] = (d * y) + (b * x) + ty;
+    }
 }
 
-/**
- * Updates the local and the world transformation matrices.
- *
- * @param parentTransform - The parent transform
- */
-Transform.prototype.updateTransform = function (parentTransform)
-    {
-        const lt = this.localTransform;
-
-        if (this._localID !== this._currentLocalID)
-        {
-            // get the matrix values of the displayobject based on its transform properties..
-            lt.a = this._cx * this.scale.x;
-            lt.b = this._sx * this.scale.x;
-            lt.c = this._cy * this.scale.y;
-            lt.d = this._sy * this.scale.y;
-
-            lt.tx = Math.round(this.position.x - ((this.pivot.x * lt.a) + (this.pivot.y * lt.c)));
-            lt.ty = Math.round(this.position.y - ((this.pivot.x * lt.b) + (this.pivot.y * lt.d)));
-            this._currentLocalID = this._localID;
-
-            // force an update..
-            this._parentID = -1;
-        }
-
-        if (this._parentID !== parentTransform._worldID)
-        {
-            // concat the parent matrix with the objects transform.
-            const pt = parentTransform.worldTransform;
-            const wt = this.worldTransform;
-
-            wt.a = (lt.a * pt.a) + (lt.b * pt.c);
-            wt.b = (lt.a * pt.b) + (lt.b * pt.d);
-            wt.c = (lt.c * pt.a) + (lt.d * pt.c);
-            wt.d = (lt.c * pt.b) + (lt.d * pt.d);
-            wt.tx = Math.round((lt.tx * pt.a) + (lt.ty * pt.c) + pt.tx);
-            wt.ty = Math.round((lt.tx * pt.b) + (lt.ty * pt.d) + pt.ty);
-
-            this._parentID = parentTransform._worldID;
-
-            // update the id of the transform..
-            this._worldID++;
-        }
-}
-
+// Sprites will rudely resize without this
 Sprite.prototype.calculateVertices = function calculateVertices() {
     const texture = this._texture;
 
@@ -151,123 +121,7 @@ Sprite.prototype.calculateVertices = function calculateVertices() {
     vertexData[7] = (d * h0) + (b * w1) + ty;
 }
 
-Sprite.prototype.calculateTrimmedVertices = function calculateTrimmedVertices() {
-    if (!this.vertexTrimmedData) {
-        this.vertexTrimmedData = new Float32Array(8);
-    } else if (this._transformTrimmedID === this.transform._worldID && this._textureTrimmedID === this._texture._updateID) {
-        return;
-    }
-
-    this._transformTrimmedID = this.transform._worldID;
-    this._textureTrimmedID = this._texture._updateID;
-
-    // lets do some special trim code!
-    const texture = this._texture;
-    const vertexData = this.vertexTrimmedData;
-    const orig = texture.orig;
-    const anchor = this._anchor;
-
-    // lets calculate the new untrimmed bounds..
-    const wt = this.transform.worldTransform;
-    const a = wt.a;
-    const b = wt.b;
-    const c = wt.c;
-    const d = wt.d;
-    let tx = wt.tx;
-    let ty = wt.ty;
-
-    let w1 = -anchor._x * orig.width;
-    let w0 = orig.width;
-
-    let h1 = -anchor._y * orig.height;
-    let h0 = orig.height;
-
-    if (this._roundPixels) {
-        tx = Math.round(tx);
-        ty = Math.round(ty);
-
-        const sx = Math.sqrt((a * a) + (b * b));
-        const sy = Math.sqrt((c * c) + (d * d));
-
-        w0 = Math.round(w0 * sx) / sx;
-        w1 = Math.round(w1 * sx) / sx;
-        h0 = Math.round(h0 * sy) / sy;
-        h1 = Math.round(h1 * sy) / sy;
-    }
-
-    w0 += w1;
-    h0 += h1;
-
-    // xy
-    vertexData[0] = (a * w1) + (c * h1) + tx;
-    vertexData[1] = (d * h1) + (b * w1) + ty;
-
-    // xy
-    vertexData[2] = (a * w0) + (c * h1) + tx;
-    vertexData[3] = (d * h1) + (b * w0) + ty;
-
-    // xy
-    vertexData[4] = (a * w0) + (c * h0) + tx;
-    vertexData[5] = (d * h0) + (b * w0) + ty;
-
-    // xy
-    vertexData[6] = (a * w1) + (c * h0) + tx;
-    vertexData[7] = (d * h0) + (b * w1) + ty;
-}
-
-Mesh.prototype._renderDefault = function _renderDefault(renderer)
-{
-    const shader = this.shader;
-
-    shader.alpha = this.worldAlpha;
-    if (shader.update) {
-        shader.update();
-    }
-
-    renderer.batch.flush();
-
-    let verticesBuffer;
-    let vertices;
-
-    if (this._roundPixels) {
-        verticesBuffer = this.geometry.buffers[0];
-        vertices = verticesBuffer.data;
-
-        this.calculateVertices();
-
-        if (this._roundPixelsID === undefined) {
-            verticesBuffer.data = this.vertexData;
-            verticesBuffer._updateID++;
-            this._roundPixelsID = verticesBuffer._updateID;
-            this.vertexDirty = this._roundPixelsID + 1;
-        } else {
-            verticesBuffer.data = this.vertexData;
-            verticesBuffer._updateID = this._roundPixelsID;
-        }
-
-        shader.uniforms.translationMatrix = Transform.IDENTITY.worldTransform.toArray(true);
-    } else {
-        shader.uniforms.translationMatrix = this.transform.worldTransform.toArray(true);
-    }
-
-// bind and sync uniforms..
-    renderer.shader.bind(shader);
-
-// set state..
-    renderer.state.set(this.state);
-
-// bind the geometry...
-    renderer.geometry.bind(this.geometry, shader);
-
-// then render it
-    renderer.geometry.draw(this.drawMode, this.size, this.start, this.geometry.instanceCount);
-
-    if (this._roundPixels) {
-        verticesBuffer.data = vertices;
-        verticesBuffer._updateID = this.vertexDirty;
-    }
-}
-
+// Seems necessary for BitmapText meshes (?)
 Mesh.prototype.calculateVertices = function calculateVertices()
 {
     const geometry = this.geometry;
@@ -319,8 +173,6 @@ Mesh.prototype.calculateVertices = function calculateVertices()
     }
 
     this.vertexDirty = vertexDirtyId;
-    this._roundPixelsID = undefined;
 }
-
 
 export default 0;

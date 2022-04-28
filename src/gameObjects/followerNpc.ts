@@ -12,7 +12,6 @@ export function followerNpc(npc: Npc)
     const followerNpc = merge(npc, { isFollowing: true });
 
     const scaleXHistory: number[] = [];
-    npc.engine.walkSpeed = 3;
 
     return followerNpc.withStep(() => {
         if (!followerNpc.isFollowing)
@@ -30,7 +29,7 @@ export function followerNpc(npc: Npc)
         }
 
         const dx = desired.position.x - npc.x;
-        npc.hspeed = dx;
+        npc.hspeed = Math.abs(dx) < 1 ? dx : dx * .9;
 
         // TODO lame copypaste:
         // TODO Need finer control over order of steps attached to game objects
@@ -53,6 +52,6 @@ export function followerNpc(npc: Npc)
 
 const desired = {
     get position() {
-        return { x: player.scale.x * -(Math.abs(player.width) + 4), y: 0 }.add(player);
+        return { x: player.scale.x * -34, y: 0 }.add(player);
     }
 };
