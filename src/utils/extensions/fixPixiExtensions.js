@@ -2,6 +2,7 @@ import {Sprite, Mesh, Graphics} from "pixi.js";
 
 // Temporary solution until https://github.com/pixijs/pixijs/pull/7495 is merged
 
+// Without this, the slopes will look bad
 Graphics.prototype.calculateVertices = function ()
 {
     const wtID = this.transform._worldID;
@@ -36,6 +37,7 @@ Graphics.prototype.calculateVertices = function ()
     }
 }
 
+// Sprites will rudely resize without this
 Sprite.prototype.calculateVertices = function calculateVertices() {
     const texture = this._texture;
 
@@ -119,70 +121,7 @@ Sprite.prototype.calculateVertices = function calculateVertices() {
     vertexData[7] = (d * h0) + (b * w1) + ty;
 }
 
-Sprite.prototype.calculateTrimmedVertices = function calculateTrimmedVertices() {
-    if (!this.vertexTrimmedData) {
-        this.vertexTrimmedData = new Float32Array(8);
-    } else if (this._transformTrimmedID === this.transform._worldID && this._textureTrimmedID === this._texture._updateID) {
-        return;
-    }
-
-    this._transformTrimmedID = this.transform._worldID;
-    this._textureTrimmedID = this._texture._updateID;
-
-    // lets do some special trim code!
-    const texture = this._texture;
-    const vertexData = this.vertexTrimmedData;
-    const orig = texture.orig;
-    const anchor = this._anchor;
-
-    // lets calculate the new untrimmed bounds..
-    const wt = this.transform.worldTransform;
-    const a = wt.a;
-    const b = wt.b;
-    const c = wt.c;
-    const d = wt.d;
-    let tx = wt.tx;
-    let ty = wt.ty;
-
-    let w1 = -anchor._x * orig.width;
-    let w0 = orig.width;
-
-    let h1 = -anchor._y * orig.height;
-    let h0 = orig.height;
-
-    if (this._roundPixels) {
-        tx = Math.round(tx);
-        ty = Math.round(ty);
-
-        const sx = Math.sqrt((a * a) + (b * b));
-        const sy = Math.sqrt((c * c) + (d * d));
-
-        w0 = Math.round(w0 * sx) / sx;
-        w1 = Math.round(w1 * sx) / sx;
-        h0 = Math.round(h0 * sy) / sy;
-        h1 = Math.round(h1 * sy) / sy;
-    }
-
-    w0 += w1;
-    h0 += h1;
-
-    // xy
-    vertexData[0] = (a * w1) + (c * h1) + tx;
-    vertexData[1] = (d * h1) + (b * w1) + ty;
-
-    // xy
-    vertexData[2] = (a * w0) + (c * h1) + tx;
-    vertexData[3] = (d * h1) + (b * w0) + ty;
-
-    // xy
-    vertexData[4] = (a * w0) + (c * h0) + tx;
-    vertexData[5] = (d * h0) + (b * w0) + ty;
-
-    // xy
-    vertexData[6] = (a * w1) + (c * h0) + tx;
-    vertexData[7] = (d * h0) + (b * w1) + ty;
-}
-
+// Seems necessary for BitmapText meshes (?)
 Mesh.prototype.calculateVertices = function calculateVertices()
 {
     const geometry = this.geometry;
@@ -234,8 +173,6 @@ Mesh.prototype.calculateVertices = function calculateVertices()
     }
 
     this.vertexDirty = vertexDirtyId;
-    this._roundPixelsID = undefined;
 }
-
 
 export default 0;
