@@ -17,11 +17,11 @@ export function camera(followPlayer: boolean)
         },
         set x(value) {
             scene.cameraStage.x = -value;
-            scene.parallax1Stage.x = Math.round(-value * 0.9);
+            scene.parallax1Stage.x = -value * 0.9;
         },
         set y(value) {
             scene.cameraStage.y = -value;
-            scene.parallax1Stage.y = Math.round(-value * 0.9);
+            scene.parallax1Stage.y = -value * 0.9;
         },
         width: 256,
         height: 256,
