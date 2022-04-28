@@ -143,10 +143,12 @@ function createPlayer(behavior = true)
         if (playerCharacterHasControl() && progress.health > 5 && progress.poisonLevel > 0)
             player.drain(Math.min(progress.health - 5, 0.01 * Math.pow(progress.poisonLevel, 2)));
 
-        ballonLifeTick = (ballonLifeTick + 1) % 60;
-        if (playerCharacterHasControl() && ballonLifeTick === 0) {
-            for (let i = 0; i < progress.ballons.length; i++)
-                progress.ballons[i] -= 1 / 59.5;
+        if (!engine.isOnGround) {
+            ballonLifeTick = (ballonLifeTick + 1) % 60;
+            if (playerCharacterHasControl() && ballonLifeTick === 0) {
+                for (let i = 0; i < progress.ballons.length; i++)
+                    progress.ballons[i] -= 1 / 59.5;
+            }
         }
 
         const baseSpeed = !progress.poisonLevel ? 2.5 : 3.25;
