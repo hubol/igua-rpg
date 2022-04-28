@@ -191,7 +191,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
 
     let playerHasCrate = false;
 
-    level.PickupCratesRegion.withInteraction(() => {
+    const crateInteraction = () => {
         if (crates.length < 1)
             return;
 
@@ -204,7 +204,9 @@ function enhanceCrateStacker(level: DesertTownLevel)
                 await show("Picked up a crate.");
             }
         });
-    });
+    };
+
+    crates.forEach(x => x.withInteraction(crateInteraction));
 
     level.DropCrateRegion.withInteraction(() => {
         if (!playerHasCrate)
