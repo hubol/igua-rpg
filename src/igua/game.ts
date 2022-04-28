@@ -54,12 +54,13 @@ export function startGame(application: AsshatApplication)
 
     game.hudStage.addChild(hud());
 
+    devWindow();
+
     if (environment.isProduction) {
         sceneStack.replace(TitleScreen);
     }
     else {
         loadDevProgress();
-        devWindow();
     }
 }
 

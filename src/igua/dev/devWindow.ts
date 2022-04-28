@@ -10,6 +10,7 @@ import {player} from "../../gameObjects/player";
 function createDev() {
     return {
         game,
+        scene: sceneStack.toArray()[0],
         scenes: sceneStack.toArray(),
         level,
         jukebox,
