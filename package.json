@@ -19,7 +19,8 @@
     "default": {
       "source": "src/index.html",
       "publicUrl": "./",
-      "scopeHoist": false
+      "scopeHoist": false,
+      "optimize": false
     }
   },
   "repository": {
