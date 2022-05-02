@@ -12,7 +12,10 @@ import {now} from "../utils/now";
 import {merge} from "../utils/merge";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/rng";
-import {approachLinear} from "../utils/math/number";
+import {approachLinear, lerp as nlerp} from "../utils/math/number";
+import {trackPosition} from "../igua/trackPosition";
+import {vnew} from "../utils/math/vector";
+import {player} from "./player";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -21,21 +24,25 @@ const eyeTxs = subimageTextures(UnorthodoxClownEye, 3);
 export function clownUnorthodox() {
     const controls = {
         face: {
-            unit: 0,
+            unit: -1,
         },
         eyes: {
             closedUnit: 0,
             closing: false,
-            forceWide: true,
+            forceWide: false,
         },
         brows: {
-            angry: true
+            angry: false
         },
         mouth: {
             excited: false,
             big: false,
         }
-    }
+    };
+
+    const behaviors = {
+        facePlayer: true,
+    };
 
     function hair() {
         const wigglies = [hairTextures[1], hairTextures[2]].map((x, i) => {
@@ -114,23 +121,40 @@ export function clownUnorthodox() {
         bald.pivot.set(-11, -16);
         bald.mask = Sprite.from(UnorthodoxClownHead).show(bald);
 
+        const face = container().show(bald);
+
         const eyeL = newEye();
         const eyeR = newEye();
         const cer = container(eyeR).at(15, 0);
-        const eyes = container(eyeL, cer).at(23, 6).show(bald);
+        const eyes = container(eyeL, cer).at(23, 6).show(face);
 
-        const mouth = newMouth().at(29, 24).show(bald);
+        const mouth = newMouth().at(29, 24).show(face);
 
-        const features = Sprite.from(UnorthodoxClownFace).at(8, 19).show(bald);
+        const features = Sprite.from(UnorthodoxClownFace).at(8, 19).show(face);
 
         const browL = eyebrow();
         const browR = eyebrow();
         browR.scale.x = -1;
         const cbr = container(browR).at(15, 0);
 
-        const brows = container(browL, cbr).at(41, 18);
+        const brows = container(browL, cbr).at(0, 18);
+        face.withStep(() => {
+            if (behaviors.facePlayer) {
+                const f = hitbox.getBounds().center.add(player.getBounds().center, -1).normalize();
+                controls.face.unit = approachLinear(controls.face.unit, -f.x, 0.05);
+            }
+            const f = (controls.face.unit + 1) / 2;
+            face.x = nlerp(-19, 1, f);
+            brows.x = face.x + 41;
+        });
 
-        const c = container(bald, hair(), brows);
+        const hitbox = new Graphics()
+            .beginFill(0)
+            .drawRect(15, 15, 50, 33)
+            .show(bald);
+        hitbox.visible = false;
+
+        const c = container(bald, hair(), brows, hitbox);
 
         return merge(c, { mouth });
     }
@@ -151,6 +175,12 @@ export function clownUnorthodox() {
                 await sleep(2000);
                 controls.mouth.big = false;
             }
+        })
+        .withAsync(async () => {
+            // while (true) {
+            //     await sleep(4000);
+            //     behaviors.facePlayer = !behaviors.facePlayer;
+            // }
         })
         .withAsync(async () => {
             while (true) {
