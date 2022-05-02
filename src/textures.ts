@@ -161,6 +161,13 @@ export let UiCheckbox: PIXI.Texture;
 export let UiChooseYourLooksIcons: PIXI.Texture;
 export let UiNoneChoice: PIXI.Texture;
 export let UiPlacementReticle: PIXI.Texture;
+export let UnorthodoxClownEye: PIXI.Texture;
+export let UnorthodoxClownEyebrow: PIXI.Texture;
+export let UnorthodoxClownFace: PIXI.Texture;
+export let UnorthodoxClownHair: PIXI.Texture;
+export let UnorthodoxClownHead: PIXI.Texture;
+export let UnorthodoxClownMock: PIXI.Texture;
+export let UnorthodoxClownMouth: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
 export let VineLarge: PIXI.Texture;
 export let VineSmall: PIXI.Texture;
@@ -650,6 +657,27 @@ export function loadTexturesAsync()
     const UiPlacementReticlePath = require("./images/ui/placement reticle.png");
     loader.add(UiPlacementReticlePath); 
 
+    const UnorthodoxClownEyePath = require("./images/unorthodox clown/eye.png");
+    loader.add(UnorthodoxClownEyePath); 
+
+    const UnorthodoxClownEyebrowPath = require("./images/unorthodox clown/eyebrow.png");
+    loader.add(UnorthodoxClownEyebrowPath); 
+
+    const UnorthodoxClownFacePath = require("./images/unorthodox clown/face.png");
+    loader.add(UnorthodoxClownFacePath); 
+
+    const UnorthodoxClownHairPath = require("./images/unorthodox clown/hair.png");
+    loader.add(UnorthodoxClownHairPath); 
+
+    const UnorthodoxClownHeadPath = require("./images/unorthodox clown/head.png");
+    loader.add(UnorthodoxClownHeadPath); 
+
+    const UnorthodoxClownMockPath = require("./images/unorthodox clown/mock.png");
+    loader.add(UnorthodoxClownMockPath); 
+
+    const UnorthodoxClownMouthPath = require("./images/unorthodox clown/mouth.png");
+    loader.add(UnorthodoxClownMouthPath); 
+
     const ValuableIconPath = require("./images/valuable icon.png");
     loader.add(ValuableIconPath); 
 
@@ -831,6 +859,13 @@ export function loadTexturesAsync()
             UiChooseYourLooksIcons = resources[UiChooseYourLooksIconsPath]?.texture as PIXI.Texture;
             UiNoneChoice = resources[UiNoneChoicePath]?.texture as PIXI.Texture;
             UiPlacementReticle = resources[UiPlacementReticlePath]?.texture as PIXI.Texture;
+            UnorthodoxClownEye = resources[UnorthodoxClownEyePath]?.texture as PIXI.Texture;
+            UnorthodoxClownEyebrow = resources[UnorthodoxClownEyebrowPath]?.texture as PIXI.Texture;
+            UnorthodoxClownFace = resources[UnorthodoxClownFacePath]?.texture as PIXI.Texture;
+            UnorthodoxClownHair = resources[UnorthodoxClownHairPath]?.texture as PIXI.Texture;
+            UnorthodoxClownHead = resources[UnorthodoxClownHeadPath]?.texture as PIXI.Texture;
+            UnorthodoxClownMock = resources[UnorthodoxClownMockPath]?.texture as PIXI.Texture;
+            UnorthodoxClownMouth = resources[UnorthodoxClownMouthPath]?.texture as PIXI.Texture;
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
             VineLarge = resources[VineLargePath]?.texture as PIXI.Texture;
             VineSmall = resources[VineSmallPath]?.texture as PIXI.Texture;
