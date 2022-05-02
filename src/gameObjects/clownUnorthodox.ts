@@ -54,7 +54,7 @@ export function clownUnorthodox() {
             s.y = 16;
             s.anchor.y = s.y / 30;
             s.withStep(() => {
-                s.scale.y = 1 + (1 + Math.sin(now.s * Math.PI * 1 + i)) * 0.125;
+                s.scale.y = 1 + (1 + Math.sin(now.s * Math.PI * 3 + i * 0.3)) * 0.125 / 3;
                 s.height = Math.round(s.height / 2) * 2;
             });
             return s;

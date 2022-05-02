@@ -1,6 +1,6 @@
 import {Graphics} from "pixi.js";
 import {approachLinear, lerp} from "../utils/math/number";
-import {moveTowards, vnew, lerp as lerpv} from "../utils/math/vector";
+import {vnew, lerp as lerpv} from "../utils/math/vector";
 
 const def = [6, -54, 16, -48];
 const back1 = [-16, -50, -42, -32];
@@ -58,7 +58,7 @@ export function fishingPole() {
             v.vlength = 12;
 
             g.clear()
-            .lineStyle(1, 0)
+            .lineStyle(1, 0x0D1C7C)
             .quadraticCurveTo(cpx, cpy, tox, toy)
             .moveTo(1, 0)
             .quadraticCurveTo(cpx, cpy, tox, toy)
@@ -68,7 +68,7 @@ export function fishingPole() {
             .moveTo(tox, toy)
             .lineTo(hook.x, hook.y)
             .lineStyle()
-            .beginFill(0xa0a0a0, 1)
+            .beginFill(0xF2A643, 1)
             .drawCircle(v.x, v.y, 4);
 
             index += dindex;
