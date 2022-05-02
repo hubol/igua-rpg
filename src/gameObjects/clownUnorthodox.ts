@@ -13,8 +13,7 @@ import {merge} from "../utils/merge";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/rng";
 import {approachLinear, lerp as nlerp} from "../utils/math/number";
-import {trackPosition} from "../igua/trackPosition";
-import {vnew} from "../utils/math/vector";
+import {moveTowards, Vector, vnew} from "../utils/math/vector";
 import {player} from "./player";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
@@ -30,6 +29,11 @@ export function clownUnorthodox() {
             closedUnit: 0,
             closing: false,
             forceWide: false,
+        },
+        pupils: {
+            left: vnew(),
+            right: vnew(),
+            forceCenter: false,
         },
         brows: {
             angry: false
@@ -86,13 +90,14 @@ export function clownUnorthodox() {
         return s;
     }
 
-    function newEye() {
+    function newEye(p: Vector) {
         const eye = container();
 
-        const pupil = Sprite.from(eyeTxs[1]);
-        const pupilmask = Sprite.from(eyeTxs[0]);
-        pupil.mask = pupilmask;
-        container(pupilmask, pupil).show(eye);
+        const pupil = Sprite.from(eyeTxs[1])
+            .withStep(() => pupil.at(p));
+
+        const pupilc = container(pupil).show(eye);
+        pupilc.mask = Sprite.from(eyeTxs[0]).show(pupilc);
 
         const lids = new Graphics()
             .withStep(() => {
@@ -123,8 +128,8 @@ export function clownUnorthodox() {
 
         const face = container().show(bald);
 
-        const eyeL = newEye();
-        const eyeR = newEye();
+        const eyeL = newEye(controls.pupils.left);
+        const eyeR = newEye(controls.pupils.right);
         const cer = container(eyeR).at(15, 0);
         const eyes = container(eyeL, cer).at(23, 6).show(face);
 
@@ -137,15 +142,31 @@ export function clownUnorthodox() {
         browR.scale.x = -1;
         const cbr = container(browR).at(15, 0);
 
-        const brows = container(browL, cbr).at(0, 18);
+        const v = vnew();
+
+        const brows = container(browL, cbr);
         face.withStep(() => {
             if (behaviors.facePlayer) {
-                const f = hitbox.getBounds().center.add(player.getBounds().center, -1).normalize();
-                controls.face.unit = approachLinear(controls.face.unit, -f.x, 0.05);
+                const f = player.getBounds().center.add(hitbox.getBounds().center, -1).normalize();
+                controls.face.unit = approachLinear(controls.face.unit, f.x, 0.05);
+
+                v.at(f.x * 4, nlerp(-2, 5, (f.y + 1) / 2));
+                moveTowards(controls.pupils.left, v, 1);
+                controls.pupils.right.at(controls.pupils.left);
             }
+
+            if (controls.pupils.forceCenter) {
+                controls.pupils.left.at(0, 0);
+                controls.pupils.right.at(controls.pupils.left);
+            }
+
             const f = (controls.face.unit + 1) / 2;
             face.x = nlerp(-19, 1, f);
-            brows.x = face.x + 41;
+
+            const yf = Math.max(0, (Math.abs(controls.face.unit) - .8) * 5);
+            face.y = yf * -1;
+
+            brows.at(face).add(41, 18);
         });
 
         const hitbox = new Graphics()
