@@ -15,6 +15,7 @@ import {rng} from "../utils/rng";
 import {approachLinear, lerp as nlerp} from "../utils/math/number";
 import {moveTowards, Vector, vnew} from "../utils/math/vector";
 import {player} from "./player";
+import {rectangleDistance} from "../utils/math/rectangleDistance";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -167,6 +168,14 @@ export function clownUnorthodox() {
             face.y = yf * -1;
 
             brows.at(face).add(41, 18);
+
+            if (behaviors.facePlayer) {
+                const d = rectangleDistance(hitbox, player);
+                if (d < 10)
+                    brows.y -= 1;
+                if (d < 20)
+                    brows.y -= 1;
+            }
         });
 
         const hitbox = new Graphics()

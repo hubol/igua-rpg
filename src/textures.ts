@@ -164,8 +164,10 @@ export let UiPlacementReticle: PIXI.Texture;
 export let UnorthodoxClownEye: PIXI.Texture;
 export let UnorthodoxClownEyebrow: PIXI.Texture;
 export let UnorthodoxClownFace: PIXI.Texture;
+export let UnorthodoxClownFoot: PIXI.Texture;
 export let UnorthodoxClownHair: PIXI.Texture;
 export let UnorthodoxClownHead: PIXI.Texture;
+export let UnorthodoxClownLegsSplit: PIXI.Texture;
 export let UnorthodoxClownMock: PIXI.Texture;
 export let UnorthodoxClownMouth: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
@@ -666,11 +668,17 @@ export function loadTexturesAsync()
     const UnorthodoxClownFacePath = require("./images/unorthodox clown/face.png");
     loader.add(UnorthodoxClownFacePath); 
 
+    const UnorthodoxClownFootPath = require("./images/unorthodox clown/foot.png");
+    loader.add(UnorthodoxClownFootPath); 
+
     const UnorthodoxClownHairPath = require("./images/unorthodox clown/hair.png");
     loader.add(UnorthodoxClownHairPath); 
 
     const UnorthodoxClownHeadPath = require("./images/unorthodox clown/head.png");
     loader.add(UnorthodoxClownHeadPath); 
+
+    const UnorthodoxClownLegsSplitPath = require("./images/unorthodox clown/legs split.png");
+    loader.add(UnorthodoxClownLegsSplitPath); 
 
     const UnorthodoxClownMockPath = require("./images/unorthodox clown/mock.png");
     loader.add(UnorthodoxClownMockPath); 
@@ -862,8 +870,10 @@ export function loadTexturesAsync()
             UnorthodoxClownEye = resources[UnorthodoxClownEyePath]?.texture as PIXI.Texture;
             UnorthodoxClownEyebrow = resources[UnorthodoxClownEyebrowPath]?.texture as PIXI.Texture;
             UnorthodoxClownFace = resources[UnorthodoxClownFacePath]?.texture as PIXI.Texture;
+            UnorthodoxClownFoot = resources[UnorthodoxClownFootPath]?.texture as PIXI.Texture;
             UnorthodoxClownHair = resources[UnorthodoxClownHairPath]?.texture as PIXI.Texture;
             UnorthodoxClownHead = resources[UnorthodoxClownHeadPath]?.texture as PIXI.Texture;
+            UnorthodoxClownLegsSplit = resources[UnorthodoxClownLegsSplitPath]?.texture as PIXI.Texture;
             UnorthodoxClownMock = resources[UnorthodoxClownMockPath]?.texture as PIXI.Texture;
             UnorthodoxClownMouth = resources[UnorthodoxClownMouthPath]?.texture as PIXI.Texture;
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
