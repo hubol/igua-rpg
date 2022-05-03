@@ -16,7 +16,7 @@ import {PageElement} from "../igua/ui/page";
 import {sleep} from "../cutscene/sleep";
 import {Progress} from "../igua/data/progress";
 import {PurchaseFail} from "../sounds";
-import {getDemoCompletion} from "../igua/data/getCompletion";
+import {getCompletion} from "../igua/data/getCompletion";
 import {jukebox} from "../igua/jukebox";
 import {TitleScreen as Music} from "../musics";
 
@@ -180,7 +180,7 @@ function saveFileInfo() {
             headContainer.removeAllChildren();
             headContainer.addChild(iguanaHead(makeIguanaPuppetArgsFromLooks(progress.looks)));
             level.text = `Claw Level ${progress.level}`;
-            completion.text = Math.floor(getDemoCompletion(progress) * 100).toFixed(0) + '%';
+            completion.text = Math.floor(getCompletion(progress) * 100).toFixed(0) + '%';
             valuables.text = progress.valuables.toString();
             return c;
         }
