@@ -16,12 +16,17 @@ import {approachLinear, lerp as nlerp} from "../utils/math/number";
 import {moveTowards, Vector, vnew} from "../utils/math/vector";
 import {player} from "./player";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
+import {clownHealth} from "./utils/clownUtils";
+import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
+import {ClownHurt} from "../sounds";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
 const eyeTxs = subimageTextures(UnorthodoxClownEye, 3);
 
 export function clownUnorthodox() {
+    const health = clownHealth(660);
+
     const controls = {
         face: {
             unit: -1,
@@ -178,18 +183,33 @@ export function clownUnorthodox() {
             }
         });
 
+        const c = container(bald, hair(), brows);
+
         const hitbox = new Graphics()
             .beginFill(0)
-            .drawRect(15, 15, 50, 33)
-            .show(bald);
-        hitbox.visible = false;
+            .drawRect(18, 15, 50 - 6, 33)
+            .hide()
+            .show(c);
 
-        const c = container(bald, hair(), brows, hitbox);
-
-        return merge(c, { mouth });
+        return merge(c, { mouth, hit: hitbox });
     }
 
     const head = newHead();
+    let invulerable = 0;
+
+    head.withStep(() => {
+        if (invulerable-- > 0)
+            head.visible = !head.visible;
+        else
+            head.visible = true;
+
+        if (invulerable <= 0 && head.hit.collides(player)) {
+            ClownHurt.play();
+            bouncePlayerOffDisplayObject(head.hit);
+            health.damage();
+            invulerable = 15;
+        }
+    })
 
     head
         .withStep(() => {

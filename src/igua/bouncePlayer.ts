@@ -1,7 +1,7 @@
 import {Vector} from "../utils/math/vector";
 import {player} from "../gameObjects/player";
 import {rectangleCircleOverlap} from "../utils/math/rectangleCircleOverlap";
-import {Rectangle} from "pixi.js";
+import {DisplayObject, Rectangle} from "pixi.js";
 import {scene} from "./scene";
 
 export function bouncePlayer(self: Vector, factor = 3) {
@@ -11,6 +11,11 @@ export function bouncePlayer(self: Vector, factor = 3) {
     const dir = player.vcpy().add(0, -8).add(self, -1).normalize().scale(factor);
     player.engine.knockback.x = dir.x;
     player.vspeed = dir.y;
+}
+
+export function bouncePlayerOffDisplayObject(d: DisplayObject, factor = 3) {
+    const v = d.getBounds(false, r).center.add(scene.camera);
+    return bouncePlayer(v, factor);
 }
 
 const r = new Rectangle();
