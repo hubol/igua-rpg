@@ -15,6 +15,7 @@ import {smallPopTextures} from "./smallPop";
 import {BallonPop} from "../sounds";
 import { lerp } from "../utils/math/number";
 import {sleep} from "../cutscene/sleep";
+import {Force} from "../utils/force";
 
 interface BallonDisplayState {
     color: number;
@@ -39,28 +40,52 @@ function ballonPop() {
     return smallPopTextures(ballonPopTextures);
 }
 
-function ballon(hacks) {
-    const r = rng();
+function ballonSprite() {
     const sprite = Sprite.from(PlayerBalloon);
     sprite.anchor.set(0.5, 1);
+    return sprite;
+}
+
+function ballon(hacks) {
+    const r = rng();
+
+    const bb = ballonSprite();
+    bb.tint = 0xf0f0f0;
+    bb.alpha = 0.75;
+    const bf = ballonSprite();
+    let lifePrev = Force<number>();
+    const bfm = new Graphics()
+        .withStep(() => {
+            const life = Math.min(1, c.ext.life);
+            if (lifePrev === life)
+                return;
+            bfm
+                .clear()
+                .beginFill(0)
+                .drawRect(-10, Math.min(-18 * life, -2), 20, 20);
+            lifePrev = life;
+        });
+    bf.mask = bfm;
+
+    const b = container(bb, bf, bfm);
 
     const gfx = new Graphics().withStep(() => {
         if (!hacks.animate)
             return;
-        sprite.y = Math.round(Math.sin(now.s * 2 + r) * 1.7);
+        b.y = Math.round(Math.sin(now.s * 2 + r) * 1.7);
         gfx.clear()
             .lineStyle(1, 0xaaaaaa)
-            .moveTo(sprite.x, sprite.y)
+            .moveTo(b.x, b.y)
             .lineTo(-c.x / 4, -c.y / 4 + 3)
             .lineTo(-c.x / 2, -c.y / 2 + 3)
             .lineTo(-c.x, -c.y);
         if (Math.abs(c.x) > 8)
-            sprite.angle = (Math.abs(c.x) - 8) * Math.sign(c.x);
+            b.angle = (Math.abs(c.x) - 8) * Math.sign(c.x);
         else
-            sprite.angle = 0;
+            b.angle = 0;
     });
 
-    const c = merge(container(gfx, sprite), { die() {
+    const c = merge(container(gfx, b), { die() {
             const p = c.parent.addChild(ballonPop()).at([-1, -11].add(c));
             p.hueShift = c.hueShift;
             BallonPop.play();
@@ -144,6 +169,7 @@ export function ballons({ target, offset, state, string, displayState = [], tick
 
     function updateObjsWithDisplayState3() {
         displayState.forEach((x, i) => {
+            objs[i].ext.life = state[i];
             objs[i].hueShift = x.color;
             const len = objs[i].vlength;
             const delta1 = 1 - (len / string);
