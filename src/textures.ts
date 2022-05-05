@@ -167,6 +167,7 @@ export let UnorthodoxClownFace: PIXI.Texture;
 export let UnorthodoxClownFoot: PIXI.Texture;
 export let UnorthodoxClownHair: PIXI.Texture;
 export let UnorthodoxClownHead: PIXI.Texture;
+export let UnorthodoxClownJoint: PIXI.Texture;
 export let UnorthodoxClownLegsSplit: PIXI.Texture;
 export let UnorthodoxClownMock: PIXI.Texture;
 export let UnorthodoxClownMouth: PIXI.Texture;
@@ -677,6 +678,9 @@ export function loadTexturesAsync()
     const UnorthodoxClownHeadPath = require("./images/unorthodox clown/head.png");
     loader.add(UnorthodoxClownHeadPath); 
 
+    const UnorthodoxClownJointPath = require("./images/unorthodox clown/joint.png");
+    loader.add(UnorthodoxClownJointPath); 
+
     const UnorthodoxClownLegsSplitPath = require("./images/unorthodox clown/legs split.png");
     loader.add(UnorthodoxClownLegsSplitPath); 
 
@@ -873,6 +877,7 @@ export function loadTexturesAsync()
             UnorthodoxClownFoot = resources[UnorthodoxClownFootPath]?.texture as PIXI.Texture;
             UnorthodoxClownHair = resources[UnorthodoxClownHairPath]?.texture as PIXI.Texture;
             UnorthodoxClownHead = resources[UnorthodoxClownHeadPath]?.texture as PIXI.Texture;
+            UnorthodoxClownJoint = resources[UnorthodoxClownJointPath]?.texture as PIXI.Texture;
             UnorthodoxClownLegsSplit = resources[UnorthodoxClownLegsSplitPath]?.texture as PIXI.Texture;
             UnorthodoxClownMock = resources[UnorthodoxClownMockPath]?.texture as PIXI.Texture;
             UnorthodoxClownMouth = resources[UnorthodoxClownMouthPath]?.texture as PIXI.Texture;

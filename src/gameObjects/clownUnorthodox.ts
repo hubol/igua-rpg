@@ -2,9 +2,9 @@ import {container} from "../utils/pixi/container";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {
     UnorthodoxClownEye,
-    UnorthodoxClownEyebrow, UnorthodoxClownFace,
+    UnorthodoxClownEyebrow, UnorthodoxClownFace, UnorthodoxClownFoot,
     UnorthodoxClownHair,
-    UnorthodoxClownHead,
+    UnorthodoxClownHead, UnorthodoxClownJoint, UnorthodoxClownLegsSplit,
     UnorthodoxClownMouth
 } from "../textures";
 import {Graphics, Sprite} from "pixi.js";
@@ -23,6 +23,8 @@ import {ClownHurt} from "../sounds";
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
 const eyeTxs = subimageTextures(UnorthodoxClownEye, 3);
+const splitTxs = subimageTextures(UnorthodoxClownLegsSplit, 2);
+const footTxs = subimageTextures(UnorthodoxClownFoot, 3);
 
 export function clownUnorthodox() {
     const health = clownHealth(660);
@@ -47,6 +49,18 @@ export function clownUnorthodox() {
         mouth: {
             excited: false,
             big: false,
+        },
+        legs: {
+            l: {
+                y: 0,
+                i: 0,
+            },
+            r: {
+                y: 0,
+                i: 0,
+            },
+            splits: false,
+            height: 8,
         }
     };
 
@@ -94,6 +108,22 @@ export function clownUnorthodox() {
                     index += 0.2;
             });
         return s;
+    }
+
+    function newLegs() {
+        const joint = Sprite.from(UnorthodoxClownJoint);
+        joint.anchor.set(5/12, 1);
+
+        const splits = Sprite.from(splitTxs[1])
+            .withStep(() => {
+                // splits.visible = controls.legs.splits;
+            });
+
+        splits.anchor.set(33 / 68, 11 / 16);
+
+        const g = new Graphics()
+
+        return container(joint, splits);
     }
 
     function newEye(p: Vector) {
@@ -241,6 +271,13 @@ export function clownUnorthodox() {
                 await sleep(200);
             }
         })
+
+    const legs = newLegs();
+
+    head.once('added', () => {
+        legs.at(head);
+        head.parent.addChildAt(legs, 0);
+    });
 
     return head;
 }
