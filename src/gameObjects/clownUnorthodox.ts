@@ -143,11 +143,18 @@ export function clownUnorthodox() {
 
         const line = new Graphics()
             .withStep(() => {
+                const y1 = controls.legs.height + Math.max(controls.legs.l.y, controls.legs.r.y);
+                const y2 = controls.legs.height + Math.min(controls.legs.l.y, controls.legs.r.y) + 11;
                 line
                     .clear()
                     .lineStyle(1, 0x0D1C7C)
-                    .moveTo(0, Math.min(0, controls.legs.height + Math.max(controls.legs.l.y, controls.legs.r.y)))
-                    .lineTo(0, controls.legs.height + Math.min(controls.legs.l.y, controls.legs.r.y) + 11)
+                    .moveTo(0, Math.min(0, y1))
+                    .lineTo(0, y2);
+                if (y2 > y1)
+                    line
+                        .lineStyle(1, 0x5B463D)
+                        .moveTo(0, y1)
+                        .lineTo(0, y2)
             })
 
         const footl = newFoot(controls.legs.l).at(-1, 0);
@@ -308,7 +315,7 @@ export function clownUnorthodox() {
     const legs = newLegs();
 
     head.once('added', () => {
-        legs.at(head).add(-20, 20);
+        legs.at(head).add(40, 52);
         head.parent.addChildAt(legs, 0);
     });
 
@@ -318,11 +325,11 @@ export function clownUnorthodox() {
             for (let i = 0; i < 2; i++) {
                 const leg = x[i];
                 leg.i = 1;
-                await lerp(leg, 'y').to(-12).over(500);
+                await lerp(leg, 'y').to(-12).over(400);
                 leg.i = 0;
                 await sleep(100);
                 leg.i = 2;
-                await lerp(leg, 'y').to(0).over(500);
+                await lerp(leg, 'y').to(0).over(200);
                 leg.i = 0;
                 await sleep(100);
             }
