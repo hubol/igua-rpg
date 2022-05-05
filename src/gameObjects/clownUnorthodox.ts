@@ -19,6 +19,7 @@ import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {clownHealth} from "./utils/clownUtils";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {ClownHurt} from "../sounds";
+import {lerp} from "../cutscene/lerp";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -110,20 +111,52 @@ export function clownUnorthodox() {
         return s;
     }
 
+    function newFoot(fcontrols: {y: number, i: number}) {
+        const g = new Graphics()
+            .withStep(() => {
+                const height = controls.legs.height + fcontrols.y;
+                g.clear()
+                if (height > 0)
+                    g.beginFill(0xffffff)
+                        .drawRect(0, 0, 5, height)
+                        .beginFill(0x0D1C7C)
+                        .drawRect(0, 0, 5, Math.min(2, height));
+                s.y = height - 1;
+                s.texture = footTxs[fcontrols.i];
+            });
+        const s = Sprite.from(footTxs[0]);
+
+        return container(g, s);
+    }
+
     function newLegs() {
         const joint = Sprite.from(UnorthodoxClownJoint);
-        joint.anchor.set(5/12, 1);
+        joint.anchor.set(6/12, 1);
 
         const splits = Sprite.from(splitTxs[1])
             .withStep(() => {
-                // splits.visible = controls.legs.splits;
+                splits.visible = controls.legs.splits;
+                legs.visible = !splits.visible;
             });
 
-        splits.anchor.set(33 / 68, 11 / 16);
+        splits.anchor.set(34 / 68, 11 / 16);
 
-        const g = new Graphics()
+        const line = new Graphics()
+            .withStep(() => {
+                line
+                    .clear()
+                    .lineStyle(1, 0x0D1C7C)
+                    .moveTo(0, Math.min(0, controls.legs.height + Math.max(controls.legs.l.y, controls.legs.r.y)))
+                    .lineTo(0, controls.legs.height + Math.min(controls.legs.l.y, controls.legs.r.y) + 11)
+            })
 
-        return container(joint, splits);
+        const footl = newFoot(controls.legs.l).at(-1, 0);
+        footl.scale.x = -1;
+        const footr = newFoot(controls.legs.r).at(0, 0);
+
+        const legs = container(footl, footr, line);
+
+        return container(joint, splits, legs);
     }
 
     function newEye(p: Vector) {
@@ -275,9 +308,26 @@ export function clownUnorthodox() {
     const legs = newLegs();
 
     head.once('added', () => {
-        legs.at(head);
+        legs.at(head).add(-20, 20);
         head.parent.addChildAt(legs, 0);
     });
+
+    legs.withAsync(async () => {
+        const x = [controls.legs.l, controls.legs.r];
+        while (true) {
+            for (let i = 0; i < 2; i++) {
+                const leg = x[i];
+                leg.i = 1;
+                await lerp(leg, 'y').to(-12).over(500);
+                leg.i = 0;
+                await sleep(100);
+                leg.i = 2;
+                await lerp(leg, 'y').to(0).over(500);
+                leg.i = 0;
+                await sleep(100);
+            }
+        }
+    })
 
     return head;
 }
