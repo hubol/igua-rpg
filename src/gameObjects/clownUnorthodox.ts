@@ -100,8 +100,15 @@ export function clownUnorthodox() {
             return s;
         })
         const c = container(Sprite.from(hairTextures[0]), ...wigglies);
-        c.pivot.set(1, 1);
-        return c;
+        c.withStep(() => {
+            c.angle = behaviors.attached ? controls.head.attachOffset.x * 0.4 : 0;
+        })
+        c.pivot.set(41, 15);
+
+        const c2 = container(c);
+        c2.pivot.set(1 - 41, 1 - 15);
+        // c2.angle = 10;
+        return c2;
     }
 
     function eyebrow() {

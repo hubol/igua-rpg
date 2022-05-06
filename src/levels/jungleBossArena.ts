@@ -19,7 +19,7 @@ export function JungleBossArena() {
 
     // fishingPole().at(190, 180).show();
 
-    fishingPole().at(128, 240).show();
+    // fishingPole().at(128, 240).show();
 
     // const m = Sprite.from(UnorthodoxClownMock).at(h).show();
     // m.alpha = 0.5;
