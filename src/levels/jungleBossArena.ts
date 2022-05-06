@@ -6,6 +6,7 @@ import {fishingPole} from "../gameObjects/fishingPole";
 import {Sprite} from "pixi.js";
 import {UnorthodoxClownMock} from "../textures";
 import {clownUnorthodox} from "../gameObjects/clownUnorthodox";
+import {spike} from "../gameObjects/spike";
 
 export function JungleBossArena() {
     scene.backgroundColor = 0x60B0E0;
@@ -16,6 +17,9 @@ export function JungleBossArena() {
     const level = applyOgmoLevel(JungleBossArenaArgs);
 
     const h = clownUnorthodox().at(128 - 40, 128).show();
+
+    for (let x = 0; x < 256; x += 16)
+        spike(33).at(x, 64).show();
 
     // fishingPole().at(190, 180).show();
 

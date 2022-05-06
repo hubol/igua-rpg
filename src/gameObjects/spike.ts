@@ -8,10 +8,10 @@ export const resolveSpike = resolveGameObject('Spike', e => spike().at(e));
 
 export const spike = track(spikeImpl);
 
-function spikeImpl() {
+function spikeImpl(damage = 25) {
     const s = Sprite.from(ClownSpikeBall).withStep(() => {
         if (s.collides(player))
-            player.damage(25);
+            player.damage(damage);
     });
     return s;
 }
