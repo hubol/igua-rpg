@@ -53,6 +53,16 @@ export function DesertTown()
     enhanceDigSpot(level);
 
     [level.Tumbleweed1, level.Tumbleweed2].forEach(x => rng.bool && tumbleweed().at(x).show());
+
+    preventGettingStuckInBoulders();
+}
+
+function preventGettingStuckInBoulders() {
+    if (progress.flags.desert.bigKey.reward)
+        return;
+
+    if (player.x < 128)
+        player.x += 40;
 }
 
 function addIntroduction(level: DesertTownLevel)
