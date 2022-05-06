@@ -22,6 +22,7 @@ import {ClownHurt} from "../sounds";
 import {lerp} from "../cutscene/lerp";
 import {push, Pushable} from "./walls";
 import {wait} from "../cutscene/wait";
+import {progress} from "../igua/data/progress";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -35,6 +36,9 @@ export function clownUnorthodox() {
     let _height = 8;
 
     const controls = {
+        head: {
+            attachOffset: vnew()
+        },
         face: {
             unit: -1,
         },
@@ -77,6 +81,7 @@ export function clownUnorthodox() {
     const behaviors = {
         facePlayer: true,
         attached: true,
+        headDetach: vnew(),
         legs: {
             gravity: 0.5,
             speed: vnew(),
@@ -290,7 +295,14 @@ export function clownUnorthodox() {
 
         if (invulerable <= 0 && head.hit.collides(player)) {
             ClownHurt.play();
-            bouncePlayerOffDisplayObject(head.hit);
+            const b = bouncePlayerOffDisplayObject(head.hit).normalize();
+            const f = 1 + Math.floor(progress.level / 3)
+            if (Math.abs(b.x) > .7) {
+                behaviors.headDetach.x += -Math.sign(b.x) * f * 2;
+            }
+            else if (b.y < 0) {
+                behaviors.headDetach.y += f;
+            }
             health.damage();
             invulerable = 15;
         }
@@ -368,7 +380,8 @@ export function clownUnorthodox() {
         legs.pivot.set(0, controls.legs.height + 11);
         gravity(behaviors.legs.gravity);
         if (behaviors.attached) {
-            head.at(legs).add(0, -controls.legs.height);
+            moveTowards(controls.head.attachOffset, behaviors.headDetach, 0.5);
+            head.at(legs).add(0, -controls.legs.height).add(controls.head.attachOffset);
             if (head.hit.collides(player) && behaviors.legs.speed.y < 0)
                 player.y += behaviors.legs.speed.y;
         }

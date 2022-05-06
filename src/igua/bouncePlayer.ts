@@ -11,6 +11,7 @@ export function bouncePlayer(self: Vector, factor = 3) {
     const dir = player.vcpy().add(0, -8).add(self, -1).normalize().scale(factor);
     player.engine.knockback.x = dir.x;
     player.vspeed = dir.y;
+    return dir;
 }
 
 export function bouncePlayerOffDisplayObject(d: DisplayObject, factor = 3) {
