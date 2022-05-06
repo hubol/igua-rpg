@@ -7,7 +7,7 @@ import {
     UnorthodoxClownHead, UnorthodoxClownJoint, UnorthodoxClownLegsSplit,
     UnorthodoxClownMouth
 } from "../textures";
-import {Graphics, Sprite} from "pixi.js";
+import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
 import {merge} from "../utils/merge";
 import {sleep} from "../cutscene/sleep";
@@ -20,6 +20,7 @@ import {clownHealth} from "./utils/clownUtils";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {ClownHurt} from "../sounds";
 import {lerp} from "../cutscene/lerp";
+import {push, Pushable} from "./walls";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -67,6 +68,10 @@ export function clownUnorthodox() {
 
     const behaviors = {
         facePlayer: true,
+        legs: {
+            gravity: 0.5,
+            speed: vnew(),
+        }
     };
 
     function hair() {
@@ -333,8 +338,34 @@ export function clownUnorthodox() {
                 leg.i = 0;
                 await sleep(100);
             }
+            await lerp(controls.legs, 'height').to(0).over(500);
+            await lerp(controls.legs, 'height').to(8).over(500);
+            behaviors.legs.speed.y = -8;
         }
-    })
+    });
+
+    const gravity = newGravity(legs, behaviors.legs.speed, [ 0, -6 ], 6);
+    legs.withStep(() => {
+        legs.pivot.set(0, controls.legs.height + 11);
+        gravity(behaviors.legs.gravity);
+    });
 
     return head;
+}
+
+function newGravity(target: DisplayObject, speed: Vector, offset: Vector, radius: number) {
+    const pushable: Pushable = vnew();
+    return (gravity: number) => {
+        pushable.at(target).add(offset).add(speed);
+        pushable.hspeed = speed.x;
+        pushable.vspeed = speed.y;
+        const r = push(pushable, radius);
+        if (!r.hitGround)
+            speed.y += gravity;
+        else
+            speed.at(pushable.hspeed, pushable.vspeed);
+        target.at(pushable).add(offset, -1);
+
+        return r;
+    }
 }

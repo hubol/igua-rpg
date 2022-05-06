@@ -252,7 +252,7 @@ interface PushResult
     hitWall?: boolean;
 }
 
-interface Pushable
+export interface Pushable
 {
     x: number;
     y: number;
