@@ -54,7 +54,7 @@ function oversizedClownImpl() {
     const hair = Sprite.from(hairTexture);
     const electricContainer = container();
     const c = merge(container(head, hair, face(faceState), electricContainer), { aggressive: false });
-    const speed = vnew();
+    const speed = [0, 0];
 
     const ballonsState = range(5).map(() => 1);
 

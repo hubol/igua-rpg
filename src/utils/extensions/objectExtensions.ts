@@ -44,6 +44,16 @@ Object.defineProperties(Array.prototype, {
         enumerable: false,
         configurable: true,
     },
+    at: {
+        value: function (x, y) {
+            if (y === undefined && typeof x === "number") {
+                return this[x];
+            }
+            return Object.prototype.at.apply(this, arguments as any);
+        },
+        enumerable: false,
+        configurable: true,
+    }
 });
 
 Object.defineProperties(Object.prototype, {
