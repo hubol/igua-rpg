@@ -19,7 +19,7 @@ function resolveDecalGameObjectImpl(args: DecalArgs)
 {
     const sprite = Sprite.from(args.texture);
     sprite.anchor.set(Math.round(sprite.width * args.originX) / sprite.width, Math.round(sprite.height * args.originY) / sprite.height);
-    sprite.position.set(args.x, args.y);
+    sprite.position.set(args.x, args.y).vround();
     sprite.scale.set(args.scaleX, args.scaleY);
     sprite.rotation = args.rotation;
     return getStage(args.layerName).addChild(sprite);
