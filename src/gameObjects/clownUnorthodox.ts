@@ -139,7 +139,7 @@ export function clownUnorthodox() {
                     g.beginFill(0xffffff)
                         .drawRect(0, 0, 5, height)
                         .beginFill(0x0D1C7C)
-                        .drawRect(0, 0, 5, Math.min(2, height));
+                        .drawRect(0, 0, 5, Math.min(2 + Math.max(0, controls.head.attachOffset.y), height));
                 s.y = height - 1;
                 s.texture = footTxs[fcontrols.i];
             });
