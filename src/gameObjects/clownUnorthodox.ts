@@ -22,7 +22,6 @@ import {ClownHurt} from "../sounds";
 import {lerp} from "../cutscene/lerp";
 import {push, Pushable} from "./walls";
 import {wait} from "../cutscene/wait";
-import {progress} from "../igua/data/progress";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -32,6 +31,11 @@ const footTxs = subimageTextures(UnorthodoxClownFoot, 3);
 
 export function clownUnorthodox() {
     const health = clownHealth(660);
+
+    const consts = {
+        headNudgeH: 3,
+        headNudgeV: 2
+    }
 
     let _height = 8;
 
@@ -303,13 +307,10 @@ export function clownUnorthodox() {
         if (invulerable <= 0 && head.hit.collides(player)) {
             ClownHurt.play();
             const b = bouncePlayerOffDisplayObject(head.hit).normalize();
-            const f = 1 + Math.floor(progress.level / 3)
-            if (Math.abs(b.x) > .7) {
-                behaviors.headDetach.x += -Math.sign(b.x) * f * 2;
-            }
-            else if (b.y < 0) {
-                behaviors.headDetach.y += f;
-            }
+            if (Math.abs(b.x) > .7)
+                behaviors.headDetach.x += -Math.sign(b.x) * consts.headNudgeH;
+            else if (b.y < 0)
+                behaviors.headDetach.y += consts.headNudgeV;
             health.damage();
             invulerable = 15;
         }
