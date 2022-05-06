@@ -32,6 +32,8 @@ const footTxs = subimageTextures(UnorthodoxClownFoot, 3);
 export function clownUnorthodox() {
     const health = clownHealth(660);
 
+    let _height = 8;
+
     const controls = {
         face: {
             unit: -1,
@@ -63,7 +65,12 @@ export function clownUnorthodox() {
                 i: 0,
             },
             splits: false,
-            height: 8,
+            get height() {
+                return Math.round(_height);
+            },
+            set height(value) {
+                _height = value;
+            }
         }
     };
 
