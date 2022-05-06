@@ -21,6 +21,7 @@ import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {ClownHurt} from "../sounds";
 import {lerp} from "../cutscene/lerp";
 import {push, Pushable} from "./walls";
+import {wait} from "../cutscene/wait";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -68,6 +69,7 @@ export function clownUnorthodox() {
 
     const behaviors = {
         facePlayer: true,
+        attached: true,
         legs: {
             gravity: 0.5,
             speed: vnew(),
@@ -270,6 +272,7 @@ export function clownUnorthodox() {
     }
 
     const head = newHead();
+    head.pivot.set(40, 63)
     let invulerable = 0;
 
     head.withStep(() => {
@@ -339,8 +342,17 @@ export function clownUnorthodox() {
                 await sleep(100);
             }
             await lerp(controls.legs, 'height').to(0).over(500);
-            await lerp(controls.legs, 'height').to(8).over(500);
+            await sleep(50);
+            await lerp(controls.legs, 'height').to(8).over(100);
             behaviors.legs.speed.y = -8;
+            x.forEach(x => x.i = 1);
+            await wait(() => behaviors.legs.speed.y > 0);
+            x.forEach(x => x.i = 2);
+            await wait(() => behaviors.legs.speed.y === 0);
+            x.forEach(x => x.i = 0);
+            await lerp(controls.legs, 'height').to(0).over(70);
+            await sleep(50);
+            await lerp(controls.legs, 'height').to(8).over(200);
         }
     });
 
@@ -348,6 +360,11 @@ export function clownUnorthodox() {
     legs.withStep(() => {
         legs.pivot.set(0, controls.legs.height + 11);
         gravity(behaviors.legs.gravity);
+        if (behaviors.attached) {
+            head.at(legs).add(0, -controls.legs.height);
+            if (head.hit.collides(player) && behaviors.legs.speed.y < 0)
+                player.y += behaviors.legs.speed.y;
+        }
     });
 
     return head;
@@ -360,10 +377,11 @@ function newGravity(target: DisplayObject, speed: Vector, offset: Vector, radius
         pushable.hspeed = speed.x;
         pushable.vspeed = speed.y;
         const r = push(pushable, radius);
-        if (!r.hitGround)
-            speed.y += gravity;
+        if (!r.hitGround && !r.isOnGround)
+            pushable.vspeed += gravity;
         else
-            speed.at(pushable.hspeed, pushable.vspeed);
+            pushable.vspeed = 0;
+        speed.at(pushable.hspeed, pushable.vspeed);
         target.at(pushable).add(offset, -1);
 
         return r;

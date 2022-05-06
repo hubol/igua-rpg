@@ -15,7 +15,7 @@ export function JungleBossArena() {
 
     const level = applyOgmoLevel(JungleBossArenaArgs);
 
-    const h = clownUnorthodox().at(128, 128).show();
+    const h = clownUnorthodox().at(128 - 40, 128).show();
 
     // fishingPole().at(190, 180).show();
 
