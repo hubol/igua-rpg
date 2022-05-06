@@ -9,13 +9,12 @@ import {scene} from "../igua/scene";
 import {bouncePlayer} from "../igua/bouncePlayer";
 import {range} from "../utils/range";
 import {ballons} from "./ballons";
-import {push} from "./walls";
 import {sleep} from "../cutscene/sleep";
 import {empBlast} from "./empBlast";
 import {wait} from "../cutscene/wait";
 import {ClownExplode, ClownHurt} from "../sounds";
 import {confetti} from "./confetti";
-import {Vector} from "../utils/math/vector";
+import {Vector, vnew} from "../utils/math/vector";
 import {valuable, ValuableType} from "./valuable";
 import {merge} from "../utils/merge";
 import {electricBolt} from "./electricBolt";
@@ -24,6 +23,7 @@ import {track} from "../igua/track";
 import {rng} from "../utils/rng";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {clownHealth} from "./utils/clownUtils";
+import {newGravity} from "./utils/newGravity";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture, sleepyFaceTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -54,7 +54,7 @@ function oversizedClownImpl() {
     const hair = Sprite.from(hairTexture);
     const electricContainer = container();
     const c = merge(container(head, hair, face(faceState), electricContainer), { aggressive: false });
-    const speed = [0, 0];
+    const speed = vnew();
 
     const ballonsState = range(5).map(() => 1);
 
@@ -64,12 +64,10 @@ function oversizedClownImpl() {
 
     let fallCount = 0;
 
+    const gravity = newGravity(c, speed, [33, 25], 26);
+
     function fall() {
-        speed.y += 0.3;
-        c.add(speed);
-        const pushable = [33, 25].add(c);
-        const r = push(pushable, 26);
-        c.add(pushable.add(c, -1).add(-33, -25));
+        const r = gravity(0.3);
         if (r.isOnGround)
             c.withAsync(startLanded);
     }
@@ -147,7 +145,7 @@ function oversizedClownImpl() {
             speed.y += 0.4;
         if (hasBallons)
             speed.y += Math.sin(now.s) * 0.02;
-        c.add(speed);
+        gravity(0);
         speed.scale(0.9);
     }
 

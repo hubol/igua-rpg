@@ -2,12 +2,16 @@ import {container} from "../utils/pixi/container";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {
     UnorthodoxClownEye,
-    UnorthodoxClownEyebrow, UnorthodoxClownFace, UnorthodoxClownFoot,
+    UnorthodoxClownEyebrow,
+    UnorthodoxClownFace,
+    UnorthodoxClownFoot,
     UnorthodoxClownHair,
-    UnorthodoxClownHead, UnorthodoxClownJoint, UnorthodoxClownLegsSplit,
+    UnorthodoxClownHead,
+    UnorthodoxClownJoint,
+    UnorthodoxClownLegsSplit,
     UnorthodoxClownMouth
 } from "../textures";
-import {DisplayObject, Graphics, Sprite} from "pixi.js";
+import {Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
 import {merge} from "../utils/merge";
 import {sleep} from "../cutscene/sleep";
@@ -20,8 +24,8 @@ import {clownHealth} from "./utils/clownUtils";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {ClownHurt} from "../sounds";
 import {lerp} from "../cutscene/lerp";
-import {push, Pushable} from "./walls";
 import {wait} from "../cutscene/wait";
+import {newGravity} from "./utils/newGravity";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -398,20 +402,3 @@ export function clownUnorthodox() {
     return head;
 }
 
-function newGravity(target: DisplayObject, speed: Vector, offset: Vector, radius: number) {
-    const pushable: Pushable = vnew();
-    return (gravity: number) => {
-        pushable.at(target).add(offset).add(speed);
-        pushable.hspeed = speed.x;
-        pushable.vspeed = speed.y;
-        const r = push(pushable, radius);
-        if (!r.hitGround && !r.isOnGround)
-            pushable.vspeed += gravity;
-        else
-            pushable.vspeed = 0;
-        speed.at(pushable.hspeed, pushable.vspeed);
-        target.at(pushable).add(offset, -1);
-
-        return r;
-    }
-}
