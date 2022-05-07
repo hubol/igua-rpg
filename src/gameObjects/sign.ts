@@ -3,7 +3,7 @@ import {Container, Sprite} from "pixi.js";
 import {Sign} from "../textures";
 import {isPlayerInteractingWith} from "../igua/logic/isPlayerInteractingWith";
 import {cutscene, Cutscene} from "../cutscene/cutscene";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {scene} from "../igua/scene";
 import {show} from "../cutscene/dialog";
 import {IguaText} from "../igua/text";

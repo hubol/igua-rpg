@@ -2,7 +2,7 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {Burst, Burst2} from "../textures";
 import {Sprite, Texture} from "pixi.js";
 import {scene} from "../igua/scene";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 
 const burst8pxTextures = subimageTextures(Burst, 4);
 export const burst12pxTextures = subimageTextures(Burst2, 4);

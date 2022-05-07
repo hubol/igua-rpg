@@ -3,7 +3,7 @@ import {Sprite} from "pixi.js";
 import {rng} from "../utils/rng";
 import {now} from "../utils/now";
 import {push} from "./walls";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 
 export function tumbleweed() {
     const sprite = merge(Sprite.from(Tumbleweed), { hspeed: 0, vspeed: 0 }).withStep(() => {

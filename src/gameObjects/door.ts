@@ -1,6 +1,6 @@
 import {Sprite} from "pixi.js";
 import {LockedDoor, OpenDoor} from "../textures";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {isPlayerInteractingWith} from "../igua/logic/isPlayerInteractingWith";
 import {EscapeTickerAndExecute} from "../utils/asshatTicker";
 import {progress} from "../igua/data/progress";

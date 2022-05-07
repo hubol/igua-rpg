@@ -12,7 +12,7 @@ import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {container} from "../utils/pixi/container";
 import {wait} from "../cutscene/wait";
 import {isOnScreen} from "../igua/logic/isOnScreen";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {progress} from "../igua/data/progress";
 import {level} from "../igua/level/level";
 import {scene} from "../igua/scene";

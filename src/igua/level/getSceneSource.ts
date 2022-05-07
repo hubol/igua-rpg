@@ -1,4 +1,4 @@
-import {mergeFunctionLeaves} from "../../utils/mergeFunctionLeaves";
+import {flattenFunctionLeaves} from "../../utils/object/flattenFunctionLeaves";
 import {SceneSource} from "./sceneSource";
 import {setSceneMeta} from "./setSceneMeta";
 
@@ -16,7 +16,7 @@ function getSceneSourceLibrary()
 {
     const levelModules = require("../../levels/**/*.*");
     console.debug("Got modules from levels/**/*.*", levelModules);
-    const sceneSources = mergeFunctionLeaves(levelModules);
+    const sceneSources = flattenFunctionLeaves(levelModules);
     Object.entries(sceneSources).forEach(([name, source]) => setSceneMeta(source, { name }));
     console.debug("Applied default SceneMeta. Got SceneSources", sceneSources)
     return sceneSources;

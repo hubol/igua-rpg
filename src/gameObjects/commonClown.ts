@@ -1,7 +1,7 @@
 import {Container, Graphics, Sprite} from "pixi.js";
 import {ClownSpikeBall, CommonClown} from "../textures";
 import {scene} from "../igua/scene";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import { lerp } from "../utils/math/number";
 import {isOnGround} from "./walls";
 import {player} from "./player";

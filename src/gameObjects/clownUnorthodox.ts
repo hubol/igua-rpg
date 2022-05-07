@@ -13,7 +13,7 @@ import {
 } from "../textures";
 import {Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/rng";
 import {approachLinear, lerp as nlerp} from "../utils/math/number";

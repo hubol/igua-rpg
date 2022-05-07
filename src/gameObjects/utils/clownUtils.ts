@@ -5,7 +5,7 @@ import {DisplayObject} from "pixi.js";
 import {player} from "../player";
 import {SceneLocal} from "../../igua/sceneLocal";
 import {container} from "../../utils/pixi/container";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 import {Undefined} from "../../utils/undefined";
 
 export function dieClown(container: DisplayObject, drop: boolean) {

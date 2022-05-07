@@ -3,7 +3,7 @@ import {
     CharacterHurt, CharacterHurtDefense
 } from "../sounds";
 import {playerCharacterHasControl, playerCharacterKey as playerKey} from "../igua/logic/playerCharacterKey";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {progress} from "../igua/data/progress";
 import {gotoDeathScreen} from "../igua/gotoDeathScreen";
 import {Sleepy} from "../igua/puppet/mods/sleepy";

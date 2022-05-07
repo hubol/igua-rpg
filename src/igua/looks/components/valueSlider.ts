@@ -1,4 +1,4 @@
-import {merge} from "../../../utils/merge";
+import {merge} from "../../../utils/object/merge";
 import {Graphics} from "pixi.js";
 import {Key} from "../../../utils/browser/key";
 import {IguaText} from "../../text";

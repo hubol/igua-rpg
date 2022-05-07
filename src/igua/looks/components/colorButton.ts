@@ -7,7 +7,7 @@ import {colord} from "colord";
 import {toHexColorString} from "../../../utils/toHexColorString";
 import {Graphics} from "pixi.js";
 import {looksContext} from "./looksUiRoot";
-import {merge} from "../../../utils/merge";
+import {merge} from "../../../utils/object/merge";
 import {Key} from "../../../utils/browser/key";
 import {findColorValues} from "../findColorValues";
 

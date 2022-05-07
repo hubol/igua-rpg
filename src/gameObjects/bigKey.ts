@@ -1,6 +1,6 @@
 import {Container, Sprite, Texture} from "pixi.js";
 import {PropertiesOf} from "../utils/types/propertiesOf";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {player} from "./player";
 import {CollectGeneric} from "../sounds";
 

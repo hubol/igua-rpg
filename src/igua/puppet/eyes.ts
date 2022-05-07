@@ -1,5 +1,5 @@
 import {DisplayObject, Graphics, Container} from "pixi.js";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 import {container} from "../../utils/pixi/container";
 
 interface IguanaEyesArgs

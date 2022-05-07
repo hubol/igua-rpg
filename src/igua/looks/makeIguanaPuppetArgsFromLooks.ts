@@ -19,7 +19,7 @@ import {toHexColorString} from "../../utils/toHexColorString";
 import {container} from "../../utils/pixi/container";
 import {game} from "../game";
 import {iguanaEyelids, IguanaEyes} from "../puppet/eyes";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 import {textureToGraphics} from "../../utils/pixi/textureToGraphics";
 import {flipH, flipV} from "../../utils/pixi/flip";
 

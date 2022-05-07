@@ -46,6 +46,18 @@
           "originX": 11,
           "originY": 27,
           "values": {"faceRight": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "FakeWall",
+          "id": 3,
+          "_eid": "02672398",
+          "x": 0,
+          "y": 0,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },

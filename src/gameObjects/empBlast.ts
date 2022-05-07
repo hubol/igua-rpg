@@ -6,7 +6,7 @@ import {rng} from "../utils/rng";
 import {rectangleCircleOverlap} from "../utils/math/rectangleCircleOverlap";
 import {player} from "./player";
 import {EmpPulse, EmpPulseFinal, EmpPulseFire} from "../sounds";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 
 export function empBlast(radius: number, hintsCount: number, damage: number, hostileMs: number) {
     const c = merge(container(), { wentHostile: false })

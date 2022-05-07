@@ -2,7 +2,7 @@ import {Vector} from "../utils/math/vector";
 import {Container, DisplayObject, Graphics, Sprite} from "pixi.js";
 import {findStage} from "../igua/findStage";
 import {rng} from "../utils/rng";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {PlayerBallonPop, PlayerBalloon} from "../textures";
 import {doNowOrOnAdded} from "../utils/extensions/pixiExtensions";
 import {trackPosition} from "../igua/trackPosition";

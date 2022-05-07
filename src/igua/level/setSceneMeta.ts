@@ -1,5 +1,5 @@
 import {sceneStack} from "../scene";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 
 export function defaultSceneMeta(): SceneMeta {
     return {

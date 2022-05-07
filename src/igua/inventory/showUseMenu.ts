@@ -3,7 +3,7 @@ import {scene} from "../scene";
 import {game} from "../game";
 import {Container, Graphics, Sprite} from "pixi.js";
 import {Key} from "../../utils/browser/key";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 import {cyclic} from "../../utils/math/number";
 import {inventory} from "./inventory";
 import {InventoryClose, InventoryOpen, SelectOption} from "../../sounds";

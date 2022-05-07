@@ -1,5 +1,5 @@
 import {button} from "./button";
-import {merge} from "../../../utils/merge";
+import {merge} from "../../../utils/object/merge";
 import {Container, Graphics, Sprite} from "pixi.js";
 import {Key} from "../../../utils/browser/key";
 import {looksContext} from "./looksUiRoot";

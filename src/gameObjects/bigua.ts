@@ -2,7 +2,7 @@ import {Container, DisplayObject, filters, Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {BiguaCrests, BiguaEye, BiguaFace, BiguaFeet, BiguaPupils, BiguaTorso} from "../textures";
 import {mapRgb} from "../utils/pixi/mapRgb";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {BiguaJungleLooks} from "./npcLooks";
 import {rng} from "../utils/rng";
 import {pcolord} from "../utils/toHexColorString";

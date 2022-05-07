@@ -15,7 +15,7 @@ import {colord} from "colord";
 import {sparkleOnce} from "./sparkleSmall";
 import {BounceBall, ClownExplode, CrackBall} from "../sounds";
 import {container} from "../utils/pixi/container";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 
 type Crack = { path: [start: Vector, ...tail: Vector[]], deps: Crack[], isChild?: boolean, color: number };
 

@@ -1,5 +1,5 @@
 import {npc} from "./npc";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {player} from "./player";
 
 type Npc = ReturnType<typeof npc>;

@@ -10,7 +10,7 @@ import {Snowman, SnowmanFace, SnowmanTwigs, Torch} from "../textures";
 import {Container, Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
 import {lerp as lerpNumber} from "../utils/math/number";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
 import {track} from "../igua/track";

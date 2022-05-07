@@ -1,5 +1,5 @@
 import {Sprite, Texture} from "pixi.js";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {cyclic} from "../utils/math/number";
 
 export function animatedSprite(textures: Texture[], speed: number) {

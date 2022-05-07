@@ -1,4 +1,4 @@
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 import {game} from "../game";
 import {sceneStack} from "../scene";
 import {level} from "../level/level";

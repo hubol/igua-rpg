@@ -1,7 +1,7 @@
 import {getCost, potions, PotionType} from "./potions";
 import {Container, Graphics, Sprite} from "pixi.js";
 import {game} from "../game";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 import {BackpackIcon, ValuableIcon} from "../../textures";
 import {iguanaHead} from "../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../gameObjects/player";

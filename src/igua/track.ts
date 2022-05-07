@@ -1,4 +1,4 @@
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {scene} from "./scene";
 import {doNowOrOnAdded} from "../utils/extensions/pixiExtensions";
 

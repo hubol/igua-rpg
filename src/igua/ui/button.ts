@@ -1,5 +1,5 @@
 import {Graphics} from "pixi.js";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 import {Key} from "../../utils/browser/key";
 
 export function button(onPress: () => unknown, width = 96, height = 30) {

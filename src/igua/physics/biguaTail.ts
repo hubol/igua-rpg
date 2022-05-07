@@ -5,7 +5,7 @@ import {Graphics, Sprite} from "pixi.js";
 import {sleep} from "../../cutscene/sleep";
 import {rng} from "../../utils/rng";
 import {container} from "../../utils/pixi/container";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 import {BiguaTails} from "../../textures";
 
 const v = vnew();

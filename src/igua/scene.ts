@@ -5,8 +5,8 @@ import {camera as createCamera} from "./camera";
 import {SceneSource} from "./level/sceneSource";
 import {player, createStagedPlayer, setPlayer, createStagedFakePlayer} from "../gameObjects/player";
 import {progress} from "./data/progress";
-import {defaults} from "../utils/defaults";
-import {merge} from "../utils/merge";
+import {defaults} from "../utils/object/defaults";
+import {merge} from "../utils/object/merge";
 import {defaultSceneMeta, SceneMeta} from "./level/setSceneMeta";
 import {advanceKeyListener} from "../utils/browser/key";
 

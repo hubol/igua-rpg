@@ -1,7 +1,7 @@
 import {Container, DisplayObject} from "pixi.js";
 import {page} from "./page";
 import {advanceKeyListener} from "../../utils/browser/key";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 import {LooksPageInto, SelectOption} from "../../sounds";
 
 export function pageRoot({ playSounds = true } = {}) {

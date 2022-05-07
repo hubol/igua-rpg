@@ -1,6 +1,6 @@
 import {DisplayObject} from "pixi.js";
 import {container} from "../utils/pixi/container";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {sleep} from "../cutscene/sleep";
 
 export function spawnAndRotate(spawnFn: () => DisplayObject, count: number, radius: number, rotationDelta: number, spawnDelayMs: number) {

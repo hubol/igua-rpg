@@ -1,5 +1,5 @@
 import {Sprite} from "pixi.js";
-import {merge} from "../../../utils/merge";
+import {merge} from "../../../utils/object/merge";
 import {IguaText} from "../../text";
 import {subimageTextures} from "../../../utils/pixi/simpleSpritesheet";
 import {UiChooseYourLooksIcons} from "../../../textures";

@@ -1,3 +1,6 @@
+/**
+Applies the source default object's values to the destination object.
+ */
 export function defaults(src, dst) {
     if (src.constructor !== Object || dst.constructor !== Object)
         return;

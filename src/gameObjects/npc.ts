@@ -1,5 +1,5 @@
 import {cutscene, Cutscene} from "../cutscene/cutscene";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {isPlayerInteractingWith} from "../igua/logic/isPlayerInteractingWith";
 import {getNpcStyle} from "./npcStyles";
 import {scene} from "../igua/scene";

@@ -1,6 +1,6 @@
 import {ChoiceInput} from "../looksModel";
 import {Container, Graphics, Sprite, Texture} from "pixi.js";
-import {merge} from "../../../utils/merge";
+import {merge} from "../../../utils/object/merge";
 import { UiNoneChoice } from "../../../textures";
 import {trimFrame} from "../../../utils/pixi/trimFrame";
 import {makeKeyRepeat} from "../makeKeyRepeat";

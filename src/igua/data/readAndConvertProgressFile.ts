@@ -1,7 +1,7 @@
 import {localStorageEntry} from "../../utils/browser/localStorageEntry";
 import {getInitialProgress, Progress} from "./progress";
 import serializeJavascript from "serialize-javascript";
-import {defaults} from "../../utils/defaults";
+import {defaults} from "../../utils/object/defaults";
 import {detailedDiff} from "deep-object-diff";
 
 export async function readAndConvertProgressFile(file: string) {

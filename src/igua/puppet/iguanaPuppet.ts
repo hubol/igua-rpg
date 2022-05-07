@@ -3,7 +3,7 @@ import {approachLinear, lerp} from "../../utils/math/number";
 import {IguanaEyes} from "./eyes";
 import {IguanaBlink} from "../../sounds";
 import {game} from "../game";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 import {makeIguanaPuppetEngine} from "./engine";
 import {makeIguanaMods} from "./mods";
 import {rng} from "../../utils/rng";

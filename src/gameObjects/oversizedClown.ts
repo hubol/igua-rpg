@@ -16,7 +16,7 @@ import {ClownExplode, ClownHurt} from "../sounds";
 import {confetti} from "./confetti";
 import {Vector, vnew} from "../utils/math/vector";
 import {valuable, ValuableType} from "./valuable";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {electricBolt} from "./electricBolt";
 import {excitement} from "./excitement";
 import {track} from "../igua/track";

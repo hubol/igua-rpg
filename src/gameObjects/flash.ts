@@ -1,5 +1,5 @@
 import {Graphics} from "pixi.js";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {game} from "../igua/game";
 
 export function flash(color: number, alpha = 1)

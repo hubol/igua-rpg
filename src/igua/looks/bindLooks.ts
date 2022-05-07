@@ -1,5 +1,5 @@
 import {Looks, LooksInputModel} from "./looksModel";
-import {merge} from "../../utils/merge";
+import {merge} from "../../utils/object/merge";
 
 export function bindLooks(input: LooksInputModel, looks: Looks, head: string[] = []) {
     if ("kind" in input) {

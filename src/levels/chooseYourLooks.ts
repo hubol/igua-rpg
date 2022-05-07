@@ -3,7 +3,7 @@ import {scene, sceneStack} from "../igua/scene";
 import {looksUiRoot} from "../igua/looks/components/looksUiRoot";
 import {getDefaultLooks} from "../igua/looks/getDefaultLooks";
 import {Looks} from "../igua/looks/looksModel";
-import {defaults} from "../utils/defaults";
+import {defaults} from "../utils/object/defaults";
 import {progress} from "../igua/data/progress";
 import {level} from "../igua/level/level";
 import {recreatePlayerInPlace} from "../gameObjects/player";

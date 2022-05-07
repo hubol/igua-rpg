@@ -3,7 +3,7 @@ import {scene} from "../igua/scene";
 import {IguaRpgTitle, ValuableIcon} from "../textures";
 import {Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {getDefaultLooks} from "../igua/looks/getDefaultLooks";
 import {Looks} from "../igua/looks/looksModel";
 import {iguanaHead, iguanaPuppet} from "../igua/puppet/iguanaPuppet";

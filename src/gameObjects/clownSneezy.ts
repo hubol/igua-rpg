@@ -1,7 +1,7 @@
 import {container} from "../utils/pixi/container";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {ClownPropellerProjectile, ClownSneezy} from "../textures";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/rng";

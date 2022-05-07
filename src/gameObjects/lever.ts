@@ -1,5 +1,5 @@
 import {Container, Sprite, Texture} from "pixi.js";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 
 export function lever(baseTexture: Texture, handleTexture: Texture, angle: number)
 {

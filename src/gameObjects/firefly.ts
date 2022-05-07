@@ -5,7 +5,7 @@ import {trackPosition} from "../igua/trackPosition";
 import { lerp } from "../utils/math/number";
 import {track} from "../igua/track";
 import {Container} from "pixi.js";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {player} from "./player";
 import {container} from "../utils/pixi/container";
 import {now} from "../utils/now";

@@ -1,5 +1,5 @@
 import {scene, Scene} from "./scene";
-import {getOrEmpty} from "../utils/getOrEmpty";
+import {getOrEmpty} from "../utils/object/getOrEmpty";
 
 export class SceneLocal<T>
 {

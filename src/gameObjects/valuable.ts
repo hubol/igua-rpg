@@ -5,7 +5,7 @@ import {smallPop} from "./smallPop";
 import {CollectValuable, CollectValuableSmall} from "../sounds";
 import {GameObjectArgs} from "../../tools/gen-levelargs/types/gameObjectArgs";
 import {player} from "./player";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {sleep} from "../cutscene/sleep";
 import {track} from "../igua/track";

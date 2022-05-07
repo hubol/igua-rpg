@@ -1,6 +1,6 @@
 import {Graphics, Sprite} from "pixi.js";
 import {OverheadLamp, OverheadLampLight} from "../textures";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {container} from "../utils/pixi/container";
 
 export function overheadLamp(height = 256) {

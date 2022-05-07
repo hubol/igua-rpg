@@ -5,7 +5,7 @@ import {player} from "./player";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {container} from "../utils/pixi/container";
 import {sleep} from "../cutscene/sleep";
-import {merge} from "../utils/merge";
+import {merge} from "../utils/object/merge";
 import {now} from "../utils/now";
 import {BeepTiny, ChangeLooks, CharacterHitCeiling, ConsumeBallon, DuckQuack, SparkleAppear} from "../sounds";
 import {scene} from "../igua/scene";
