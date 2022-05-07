@@ -1,7 +1,7 @@
-import { Howl, Howler } from 'howler';
-import {CancellationToken, sleep, wait} from "pissant";
-import {waitAsync} from "../waitAsync";
+import { Howl} from 'howler';
+import {timeoutWaitAsync} from "../promise/timeoutWaitAsync";
 import {rng} from "../rng";
+import {timeout} from "../promise/timeout";
 
 export async function loadHowlsAsync(sounds: Howl[])
 {
@@ -12,7 +12,7 @@ export async function loadHowlAsync(howl: Howl)
 {
     let errors = 0;
     let err: HowlLoadError;
-    await waitAsync(async () => {
+    await timeoutWaitAsync(async () => {
         const state = howl.state();
 
         if (state === "loaded") {
@@ -29,7 +29,7 @@ export async function loadHowlAsync(howl: Howl)
                 throw { message: `Giving up loading Howl`, howl };
             const ms = 150 + rng.int(250) + (errors - 1) * 250;
             console.info(`Retrying Howl.load in ${ms}ms (${errors})...`);
-            await sleep(ms);
+            await timeout(ms);
         }
 
         // @ts-ignore

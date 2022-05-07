@@ -4,12 +4,12 @@ import {BiguaCrests, BiguaEye, BiguaFace, BiguaFeet, BiguaPupils, BiguaTorso} fr
 import {mapRgb} from "../utils/pixi/mapRgb";
 import {merge} from "../utils/merge";
 import {BiguaJungleLooks} from "./npcLooks";
-import {sleep} from "pissant";
 import {rng} from "../utils/rng";
 import {pcolord} from "../utils/toHexColorString";
 import {flipH, flipV} from "../utils/pixi/flip";
 import {shapeTextures} from "../igua/looks/shapes";
 import {biguaTail} from "../igua/physics/biguaTail";
+import {sleep} from "../cutscene/sleep";
 
 const crests = shapeTextures(BiguaCrests, 48, [27, 47]);
 const pupils = shapeTextures(BiguaPupils, 20, [19, 16]);

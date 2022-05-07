@@ -1,6 +1,6 @@
-import {CancellationToken} from "pissant";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {game} from "../igua/game";
+import {CancellationToken} from "../utils/promise/cancellationToken";
 
 export type PromiseFn = () => Promise<unknown>;
 

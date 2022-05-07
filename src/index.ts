@@ -17,9 +17,9 @@ import {upscaleGameCanvas} from "./igua/upscaleGameCanvas";
 import {devMute} from "./igua/dev/devMute";
 import {handleIguaPromiseRejection} from "./utils/rejection";
 import {make2dCanvasSink} from "./utils/browser/make2dCanvasSink";
-import {handlePromiseCancellation} from "pissant";
 import {Howl} from "howler";
 import {useDynamicsCompressor} from "./utils/browser/useDynamicsCompressor";
+import {handlePromiseCancellation} from "./utils/promise/cancellationToken";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;

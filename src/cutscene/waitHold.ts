@@ -1,5 +1,5 @@
-import {Predicate} from "pissant";
 import {wait} from "./wait";
+import {Predicate} from "../utils/types/predicate";
 
 export async function waitHold(predicate: Predicate<void>, steps: number)
 {

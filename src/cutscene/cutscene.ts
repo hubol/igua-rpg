@@ -1,6 +1,6 @@
-import {CancellationToken} from "pissant";
 import {PromiseFn, runInIguaZone} from "./runInIguaZone";
 import {game} from "../igua/game";
+import {CancellationToken} from "../utils/promise/cancellationToken";
 
 export type Cutscene = PromiseFn;
 

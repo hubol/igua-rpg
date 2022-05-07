@@ -1,10 +1,10 @@
-import {sleep} from "pissant";
+import {timeout} from "./timeout";
 
-export function waitAsync(predicate: () => Promise<boolean>, intervalMs: number) {
+export function timeoutWaitAsync(predicate: () => Promise<boolean>, intervalMs: number) {
     return new Promise<void>(async (resolve, reject) => {
         try {
             while (!await predicate())
-                await sleep(intervalMs);
+                await timeout(intervalMs);
             resolve();
         }
         catch (e) {

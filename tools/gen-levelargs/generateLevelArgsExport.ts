@@ -1,7 +1,6 @@
 import {GameObjectResolver} from "./types/gameObjectResolver";
 import {Export} from "../gen-module/components/export";
 import {Const} from "../gen-module/components/const";
-import {toPascalCase} from "pissant";
 import {AnonymousFunction, Returns} from "../gen-module/components/function";
 import {Ogmo} from "./types/ogmo";
 import {GameObjectArgs} from "./types/gameObjectArgs";
@@ -10,6 +9,7 @@ import {OgmoLevelFile} from "./types/ogmoLevelFile";
 import {ImportedConst} from "../gen-module/components/imported";
 import {trimExtension} from "../shared-utils/trimExtension";
 import {GuardedDictionary} from "./guardedDictionary";
+import {toPascalCase} from "./toPascalCase";
 
 export function generateLevelArgsExport(gameObjectResolvers: GameObjectResolver[])
 {

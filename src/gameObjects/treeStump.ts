@@ -8,7 +8,6 @@ import {player} from "./player";
 import {whiten} from "../utils/pixi/whiten";
 import {lerp} from "../cutscene/lerp";
 import {cutscene} from "../cutscene/cutscene";
-import {sleep} from "pissant";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {container} from "../utils/pixi/container";
 import {wait} from "../cutscene/wait";
@@ -18,6 +17,7 @@ import {progress} from "../igua/data/progress";
 import {level} from "../igua/level/level";
 import {scene} from "../igua/scene";
 import {StumpTeleportArrive, StumpTeleportFlash, StumpTeleportGo, StumpTeleportStart} from "../sounds";
+import {sleep} from "../cutscene/sleep";
 
 export const resolveTreeStump = resolveGameObject('TreeStump', e => treeStump(e as any).at(e));
 

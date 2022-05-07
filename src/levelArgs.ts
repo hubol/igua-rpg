@@ -55,6 +55,7 @@ import { JungleBrushHeavy } from "./textures";
 import { GlowingEdge } from "./textures";
 import { CloudLong } from "./textures";
 import { JungleTreeRoot } from "./textures";
+import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { PaSpeaker } from "./textures";
 import { CocktailGlass } from "./textures";
 import { Bottle1 } from "./textures";
@@ -70,7 +71,6 @@ import { GreenCable } from "./textures";
 import { Bottle2 } from "./textures";
 import { WhiskeyGlass } from "./textures";
 import { WoodenStool } from "./textures";
-import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { Anchor } from "./textures";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
@@ -3187,7 +3187,9 @@ gameObjectsSupplier: () => {
 Block: resolveBlock({"type":"Block","x":0,"y":216,"width":256,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
 Stump: resolveTreeStump({"type":"TreeStump","x":192,"y":216,"flippedX":false,"flippedY":false,"uid":"77429484_1","levelName":"JungleTown","checkpointName":"HolyStump","name":"Stump","depth":0,"faceRight":false}),
-Player: {"type":"Player","x":40,"y":216,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0}
+Player: {"type":"Player","x":40,"y":216,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+FakeWall: resolveFakeWall({"type":"FakeWall","x":0,"y":0,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"02672398_3","name":"","depth":0})
 };
 }
 };

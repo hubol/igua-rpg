@@ -1,11 +1,11 @@
 import {moveTowards, Vector} from "../math/vector";
 import * as PIXI from "pixi.js";
-import {CancellationToken} from "pissant";
 import {AsshatTicker} from "../asshatTicker";
 import {PromiseFn, runInIguaZone} from "../../cutscene/runInIguaZone";
 import {Container, filters, Rectangle} from "pixi.js";
 import {toHexColorString} from "../toHexColorString";
 import {colord} from "colord";
+import {CancellationToken} from "../promise/cancellationToken";
 
 declare global {
     namespace PIXI {
