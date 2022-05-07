@@ -1,5 +1,5 @@
 import {BrowserWindow} from "electron";
-import {sleep} from "pissant";
+import {timeout} from "../../../src/utils/promise/timeout";
 
 export function waitForGlobal<T>(browserWindow: BrowserWindow)
 {
@@ -10,7 +10,7 @@ export function waitForGlobal<T>(browserWindow: BrowserWindow)
             const property = await browserWindow.webContents.executeJavaScript(globalProperty);
             if (property !== undefined)
                 return property as T;
-            await sleep(67);
+            await timeout(67);
         }
     }
 }
