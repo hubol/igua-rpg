@@ -6,7 +6,7 @@ import {player} from "../player";
 import {SceneLocal} from "../../igua/sceneLocal";
 import {container} from "../../utils/pixi/container";
 import {merge} from "../../utils/object/merge";
-import {Undefined} from "../../utils/undefined";
+import {Undefined} from "../../utils/types/undefined";
 
 export function dieClown(container: DisplayObject, drop: boolean) {
     ClownExplode.play();

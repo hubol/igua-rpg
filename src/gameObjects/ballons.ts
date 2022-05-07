@@ -15,7 +15,7 @@ import {smallPopTextures} from "./smallPop";
 import {BallonPop} from "../sounds";
 import { lerp } from "../utils/math/number";
 import {sleep} from "../cutscene/sleep";
-import {Force} from "../utils/force";
+import {Force} from "../utils/types/force";
 
 interface BallonDisplayState {
     color: number;
