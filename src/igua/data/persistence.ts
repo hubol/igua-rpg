@@ -7,7 +7,7 @@ import {Sprite} from "pixi.js";
 import {FloppyDisk} from "../../textures";
 import {game} from "../game";
 import {sleep} from "../../cutscene/sleep";
-import {truncate} from "../../utils/truncate";
+import {truncate} from "../../utils/string/truncate";
 import {readAndConvertProgressFile} from "./readAndConvertProgressFile";
 import {ChooseYourLooksBeginning} from "../../levels/chooseYourLooks";
 import {sceneStack} from "../scene";
