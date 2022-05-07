@@ -2,7 +2,7 @@ import {getInitialProgress, progress, setProgress} from "./progress";
 import {show} from "../../cutscene/dialog";
 import {localStorageEntry} from "../../utils/browser/localStorageEntry";
 import {level} from "../level/level";
-import {stringify} from "../../utils/stringify";
+import {stringify} from "../../utils/string/stringify";
 import {Sprite} from "pixi.js";
 import {FloppyDisk} from "../../textures";
 import {game} from "../game";

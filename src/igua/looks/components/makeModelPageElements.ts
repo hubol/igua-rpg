@@ -2,7 +2,7 @@ import {button} from "./button";
 import {PageElement} from "../../ui/page";
 import {LooksInput} from "../looksModel";
 import {colorButton} from "./colorButton";
-import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
+import {camelCaseToCapitalizedSpace} from "../../../utils/string/camelCaseToCapitalizedSpace";
 import {valueSlider} from "./valueSlider";
 import {looksContext} from "./looksUiRoot";
 import {placementInput} from "./placementInput";

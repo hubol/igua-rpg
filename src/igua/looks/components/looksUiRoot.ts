@@ -5,7 +5,7 @@ import {bindLooks} from "../bindLooks";
 import {Page, PageElement, PageState} from "../../ui/page";
 import {makeModelPageElements} from "./makeModelPageElements";
 import {makeColorPageElements} from "./colorButton";
-import {camelCaseToCapitalizedSpace} from "../../../utils/camelCaseToCapitalizedSpace";
+import {camelCaseToCapitalizedSpace} from "../../../utils/string/camelCaseToCapitalizedSpace";
 import {makeIguanaPuppetArgsFromLooks} from "../makeIguanaPuppetArgsFromLooks";
 import {iguanaPuppet} from "../../puppet/iguanaPuppet";
 import {sleep} from "../../../cutscene/sleep";

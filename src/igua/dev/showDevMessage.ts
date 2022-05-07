@@ -1,4 +1,4 @@
-import {stringify} from "../../utils/stringify";
+import {stringify} from "../../utils/string/stringify";
 import {environment} from "../environment";
 
 const container = document.createElement('aside');
