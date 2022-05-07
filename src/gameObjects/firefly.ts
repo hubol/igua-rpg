@@ -10,7 +10,7 @@ import {player} from "./player";
 import {container} from "../utils/pixi/container";
 import {now} from "../utils/now";
 import {flake} from "./flake";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {CollectGeneric, ConsumeFirefly} from "../sounds";
 
 const [t0, t1, ...fireTextures] = subimageTextures(Firefly, 6);

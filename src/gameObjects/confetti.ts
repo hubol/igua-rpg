@@ -3,7 +3,7 @@ import {ConfettiPiece} from "../textures";
 import {now} from "../utils/now";
 import {sleep} from "../cutscene/sleep";
 import {smallPop} from "./smallPop";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 
 const colors = [0xF37775, 0xFAE38F, 0x73BCF5];
 

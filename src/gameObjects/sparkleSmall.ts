@@ -3,7 +3,7 @@ import {SparkleSmallLight} from "../textures";
 import {animatedSprite} from "../igua/animatedSprite";
 import {Container, Rectangle} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 
 const textures = subimageTextures(SparkleSmallLight, 3);
 

@@ -9,7 +9,7 @@ import {portalFluidConfig} from "../gameObjects/portalFluid";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {firefly} from "../gameObjects/firefly";
 import {player} from "../gameObjects/player";
 import {cameraLock} from "../gameObjects/cameraLock";

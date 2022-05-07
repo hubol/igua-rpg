@@ -2,7 +2,7 @@ import {container} from "../utils/pixi/container";
 import {sleep} from "../cutscene/sleep";
 import {Graphics} from "pixi.js";
 import {smallPop} from "./smallPop";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {rectangleCircleOverlap} from "../utils/math/rectangleCircleOverlap";
 import {player} from "./player";
 import {EmpPulse, EmpPulseFinal, EmpPulseFire} from "../sounds";

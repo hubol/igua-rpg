@@ -4,7 +4,7 @@ import {Sprite} from "pixi.js";
 import {smallPop} from "./smallPop";
 import {player} from "./player";
 import {PoppingRockPop} from "../sounds";
-import {makePseudo} from "../utils/makePseudo";
+import {makePseudo} from "../utils/math/makePseudo";
 import {distance, Vector} from "../utils/math/vector";
 
 const p = makePseudo(69);

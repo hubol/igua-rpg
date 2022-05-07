@@ -4,7 +4,7 @@ import {ClownPropellerProjectile, ClownSneezy} from "../textures";
 import {merge} from "../utils/object/merge";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {ClownHurt, ClownSneeze, ClownSniffle, SneezyPropellerBlast, SneezyPropellerWindUp} from "../sounds";
 import {distance, Vector, vnew} from "../utils/math/vector";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";

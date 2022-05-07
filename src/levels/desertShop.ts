@@ -6,7 +6,7 @@ import {Lazy} from "../igua/puppet/mods/lazy";
 import {overheadLamp} from "../gameObjects/overheadLamp";
 import {BLEND_MODES, Graphics, Sprite} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {resolvePipeHorizontal} from "../gameObjects/walls";
 import {vector} from "../utils/math/vector";
 import {cigarette} from "../gameObjects/cigarette";

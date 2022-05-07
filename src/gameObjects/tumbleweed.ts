@@ -1,6 +1,6 @@
 import {Tumbleweed} from "../textures";
 import {Sprite} from "pixi.js";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {now} from "../utils/now";
 import {push} from "./walls";
 import {merge} from "../utils/object/merge";

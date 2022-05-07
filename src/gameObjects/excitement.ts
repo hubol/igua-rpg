@@ -1,6 +1,6 @@
 import {IguaText} from "../igua/text";
 import {colord} from "colord";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 
 export function excitement() {
     let life = 30;

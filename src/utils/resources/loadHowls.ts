@@ -1,6 +1,6 @@
 import { Howl} from 'howler';
 import {timeoutWaitAsync} from "../promise/timeoutWaitAsync";
-import {rng} from "../rng";
+import {rng} from "../math/rng";
 import {timeout} from "../promise/timeout";
 
 export async function loadHowlsAsync(sounds: Howl[])

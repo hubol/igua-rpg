@@ -3,7 +3,7 @@ import {Container, Graphics} from "pixi.js";
 import {distance, Vector, vnew} from "../utils/math/vector";
 import {getCenter, getPlayerCenter} from "../igua/gameplay/getCenter";
 import {progress} from "../igua/data/progress";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {confetti} from "./confetti";
 import {sleep} from "../cutscene/sleep";
 import {player} from "./player";

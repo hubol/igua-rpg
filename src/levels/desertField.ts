@@ -9,7 +9,7 @@ import {progress} from "../igua/data/progress";
 import {sleep} from "../cutscene/sleep";
 import {show} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {tumbleweed} from "../gameObjects/tumbleweed";
 
 function getDesertFieldLevel()

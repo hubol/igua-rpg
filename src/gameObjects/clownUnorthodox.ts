@@ -15,7 +15,7 @@ import {Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
 import {merge} from "../utils/object/merge";
 import {sleep} from "../cutscene/sleep";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {approachLinear, lerp as nlerp} from "../utils/math/number";
 import {moveTowards, Vector, vnew} from "../utils/math/vector";
 import {player} from "./player";

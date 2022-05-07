@@ -18,7 +18,7 @@ import {sleep} from "../cutscene/sleep";
 import {move} from "../cutscene/move";
 import {show} from "../cutscene/dialog";
 import {wait} from "../cutscene/wait";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {inventory} from "../igua/inventory/inventory";
 import {persistence} from "../igua/data/persistence";
 import {tumbleweed} from "../gameObjects/tumbleweed";

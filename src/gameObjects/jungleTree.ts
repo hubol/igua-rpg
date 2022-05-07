@@ -1,4 +1,4 @@
-import {makePseudo, Pseudo} from "../utils/makePseudo";
+import {makePseudo, Pseudo} from "../utils/math/makePseudo";
 import {JungleTreeBranch, JungleTreeFoliage, JungleTreeTrunk} from "../textures";
 import {Container, DisplayObject, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";

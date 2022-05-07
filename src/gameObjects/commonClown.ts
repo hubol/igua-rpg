@@ -8,7 +8,7 @@ import {player} from "./player";
 import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {ClownHurt, CommonClownLand} from "../sounds";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {bouncePlayer} from "../igua/bouncePlayer";
 import {playerIsWeakToPortalFluid, teleportToTheRoomOfDoors} from "./portalFluid";

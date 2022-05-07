@@ -1,7 +1,7 @@
 import {IguanaPuppetMod} from "../mods";
 import {Container} from "pixi.js";
 import {sleep} from "../../../cutscene/sleep";
-import {rng} from "../../../utils/rng";
+import {rng} from "../../../utils/math/rng";
 
 export const Sickly: IguanaPuppetMod = puppet => {
     puppet.duckImmediately();

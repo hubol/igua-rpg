@@ -20,7 +20,7 @@ import {merge} from "../utils/object/merge";
 import {electricBolt} from "./electricBolt";
 import {excitement} from "./excitement";
 import {track} from "../igua/track";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {clownHealth} from "./utils/clownUtils";
 import {newGravity} from "./utils/newGravity";

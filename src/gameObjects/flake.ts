@@ -1,7 +1,7 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {SnowmanFlakes} from "../textures";
 import {Sprite} from "pixi.js";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 
 const flakes = subimageTextures(SnowmanFlakes, 3);
 

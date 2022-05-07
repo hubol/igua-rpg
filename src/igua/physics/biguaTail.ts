@@ -3,7 +3,7 @@ import {vnew} from "../../utils/math/vector";
 import { lerp } from "../../utils/math/number";
 import {Graphics, Sprite} from "pixi.js";
 import {sleep} from "../../cutscene/sleep";
-import {rng} from "../../utils/rng";
+import {rng} from "../../utils/math/rng";
 import {container} from "../../utils/pixi/container";
 import {merge} from "../../utils/object/merge";
 import {BiguaTails} from "../../textures";

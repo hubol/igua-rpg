@@ -13,7 +13,7 @@ import {wait} from "../cutscene/wait";
 import {waitHold} from "../cutscene/waitHold";
 import {sleep} from "../cutscene/sleep";
 import {MimicCorrect} from "../sounds";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {confetti} from "../gameObjects/confetti";
 
 function applyUnrealMimicLevel()

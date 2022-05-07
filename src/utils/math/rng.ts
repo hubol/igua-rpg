@@ -1,4 +1,4 @@
-import {merge} from "./object/merge";
+import {merge} from "../object/merge";
 
 export const rng = merge(() => Math.random(),
     {

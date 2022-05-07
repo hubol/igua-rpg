@@ -21,7 +21,7 @@ import {desertBigKeyTextures} from "./desertTemple";
 import {jukebox} from "../igua/jukebox";
 import {Hemaboss1} from "../musics";
 import {FlameOff, FlameOn, SnowmanDie, SnowmanHurt, SnowmanLand} from "../sounds";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {confetti} from "../gameObjects/confetti";
 import {ballons} from "../gameObjects/ballons";
 import {flake} from "../gameObjects/flake";

@@ -1,7 +1,7 @@
 import {Container} from "pixi.js";
 import {IguanaPuppetMod} from "../mods";
 import {sleep} from "../../../cutscene/sleep";
-import {rng} from "../../../utils/rng";
+import {rng} from "../../../utils/math/rng";
 import {IguaText} from "../../text";
 
 export const Sleepy: IguanaPuppetMod = puppet => {

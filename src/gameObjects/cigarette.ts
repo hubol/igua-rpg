@@ -1,4 +1,4 @@
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {Graphics} from "pixi.js";
 import {now} from "../utils/now";
 

@@ -6,7 +6,7 @@ import {game} from "../game";
 import {merge} from "../../utils/object/merge";
 import {makeIguanaPuppetEngine} from "./engine";
 import {makeIguanaMods} from "./mods";
-import {rng} from "../../utils/rng";
+import {rng} from "../../utils/math/rng";
 
 export interface IguanaPuppetArgs
 {

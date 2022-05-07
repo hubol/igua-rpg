@@ -11,7 +11,7 @@ import {sleep} from "../cutscene/sleep";
 import {wait} from "../cutscene/wait";
 import {BiguaMagic, ClownExplode, ConsumeMedicine} from "../sounds";
 import {confetti} from "./confetti";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {jukebox} from "../igua/jukebox";
 import {cutscene} from "../cutscene/cutscene";
 import {moveCameraToPlayerTarget} from "../igua/camera";

@@ -6,7 +6,7 @@ import {wait} from "../cutscene/wait";
 import {jukebox} from "../igua/jukebox";
 import {Country, Hemaboss1, JungleMusic} from "../musics";
 import {show} from "../cutscene/dialog";
-import {makePseudo} from "../utils/makePseudo";
+import {makePseudo} from "../utils/math/makePseudo";
 import {poppingRock} from "../gameObjects/poppingRock";
 import {progress} from "../igua/data/progress";
 import {slidingDoor} from "../gameObjects/slidingDoor";

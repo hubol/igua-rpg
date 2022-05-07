@@ -4,7 +4,7 @@ import {BiguaCrests, BiguaEye, BiguaFace, BiguaFeet, BiguaPupils, BiguaTorso} fr
 import {mapRgb} from "../utils/pixi/mapRgb";
 import {merge} from "../utils/object/merge";
 import {BiguaJungleLooks} from "./npcLooks";
-import {rng} from "../utils/rng";
+import {rng} from "../utils/math/rng";
 import {pcolord} from "../utils/toHexColorString";
 import {flipH, flipV} from "../utils/pixi/flip";
 import {shapeTextures} from "../igua/looks/shapes";

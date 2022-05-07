@@ -4,7 +4,7 @@ import {MessageBox} from "../../../textures";
 import {PageElement} from "../../ui/page";
 import {findChoiceInputs, findColorInputs} from "../findColorValues";
 import {looksContext} from "./looksUiRoot";
-import {rng} from "../../../utils/rng";
+import {rng} from "../../../utils/math/rng";
 
 export function inspirationButton() {
     const b = button('Inspiration', () => looksContext.into('Inspiration', inspirationPageElements()));
