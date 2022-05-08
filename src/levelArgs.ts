@@ -3189,7 +3189,7 @@ Block: resolveBlock({"type":"Block","x":0,"y":216,"width":256,"height":40,"flipp
 Stump: resolveTreeStump({"type":"TreeStump","x":192,"y":216,"flippedX":false,"flippedY":false,"uid":"77429484_1","levelName":"JungleTown","checkpointName":"HolyStump","name":"Stump","depth":0,"faceRight":false}),
 Player: {"type":"Player","x":40,"y":216,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-FakeWall: resolveFakeWall({"type":"FakeWall","x":0,"y":0,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"02672398_3","name":"","depth":0})
+FakeWall: resolveFakeWall({"type":"FakeWall","x":16,"y":24,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"02672398_3","name":"","depth":0})
 };
 }
 };

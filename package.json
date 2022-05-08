@@ -10,10 +10,7 @@
     "gen:textures": "generate-textures src/images src/textures.ts",
     "gen:sounds": "generate-howls raw/sound src/sound src/sounds.ts",
     "gen:music": "generate-howls raw/music src/music src/musics.ts --dontPreload",
-    "gen:levelargs": "run-s -n args:*",
-    "args:clean": "rimraf ./tools/write-levelargs/.bin",
-    "args:check-serve": "wait-on http://localhost:1234/index.html --t 1000",
-    "args:start-tool": "npm start --prefix ./tools/write-levelargs"
+    "gen:levelargs": "npm start --prefix ./tools/write-levelargs"
   },
   "targets": {
     "default": {

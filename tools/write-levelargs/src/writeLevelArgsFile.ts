@@ -1,9 +1,13 @@
 import {GameObjectResolver} from "../../gen-levelargs/types/gameObjectResolver";
-import {createOrUpdateFile, getAllFiles, getDirectory, getRelativePath} from "pissant-node";
+import {createOrUpdateFile, getAllFiles, getDirectory, getRelativePath as _getRelativePath} from "pissant-node";
 import {generateLevelArgsExport} from "../../gen-levelargs/generateLevelArgsExport";
 import {writeModule} from "../../gen-module/writeModule";
 import {Module} from "../../gen-module/components/module";
 import {readOgmoLevelFile} from "./readOgmoLevelFile";
+
+function getRelativePath(src, dst) {
+    return _getRelativePath(src, dst).replace(/\\/g, "/");
+}
 
 export interface WriteLevelArgsFileArgs
 {
