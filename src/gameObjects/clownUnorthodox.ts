@@ -224,14 +224,22 @@ export function clownUnorthodox() {
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
         while (true) {
+            console.log(count(moves.quickPounce), count(moves.slam), count(moves.stomp));
             if (distance(player, [0, -130].add(head)) < 100 && rng() > 0.25 && count(moves.quickPounce) < 1)
                 await doMove(moves.quickPounce)();
-            else if (player.y > head.y - 40 && rng() > 0.33 && count(moves.stomp) < 2)
+            else if (player.y > head.y - 70 && rng() > 0.33 && count(moves.stomp) < 2)
                 await doStompInPlayerDirection();
-            else if (count(moves.slam) < 2)
+            else if (count(moves.slam) < 2 && rng() > 0.2)
                 await doMove(moves.slam)();
-            else
-                await doStompInPlayerDirection();
+            else {
+                const r = rng();
+                if (r < 0.33)
+                    await doStompInPlayerDirection();
+                else if (r < 0.66)
+                    await doMove(moves.slam)();
+                else
+                    await doMove(moves.quickPounce)();
+            }
         }
     }
 
