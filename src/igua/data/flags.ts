@@ -31,6 +31,7 @@ export function getInitialFlags()
                 position: 0
             },
             usedBlessing: false,
+            defeatedUnorthodoxAngel: false,
         },
         desert: {
             heardIntroduction: false,

@@ -28,7 +28,6 @@ import {wait} from "../cutscene/wait";
 import {newGravity} from "./utils/newGravity";
 import {Undefined} from "../utils/types/undefined";
 import {AoeHitboxes} from "./utils/aoeHitboxes";
-import {scene} from "../igua/scene";
 import {wave} from "./wave";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
@@ -195,6 +194,7 @@ export function clownUnorthodox() {
     async function legsAs() {
         await wait(() => behaviors.legs.speed.y > 0);
         await wait(() => behaviors.legs.speed.y === 0);
+        await wait(() => head.aggressive);
         while (true) {
             if (player.x > legs.x - 80 && player.x < legs.x + 80 && player.y < legs.y - 20 && rng() > 0.25)
                 await moves.quickPounce();
@@ -410,7 +410,7 @@ export function clownUnorthodox() {
         return merge(c, { mouth, hit: hitbox });
     }
 
-    const head = newHead();
+    const head = merge(newHead(), { aggressive: false });
     head.pivot.set(40, 63)
     let invulerable = 0;
 
@@ -426,6 +426,7 @@ export function clownUnorthodox() {
             && (Math.abs(player.hspeed) + Math.abs(player.vspeed)) > 0.5;
 
         if (canReceiveDamage) {
+            head.aggressive = true;
             ClownHurt.play();
             const b = bouncePlayerOffDisplayObject(head.hit).normalize();
             if (behaviors.allowNudge) {

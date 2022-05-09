@@ -55,7 +55,6 @@ import { JungleBrushHeavy } from "./textures";
 import { GlowingEdge } from "./textures";
 import { CloudLong } from "./textures";
 import { JungleTreeRoot } from "./textures";
-import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { PaSpeaker } from "./textures";
 import { CocktailGlass } from "./textures";
 import { Bottle1 } from "./textures";
@@ -71,6 +70,7 @@ import { GreenCable } from "./textures";
 import { Bottle2 } from "./textures";
 import { WhiskeyGlass } from "./textures";
 import { WoodenStool } from "./textures";
+import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { Anchor } from "./textures";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
@@ -3179,17 +3179,25 @@ Patron: resolveNpc({"type":"NpcIguana","x":128,"y":127,"flippedX":true,"flippedY
 };
 
 export const JungleBossArenaArgs = {
-    width: 256,
+    width: 768,
 height: 256,
 gameObjectsSupplier: () => {
   return {
     // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":216,"width":256,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":0,"y":216,"width":768,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
-Stump: resolveTreeStump({"type":"TreeStump","x":192,"y":216,"flippedX":false,"flippedY":false,"uid":"77429484_1","levelName":"JungleTown","checkpointName":"HolyStump","name":"Stump","depth":0,"faceRight":false}),
-Player: {"type":"Player","x":40,"y":216,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
+Stump: resolveTreeStump({"type":"TreeStump","x":688,"y":216,"flippedX":false,"flippedY":false,"uid":"77429484_1","levelName":"JungleTown","checkpointName":"HolyStump","name":"Stump","depth":0,"faceRight":false}),
+Player: {"type":"Player","x":552,"y":216,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-FakeWall: resolveFakeWall({"type":"FakeWall","x":16,"y":24,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"02672398_3","name":"","depth":0})
+Block_1: resolveBlock({"type":"Block","x":512,"y":0,"width":256,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_4","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0}),
+// @ts-ignore
+RightBossWall: resolveBlock({"type":"Block","x":512,"y":136,"width":16,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"RightBossWall","depth":0}),
+// @ts-ignore
+LeftBossWall: resolveBlock({"type":"Block","x":240,"y":136,"width":16,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"LeftBossWall","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":736,"y":136,"width":32,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":"","depth":0})
 };
 }
 };

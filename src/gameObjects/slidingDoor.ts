@@ -32,6 +32,7 @@ export function slidingDoor(d: DisplayObject, openDown: boolean) {
             isOpening = false;
             isClosing = false;
             d.y = openY;
+            return this;
         },
         startOpening(speed: number) {
             openSpeed = speed;

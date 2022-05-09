@@ -30,9 +30,7 @@ export function OversizedAngelArena() {
 
     const doors = [level.RightBossWall, level.LeftBossWall].map(x => {
         x.tint = 0xAD4A43;
-        const door = slidingDoor(x, false);
-        door.openInstantly();
-        return door;
+        return slidingDoor(x, false).openInstantly();
     });
 
     decal.instances.filter(x => x.texture === CracksA).forEach(x => x.tint = 0x213E51);
