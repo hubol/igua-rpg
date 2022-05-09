@@ -171,6 +171,8 @@ export let UnorthodoxClownJoint: PIXI.Texture;
 export let UnorthodoxClownLegsSplit: PIXI.Texture;
 export let UnorthodoxClownMock: PIXI.Texture;
 export let UnorthodoxClownMouth: PIXI.Texture;
+export let UnorthodoxClownSpark: PIXI.Texture;
+export let UnorthodoxClownSparkle: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
 export let VineLarge: PIXI.Texture;
 export let VineSmall: PIXI.Texture;
@@ -690,6 +692,12 @@ export function loadTexturesAsync()
     const UnorthodoxClownMouthPath = require("./images/unorthodox clown/mouth.png");
     loader.add(UnorthodoxClownMouthPath); 
 
+    const UnorthodoxClownSparkPath = require("./images/unorthodox clown/spark.png");
+    loader.add(UnorthodoxClownSparkPath); 
+
+    const UnorthodoxClownSparklePath = require("./images/unorthodox clown/sparkle.png");
+    loader.add(UnorthodoxClownSparklePath); 
+
     const ValuableIconPath = require("./images/valuable icon.png");
     loader.add(ValuableIconPath); 
 
@@ -881,6 +889,8 @@ export function loadTexturesAsync()
             UnorthodoxClownLegsSplit = resources[UnorthodoxClownLegsSplitPath]?.texture as PIXI.Texture;
             UnorthodoxClownMock = resources[UnorthodoxClownMockPath]?.texture as PIXI.Texture;
             UnorthodoxClownMouth = resources[UnorthodoxClownMouthPath]?.texture as PIXI.Texture;
+            UnorthodoxClownSpark = resources[UnorthodoxClownSparkPath]?.texture as PIXI.Texture;
+            UnorthodoxClownSparkle = resources[UnorthodoxClownSparklePath]?.texture as PIXI.Texture;
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
             VineLarge = resources[VineLargePath]?.texture as PIXI.Texture;
             VineSmall = resources[VineSmallPath]?.texture as PIXI.Texture;

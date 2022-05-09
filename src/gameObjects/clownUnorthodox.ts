@@ -26,6 +26,9 @@ import {ClownHurt} from "../sounds";
 import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {newGravity} from "./utils/newGravity";
+import {Undefined} from "../utils/types/undefined";
+import {AoeHitboxes} from "./utils/aoeHitboxes";
+import {scene} from "../igua/scene";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -36,12 +39,21 @@ const footTxs = subimageTextures(UnorthodoxClownFoot, 3);
 export function clownUnorthodox() {
     const health = clownHealth(660);
 
+    const debugAoe = false;
+
     const consts = {
         headNudgeH: 3,
-        headNudgeV: 2
+        headNudgeV: 2,
+        legh: 8,
+        gravity: 0.5,
+        damage: {
+            slamAerial: 25,
+            slamGround: 45,
+            pounceGround: 30,
+        }
     }
 
-    let _height = 8;
+    let _height = consts.legh;
 
     const controls = {
         head: {
@@ -91,10 +103,102 @@ export function clownUnorthodox() {
         attached: true,
         headDetach: vnew(),
         legs: {
-            gravity: 0.5,
+            approachPlayerHsp: Undefined<number>(),
+            gravity: consts.gravity,
             speed: vnew(),
+        },
+        allowNudge: false,
+    };
+
+    async function jumpCharge(down = 500, wait = 50, up = 100) {
+        const x = [controls.legs.l, controls.legs.r];
+
+        await lerp(controls.legs, 'height').to(0).over(down);
+        await sleep(wait);
+        await lerp(controls.legs, 'height').to(consts.legh).over(up);
+
+        return x;
+    }
+
+    async function jumpRecover(down = 70, wait = 50, up = 200) {
+        await jumpCharge(down, wait, up);
+    }
+
+    const moves = {
+        async quickPounce() {
+            const x = await jumpCharge(400);
+
+            behaviors.legs.speed.y = -8;
+            x.forEach(x => x.i = 1);
+            await wait(() => behaviors.legs.speed.y > 0);
+            x.forEach(x => x.i = 2);
+            await wait(() => behaviors.legs.speed.y === 0);
+            x.forEach(x => x.i = 0);
+            aoe.new(32, 12, 20, consts.damage.pounceGround).at(legs).add(-16, -10);
+            await jumpRecover();
+        },
+        async slam() {
+            controls.brows.angry = true;
+            const x = await jumpCharge(700, 200, 50);
+            behaviors.legs.approachPlayerHsp = Math.sign(player.x - legs.x);
+            behaviors.legs.speed.y = -8;
+            x.forEach(x => x.i = 1);
+            await wait(() => behaviors.legs.speed.y > 0);
+
+            controls.legs.splits = true;
+            behaviors.legs.gravity = 0;
+            behaviors.legs.speed.y = 0;
+
+            await sleep(1_000);
+
+            behaviors.legs.approachPlayerHsp = undefined;
+
+            behaviors.legs.gravity = consts.gravity * 1.5;
+            controls.legs.height = 5 - 11;
+            legs.y -= 11;
+
+            await wait(() => behaviors.legs.speed.y > 0);
+            const splitsBox = aoe.new(68, 12, 10000, consts.damage.slamAerial, 0x00ff00)
+                .withStep(() => splitsBox.at(legs).add(-34, -10));
+            wait(() => behaviors.legs.speed.y > 8).then(() => splitsBox.damage = consts.damage.slamGround);
+            await wait(() => behaviors.legs.speed.y === 0);
+            splitsBox.destroy();
+            aoe.new(68, 12, 30, consts.damage.slamGround).at(legs).add(-34, -10);
+            controls.brows.angry = false;
+            await sleep(500);
+            controls.legs.splits = false;
+            x.forEach(x => x.i = 0);
+            await lerp(controls.legs, 'height').to(consts.legh).over(200);
+            behaviors.legs.gravity = consts.gravity;
         }
     };
+
+    /*
+    for (let i = 0; i < 2; i++) {
+                const leg = x[i];
+                leg.i = 1;
+                await lerp(leg, 'y').to(-12).over(400);
+                leg.i = 0;
+                await sleep(100);
+                leg.i = 2;
+                await lerp(leg, 'y').to(0).over(200);
+                leg.i = 0;
+                await sleep(100);
+            }
+     */
+
+    async function legsAs() {
+        while (true) {
+            if (player.x > legs.x - 80 && player.x < legs.x + 80 && player.y < legs.y - 20 && rng() > 0.25)
+                await moves.quickPounce();
+            else
+                await moves.slam();
+        }
+    }
+
+    async function headAs() {
+        await wait(() => !behaviors.attached);
+    }
 
     function hair() {
         const wigglies = [hairTextures[1], hairTextures[2]].map((x, i) => {
@@ -308,13 +412,20 @@ export function clownUnorthodox() {
         else
             head.visible = true;
 
-        if (invulerable <= 0 && head.hit.collides(player)) {
+        const canReceiveDamage = invulerable <= 0
+            && head.hit.collides(player)
+            && !player.collides(aoe.hitboxes)
+            && (Math.abs(player.hspeed) + Math.abs(player.vspeed)) > 0.5;
+
+        if (canReceiveDamage) {
             ClownHurt.play();
             const b = bouncePlayerOffDisplayObject(head.hit).normalize();
-            if (Math.abs(b.x) > .7)
-                behaviors.headDetach.x += -Math.sign(b.x) * consts.headNudgeH;
-            else if (b.y < 0)
-                behaviors.headDetach.y += consts.headNudgeV;
+            if (behaviors.allowNudge) {
+                if (Math.abs(b.x) > .7)
+                    behaviors.headDetach.x += -Math.sign(b.x) * consts.headNudgeH;
+                else if (b.y < 0)
+                    behaviors.headDetach.y += consts.headNudgeV;
+            }
             health.damage();
             invulerable = 15;
         }
@@ -358,39 +469,19 @@ export function clownUnorthodox() {
         head.parent.addChildAt(legs, 0);
     });
 
-    legs.withAsync(async () => {
-        const x = [controls.legs.l, controls.legs.r];
-        while (true) {
-            for (let i = 0; i < 2; i++) {
-                const leg = x[i];
-                leg.i = 1;
-                await lerp(leg, 'y').to(-12).over(400);
-                leg.i = 0;
-                await sleep(100);
-                leg.i = 2;
-                await lerp(leg, 'y').to(0).over(200);
-                leg.i = 0;
-                await sleep(100);
-            }
-            await lerp(controls.legs, 'height').to(0).over(500);
-            await sleep(50);
-            await lerp(controls.legs, 'height').to(8).over(100);
-            behaviors.legs.speed.y = -8;
-            x.forEach(x => x.i = 1);
-            await wait(() => behaviors.legs.speed.y > 0);
-            x.forEach(x => x.i = 2);
-            await wait(() => behaviors.legs.speed.y === 0);
-            x.forEach(x => x.i = 0);
-            await lerp(controls.legs, 'height').to(0).over(70);
-            await sleep(50);
-            await lerp(controls.legs, 'height').to(8).over(200);
-        }
-    });
+    head.withAsync(headAs);
+    legs.withAsync(legsAs);
+
+    const aoe = new AoeHitboxes(scene.gameObjectStage, debugAoe);
 
     const gravity = newGravity(legs, behaviors.legs.speed, [ 0, -6 ], 6);
     legs.withStep(() => {
         legs.pivot.set(0, controls.legs.height + 11);
         gravity(behaviors.legs.gravity);
+        if (behaviors.legs.approachPlayerHsp !== undefined) {
+            if (Math.sign(player.x - legs.x) === Math.sign(behaviors.legs.approachPlayerHsp))
+                legs.x += behaviors.legs.approachPlayerHsp;
+        }
         if (behaviors.attached) {
             moveTowards(controls.head.attachOffset, behaviors.headDetach, 0.5);
             head.at(legs).add(0, -controls.legs.height).add(controls.head.attachOffset);
