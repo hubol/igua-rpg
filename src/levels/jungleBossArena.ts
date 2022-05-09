@@ -7,6 +7,7 @@ import {Sprite} from "pixi.js";
 import {UnorthodoxClownMock} from "../textures";
 import {clownUnorthodox} from "../gameObjects/clownUnorthodox";
 import {spike} from "../gameObjects/spike";
+import {wave} from "../gameObjects/wave";
 
 export function JungleBossArena() {
     scene.backgroundColor = 0x60B0E0;
@@ -20,6 +21,8 @@ export function JungleBossArena() {
 
     for (let x = 0; x < 256; x += 16)
         spike(33).at(x, 64).show();
+
+    // wave({ dx: 1, life: 15, count: 8, damage: 20, ms: 67, w1: 8, w2: 10, h1: 16, h2: 64 }).at(128, 128).show();
 
     // fishingPole().at(190, 180).show();
 

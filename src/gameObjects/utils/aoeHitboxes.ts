@@ -24,7 +24,7 @@ export class AoeHitboxes {
                 if (life-- <= 0)
                     g.destroy();
                 else if (g.damage && player.collides(g)) {
-                    this.onDamage && this.onDamage();
+                    this.onDamage?.();
                     player.damage(g.damage);
                 }
             })

@@ -29,6 +29,7 @@ import {newGravity} from "./utils/newGravity";
 import {Undefined} from "../utils/types/undefined";
 import {AoeHitboxes} from "./utils/aoeHitboxes";
 import {scene} from "../igua/scene";
+import {wave} from "./wave";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -49,6 +50,7 @@ export function clownUnorthodox() {
         damage: {
             slamAerial: 25,
             slamGround: 45,
+            slamWave: 25,
             pounceGround: 30,
         }
     }
@@ -164,6 +166,9 @@ export function clownUnorthodox() {
             await wait(() => behaviors.legs.speed.y === 0);
             splitsBox.destroy();
             aoe.new(68, 12, 30, consts.damage.slamGround).at(legs).add(-34, -10);
+            const args1 = { dx: 1, life: 30, count: 6, damage: 20, ms: 33, w1: 10, w2: 10, h1: 32, h2: 64 };
+            wave(args1).at(legs).show().add(24, 0);
+            wave({ ...args1, dx: args1.dx * -1 }).at(legs).show().add(-24, 0);
             controls.brows.angry = false;
             await sleep(500);
             controls.legs.splits = false;
@@ -188,6 +193,8 @@ export function clownUnorthodox() {
      */
 
     async function legsAs() {
+        await wait(() => behaviors.legs.speed.y > 0);
+        await wait(() => behaviors.legs.speed.y === 0);
         while (true) {
             if (player.x > legs.x - 80 && player.x < legs.x + 80 && player.y < legs.y - 20 && rng() > 0.25)
                 await moves.quickPounce();
