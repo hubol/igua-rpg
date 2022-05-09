@@ -9,9 +9,12 @@ import {persistence} from "../data/persistence";
 
 export async function restAtInn() {
     player.mods.add(Sleepy);
+    const fasterRest = !!progress.shopPurchases.SpicedNectar;
+    const rate = fasterRest ? 0.75 : 0.25;
+    const minMs = fasterRest ? 3_000 : 4_000;
     await Promise.all([
-        wait(() => (progress.health = Math.min(progress.health + 0.25, progress.maxHealth)) >= progress.maxHealth),
-        sleep(4_000) ]);
+        wait(() => (progress.health = Math.min(progress.health + rate, progress.maxHealth)) >= progress.maxHealth),
+        sleep(minMs) ]);
     await show("Full health restored!");
     InnRefresh.play();
     progress.poisonLevel = Math.min(progress.poisonLevel, 1);
