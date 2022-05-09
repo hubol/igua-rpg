@@ -59,7 +59,7 @@ export function clownUnorthodox() {
                 return <WaveArgs>{ dx: 1, life: 30, count: 6, damage: consts.damage.slamWave, ms: 33, w1: 10, w2: 10, h1: 32, h2: 64 };
             },
             get stomp() {
-                return <WaveArgs>{ dx: 1, life: 30, count: 10, damage: consts.damage.stompWave, ms: 33, w1: 8, w2: 8, h1: 32, h2: 112 };
+                return <WaveArgs>{ dx: 1, life: 22, count: 10, damage: consts.damage.stompWave, ms: 33, w1: 8, w2: 8, h1: 32, h2: 112 };
             }
         }
     }
@@ -72,6 +72,7 @@ export function clownUnorthodox() {
         },
         face: {
             unit: -1,
+            y: 0,
         },
         eyes: {
             closedUnit: 0,
@@ -186,13 +187,17 @@ export function clownUnorthodox() {
         },
         async stomp(control: { y: number, i: number }) {
             const dx = control === controls.legs.r ? 1 : -1;
+            const fu = lerp(controls.face, 'y').to(-2).over(200);
             await lerp(control, 'y').to(-8).over(200 + rng.int(200));
-            const s = sparkle().at([dx * 24, -24].add(legs)).show();
+            const s = sparkle().at([dx * 24, -20].add(legs)).show();
             control.i = 2;
             await wait(() => s.destroyed);
             control.i = 0;
+            await fu;
+            const fd = lerp(controls.face, 'y').to(0).over(67);
             await lerp(control, 'y').to(0).over(67);
             wave({ ...consts.waves.stomp, dx }).at(legs).show().add(dx * 4);
+            await fd;
             await sleep(250);
         }
     };
@@ -203,7 +208,7 @@ export function clownUnorthodox() {
                 x.count = 0;
         }
         // @ts-ignore
-        fn.count++;
+        fn.count = fn.count ? fn.count + 1 : 1;
         return fn;
     }
 
@@ -219,27 +224,32 @@ export function clownUnorthodox() {
             await doMove(moves.stomp)(controls.legs.l);
     }
 
+    async function doRandomMove() {
+        let r = rng();
+        while (true) {
+            if (r < 0.33 && !count(moves.stomp) && player.vspeed >= 0)
+                return await doStompInPlayerDirection();
+            else if (r < 0.66 && !count(moves.slam))
+                return await doMove(moves.slam)();
+            else if (!count(moves.quickPounce))
+                return await doMove(moves.quickPounce)();
+            r = (r + 0.34) % 1;
+        }
+    }
+
     async function legsAs() {
         await wait(() => behaviors.legs.speed.y > 0);
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
         while (true) {
-            console.log(count(moves.quickPounce), count(moves.slam), count(moves.stomp));
             if (distance(player, [0, -130].add(head)) < 100 && rng() > 0.25 && count(moves.quickPounce) < 1)
                 await doMove(moves.quickPounce)();
-            else if (player.y > head.y - 70 && rng() > 0.33 && count(moves.stomp) < 2)
+            else if ((player.y > head.y - 30 || player.vspeed > 1) && rng() > 0.33 && count(moves.stomp) < 2)
                 await doStompInPlayerDirection();
             else if (count(moves.slam) < 2 && rng() > 0.2)
                 await doMove(moves.slam)();
-            else {
-                const r = rng();
-                if (r < 0.33)
-                    await doStompInPlayerDirection();
-                else if (r < 0.66)
-                    await doMove(moves.slam)();
-                else
-                    await doMove(moves.quickPounce)();
-            }
+            else
+                await doRandomMove();
         }
     }
 
@@ -426,7 +436,7 @@ export function clownUnorthodox() {
             face.x = nlerp(-19, 1, f);
 
             const yf = Math.max(0, (Math.abs(controls.face.unit) - .8) * 5);
-            face.y = yf * -1;
+            face.y = yf * -1 + controls.face.y;
 
             brows.at(face).add(41, 18);
 
@@ -546,6 +556,6 @@ export function clownUnorthodox() {
 const sparkleTxs = subimageTextures(UnorthodoxClownSparkle, 5);
 
 function sparkle() {
-    return animatedSprite(sparkleTxs, 0.3, true);
+    return animatedSprite(sparkleTxs, 0.3, true).centerAnchor();
 }
 
