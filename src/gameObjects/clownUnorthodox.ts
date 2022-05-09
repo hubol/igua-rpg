@@ -280,6 +280,7 @@ export function clownUnorthodox() {
 
         const splits = Sprite.from(splitTxs[1])
             .withStep(() => {
+                splits.texture = splitTxs[behaviors.attached ? 0 : 1];
                 splits.visible = controls.legs.splits;
                 legs.visible = !splits.visible;
             });
