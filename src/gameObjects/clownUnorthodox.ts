@@ -9,7 +9,7 @@ import {
     UnorthodoxClownHead,
     UnorthodoxClownJoint,
     UnorthodoxClownLegsSplit,
-    UnorthodoxClownMouth
+    UnorthodoxClownMouth, UnorthodoxClownSparkle
 } from "../textures";
 import {Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
@@ -17,7 +17,7 @@ import {merge} from "../utils/object/merge";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 import {approachLinear, lerp as nlerp} from "../utils/math/number";
-import {moveTowards, Vector, vnew} from "../utils/math/vector";
+import {distance, moveTowards, Vector, vnew} from "../utils/math/vector";
 import {player} from "./player";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {clownHealth} from "./utils/clownUtils";
@@ -28,7 +28,8 @@ import {wait} from "../cutscene/wait";
 import {newGravity} from "./utils/newGravity";
 import {Undefined} from "../utils/types/undefined";
 import {AoeHitboxes} from "./utils/aoeHitboxes";
-import {wave} from "./wave";
+import {wave, WaveArgs} from "./wave";
+import {animatedSprite} from "../igua/animatedSprite";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -49,8 +50,17 @@ export function clownUnorthodox() {
         damage: {
             slamAerial: 25,
             slamGround: 45,
-            slamWave: 25,
+            slamWave: 30,
             pounceGround: 30,
+            stompWave: 25
+        },
+        waves: {
+            get slam() {
+                return <WaveArgs>{ dx: 1, life: 30, count: 6, damage: consts.damage.slamWave, ms: 33, w1: 10, w2: 10, h1: 32, h2: 64 };
+            },
+            get stomp() {
+                return <WaveArgs>{ dx: 1, life: 30, count: 10, damage: consts.damage.stompWave, ms: 33, w1: 8, w2: 8, h1: 32, h2: 112 };
+            }
         }
     }
 
@@ -125,6 +135,18 @@ export function clownUnorthodox() {
         await jumpCharge(down, wait, up);
     }
 
+    async function stompFoot(control: { y: number, i: number }) {
+        const dx = control === controls.legs.r ? 1 : -1;
+        await lerp(control, 'y').to(-8).over(200 + rng.int(200));
+        const s = sparkle().at([dx * 24, -24].add(legs)).show();
+        control.i = 2;
+        await wait(() => s.destroyed);
+        control.i = 0;
+        await lerp(control, 'y').to(0).over(67);
+        wave({ ...consts.waves.stomp, dx }).at(legs).show().add(dx * 4);
+        await sleep(250);
+    }
+
     const moves = {
         async quickPounce() {
             const x = await jumpCharge(400);
@@ -165,15 +187,20 @@ export function clownUnorthodox() {
             await wait(() => behaviors.legs.speed.y === 0);
             splitsBox.destroy();
             aoe.new(68, 12, 30, consts.damage.slamGround).at(legs).add(-34, -10);
-            const args1 = { dx: 1, life: 30, count: 6, damage: 20, ms: 33, w1: 10, w2: 10, h1: 32, h2: 64 };
-            wave(args1).at(legs).show().add(24, 0);
-            wave({ ...args1, dx: args1.dx * -1 }).at(legs).show().add(-24, 0);
+            wave(consts.waves.slam).at(legs).show().add(24, 0);
+            wave({ ...consts.waves.slam, dx: consts.waves.slam.dx * -1 }).at(legs).show().add(-24, 0);
             controls.brows.angry = false;
             await sleep(500);
             controls.legs.splits = false;
             x.forEach(x => x.i = 0);
             await lerp(controls.legs, 'height').to(consts.legh).over(200);
             behaviors.legs.gravity = consts.gravity;
+        },
+        async stompL() {
+            await stompFoot(controls.legs.l);
+        },
+        async stompR() {
+            await stompFoot(controls.legs.r);
         }
     };
 
@@ -196,8 +223,14 @@ export function clownUnorthodox() {
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
         while (true) {
-            if (player.x > legs.x - 80 && player.x < legs.x + 80 && player.y < legs.y - 20 && rng() > 0.25)
+            if (distance(player, [0, -130].add(head)) < 100 && rng() > 0.25)
                 await moves.quickPounce();
+            else if (player.y > head.y - 40 && rng() > 0.33) {
+                if (player.x > head.x)
+                    await moves.stompR();
+                else
+                    await moves.stompL();
+            }
             else
                 await moves.slam();
         }
@@ -501,5 +534,11 @@ export function clownUnorthodox() {
     });
 
     return head;
+}
+
+const sparkleTxs = subimageTextures(UnorthodoxClownSparkle, 5);
+
+function sparkle() {
+    return animatedSprite(sparkleTxs, 0.3, true);
 }
 

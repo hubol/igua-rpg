@@ -5,7 +5,7 @@ import {container} from "../utils/pixi/container";
 import {sleep} from "../cutscene/sleep";
 import {wait} from "../cutscene/wait";
 
-type WaveArgs = {
+export type WaveArgs = {
     life: number;
     damage: number;
     w1: number;
