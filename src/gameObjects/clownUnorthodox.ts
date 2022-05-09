@@ -472,7 +472,8 @@ export function clownUnorthodox() {
     head.withAsync(headAs);
     legs.withAsync(legsAs);
 
-    const aoe = new AoeHitboxes(scene.gameObjectStage, debugAoe);
+    const aoe = new AoeHitboxes();
+    aoe.visible = debugAoe;
 
     const gravity = newGravity(legs, behaviors.legs.speed, [ 0, -6 ], 6);
     legs.withStep(() => {

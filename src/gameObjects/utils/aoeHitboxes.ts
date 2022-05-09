@@ -3,14 +3,15 @@ import {Container, Graphics} from "pixi.js";
 import {container} from "../../utils/pixi/container";
 import {merge} from "../../utils/object/merge";
 import {player} from "../player";
+import {Undefined} from "../../utils/types/undefined";
 
 export class AoeHitboxes {
     private readonly _container: Container;
-    damageCount = 0;
+    visible = false;
+    onDamage = Undefined<() => void>();
 
-    constructor(stage = scene.gameObjectStage, visible = false) {
-        this._container = container().show(stage);
-        this._container.visible = visible;
+    constructor(stage = scene.gameObjectStage) {
+        this._container = container().show(stage).hide().withStep(() => this._container.visible = this.visible);
     }
 
     new(w: number, h: number, life: number, damage?: number, color = 0xff0000) {
@@ -23,7 +24,7 @@ export class AoeHitboxes {
                 if (life-- <= 0)
                     g.destroy();
                 else if (g.damage && player.collides(g)) {
-                    this.damageCount++;
+                    this.onDamage && this.onDamage();
                     player.damage(g.damage);
                 }
             })
