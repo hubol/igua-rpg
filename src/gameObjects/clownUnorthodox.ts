@@ -135,18 +135,6 @@ export function clownUnorthodox() {
         await jumpCharge(down, wait, up);
     }
 
-    async function stompFoot(control: { y: number, i: number }) {
-        const dx = control === controls.legs.r ? 1 : -1;
-        await lerp(control, 'y').to(-8).over(200 + rng.int(200));
-        const s = sparkle().at([dx * 24, -24].add(legs)).show();
-        control.i = 2;
-        await wait(() => s.destroyed);
-        control.i = 0;
-        await lerp(control, 'y').to(0).over(67);
-        wave({ ...consts.waves.stomp, dx }).at(legs).show().add(dx * 4);
-        await sleep(250);
-    }
-
     const moves = {
         async quickPounce() {
             const x = await jumpCharge(400);
@@ -196,43 +184,54 @@ export function clownUnorthodox() {
             await lerp(controls.legs, 'height').to(consts.legh).over(200);
             behaviors.legs.gravity = consts.gravity;
         },
-        async stompL() {
-            await stompFoot(controls.legs.l);
-        },
-        async stompR() {
-            await stompFoot(controls.legs.r);
+        async stomp(control: { y: number, i: number }) {
+            const dx = control === controls.legs.r ? 1 : -1;
+            await lerp(control, 'y').to(-8).over(200 + rng.int(200));
+            const s = sparkle().at([dx * 24, -24].add(legs)).show();
+            control.i = 2;
+            await wait(() => s.destroyed);
+            control.i = 0;
+            await lerp(control, 'y').to(0).over(67);
+            wave({ ...consts.waves.stomp, dx }).at(legs).show().add(dx * 4);
+            await sleep(250);
         }
     };
 
-    /*
-    for (let i = 0; i < 2; i++) {
-                const leg = x[i];
-                leg.i = 1;
-                await lerp(leg, 'y').to(-12).over(400);
-                leg.i = 0;
-                await sleep(100);
-                leg.i = 2;
-                await lerp(leg, 'y').to(0).over(200);
-                leg.i = 0;
-                await sleep(100);
-            }
-     */
+    function doMove<T>(fn: T) {
+        for (const x of Object.values(moves) as any[]) {
+            if (x !== fn)
+                x.count = 0;
+        }
+        // @ts-ignore
+        fn.count++;
+        return fn;
+    }
+
+    function count(fn: (...args: any[]) => unknown): number {
+        // @ts-ignore
+        return fn.count ? fn.count : 0;
+    }
+
+    async function doStompInPlayerDirection() {
+        if (player.x > head.x)
+            await doMove(moves.stomp)(controls.legs.r);
+        else
+            await doMove(moves.stomp)(controls.legs.l);
+    }
 
     async function legsAs() {
         await wait(() => behaviors.legs.speed.y > 0);
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
         while (true) {
-            if (distance(player, [0, -130].add(head)) < 100 && rng() > 0.25)
-                await moves.quickPounce();
-            else if (player.y > head.y - 40 && rng() > 0.33) {
-                if (player.x > head.x)
-                    await moves.stompR();
-                else
-                    await moves.stompL();
-            }
+            if (distance(player, [0, -130].add(head)) < 100 && rng() > 0.25 && count(moves.quickPounce) < 1)
+                await doMove(moves.quickPounce)();
+            else if (player.y > head.y - 40 && rng() > 0.33 && count(moves.stomp) < 2)
+                await doStompInPlayerDirection();
+            else if (count(moves.slam) < 2)
+                await doMove(moves.slam)();
             else
-                await moves.slam();
+                await doStompInPlayerDirection();
         }
     }
 
