@@ -14,14 +14,14 @@ export class AoeHitboxes {
         this._container = container().show(stage).hide().withStep(() => this._container.visible = this.visible);
     }
 
-    new(w: number, h: number, life: number, damage?: number, color = 0xff0000) {
+    new(w: number, h: number, life?: number, damage?: number) {
         const g = merge(new Graphics(), { w, h, damage });
         return g
             .withStep(() => {
                 g.clear()
-                    .beginFill(color)
+                    .beginFill(0xffffff)
                     .drawRect(0, 0, g.w, g.h);
-                if (life-- <= 0)
+                if (life !== undefined && life-- <= 0)
                     g.destroy();
                 else if (g.damage && player.collides(g)) {
                     this.onDamage?.();

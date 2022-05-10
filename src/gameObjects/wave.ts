@@ -56,7 +56,7 @@ function waveSegment(width: number, height: number, life: number, onDamage: () =
             const a = Math.min(1, Math.sin(f * Math.PI) * 1.5);
             g.alpha = Math.round(a * 4) / 4;
 
-            if (g.alpha > 0.1 && g.collides(player) && m.collides(player))
+            if (g.alpha > 0.5 && g.collides(player) && m.collides(player))
                 onDamage();
         })
     g.mask = m.show(g);

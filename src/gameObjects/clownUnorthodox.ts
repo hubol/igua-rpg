@@ -40,7 +40,10 @@ const footTxs = subimageTextures(UnorthodoxClownFoot, 3);
 export function clownUnorthodox() {
     const health = clownHealth(660);
 
-    const debugAoe = false;
+    const debug = {
+        aoe: false,
+        triggers: false
+    }
 
     const consts = {
         headNudgeH: 3,
@@ -59,7 +62,7 @@ export function clownUnorthodox() {
                 return <WaveArgs>{ dx: 1, life: 30, count: 6, damage: consts.damage.slamWave, ms: 33, w1: 10, w2: 10, h1: 32, h2: 64 };
             },
             get stomp() {
-                return <WaveArgs>{ dx: 1, life: 22, count: 10, damage: consts.damage.stompWave, ms: 33, w1: 8, w2: 8, h1: 32, h2: 112 };
+                return <WaveArgs>{ dx: 1, life: 22, count: 10, damage: consts.damage.stompWave, ms: 33, w1: 8, w2: 8, h1: 96, h2: 128 };
             }
         }
     }
@@ -120,6 +123,9 @@ export function clownUnorthodox() {
             speed: vnew(),
         },
         allowNudge: false,
+        get isAggressiveSlam() {
+            return health.unit < 0.5;
+        }
     };
 
     async function jumpCharge(down = 500, wait = 50, up = 100) {
@@ -150,9 +156,12 @@ export function clownUnorthodox() {
             await jumpRecover();
         },
         async slam() {
+            const aggressive = behaviors.isAggressiveSlam;
             controls.brows.angry = true;
             const x = await jumpCharge(700, 200, 50);
             behaviors.legs.approachPlayerHsp = Math.sign(player.x - legs.x);
+            if (aggressive)
+                behaviors.legs.approachPlayerHsp *= 2;
             behaviors.legs.speed.y = -8;
             x.forEach(x => x.i = 1);
             await wait(() => behaviors.legs.speed.y > 0);
@@ -161,7 +170,14 @@ export function clownUnorthodox() {
             behaviors.legs.gravity = 0;
             behaviors.legs.speed.y = 0;
 
-            await sleep(1_000);
+            if (aggressive)
+                await Promise.race([
+                    sleep(500),
+                    wait(() => Math.abs(player.x - legs.x) < 10 || Math.sign(player.x - legs.x) !== Math.sign(behaviors.legs.approachPlayerHsp!))
+                        .then(() => sleep(150))
+                ]);
+            else
+                await sleep(1_000);
 
             behaviors.legs.approachPlayerHsp = undefined;
 
@@ -170,7 +186,7 @@ export function clownUnorthodox() {
             legs.y -= 11;
 
             await wait(() => behaviors.legs.speed.y > 0);
-            const splitsBox = aoe.new(68, 12, 10000, consts.damage.slamAerial, 0x00ff00)
+            const splitsBox = aoe.new(68, 12, 10000, consts.damage.slamAerial).tinted(0x00ff00)
                 .withStep(() => splitsBox.at(legs).add(-34, -10));
             wait(() => behaviors.legs.speed.y > 8).then(() => splitsBox.damage = consts.damage.slamGround);
             await wait(() => behaviors.legs.speed.y === 0);
@@ -224,32 +240,28 @@ export function clownUnorthodox() {
             await doMove(moves.stomp)(controls.legs.l);
     }
 
-    async function doRandomMove() {
-        let r = rng();
-        while (true) {
-            if (r < 0.33 && !count(moves.stomp) && player.vspeed >= 0)
-                return await doStompInPlayerDirection();
-            else if (r < 0.66 && !count(moves.slam))
-                return await doMove(moves.slam)();
-            else if (!count(moves.quickPounce))
-                return await doMove(moves.quickPounce)();
-            r = (r + 0.34) % 1;
-        }
-    }
-
     async function legsAs() {
+        let idle = 0;
         await wait(() => behaviors.legs.speed.y > 0);
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
         while (true) {
-            if (distance(player, [0, -130].add(head)) < 100 && rng() > 0.25 && count(moves.quickPounce) < 1)
-                await doMove(moves.quickPounce)();
-            else if ((player.y > head.y - 30 || player.vspeed > 1) && rng() > 0.33 && count(moves.stomp) < 2)
+            if (player.collides(triggers.pounce) && count(moves.quickPounce) < 1 && count(moves.slam) < 1) {
+                if (rng() > 0.3)
+                    await doMove(moves.quickPounce)();
+                else
+                    await doMove(moves.slam());
+            }
+            else if (player.collides(triggers.stomp) && count(moves.stomp) < 2)
                 await doStompInPlayerDirection();
-            else if (count(moves.slam) < 2 && rng() > 0.2)
+            else if (count(moves.slam) < 2 || idle > 120) {
+                idle = 0;
                 await doMove(moves.slam)();
-            else
-                await doRandomMove();
+            }
+            else {
+                idle++;
+                await sleep(1);
+            }
         }
     }
 
@@ -532,7 +544,7 @@ export function clownUnorthodox() {
     legs.withAsync(legsAs);
 
     const aoe = new AoeHitboxes();
-    aoe.visible = debugAoe;
+    aoe.visible = debug.aoe;
 
     const gravity = newGravity(legs, behaviors.legs.speed, [ 0, -6 ], 6);
     legs.withStep(() => {
@@ -549,6 +561,16 @@ export function clownUnorthodox() {
                 player.y += behaviors.legs.speed.y;
         }
     });
+
+    const tc = new AoeHitboxes(legs);
+    tc.visible = debug.triggers;
+    const triggers = {
+        stomp: [
+            tc.new(180, 70).at(-90, -30).tinted(0xff0000),
+            tc.new(50, 80).at(50, -80).tinted(0xff0000),
+            tc.new(50, 80).at(50 - 150, -80).tinted(0xff0000)],
+        pounce: tc.new(96, 180).at(-48, -210).tinted(0x00ff00)
+    }
 
     return head;
 }
