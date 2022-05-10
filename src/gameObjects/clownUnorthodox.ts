@@ -51,11 +51,11 @@ export function clownUnorthodox() {
         legh: 8,
         gravity: 0.5,
         damage: {
-            slamAerial: 25,
-            slamGround: 45,
-            slamWave: 30,
-            pounceGround: 30,
-            stompWave: 25
+            slamAerial: 30,
+            slamGround: 50,
+            slamWave: 35,
+            pounceGround: 35,
+            stompWave: 30
         },
         waves: {
             get slam() {
@@ -566,10 +566,10 @@ export function clownUnorthodox() {
     tc.visible = debug.triggers;
     const triggers = {
         stomp: [
-            tc.new(180, 70).at(-90, -30).tinted(0xff0000),
+            tc.new(180, 70).at(-90, -30 + 15).tinted(0xff0000),
             tc.new(50, 80).at(50, -80).tinted(0xff0000),
             tc.new(50, 80).at(50 - 150, -80).tinted(0xff0000)],
-        pounce: tc.new(96, 180).at(-48, -210).tinted(0x00ff00)
+        pounce: tc.new(96, 180).at(-48, -210 + 5).tinted(0x00ff00)
     }
 
     return head;

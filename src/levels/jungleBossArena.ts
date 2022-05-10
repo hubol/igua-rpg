@@ -25,7 +25,7 @@ export function JungleBossArena() {
     const doors = [level.RightBossWall, level.LeftBossWall].map(x => slidingDoor(x, false).openInstantly());
 
     for (let x = 256; x < 512; x += 16)
-        spike(33).at(x, 64).show();
+        spike(35).at(x, 64).show();
 
     if (!progress.flags.jungle.defeatedUnorthodoxAngel) {
         const h = clownUnorthodox().at(256 + 32, 128).show();
