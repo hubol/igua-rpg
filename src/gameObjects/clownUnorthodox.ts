@@ -123,13 +123,19 @@ export function clownUnorthodox() {
             speed: vnew(),
         },
         allowNudge: false,
-        get isAggressiveSlam() {
+        get isAggressive() {
             return health.unit < 0.5;
         }
     };
 
     async function jumpCharge(down = 500, wait = 50, up = 100) {
         const x = [controls.legs.l, controls.legs.r];
+
+        if (behaviors.isAggressive) {
+            down *= 0.75;
+            wait *= 0.75;
+            up *= 0.75;
+        }
 
         await lerp(controls.legs, 'height').to(0).over(down);
         await sleep(wait);
@@ -156,7 +162,9 @@ export function clownUnorthodox() {
             await jumpRecover();
         },
         async slam() {
-            const aggressive = behaviors.isAggressiveSlam;
+            const aggressive = behaviors.isAggressive;
+            const recovery = aggressive ? 350 : 500;
+
             controls.brows.angry = true;
             const x = await jumpCharge(700, 200, 50);
             behaviors.legs.approachPlayerHsp = Math.sign(player.x - legs.x);
@@ -195,26 +203,30 @@ export function clownUnorthodox() {
             wave(consts.waves.slam).at(legs).show().add(24, 0);
             wave({ ...consts.waves.slam, dx: consts.waves.slam.dx * -1 }).at(legs).show().add(-24, 0);
             controls.brows.angry = false;
-            await sleep(500);
+            await sleep(recovery);
             controls.legs.splits = false;
             x.forEach(x => x.i = 0);
-            await lerp(controls.legs, 'height').to(consts.legh).over(200);
+            await lerp(controls.legs, 'height').to(consts.legh).over(recovery * (2 / 5));
             behaviors.legs.gravity = consts.gravity;
         },
         async stomp(control: { y: number, i: number }) {
+            const up = behaviors.isAggressive ? 100 : 200;
+            const down = behaviors.isAggressive ? 67 : 30;
+            const delay = behaviors.isAggressive ? 125 : 250;
+
             const dx = control === controls.legs.r ? 1 : -1;
-            const fu = lerp(controls.face, 'y').to(-2).over(200);
-            await lerp(control, 'y').to(-8).over(200 + rng.int(200));
+            const fu = lerp(controls.face, 'y').to(-2).over(up);
+            await lerp(control, 'y').to(-8).over(up + rng.int(up));
             const s = sparkle().at([dx * 24, -20].add(legs)).show();
             control.i = 2;
             await wait(() => s.destroyed);
             control.i = 0;
             await fu;
-            const fd = lerp(controls.face, 'y').to(0).over(67);
-            await lerp(control, 'y').to(0).over(67);
+            const fd = lerp(controls.face, 'y').to(0).over(down);
+            await lerp(control, 'y').to(0).over(down);
             wave({ ...consts.waves.stomp, dx }).at(legs).show().add(dx * 4);
             await fd;
-            await sleep(250);
+            await sleep(delay);
         }
     };
 
