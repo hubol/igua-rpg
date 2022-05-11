@@ -75,7 +75,7 @@ export function clownUnorthodox() {
 
     const controls = {
         head: {
-            attachOffset: vnew()
+            attachOffset: vnew(),
         },
         face: {
             unit: -1,
@@ -90,6 +90,7 @@ export function clownUnorthodox() {
             left: vnew(),
             right: vnew(),
             forceCenter: false,
+            dizzy: false,
         },
         brows: {
             angry: false
@@ -129,6 +130,9 @@ export function clownUnorthodox() {
         allowNudge: false,
         get isAggressive() {
             return health.unit < 0.5;
+        },
+        get hasSparkMove() {
+            return health.unit < 0.67;
         }
     };
 
@@ -233,14 +237,26 @@ export function clownUnorthodox() {
             await sleep(delay);
         },
         async spark() {
-            const v = [0, -controls.legs.height - 17].add(legs);
-            const a1 = electricArc(v, 3);
-            const a2 = electricArc(v, -3);
+            controls.pupils.dizzy = true;
             const h = health.health;
-            await Promise.race([sleep(2000), wait(() => health.health < h)]);
+            const rise = lerp(controls.head.attachOffset, 'y').to(-12).over(1_500);
+            await sleep(500);
+            const v = [0, -controls.legs.height - 17].add(legs);
+            const a1 = electricArc(v, 1);
+            const a2 = electricArc(v, -1);
+            await rise;
+            await Promise.race([sleep(1250), wait(() => health.health < h)]);
+            controls.pupils.dizzy = false;
             a1.die();
             a2.die();
-            await sleep(1000);
+            await sleep(125);
+            if (health.health < h) {
+                if (player.collides(triggers.stomp))
+                    await doStompInPlayerDirection(false);
+                else
+                    await moves.quickPounce();
+            }
+            await lerp(controls.head.attachOffset, 'y').to(0).over(250);
         }
     };
 
@@ -259,11 +275,18 @@ export function clownUnorthodox() {
         return fn.count ? fn.count : 0;
     }
 
-    async function doStompInPlayerDirection() {
-        if (player.x > head.x)
-            await doMove(moves.stomp)(controls.legs.r);
+    async function doStompInPlayerDirection(move = true) {
+        const leg = player.x > head.x ? controls.legs.r : controls.legs.l;
+        if (move)
+            await doMove(moves.stomp)(leg);
         else
-            await doMove(moves.stomp)(controls.legs.l);
+            await moves.stomp(leg);
+    }
+
+    async function maybeDoSparkOr(move: () => Promise<unknown>) {
+        if (!behaviors.hasSparkMove || count(moves.spark) > 0 || rng.bool)
+            return doMove(move)();
+        await doMove(moves.spark)();
     }
 
     async function legsAs() {
@@ -272,23 +295,24 @@ export function clownUnorthodox() {
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
         while (true) {
-            await doMove(moves.spark)();
-            // if (player.collides(triggers.pounce) && count(moves.quickPounce) < 1 && count(moves.slam) < 1) {
-            //     if (rng() > 0.3)
-            //         await doMove(moves.quickPounce)();
-            //     else
-            //         await doMove(moves.slam());
-            // }
-            // else if (player.collides(triggers.stomp) && count(moves.stomp) < 2)
-            //     await doStompInPlayerDirection();
-            // else if (count(moves.slam) < 2 || idle > 120) {
-            //     idle = 0;
-            //     await doMove(moves.slam)();
-            // }
-            // else {
-            //     idle++;
-            //     await sleep(1);
-            // }
+            if (player.collides(triggers.pounce) && count(moves.quickPounce) < 1 && count(moves.slam) < 1) {
+                if (rng() > 0.3)
+                    await maybeDoSparkOr(moves.quickPounce);
+                else
+                    await doMove(moves.slam());
+            }
+            else if (player.collides(triggers.spark) && count(moves.spark) < 1 && behaviors.hasSparkMove)
+                await doMove(moves.spark)();
+            else if (player.collides(triggers.stomp) && count(moves.stomp) < 2)
+                await doStompInPlayerDirection();
+            else if (count(moves.slam) < 2 || idle > 120) {
+                idle = 0;
+                await maybeDoSparkOr(moves.slam);
+            }
+            else {
+                idle++;
+                await sleep(1);
+            }
         }
     }
 
@@ -296,11 +320,13 @@ export function clownUnorthodox() {
         await wait(() => !behaviors.attached);
     }
 
-    function electricArc(v: Vector, hsp: number, vsp = -6, gravity = 0.4) {
+    function electricArc(v: Vector, hsp: number, vsp = -3, gravity = 0.1) {
+        const ivsp = vsp;
+        hsp *= 1.45;
         v = v.vcpy();
         const w = vnew();
         let isOnGround = false;
-        const p = electricPath(() => player.damage(consts.damage.spark))
+        const p = electricPath(() => player.damage(consts.damage.spark), 2)
             .ahead()
             .withStep(() => {
                 if (p.isDying && (isOnGround || v.y > scene.height))
@@ -310,9 +336,9 @@ export function clownUnorthodox() {
                 const r = push(w.at(v), 8);
 
                 if (r.isOnGround) {
-                    isOnGround = true;
+                    // isOnGround = true;
                     v.y = w.y;
-                    vsp = 0;
+                    vsp = ivsp;
                 }
                 else
                     vsp += gravity;
@@ -491,6 +517,12 @@ export function clownUnorthodox() {
                 controls.pupils.right.at(controls.pupils.left);
             }
 
+            if (controls.pupils.dizzy) {
+                const x = now.s * Math.PI * 4;
+                controls.pupils.left.at(Math.sin(x) * 4, Math.cos(x) * 4);
+                controls.pupils.right.at(controls.pupils.left);
+            }
+
             if (controls.pupils.forceCenter) {
                 controls.pupils.left.at(0, 0);
                 controls.pupils.right.at(controls.pupils.left);
@@ -607,7 +639,7 @@ export function clownUnorthodox() {
                 legs.x += behaviors.legs.approachPlayerHsp;
         }
         if (behaviors.attached) {
-            moveTowards(controls.head.attachOffset, behaviors.headDetach, 0.5);
+            // moveTowards(controls.head.attachOffset, behaviors.headDetach, 0.5);
             head.at(legs).add(0, -controls.legs.height).add(controls.head.attachOffset);
             if (head.hit.collides(player) && behaviors.legs.speed.y < 0)
                 player.y += behaviors.legs.speed.y;
@@ -621,7 +653,12 @@ export function clownUnorthodox() {
             tc.new(180, 70).at(-90, -30 + 15).tinted(0xff0000),
             tc.new(50, 80).at(50, -80).tinted(0xff0000),
             tc.new(50, 80).at(50 - 150, -80).tinted(0xff0000)],
-        pounce: tc.new(96, 180).at(-48, -210 + 5).tinted(0x00ff00)
+        spark: [
+            tc.new(100, 70).at(90, -50).tinted(0x0000ff),
+            tc.new(100, 70).at(-90 -100, -50).tinted(0x0000ff),
+            tc.new(80, 60).at(60, -100).tinted(0x0000ff),
+            tc.new(80, 60).at(-60 - 80, -100).tinted(0x0000ff)],
+        pounce: tc.new(96, 180).at(-48, -210 + 5).tinted(0x00ff00),
     }
 
     return head;

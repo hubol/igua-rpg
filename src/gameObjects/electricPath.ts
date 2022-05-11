@@ -10,7 +10,7 @@ const rh = r / 2;
 const w1 = vnew();
 const w2 = vnew();
 
-export function electricPath(onPlayerCollides: () => void) {
+export function electricPath(onPlayerCollides: () => void, dieRate = 1) {
     function mask() {
         return new Graphics()
             .beginFill(0xff0000)
@@ -48,9 +48,11 @@ export function electricPath(onPlayerCollides: () => void) {
     })
         .withStep(() => {
             if (_isDying) {
-                if (masks.children.length <= 0)
-                    return c.destroy();
-                masks.children[0].destroy();
+                for (let i = 0; i < dieRate; i++) {
+                    if (masks.children.length <= 0)
+                        return c.destroy();
+                    masks.children[0].destroy();
+                }
             }
             if (player.collides(masks.children))
                 onPlayerCollides();
