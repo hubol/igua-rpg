@@ -30,6 +30,9 @@ import {Undefined} from "../utils/types/undefined";
 import {AoeHitboxes} from "./utils/aoeHitboxes";
 import {wave, WaveArgs} from "./wave";
 import {animatedSprite} from "../igua/animatedSprite";
+import {electricPath} from "./electricPath";
+import {push} from "./walls";
+import {scene} from "../igua/scene";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -55,7 +58,8 @@ export function clownUnorthodox() {
             slamGround: 50,
             slamWave: 35,
             pounceGround: 35,
-            stompWave: 30
+            stompWave: 30,
+            spark: 30
         },
         waves: {
             get slam() {
@@ -227,6 +231,16 @@ export function clownUnorthodox() {
             wave({ ...consts.waves.stomp, dx }).at(legs).show().add(dx * 4);
             await fd;
             await sleep(delay);
+        },
+        async spark() {
+            const v = [0, -controls.legs.height - 17].add(legs);
+            const a1 = electricArc(v, 3);
+            const a2 = electricArc(v, -3);
+            const h = health.health;
+            await Promise.race([sleep(2000), wait(() => health.health < h)]);
+            a1.die();
+            a2.die();
+            await sleep(1000);
         }
     };
 
@@ -258,27 +272,53 @@ export function clownUnorthodox() {
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
         while (true) {
-            if (player.collides(triggers.pounce) && count(moves.quickPounce) < 1 && count(moves.slam) < 1) {
-                if (rng() > 0.3)
-                    await doMove(moves.quickPounce)();
-                else
-                    await doMove(moves.slam());
-            }
-            else if (player.collides(triggers.stomp) && count(moves.stomp) < 2)
-                await doStompInPlayerDirection();
-            else if (count(moves.slam) < 2 || idle > 120) {
-                idle = 0;
-                await doMove(moves.slam)();
-            }
-            else {
-                idle++;
-                await sleep(1);
-            }
+            await doMove(moves.spark)();
+            // if (player.collides(triggers.pounce) && count(moves.quickPounce) < 1 && count(moves.slam) < 1) {
+            //     if (rng() > 0.3)
+            //         await doMove(moves.quickPounce)();
+            //     else
+            //         await doMove(moves.slam());
+            // }
+            // else if (player.collides(triggers.stomp) && count(moves.stomp) < 2)
+            //     await doStompInPlayerDirection();
+            // else if (count(moves.slam) < 2 || idle > 120) {
+            //     idle = 0;
+            //     await doMove(moves.slam)();
+            // }
+            // else {
+            //     idle++;
+            //     await sleep(1);
+            // }
         }
     }
 
     async function headAs() {
         await wait(() => !behaviors.attached);
+    }
+
+    function electricArc(v: Vector, hsp: number, vsp = -6, gravity = 0.4) {
+        v = v.vcpy();
+        const w = vnew();
+        let isOnGround = false;
+        const p = electricPath(() => player.damage(consts.damage.spark))
+            .ahead()
+            .withStep(() => {
+                if (p.isDying && (isOnGround || v.y > scene.height))
+                    return;
+                p.to(v);
+                v.add(hsp, vsp);
+                const r = push(w.at(v), 8);
+
+                if (r.isOnGround) {
+                    isOnGround = true;
+                    v.y = w.y;
+                    vsp = 0;
+                }
+                else
+                    vsp += gravity;
+            })
+
+        return p;
     }
 
     function hair() {
