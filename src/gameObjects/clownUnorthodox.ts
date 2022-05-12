@@ -9,7 +9,7 @@ import {
     UnorthodoxClownHead,
     UnorthodoxClownJoint,
     UnorthodoxClownLegsSplit,
-    UnorthodoxClownMouth, UnorthodoxClownSparkle
+    UnorthodoxClownMouth, UnorthodoxClownSpark, UnorthodoxClownSparkle
 } from "../textures";
 import {Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
@@ -17,7 +17,7 @@ import {merge} from "../utils/object/merge";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 import {approachLinear, lerp as nlerp} from "../utils/math/number";
-import {distance, moveTowards, Vector, vnew} from "../utils/math/vector";
+import {moveTowards, Vector, vnew} from "../utils/math/vector";
 import {player} from "./player";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {clownHealth} from "./utils/clownUtils";
@@ -39,6 +39,7 @@ const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
 const eyeTxs = subimageTextures(UnorthodoxClownEye, 3);
 const splitTxs = subimageTextures(UnorthodoxClownLegsSplit, 2);
 const footTxs = subimageTextures(UnorthodoxClownFoot, 3);
+const sparkTxs = subimageTextures(UnorthodoxClownSpark, 3);
 
 export function clownUnorthodox() {
     const health = clownHealth(660);
@@ -238,10 +239,11 @@ export function clownUnorthodox() {
         },
         async spark() {
             controls.pupils.dizzy = true;
+            const v = [0, -controls.legs.height - 17].add(legs);
             const h = health.health;
             const rise = lerp(controls.head.attachOffset, 'y').to(-12).over(1_500);
+            spark().at(v).ahead();
             await sleep(500);
-            const v = [0, -controls.legs.height - 17].add(legs);
             const a1 = electricArc(v, 1);
             const a2 = electricArc(v, -1);
             await rise;
@@ -670,3 +672,12 @@ function sparkle() {
     return animatedSprite(sparkleTxs, 0.3, true).centerAnchor();
 }
 
+function spark() {
+    const s = animatedSprite(sparkTxs, 0.3)
+        .centerAnchor()
+        .withAsync(async () => {
+            await sleep(500);
+            s.destroy();
+        })
+    return s;
+}

@@ -15,8 +15,8 @@ import {container} from "../utils/pixi/container";
 import {lerp} from "../cutscene/lerp";
 
 export function JungleBossArena() {
-    scene.backgroundColor = 0x60B0E0;
-    scene.terrainColor = 0x40A020;
+    scene.backgroundColor = 0x78917D;
+    scene.terrainColor = 0x912235;
 
     progress.flags.jungle.usedBlessing = true;
 
