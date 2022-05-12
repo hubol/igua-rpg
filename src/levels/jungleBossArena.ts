@@ -2,17 +2,15 @@ import {scene} from "../igua/scene";
 import {JungleBossArenaArgs} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {progress} from "../igua/data/progress";
-import {fishingPole} from "../gameObjects/fishingPole";
-import {Sprite} from "pixi.js";
-import {UnorthodoxClownMock} from "../textures";
 import {clownUnorthodox} from "../gameObjects/clownUnorthodox";
 import {spike} from "../gameObjects/spike";
-import {wave} from "../gameObjects/wave";
 import {slidingDoor} from "../gameObjects/slidingDoor";
 import {player} from "../gameObjects/player";
 import {wait} from "../cutscene/wait";
 import {container} from "../utils/pixi/container";
 import {lerp} from "../cutscene/lerp";
+import {sleep} from "../cutscene/sleep";
+import {moveCameraToPlayerTarget} from "../igua/camera";
 
 export function JungleBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -24,10 +22,10 @@ export function JungleBossArena() {
 
     const doors = [level.RightBossWall, level.LeftBossWall].map(x => slidingDoor(x, false).openInstantly());
 
-    for (let x = 256; x < 512; x += 16)
-        spike(35).at(x, 64).show();
-
     if (!progress.flags.jungle.defeatedUnorthodoxAngel) {
+        for (let x = 256; x < 512; x += 16)
+            spike(35).at(x, 64).show();
+
         const h = clownUnorthodox().at(256 + 32, 128).show();
         scene.gameObjectStage.withAsync(async () => {
             await wait(() => player.x < 500);
@@ -43,8 +41,17 @@ export function JungleBossArena() {
             await lerp(scene.camera, 'x').to(256).over(750);
             await wait(() => h.destroyed);
             limit.destroy();
+            scene.gameObjectStage.withAsync(async () => {
+                for (const s of spike.instances) {
+                    s.withStep(() => s.y -= 1);
+                    await sleep(67);
+                }
+            })
+            await sleep(125);
+            doors.forEach(x => x.startOpening(1));
+            // progress.flags.jungle.defeatedUnorthodoxAngel = true;
+            await moveCameraToPlayerTarget(2);
             scene.camera.followPlayer = true;
-            progress.flags.jungle.defeatedUnorthodoxAngel = true;
         })
     }
 

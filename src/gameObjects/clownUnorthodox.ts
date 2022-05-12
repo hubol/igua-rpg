@@ -22,7 +22,7 @@ import {player} from "./player";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {clownHealth} from "./utils/clownUtils";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
-import {ClownHurt} from "../sounds";
+import {ClownExplode, ClownHurt} from "../sounds";
 import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {newGravity} from "./utils/newGravity";
@@ -33,6 +33,7 @@ import {animatedSprite} from "../igua/animatedSprite";
 import {electricPath} from "./electricPath";
 import {push} from "./walls";
 import {scene} from "../igua/scene";
+import {confetti} from "./confetti";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -209,8 +210,8 @@ export function clownUnorthodox() {
             await wait(() => behaviors.legs.speed.y === 0);
             splitsBox.destroy();
             aoe.new(68, 12, 30, consts.damage.slamGround).at(legs).add(-34, -10);
-            wave(consts.waves.slam).at(legs).show().add(24, 0);
-            wave({ ...consts.waves.slam, dx: consts.waves.slam.dx * -1 }).at(legs).show().add(-24, 0);
+            wave(consts.waves.slam).at(legs).show(projectiles).add(24, 0);
+            wave({ ...consts.waves.slam, dx: consts.waves.slam.dx * -1 }).at(legs).show(projectiles).add(-24, 0);
             controls.brows.angry = false;
             await sleep(recovery);
             controls.legs.splits = false;
@@ -233,7 +234,7 @@ export function clownUnorthodox() {
             await fu;
             const fd = lerp(controls.face, 'y').to(0).over(down);
             await lerp(control, 'y').to(0).over(down);
-            wave({ ...consts.waves.stomp, dx }).at(legs).show().add(dx * 4);
+            wave({ ...consts.waves.stomp, dx }).at(legs).show(projectiles).add(dx * 4);
             await fd;
             await sleep(delay);
         },
@@ -297,8 +298,8 @@ export function clownUnorthodox() {
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
         while (true) {
-            if (player.collides(triggers.pounce) && count(moves.quickPounce) < 1 && count(moves.slam) < 1) {
-                if (rng() > 0.3)
+            if (player.collides(triggers.pounce) && count(moves.quickPounce) < 1) {
+                if (count(moves.slam) >= 1 || rng() > 0.3)
                     await maybeDoSparkOr(moves.quickPounce);
                 else
                     await doMove(moves.slam());
@@ -329,7 +330,7 @@ export function clownUnorthodox() {
         const w = vnew();
         let isOnGround = false;
         const p = electricPath(() => player.damage(consts.damage.spark), 2)
-            .ahead()
+            .show(projectiles)
             .withStep(() => {
                 if (p.isDying && (isOnGround || v.y > scene.height))
                     return;
@@ -583,7 +584,11 @@ export function clownUnorthodox() {
                 else if (b.y < 0)
                     behaviors.headDetach.y += consts.headNudgeV;
             }
-            health.damage();
+            if (health.damage()) {
+                confetti(32, 64).at(head).ahead().add(0, - 20);
+                head.destroy();
+                ClownExplode.play();
+            }
             invulerable = 15;
         }
     })
@@ -620,10 +625,17 @@ export function clownUnorthodox() {
         })
 
     const legs = newLegs();
+    const projectiles = container();
 
     head.once('added', () => {
         legs.at(head).add(40, 52);
         head.parent.addChildAt(legs, 0);
+        head.parent.addChild(projectiles);
+    });
+
+    head.once('removed', () => {
+        legs.destroy();
+        projectiles.destroy();
     });
 
     head.withAsync(headAs);
