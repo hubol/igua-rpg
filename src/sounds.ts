@@ -366,3 +366,63 @@ export const TransitionSlide = new Howl({
     src: [require("./sound/transition slide.ogg"), require("./sound/transition slide.mp3")],
     
 });
+
+export const UnorthodoxCharge = new Howl({
+    src: [require("./sound/unorthodox charge.ogg"), require("./sound/unorthodox charge.mp3")],
+    
+});
+
+export const UnorthodoxJump = new Howl({
+    src: [require("./sound/unorthodox jump.ogg"), require("./sound/unorthodox jump.mp3")],
+    
+});
+
+export const UnorthodoxLand = new Howl({
+    src: [require("./sound/unorthodox land.ogg"), require("./sound/unorthodox land.mp3")],
+    
+});
+
+export const UnorthodoxLiftFoot = new Howl({
+    src: [require("./sound/unorthodox lift foot.ogg"), require("./sound/unorthodox lift foot.mp3")],
+    
+});
+
+export const UnorthodoxSparkBegin = new Howl({
+    src: [require("./sound/unorthodox spark begin.ogg"), require("./sound/unorthodox spark begin.mp3")],
+    
+});
+
+export const UnorthodoxSparkBounce = new Howl({
+    src: [require("./sound/unorthodox spark bounce.ogg"), require("./sound/unorthodox spark bounce.mp3")],
+    
+});
+
+export const UnorthodoxStomp = new Howl({
+    src: [require("./sound/unorthodox stomp.ogg"), require("./sound/unorthodox stomp.mp3")],
+    
+});
+
+export const UnorthodoxTell = new Howl({
+    src: [require("./sound/unorthodox tell.ogg"), require("./sound/unorthodox tell.mp3")],
+    
+});
+
+export const UnorthodoxUncharge = new Howl({
+    src: [require("./sound/unorthodox uncharge.ogg"), require("./sound/unorthodox uncharge.mp3")],
+    
+});
+
+export const UnorthodoxUnjump = new Howl({
+    src: [require("./sound/unorthodox unjump.ogg"), require("./sound/unorthodox unjump.mp3")],
+    
+});
+
+export const UnorthodoxUnscrew = new Howl({
+    src: [require("./sound/unorthodox unscrew.ogg"), require("./sound/unorthodox unscrew.mp3")],
+    
+});
+
+export const UnorthodoxWave = new Howl({
+    src: [require("./sound/unorthodox wave.ogg"), require("./sound/unorthodox wave.mp3")],
+    
+});

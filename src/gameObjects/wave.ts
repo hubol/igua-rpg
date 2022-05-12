@@ -4,6 +4,7 @@ import {player} from "./player";
 import {container} from "../utils/pixi/container";
 import {sleep} from "../cutscene/sleep";
 import {wait} from "../cutscene/wait";
+import {UnorthodoxWave} from "../sounds";
 
 export type WaveArgs = {
     life: number;
@@ -44,6 +45,7 @@ export function wave(args: WaveArgs, onDamage?: () => void) {
 }
 
 function waveSegment(width: number, height: number, life: number, onDamage: () => void) {
+    UnorthodoxWave.play();
     const ilife = life;
     const m = new Graphics().beginFill(0).drawRect(-width / 2, -height, width, height);
     const g = new Graphics()

@@ -22,7 +22,21 @@ import {player} from "./player";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {clownHealth} from "./utils/clownUtils";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
-import {ClownExplode, ClownHurt} from "../sounds";
+import {
+    ClownExplode,
+    ClownHurt,
+    UnorthodoxCharge,
+    UnorthodoxJump,
+    UnorthodoxLand,
+    UnorthodoxLiftFoot,
+    UnorthodoxSparkBegin,
+    UnorthodoxSparkBounce,
+    UnorthodoxStomp,
+    UnorthodoxTell,
+    UnorthodoxUncharge,
+    UnorthodoxUnjump,
+    UnorthodoxUnscrew
+} from "../sounds";
 import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {newGravity} from "./utils/newGravity";
@@ -141,6 +155,21 @@ export function clownUnorthodox() {
         evade: 0
     };
 
+    function playMovementSounds() {
+        let lastSpeedY = behaviors.legs.speed.y;
+
+        return () => {
+            const dy = behaviors.legs.speed.y;
+            if (Math.sign(dy) !== Math.sign(lastSpeedY) && head.aggressive) {
+                if (dy > 0)
+                    UnorthodoxUnjump.play();
+                else if (dy < 0)
+                    UnorthodoxJump.play();
+            }
+            lastSpeedY = dy;
+        };
+    }
+
     async function jumpCharge(down = 500, wait = 50, up = 100) {
         const x = [controls.legs.l, controls.legs.r];
 
@@ -158,11 +187,13 @@ export function clownUnorthodox() {
     }
 
     async function jumpRecover(down = 70, wait = 50, up = 200) {
+        UnorthodoxUncharge.play();
         await jumpCharge(down, wait, up);
     }
 
     const moves = {
         async quickPounce() {
+            UnorthodoxCharge.play();
             const x = await jumpCharge(400);
 
             behaviors.legs.speed.y = -8;
@@ -170,6 +201,7 @@ export function clownUnorthodox() {
             await wait(() => behaviors.legs.speed.y > 0);
             x.forEach(x => x.i = 2);
             await wait(() => behaviors.legs.speed.y === 0);
+            UnorthodoxLand.play();
             x.forEach(x => x.i = 0);
             aoe.new(32, 12, 20, consts.damage.pounceGround).at(legs).add(-16, -10);
             await jumpRecover();
@@ -179,6 +211,7 @@ export function clownUnorthodox() {
             const recovery = aggressive ? 350 : 500;
 
             controls.brows.angry = true;
+            UnorthodoxCharge.play();
             const x = await jumpCharge(700, 200, 50);
             behaviors.legs.approachPlayerHsp = Math.sign(player.x - legs.x);
             if (aggressive)
@@ -211,6 +244,7 @@ export function clownUnorthodox() {
                 .withStep(() => splitsBox.at(legs).add(-34, -10));
             wait(() => behaviors.legs.speed.y > 8).then(() => splitsBox.damage = consts.damage.slamGround);
             await wait(() => behaviors.legs.speed.y === 0);
+            UnorthodoxStomp.play();
             splitsBox.destroy();
             aoe.new(68, 12, 30, consts.damage.slamGround).at(legs).add(-34, -10);
             wave(consts.waves.slam).at(legs).show(projectiles).add(24, 0);
@@ -230,6 +264,7 @@ export function clownUnorthodox() {
 
             const dx = control === controls.legs.r ? 1 : -1;
             const fu = lerp(controls.face, 'y').to(-2).over(up);
+            UnorthodoxLiftFoot.play();
             await lerp(control, 'y').to(-8).over(up + rng.int(up));
             const s = sparkle().at([dx * 24, -20].add(legs)).show();
             control.i = 2;
@@ -238,6 +273,7 @@ export function clownUnorthodox() {
             await fu;
             const fd = lerp(controls.face, 'y').to(0).over(down);
             await lerp(control, 'y').to(0).over(down);
+            UnorthodoxStomp.play();
             wave({ ...consts.waves.stomp, dx }).at(legs).show(projectiles).add(dx * 4);
             await fd;
             await sleep(delay);
@@ -246,6 +282,7 @@ export function clownUnorthodox() {
             controls.pupils.dizzy = true;
             const v = [0, -controls.legs.height - 17].add(legs);
             const h = health.health;
+            UnorthodoxUnscrew.play();
             const rise = lerp(controls.head.attachOffset, 'y').to(-12).over(1_500);
             spark().at(v).ahead();
             await sleep(500);
@@ -254,6 +291,7 @@ export function clownUnorthodox() {
             await rise;
             await Promise.race([sleep(1250), wait(() => health.health < h)]);
             controls.pupils.dizzy = false;
+            UnorthodoxSparkBounce.play();
             a1.die();
             a2.die();
             await sleep(125);
@@ -349,6 +387,7 @@ export function clownUnorthodox() {
                     // isOnGround = true;
                     v.y = w.y;
                     vsp = ivsp;
+                    UnorthodoxSparkBounce.play();
                 }
                 else
                     vsp += gravity;
@@ -570,6 +609,8 @@ export function clownUnorthodox() {
     head.pivot.set(40, 63)
     let invulerable = 0;
 
+    head.withStep(playMovementSounds());
+
     head.withStep(() => {
         if (invulerable-- > 0)
             head.visible = !head.visible;
@@ -595,6 +636,7 @@ export function clownUnorthodox() {
             if (health.damage()) {
                 const v = consts.drop().at(head).show().add(0, -20);
                 confetti(32, 64).at(v).ahead();
+                UnorthodoxUnscrew.stop();
                 head.destroy();
                 ClownExplode.play();
             }
@@ -690,10 +732,12 @@ export function clownUnorthodox() {
 const sparkleTxs = subimageTextures(UnorthodoxClownSparkle, 5);
 
 function sparkle() {
+    UnorthodoxTell.play();
     return animatedSprite(sparkleTxs, 0.3, true).centerAnchor();
 }
 
 function spark() {
+    UnorthodoxSparkBegin.play();
     const s = animatedSprite(sparkTxs, 0.3)
         .centerAnchor()
         .withAsync(async () => {
