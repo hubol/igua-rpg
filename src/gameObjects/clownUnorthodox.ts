@@ -34,6 +34,7 @@ import {electricPath} from "./electricPath";
 import {push} from "./walls";
 import {scene} from "../igua/scene";
 import {confetti} from "./confetti";
+import {trove100} from "./valuableTrove";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -70,7 +71,8 @@ export function clownUnorthodox() {
             get stomp() {
                 return <WaveArgs>{ dx: 1, life: 22, count: 10, damage: consts.damage.stompWave, ms: 33, w1: 8, w2: 8, h1: 96, h2: 128 };
             }
-        }
+        },
+        drop: trove100
     }
 
     let _height = consts.legh;
@@ -585,7 +587,8 @@ export function clownUnorthodox() {
                     behaviors.headDetach.y += consts.headNudgeV;
             }
             if (health.damage()) {
-                confetti(32, 64).at(head).ahead().add(0, - 20);
+                const v = consts.drop().at(head).show().add(0, -20);
+                confetti(32, 64).at(v).ahead();
                 head.destroy();
                 ClownExplode.play();
             }

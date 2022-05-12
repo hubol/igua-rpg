@@ -13,6 +13,7 @@ import {sleep} from "../cutscene/sleep";
 import {moveCameraToPlayerTarget} from "../igua/camera";
 import {jukebox} from "../igua/jukebox";
 import {Hemaboss1} from "../musics";
+import {keepSavingValuables} from "../gameObjects/valuableTrove";
 
 export function JungleBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -49,6 +50,7 @@ export function JungleBossArena() {
             })
             await lerp(scene.camera, 'x').to(256).over(750);
             await wait(() => h.destroyed);
+            scene.gameObjectStage.withAsync(keepSavingValuables);
             jukebox.currentSong?.fade(1, 0, 1000);
             limit.destroy();
             scene.gameObjectStage.withAsync(async () => {
@@ -64,13 +66,4 @@ export function JungleBossArena() {
             scene.camera.followPlayer = true;
         })
     }
-
-    // wave({ dx: 1, life: 15, count: 8, damage: 20, ms: 67, w1: 8, w2: 10, h1: 16, h2: 64 }).at(128, 128).show();
-
-    // fishingPole().at(190, 180).show();
-
-    // fishingPole().at(128, 240).show();
-
-    // const m = Sprite.from(UnorthodoxClownMock).at(h).show();
-    // m.alpha = 0.5;
 }

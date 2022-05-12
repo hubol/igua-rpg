@@ -1,4 +1,4 @@
-import { Sprite} from "pixi.js";
+import {Graphics, Sprite} from "pixi.js";
 import {BlueValuable, OrangeValuable} from "../textures";
 import {progress} from "../igua/data/progress";
 import {smallPop} from "./smallPop";
