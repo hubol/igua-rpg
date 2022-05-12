@@ -19,7 +19,7 @@ import {cutscene} from "../cutscene/cutscene";
 import {sparkly} from "../gameObjects/sparkleSmall";
 import {CollectGeneric} from "../sounds";
 import {persistence} from "../igua/data/persistence";
-import {valuable} from "../gameObjects/valuable";
+import {keepSavingValuables} from "../gameObjects/valuableTrove";
 
 export function OversizedAngelArena() {
     scene.backgroundColor = 0x2F4B5E;
@@ -56,8 +56,7 @@ export function OversizedAngelArena() {
 
             progress.checkpointName = 'DefeatedBoss';
             await persistence.save();
-            await wait(() => valuable.instances.length === 0);
-            await persistence.save();
+            scene.gameObjectStage.withAsync(keepSavingValuables);
         });
     }
 

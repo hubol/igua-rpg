@@ -36,8 +36,11 @@ function numberToValuable(n: number) {
 
 export async function keepSavingValuables() {
     while (true) {
-        await wait(() => valuable.instances.length > 0);
-        await wait(() => valuable.instances.length === 0);
+        let amount = valuable.instances.length;
+        await wait(() => {
+            amount = Math.max(valuable.instances.length, amount);
+            return valuable.instances.length < amount;
+        });
         await persistence.save();
     }
 }

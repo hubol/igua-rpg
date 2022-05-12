@@ -14,8 +14,6 @@ import {empBlast} from "./empBlast";
 import {wait} from "../cutscene/wait";
 import {ClownExplode, ClownHurt} from "../sounds";
 import {confetti} from "./confetti";
-import {Vector, vnew} from "../utils/math/vector";
-import {valuable, ValuableType} from "./valuable";
 import {merge} from "../utils/object/merge";
 import {electricBolt} from "./electricBolt";
 import {excitement} from "./excitement";
@@ -24,6 +22,7 @@ import {rng} from "../utils/math/rng";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {clownHealth} from "./utils/clownUtils";
 import {newGravity} from "./utils/newGravity";
+import {trove65} from "./valuableTrove";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture, sleepyFaceTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -225,9 +224,9 @@ function oversizedClownImpl() {
         if (health.isDead) {
             abortElectricBolts();
             ClownExplode.play();
-            const v = c.vcpy().add(33, 25);
-            confetti(32, 64).at(v.vcpy()).ahead();
-            scene.gameObjectStage.withAsync(() => spawnTreasure([0, 36].add(v)));
+            const v = [33, 25].add(c);
+            confetti(32, 64).at(v).ahead();
+            trove65().at([15, 16].add(v)).show();
             c.destroy();
             return;
         }
@@ -268,21 +267,6 @@ function oversizedClownImpl() {
     let electricBoltContainer: Container;
 
     return c;
-}
-
-function dropValuable(t: ValuableType = 'ValuableOrange') {
-    return valuable(0, 0, undefined, t)
-        .delayCollectible()
-        .show();
-}
-
-async function spawnTreasure(v: Vector) {
-    const offsets = [[-10, -24], [10, -24], [0, -7], [-10, 10], [10, 10]];
-    for (let i = 0; i < offsets.length; i++) {
-        const o = offsets[i];
-        dropValuable(i !== 2 ? 'ValuableBlue' : 'ValuableOrange').at(o.add(v));
-        await sleep(67);
-    }
 }
 
 function face(state: { anger: number, excited: number }) {
