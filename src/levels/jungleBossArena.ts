@@ -15,6 +15,7 @@ import {jukebox} from "../igua/jukebox";
 import {Hemaboss1} from "../musics";
 import {keepSavingValuables} from "../gameObjects/valuableTrove";
 import {persistence} from "../igua/data/persistence";
+import {valuable} from "../gameObjects/valuable";
 
 export function JungleBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -56,9 +57,13 @@ export function JungleBossArena() {
             await sleep(1);
             progress.flags.jungle.defeatedUnorthodoxAngel = true;
             await persistence.save();
+            scene.gameObjectStage.withAsync(keepValuableTroveInOkSpot);
             scene.gameObjectStage.withAsync(keepSavingValuables);
             jukebox.currentSong?.fade(1, 0, 1000);
             limit.destroy();
+            scene.gameObjectStage.withAsync(async () => {
+
+            });
             scene.gameObjectStage.withAsync(async () => {
                 for (const s of spike.instances) {
                     s.withStep(() => s.y -= 1);
@@ -71,4 +76,12 @@ export function JungleBossArena() {
             scene.camera.followPlayer = true;
         })
     }
+}
+
+async function keepValuableTroveInOkSpot() {
+    await sleep(250);
+    await wait(() => valuable.instances.length > 0);
+    const container = valuable.instances[0].parent;
+    if (container.y < 140)
+        await lerp(container, 'y').to(140).over(1_000);
 }
