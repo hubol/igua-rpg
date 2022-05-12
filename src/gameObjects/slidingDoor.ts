@@ -1,5 +1,6 @@
 import {DisplayObject} from "pixi.js";
 import {wait} from "../cutscene/wait";
+import {merge} from "../utils/object/merge";
 
 export function slidingDoor(d: DisplayObject, openDown: boolean) {
     const height = d.getBounds().height;
@@ -25,14 +26,14 @@ export function slidingDoor(d: DisplayObject, openDown: boolean) {
         isOpen = d.y === openY;
     });
 
-    return {
+    const dd = merge(d, {
         openInstantly() {
             isOpen = true;
             isClosed = false;
             isOpening = false;
             isClosing = false;
             d.y = openY;
-            return this;
+            return dd;
         },
         startOpening(speed: number) {
             openSpeed = speed;
@@ -52,5 +53,7 @@ export function slidingDoor(d: DisplayObject, openDown: boolean) {
             this.startClosing(speed);
             await wait(() => isClosed);
         }
-    }
+    });
+
+    return dd;
 }

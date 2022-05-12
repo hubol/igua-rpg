@@ -11,10 +11,14 @@ import {container} from "../utils/pixi/container";
 import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
 import {moveCameraToPlayerTarget} from "../igua/camera";
+import {jukebox} from "../igua/jukebox";
+import {Hemaboss1} from "../musics";
 
 export function JungleBossArena() {
     scene.backgroundColor = 0x78917D;
     scene.terrainColor = 0x912235;
+
+    jukebox.stop().warm(Hemaboss1);
 
     progress.flags.jungle.usedBlessing = true;
 
@@ -26,7 +30,12 @@ export function JungleBossArena() {
         for (let x = 256; x < 512; x += 16)
             spike(35).at(x, 64).show();
 
-        const h = clownUnorthodox().at(256 + 32, 128).show();
+        const h = clownUnorthodox().at(256 + 32, 128)
+            .withAsync(async () => {
+                await wait(() => h.aggressive);
+                jukebox.play(Hemaboss1);
+            });
+        h.show();
         scene.gameObjectStage.withAsync(async () => {
             await wait(() => player.x < 500);
             const limit = container()
@@ -40,6 +49,7 @@ export function JungleBossArena() {
             })
             await lerp(scene.camera, 'x').to(256).over(750);
             await wait(() => h.destroyed);
+            jukebox.currentSong?.fade(1, 0, 1000);
             limit.destroy();
             scene.gameObjectStage.withAsync(async () => {
                 for (const s of spike.instances) {
@@ -48,7 +58,7 @@ export function JungleBossArena() {
                 }
             })
             await sleep(125);
-            doors.forEach(x => x.startOpening(1));
+            doors.forEach(x => x.destroy());
             // progress.flags.jungle.defeatedUnorthodoxAngel = true;
             await moveCameraToPlayerTarget(2);
             scene.camera.followPlayer = true;
