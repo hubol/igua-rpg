@@ -312,7 +312,7 @@ export function clownUnorthodox() {
                 await doStompInPlayerDirection();
             else if (count(moves.slam) < 2 || idle > 120) {
                 idle = 0;
-                await maybeDoSparkOr(moves.slam);
+                await doMove(moves.slam)();
             }
             else {
                 idle++;
