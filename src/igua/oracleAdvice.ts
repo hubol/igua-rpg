@@ -22,49 +22,49 @@ export async function oracleAdviceDesert() {
     }
     else {
         if (!desert.unlockedTemple) {
-                await show(`You must go to the temple in the east desert, but alas, it is locked.`);
-                return await show(`There is a mechanism to open the temple in the grassy outskirts of the desert.`);
+            await show(`You must go to the temple in the east desert, but alas, it is locked.`);
+            return await show(`There is a mechanism to open the temple in the grassy outskirts of the desert.`);
+        }
+        else if (desert.bigKey.reward) {
+            await show(`You repaired the big key and received the blessing of earth!`);
+            return await show(`Hurry to the jungle through the west tunnel!`);
+        }
+        else if (desert.unlockedTemple) {
+            if (!oracle.discussedOpeningDesertTemple) {
+                await show(`I see that you have unlocked the desert temple.`);
+                oracle.discussedOpeningDesertTemple = true;
             }
-            else if (desert.bigKey.reward) {
-                await show(`You repaired the big key and received the blessing of earth!`);
-                return await show(`Hurry to the jungle through the west tunnel!`);
+            const allKeys = desert.key.fromTopOfCrateStack && desert.key.fromInn && desert.key.fromDiggingInTown;
+            if (allKeys) {
+                await show(`You need to find the big key pieces by entering the unreal worlds.`);
+                if (!desert.bigKey.piece1) {
+                    await show(`You'll need to navigate a green maze to find one piece.`);
+                    return await show(`If necessary, look up for a firefly who can help you through the maze.`);
+                }
+                if (!desert.bigKey.piece2) {
+                    return await show(`One piece requires you to imitate a shadow.`);
+                }
+                if (!desert.bigKey.piece3) {
+                    await show(`One piece requires you to defeat a snow angel.`);
+                    return await show(`While immune to your claws, it does not appreciate a fiery torch.`);
+                }
             }
-            else if (desert.unlockedTemple) {
-                if (!oracle.discussedOpeningDesertTemple) {
-                    await show(`I see that you have unlocked the desert temple.`);
-                    oracle.discussedOpeningDesertTemple = true;
+            else {
+                await show(`You will need to acquire some keys to continue.`);
+                if (!desert.key.fromInn) {
+                    return await show(`One is in the desert inn.`);
                 }
-                const allKeys = desert.key.fromTopOfCrateStack && desert.key.fromInn && desert.key.fromDiggingInTown;
-                if (allKeys) {
-                    await show(`You need to find the big key pieces by entering the unreal worlds.`);
-                    if (!desert.bigKey.piece1) {
-                        await show(`You'll need to navigate a green maze to find one piece.`);
-                        return await show(`If necessary, look up for a firefly who can help you through the maze.`);
-                    }
-                    if (!desert.bigKey.piece2) {
-                        return await show(`One piece requires you to imitate a shadow.`);
-                    }
-                    if (!desert.bigKey.piece3) {
-                        await show(`One piece requires you to defeat a snow angel.`);
-                        return await show(`While immune to your claws, it does not appreciate a fiery torch.`);
-                    }
+                if (!desert.key.fromTopOfCrateStack) {
+                    await show(`One is above the desert town.`);
+                    return await show(`Assist the laborer iguana to reveal your prize.`);
                 }
-                else {
-                    await show(`You will need to acquire some keys to continue.`);
-                    if (!desert.key.fromInn) {
-                        return await show(`One is in the desert inn.`);
-                    }
-                    if (!desert.key.fromTopOfCrateStack) {
-                        await show(`One is above the desert town.`);
-                        return await show(`Assist the laborer iguana to reveal your prize.`);
-                    }
-                    if (!desert.key.fromDiggingInTown) {
-                        await show(`One is under the desert town.`);
-                        return await show(`You'll need to find someone with a special digging ability to help you.`);
-                    }
+                if (!desert.key.fromDiggingInTown) {
+                    await show(`One is under the desert town.`);
+                    return await show(`You'll need to find someone with a special digging ability to help you.`);
                 }
-                return;
             }
+            return;
+        }
     }
     await show("I don't have any advice right now.");
 }

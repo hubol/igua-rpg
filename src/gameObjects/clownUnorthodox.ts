@@ -137,7 +137,8 @@ export function clownUnorthodox() {
         },
         get hasSparkMove() {
             return health.unit < 0.67;
-        }
+        },
+        evade: 0
     };
 
     async function jumpCharge(down = 500, wait = 50, up = 100) {
@@ -220,6 +221,7 @@ export function clownUnorthodox() {
             x.forEach(x => x.i = 0);
             await lerp(controls.legs, 'height').to(consts.legh).over(recovery * (2 / 5));
             behaviors.legs.gravity = consts.gravity;
+            behaviors.evade = 0;
         },
         async stomp(control: { y: number, i: number }) {
             const up = behaviors.isAggressive ? 100 : 200;
@@ -295,16 +297,19 @@ export function clownUnorthodox() {
     }
 
     async function legsAs() {
+        legs.withStep(() => behaviors.evade++);
         let idle = 0;
         await wait(() => behaviors.legs.speed.y > 0);
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
         while (true) {
-            if (player.collides(triggers.pounce) && count(moves.quickPounce) < 1) {
+            if (behaviors.evade > 15 * 60)
+                await doMove(moves.slam)();
+            else if (player.collides(triggers.pounce) && count(moves.quickPounce) < 1) {
                 if (count(moves.slam) >= 1 || rng() > 0.3)
                     await maybeDoSparkOr(moves.quickPounce);
                 else
-                    await doMove(moves.slam());
+                    await doMove(moves.slam)();
             }
             else if (player.collides(triggers.spark) && count(moves.spark) < 1 && behaviors.hasSparkMove)
                 await doMove(moves.spark)();
@@ -586,6 +591,7 @@ export function clownUnorthodox() {
                 else if (b.y < 0)
                     behaviors.headDetach.y += consts.headNudgeV;
             }
+            behaviors.evade += 180;
             if (health.damage()) {
                 const v = consts.drop().at(head).show().add(0, -20);
                 confetti(32, 64).at(v).ahead();

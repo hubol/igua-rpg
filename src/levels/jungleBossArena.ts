@@ -14,6 +14,7 @@ import {moveCameraToPlayerTarget} from "../igua/camera";
 import {jukebox} from "../igua/jukebox";
 import {Hemaboss1} from "../musics";
 import {keepSavingValuables} from "../gameObjects/valuableTrove";
+import {persistence} from "../igua/data/persistence";
 
 export function JungleBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -50,6 +51,11 @@ export function JungleBossArena() {
             })
             await lerp(scene.camera, 'x').to(256).over(750);
             await wait(() => h.destroyed);
+            player.invulnerableFrameCount += 120;
+            player.withStep(() => player.visible = true);
+            await sleep(1);
+            progress.flags.jungle.defeatedUnorthodoxAngel = true;
+            await persistence.save();
             scene.gameObjectStage.withAsync(keepSavingValuables);
             jukebox.currentSong?.fade(1, 0, 1000);
             limit.destroy();
@@ -61,7 +67,6 @@ export function JungleBossArena() {
             })
             await sleep(125);
             doors.forEach(x => x.destroy());
-            // progress.flags.jungle.defeatedUnorthodoxAngel = true;
             await moveCameraToPlayerTarget(2);
             scene.camera.followPlayer = true;
         })
