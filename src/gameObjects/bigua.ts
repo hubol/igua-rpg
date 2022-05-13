@@ -3,17 +3,26 @@ import {container} from "../utils/pixi/container";
 import {BiguaCrests, BiguaEye, BiguaFace, BiguaFeet, BiguaHorn, BiguaPupils, BiguaTorso} from "../textures";
 import {mapRgb} from "../utils/pixi/mapRgb";
 import {merge} from "../utils/object/merge";
-import {BiguaJungleLooks} from "./npcLooks";
+import {BiguaJungleLooks, BiguaKlarnaLooks, BiguaPrimaryColorLooks} from "./npcLooks";
 import {rng} from "../utils/math/rng";
 import {pcolord} from "../utils/toHexColorString";
 import {flipH, flipV} from "../utils/pixi/flip";
 import {shapeTextures} from "../igua/looks/shapes";
 import {biguaTail} from "../igua/physics/biguaTail";
 import {sleep} from "../cutscene/sleep";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 const crests = shapeTextures(BiguaCrests, 48, [27, 47]);
 const pupils = shapeTextures(BiguaPupils, 20, [19, 16]);
 const horns = shapeTextures(BiguaHorn, 20, [6, 16]);
+
+const looks = [BiguaJungleLooks, BiguaKlarnaLooks, BiguaPrimaryColorLooks];
+
+export const resolveBigua = resolveGameObject('Bigua', e => {
+    const b = bigua(looks[e.style] ?? looks[0]).at(e);
+    b.scale.x = e.flippedX ? -1 : 1;
+    return b;
+});
 
 export function bigua(looks = BiguaJungleLooks) {
     const c = merge(container(), { isDucking: false, duckUnit: 0, blinkControl: true, isClosingEyes: false, baseClosedEyesUnit: 0, torso: {} as DisplayObject, tail: {} as ReturnType<typeof biguaTail> });

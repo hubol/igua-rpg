@@ -468,7 +468,7 @@
           "y": 152,
           "originX": 60,
           "originY": 16,
-          "values": {"levelName": "DesertOutskirts", "checkpointName": "Stump", "name": "Stump", "depth": 0, "faceRight": false}
+          "values": {"levelName": "GiantsTown", "checkpointName": "Stump", "name": "Stump", "depth": 0, "faceRight": false}
         },
         {
           "name": "Block",
