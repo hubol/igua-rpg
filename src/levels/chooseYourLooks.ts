@@ -47,12 +47,14 @@ export function ChooseYourLooksFromMirror() {
 async function getClipboardLooks() {
     try {
         const text = await navigator.clipboard.readText();
+        console.log(text)
         const json = JSON.parse(text);
+        console.log(json);
         if (typeof json === 'object')
             return json as Looks;
     }
     catch (e) {
-
+        console.error(e);
     }
 
     return getDefaultLooks();

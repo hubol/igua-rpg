@@ -28,10 +28,10 @@ export function placementInput(text: string, input: { value: Vector } & Placemen
     const ss = 22;
 
     if (scene.ext.largeCharacterMode) {
-        input.minX = undefined;
-        input.minY = undefined;
-        input.maxX = undefined;
-        input.maxY = undefined;
+        input.minX = -48;
+        input.minY = -48;
+        input.maxX = 48;
+        input.maxY = 48;
     }
 
     const minX = input.minX ?? -24;
