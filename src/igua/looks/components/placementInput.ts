@@ -8,6 +8,7 @@ import {makeKeyRepeat} from "../makeKeyRepeat";
 import {UiPlacementReticle} from "../../../textures";
 import {PlacementInput} from "../looksModel";
 import {LooksPageBack, LooksPageInto} from "../../../sounds";
+import {scene} from "../../scene";
 
 export function placementInput(text: string, input: { value: Vector } & PlacementInput, width = 96, height = 30) {
     const c = merge(new Container(), { selected: false });
@@ -25,6 +26,13 @@ export function placementInput(text: string, input: { value: Vector } & Placemen
     reticle.anchor.set(2/6, 2/6);
 
     const ss = 22;
+
+    if (scene.ext.largeCharacterMode) {
+        input.minX = undefined;
+        input.minY = undefined;
+        input.maxX = undefined;
+        input.maxY = undefined;
+    }
 
     const minX = input.minX ?? -24;
     const minY = input.minY ?? -24;

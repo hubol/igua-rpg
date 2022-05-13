@@ -1,6 +1,6 @@
 import {Container, DisplayObject, filters, Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
-import {BiguaCrests, BiguaEye, BiguaFace, BiguaFeet, BiguaPupils, BiguaTorso} from "../textures";
+import {BiguaCrests, BiguaEye, BiguaFace, BiguaFeet, BiguaHorn, BiguaPupils, BiguaTorso} from "../textures";
 import {mapRgb} from "../utils/pixi/mapRgb";
 import {merge} from "../utils/object/merge";
 import {BiguaJungleLooks} from "./npcLooks";
@@ -13,6 +13,7 @@ import {sleep} from "../cutscene/sleep";
 
 const crests = shapeTextures(BiguaCrests, 48, [27, 47]);
 const pupils = shapeTextures(BiguaPupils, 20, [19, 16]);
+const horns = shapeTextures(BiguaHorn, 20, [6, 16]);
 
 export function bigua(looks = BiguaJungleLooks) {
     const c = merge(container(), { isDucking: false, duckUnit: 0, blinkControl: true, isClosingEyes: false, baseClosedEyesUnit: 0, torso: {} as DisplayObject, tail: {} as ReturnType<typeof biguaTail> });
@@ -59,7 +60,18 @@ export function bigua(looks = BiguaJungleLooks) {
 
         e2.scale.x = -1;
 
-        return container(crest, f, e1, e2);
+        return container(crest, f, e1, e2, horn());
+    }
+
+    function horn() {
+        const s = Sprite.from(horns[looks.head.horn.shape] ?? horns[0])
+            .tinted(looks.head.horn.color)
+            .at([45, 35].add(looks.head.horn.placement));
+
+        if (looks.head.horn.shape < 0)
+            s.hide();
+
+        return s;
     }
 
     function eye(leftEye: Container | null = null) {
