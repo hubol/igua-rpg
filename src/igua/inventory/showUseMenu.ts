@@ -117,7 +117,7 @@ function useImpl() {
 
     const clawLevel = IguaText.Large("", { tint: 0x00ff00 })
         .withStep(() => clawLevel.text = `Claw Level ${progress.level}`)
-        .at(254, 256);
+        .at(255, 256);
     clawLevel.anchor.set(1, 1);
 
     c.addChild(gui(c), clawLevel);
