@@ -765,6 +765,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "SpiritSpawn", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 90,
+          "_eid": "55940370",
+          "x": 992,
+          "y": 24,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromGiants", "faceRight": false, "depth": 0}
         }
       ]
     },

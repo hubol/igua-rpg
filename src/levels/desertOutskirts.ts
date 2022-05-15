@@ -12,7 +12,7 @@ import {ActivateLever, TempleDoorOpen, TransitionSlide} from "../sounds";
 import {ShockwaveFilter} from "pixi-filters";
 import {game} from "../igua/game";
 import {jukebox} from "../igua/jukebox";
-import {DesertTown} from "../musics";
+import {DesertTown, GiantsNimbusMusic} from "../musics";
 import {show} from "../cutscene/dialog";
 import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
@@ -33,7 +33,7 @@ export function DesertOutskirts()
     scene.backgroundColor = 0xF0F0B0;
     scene.terrainColor = 0xE0D060;
 
-    jukebox.play(DesertTown);
+    jukebox.play(DesertTown).warm(GiantsNimbusMusic);
     const level = getDesertOutskirtsLevel();
 
     enrichUnlockTemple(level);

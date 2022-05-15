@@ -1,4 +1,4 @@
-import {Container} from "pixi.js";
+import {Container, Graphics} from "pixi.js";
 import {EscapeTickerAndExecute} from "../utils/asshatTicker";
 import {Gate} from "../sounds";
 import {progress} from "../igua/data/progress";
@@ -20,7 +20,7 @@ export function gate(x, y, width, height, destination: { checkpointName, levelNa
 {
     const bounds = { x, y, width, height };
 
-    const container = new Container();
+    const container = new Graphics().drawRect(0, 0, width, height).at(x, y);
 
     return container.withStep(() => {
         if (areRectanglesOverlapping(player.rectangle, bounds))

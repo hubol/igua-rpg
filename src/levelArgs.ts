@@ -1651,9 +1651,9 @@ Stump: resolveTreeStump({"type":"TreeStump","x":648,"y":152,"flippedX":false,"fl
 // @ts-ignore
 Block_12: resolveBlock({"type":"Block","x":720,"y":0,"width":32,"height":416,"flippedX":false,"flippedY":false,"uid":"55823268_51","name":"","depth":0}),
 // @ts-ignore
-ValuableBlue_2: resolveValuableBlue({"type":"ValuableBlue","x":632,"y":88,"flippedX":false,"flippedY":false,"uid":"55991906_52","name":"","depth":0}),
+ValuableBlue_2: resolveValuableBlue({"type":"ValuableBlue","x":632,"y":72,"flippedX":false,"flippedY":false,"uid":"55991906_52","name":"","depth":0}),
 // @ts-ignore
-ValuableOrange_3: resolveValuableOrange({"type":"ValuableOrange","x":664,"y":88,"flippedX":false,"flippedY":false,"uid":"56004563_53","name":"","depth":0})
+ValuableOrange_3: resolveValuableOrange({"type":"ValuableOrange","x":664,"y":72,"flippedX":false,"flippedY":false,"uid":"56004563_53","name":"","depth":0})
 };
 }
 };
@@ -2841,7 +2841,8 @@ Tumbleweed2: {"type":"Anchor","x":1464,"y":408,"flippedX":false,"flippedY":false
 // @ts-ignore
 Gate_1: resolveGate({"type":"Gate","x":-16,"y":344,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_61","levelName":"OversizedAngelArena","checkpointName":"FromDesert","name":"","depth":0}),
 FromArena: {"type":"Checkpoint","x":56,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_62","name":"FromArena","faceRight":true,"depth":0},
-FromCostumer: {"type":"Checkpoint","x":1240,"y":440,"flippedX":false,"flippedY":false,"uid":"55940370_63","name":"FromCostumer","faceRight":false,"depth":0}
+FromCostumer: {"type":"Checkpoint","x":1240,"y":440,"flippedX":false,"flippedY":false,"uid":"55940370_63","name":"FromCostumer","faceRight":false,"depth":0},
+FromGiants: {"type":"Checkpoint","x":992,"y":32,"flippedX":false,"flippedY":false,"uid":"55940370_64","name":"FromGiants","faceRight":true,"depth":0}
 };
 }
 };
@@ -2851,7 +2852,73 @@ export const GiantsTownArgs = {
 height: 320,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    CloudLong: resolveDecalGameObject({
+    x: 608,
+y: 160,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 336,
+y: 72,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 304,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_3: resolveDecalGameObject({
+    x: 64,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_4: resolveDecalGameObject({
+    x: 131.04306806967375,
+y: 213.73380685317548,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_5: resolveDecalGameObject({
+    x: 702.0103046648869,
+y: 41.85991227164678,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+// @ts-ignore
 Block: resolveBlock({"type":"Block","x":616,"y":80,"width":48,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
 Stump: resolveTreeStump({"type":"TreeStump","x":672,"y":80,"flippedX":false,"flippedY":false,"uid":"77429484_1","levelName":"DesertOutskirts","checkpointName":"Stump","name":"Stump","depth":0,"faceRight":false}),
@@ -2921,7 +2988,11 @@ SlopeLeft_8: resolveSlopeLeft({"type":"SlopeLeft","x":736,"y":96,"width":16,"hei
 // @ts-ignore
 SlopeLeft_9: resolveSlopeLeft({"type":"SlopeLeft","x":720,"y":136,"width":16,"height":8,"flippedX":false,"flippedY":true,"uid":"55845599_41","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_10: resolveSlopeRight({"type":"SlopeRight","x":664,"y":136,"width":16,"height":8,"flippedX":false,"flippedY":true,"uid":"55824435_42","name":"","depth":0})
+SlopeRight_10: resolveSlopeRight({"type":"SlopeRight","x":664,"y":136,"width":16,"height":8,"flippedX":false,"flippedY":true,"uid":"55824435_42","name":"","depth":0}),
+// @ts-ignore
+DesertGate: resolveGate({"type":"Gate","x":656,"y":288,"width":128,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_43","levelName":"DesertTown","checkpointName":"FromGiants","name":"DesertGate","depth":0}),
+// @ts-ignore
+JungleGate: resolveGate({"type":"Gate","x":24,"y":288,"width":128,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_44","levelName":"JungleTown","checkpointName":"FromGiants","name":"JungleGate","depth":0})
 };
 }
 };
@@ -5244,7 +5315,8 @@ JungleTree_11: resolveJungleTree({"type":"JungleTree","x":32,"y":488,"height":36
 SlopeLeft_5: resolveSlopeLeft({"type":"SlopeLeft","x":8,"y":392,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_87","name":"","depth":0}),
 // @ts-ignore
 Block_12: resolveBlock({"type":"Block","x":0,"y":400,"width":16,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_88","name":"","depth":0}),
-SpiritSpawn: {"type":"Anchor","x":1116,"y":328,"flippedX":false,"flippedY":false,"uid":"25979726_89","name":"SpiritSpawn","depth":0}
+SpiritSpawn: {"type":"Anchor","x":1116,"y":328,"flippedX":false,"flippedY":false,"uid":"25979726_89","name":"SpiritSpawn","depth":0},
+FromGiants: {"type":"Checkpoint","x":992,"y":24,"flippedX":false,"flippedY":false,"uid":"55940370_90","name":"FromGiants","faceRight":false,"depth":0}
 };
 }
 };
