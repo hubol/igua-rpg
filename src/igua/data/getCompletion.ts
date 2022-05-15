@@ -16,7 +16,8 @@ export function getCompletion(progress: Progress) {
         n(desert.unlockedTemple) +
         n(desert.defeatedOversizedAngel) + n(costumeMirror.shardCollected) + n(costumeMirror.repaired) +
         n(jk.fromBiguaRepair) + n(jk.fromSpider) + n(jk.fromSickIguana) +
-        n(jbk.piece1) + n(jbk.piece2) + n(jbk.piece3) + n(jbk.reward)) / numbers;
+        n(jbk.piece1) + n(jbk.piece2) + n(jbk.piece3) + n(jbk.reward) +
+        n(jungle.defeatedUnorthodoxAngel)) / numbers;
 }
 
 /*

@@ -1,7 +1,7 @@
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {OversizedClownArenaArgs} from "../levelArgs";
 import {scene} from "../igua/scene";
-import {oversizedClown} from "../gameObjects/oversizedClown";
+import {oversizedClown} from "../gameObjects/clownOversized";
 import {wait} from "../cutscene/wait";
 import {jukebox} from "../igua/jukebox";
 import {Country, Hemaboss1, JungleMusic} from "../musics";

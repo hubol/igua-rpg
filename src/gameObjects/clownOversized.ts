@@ -27,13 +27,13 @@ import {trove65} from "./valuableTrove";
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture, sleepyFaceTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
 
-function mace(angleOffset: number) {
+function mace(angleOffset: number, damage: number) {
     const s = merge(Sprite.from(ClownSpikeBall), { active: false, angleOffset })
         .withStep(() => {
             if (s.active) {
                 s.alpha = 1;
                 if (player.collides(s))
-                    player.damage(20);
+                    player.damage(damage);
             }
             else
                 s.alpha = 0.25;
@@ -44,6 +44,14 @@ function mace(angleOffset: number) {
 
 function oversizedClownImpl() {
     const faceState = { anger: 0, excited: 0 };
+
+    const consts = {
+        damage: {
+            mace: 20,
+            bolt: 20,
+            empBlast: 50,
+        }
+    }
 
     const health = clownHealth(300);
 
@@ -82,7 +90,7 @@ function oversizedClownImpl() {
             hints = 1;
         else if (unit < .67)
             hints = 2;
-        const emp = empBlast(128, hints, 50, 800).at([33, 25].add(c)).show();
+        const emp = empBlast(128, hints, consts.damage.empBlast, 800).at([33, 25].add(c)).show();
         await wait(() => emp.destroyed);
     }
 
@@ -149,7 +157,7 @@ function oversizedClownImpl() {
     }
 
     function makeMaces() {
-        return range(8).map(x => c.addChild(mace(x * .19 * 2)));
+        return range(8).map(x => c.addChild(mace(x * .19 * 2, consts.damage.mace)));
     }
 
     function setBehavior(fn: () => void) {
@@ -246,7 +254,7 @@ function oversizedClownImpl() {
     function shootElectricBolt() {
         if (behavior !== hostile)
             return;
-        electricContainer.addChild(electricBolt(electricBoltContainer).at(33, 25));
+        electricContainer.addChild(electricBolt(electricBoltContainer, consts.damage.bolt).at(33, 25));
     }
 
     function abortElectricBolts() {

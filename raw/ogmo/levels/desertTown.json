@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 2040,
   "height": 568,
   "offsetX": 0,
@@ -671,6 +671,16 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromCostumer", "faceRight": false, "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 64,
+          "_eid": "55940370",
+          "x": 992,
+          "y": 32,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromGiants", "faceRight": true, "depth": 0}
         }
       ]
     },

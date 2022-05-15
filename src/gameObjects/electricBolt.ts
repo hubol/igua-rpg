@@ -7,7 +7,7 @@ import {scene} from "../igua/scene";
 import {now} from "../utils/now";
 import {ChargeElectricBolt, FireElectricBolt} from "../sounds";
 
-export function electricBolt(boltParent: Container, speed = 1 / 30) {
+export function electricBolt(boltParent: Container, damage: number, speed = 1 / 30) {
     ChargeElectricBolt.play();
     let unit = 0;
     const s = Sprite.from(burst12pxTextures[3]).withStep(() => {
@@ -16,7 +16,7 @@ export function electricBolt(boltParent: Container, speed = 1 / 30) {
         unit += speed;
         if (unit >= 1) {
             const bounds = s.getBounds();
-            electricBoltHostile(bounds.add(6, 6).add(scene.camera), boltParent);
+            electricBoltHostile(bounds.add(6, 6).add(scene.camera), boltParent, damage);
             s.destroy();
         }
     });
@@ -25,7 +25,7 @@ export function electricBolt(boltParent: Container, speed = 1 / 30) {
     return s;
 }
 
-function electricBoltHostile(v: Vector, parent: Container) {
+function electricBoltHostile(v: Vector, parent: Container, damage: number) {
     FireElectricBolt.play();
     const s = Sprite.from(ElectricBolt).at(v);
     s.hitbox = [0.3, 0.3, 0.7, 0.7];
@@ -34,7 +34,7 @@ function electricBoltHostile(v: Vector, parent: Container) {
     s.withStep(() => {
         s.angle = Math.floor(((now.s * 2) % 1) * 4) * 90;
         if (s.collides(player))
-            player.damage(20);
+            player.damage(damage);
         if (life-- <= 0)
             return s.destroy();
         s.add(speed);

@@ -1,4 +1,4 @@
-import {oversizedClown} from "./oversizedClown";
+import {oversizedClown} from "./clownOversized";
 import {PoppingRock} from "../textures";
 import {Sprite} from "pixi.js";
 import {smallPop} from "./smallPop";
