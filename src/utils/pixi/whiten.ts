@@ -20,6 +20,11 @@ export function whiten(d: DisplayObject) {
                 0, 1, 0, 0, f,
                 0, 0, 1, 0, f,
                 0, 0, 0, 1, 0];
+        },
+        destroy() {
+            const i = d.filters.indexOf(filter);
+            if (i > -1)
+                d.filters.splice(i, 1);
         }
     };
 }

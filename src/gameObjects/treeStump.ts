@@ -138,6 +138,7 @@ async function ascendPlayer() {
 
     player.ext.hideBallons = false;
     await lerp(f, 'factor').to(0).over(250);
+    f.destroy();
 
     duck.destroy();
 }
