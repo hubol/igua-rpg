@@ -4963,12 +4963,12 @@ MovingWall: resolveBlock({"type":"Block","x":328,"y":184,"width":80,"height":40,
 };
 
 export const JungleTownArgs = {
-    width: 1512,
+    width: 1544,
 height: 448,
 gameObjectsSupplier: () => {
   return {
     VineSmall: resolveDecalGameObject({
-    x: 752,
+    x: 784,
 y: 392,
 originX: 0.5,
 originY: 0.5,
@@ -4979,7 +4979,7 @@ layerName: "FrontDecals",
 texture: VineSmall
 }),
 VineSmall_1: resolveDecalGameObject({
-    x: 552,
+    x: 584,
 y: 244,
 originX: 0.5,
 originY: 0.5,
@@ -4990,7 +4990,7 @@ layerName: "FrontDecals",
 texture: VineSmall
 }),
 VineSmall_2: resolveDecalGameObject({
-    x: 568,
+    x: 600,
 y: 252,
 originX: 0.5,
 originY: 0.5,
@@ -5001,7 +5001,7 @@ layerName: "FrontDecals",
 texture: VineSmall
 }),
 SignNeonBar: resolveDecalGameObject({
-    x: 1064,
+    x: 1096,
 y: 341,
 originX: 0.5,
 originY: 0.5,
@@ -5012,7 +5012,7 @@ layerName: "TerrainDecals",
 texture: SignNeonBar
 }),
 SignNeonInn: resolveDecalGameObject({
-    x: 901,
+    x: 933,
 y: 334,
 originX: 0,
 originY: 0,
@@ -5023,7 +5023,7 @@ layerName: "TerrainDecals",
 texture: SignNeonInn
 }),
 JungleTent: resolveDecalGameObject({
-    x: 665,
+    x: 697,
 y: 359,
 originX: 0.5,
 originY: 0.5,
@@ -5034,7 +5034,7 @@ layerName: "TerrainDecals",
 texture: JungleTent
 }),
 GroundSpeckles: resolveDecalGameObject({
-    x: 362,
+    x: 394,
 y: 396,
 originX: 0.5,
 originY: 0.5,
@@ -5045,7 +5045,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 GroundSpeckles_1: resolveDecalGameObject({
-    x: 706,
+    x: 738,
 y: 389,
 originX: 0.5,
 originY: 0.5,
@@ -5056,7 +5056,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 GroundSpeckles_2: resolveDecalGameObject({
-    x: 1055,
+    x: 1087,
 y: 397,
 originX: 0.5,
 originY: 0.5,
@@ -5067,7 +5067,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 GroundSpeckles_3: resolveDecalGameObject({
-    x: 1397,
+    x: 1429,
 y: 428,
 originX: 0.5,
 originY: 0.5,
@@ -5078,7 +5078,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 GroundSpeckles_4: resolveDecalGameObject({
-    x: 573,
+    x: 605,
 y: 216,
 originX: 0.5,
 originY: 0.5,
@@ -5089,7 +5089,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 Cobweb: resolveDecalGameObject({
-    x: 537,
+    x: 569,
 y: 187,
 originX: 0.5,
 originY: 0.5,
@@ -5100,7 +5100,7 @@ layerName: "TerrainDecals",
 texture: Cobweb
 }),
 KeyYellowShrunken: resolveDecalGameObject({
-    x: 688,
+    x: 720,
 y: 152,
 originX: 0.5,
 originY: 0.5,
@@ -5111,7 +5111,7 @@ layerName: "TerrainDecals",
 texture: KeyYellowShrunken
 }),
 VineSmall_3: resolveDecalGameObject({
-    x: 648,
+    x: 680,
 y: 120,
 originX: 0.5,
 originY: 0.5,
@@ -5122,7 +5122,7 @@ layerName: "TerrainDecals",
 texture: VineSmall
 }),
 VineSmall_4: resolveDecalGameObject({
-    x: 661,
+    x: 693,
 y: 147,
 originX: 0.5,
 originY: 0.5,
@@ -5133,7 +5133,7 @@ layerName: "TerrainDecals",
 texture: VineSmall
 }),
 VineSmall_5: resolveDecalGameObject({
-    x: 648,
+    x: 680,
 y: 168,
 originX: 0.5,
 originY: 0.5,
@@ -5144,7 +5144,7 @@ layerName: "TerrainDecals",
 texture: VineSmall
 }),
 VineSmall_6: resolveDecalGameObject({
-    x: 736,
+    x: 768,
 y: 136,
 originX: 0.5,
 originY: 0.5,
@@ -5155,7 +5155,7 @@ layerName: "TerrainDecals",
 texture: VineSmall
 }),
 JungleHouse1: resolveDecalGameObject({
-    x: 1088,
+    x: 1120,
 y: 384,
 originX: 0.5,
 originY: 1,
@@ -5166,7 +5166,7 @@ layerName: "BackgroundDecals",
 texture: JungleHouse1
 }),
 JunglePlank: resolveDecalGameObject({
-    x: 1072,
+    x: 1104,
 y: 294,
 originX: 0,
 originY: 0,
@@ -5177,7 +5177,7 @@ layerName: "BackgroundDecals",
 texture: JunglePlank
 }),
 JunglePlank_1: resolveDecalGameObject({
-    x: 1072,
+    x: 1104,
 y: 304,
 originX: 0,
 originY: 0,
@@ -5188,7 +5188,7 @@ layerName: "BackgroundDecals",
 texture: JunglePlank
 }),
 JunglePlank_2: resolveDecalGameObject({
-    x: 1072,
+    x: 1104,
 y: 315,
 originX: 0,
 originY: 0,
@@ -5199,7 +5199,7 @@ layerName: "BackgroundDecals",
 texture: JunglePlank
 }),
 VineSmall_7: resolveDecalGameObject({
-    x: 1088,
+    x: 1120,
 y: 307,
 originX: 0.5,
 originY: 0.5,
@@ -5210,7 +5210,7 @@ layerName: "BackgroundDecals",
 texture: VineSmall
 }),
 JungleHouse1_1: resolveDecalGameObject({
-    x: 896,
+    x: 928,
 y: 344,
 originX: 0.5,
 originY: 0.5,
@@ -5221,7 +5221,7 @@ layerName: "BackgroundDecals",
 texture: JungleHouse1
 }),
 JunglePlank_3: resolveDecalGameObject({
-    x: 860,
+    x: 892,
 y: 304,
 originX: 0,
 originY: 0,
@@ -5232,7 +5232,7 @@ layerName: "BackgroundDecals",
 texture: JunglePlank
 }),
 JunglePlank_4: resolveDecalGameObject({
-    x: 850,
+    x: 882,
 y: 315,
 originX: 0,
 originY: 0,
@@ -5243,7 +5243,7 @@ layerName: "BackgroundDecals",
 texture: JunglePlank
 }),
 SpikyBrushB: resolveDecalGameObject({
-    x: 936,
+    x: 968,
 y: 376,
 originX: 0.5,
 originY: 0.5,
@@ -5254,7 +5254,7 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
 JungleTempleExterior: resolveDecalGameObject({
-    x: 200,
+    x: 232,
 y: 384,
 originX: 0,
 originY: 1,
@@ -5265,7 +5265,7 @@ layerName: "BackgroundDecals",
 texture: JungleTempleExterior
 }),
 WiggleVine: resolveDecalGameObject({
-    x: 768,
+    x: 800,
 y: 380,
 originX: 0.5,
 originY: 0,
@@ -5276,7 +5276,7 @@ layerName: "BackgroundDecals",
 texture: VineSmall
 }),
 JunglePlank_5: resolveDecalGameObject({
-    x: 568,
+    x: 600,
 y: 224,
 originX: 0,
 originY: 0,
@@ -5287,7 +5287,7 @@ layerName: "BackgroundDecals",
 texture: JunglePlank
 }),
 JunglePlank_6: resolveDecalGameObject({
-    x: 725,
+    x: 757,
 y: 224,
 originX: 0,
 originY: 0,
@@ -5298,7 +5298,7 @@ layerName: "BackgroundDecals",
 texture: JunglePlank
 }),
 JunglePlank_7: resolveDecalGameObject({
-    x: 544,
+    x: 576,
 y: 236,
 originX: 0,
 originY: 0,
@@ -5309,7 +5309,7 @@ layerName: "BackgroundDecals",
 texture: JunglePlank
 }),
 SmallDecorativeRock: resolveDecalGameObject({
-    x: 572,
+    x: 604,
 y: 385,
 originX: 0.5,
 originY: 1,
@@ -5320,7 +5320,7 @@ layerName: "BackgroundDecals",
 texture: SmallDecorativeRock
 }),
 SmallDecorativeRock_1: resolveDecalGameObject({
-    x: 727,
+    x: 759,
 y: 377,
 originX: 0.5,
 originY: 1,
@@ -5331,7 +5331,7 @@ layerName: "BackgroundDecals",
 texture: SmallDecorativeRock
 }),
 SpikyBrushB_1: resolveDecalGameObject({
-    x: 697,
+    x: 729,
 y: 92,
 originX: 0.5,
 originY: 0.5,
@@ -5342,7 +5342,7 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
 SpikyBrushA: resolveDecalGameObject({
-    x: 712,
+    x: 744,
 y: 99,
 originX: 0.5,
 originY: 0.5,
@@ -5353,7 +5353,7 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
 CracksA: resolveDecalGameObject({
-    x: 708,
+    x: 740,
 y: 157,
 originX: 0.5,
 originY: 0.5,
@@ -5364,7 +5364,7 @@ layerName: "BackgroundDecals",
 texture: CracksA
 }),
 SpikyBrushB_2: resolveDecalGameObject({
-    x: 105.23981389473073,
+    x: 137.23981389473073,
 y: 364.1638243084863,
 originX: 0.5,
 originY: 0.5,
@@ -5375,7 +5375,7 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushB
 }),
 SpikyBrushA_1: resolveDecalGameObject({
-    x: 35.68192183867208,
+    x: 67.68192183867208,
 y: 364.1638243084863,
 originX: 0.5,
 originY: 0.5,
@@ -5386,134 +5386,136 @@ layerName: "BackgroundDecals",
 texture: SpikyBrushA
 }),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":1248,"y":416,"width":264,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":1280,"y":416,"width":264,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":1248,"y":384,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_1","name":"","depth":0}),
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":1280,"y":384,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_1","name":"","depth":0}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":1024,"y":384,"width":224,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
-Player: {"type":"Player","x":1432,"y":416,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":false,"name":"","depth":0},
+Block_1: resolveBlock({"type":"Block","x":1056,"y":384,"width":224,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+Player: {"type":"Player","x":1464,"y":416,"flippedX":false,"flippedY":false,"uid":"55988047_3","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":1480,"y":384,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_4","levelName":"JungleFromDesert","checkpointName":"FromTown","name":"","depth":0}),
+Gate: resolveGate({"type":"Gate","x":1512,"y":384,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_4","levelName":"JungleFromDesert","checkpointName":"FromTown","name":"","depth":0}),
 // @ts-ignore
-Sign: resolveSign({"type":"Sign","x":1360,"y":416,"flippedX":false,"flippedY":false,"uid":"86706091_5","title":"Town","message":"This is the jungle town.","name":"","depth":0}),
+Sign: resolveSign({"type":"Sign","x":1392,"y":416,"flippedX":false,"flippedY":false,"uid":"86706091_5","title":"Town","message":"This is the jungle town.","name":"","depth":0}),
 // @ts-ignore
-Door: resolveDoor({"type":"Door","x":1096,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_6","levelName":"JungleBar","checkpointName":"","name":"","depth":0}),
+Door: resolveDoor({"type":"Door","x":1128,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_6","levelName":"JungleBar","checkpointName":"","name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":1042,"y":328,"width":92,"flippedX":false,"flippedY":false,"uid":"55841307_7","visible":false,"name":"","depth":0}),
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":1074,"y":328,"width":92,"flippedX":false,"flippedY":false,"uid":"55841307_7","visible":false,"name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":1064,"y":294,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_8","visible":false,"name":"","depth":0}),
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":1096,"y":294,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_8","visible":false,"name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":960,"y":384,"width":64,"flippedX":false,"flippedY":false,"uid":"55841307_10","visible":true,"name":"","depth":0}),
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":992,"y":384,"width":64,"flippedX":false,"flippedY":false,"uid":"55841307_10","visible":true,"name":"","depth":0}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":832,"y":384,"width":128,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_11","name":"","depth":0}),
+Block_2: resolveBlock({"type":"Block","x":864,"y":384,"width":128,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_11","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":888,"y":376,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_12","name":"","depth":0}),
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":920,"y":376,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_12","name":"","depth":0}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":832,"y":376,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_13","name":"","depth":0}),
+Block_3: resolveBlock({"type":"Block","x":864,"y":376,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_13","name":"","depth":0}),
 // @ts-ignore
-Door_1: resolveDoor({"type":"Door","x":856,"y":344,"flippedX":false,"flippedY":false,"uid":"55913988_14","levelName":"JungleInn","checkpointName":"","name":"","depth":0}),
+Door_1: resolveDoor({"type":"Door","x":888,"y":344,"flippedX":false,"flippedY":false,"uid":"55913988_14","levelName":"JungleInn","checkpointName":"","name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":860,"y":304,"width":72,"flippedX":false,"flippedY":false,"uid":"55841307_15","visible":false,"name":"","depth":0}),
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":892,"y":304,"width":72,"flippedX":false,"flippedY":false,"uid":"55841307_15","visible":false,"name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":736,"y":376,"width":96,"flippedX":false,"flippedY":false,"uid":"55841307_16","visible":true,"name":"","depth":0}),
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":768,"y":376,"width":96,"flippedX":false,"flippedY":false,"uid":"55841307_16","visible":true,"name":"","depth":0}),
 // @ts-ignore
-Block_4: resolveBlock({"type":"Block","x":608,"y":376,"width":128,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_17","name":"","depth":0}),
+Block_4: resolveBlock({"type":"Block","x":640,"y":376,"width":128,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_17","name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_5: resolvePipeHorizontal({"type":"PipeHorizontal","x":448,"y":384,"width":96,"flippedX":false,"flippedY":false,"uid":"55841307_18","visible":true,"name":"","depth":0}),
+PipeHorizontal_5: resolvePipeHorizontal({"type":"PipeHorizontal","x":480,"y":384,"width":96,"flippedX":false,"flippedY":false,"uid":"55841307_18","visible":true,"name":"","depth":0}),
 // @ts-ignore
-SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":544,"y":376,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_19","name":"","depth":0}),
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":576,"y":376,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_19","name":"","depth":0}),
 // @ts-ignore
-Block_5: resolveBlock({"type":"Block","x":544,"y":384,"width":104,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
+Block_5: resolveBlock({"type":"Block","x":576,"y":384,"width":104,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
 // @ts-ignore
-Block_6: resolveBlock({"type":"Block","x":160,"y":384,"width":288,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_21","name":"","depth":0}),
+Block_6: resolveBlock({"type":"Block","x":192,"y":384,"width":288,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_21","name":"","depth":0}),
 // @ts-ignore
-Pool: resolvePool({"type":"Pool","x":448,"y":416,"width":576,"height":32,"flippedX":false,"flippedY":false,"uid":"38353047_22","name":"","depth":2}),
+Pool: resolvePool({"type":"Pool","x":480,"y":416,"width":576,"height":32,"flippedX":false,"flippedY":false,"uid":"38353047_22","name":"","depth":2}),
 // @ts-ignore
-Door_2: resolveDoor({"type":"Door","x":320,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_23","levelName":"JungleTemple","checkpointName":"","name":"","depth":0}),
-FromBar: {"type":"Checkpoint","x":1152,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_24","name":"FromBar","faceRight":true,"depth":0},
-FromInn: {"type":"Checkpoint","x":836,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_25","name":"FromInn","faceRight":false,"depth":0},
-FromTemple: {"type":"Checkpoint","x":376,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_26","name":"FromTemple","faceRight":true,"depth":0},
+Door_2: resolveDoor({"type":"Door","x":352,"y":352,"flippedX":false,"flippedY":false,"uid":"55913988_23","levelName":"JungleTemple","checkpointName":"","name":"","depth":0}),
+FromBar: {"type":"Checkpoint","x":1184,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_24","name":"FromBar","faceRight":true,"depth":0},
+FromInn: {"type":"Checkpoint","x":868,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_25","name":"FromInn","faceRight":false,"depth":0},
+FromTemple: {"type":"Checkpoint","x":408,"y":384,"flippedX":false,"flippedY":false,"uid":"55940370_26","name":"FromTemple","faceRight":true,"depth":0},
 // @ts-ignore
-PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":200,"y":237,"width":35,"flippedX":false,"flippedY":false,"uid":"55841307_27","visible":false,"name":"","depth":0}),
+PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":232,"y":237,"width":35,"flippedX":false,"flippedY":false,"uid":"55841307_27","visible":false,"name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":382,"y":237,"width":35,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":false,"name":"","depth":0}),
+PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":414,"y":237,"width":35,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":false,"name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":235,"y":316,"width":147,"flippedX":false,"flippedY":false,"uid":"55841307_29","visible":false,"name":"","depth":0}),
+PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":267,"y":316,"width":147,"flippedX":false,"flippedY":false,"uid":"55841307_29","visible":false,"name":"","depth":0}),
 // @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":399,"y":160,"flippedX":false,"flippedY":false,"uid":"55991906_31","name":"","depth":0}),
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":431,"y":160,"flippedX":false,"flippedY":false,"uid":"55991906_31","name":"","depth":0}),
 // @ts-ignore
-JungleTree: resolveJungleTree({"type":"JungleTree","x":1376,"y":456,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_32","name":"","depth":4}),
+JungleTree: resolveJungleTree({"type":"JungleTree","x":1408,"y":456,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_32","name":"","depth":4}),
 // @ts-ignore
-JungleTree_1: resolveJungleTree({"type":"JungleTree","x":1168,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_33","name":"","depth":4}),
+JungleTree_1: resolveJungleTree({"type":"JungleTree","x":1200,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_33","name":"","depth":4}),
 // @ts-ignore
-JungleTree_2: resolveJungleTree({"type":"JungleTree","x":1008,"y":472,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_34","name":"","depth":4}),
+JungleTree_2: resolveJungleTree({"type":"JungleTree","x":1040,"y":472,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_34","name":"","depth":4}),
 // @ts-ignore
-JungleTree_3: resolveJungleTree({"type":"JungleTree","x":776,"y":496,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_35","name":"","depth":4}),
+JungleTree_3: resolveJungleTree({"type":"JungleTree","x":808,"y":496,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_35","name":"","depth":4}),
 // @ts-ignore
-JungleTree_4: resolveJungleTree({"type":"JungleTree","x":568,"y":496,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_36","name":"","depth":4}),
+JungleTree_4: resolveJungleTree({"type":"JungleTree","x":600,"y":496,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_36","name":"","depth":4}),
 // @ts-ignore
-JungleTree_5: resolveJungleTree({"type":"JungleTree","x":256,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_37","name":"","depth":4}),
+JungleTree_5: resolveJungleTree({"type":"JungleTree","x":288,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_37","name":"","depth":4}),
 // @ts-ignore
-JungleTree_6: resolveJungleTree({"type":"JungleTree","x":432,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_38","name":"","depth":4}),
-TempleLever: {"type":"Anchor","x":218,"y":237,"flippedX":false,"flippedY":false,"uid":"25979726_39","name":"TempleLever","depth":0},
+JungleTree_6: resolveJungleTree({"type":"JungleTree","x":464,"y":504,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_38","name":"","depth":4}),
+TempleLever: {"type":"Anchor","x":250,"y":237,"flippedX":false,"flippedY":false,"uid":"25979726_39","name":"TempleLever","depth":0},
 // @ts-ignore
-JungleOracle: resolveNpc({"type":"NpcIguana","x":688,"y":376,"flippedX":true,"flippedY":false,"uid":"26367058_40","name":"JungleOracle","style":13,"depth":0}),
+JungleOracle: resolveNpc({"type":"NpcIguana","x":720,"y":376,"flippedX":true,"flippedY":false,"uid":"26367058_40","name":"JungleOracle","style":13,"depth":0}),
 // @ts-ignore
-JungleTree_7: resolveJungleTree({"type":"JungleTree","x":1200,"y":384,"height":144,"flippedX":false,"flippedY":false,"uid":"25711099_41","name":"","depth":0}),
+JungleTree_7: resolveJungleTree({"type":"JungleTree","x":1232,"y":384,"height":144,"flippedX":false,"flippedY":false,"uid":"25711099_41","name":"","depth":0}),
 // @ts-ignore
-JungleTree_8: resolveJungleTree({"type":"JungleTree","x":1400,"y":416,"height":144,"flippedX":false,"flippedY":false,"uid":"25711099_42","name":"","depth":0}),
+JungleTree_8: resolveJungleTree({"type":"JungleTree","x":1432,"y":416,"height":144,"flippedX":false,"flippedY":false,"uid":"25711099_42","name":"","depth":0}),
 // @ts-ignore
-Block_7: resolveBlock({"type":"Block","x":544,"y":164,"width":104,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_44","name":"","depth":0}),
+Block_7: resolveBlock({"type":"Block","x":576,"y":164,"width":104,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_44","name":"","depth":0}),
 // @ts-ignore
-Block_8: resolveBlock({"type":"Block","x":648,"y":176,"width":88,"height":52,"flippedX":false,"flippedY":false,"uid":"55823268_48","name":"","depth":0}),
+Block_8: resolveBlock({"type":"Block","x":680,"y":176,"width":88,"height":52,"flippedX":false,"flippedY":false,"uid":"55823268_48","name":"","depth":0}),
 // @ts-ignore
-JungleTree_9: resolveJungleTree({"type":"JungleTree","x":582,"y":164,"height":144,"flippedX":false,"flippedY":false,"uid":"25711099_54","name":"","depth":0}),
+JungleTree_9: resolveJungleTree({"type":"JungleTree","x":614,"y":164,"height":144,"flippedX":false,"flippedY":false,"uid":"25711099_54","name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_9: resolvePipeHorizontal({"type":"PipeHorizontal","x":464,"y":164,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_56","visible":true,"name":"","depth":0}),
+PipeHorizontal_9: resolvePipeHorizontal({"type":"PipeHorizontal","x":496,"y":164,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_56","visible":true,"name":"","depth":0}),
 // @ts-ignore
-PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":464,"y":164,"flippedX":false,"flippedY":false,"uid":"63428932_57","name":"","depth":0}),
+PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":496,"y":164,"flippedX":false,"flippedY":false,"uid":"63428932_57","name":"","depth":0}),
 // @ts-ignore
-BehindPillar: resolveRegion({"type":"Region","x":648,"y":120,"width":88,"height":64,"flippedX":false,"flippedY":false,"uid":"25971607_58","name":"BehindPillar","depth":0}),
+BehindPillar: resolveRegion({"type":"Region","x":680,"y":120,"width":88,"height":64,"flippedX":false,"flippedY":false,"uid":"25971607_58","name":"BehindPillar","depth":0}),
 // @ts-ignore
-Block_9: resolveBlock({"type":"Block","x":648,"y":104,"width":88,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_59","name":"","depth":0}),
+Block_9: resolveBlock({"type":"Block","x":680,"y":104,"width":88,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_59","name":"","depth":0}),
 // @ts-ignore
-Block_10: resolveBlock({"type":"Block","x":648,"y":128,"width":24,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_60","name":"","depth":0}),
+Block_10: resolveBlock({"type":"Block","x":680,"y":128,"width":24,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_60","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":664,"y":152,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_61","name":"","depth":0}),
+SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":696,"y":152,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_61","name":"","depth":0}),
 // @ts-ignore
-SlopeLeft_3: resolveSlopeLeft({"type":"SlopeLeft","x":664,"y":120,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_62","name":"","depth":0}),
+SlopeLeft_3: resolveSlopeLeft({"type":"SlopeLeft","x":696,"y":120,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_62","name":"","depth":0}),
 // @ts-ignore
-ValuableBlue_1: resolveValuableBlue({"type":"ValuableBlue","x":200,"y":40,"flippedX":false,"flippedY":false,"uid":"55991906_69","name":"","depth":0}),
+ValuableBlue_1: resolveValuableBlue({"type":"ValuableBlue","x":232,"y":40,"flippedX":false,"flippedY":false,"uid":"55991906_69","name":"","depth":0}),
 // @ts-ignore
-ValuableBlue_2: resolveValuableBlue({"type":"ValuableBlue","x":224,"y":40,"flippedX":false,"flippedY":false,"uid":"55991906_70","name":"","depth":0}),
+ValuableBlue_2: resolveValuableBlue({"type":"ValuableBlue","x":256,"y":40,"flippedX":false,"flippedY":false,"uid":"55991906_70","name":"","depth":0}),
 // @ts-ignore
-ValuableBlue_3: resolveValuableBlue({"type":"ValuableBlue","x":248,"y":40,"flippedX":false,"flippedY":false,"uid":"55991906_71","name":"","depth":0}),
+ValuableBlue_3: resolveValuableBlue({"type":"ValuableBlue","x":280,"y":40,"flippedX":false,"flippedY":false,"uid":"55991906_71","name":"","depth":0}),
 // @ts-ignore
-ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":272,"y":40,"flippedX":false,"flippedY":false,"uid":"56004563_72","name":"","depth":0}),
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":304,"y":40,"flippedX":false,"flippedY":false,"uid":"56004563_72","name":"","depth":0}),
 // @ts-ignore
-ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":296,"y":40,"flippedX":false,"flippedY":false,"uid":"56004563_73","name":"","depth":0}),
+ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":328,"y":40,"flippedX":false,"flippedY":false,"uid":"56004563_73","name":"","depth":0}),
 // @ts-ignore
-ValuableOrange_2: resolveValuableOrange({"type":"ValuableOrange","x":320,"y":40,"flippedX":false,"flippedY":false,"uid":"56004563_74","name":"","depth":0}),
+ValuableOrange_2: resolveValuableOrange({"type":"ValuableOrange","x":352,"y":40,"flippedX":false,"flippedY":false,"uid":"56004563_74","name":"","depth":0}),
 // @ts-ignore
-Block_11: resolveBlock({"type":"Block","x":0,"y":368,"width":160,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_75","name":"","depth":0}),
+Block_11: resolveBlock({"type":"Block","x":32,"y":368,"width":160,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_75","name":"","depth":0}),
 // @ts-ignore
-HolyStump: resolveTreeStump({"type":"TreeStump","x":80,"y":368,"flippedX":false,"flippedY":false,"uid":"77429484_76","levelName":"JungleBossArena","checkpointName":"Stump","name":"HolyStump","depth":0,"faceRight":false}),
+HolyStump: resolveTreeStump({"type":"TreeStump","x":112,"y":368,"flippedX":false,"flippedY":false,"uid":"77429484_76","levelName":"JungleBossArena","checkpointName":"Stump","name":"HolyStump","depth":0,"faceRight":false}),
 // @ts-ignore
-Pool_1: resolvePool({"type":"Pool","x":0,"y":408,"width":160,"height":40,"flippedX":false,"flippedY":false,"uid":"38353047_77","name":"","depth":3}),
+Pool_1: resolvePool({"type":"Pool","x":32,"y":408,"width":160,"height":40,"flippedX":false,"flippedY":false,"uid":"38353047_77","name":"","depth":3}),
 // @ts-ignore
-SlopeLeft_4: resolveSlopeLeft({"type":"SlopeLeft","x":160,"y":368,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_78","name":"","depth":0}),
+SlopeLeft_4: resolveSlopeLeft({"type":"SlopeLeft","x":192,"y":368,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_78","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":136,"y":392,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_81","name":"","depth":0}),
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":168,"y":392,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_81","name":"","depth":0}),
 // @ts-ignore
-JungleTree_10: resolveJungleTree({"type":"JungleTree","x":136,"y":370,"height":104,"flippedX":false,"flippedY":false,"uid":"25711099_84","name":"","depth":0}),
+JungleTree_10: resolveJungleTree({"type":"JungleTree","x":168,"y":370,"height":104,"flippedX":false,"flippedY":false,"uid":"25711099_84","name":"","depth":0}),
 // @ts-ignore
-JungleTree_11: resolveJungleTree({"type":"JungleTree","x":32,"y":488,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_85","name":"","depth":4}),
+JungleTree_11: resolveJungleTree({"type":"JungleTree","x":64,"y":488,"height":368,"flippedX":false,"flippedY":false,"uid":"25711099_85","name":"","depth":4}),
 // @ts-ignore
-SlopeLeft_5: resolveSlopeLeft({"type":"SlopeLeft","x":8,"y":392,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_87","name":"","depth":0}),
+SlopeLeft_5: resolveSlopeLeft({"type":"SlopeLeft","x":40,"y":392,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_87","name":"","depth":0}),
 // @ts-ignore
-Block_12: resolveBlock({"type":"Block","x":0,"y":400,"width":16,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_88","name":"","depth":0}),
-SpiritSpawn: {"type":"Anchor","x":1116,"y":328,"flippedX":false,"flippedY":false,"uid":"25979726_89","name":"SpiritSpawn","depth":0},
-FromGiants: {"type":"Checkpoint","x":992,"y":24,"flippedX":false,"flippedY":false,"uid":"55940370_90","name":"FromGiants","faceRight":false,"depth":0}
+Block_12: resolveBlock({"type":"Block","x":32,"y":400,"width":16,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_88","name":"","depth":0}),
+SpiritSpawn: {"type":"Anchor","x":1148,"y":328,"flippedX":false,"flippedY":false,"uid":"25979726_89","name":"SpiritSpawn","depth":0},
+FromGiants: {"type":"Checkpoint","x":1024,"y":24,"flippedX":false,"flippedY":false,"uid":"55940370_90","name":"FromGiants","faceRight":false,"depth":0},
+// @ts-ignore
+Block_13: resolveBlock({"type":"Block","x":0,"y":0,"width":32,"height":448,"flippedX":false,"flippedY":false,"uid":"55823268_91","name":"","depth":0})
 };
 }
 };

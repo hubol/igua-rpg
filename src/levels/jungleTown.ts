@@ -32,7 +32,7 @@ function jungleTownLevel() {
 export function JungleTown() {
     jukebox.play(JungleMusic).warm(FunTimes, JungleInn, Temple);
     scene.backgroundColor = 0x97D8D8;
-    scene.ext.jungleTree = { x: 160 };
+    scene.ext.jungleTree = { x: 192 };
 
     scene.terrainColor = 0x79962E;
     const level = jungleTownLevel();
