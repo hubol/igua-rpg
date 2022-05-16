@@ -59,6 +59,7 @@ import { PaSpeaker } from "./textures";
 import { CocktailGlass } from "./textures";
 import { Bottle1 } from "./textures";
 import { resolveBigua } from "./gameObjects/bigua";
+import { Obelisk } from "./textures";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { KeyRed } from "./textures";
 import { SignTavern } from "./textures";
@@ -2852,7 +2853,29 @@ export const GiantsTownArgs = {
 height: 320,
 gameObjectsSupplier: () => {
   return {
-    CloudLong: resolveDecalGameObject({
+    Obelisk: resolveDecalGameObject({
+    x: 600,
+y: 234,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: Obelisk
+}),
+Obelisk_1: resolveDecalGameObject({
+    x: 136,
+y: 234,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: Obelisk
+}),
+CloudLong: resolveDecalGameObject({
     x: 608,
 y: 160,
 originX: 0.5,
@@ -2937,9 +2960,9 @@ SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":632,"y":104,"width":32,
 // @ts-ignore
 Block_5: resolveBlock({"type":"Block","x":136,"y":232,"width":472,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
 // @ts-ignore
-Bigua: resolveBigua({"type":"Bigua","x":496,"y":232,"flippedX":false,"flippedY":false,"uid":"47268149_10","style":1,"name":"","depth":0}),
+GreeterBigua: resolveBigua({"type":"Bigua","x":496,"y":232,"flippedX":false,"flippedY":false,"uid":"47268149_10","style":1,"name":"GreeterBigua","depth":0}),
 // @ts-ignore
-Bigua_1: resolveBigua({"type":"Bigua","x":232,"y":232,"flippedX":true,"flippedY":false,"uid":"47268149_11","style":2,"name":"","depth":0}),
+FarBigua: resolveBigua({"type":"Bigua","x":232,"y":232,"flippedX":true,"flippedY":false,"uid":"47268149_11","style":2,"name":"FarBigua","depth":0}),
 Player: {"type":"Player","x":712,"y":80,"flippedX":false,"flippedY":false,"uid":"55988047_12","faceRight":false,"name":"","depth":0},
 // @ts-ignore
 Block_6: resolveBlock({"type":"Block","x":200,"y":240,"width":48,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_13","name":"","depth":0}),
@@ -2992,7 +3015,9 @@ SlopeRight_10: resolveSlopeRight({"type":"SlopeRight","x":664,"y":136,"width":16
 // @ts-ignore
 DesertGate: resolveGate({"type":"Gate","x":656,"y":288,"width":128,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_43","levelName":"DesertTown","checkpointName":"FromGiants","name":"DesertGate","depth":0}),
 // @ts-ignore
-JungleGate: resolveGate({"type":"Gate","x":24,"y":288,"width":128,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_44","levelName":"JungleTown","checkpointName":"FromGiants","name":"JungleGate","depth":0})
+JungleGate: resolveGate({"type":"Gate","x":24,"y":288,"width":128,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_44","levelName":"JungleTown","checkpointName":"FromGiants","name":"JungleGate","depth":0}),
+// @ts-ignore
+Sign: resolveSign({"type":"Sign","x":588,"y":88,"flippedX":false,"flippedY":false,"uid":"86706091_45","title":"Giants","message":"Welcome to the nimbus of the giants.","name":"","depth":0})
 };
 }
 };

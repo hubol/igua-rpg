@@ -6,6 +6,7 @@ import {GlowingEdge} from "../textures";
 import {Rectangle} from "../utils/math/rectangle";
 import {jukebox} from "../igua/jukebox";
 import {Country, DesertTown, GiantsNimbusMusic, JungleMusic} from "../musics";
+import {show} from "../cutscene/dialog";
 
 export function GiantsTown() {
     scene.backgroundColor = 0x98C0E0;
@@ -14,6 +15,17 @@ export function GiantsTown() {
     const level = applyOgmoLevel(GiantsTownArgs);
     edge(level.DesertGate).tinted(0xF0F0B0);
     edge(level.JungleGate).tinted(0x97D8D8);
+    level.GreeterBigua.withCutscene(async () => {
+        await show("Oh, you must be from down below.");
+        await show("Welcome to the nimbus of the giants.");
+        await show("When the protectors abandoned our world, we came to the skies to create our fortress.");
+        await show("From here, we can carefully watch the angel infestation.");
+    });
+
+    level.FarBigua.withCutscene(async () => {
+        await show("We sent our associate to the jungle from here.");
+        await show("He might appreciate some of our cuisine, if you feel like making a delivery.");
+    })
 }
 
 function edge(r: Rectangle) {

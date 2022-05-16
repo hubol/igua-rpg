@@ -119,6 +119,7 @@ export let NpcStrangeBody: PIXI.Texture;
 export let NpcWeirdBody: PIXI.Texture;
 export let NpcYellowFootRear: PIXI.Texture;
 export let NpcYellowFoot: PIXI.Texture;
+export let Obelisk: PIXI.Texture;
 export let OpenDoor: PIXI.Texture;
 export let OrangeValuable: PIXI.Texture;
 export let OrnateCarpet: PIXI.Texture;
@@ -537,6 +538,9 @@ export function loadTexturesAsync()
     const NpcYellowFootPath = require("./images/npc/yellow foot.png");
     loader.add(NpcYellowFootPath); 
 
+    const ObeliskPath = require("./images/obelisk.png");
+    loader.add(ObeliskPath); 
+
     const OpenDoorPath = require("./images/open door.png");
     loader.add(OpenDoorPath); 
 
@@ -841,6 +845,7 @@ export function loadTexturesAsync()
             NpcWeirdBody = resources[NpcWeirdBodyPath]?.texture as PIXI.Texture;
             NpcYellowFootRear = resources[NpcYellowFootRearPath]?.texture as PIXI.Texture;
             NpcYellowFoot = resources[NpcYellowFootPath]?.texture as PIXI.Texture;
+            Obelisk = resources[ObeliskPath]?.texture as PIXI.Texture;
             OpenDoor = resources[OpenDoorPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
             OrnateCarpet = resources[OrnateCarpetPath]?.texture as PIXI.Texture;

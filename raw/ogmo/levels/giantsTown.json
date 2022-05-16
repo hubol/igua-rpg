@@ -132,7 +132,7 @@
           "originX": 54,
           "originY": 104,
           "flippedX": false,
-          "values": {"style": 1, "name": "", "depth": 0}
+          "values": {"style": 1, "name": "GreeterBigua", "depth": 0}
         },
         {
           "name": "Bigua",
@@ -143,7 +143,7 @@
           "originX": 54,
           "originY": 104,
           "flippedX": true,
-          "values": {"style": 2, "name": "", "depth": 0}
+          "values": {"style": 2, "name": "FarBigua", "depth": 0}
         },
         {
           "name": "Player",
@@ -485,6 +485,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "JungleTown", "checkpointName": "FromGiants", "name": "JungleGate", "depth": 0}
+        },
+        {
+          "name": "Sign",
+          "id": 45,
+          "_eid": "86706091",
+          "x": 588,
+          "y": 88,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "Giants", "message": "Welcome to the nimbus of the giants.", "name": "", "depth": 0}
         }
       ]
     },
@@ -509,7 +519,20 @@
       "gridCellHeight": 8,
       "gridCellsX": 101,
       "gridCellsY": 40,
-      "decals": [],
+      "decals": [
+        {
+          "x": 600,
+          "y": 234,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "obelisk.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {"x": 136, "y": 234, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "obelisk.png", "originX": 0.5, "originY": 1}
+      ],
       "folder": "../../src/images"
     },
     {
