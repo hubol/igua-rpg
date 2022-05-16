@@ -11,6 +11,7 @@ export function shrunkenSalad() {
     const salad = progress.flags.jungle.bigua.salad;
 
     return Sprite.from(shrunkenSaladTextures[0])
+        .trimHitbox()
         .centerAnchor()
         .asCollectible(salad, 'held', () => cutscene.play(() => show('Found shrunken meal.')));
 }
