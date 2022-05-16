@@ -87,11 +87,45 @@
           "name": "Anchor",
           "id": 6,
           "_eid": "25979726",
-          "x": 208,
-          "y": 176,
+          "x": 192,
+          "y": 166,
           "originX": 0,
           "originY": 0,
           "values": {"name": "Salad", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 7,
+          "_eid": "55841307",
+          "x": 124,
+          "y": 172,
+          "width": 88,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 8,
+          "_eid": "25971607",
+          "x": 64,
+          "y": 80,
+          "width": 72,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "MirrorRegion", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 9,
+          "_eid": "55841307",
+          "x": 26,
+          "y": 108,
+          "width": 28,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
         }
       ]
     },
@@ -116,7 +150,74 @@
       "gridCellHeight": 8,
       "gridCellsX": 32,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 192,
+          "y": -16,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "giants/food stash.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 168,
+          "y": 183,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "giants/diner table.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 48,
+          "y": 192,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ornate carpet.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 226,
+          "y": 194,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "pottery orange damaged.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 40,
+          "y": 112,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "light shelf.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 32,
+          "y": 102,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "rose vase.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {
@@ -128,7 +229,85 @@
       "gridCellHeight": 8,
       "gridCellsX": 32,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 24,
+          "y": 88,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 64,
+          "y": 136,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 144,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 240,
+          "y": 152,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 240,
+          "y": 72,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 152,
+          "y": 168,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 32,
+          "y": 190,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "..\\..\\src\\images"
     },
     {

@@ -60,6 +60,10 @@ import { CocktailGlass } from "./textures";
 import { Bottle1 } from "./textures";
 import { resolveBigua } from "./gameObjects/bigua";
 import { Obelisk } from "./textures";
+import { PotteryOrangeDamaged } from "./textures";
+import { OrnateCarpet } from "./textures";
+import { GiantsDinerTable } from "./textures";
+import { GiantsFoodStash } from "./textures";
 import { resolveBoulder } from "./gameObjects/boulder";
 import { KeyRed } from "./textures";
 import { SignTavern } from "./textures";
@@ -76,9 +80,7 @@ import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { Anchor } from "./textures";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
-import { OrnateCarpet } from "./textures";
 import { PotteryOrange } from "./textures";
-import { PotteryOrangeDamaged } from "./textures";
 import { Rope } from "./textures";
 import { DesertTemple } from "./textures";
 import { CandleSmallRed } from "./textures";
@@ -2853,7 +2855,150 @@ export const GiantsRestaurantArgs = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    GiantsFoodStash: resolveDecalGameObject({
+    x: 192,
+y: -16,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GiantsFoodStash
+}),
+GiantsDinerTable: resolveDecalGameObject({
+    x: 168,
+y: 183,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GiantsDinerTable
+}),
+OrnateCarpet: resolveDecalGameObject({
+    x: 48,
+y: 192,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: OrnateCarpet
+}),
+PotteryOrangeDamaged: resolveDecalGameObject({
+    x: 226,
+y: 194,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: PotteryOrangeDamaged
+}),
+LightShelf: resolveDecalGameObject({
+    x: 40,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: LightShelf
+}),
+RoseVase: resolveDecalGameObject({
+    x: 32,
+y: 102,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: RoseVase
+}),
+CloudLong: resolveDecalGameObject({
+    x: 24,
+y: 88,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 64,
+y: 136,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 144,
+y: 96,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CloudLong
+}),
+CloudLong_3: resolveDecalGameObject({
+    x: 240,
+y: 152,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CloudLong
+}),
+CloudLong_4: resolveDecalGameObject({
+    x: 240,
+y: 72,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CloudLong
+}),
+CloudLong_5: resolveDecalGameObject({
+    x: 152,
+y: 168,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CloudLong
+}),
+CloudLong_6: resolveDecalGameObject({
+    x: 32,
+y: 190,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CloudLong
+}),
+// @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":0,"y":192,"width":256,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
@@ -2864,7 +3009,13 @@ Block_3: resolveBlock({"type":"Block","x":240,"y":64,"width":16,"height":128,"fl
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":32,"y":160,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"GiantsTown","checkpointName":"FromRestaurant","name":"","depth":0}),
 Player: {"type":"Player","x":88,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":false,"name":"","depth":0},
-Salad: {"type":"Anchor","x":208,"y":176,"flippedX":false,"flippedY":false,"uid":"25979726_6","name":"Salad","depth":0}
+Salad: {"type":"Anchor","x":192,"y":166,"flippedX":false,"flippedY":false,"uid":"25979726_6","name":"Salad","depth":0},
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":124,"y":172,"width":88,"flippedX":false,"flippedY":false,"uid":"55841307_7","visible":false,"name":"","depth":0}),
+// @ts-ignore
+MirrorRegion: resolveRegion({"type":"Region","x":64,"y":80,"width":72,"height":72,"flippedX":false,"flippedY":false,"uid":"25971607_8","name":"MirrorRegion","depth":0}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":26,"y":108,"width":28,"flippedX":false,"flippedY":false,"uid":"55841307_9","visible":false,"name":"","depth":0})
 };
 }
 };
