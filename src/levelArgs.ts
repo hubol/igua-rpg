@@ -2848,6 +2848,27 @@ FromGiants: {"type":"Checkpoint","x":992,"y":32,"flippedX":false,"flippedY":fals
 }
 };
 
+export const GiantsRestaurantArgs = {
+    width: 256,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":192,"width":256,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":64,"width":16,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":240,"y":64,"width":16,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":32,"y":160,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"GiantsTown","checkpointName":"FromRestaurant","name":"","depth":0}),
+Player: {"type":"Player","x":88,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":false,"name":"","depth":0},
+Salad: {"type":"Anchor","x":208,"y":176,"flippedX":false,"flippedY":false,"uid":"25979726_6","name":"Salad","depth":0}
+};
+}
+};
+
 export const GiantsTownArgs = {
     width: 808,
 height: 320,

@@ -9,6 +9,10 @@ export function getInitialFlags()
             bigua: {
                 met: false,
                 repairedKey: false,
+                salad: {
+                    held: false,
+                    fed: 0,
+                }
             },
             sickIguana: {
                 requestedHelp: false,
