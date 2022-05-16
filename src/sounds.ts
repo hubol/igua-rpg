@@ -22,8 +22,23 @@ export const BigKeyCollected = new Howl({
     
 });
 
+export const BiguaEating = new Howl({
+    src: [require("./sound/bigua eating.ogg"), require("./sound/bigua eating.mp3")],
+    
+});
+
+export const BiguaGiveItem = new Howl({
+    src: [require("./sound/bigua give item.ogg"), require("./sound/bigua give item.mp3")],
+    
+});
+
 export const BiguaMagic = new Howl({
     src: [require("./sound/bigua magic.ogg"), require("./sound/bigua magic.mp3")],
+    
+});
+
+export const BiguaSniff = new Howl({
+    src: [require("./sound/bigua sniff.ogg"), require("./sound/bigua sniff.mp3")],
     
 });
 
