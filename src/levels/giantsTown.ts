@@ -25,6 +25,7 @@ export function GiantsTown() {
     level.FarBigua.withCutscene(async () => {
         await show("We sent our associate to the jungle from here.");
         await show("He might appreciate some of our cuisine, if you feel like making a delivery.");
+        await show("If you wait at the jungle sign, a path to our associate will be revealed.");
     })
 }
 
