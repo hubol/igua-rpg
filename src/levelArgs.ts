@@ -59,6 +59,7 @@ import { PaSpeaker } from "./textures";
 import { CocktailGlass } from "./textures";
 import { Bottle1 } from "./textures";
 import { resolveBigua } from "./gameObjects/bigua";
+import { GiantsExterior } from "./textures";
 import { Obelisk } from "./textures";
 import { PotteryOrangeDamaged } from "./textures";
 import { OrnateCarpet } from "./textures";
@@ -3008,7 +3009,7 @@ Block_2: resolveBlock({"type":"Block","x":0,"y":64,"width":16,"height":128,"flip
 Block_3: resolveBlock({"type":"Block","x":240,"y":64,"width":16,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":32,"y":160,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"GiantsTown","checkpointName":"FromRestaurant","name":"","depth":0}),
-Player: {"type":"Player","x":88,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":false,"name":"","depth":0},
+Player: {"type":"Player","x":88,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":true,"name":"","depth":0},
 Salad: {"type":"Anchor","x":192,"y":166,"flippedX":false,"flippedY":false,"uid":"25979726_6","name":"Salad","depth":0},
 // @ts-ignore
 PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":124,"y":172,"width":88,"flippedX":false,"flippedY":false,"uid":"55841307_7","visible":false,"name":"","depth":0}),
@@ -3046,6 +3047,17 @@ scaleY: 1,
 rotation: 0,
 layerName: "TerrainDecals",
 texture: Obelisk
+}),
+GiantsExterior: resolveDecalGameObject({
+    x: 405,
+y: 232,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GiantsExterior
 }),
 CloudLong: resolveDecalGameObject({
     x: 608,
@@ -3189,7 +3201,10 @@ DesertGate: resolveGate({"type":"Gate","x":656,"y":288,"width":128,"height":32,"
 // @ts-ignore
 JungleGate: resolveGate({"type":"Gate","x":24,"y":288,"width":128,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_44","levelName":"JungleTown","checkpointName":"FromGiants","name":"JungleGate","depth":0}),
 // @ts-ignore
-Sign: resolveSign({"type":"Sign","x":588,"y":88,"flippedX":false,"flippedY":false,"uid":"86706091_45","title":"Giants","message":"Welcome to the nimbus of the giants.","name":"","depth":0})
+Sign: resolveSign({"type":"Sign","x":588,"y":88,"flippedX":false,"flippedY":false,"uid":"86706091_45","title":"Giants","message":"Welcome to the nimbus of the giants.","name":"","depth":0}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":384,"y":200,"flippedX":false,"flippedY":false,"uid":"55913988_46","levelName":"GiantsRestaurant","checkpointName":"","name":"","depth":0}),
+FromRestaurant: {"type":"Checkpoint","x":360,"y":232,"flippedX":false,"flippedY":false,"uid":"55940370_47","name":"FromRestaurant","faceRight":false,"depth":0}
 };
 }
 };
