@@ -14,20 +14,25 @@ import {bouncePlayer} from "../igua/bouncePlayer";
 import {playerIsWeakToPortalFluid, teleportToTheRoomOfDoors} from "./portalFluid";
 import {track} from "../igua/track";
 import {clownHealth, dieClown} from "./utils/clownUtils";
+import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
+import {hat} from "./hat";
 
+const clownTxs = subimageTextures(CommonClown, 2);
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
 export const commonClown = track(commonClownImpl);
 
 function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous = true, portal = false } = {}) {
     const container = merge(new Container(), { hspeed, vspeed: 0, portal, dangerous });
+    container.ext.isHatParent = true;
     const mask = new Graphics().beginFill(0x000000).drawRect(0, 0, 18, 15).at(-9, -16);
     mask.visible = false;
-    const sprite = Sprite.from(CommonClown);
+    const hatSprite = hat(Sprite.from(clownTxs[0]), 0.8);
+    const sprite = Sprite.from(clownTxs[1]);
     const spikeBall = Sprite.from(ClownSpikeBall);
     spikeBall.anchor.set(6/14, 3/14);
     const graphics = new Graphics();
-    sprite.anchor.set(.5, 1);
+    sprite.anchor.set(.5, 1).copyTo(hatSprite.anchor);
 
     let unit = 0;
     let distanceTraveled = 0;
@@ -123,6 +128,6 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
             teleportToTheRoomOfDoors();
         }
     })
-    container.addChild(graphics, spikeBall, sprite, mask);
+    container.addChild(graphics, spikeBall, hatSprite, sprite, mask);
     return container;
 }

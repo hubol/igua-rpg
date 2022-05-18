@@ -20,6 +20,7 @@ import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 import {trackPosition} from "../igua/trackPosition";
+import {hat} from "./hat";
 
 const textures = subimageTextures(ClownSneezy, { width: 24 });
 const propellerProjectileTextures = subimageTextures(ClownPropellerProjectile, { width: 8 });
@@ -194,6 +195,8 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
         })
         .on('removed', () => SneezyPropellerWindUp.stop(windUp));
 
+    c.ext.isHatParent = true;
+
     const position = trackPosition(c);
 
     function deadlySneeze(dp: Vector, radius = 16) {
@@ -255,7 +258,7 @@ function makePropeller(head: DisplayObject) {
 }
 
 function makeHead() {
-    const h = hat();
+    const h = hat(Sprite.from(textures[0]));
     const f = face();
 
     const c = merge(container(h, f), { hat: h, face: f, shaking: false, facePlayer: false })
@@ -283,35 +286,5 @@ function makeHead() {
 function face() {
     const s = merge(Sprite.from(textures[1]), { subimage: 0 })
         .withStep(() => s.texture = textures[s.subimage + 1]);
-    return s;
-}
-
-function hat() {
-    let y = 0;
-    let vspeed = 0;
-
-    function bounce() {
-        vspeed = -2;
-    }
-
-    let lastParentY = undefined as any as number;
-
-    const s = merge(Sprite.from(textures[0]), { bounce })
-        .withStep(() => {
-            const parentY = s.parent.parent.y;
-            if (lastParentY) {
-                const dy = parentY - lastParentY;
-                if (dy > 0) {
-                    y -= dy;
-                }
-            }
-            lastParentY = parentY;
-            y = Math.min(0, y + vspeed);
-            if (y === 0)
-                vspeed = 0;
-            else
-                vspeed = Math.min(vspeed + 0.3, y * -0.3);
-            s.y = Math.round(y);
-        });
     return s;
 }
