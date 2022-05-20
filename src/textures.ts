@@ -3,6 +3,7 @@ import * as PIXI from "pixi.js";
 // This file is generated. Do not touch.
 
 export let Anchor: PIXI.Texture;
+export let ArrowPoison: PIXI.Texture;
 export let BackpackIcon: PIXI.Texture;
 export let BigKey1: PIXI.Texture;
 export let BigKey2: PIXI.Texture;
@@ -36,6 +37,7 @@ export let CloudLong: PIXI.Texture;
 export let ClownPropellerProjectile: PIXI.Texture;
 export let ClownSneezy: PIXI.Texture;
 export let ClownSpikeBall: PIXI.Texture;
+export let ClownWonderfulThrow: PIXI.Texture;
 export let ClownWonderful: PIXI.Texture;
 export let Cobweb: PIXI.Texture;
 export let CocktailGlass: PIXI.Texture;
@@ -195,6 +197,9 @@ export function loadTexturesAsync()
     const AnchorPath = require("./images/anchor.png");
     loader.add(AnchorPath); 
 
+    const ArrowPoisonPath = require("./images/arrow poison.png");
+    loader.add(ArrowPoisonPath); 
+
     const BackpackIconPath = require("./images/backpack icon.png");
     loader.add(BackpackIconPath); 
 
@@ -293,6 +298,9 @@ export function loadTexturesAsync()
 
     const ClownSpikeBallPath = require("./images/clown spike ball.png");
     loader.add(ClownSpikeBallPath); 
+
+    const ClownWonderfulThrowPath = require("./images/clown wonderful throw.png");
+    loader.add(ClownWonderfulThrowPath); 
 
     const ClownWonderfulPath = require("./images/clown wonderful.png");
     loader.add(ClownWonderfulPath); 
@@ -749,6 +757,7 @@ export function loadTexturesAsync()
     {
         loader.load((_, resources) => {
             Anchor = resources[AnchorPath]?.texture as PIXI.Texture;
+            ArrowPoison = resources[ArrowPoisonPath]?.texture as PIXI.Texture;
             BackpackIcon = resources[BackpackIconPath]?.texture as PIXI.Texture;
             BigKey1 = resources[BigKey1Path]?.texture as PIXI.Texture;
             BigKey2 = resources[BigKey2Path]?.texture as PIXI.Texture;
@@ -782,6 +791,7 @@ export function loadTexturesAsync()
             ClownPropellerProjectile = resources[ClownPropellerProjectilePath]?.texture as PIXI.Texture;
             ClownSneezy = resources[ClownSneezyPath]?.texture as PIXI.Texture;
             ClownSpikeBall = resources[ClownSpikeBallPath]?.texture as PIXI.Texture;
+            ClownWonderfulThrow = resources[ClownWonderfulThrowPath]?.texture as PIXI.Texture;
             ClownWonderful = resources[ClownWonderfulPath]?.texture as PIXI.Texture;
             Cobweb = resources[CobwebPath]?.texture as PIXI.Texture;
             CocktailGlass = resources[CocktailGlassPath]?.texture as PIXI.Texture;
