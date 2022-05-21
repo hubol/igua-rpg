@@ -65,3 +65,7 @@ export function moveTowards(a: Vector, b: Vector, d: number) {
     a.y=a.y*(1-d)+b.y*(d);
     return a;
 }
+
+export function vdir(v: Vector) {
+    return Math.atan2(-v.y, v.x);
+}
