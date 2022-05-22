@@ -8,12 +8,11 @@ import {player} from "./player";
 import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {ClownHurt, CommonClownLand} from "../sounds";
-import {rng} from "../utils/math/rng";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {bouncePlayer} from "../igua/bouncePlayer";
 import {playerIsWeakToPortalFluid, teleportToTheRoomOfDoors} from "./portalFluid";
 import {track} from "../igua/track";
-import {clownHealth, dieClown} from "./utils/clownUtils";
+import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {hat} from "./hat";
 
@@ -40,8 +39,7 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
     let knockbackSpeed = 0;
 
     const health = clownHealth(50);
-
-    let dropOdds = 0.67;
+    const drop = clownDrop(0.67, 0.4, 0.1);
 
     container.withStep(() => {
         if (container.portal && !container.hasFilter)
@@ -102,12 +100,8 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
                     container.vspeed = -player.vspeed;
                 }
                 knockbackSpeed = -player.engine.knockback.x;
-                if (health.damage()) {
-                    const realDropOdds = Math.max(0.1, dropOdds);
-                    const drop = rng() < realDropOdds;
-
-                    return dieClown(container, drop);
-                }
+                if (health.damage())
+                    return dieClown(container, drop(container.vsPlayerHitCount));
                 ClownHurt.play();
                 invulnerable = 30;
             }
@@ -119,10 +113,8 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
         }
 
         container.visible = true;
-        if (container.dangerous && player.collides(spikeBall) && player.damage(20)) {
-            dropOdds *= 0.33;
+        if (container.dangerous && player.collides(spikeBall) && container.damagePlayer(20))
             player.engine.knockback.x = container.hspeed * 4;
-        }
 
         if (container.portal && playerIsWeakToPortalFluid() && (player.collides(spikeBall) || player.collides(mask))) {
             teleportToTheRoomOfDoors();

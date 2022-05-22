@@ -13,7 +13,7 @@ import {push} from "./walls";
 import {cyclic} from "../utils/math/number";
 import {confetti} from "./confetti";
 import {bouncePlayer} from "../igua/bouncePlayer";
-import {clownHealth, dieClown} from "./utils/clownUtils";
+import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
@@ -34,17 +34,12 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
     g.visible = false;
 
     const health = clownHealth(fullHealth);
+    const drop = clownDrop(0.8, 0.5, 0.1);
 
     let invulnerable = 0;
-    let dropOdds = 0.8;
     let spawnPropellerProjectiles = false;
     let spawnPropellerUnit = 0;
     let slowlyMoveTowardsPlayer = false;
-
-    function hurtPlayer(damage: number) {
-        dropOdds = Math.max(dropOdds - 0.5, 0.1);
-        return player.damage(damage);
-    }
 
     async function sniffle(index = 0) {
         head.face.subimage = 1 + index;
@@ -115,10 +110,8 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
             }
             if (invulnerable <= 0 && g.collides(player)) {
                 bouncePlayer([0, -9].add(c));
-                if (health.damage()) {
-                    const drop = rng() < dropOdds;
-                    return dieClown(c, drop);
-                }
+                if (health.damage())
+                    return dieClown(c, drop(c.vsPlayerHitCount));
                 invulnerable = 30;
                 ClownHurt.play();
                 knockbackSpeed.at(-player.engine.knockback.x, -player.vspeed);
@@ -210,7 +203,7 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
                 if (life-- <= 0 || c.destroyed)
                     return b.parent.destroy();
                 if (m.collides(player))
-                    hurtPlayer(25);
+                    c.damagePlayer(25);
             });
         return container(b, m);
     }
@@ -228,7 +221,7 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
                 if (noEffectLife-- === 0) {
                     s.texture = propellerProjectileTextures[1];
                     s.withStep(() => {
-                       if (s.collides(player) && hurtPlayer(20))
+                       if (s.collides(player) && c.damagePlayer(20))
                            player.engine.knockback.x = xscale * 3;
                     });
                 }
