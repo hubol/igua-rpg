@@ -147,7 +147,7 @@ export function clownWonderful() {
     }
 
     function computeTargetHeight() {
-        return c.y - getPlayerCenterWorld().y - 16;
+        return c.y - (getPlayerCenterWorld().y + player.vspeed) - 16;
     }
 
     async function throwArrowWip() {
