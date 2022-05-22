@@ -20,6 +20,7 @@ declare global {
 
             damageSource(d: DisplayObject): this;
             damagePlayer(damage: number): boolean | undefined;
+            effectPlayer(effect: 'poison'): boolean | undefined;
             vsPlayerHitCount: number;
         }
     }
@@ -52,13 +53,23 @@ function findDamageSource(self: DisplayObject) {
     return initial;
 }
 
+function incrementVsPlayerHitCount(self: DisplayObject) {
+    const source = findDamageSource(self);
+    source.ext.vsPlayerHitCount = (source.ext.vsPlayerHitCount ?? 0) + 1;
+}
+
 PIXI.DisplayObject.prototype.damagePlayer = function (damage) {
     const result = player.damage(damage);
-    if (!result)
-        return result;
+    if (result)
+        incrementVsPlayerHitCount(this);
 
-    const source = findDamageSource(this);
-    source.ext.vsPlayerHitCount = (source.ext.vsPlayerHitCount ?? 0) + 1;
+    return result;
+}
+
+PIXI.DisplayObject.prototype.effectPlayer = function (effect) {
+    const result = player.effect(effect);
+    if (result)
+        incrementVsPlayerHitCount(this);
 
     return result;
 }

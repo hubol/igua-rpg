@@ -2,7 +2,6 @@ import {vdir, Vector} from "../utils/math/vector";
 import {Sprite} from "pixi.js";
 import {ArrowPoison} from "../textures";
 import {player} from "./player";
-import {progress} from "../igua/data/progress";
 
 export function arrowPoison(speed: Vector) {
     let life = 100;
@@ -14,10 +13,8 @@ export function arrowPoison(speed: Vector) {
             s.add(speed);
             if (life-- <= 0)
                 return s.destroy();
-            if (player.collides(s) && s.damagePlayer(0)) {
-                progress.poisonLevel++;
+            if (player.collides(s) && s.effectPlayer('poison'))
                 s.destroy();
-            }
         });
     return s;
 }

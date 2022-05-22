@@ -76,6 +76,22 @@ function createPlayer(behavior = true)
                 progress.health -= health;
                 conditionallyGotoDeathScreen();
             },
+            effect(effect: 'poison') {
+                if (player.isDead)
+                    return;
+                if (player.invulnerableFrameCount > 0)
+                    return false;
+
+                switch (effect) {
+                    case "poison":
+                        progress.poisonLevel += 1;
+                        break;
+                }
+
+                CharacterHurt.play(); // TODO different SFX depending on effect
+                player.invulnerableFrameCount = 60;
+                return true;
+            },
             damage(health: number)
             {
                 if (player.isDead)
