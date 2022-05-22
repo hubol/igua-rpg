@@ -1,8 +1,9 @@
 import {scene} from "./scene";
 import {Container} from "pixi.js";
 import {computePlayerCameraTarget} from "./playerCamera";
-import {moveTowards} from "../utils/math/vector";
+import {moveTowards, vnew} from "../utils/math/vector";
 import {wait} from "../cutscene/wait";
+import {player} from "../gameObjects/player";
 
 export function camera(followPlayer: boolean)
 {
@@ -28,10 +29,12 @@ export function camera(followPlayer: boolean)
 }
 
 export function moveCameraToPlayerTarget(speed: number) {
+    const pspeed = vnew();
     const c = new Container().withStep(() => {
         const t = computePlayerCameraTarget();
 
-        moveTowards(scene.camera, t, speed);
+        pspeed.at(player.hspeed, player.vspeed);
+        moveTowards(scene.camera, t, speed + pspeed.vlength);
         if (scene.camera.x === t.x && scene.camera.y === t.y)
             c.destroy();
     }).show();
