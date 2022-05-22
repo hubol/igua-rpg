@@ -7,10 +7,12 @@ import {hat} from "./hat";
 import {sleep} from "../cutscene/sleep";
 import {merge} from "../utils/object/merge";
 import {Force} from "../utils/types/force";
-import {approachLinear} from "../utils/math/number";
+import {lerp as nlerp} from "../utils/math/number";
 import {vnew} from "../utils/math/vector";
 import {scene} from "../igua/scene";
 import {arrowPoison} from "./arrowPoison";
+import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
+import {wait} from "../cutscene/wait";
 
 const textures = subimageTextures(ClownWonderful, { width: 30 });
 const throwTxs = subimageTextures(ClownWonderfulThrow, 3);
@@ -52,6 +54,7 @@ export function clownWonderful() {
     const behaviors = {
         lookAtPlayer: true,
         facePlayer: true,
+        throwFacePlayer: true,
     };
 
     function mkHead() {
@@ -66,7 +69,7 @@ export function clownWonderful() {
                 if (playerX === undefined)
                     playerX = player.x;
                 else
-                    playerX = approachLinear(playerX, player.x, 2);
+                    playerX = nlerp(playerX, player.x, 0.5);
 
                 const playerIsRight = playerX > c.x;
 
@@ -74,6 +77,8 @@ export function clownWonderful() {
                     eyes.texture = textures[playerIsRight ? 7 : 8];
                 if (behaviors.facePlayer)
                     face.scale.x = playerIsRight ? 1 : -1;
+                if (behaviors.throwFacePlayer)
+                    controls.throw.faceRight = playerIsRight;
                 face.x = face.scale.x > 0 ? 14 : 13;
             });
         const myHat = hat(Sprite.from(textures[9]));
@@ -132,11 +137,22 @@ export function clownWonderful() {
         return Sprite.from(textures[0]);
     }
 
+    function computeTargetHeight() {
+        return c.y - getPlayerCenterWorld().y - 16;
+    }
+
     async function throwArrowWip() {
+        behaviors.facePlayer = true;
+        behaviors.throwFacePlayer = true;
         controls.throw.start1();
+        const withinRange = wait(() => computeTargetHeight() < 40 && computeTargetHeight() > -10);
         await sleep(500);
+        await withinRange;
+        behaviors.facePlayer = false;
+        behaviors.throwFacePlayer = false;
         controls.throw.lift2();
         await sleep(150);
+        controls.throw.height = Math.max(-2, Math.min(32, computeTargetHeight()));
         controls.throw.peak3();
         await sleep(100);
         controls.throw.release4();
@@ -160,8 +176,6 @@ export function clownWonderful() {
             while (true) {
                 await sleep(250);
                 await throwArrowWip();
-                controls.throw.faceRight = !controls.throw.faceRight;
-                controls.throw.height = (controls.throw.height + 2) % 32;
             }
         });
     c.ext.isHatParent = true;
