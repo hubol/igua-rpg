@@ -13,11 +13,19 @@ import {scene} from "../igua/scene";
 import {arrowPoison} from "./arrowPoison";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {wait} from "../cutscene/wait";
+import {clownHealth} from "./utils/clownUtils";
+import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 
 const textures = subimageTextures(ClownWonderful, { width: 30 });
 const throwTxs = subimageTextures(ClownWonderfulThrow, 3);
 
 export function clownWonderful() {
+    const health = clownHealth(200);
+
+    const consts = {
+        recoveryFrames: 15,
+    }
+
     const controls = {
         throw: {
             _on: false,
@@ -55,6 +63,7 @@ export function clownWonderful() {
         lookAtPlayer: true,
         facePlayer: true,
         throwFacePlayer: true,
+        invulnerable: 0,
     };
 
     function mkHead() {
@@ -164,8 +173,23 @@ export function clownWonderful() {
     }
 
     const head = mkHead();
+    head.hitbox = [0.2, 0.2, 0.8, 0.8];
     const arm = mkArm();
     const c = container(mkLegs(), head, arm)
+        .withStep(() => {
+            if (behaviors.invulnerable > 0) {
+                c.visible = !c.visible;
+                behaviors.invulnerable--;
+                return;
+            }
+
+            c.visible = true;
+            if (head.collides(player)) {
+                health.damage();
+                behaviors.invulnerable = consts.recoveryFrames;
+                bouncePlayerOffDisplayObject(head);
+            }
+        })
         .withAsync(async () => {
             while (true) {
                 await sleep(1000);
