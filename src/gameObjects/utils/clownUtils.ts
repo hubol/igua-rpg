@@ -41,24 +41,8 @@ export function clownHealth(maxHealth: number) {
     };
 }
 
-export function clownHitsCounter() {
-    return {
-        count: 0,
-        increment() {
-            this.count++;
-        },
-        spawn<T extends DisplayObject>(t: T) {
-            t.ext.onPlayerHit = () => this.increment();
-            return t;
-        },
-        drop(initialRate: number, deltaRate: number, minRate: number) {
-            return () => rng() <= Math.max(minRate, initialRate - Math.abs(deltaRate) * this.count);
-        }
-    }
-}
-
-export function doPlayerHitEvents(self: DisplayObject) {
-    self.ext.onPlayerHit?.();
+export function clownDrop(initialRate: number, deltaRate: number, minRate: number) {
+    return (count: number) => rng() <= Math.max(minRate, initialRate - Math.abs(deltaRate) * count);
 }
 
 type ClownHealth = ReturnType<typeof clownHealth>;

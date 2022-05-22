@@ -13,7 +13,7 @@ import {scene} from "../igua/scene";
 import {arrowPoison} from "./arrowPoison";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {wait} from "../cutscene/wait";
-import {clownHealth, clownHitsCounter, dieClown} from "./utils/clownUtils";
+import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {ClownHurt} from "../sounds";
 
@@ -22,8 +22,7 @@ const throwTxs = subimageTextures(ClownWonderfulThrow, 3);
 
 export function clownWonderful() {
     const health = clownHealth(200);
-    const hits = clownHitsCounter();
-    const drop = hits.drop(0.9, 0.3, 0.1);
+    const drop = clownDrop(0.9, 0.3, 0.1);
 
     const consts = {
         recoveryFrames: 15,
@@ -168,7 +167,7 @@ export function clownWonderful() {
         controls.throw.peak3();
         await sleep(100);
         controls.throw.release4();
-        hits.spawn(arrowPoison([controls.throw.faceRight ? 4 : -4, 0])).at(arm.arrowPosition).show();
+        arrowPoison([controls.throw.faceRight ? 4 : -4, 0]).damageSource(c).at(arm.arrowPosition).show();
         await sleep(100);
         controls.throw.recover5();
         await sleep(250);
@@ -192,7 +191,7 @@ export function clownWonderful() {
                 behaviors.invulnerable = consts.recoveryFrames;
                 bouncePlayerOffDisplayObject(head);
                 if (health.damage())
-                    dieClown(c, drop());
+                    dieClown(c, drop(c.vsPlayerHitCount));
             }
         })
         .withAsync(async () => {

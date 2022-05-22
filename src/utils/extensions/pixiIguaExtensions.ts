@@ -5,6 +5,7 @@ import {CollectGeneric} from "../../sounds";
 import {player} from "../../gameObjects/player";
 import {scene} from "../../igua/scene";
 import {cutscene, Cutscene} from "../../cutscene/cutscene";
+import {DisplayObject} from "pixi.js";
 
 declare global {
     namespace PIXI {
@@ -16,6 +17,10 @@ declare global {
             withCutscene(cutscene: Cutscene): this;
             asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>, action?: () => void);
             liveFor(frames: number): this;
+
+            damageSource(d: DisplayObject): this;
+            damagePlayer(damage: number): boolean | undefined;
+            vsPlayerHitCount: number;
         }
     }
 }
@@ -30,6 +35,43 @@ PIXI.DisplayObject.prototype.liveFor = function (frames) {
             this.destroy();
     });
 }
+
+PIXI.DisplayObject.prototype.damageSource = function (d) {
+    this.ext.damageSource = d;
+    return this;
+}
+
+function findDamageSource(self: DisplayObject) {
+    const initial = self;
+
+    while (self && !self.ext.damageSource) {
+        self = self.parent;
+    }
+    if (self?.ext?.damageSource)
+        return self.ext.damageSource;
+    return initial;
+}
+
+PIXI.DisplayObject.prototype.damagePlayer = function (damage) {
+    const result = player.damage(damage);
+    if (!result)
+        return result;
+
+    const source = findDamageSource(this);
+    source.ext.vsPlayerHitCount = (source.ext.vsPlayerHitCount ?? 0) + 1;
+
+    return result;
+}
+
+Object.defineProperties(PIXI.DisplayObject.prototype, {
+    vsPlayerHitCount: {
+        get: function () {
+            return findDamageSource(this).ext.vsPlayerHitCount ?? 0;
+        },
+        enumerable: false,
+        configurable: true,
+    },
+});
 
 PIXI.DisplayObject.prototype.behind = function () {
     return scene.backgroundGameObjectStage.addChild(this);

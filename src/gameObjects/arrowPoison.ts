@@ -3,7 +3,6 @@ import {Sprite} from "pixi.js";
 import {ArrowPoison} from "../textures";
 import {player} from "./player";
 import {progress} from "../igua/data/progress";
-import {doPlayerHitEvents} from "./utils/clownUtils";
 
 export function arrowPoison(speed: Vector) {
     let life = 100;
@@ -15,8 +14,7 @@ export function arrowPoison(speed: Vector) {
             s.add(speed);
             if (life-- <= 0)
                 return s.destroy();
-            if (player.collides(s) && player.damage(0)) {
-                doPlayerHitEvents(s);
+            if (player.collides(s) && s.damagePlayer(0)) {
                 progress.poisonLevel++;
                 s.destroy();
             }
