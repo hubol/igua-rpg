@@ -7,6 +7,7 @@ import {SceneLocal} from "../../igua/sceneLocal";
 import {container} from "../../utils/pixi/container";
 import {merge} from "../../utils/object/merge";
 import {Undefined} from "../../utils/types/undefined";
+import {rng} from "../../utils/math/rng";
 
 export function dieClown(container: DisplayObject, drop: boolean) {
     ClownExplode.play();
@@ -38,6 +39,26 @@ export function clownHealth(maxHealth: number) {
             return this.isDead;
         }
     };
+}
+
+export function clownHitsCounter() {
+    return {
+        count: 0,
+        increment() {
+            this.count++;
+        },
+        spawn<T extends DisplayObject>(t: T) {
+            t.ext.onPlayerHit = () => this.increment();
+            return t;
+        },
+        drop(initialRate: number, deltaRate: number, minRate: number) {
+            return () => rng() <= Math.max(minRate, initialRate - Math.abs(deltaRate) * this.count);
+        }
+    }
+}
+
+export function doPlayerHitEvents(self: DisplayObject) {
+    self.ext.onPlayerHit?.();
 }
 
 type ClownHealth = ReturnType<typeof clownHealth>;
