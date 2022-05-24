@@ -6681,9 +6681,9 @@ Block_1: resolveBlock({"type":"Block","x":136,"y":192,"width":56,"height":16,"fl
 // @ts-ignore
 ClownWonderful: resolveClownWonderful({"type":"ClownWonderful","x":168,"y":192,"flippedX":false,"flippedY":false,"uid":"36552372_3","name":"","depth":0}),
 // @ts-ignore
-ClownWonderful_1: resolveClownWonderful({"type":"ClownWonderful","x":400,"y":104,"flippedX":false,"flippedY":false,"uid":"36552372_4","name":"","depth":0}),
+ClownWonderful_1: resolveClownWonderful({"type":"ClownWonderful","x":336,"y":88,"flippedX":false,"flippedY":false,"uid":"36552372_4","name":"","depth":0}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":392,"y":104,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0})
+Block_2: resolveBlock({"type":"Block","x":328,"y":88,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0})
 };
 }
 };

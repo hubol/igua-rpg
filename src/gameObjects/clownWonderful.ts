@@ -8,7 +8,7 @@ import {sleep} from "../cutscene/sleep";
 import {merge} from "../utils/object/merge";
 import {Force} from "../utils/types/force";
 import {approachLinear, lerp as nlerp} from "../utils/math/number";
-import {vnew} from "../utils/math/vector";
+import {distance, vnew} from "../utils/math/vector";
 import {scene} from "../igua/scene";
 import {arrowPoison} from "./arrowPoison";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
@@ -96,7 +96,10 @@ export function clownWonderful() {
         dash: false,
     };
 
-    let playerIsRight = Force<boolean>();
+    const state = {
+        playerIsRight: Force<boolean>(),
+        noticedPlayer: false,
+    };
 
     function mkHead() {
         const bald = Sprite.from(textures[5]);
@@ -104,22 +107,29 @@ export function clownWonderful() {
         face.anchor.x = 14 / face.width;
 
         let playerX = Force<number>();
+        const v = vnew();
 
         const eyes = Sprite.from(textures[7])
             .withStep(() => {
+                state.noticedPlayer = isOnScreen(c) &&
+                    distance(player, offsetPosition) < 180 &&
+                    (!rayToPlayerIntersectsWall(offsetPosition) ||
+                    !rayToPlayerIntersectsWall(v.at(offsetPosition).add(-24, 0)) ||
+                    !rayToPlayerIntersectsWall(v.at(offsetPosition).add(24, 0)));
+
                 if (playerX === undefined)
                     playerX = player.x;
-                else
+                else if (state.noticedPlayer)
                     playerX = nlerp(playerX, player.x, 0.5);
 
-                playerIsRight = playerX > c.x;
+                state.playerIsRight = playerX > c.x;
 
                 if (behaviors.lookAtPlayer)
-                    eyes.texture = textures[playerIsRight ? 7 : 8];
+                    eyes.texture = textures[state.playerIsRight ? 7 : 8];
                 if (behaviors.facePlayer)
-                    face.scale.x = playerIsRight ? 1 : -1;
+                    face.scale.x = state.playerIsRight ? 1 : -1;
                 if (behaviors.throwFacePlayer)
-                    controls.throw.faceRight = playerIsRight;
+                    controls.throw.faceRight = state.playerIsRight;
                 face.x = face.scale.x > 0 ? 14 : 13;
             });
         const myHat = hat(Sprite.from(textures[9]));
@@ -185,7 +195,7 @@ export function clownWonderful() {
         return c.y - (getPlayerCenterWorld().y + player.vspeed) - 16;
     }
 
-    async function throwArrowWip() {
+    async function throwArrow() {
         behaviors.lookAtPlayer = true;
         behaviors.facePlayer = true;
         behaviors.throwFacePlayer = true;
@@ -208,13 +218,13 @@ export function clownWonderful() {
         controls.throw.finish6();
     }
 
-    async function dashWip() {
+    async function dash() {
         behaviors.lookAtPlayer = true;
         behaviors.facePlayer = true;
         await sleep(250);
         behaviors.facePlayer = false;
         behaviors.lookAtPlayer = false;
-        const right = playerIsRight;
+        const right = state.playerIsRight;
         controls.legs.subimage = right ? Leg.RightPoint : Leg.LeftPoint;
         const dx = right ? 1 : -1;
         const t = sparkleTell().at([dx * 16, -8].add(c)).show();
@@ -246,7 +256,7 @@ export function clownWonderful() {
 
     function resetMoves() {
         moves.length = 0;
-        moves.push(dashWip, dashWip, throwArrowWip, throwArrowWip);
+        moves.push(dash, dash, throwArrow, throwArrow);
     }
 
     function pickMove() {
@@ -273,14 +283,16 @@ export function clownWonderful() {
             }
         })
         .withAsync(async () => {
+            await sleep(100);
+            await wait(() => state.noticedPlayer);
             while (true) {
+                await wait(() => distance(player, offsetPosition) < 180);
                 await sleep(250);
-                await wait(() => isOnScreen(c));
-                await wait(() => !rayToPlayerIntersectsWall(offsetPosition))
                 const y = rayToPlayer(offsetPosition).normalize().y;
                 if (y > 0.2)
-                    await sleep(250);
-                await pickMove()();
+                    await dash();
+                else
+                    await pickMove()();
             }
         })
         .withStep(() => {
@@ -311,9 +323,9 @@ export function clownWonderful() {
         const s = Sprite.from(ClownWonderfulGhost)
             .withStep(() => {
                 s.alpha = life / maxLife;
-                if (life-- <= 0 || c.destroyed)
+                if (life-- <= 0)
                     return s.destroy();
-                if (!hostile || s.alpha < 0.25)
+                if (!hostile || s.alpha < 0.25|| c.destroyed)
                     return;
                 if (player.collides(s) && !canGetDamagedByPlayer()) {
                     hostile = false;
