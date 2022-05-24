@@ -15,6 +15,8 @@ export function newGravity(target: DisplayObject, speed: Vector, offset: Vector,
             pushable.vspeed += gravity;
         else
             pushable.vspeed = 0;
+        if (r.hitWall)
+            pushable.hspeed = 0;
         speed.at(pushable.hspeed, pushable.vspeed);
         target.at(pushable).add(offset, -1);
 

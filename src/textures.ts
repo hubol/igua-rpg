@@ -37,6 +37,7 @@ export let CloudLong: PIXI.Texture;
 export let ClownPropellerProjectile: PIXI.Texture;
 export let ClownSneezy: PIXI.Texture;
 export let ClownSpikeBall: PIXI.Texture;
+export let ClownWonderfulGhost: PIXI.Texture;
 export let ClownWonderfulThrow: PIXI.Texture;
 export let ClownWonderful: PIXI.Texture;
 export let Cobweb: PIXI.Texture;
@@ -298,6 +299,9 @@ export function loadTexturesAsync()
 
     const ClownSpikeBallPath = require("./images/clown spike ball.png");
     loader.add(ClownSpikeBallPath); 
+
+    const ClownWonderfulGhostPath = require("./images/clown wonderful ghost.png");
+    loader.add(ClownWonderfulGhostPath); 
 
     const ClownWonderfulThrowPath = require("./images/clown wonderful throw.png");
     loader.add(ClownWonderfulThrowPath); 
@@ -791,6 +795,7 @@ export function loadTexturesAsync()
             ClownPropellerProjectile = resources[ClownPropellerProjectilePath]?.texture as PIXI.Texture;
             ClownSneezy = resources[ClownSneezyPath]?.texture as PIXI.Texture;
             ClownSpikeBall = resources[ClownSpikeBallPath]?.texture as PIXI.Texture;
+            ClownWonderfulGhost = resources[ClownWonderfulGhostPath]?.texture as PIXI.Texture;
             ClownWonderfulThrow = resources[ClownWonderfulThrowPath]?.texture as PIXI.Texture;
             ClownWonderful = resources[ClownWonderfulPath]?.texture as PIXI.Texture;
             Cobweb = resources[CobwebPath]?.texture as PIXI.Texture;

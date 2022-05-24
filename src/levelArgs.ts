@@ -6666,3 +6666,15 @@ SnowmanSpawn: {"type":"Anchor","x":384,"y":224,"flippedX":false,"flippedY":false
 };
 }
 };
+
+export const VolcanoCavernArgs = {
+    width: 512,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":208,"width":512,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":472,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0}
+};
+}
+};

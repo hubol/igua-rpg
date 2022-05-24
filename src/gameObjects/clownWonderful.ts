@@ -1,13 +1,13 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {ArrowPoison, ClownWonderful, ClownWonderfulThrow} from "../textures";
-import {Graphics, Sprite} from "pixi.js";
+import {ArrowPoison, ClownWonderful, ClownWonderfulGhost, ClownWonderfulThrow} from "../textures";
+import {BLEND_MODES, Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import { player } from "./player";
 import {hat} from "./hat";
 import {sleep} from "../cutscene/sleep";
 import {merge} from "../utils/object/merge";
 import {Force} from "../utils/types/force";
-import {lerp as nlerp} from "../utils/math/number";
+import {approachLinear, lerp as nlerp} from "../utils/math/number";
 import {vnew} from "../utils/math/vector";
 import {scene} from "../igua/scene";
 import {arrowPoison} from "./arrowPoison";
@@ -16,9 +16,22 @@ import {wait} from "../cutscene/wait";
 import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {ClownHurt} from "../sounds";
+import {newGravity} from "./utils/newGravity";
+import {sparkleTell} from "./sparkleTell";
+import {isOnScreen} from "../igua/logic/isOnScreen";
+import {rayToPlayer, rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
+import {rng} from "../utils/math/rng";
 
 const textures = subimageTextures(ClownWonderful, { width: 30 });
 const throwTxs = subimageTextures(ClownWonderfulThrow, 3);
+
+enum Leg {
+    Default,
+    LeftPoint,
+    RightPoint,
+    LeftTilt,
+    RightTilt
+}
 
 export function clownWonderful() {
     const health = clownHealth(200);
@@ -26,6 +39,14 @@ export function clownWonderful() {
 
     const consts = {
         recoveryFrames: 15,
+        ghostLifeFrames: 15,
+        dash: {
+            speed: 10,
+            deltaSpeed: 0.5,
+        },
+        damage: {
+            ghost: 40,
+        }
     }
 
     const controls = {
@@ -58,6 +79,9 @@ export function clownWonderful() {
             finish6() {
                 this._on = false;
             }
+        },
+        legs: {
+            subimage: 0
         }
     };
 
@@ -66,7 +90,10 @@ export function clownWonderful() {
         facePlayer: true,
         throwFacePlayer: true,
         invulnerable: 0,
+        dash: false,
     };
+
+    let playerIsRight = Force<boolean>();
 
     function mkHead() {
         const bald = Sprite.from(textures[5]);
@@ -82,7 +109,7 @@ export function clownWonderful() {
                 else
                     playerX = nlerp(playerX, player.x, 0.5);
 
-                const playerIsRight = playerX > c.x;
+                playerIsRight = playerX > c.x;
 
                 if (behaviors.lookAtPlayer)
                     eyes.texture = textures[playerIsRight ? 7 : 8];
@@ -145,7 +172,10 @@ export function clownWonderful() {
     }
 
     function mkLegs() {
-        return Sprite.from(textures[0]);
+        const l = Sprite.from(textures[0])
+            .withStep(() => l.texture = textures[controls.legs.subimage]);
+
+        return l;
     }
 
     function computeTargetHeight() {
@@ -153,6 +183,7 @@ export function clownWonderful() {
     }
 
     async function throwArrowWip() {
+        behaviors.lookAtPlayer = true;
         behaviors.facePlayer = true;
         behaviors.throwFacePlayer = true;
         controls.throw.start1();
@@ -174,11 +205,40 @@ export function clownWonderful() {
         controls.throw.finish6();
     }
 
+    async function dashWip() {
+        behaviors.lookAtPlayer = true;
+        behaviors.facePlayer = true;
+        await sleep(250);
+        behaviors.facePlayer = false;
+        behaviors.lookAtPlayer = false;
+        const right = playerIsRight;
+        controls.legs.subimage = right ? Leg.RightPoint : Leg.LeftPoint;
+        const dx = right ? 1 : -1;
+        const t = sparkleTell().at([dx * 16, -8].add(c)).show();
+        head.hat.bounce();
+        speed.y = -2;
+        await wait(() => t.destroyed);
+        behaviors.lookAtPlayer = true;
+        speed.x = consts.dash.speed * dx;
+        controls.legs.subimage = right ? Leg.RightTilt : Leg.LeftTilt;
+        behaviors.dash = true;
+        await wait(() => speed.x === 0);
+        behaviors.dash = false;
+        controls.legs.subimage = 0;
+    }
+
     const head = mkHead();
     head.hitbox = [0.2, 0.2, 0.8, 0.8];
     const arm = mkArm();
-    const c = container(mkLegs(), head, arm)
-        .withStep(() => {
+    const c = container(mkLegs(), head, arm);
+
+    const speed = vnew();
+    const offset = [0, -10];
+    const gravity = newGravity(c, speed, offset, 8);
+
+    const offsetPosition = vnew();
+
+    c.withStep(() => {
             if (behaviors.invulnerable > 0) {
                 c.visible = !c.visible;
                 behaviors.invulnerable--;
@@ -186,7 +246,7 @@ export function clownWonderful() {
             }
 
             c.visible = true;
-            if (head.collides(player)) {
+            if (canGetDamagedByPlayer()) {
                 ClownHurt.play();
                 behaviors.invulnerable = consts.recoveryFrames;
                 bouncePlayerOffDisplayObject(head);
@@ -196,17 +256,54 @@ export function clownWonderful() {
         })
         .withAsync(async () => {
             while (true) {
-                await sleep(1000);
-                head.hat.bounce();
+                await sleep(250);
+                await wait(() => isOnScreen(c));
+                await wait(() => !rayToPlayerIntersectsWall(offsetPosition))
+                const y = rayToPlayer(offsetPosition).normalize().y;
+                if (y > 0.2)
+                    await sleep(250);
+                if (rng.bool)
+                    await dashWip();
+                else
+                    await throwArrowWip();
             }
         })
-        .withAsync(async () => {
-            while (true) {
-                await sleep(250);
-                await throwArrowWip();
+        .withStep(() => {
+            gravity(0.4);
+            if (behaviors.dash) {
+                const g = ghost(consts.ghostLifeFrames, consts.damage.ghost).at([-14, -32].add(c));
+                const i = c.parent.getChildIndex(c);
+                c.parent.addChildAt(g, Math.max(0, i - 1));
+                speed.x = approachLinear(speed.x, 0, consts.dash.deltaSpeed);
             }
+            c.x = Math.max(8, Math.min(scene.width - 8, c.x));
+            offsetPosition.at(c).add(offset);
         });
     c.ext.isHatParent = true;
     c.pivot.set(14, 36);
+
+    const topOfHead = new Graphics().beginFill(0).drawRect(7, -2, 13, 10).show(c).hide();
+    const canGetDamagedByPlayer = () => head.collides(player) && (!behaviors.dash || topOfHead.collides(player));
+
+    function ghost(life: number, damage: number) {
+        const maxLife = life;
+        let hostile = true;
+        const s = Sprite.from(ClownWonderfulGhost)
+            .withStep(() => {
+                s.alpha = life / maxLife;
+                if (life-- <= 0)
+                    return s.destroy();
+                if (!hostile || s.alpha < 0.25)
+                    return;
+                if (player.collides(s) && !canGetDamagedByPlayer()) {
+                    hostile = false;
+                    c.damagePlayer(damage);
+                }
+            });
+        s.hitbox = [0.2, 0.2, 0.8, 0.8];
+        s.blendMode = BLEND_MODES.ADD;
+        return s;
+    }
+
     return c;
 }

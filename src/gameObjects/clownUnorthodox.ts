@@ -9,7 +9,8 @@ import {
     UnorthodoxClownHead,
     UnorthodoxClownJoint,
     UnorthodoxClownLegsSplit,
-    UnorthodoxClownMouth, UnorthodoxClownSpark, UnorthodoxClownSparkle
+    UnorthodoxClownMouth,
+    UnorthodoxClownSpark
 } from "../textures";
 import {Graphics, Sprite} from "pixi.js";
 import {now} from "../utils/now";
@@ -32,7 +33,6 @@ import {
     UnorthodoxSparkBegin,
     UnorthodoxSparkBounce,
     UnorthodoxStomp,
-    UnorthodoxTell,
     UnorthodoxUncharge,
     UnorthodoxUnjump,
     UnorthodoxUnscrew
@@ -49,6 +49,7 @@ import {push} from "./walls";
 import {scene} from "../igua/scene";
 import {confetti} from "./confetti";
 import {trove100} from "./valuableTrove";
+import {sparkleTell} from "./sparkleTell";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -266,7 +267,7 @@ export function clownUnorthodox() {
             const fu = lerp(controls.face, 'y').to(-2).over(up);
             UnorthodoxLiftFoot.play();
             await lerp(control, 'y').to(-8).over(up + rng.int(up));
-            const s = sparkle().at([dx * 24, -20].add(legs)).show();
+            const s = sparkleTell().at([dx * 24, -20].add(legs)).show();
             control.i = 2;
             await wait(() => s.destroyed);
             control.i = 0;
@@ -727,13 +728,6 @@ export function clownUnorthodox() {
     }
 
     return head;
-}
-
-const sparkleTxs = subimageTextures(UnorthodoxClownSparkle, 5);
-
-function sparkle() {
-    UnorthodoxTell.play();
-    return animatedSprite(sparkleTxs, 0.3, true).centerAnchor();
 }
 
 function spark() {
