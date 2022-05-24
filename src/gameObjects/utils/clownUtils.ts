@@ -8,15 +8,16 @@ import {container} from "../../utils/pixi/container";
 import {merge} from "../../utils/object/merge";
 import {Undefined} from "../../utils/types/undefined";
 import {rng} from "../../utils/math/rng";
+import {vnew} from "../../utils/math/vector";
 
-export function dieClown(container: DisplayObject, drop: boolean) {
+export function dieClown(container: DisplayObject, drop: boolean, offset = vnew()) {
     ClownExplode.play();
     if (drop)
-        valuable(container.x, container.y, undefined, "ValuableOrange")
+        valuable(container.x + offset.x, container.y + offset.y, undefined, "ValuableOrange")
             .delayCollectible()
             .show();
 
-    confetti().at(container).show();
+    confetti().at(offset.add(container)).show();
     container.destroy();
 }
 

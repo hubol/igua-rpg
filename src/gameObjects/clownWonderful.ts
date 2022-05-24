@@ -21,6 +21,7 @@ import {sparkleTell} from "./sparkleTell";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {rayToPlayer, rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 import {rng} from "../utils/math/rng";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 const textures = subimageTextures(ClownWonderful, { width: 30 });
 const throwTxs = subimageTextures(ClownWonderfulThrow, 3);
@@ -32,6 +33,8 @@ enum Leg {
     LeftTilt,
     RightTilt
 }
+
+export const resolveClownWonderful = resolveGameObject('ClownWonderful', e => clownWonderful().at([0, 2].add(e)));
 
 export function clownWonderful() {
     const health = clownHealth(200);
@@ -238,6 +241,21 @@ export function clownWonderful() {
 
     const offsetPosition = vnew();
 
+    const moves: (() => Promise<unknown>)[] = [];
+    resetMoves();
+
+    function resetMoves() {
+        moves.length = 0;
+        moves.push(dashWip, dashWip, throwArrowWip, throwArrowWip);
+    }
+
+    function pickMove() {
+        if (moves.length <= 0)
+            resetMoves();
+        const i = rng.int(moves.length);
+        return moves.splice(i, 1)[0];
+    }
+
     c.withStep(() => {
             if (behaviors.invulnerable > 0) {
                 c.visible = !c.visible;
@@ -251,7 +269,7 @@ export function clownWonderful() {
                 behaviors.invulnerable = consts.recoveryFrames;
                 bouncePlayerOffDisplayObject(head);
                 if (health.damage())
-                    dieClown(c, drop(c.vsPlayerHitCount));
+                    dieClown(c, drop(c.vsPlayerHitCount), [0, -8]);
             }
         })
         .withAsync(async () => {
@@ -262,19 +280,21 @@ export function clownWonderful() {
                 const y = rayToPlayer(offsetPosition).normalize().y;
                 if (y > 0.2)
                     await sleep(250);
-                if (rng.bool)
-                    await dashWip();
-                else
-                    await throwArrowWip();
+                await pickMove()();
             }
         })
         .withStep(() => {
-            gravity(0.4);
+            const ph = speed.x;
+            const r = gravity(0.4);
             if (behaviors.dash) {
                 const g = ghost(consts.ghostLifeFrames, consts.damage.ghost).at([-14, -32].add(c));
                 const i = c.parent.getChildIndex(c);
                 c.parent.addChildAt(g, Math.max(0, i - 1));
                 speed.x = approachLinear(speed.x, 0, consts.dash.deltaSpeed);
+                if (r.hitWall && Math.abs(ph) > 1) {
+                    speed.x = speed.y < 0 ? ph : Math.sign(ph) * Math.max(Math.abs(ph) * 0.75, 1);
+                    speed.y = -3;
+                }
             }
             c.x = Math.max(8, Math.min(scene.width - 8, c.x));
             offsetPosition.at(c).add(offset);
@@ -291,7 +311,7 @@ export function clownWonderful() {
         const s = Sprite.from(ClownWonderfulGhost)
             .withStep(() => {
                 s.alpha = life / maxLife;
-                if (life-- <= 0)
+                if (life-- <= 0 || c.destroyed)
                     return s.destroy();
                 if (!hostile || s.alpha < 0.25)
                     return;

@@ -861,47 +861,6 @@
       ]
     },
     {
-      "exportID": "68762216",
-      "name": "CommonClown",
-      "limit": -1,
-      "size": {"x": 22, "y": 63},
-      "origin": {"x": 8, "y": 62},
-      "originAnchored": true,
-      "shape": {
-        "label": "Rectangle",
-        "points": [
-          {"x": -1, "y": -1},
-          {"x": 1, "y": -1},
-          {"x": -1, "y": 1},
-          {"x": 1, "y": -1},
-          {"x": -1, "y": 1},
-          {"x": 1, "y": 1}
-        ]
-      },
-      "color": "#ff0000ff",
-      "tileX": false,
-      "tileY": false,
-      "tileSize": {"x": 16, "y": 16},
-      "resizeableX": false,
-      "resizeableY": false,
-      "rotatable": false,
-      "rotationDegrees": 360,
-      "canFlipX": false,
-      "canFlipY": false,
-      "canSetColor": false,
-      "hasNodes": false,
-      "nodeLimit": 0,
-      "nodeDisplay": 0,
-      "nodeGhost": true,
-      "tags": [],
-      "values": [
-        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
-        {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
-      ],
-      "texture": "preview-images/commonClown.png",
-      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAA/CAYAAADkFzjFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAB8UlEQVRYR+2XsU7DQAyG+wLdGXiMTrwEz8KOWLpk5xVgQOIJmEBiYK9UISF2xMx+9D/Vkc9nn31BqRhS6dTE8X3397cvSVcppZU3fob7Q4qfx3NcKJJnAQNKo0e1q3gWMIf2qm4qJtjX20WiEbXDBHOYPI7ATwu21PYUUlVMYK140SJW4BZMXmt5fRpwRG20QwrFGrjVdrhm2ZHBV9t9wrAg1nWKE5yfj1AKSkg0LvNMsEzsPS+s6J1s5cOakOL1+XWiwWFWHDkVGGWmDytGKMYXLazgUH7MlbXiRVccW8ViZgskDOdWnFqPNkgITMolmMf/L/j4SpB/6STFpkeHCxzO8rK9rsc0QRaLoDIuPcYC7qfRCTR3vFvKG30YbinVFE+2hWD8u/XC4qrXgC3F6mLDMGAh912vG4wJPfCwggU8WtXjL9/SrtcLePG4vicsXTFvV/T6G97SfwK/7D7NJ4QGbuVXipEsJ0ioluM+TL9vHzOYTyYwjyPPe/5Vt0sJ377epfePhzwAj0DV4mEih3Mw4JPBeMMhOI4vb56ThHs2qMXjfwsILOFeRxRgXhwOP9s8ZdUEh/pIZxTFgwVSMZ0TDAtEfK66QgNrbej5XIGhTMJlp3hQc+dplvTCC8VyA8hdCCVki6d6BFstZBXKa7lfa31tETmRHfgAAAAASUVORK5CYII="
-    },
-    {
       "exportID": "15952797",
       "name": "Boulder",
       "limit": -1,
@@ -1066,6 +1025,47 @@
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAAoklEQVQ4T2M4ePnufwYSAIp6EIeQAVjVvJq8BqwRmySyOEgdhuPQNTcfWfL/xu2VYAzSjFUTyBSQBLJmZI0gzTg18srUgCVBGMT2rzvwH10zhjNBTgEpRsYgjeiasYYoumYJk11gjTDNINsxAg/mPHRbQXyYYpABWP2JTRO+aIL7F5s/0UMaa+DA4grdZrya0SMYWyqCORvFidjSOK4Ih0UJAImcSLfdq4ygAAAAAElFTkSuQmCC"
     },
     {
+      "exportID": "68762216",
+      "name": "CommonClown",
+      "limit": -1,
+      "size": {"x": 22, "y": 63},
+      "origin": {"x": 8, "y": 62},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
+      ],
+      "texture": "preview-images/commonClown.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAA/CAYAAADkFzjFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAB8UlEQVRYR+2XsU7DQAyG+wLdGXiMTrwEz8KOWLpk5xVgQOIJmEBiYK9UISF2xMx+9D/Vkc9nn31BqRhS6dTE8X3397cvSVcppZU3fob7Q4qfx3NcKJJnAQNKo0e1q3gWMIf2qm4qJtjX20WiEbXDBHOYPI7ATwu21PYUUlVMYK140SJW4BZMXmt5fRpwRG20QwrFGrjVdrhm2ZHBV9t9wrAg1nWKE5yfj1AKSkg0LvNMsEzsPS+s6J1s5cOakOL1+XWiwWFWHDkVGGWmDytGKMYXLazgUH7MlbXiRVccW8ViZgskDOdWnFqPNkgITMolmMf/L/j4SpB/6STFpkeHCxzO8rK9rsc0QRaLoDIuPcYC7qfRCTR3vFvKG30YbinVFE+2hWD8u/XC4qrXgC3F6mLDMGAh912vG4wJPfCwggU8WtXjL9/SrtcLePG4vicsXTFvV/T6G97SfwK/7D7NJ4QGbuVXipEsJ0ioluM+TL9vHzOYTyYwjyPPe/5Vt0sJ377epfePhzwAj0DV4mEih3Mw4JPBeMMhOI4vb56ThHs2qMXjfwsILOFeRxRgXhwOP9s8ZdUEh/pIZxTFgwVSMZ0TDAtEfK66QgNrbej5XIGhTMJlp3hQc+dplvTCC8VyA8hdCCVki6d6BFstZBXKa7lfa31tETmRHfgAAAAASUVORK5CYII="
+    },
+    {
       "exportID": "11949926",
       "name": "ClownSneezy",
       "limit": -1,
@@ -1105,6 +1105,47 @@
       ],
       "texture": "preview-images/clownSneezy.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAgCAMAAAA/gEgKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAbUExURafBcoOeStFRWQ0cfP////SIpbeELNuhPQAAAE2lTXgAAAAJdFJOU///////////AFNPeBIAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC8SURBVDhPjZELDsIwDEPXNiu9/4mxnU87hAQeSpr3qkzAtZSr4eGhIU5UkMayVGUoNMigIjIQ5AqRotslMAdP0XsHR+2EqL1LkGTIFYg4feYvMcaomqvM7CyIvxyTGa6ObBJL2AhRvHHVFripBx//gj+Fyq12Cn+r2c12CN3MfrsoE9vEJXIZISWRi22Kh9gq8Bb5t8RUIjDjwEWgTImYd1Jk+EtUHmK+5ozzQwBvE4Jkfl11blHOVUfWegOuKg4TCwCqzAAAAABJRU5ErkJggg=="
+    },
+    {
+      "exportID": "36552372",
+      "name": "ClownWonderful",
+      "limit": -1,
+      "size": {"x": 28, "y": 32},
+      "origin": {"x": 14, "y": 30},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
+      ],
+      "texture": "preview-images/clownWonderful.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAgCAMAAAA2a+hwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAeUExURYBwwLCQ8OCIQPjAWNDQIA0cfP////SIpYiQGAAAAGeT6PIAAAAKdFJOU////////////wCyzCzPAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAu0lEQVQ4T62QUQ6DMAxDGUvb9f4Xnu0kJRuT4GMPlBA/tQW2mWzO40jmP+TuPPeYwbU0M2xYqtmSmJGUSj7kCZcxfENpLltrKB2ls4BpkARBayjZulJsy3qSSv1TfkhxJTthKKlGimTS+hhqwmVahsMbiG3TghE9DvUXkvYlqh6mXLa6Jd36gZEUuU6OidyVL9MVEymS/1r/e1Ek9uVduCeRhjz8sVKGd8zgWKnP8JqUlSljBvXMIJ/mfAMTjBg8+PDeqQAAAABJRU5ErkJggg=="
     },
     {
       "exportID": "77429484",

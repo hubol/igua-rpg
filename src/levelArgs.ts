@@ -1,5 +1,6 @@
 // This file is generated. Do not touch.
 import { resolveBlock } from "./gameObjects/walls";
+import { resolveClownWonderful } from "./gameObjects/clownWonderful";
 import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveSlopeLeft } from "./gameObjects/walls";
@@ -6674,7 +6675,15 @@ gameObjectsSupplier: () => {
   return {
     // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":208,"width":512,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
-Player: {"type":"Player","x":472,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0}
+Player: {"type":"Player","x":472,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":136,"y":192,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+// @ts-ignore
+ClownWonderful: resolveClownWonderful({"type":"ClownWonderful","x":168,"y":192,"flippedX":false,"flippedY":false,"uid":"36552372_3","name":"","depth":0}),
+// @ts-ignore
+ClownWonderful_1: resolveClownWonderful({"type":"ClownWonderful","x":400,"y":104,"flippedX":false,"flippedY":false,"uid":"36552372_4","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":392,"y":104,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0})
 };
 }
 };
