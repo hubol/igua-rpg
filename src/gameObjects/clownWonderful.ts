@@ -22,8 +22,10 @@ import {isOnScreen} from "../igua/logic/isOnScreen";
 import {rayToPlayer, rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 import {rng} from "../utils/math/rng";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
+import {trimFrame} from "../utils/pixi/trimFrame";
 
 const textures = subimageTextures(ClownWonderful, { width: 30 });
+const hatTexture = trimFrame(textures[9]);
 const throwTxs = subimageTextures(ClownWonderfulThrow, 3);
 
 enum Leg {
@@ -89,7 +91,7 @@ export function clownWonderful() {
         face: {
             angry: false,
             lookingRight: true,
-        }
+        },
     };
 
     const behaviors = {
@@ -141,10 +143,35 @@ export function clownWonderful() {
                     eyes.x = Math.sign(speed.x);
                 face.x += eyes.x;
             });
-        const myHat = hat(Sprite.from(textures[9]));
+        const myHat = hat(Sprite.from(hatTexture));
+        myHat.anchor.set(0.5, 1);
+        let dashRecovery = 0;
+        let dashRecoverySign = 0;
+        const hatc = container(myHat).at(13, 8 + 3)
+            .withStep(() => {
+                hair.x = -Math.sign(speed.x);
+
+                hatc.x = 13;
+                hatc.y = 8 + 3;
+                myHat.angle = 0;
+                if (!behaviors.dash && dashRecovery <= 0)
+                    return;
+
+                if (Math.abs(speed.x) > 0)
+                    dashRecoverySign = Math.sign(speed.x);
+
+                const f = dashRecoverySign * (dashRecovery > 0 ? 8 : -15);
+                myHat.angle = f;
+                if (speed.x === 0)
+                    dashRecovery--;
+                else if (Math.abs(speed.x) < 1 && dashRecovery <= 0)
+                    dashRecovery = 7;
+
+                hatc.y -= speed.x === 0 ? 1 : 2;
+            });
         const hair = Sprite.from(textures[10]);
 
-        return merge(container(bald, face, eyes, myHat, hair), { hat: myHat });
+        return merge(container(bald, face, eyes, hatc, hair), { hat: myHat });
     }
 
     function mkArm() {
