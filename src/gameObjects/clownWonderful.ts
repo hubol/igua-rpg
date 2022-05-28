@@ -106,6 +106,7 @@ export function clownWonderful() {
     const state = {
         playerIsRight: Force<boolean>(),
         noticedPlayer: false,
+        offScreenForFrames: 0,
     };
 
     function mkHead() {
@@ -328,7 +329,7 @@ export function clownWonderful() {
             await sleep(100);
             await wait(() => state.noticedPlayer);
             while (true) {
-                await wait(() => distance(player, offsetPosition) < 180);
+                await wait(() => distance(player, offsetPosition) < 180 && state.offScreenForFrames < 120);
                 await sleep(250);
                 const y = rayToPlayer(offsetPosition).normalize().y;
                 if (y > 0.2)
@@ -338,6 +339,11 @@ export function clownWonderful() {
             }
         })
         .withStep(() => {
+            if (isOnScreen(c))
+                state.offScreenForFrames = 0;
+            else
+                state.offScreenForFrames++;
+
             const ph = speed.x;
             const r = gravity(0.4);
             if (behaviors.dash) {
