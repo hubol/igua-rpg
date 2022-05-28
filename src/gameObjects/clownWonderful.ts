@@ -91,6 +91,7 @@ export function clownWonderful() {
         face: {
             angry: false,
             lookingRight: true,
+            lean: 0,
         },
     };
 
@@ -139,9 +140,9 @@ export function clownWonderful() {
                 eyes.texture = textures[(controls.face.lookingRight ? 7 : 8) + (controls.face.angry ? 4 : 0)];
                 face.x = face.scale.x > 0 ? 14 : 13;
                 eyes.x = 0;
-                if (behaviors.dash)
-                    eyes.x = Math.sign(speed.x);
+                eyes.x = controls.face.lean;
                 face.x += eyes.x;
+                hair.x = -eyes.x;
             });
         const myHat = hat(Sprite.from(hatTexture));
         myHat.anchor.set(0.5, 1);
@@ -149,11 +150,10 @@ export function clownWonderful() {
         let dashRecoverySign = 0;
         const hatc = container(myHat).at(13, 8 + 3)
             .withStep(() => {
-                hair.x = -Math.sign(speed.x);
-
                 hatc.x = 13;
                 hatc.y = 8 + 3;
-                myHat.angle = 0;
+                hatc.x -= controls.face.lean;
+                myHat.angle = controls.face.lean * -8;
                 if (!behaviors.dash && dashRecovery <= 0)
                     return;
 
@@ -243,14 +243,17 @@ export function clownWonderful() {
         behaviors.throwFacePlayer = false;
         controls.throw.lift2();
         await sleep(150);
+        const dx = controls.throw.faceRight ? 1 : -1;
         controls.throw.height = Math.max(-2, Math.min(32, computeTargetHeight()));
         controls.throw.peak3();
         await sleep(100);
         controls.throw.release4();
-        arrowPoison([controls.throw.faceRight ? 4 : -4, 0]).damageSource(c).at(arm.arrowPosition).show();
+        arrowPoison([dx * 4, 0]).damageSource(c).at(arm.arrowPosition).show();
+        controls.face.lean = dx;
         await sleep(100);
         controls.throw.recover5();
         await sleep(250);
+        controls.face.lean = 0;
         controls.throw.finish6();
     }
 
@@ -274,6 +277,7 @@ export function clownWonderful() {
         behaviors.dash = true;
         await wait(() => speed.x === 0);
         controls.face.angry = false;
+        controls.face.lean = 0;
         behaviors.dash = false;
         controls.legs.subimage = 0;
     }
@@ -337,6 +341,7 @@ export function clownWonderful() {
             const ph = speed.x;
             const r = gravity(0.4);
             if (behaviors.dash) {
+                controls.face.lean = Math.sign(speed.x);
                 const g = ghost(consts.ghostLifeFrames, consts.damage.ghost).at([-14, -32].add(c));
                 const i = c.parent.getChildIndex(c);
                 c.parent.addChildAt(g, Math.max(0, i - 1));
