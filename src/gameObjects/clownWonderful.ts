@@ -38,7 +38,7 @@ export const resolveClownWonderful = resolveGameObject('ClownWonderful', e => cl
 
 export function clownWonderful() {
     const health = clownHealth(200);
-    const drop = clownDrop(0.9, 0.3, 0.1);
+    const drop = clownDrop(0.95, 0.62, 0.1);
 
     const consts = {
         recoveryFrames: 15,
@@ -279,7 +279,7 @@ export function clownWonderful() {
                 behaviors.invulnerable = consts.recoveryFrames;
                 bouncePlayerOffDisplayObject(head);
                 if (health.damage())
-                    dieClown(c, drop(c.vsPlayerHitCount), [0, -8]);
+                    dieClown(c, drop(c.vsPlayerHitCount) && 15, [0, -8]);
             }
         })
         .withAsync(async () => {
