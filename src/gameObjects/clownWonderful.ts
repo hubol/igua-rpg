@@ -85,6 +85,10 @@ export function clownWonderful() {
         },
         legs: {
             subimage: 0
+        },
+        face: {
+            angry: false,
+            lookingRight: true,
         }
     };
 
@@ -125,12 +129,17 @@ export function clownWonderful() {
                 state.playerIsRight = playerX > c.x;
 
                 if (behaviors.lookAtPlayer)
-                    eyes.texture = textures[state.playerIsRight ? 7 : 8];
+                    controls.face.lookingRight = state.playerIsRight;
                 if (behaviors.facePlayer)
                     face.scale.x = state.playerIsRight ? 1 : -1;
                 if (behaviors.throwFacePlayer)
                     controls.throw.faceRight = state.playerIsRight;
+                eyes.texture = textures[(controls.face.lookingRight ? 7 : 8) + (controls.face.angry ? 4 : 0)];
                 face.x = face.scale.x > 0 ? 14 : 13;
+                eyes.x = 0;
+                if (behaviors.dash)
+                    eyes.x = Math.sign(speed.x);
+                face.x += eyes.x;
             });
         const myHat = hat(Sprite.from(textures[9]));
         const hair = Sprite.from(textures[10]);
@@ -231,11 +240,13 @@ export function clownWonderful() {
         head.hat.bounce();
         speed.y = -2;
         await wait(() => t.destroyed);
+        controls.face.angry = true;
         behaviors.lookAtPlayer = true;
         speed.x = consts.dash.speed * dx;
         controls.legs.subimage = right ? Leg.RightTilt : Leg.LeftTilt;
         behaviors.dash = true;
         await wait(() => speed.x === 0);
+        controls.face.angry = false;
         behaviors.dash = false;
         controls.legs.subimage = 0;
     }
