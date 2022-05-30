@@ -58,7 +58,7 @@ function clownHealthBar() {
 
             g.beginFill(0xff0000);
             g.drawRect(0, 0, width, height);
-            g.beginFill(0x0000ff);
+            g.beginFill(clownHealth.nearDeath ? 0x180098 : 0x0000ff);
             const w = clownHealth.unit * width;
             if (w > 0)
                 g.drawRect(0, 0, Math.ceil(w), height);
