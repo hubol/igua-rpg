@@ -339,7 +339,7 @@ export function clownWonderful() {
             }
         })
         .withStep(() => {
-            if (isOnScreen(c))
+            if (isOnScreen(head))
                 state.offScreenForFrames = 0;
             else
                 state.offScreenForFrames++;
