@@ -3,7 +3,7 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import { VolcanoCavernArgs } from "../levelArgs";
 
 export function VolcanoCavern() {
-    scene.backgroundColor = 0x60B0E0;
-    scene.terrainColor = 0x40A020;
+    scene.backgroundColor = 0x78917D;
+    scene.terrainColor = 0x912235;
     const level = applyOgmoLevel(VolcanoCavernArgs);
 }
