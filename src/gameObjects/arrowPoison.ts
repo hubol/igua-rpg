@@ -2,8 +2,10 @@ import {vdir, Vector} from "../utils/math/vector";
 import {Sprite} from "pixi.js";
 import {ArrowPoison} from "../textures";
 import {player} from "./player";
+import {ArrowKnock} from "../sounds";
 
 export function arrowPoison(speed: Vector) {
+    ArrowKnock.play();
     let life = 100;
     const s = Sprite.from(ArrowPoison)
         .trimHitbox()

@@ -15,7 +15,7 @@ import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {wait} from "../cutscene/wait";
 import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
-import {ClownHurt} from "../sounds";
+import {ClownHurt, WonderfulDash} from "../sounds";
 import {newGravity} from "./utils/newGravity";
 import {sparkleTell} from "./sparkleTell";
 import {isOnScreen} from "../igua/logic/isOnScreen";
@@ -276,6 +276,7 @@ export function clownWonderful() {
         speed.x = consts.dash.speed * dx;
         controls.legs.subimage = right ? Leg.RightTilt : Leg.LeftTilt;
         behaviors.dash = true;
+        WonderfulDash.play();
         await wait(() => speed.x === 0);
         controls.face.angry = false;
         controls.face.lean = 0;

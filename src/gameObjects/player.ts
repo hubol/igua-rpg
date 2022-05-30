@@ -1,6 +1,6 @@
 import {iguanaPuppet} from "../igua/puppet/iguanaPuppet";
 import {
-    CharacterHurt, CharacterHurtDefense
+    CharacterHurt, CharacterHurtDefense, EffectPoison
 } from "../sounds";
 import {playerCharacterHasControl, playerCharacterKey as playerKey} from "../igua/logic/playerCharacterKey";
 import {merge} from "../utils/object/merge";
@@ -84,11 +84,11 @@ function createPlayer(behavior = true)
 
                 switch (effect) {
                     case "poison":
+                        EffectPoison.play();
                         progress.poisonLevel += 1;
                         break;
                 }
 
-                CharacterHurt.play(); // TODO different SFX depending on effect
                 player.invulnerableFrameCount = 60;
                 return true;
             },

@@ -7,6 +7,11 @@ export const ActivateLever = new Howl({
     
 });
 
+export const ArrowKnock = new Howl({
+    src: [require("./sound/arrow knock.ogg"), require("./sound/arrow knock.mp3")],
+    
+});
+
 export const BallonPop = new Howl({
     src: [require("./sound/ballon pop.ogg"), require("./sound/ballon pop.mp3")],
     
@@ -209,6 +214,11 @@ export const DragRock = new Howl({
 
 export const DuckQuack = new Howl({
     src: [require("./sound/duck quack.ogg"), require("./sound/duck quack.mp3")],
+    
+});
+
+export const EffectPoison = new Howl({
+    src: [require("./sound/effect poison.ogg"), require("./sound/effect poison.mp3")],
     
 });
 
@@ -439,5 +449,10 @@ export const UnorthodoxUnscrew = new Howl({
 
 export const UnorthodoxWave = new Howl({
     src: [require("./sound/unorthodox wave.ogg"), require("./sound/unorthodox wave.mp3")],
+    
+});
+
+export const WonderfulDash = new Howl({
+    src: [require("./sound/wonderful dash.ogg"), require("./sound/wonderful dash.mp3")],
     
 });
