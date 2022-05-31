@@ -37,6 +37,11 @@ export const FunTimes = new Howl({
     preload: false
 });
 
+export const GiantsHouseMusic = new Howl({
+    src: [require("./music/giants-house-music.ogg"), require("./music/giants-house-music.mp3")],
+    preload: false
+});
+
 export const GiantsNimbusMusic = new Howl({
     src: [require("./music/giants-nimbus-music.ogg"), require("./music/giants-nimbus-music.mp3")],
     preload: false

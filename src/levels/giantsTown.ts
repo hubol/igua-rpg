@@ -5,13 +5,13 @@ import {Sprite} from "pixi.js";
 import {GlowingEdge} from "../textures";
 import {Rectangle} from "../utils/math/rectangle";
 import {jukebox} from "../igua/jukebox";
-import {Country, DesertTown, GiantsNimbusMusic, JungleMusic} from "../musics";
+import {Country, DesertTown, GiantsHouseMusic, GiantsNimbusMusic, JungleMusic} from "../musics";
 import {show} from "../cutscene/dialog";
 
 export function GiantsTown() {
     scene.backgroundColor = 0x98C0E0;
     scene.terrainColor = 0xF8E8E8;
-    jukebox.play(GiantsNimbusMusic).warm(DesertTown, JungleMusic, Country);
+    jukebox.play(GiantsNimbusMusic).warm(GiantsHouseMusic, DesertTown, JungleMusic, Country);
     const level = applyOgmoLevel(GiantsTownArgs);
     edge(level.DesertGate).tinted(0xF0F0B0);
     edge(level.JungleGate).tinted(0x97D8D8);
