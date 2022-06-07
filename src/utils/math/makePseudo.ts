@@ -11,6 +11,10 @@ export function makePseudo(seed) {
         return (int() - 1) / 2147483646;
     }
 
+    function polar() {
+        return unit() * 2 - 1;
+    }
+
     function bool() {
         return unit() > 0.5;
     }
@@ -25,6 +29,7 @@ export function makePseudo(seed) {
 
     return {
         unit,
+        polar,
         int,
         bool,
         choose,
