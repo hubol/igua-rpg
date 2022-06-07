@@ -128,6 +128,18 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromVolcano", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 11,
+          "_eid": "25971607",
+          "x": 272,
+          "y": 136,
+          "width": 224,
+          "height": 80,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "ActivateBossRegion", "depth": 0}
         }
       ]
     },

@@ -3599,7 +3599,9 @@ LeftBossWall: resolveBlock({"type":"Block","x":240,"y":136,"width":16,"height":8
 Block_3: resolveBlock({"type":"Block","x":736,"y":136,"width":32,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":"","depth":0}),
 // @ts-ignore
 Gate: resolveGate({"type":"Gate","x":0,"y":184,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_9","levelName":"VolcanoCavern","checkpointName":"FromBoss","name":"","depth":0}),
-FromVolcano: {"type":"Checkpoint","x":56,"y":216,"flippedX":false,"flippedY":false,"uid":"55940370_10","name":"FromVolcano","faceRight":true,"depth":0}
+FromVolcano: {"type":"Checkpoint","x":56,"y":216,"flippedX":false,"flippedY":false,"uid":"55940370_10","name":"FromVolcano","faceRight":true,"depth":0},
+// @ts-ignore
+ActivateBossRegion: resolveRegion({"type":"Region","x":272,"y":136,"width":224,"height":80,"flippedX":false,"flippedY":false,"uid":"25971607_11","name":"ActivateBossRegion","depth":0})
 };
 }
 };

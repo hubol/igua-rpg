@@ -40,7 +40,7 @@ export function JungleBossArena() {
             });
         h.show();
         scene.gameObjectStage.withAsync(async () => {
-            await wait(() => player.x < 500);
+            await wait(() => player.collides(level.ActivateBossRegion));
             const limit = container()
                 .withStep(() => player.x = Math.max(Math.min(player.x, 512), 256))
                 .show(player);
