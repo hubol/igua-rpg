@@ -106,6 +106,28 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 9,
+          "_eid": "55920197",
+          "x": 0,
+          "y": 184,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "VolcanoCavern", "checkpointName": "FromBoss", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 10,
+          "_eid": "55940370",
+          "x": 56,
+          "y": 216,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromVolcano", "faceRight": true, "depth": 0}
         }
       ]
     },

@@ -1,4 +1,5 @@
 // This file is generated. Do not touch.
+import { resolveGate } from "./gameObjects/gate";
 import { resolveBlock } from "./gameObjects/walls";
 import { resolveClownWonderful } from "./gameObjects/clownWonderful";
 import { resolveSlopeRight } from "./gameObjects/walls";
@@ -24,7 +25,6 @@ import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
 import { GroundSpeckles } from "./textures";
 import { resolveSpike } from "./gameObjects/spike";
-import { resolveGate } from "./gameObjects/gate";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { CracksA } from "./textures";
@@ -3596,7 +3596,10 @@ RightBossWall: resolveBlock({"type":"Block","x":512,"y":136,"width":16,"height":
 // @ts-ignore
 LeftBossWall: resolveBlock({"type":"Block","x":240,"y":136,"width":16,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"LeftBossWall","depth":0}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":736,"y":136,"width":32,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":"","depth":0})
+Block_3: resolveBlock({"type":"Block","x":736,"y":136,"width":32,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":"","depth":0}),
+// @ts-ignore
+Gate: resolveGate({"type":"Gate","x":0,"y":184,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_9","levelName":"VolcanoCavern","checkpointName":"FromBoss","name":"","depth":0}),
+FromVolcano: {"type":"Checkpoint","x":56,"y":216,"flippedX":false,"flippedY":false,"uid":"55940370_10","name":"FromVolcano","faceRight":true,"depth":0}
 };
 }
 };
@@ -6669,12 +6672,12 @@ SnowmanSpawn: {"type":"Anchor","x":384,"y":224,"flippedX":false,"flippedY":false
 };
 
 export const VolcanoCavernArgs = {
-    width: 512,
+    width: 552,
 height: 256,
 gameObjectsSupplier: () => {
   return {
     // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":208,"width":512,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":0,"y":208,"width":552,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 Player: {"type":"Player","x":472,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":136,"y":192,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
@@ -6683,7 +6686,9 @@ ClownWonderful: resolveClownWonderful({"type":"ClownWonderful","x":168,"y":192,"
 // @ts-ignore
 ClownWonderful_1: resolveClownWonderful({"type":"ClownWonderful","x":336,"y":88,"flippedX":false,"flippedY":false,"uid":"36552372_4","name":"","depth":0}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":328,"y":88,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0})
+Block_2: resolveBlock({"type":"Block","x":328,"y":88,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0}),
+// @ts-ignore
+FromBoss: resolveGate({"type":"Gate","x":520,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_6","levelName":"JungleBossArena","checkpointName":"FromVolcano","name":"FromBoss","depth":0})
 };
 }
 };
