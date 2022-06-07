@@ -2,7 +2,7 @@ import {makePseudo} from "../utils/math/makePseudo";
 import {scene} from "../igua/scene";
 import {Graphics} from "pixi.js";
 import {distance, Vector, vnew} from "../utils/math/vector";
-import {merge} from "../utils/object/merge";
+import {Force} from "../utils/types/force";
 
 export function cracks(seed: number, color: number, width = scene.width, height = scene.height) {
     const p = makePseudo(seed);
@@ -10,13 +10,46 @@ export function cracks(seed: number, color: number, width = scene.width, height 
 
     const maxLength = Math.min(128, Math.min(scene.height, scene.width) / 2) * 1.33;
 
+    const steps = 6;
     function branch(x, y, d: Vector, len: number) {
-        g.moveTo(x, y).lineTo(x + d.x * len, y + d.y * len);
+        if (len < 1)
+            return;
+        g.moveTo(Math.round(x), Math.round(y));
+        let next = Math.min(16, len * (0.2 + p.unit() * 0.3))
+        let dnext = len * (0.2 + p.unit() * 0.3) + 64 / len;
+        while (len > 0) {
+            if (next <= 0 && len > 2) {
+                const d2 = d.vcpy();
+                if (Math.abs(d2.x) > Math.abs(d2.y))
+                    d2.y *= -(0.5 + p.unit() * 0.5);
+                else
+                    d2.x *= -(0.5 + p.unit() * 0.5);
+
+                d2.x += p.polar() * 0.33;
+                d2.y += p.polar() * 0.33;
+
+                const len2 = Math.max(4, len * (p.unit() + 0.2));
+
+                if (len2 > 6)
+                    branches.push([ x, y, d2, len2 ]);
+                next += dnext;
+            }
+            x += d.x * steps;
+            y += d.y * steps;
+            g.lineTo(Math.round(x), Math.round(y));
+            d.x += p.polar() * 0.33;
+            d.y += p.polar() * 0.33;
+            d.normalize();
+            len -= steps;
+            next -= steps;
+        }
     }
 
-    const roots = [] as (Vector & { d: Vector })[];
+    type BranchDef = Parameters<typeof branch>;
+    const branches = [] as BranchDef[];
+
     const minRootDistance = maxLength / 2;
-    const count = Math.ceil((Math.sqrt(width * height) / maxLength) * (1 + p.unit()) * 2);
+    const count = Math.ceil((Math.sqrt(width * height) / maxLength) * (1 + p.unit()) * 2.67);
     for (let i = 0; i < count; i++) {
         let retries = 0;
         while (retries < 2) {
@@ -49,17 +82,22 @@ export function cracks(seed: number, color: number, width = scene.width, height 
             }
             x *= width;
             y *= height;
-            const r = merge(vnew().at(x, y), { d });
+            const r = vnew().at(x, y);
             d.normalize();
-            if (roots.some(rr => distance(rr, r) < minRootDistance)) {
+            if (branches.some(rr => distance(rr, r) < minRootDistance)) {
                 retries++;
                 continue;
             }
-            roots.push(r);
+            branches.push([ x, y, d, maxLength * (0.67 + 0.33 * p.unit()) ]);
         }
     }
 
-    roots.forEach(x => branch(x.x, x.y, x.d, maxLength * (0.67 + 0.33 * p.unit())));
+    let next = Force<BranchDef>();
+    while (next = branches.pop()!) {
+        branch(...next);
+    }
+
+    g.cacheAsBitmap = true;
 
     return g;
 }

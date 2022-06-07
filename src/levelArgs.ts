@@ -1,12 +1,18 @@
 // This file is generated. Do not touch.
+import { resolveClownSneezy } from "./gameObjects/clownSneezy";
 import { resolveBlock } from "./gameObjects/walls";
+import { resolveClownWonderful } from "./gameObjects/clownWonderful";
+import { resolvePipeLeftEnd } from "./gameObjects/walls";
+import { resolvePipeHorizontal } from "./gameObjects/walls";
+import { resolvePipeRightEnd } from "./gameObjects/walls";
+import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
-import { resolveClownWonderful } from "./gameObjects/clownWonderful";
+import { resolveDecalGameObject } from "./gameObjects/decal";
+import { VolcanoPillarBroken } from "./textures";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
-import { resolveDecalGameObject } from "./gameObjects/decal";
 import { GlowingCircle } from "./textures";
 import { Column } from "./textures";
 import { resolveRegion } from "./gameObjects/region";
@@ -25,8 +31,6 @@ import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
 import { GroundSpeckles } from "./textures";
 import { resolveSpike } from "./gameObjects/spike";
-import { resolvePipeRightEnd } from "./gameObjects/walls";
-import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { CracksA } from "./textures";
 import { VineSmall } from "./textures";
 import { PoppingRocksBox } from "./textures";
@@ -34,8 +38,6 @@ import { resolveJungleTree } from "./gameObjects/jungleTree";
 import { resolvePool } from "./gameObjects/pool";
 import { resolveTreeStump } from "./gameObjects/treeStump";
 import { resolveValuableOrange } from "./gameObjects/valuable";
-import { resolveValuableBlue } from "./gameObjects/valuable";
-import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveSign } from "./gameObjects/sign";
 import { JunglePlank } from "./textures";
@@ -50,7 +52,6 @@ import { DinerTable } from "./textures";
 import { JunglePlankDecoration } from "./textures";
 import { BookCollection } from "./textures";
 import { DontPoster } from "./textures";
-import { resolveClownSneezy } from "./gameObjects/clownSneezy";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { JungleBrushHeavy } from "./textures";
 import { GlowingEdge } from "./textures";
@@ -3582,7 +3583,18 @@ export const JungleBossArenaArgs = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    VolcanoPillarBroken: resolveDecalGameObject({
+    x: 81,
+y: 122,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoPillarBroken
+}),
+// @ts-ignore
 Block: resolveBlock({"type":"Block","x":-104,"y":216,"width":768,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
 Stump: resolveTreeStump({"type":"TreeStump","x":584,"y":216,"flippedX":false,"flippedY":false,"uid":"77429484_1","levelName":"JungleTown","checkpointName":"HolyStump","name":"Stump","depth":0,"faceRight":false}),
@@ -6675,39 +6687,98 @@ SnowmanSpawn: {"type":"Anchor","x":384,"y":224,"flippedX":false,"flippedY":false
 };
 
 export const VolcanoCavernArgs = {
-    width: 616,
+    width: 896,
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":224,"width":616,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
-Player: {"type":"Player","x":536,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
+    VolcanoPillarBroken: resolveDecalGameObject({
+    x: 712,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "FrontDecals",
+texture: VolcanoPillarBroken
+}),
+VolcanoPillarBroken_1: resolveDecalGameObject({
+    x: 336,
+y: 48,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoPillarBroken
+}),
+VolcanoPillarBroken_2: resolveDecalGameObject({
+    x: 792,
+y: 136,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoPillarBroken
+}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":136,"y":208,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":280,"y":224,"width":616,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":816,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-ClownWonderful: resolveClownWonderful({"type":"ClownWonderful","x":168,"y":208,"flippedX":false,"flippedY":false,"uid":"36552372_3","name":"","depth":0}),
+Block_1: resolveBlock({"type":"Block","x":416,"y":208,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
 // @ts-ignore
-ClownWonderful_1: resolveClownWonderful({"type":"ClownWonderful","x":336,"y":88,"flippedX":false,"flippedY":false,"uid":"36552372_4","name":"","depth":0}),
+ClownWonderful: resolveClownWonderful({"type":"ClownWonderful","x":448,"y":208,"flippedX":false,"flippedY":false,"uid":"36552372_3","name":"","depth":0}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":328,"y":88,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0}),
+ClownWonderful_1: resolveClownWonderful({"type":"ClownWonderful","x":616,"y":88,"flippedX":false,"flippedY":false,"uid":"36552372_4","name":"","depth":0}),
 // @ts-ignore
-FromBoss: resolveGate({"type":"Gate","x":584,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_6","levelName":"JungleBossArena","checkpointName":"FromVolcano","name":"FromBoss","depth":0}),
+Block_2: resolveBlock({"type":"Block","x":608,"y":88,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":552,"y":0,"width":64,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
+FromBoss: resolveGate({"type":"Gate","x":864,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_6","levelName":"JungleBossArena","checkpointName":"FromVolcano","name":"FromBoss","depth":0}),
 // @ts-ignore
-Block_4: resolveBlock({"type":"Block","x":448,"y":0,"width":104,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":"","depth":0}),
+Block_3: resolveBlock({"type":"Block","x":832,"y":0,"width":64,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
 // @ts-ignore
-SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":448,"y":80,"width":104,"height":56,"flippedX":false,"flippedY":true,"uid":"55824435_10","name":"","depth":0}),
+Block_4: resolveBlock({"type":"Block","x":728,"y":0,"width":104,"height":80,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":"","depth":0}),
 // @ts-ignore
-Block_5: resolveBlock({"type":"Block","x":0,"y":0,"width":448,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_11","name":"","depth":0}),
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":728,"y":80,"width":104,"height":56,"flippedX":false,"flippedY":true,"uid":"55824435_10","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":400,"y":16,"width":48,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435_13","name":"","depth":0}),
+Block_5: resolveBlock({"type":"Block","x":280,"y":0,"width":448,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_11","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":376,"y":16,"width":48,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_14","name":"","depth":0}),
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":680,"y":16,"width":48,"height":64,"flippedX":false,"flippedY":true,"uid":"55824435_13","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":352,"y":16,"width":48,"height":16,"flippedX":false,"flippedY":true,"uid":"55824435_15","name":"","depth":0}),
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":656,"y":16,"width":48,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_14","name":"","depth":0}),
 // @ts-ignore
-Block_6: resolveBlock({"type":"Block","x":512,"y":208,"width":104,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"","depth":0})
+SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":632,"y":16,"width":48,"height":16,"flippedX":false,"flippedY":true,"uid":"55824435_15","name":"","depth":0}),
+// @ts-ignore
+Block_6: resolveBlock({"type":"Block","x":792,"y":208,"width":104,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"","depth":0}),
+// @ts-ignore
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":708,"y":86,"flippedX":false,"flippedY":false,"uid":"55991906_17","name":"","depth":0}),
+// @ts-ignore
+Block_7: resolveBlock({"type":"Block","x":0,"y":0,"width":280,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_18","name":"","depth":0}),
+// @ts-ignore
+Block_8: resolveBlock({"type":"Block","x":152,"y":112,"width":128,"height":144,"flippedX":false,"flippedY":false,"uid":"55823268_19","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":280,"y":152,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_20","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":312,"y":152,"flippedX":false,"flippedY":false,"uid":"63418353_21","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":120,"y":152,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_22","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":120,"y":152,"flippedX":false,"flippedY":false,"uid":"63428932_23","name":"","depth":0}),
+// @ts-ignore
+Block_9: resolveBlock({"type":"Block","x":0,"y":224,"width":176,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_24","name":"","depth":0}),
+// @ts-ignore
+ClownSneezy: resolveClownSneezy({"type":"ClownSneezy","x":160,"y":80,"flippedX":false,"flippedY":false,"uid":"11949926_27","name":"","depth":0}),
+// @ts-ignore
+Block_10: resolveBlock({"type":"Block","x":48,"y":112,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_28","name":"","depth":0}),
+// @ts-ignore
+ClownWonderful_2: resolveClownWonderful({"type":"ClownWonderful","x":56,"y":112,"flippedX":false,"flippedY":false,"uid":"36552372_29","name":"","depth":0}),
+// @ts-ignore
+Block_11: resolveBlock({"type":"Block","x":360,"y":16,"width":248,"height":144,"flippedX":false,"flippedY":false,"uid":"55823268_30","name":"","depth":0}),
+// @ts-ignore
+ClownSneezy_1: resolveClownSneezy({"type":"ClownSneezy","x":304,"y":200,"flippedX":false,"flippedY":false,"uid":"11949926_31","name":"","depth":0})
 };
 }
 };

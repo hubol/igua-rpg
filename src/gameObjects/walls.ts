@@ -71,6 +71,12 @@ export function push(xy: Pushable, radius: number) {
     return pushImpl(xy, radius, pushResult);
 }
 
+export function isTouchingSolid(xy: Pushable, radius: number) {
+    empty(isOnGroundResult);
+    pushImpl(xy, radius, isOnGroundResult, false, true);
+    return !!isOnGroundResult.hitWall || !!isOnGroundResult.hitWall || !!isOnGroundResult.hitCeiling;
+}
+
 function pushImpl(xy: Pushable, radius: number, result: PushResult, correctPosition = true, stopIfOnGround = false) {
     for (let i = 0; i < walls.length; i++) {
         const s = walls[i];
@@ -91,7 +97,7 @@ function pushImpl(xy: Pushable, radius: number, result: PushResult, correctPosit
                 break;
         }
 
-        if (correctPosition && canCorrectPosition && absOffsetDotNormal < radius) {
+        if (canCorrectPosition && absOffsetDotNormal < radius) {
             if (alongForward) {
                 if (isGround)
                     result.hitGround = true;
@@ -100,8 +106,10 @@ function pushImpl(xy: Pushable, radius: number, result: PushResult, correctPosit
                 if (s.isWall)
                     result.hitWall = true;
 
-                xy.x = s.x + s.forward.x * offsetDotForward + s.normal.x * radius;
-                xy.y = s.y + s.forward.y * offsetDotForward + s.normal.y * radius;
+                if (correctPosition) {
+                    xy.x = s.x + s.forward.x * offsetDotForward + s.normal.x * radius;
+                    xy.y = s.y + s.forward.y * offsetDotForward + s.normal.y * radius;
+                }
             }
         }
     }

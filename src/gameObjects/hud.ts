@@ -13,7 +13,7 @@ export function hud()
             healthbar.beginFill(0xff0000);
             healthbar.drawRect(0, 0, progress.maxHealth, 16);
             healthbar.beginFill(0x0000ff);
-            healthbar.drawRect(0, 0, progress.health, 16);
+            healthbar.drawRect(0, 0, Math.max(Math.sign(progress.health), progress.health), 16);
         });
 
     const valuables = IguaText.Large("", { tint: 0x00ff00 })

@@ -9,7 +9,7 @@ import {ClownHurt, ClownSneeze, ClownSniffle, SneezyPropellerBlast, SneezyPropel
 import {distance, Vector, vnew} from "../utils/math/vector";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {player} from "./player";
-import {push} from "./walls";
+import {isTouchingSolid, push} from "./walls";
 import {cyclic} from "../utils/math/number";
 import {confetti} from "./confetti";
 import {bouncePlayer} from "../igua/bouncePlayer";
@@ -141,9 +141,15 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
                 return;
 
             c.x += idleDirection;
+            const touchedSolid = isTouchingSolid(c, 16) && !isTouchingSolid(c.vcpy().add(-idleDirection * 12, 0), 16);
             if ((idleDirection < 0 && c.x < start.x - 64)
-                || (idleDirection > 0 && c.x > start.x + 64))
+                || (idleDirection > 0 && c.x > start.x + 64)
+                || touchedSolid)
                 idleDirection *= -1;
+
+            if (touchedSolid)
+                start.at(c);
+
             head.scale.x = idleDirection;
         })
         .withStep(() => {

@@ -186,7 +186,9 @@
       "gridCellHeight": 8,
       "gridCellsX": 83,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {"x": 81, "y": 122, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/pillar broken.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "..\\..\\src\\images"
     },
     {
