@@ -338,7 +338,7 @@ export function clownUnorthodox() {
     async function legsAs() {
         legs.withStep(() => behaviors.evade++);
         let idle = 0;
-        await wait(() => behaviors.legs.speed.y > 0);
+        await wait(() => behaviors.legs.speed.y > 0 || behaviors.legs.speed.y === 0);
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
         while (true) {

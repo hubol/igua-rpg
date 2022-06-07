@@ -29,11 +29,14 @@ export function JungleBossArena() {
 
     const doors = [level.RightBossWall, level.LeftBossWall].map(x => slidingDoor(x, false).openInstantly());
 
+    const bossMinX = level.BossCamera.x;
+    const bossMaxX = bossMinX + 256;
+
     if (!progress.flags.jungle.defeatedUnorthodoxAngel) {
-        for (let x = 256; x < 512; x += 16)
+        for (let x = bossMinX; x < bossMaxX; x += 16)
             spike(35).at(x, 64).show();
 
-        const h = clownUnorthodox().at(256 + 32, 128)
+        const h = clownUnorthodox().at(bossMinX + 32, 164)
             .withAsync(async () => {
                 await wait(() => h.aggressive);
                 jukebox.play(Hemaboss1);
@@ -42,15 +45,15 @@ export function JungleBossArena() {
         scene.gameObjectStage.withAsync(async () => {
             await wait(() => player.collides(level.ActivateBossRegion));
             const limit = container()
-                .withStep(() => player.x = Math.max(Math.min(player.x, 512), 256))
+                .withStep(() => player.x = Math.max(Math.min(player.x, bossMaxX), bossMinX))
                 .show(player);
             doors.forEach(x => x.startClosing(3));
             scene.camera.followPlayer = false;
             h.withAsync(async () => {
-                await wait(() => scene.camera.x < 300);
+                await wait(() => Math.abs(scene.camera.x - bossMinX) < 50);
                 h.aggressive = true;
             })
-            await lerp(scene.camera, 'x').to(256).over(750);
+            await lerp(scene.camera, 'x').to(bossMinX).over(750);
             await wait(() => h.destroyed);
             player.invulnerableFrameCount += 120;
             player.withStep(() => player.visible = true);
