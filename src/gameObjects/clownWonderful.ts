@@ -353,7 +353,7 @@ export function clownWonderful() {
                 const i = c.parent.getChildIndex(c);
                 c.parent.addChildAt(g, Math.max(0, i - 1));
                 speed.x = approachLinear(speed.x, 0, consts.dash.deltaSpeed);
-                if (r.hitWall && Math.abs(ph) > 1) {
+                if (r.hitWall && Math.abs(ph) > 1 && speed.y <= 0) {
                     speed.x = speed.y < 0 ? ph : Math.sign(ph) * Math.max(Math.abs(ph) * 0.75, 1);
                     speed.y = -3;
                 }

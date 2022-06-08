@@ -1,6 +1,7 @@
 // This file is generated. Do not touch.
-import { resolveClownSneezy } from "./gameObjects/clownSneezy";
+import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { resolveBlock } from "./gameObjects/walls";
+import { resolveClownSneezy } from "./gameObjects/clownSneezy";
 import { resolveClownWonderful } from "./gameObjects/clownWonderful";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
@@ -79,7 +80,6 @@ import { GreenCable } from "./textures";
 import { Bottle2 } from "./textures";
 import { WhiskeyGlass } from "./textures";
 import { WoodenStool } from "./textures";
-import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { Anchor } from "./textures";
 import { resolvePipeLeft } from "./gameObjects/walls";
 import { resolvePipeRight } from "./gameObjects/walls";
@@ -6776,9 +6776,13 @@ Block_10: resolveBlock({"type":"Block","x":48,"y":112,"width":16,"height":16,"fl
 // @ts-ignore
 ClownWonderful_2: resolveClownWonderful({"type":"ClownWonderful","x":56,"y":112,"flippedX":false,"flippedY":false,"uid":"36552372_29","name":"","depth":0}),
 // @ts-ignore
-Block_11: resolveBlock({"type":"Block","x":360,"y":16,"width":248,"height":144,"flippedX":false,"flippedY":false,"uid":"55823268_30","name":"","depth":0}),
+Block_11: resolveBlock({"type":"Block","x":360,"y":40,"width":248,"height":120,"flippedX":false,"flippedY":false,"uid":"55823268_30","name":"","depth":0}),
 // @ts-ignore
-ClownSneezy_1: resolveClownSneezy({"type":"ClownSneezy","x":304,"y":200,"flippedX":false,"flippedY":false,"uid":"11949926_31","name":"","depth":0})
+ClownSneezy_1: resolveClownSneezy({"type":"ClownSneezy","x":304,"y":200,"flippedX":false,"flippedY":false,"uid":"11949926_31","name":"","depth":0}),
+// @ts-ignore
+Block_12: resolveBlock({"type":"Block","x":360,"y":8,"width":248,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_32","name":"","depth":0}),
+// @ts-ignore
+FakeWall: resolveFakeWall({"type":"FakeWall","x":360,"y":24,"width":248,"height":16,"flippedX":false,"flippedY":false,"uid":"02672398_33","name":"","depth":0})
 };
 }
 };
