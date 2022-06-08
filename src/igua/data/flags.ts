@@ -71,6 +71,11 @@ export function getInitialFlags()
             lore1: false,
             lore2: false,
             discussedOpeningDesertTemple: false,
+        },
+        volcano: {
+            key: {
+                hiddenInCave: false,
+            }
         }
     };
 }

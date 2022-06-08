@@ -6,10 +6,10 @@ import { resolveClownWonderful } from "./gameObjects/clownWonderful";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
-import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDecalGameObject } from "./gameObjects/decal";
+import { KeyGreen } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveSlopeLeft } from "./gameObjects/walls";
@@ -39,6 +39,7 @@ import { resolveJungleTree } from "./gameObjects/jungleTree";
 import { resolvePool } from "./gameObjects/pool";
 import { resolveTreeStump } from "./gameObjects/treeStump";
 import { resolveValuableOrange } from "./gameObjects/valuable";
+import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveSign } from "./gameObjects/sign";
 import { JunglePlank } from "./textures";
@@ -6724,6 +6725,17 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: VolcanoPillarBroken
 }),
+KeyGreen: resolveDecalGameObject({
+    x: 706,
+y: 78,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: KeyGreen
+}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":280,"y":224,"width":616,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 Player: {"type":"Player","x":816,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
@@ -6753,8 +6765,6 @@ SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":656,"y":16,"width":48,"
 SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":632,"y":16,"width":48,"height":16,"flippedX":false,"flippedY":true,"uid":"55824435_15","name":"","depth":0}),
 // @ts-ignore
 Block_6: resolveBlock({"type":"Block","x":792,"y":208,"width":104,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"","depth":0}),
-// @ts-ignore
-ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":708,"y":86,"flippedX":false,"flippedY":false,"uid":"55991906_17","name":"","depth":0}),
 // @ts-ignore
 Block_7: resolveBlock({"type":"Block","x":0,"y":0,"width":280,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_18","name":"","depth":0}),
 // @ts-ignore

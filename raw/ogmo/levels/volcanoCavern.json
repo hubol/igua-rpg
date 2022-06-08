@@ -194,16 +194,6 @@
           "values": {"name": "", "depth": 0}
         },
         {
-          "name": "ValuableBlue",
-          "id": 17,
-          "_eid": "55991906",
-          "x": 708,
-          "y": 86,
-          "originX": 8,
-          "originY": 14,
-          "values": {"name": "", "depth": 0}
-        },
-        {
           "name": "Block",
           "id": 18,
           "_eid": "55823268",
@@ -371,7 +361,17 @@
       "gridCellsX": 112,
       "gridCellsY": 32,
       "decals": [
-        {"x": 712, "y": 80, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/pillar broken.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 712,
+          "y": 80,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/pillar broken.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },
@@ -409,7 +409,28 @@
       "gridCellsX": 112,
       "gridCellsY": 32,
       "decals": [
-        {"x": 792, "y": 136, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/pillar broken.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 792,
+          "y": 136,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/pillar broken.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 706,
+          "y": 78,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key green.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },
