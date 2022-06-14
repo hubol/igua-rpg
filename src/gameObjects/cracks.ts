@@ -6,12 +6,12 @@ import {Force} from "../utils/types/force";
 
 export function cracks(seed: number, color: number, width = scene.width, height = scene.height) {
     const p = makePseudo(seed);
-    const g = new Graphics().lineStyle(1, color);
+    const g = new Graphics();
 
     const maxLength = Math.min(128, Math.min(scene.height, scene.width) / 2) * 1.33;
 
     const steps = 6;
-    function branch(x, y, d: Vector, len: number) {
+    function branch(x, y, d: Vector, len: number, weight = 3) {
         if (len < 1)
             return;
         g.moveTo(Math.round(x), Math.round(y));
@@ -33,12 +33,14 @@ export function cracks(seed: number, color: number, width = scene.width, height 
                 const len2 = Math.max(4, len * (p.unit() + 0.2));
 
                 if (len2 > 6)
-                    branches.push([ x, y, d2, len2 ]);
+                    branches.push([ x, y, d2, len2, Math.max(1, weight - 1) ]);
                 next += dnext;
             }
             x += d.x * steps;
             y += d.y * steps;
+            g.lineStyle(Math.max(1, Math.ceil(weight)), color);
             g.lineTo(Math.round(x), Math.round(y));
+            weight -= 0.167;
             d.x += p.polar() * 0.67;
             d.y += p.polar() * 0.67;
             d.normalize();
