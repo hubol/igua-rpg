@@ -7,6 +7,7 @@ import {VolcanoCaveMusic} from "../musics";
 import {progress} from "../igua/data/progress";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
+import {heatWaves} from "../gameObjects/heatWaves";
 
 export function VolcanoCavern() {
     scene.backgroundColor = 0x78917D;
@@ -22,4 +23,6 @@ export function VolcanoCavern() {
             scene.ticker.doNextUpdate = true;
         });
     });
+
+    heatWaves(scene.width + 256, 80).at(-128, 256 - 30).show(scene.parallax1Stage);
 }
