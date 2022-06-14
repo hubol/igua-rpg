@@ -12,7 +12,7 @@ import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
 import {moveCameraToPlayerTarget} from "../igua/camera";
 import {jukebox} from "../igua/jukebox";
-import {Hemaboss1, VolcanoCaveMusic} from "../musics";
+import {Hemaboss1, JungleMusic, VolcanoCaveMusic} from "../musics";
 import {keepSavingValuables} from "../gameObjects/valuableTrove";
 import {persistence} from "../igua/data/persistence";
 import {valuable} from "../gameObjects/valuable";
@@ -21,7 +21,7 @@ export function JungleBossArena() {
     scene.backgroundColor = 0x78917D;
     scene.terrainColor = 0x912235;
 
-    jukebox.stop().warm(Hemaboss1, VolcanoCaveMusic);
+    jukebox.stop().warm(Hemaboss1, VolcanoCaveMusic, JungleMusic);
 
     progress.flags.jungle.usedBlessing = true;
 

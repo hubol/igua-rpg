@@ -347,6 +347,8 @@ export function clownWonderful() {
 
             const ph = speed.x;
             const r = gravity(0.4);
+            if (canGetDamagedByPlayer() && speed.y < 0)
+                player.y += speed.y;
             if (behaviors.dash) {
                 controls.face.lean = Math.sign(speed.x);
                 const g = ghost(consts.ghostLifeFrames, consts.damage.ghost).at([-14, -32].add(c));
