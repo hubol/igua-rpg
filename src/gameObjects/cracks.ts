@@ -15,18 +15,20 @@ export function cracks(seed: number, color: number, width = scene.width, height 
         if (len < 1)
             return;
         g.moveTo(Math.round(x), Math.round(y));
-        let next = Math.min(16, len * (0.2 + p.unit() * 0.3))
-        let dnext = len * (0.2 + p.unit() * 0.3) + 64 / len;
+        let next = Math.min(16, len * (0.3 + p.unit() * 0.4))
+        let dnext = len * (0.7 + p.unit() * 0.7) + 64 / len;
         while (len > 0) {
             if (next <= 0 && len > 2) {
                 const d2 = d.vcpy();
                 if (Math.abs(d2.x) > Math.abs(d2.y))
-                    d2.y *= -(0.5 + p.unit() * 0.5);
+                    d2.y *= -(1 + p.unit() * 0.25);
                 else
-                    d2.x *= -(0.5 + p.unit() * 0.5);
+                    d2.x *= -(1 + p.unit() * 0.25);
 
                 d2.x += p.polar() * 0.33;
                 d2.y += p.polar() * 0.33;
+
+                d2.normalize();
 
                 const len2 = Math.max(4, len * (p.unit() + 0.2));
 
@@ -37,8 +39,8 @@ export function cracks(seed: number, color: number, width = scene.width, height 
             x += d.x * steps;
             y += d.y * steps;
             g.lineTo(Math.round(x), Math.round(y));
-            d.x += p.polar() * 0.33;
-            d.y += p.polar() * 0.33;
+            d.x += p.polar() * 0.67;
+            d.y += p.polar() * 0.67;
             d.normalize();
             len -= steps;
             next -= steps;
@@ -48,8 +50,8 @@ export function cracks(seed: number, color: number, width = scene.width, height 
     type BranchDef = Parameters<typeof branch>;
     const branches = [] as BranchDef[];
 
-    const minRootDistance = maxLength / 2;
-    const count = Math.ceil((Math.sqrt(width * height) / maxLength) * (1 + p.unit()) * 2.67);
+    const minRootDistance = maxLength;
+    const count = Math.ceil((Math.sqrt(width * height) / maxLength) * (1 + p.unit()) * 4.67);
     for (let i = 0; i < count; i++) {
         let retries = 0;
         while (retries < 2) {

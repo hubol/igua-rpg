@@ -14,7 +14,6 @@ export function VolcanoCavern() {
     scene.terrainColor = 0x912235;
     const level = applyOgmoLevel(VolcanoCavernArgs);
     jukebox.play(VolcanoCaveMusic);
-    // cracks(1245.1269, 0).show(scene.parallax1Stage);
 
     level.KeyGreen.asCollectible(progress.flags.volcano.key, 'hiddenInCave', () => {
         scene.ticker.doNextUpdate = false;
@@ -24,5 +23,6 @@ export function VolcanoCavern() {
         });
     });
 
+    cracks(3245.1269, 0x481018).show(scene.parallax1Stage);
     heatWaves(scene.width + 256, 80).at(-128, 256 - 30).show(scene.parallax1Stage);
 }

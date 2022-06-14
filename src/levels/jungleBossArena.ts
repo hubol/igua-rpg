@@ -16,6 +16,7 @@ import {Hemaboss1, JungleMusic, VolcanoCaveMusic} from "../musics";
 import {keepSavingValuables} from "../gameObjects/valuableTrove";
 import {persistence} from "../igua/data/persistence";
 import {valuable} from "../gameObjects/valuable";
+import {cracks} from "../gameObjects/cracks";
 
 export function JungleBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -79,6 +80,8 @@ export function JungleBossArena() {
             scene.camera.followPlayer = true;
         })
     }
+
+    cracks(3245.1269, 0x481018).show(scene.parallax1Stage);
 }
 
 async function keepValuableTroveInOkSpot() {
