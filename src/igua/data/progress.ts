@@ -17,6 +17,7 @@ export function getInitialProgress()
         shopPurchases: {} as Record<PotionType, number | undefined>,
         levelName: "ChooseYourLooksBeginning",
         checkpointName: "none",
+        newGamePlus: 0,
         flags: getInitialFlags(),
     };
 }

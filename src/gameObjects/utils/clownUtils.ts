@@ -9,6 +9,7 @@ import {merge} from "../../utils/object/merge";
 import {Undefined} from "../../utils/types/undefined";
 import {rng} from "../../utils/math/rng";
 import {vnew} from "../../utils/math/vector";
+import {progress} from "../../igua/data/progress";
 
 export function dieClown(container: DisplayObject, drop: boolean | number, offset = vnew()) {
     ClownExplode.play();
@@ -22,6 +23,8 @@ export function dieClown(container: DisplayObject, drop: boolean | number, offse
 }
 
 export function clownHealth(maxHealth: number) {
+    maxHealth *= 1 + progress.newGamePlus;
+
     return {
         maxHealth,
         health: maxHealth,

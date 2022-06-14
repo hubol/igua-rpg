@@ -39,7 +39,7 @@ function valuableImpl(x, y, uid, type: ValuableType)
 
             if (uid)
                 progress.flags.objects.gotLevelValuable.add(uid);
-            progress.valuables += valuableStyle.value;
+            progress.valuables += valuableStyle.value + 5 * progress.newGamePlus;
             const sound = valuableStyle.sound;
             sound.volume(0.5);
             sound.play();

@@ -94,6 +94,8 @@ function createPlayer(behavior = true)
             },
             damage(health: number)
             {
+                health *= 1 + progress.newGamePlus;
+
                 if (player.isDead)
                     return;
                 if (player.invulnerableFrameCount > 0)
