@@ -30,6 +30,7 @@ import { Rainbow2 } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
+import { resolveTreeStumpDestructive } from "./gameObjects/treeStumpDestructive";
 import { GroundSpeckles } from "./textures";
 import { resolveSpike } from "./gameObjects/spike";
 import { CracksA } from "./textures";
@@ -5814,6 +5815,28 @@ SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":344,"y":0,"width":32,"heig
 SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":576,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_21","name":"","depth":0}),
 // @ts-ignore
 SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":608,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_22","name":"","depth":0})
+};
+}
+};
+
+export const UnrealDuckStumpArgs = {
+    width: 256,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":240,"width":256,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":56,"y":168,"width":16,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":72,"y":168,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_2","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":152,"y":168,"flippedX":false,"flippedY":false,"uid":"63418353_3","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":24,"y":168,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_4","visible":true,"name":"","depth":0}),
+Player: {"type":"Player","x":192,"y":240,"flippedX":false,"flippedY":false,"uid":"55988047_6","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+TreeStumpDestructive: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":64,"y":168,"flippedX":false,"flippedY":false,"uid":"36360904_7","name":"","depth":0})
 };
 }
 };

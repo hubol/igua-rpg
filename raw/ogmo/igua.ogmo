@@ -1271,6 +1271,47 @@
       ],
       "texture": "preview-images/bigua.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHEAAABpCAMAAAA6JTwUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAeUExURZc3hPWwJ+RfJ////yOoUvacea/KPhh2Oat7GwAAAL4GGdUAAAAKdFJOU////////////wCyzCzPAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADZElEQVRoQ+2X7XIaMQwAIdDCvf8L15L2OH/IRnYIaafZP2DpvDthJslw2lY5Accwi0VqBrMgK0VCB8xjzBep5LCJMV0kUsAqxmyRRgm7GJNFEhUsY0w+7cM2xl9eJNDAOsZPsYJAA+sYk0/7sI0x93QnyTLGZNFPsosxW3STrGJMF70kmxjzRSfJIsZCsU0yj7FSbJKMYywV6yTTGGvFKskwxmIxT54H8HTOapEk4iFc2FkuShLlU7hhrBc3dCG4IqwXcUXh1ieKiBo+FA6Gjbi3XERWY/KPj8uFwTHam4tFbDWopbgnGQgXvbpWxFaDWdiTHA1NLhXV1YJX8YuSXCmqygGvkoqS5ASvLqI1OsWUXCiavwWt8Y4iVpDipZrpcKFIoAErvL2owbqos9cVsYLK3eJlukigASuY/I1Fc1dFhv9w8YJXwH1xh68rHnbUUnSGLyyiV63hDl9arHkMr7wKbylev6ToJBleE3pWzl9elN4bi5YrPtT5Yjx5BPMf8YX/OwZFBkJd/FXAsAK/A1JIA4L5j1gU6RSwKjC9B1pFzl4wK9KoYJmj8g6YtbcXi2FWpNDCPkNtITSYk25TxO5iT2Rwe0DxVSc/pNtWxN1BH8nhep/0t5t35Xu5rEXMPr8dEPQ5MnVQi6hdSNSg6LOHmuCTIn4HJH0s1QbHRewuaPpIzAlKEX0L7g6I+qScExwVMXdB1ScLUhM+UQw0gZZxKoIy4W0gmEA5RDsHeZERJ5zPQeyCMicrMknICd0sGAYcRQZKOmKYBcEAv5iaGGbh+oATvSq4bRhm4faAn+I83B7wXxT33w7ODzDMwu0B31fkeIBhFm4P+CnOw+0B3eJakrsjhkX9omKqINwd0S9uFpxKcnMIRU4Fe7GXdHbcHDIobqpMoKtplzcuDokUO8lmd7tFkoOiGRWUBayOXQpGkv0iQsB6wDxhZ+0JXO/SLaJ7YN4HTI2sZ+BwCRevV2wGswPmgMRjolhIGWWwACwOfNPhlIGnAJvAJIcNoGmZKmZSBgWsAE/DK4tlEk9DKkrSDgVYCpAlGJSwE+53NA0zxfNZVfe7vDDLKNZPi8OPVb4I2osZq6K7Xik+kmLclWo0pS2762Fx/LGqsV/srVeKJLvKJ2skDd9U7NAqWRhP1j7b9gdBlx+6LDm0JQAAAABJRU5ErkJggg=="
+    },
+    {
+      "exportID": "36360904",
+      "name": "TreeStumpDestructive",
+      "limit": -1,
+      "size": {"x": 128, "y": 64},
+      "origin": {"x": 60, "y": 16},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
+      ],
+      "texture": "preview-images/tree stump destructive.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABACAMAAADlCI9NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAPUExURYlyrXlhpb+z4qSSxwAAANZA0iQAAAAFdFJOU/////8A+7YOUwAAAAlwSFlzAAAOwgAADsIBFShKgAAAAU5JREFUaEPtk9GSwyAIRTXm/795Ba8VW81wnd2+LGc6DSKEU5Om24/W7huYWw2YrlyLU9p1pIyAgxFI11WuDXXj708g1SmlLBw0Wb4gUI+gjXtD09tn8wwnIGewpuxfjmdIgbySkOGyhzKOAwEwwqyh/EcOOBd4l/meQPvBQ0DW+kEZB9PVBwEE+ZVEGQcpoAMxzwZ6RRkH0aVD5rnz40Adh7crV3SUGS6B/UYph69LxkNgfLeoXxSUM3h62vh+AoqJbbqCHjeOBoyfBu0FWANX/cf8R9DkxF2Ouysms/Jq205oASwFWfZXs68F3fTCCmClaAIGSPFwAoiBpjLUkKOhBBB2dLAcvgYtR+PtW40Yc1e7TggBRIZXTgQODfwCCCw2eWrgFsB1YkoeGpxp/yIhEAIhEAIhEAIhEAIhEAIhEAIhEAIhEAIh8N8F7vsHE7R2J8xil6gAAAAASUVORK5CYII="
     }
   ],
   "tilesets": []

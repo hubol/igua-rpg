@@ -82,6 +82,7 @@ export let JungleTent: PIXI.Texture;
 export let JungleTreeBranch: PIXI.Texture;
 export let JungleTreeFoliage: PIXI.Texture;
 export let JungleTreeRoot: PIXI.Texture;
+export let JungleTreeStumpDestructive: PIXI.Texture;
 export let JungleTreeStump: PIXI.Texture;
 export let JungleTreeTrunk: PIXI.Texture;
 export let KeyGreen: PIXI.Texture;
@@ -436,6 +437,9 @@ export function loadTexturesAsync()
 
     const JungleTreeRootPath = require("./images/jungle/tree root.png");
     loader.add(JungleTreeRootPath); 
+
+    const JungleTreeStumpDestructivePath = require("./images/jungle/tree stump destructive.png");
+    loader.add(JungleTreeStumpDestructivePath); 
 
     const JungleTreeStumpPath = require("./images/jungle/tree stump.png");
     loader.add(JungleTreeStumpPath); 
@@ -848,6 +852,7 @@ export function loadTexturesAsync()
             JungleTreeBranch = resources[JungleTreeBranchPath]?.texture as PIXI.Texture;
             JungleTreeFoliage = resources[JungleTreeFoliagePath]?.texture as PIXI.Texture;
             JungleTreeRoot = resources[JungleTreeRootPath]?.texture as PIXI.Texture;
+            JungleTreeStumpDestructive = resources[JungleTreeStumpDestructivePath]?.texture as PIXI.Texture;
             JungleTreeStump = resources[JungleTreeStumpPath]?.texture as PIXI.Texture;
             JungleTreeTrunk = resources[JungleTreeTrunkPath]?.texture as PIXI.Texture;
             KeyGreen = resources[KeyGreenPath]?.texture as PIXI.Texture;

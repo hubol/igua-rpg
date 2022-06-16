@@ -15,3 +15,7 @@ export function getPlayerCenterWorld() {
 export function getCenter(d: DisplayObject) {
     return d.getBounds(false, r).center.vround();
 }
+
+export function getWorldBounds(d: DisplayObject) {
+    return d.getBounds(false, r).add(scene.camera);
+}
