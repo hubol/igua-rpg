@@ -31,8 +31,8 @@ import { SpikyBrushB } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
 import { resolveTreeStumpDestructive } from "./gameObjects/treeStumpDestructive";
-import { GroundSpeckles } from "./textures";
 import { resolveSpike } from "./gameObjects/spike";
+import { GroundSpeckles } from "./textures";
 import { CracksA } from "./textures";
 import { VineSmall } from "./textures";
 import { PoppingRocksBox } from "./textures";
@@ -5821,22 +5821,34 @@ SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":608,"y":0,"width":32,"heig
 
 export const UnrealDuckStumpArgs = {
     width: 256,
-height: 256,
+height: 440,
 gameObjectsSupplier: () => {
   return {
     // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":240,"width":256,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":56,"y":288,"width":16,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":56,"y":168,"width":16,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":72,"y":288,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_2","visible":true,"name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":72,"y":168,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_2","visible":true,"name":"","depth":0}),
+PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":152,"y":288,"flippedX":false,"flippedY":false,"uid":"63418353_3","name":"","depth":0}),
 // @ts-ignore
-PipeRightEnd: resolvePipeRightEnd({"type":"PipeRightEnd","x":152,"y":168,"flippedX":false,"flippedY":false,"uid":"63418353_3","name":"","depth":0}),
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":24,"y":288,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_4","visible":true,"name":"","depth":0}),
+Player: {"type":"Player","x":192,"y":176,"flippedX":false,"flippedY":false,"uid":"55988047_6","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":24,"y":168,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_4","visible":true,"name":"","depth":0}),
-Player: {"type":"Player","x":192,"y":240,"flippedX":false,"flippedY":false,"uid":"55988047_6","faceRight":false,"name":"","depth":0},
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":176,"width":256,"flippedX":false,"flippedY":false,"uid":"55841307_9","visible":true,"name":"","depth":0}),
 // @ts-ignore
-TreeStumpDestructive: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":64,"y":168,"flippedX":false,"flippedY":false,"uid":"36360904_7","name":"","depth":0})
+TreeStumpDestructive: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":64,"y":176,"flippedX":false,"flippedY":false,"uid":"36360904_10","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":224,"width":256,"flippedX":false,"flippedY":false,"uid":"55841307_11","visible":true,"name":"","depth":0}),
+// @ts-ignore
+TreeStumpDestructive_1: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":224,"y":224,"flippedX":false,"flippedY":false,"uid":"36360904_12","name":"","depth":0}),
+// @ts-ignore
+Spike: resolveSpike({"type":"Spike","x":232,"y":240,"flippedX":false,"flippedY":false,"uid":"35514037_13","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":360,"width":256,"flippedX":false,"flippedY":false,"uid":"55841307_14","visible":true,"name":"","depth":0}),
+// @ts-ignore
+TreeStumpDestructive_2: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":24,"y":360,"flippedX":false,"flippedY":false,"uid":"36360904_15","name":"","depth":0}),
+// @ts-ignore
+Portal: resolvePortalFluid({"type":"PortalFluid","x":-24,"y":-256,"width":312,"height":312,"flippedX":false,"flippedY":false,"uid":"24775263_18","name":"Portal","depth":0})
 };
 }
 };

@@ -1,7 +1,7 @@
 {
   "ogmoVersion": "3.4.0-hubol",
   "width": 256,
-  "height": 256,
+  "height": 440,
   "offsetX": 0,
   "offsetY": 0,
   "layers": [
@@ -13,26 +13,14 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 32,
-      "gridCellsY": 32,
+      "gridCellsY": 55,
       "entities": [
-        {
-          "name": "Block",
-          "id": 0,
-          "_eid": "55823268",
-          "x": 0,
-          "y": 240,
-          "width": 256,
-          "height": 16,
-          "originX": 0,
-          "originY": 0,
-          "values": {"name": "", "depth": 0}
-        },
         {
           "name": "Block",
           "id": 1,
           "_eid": "55823268",
           "x": 56,
-          "y": 168,
+          "y": 288,
           "width": 16,
           "height": 72,
           "originX": 0,
@@ -44,7 +32,7 @@
           "id": 2,
           "_eid": "55841307",
           "x": 72,
-          "y": 168,
+          "y": 288,
           "width": 80,
           "originX": 0,
           "originY": 0,
@@ -55,7 +43,7 @@
           "id": 3,
           "_eid": "63418353",
           "x": 152,
-          "y": 168,
+          "y": 288,
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
@@ -65,7 +53,7 @@
           "id": 4,
           "_eid": "55841307",
           "x": 24,
-          "y": 168,
+          "y": 288,
           "width": 32,
           "originX": 0,
           "originY": 0,
@@ -76,20 +64,95 @@
           "id": 6,
           "_eid": "55988047",
           "x": 192,
-          "y": 240,
+          "y": 176,
           "originX": 11,
           "originY": 27,
           "values": {"faceRight": false, "name": "", "depth": 0}
         },
         {
+          "name": "PipeHorizontal",
+          "id": 9,
+          "_eid": "55841307",
+          "x": 0,
+          "y": 176,
+          "width": 256,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
           "name": "TreeStumpDestructive",
-          "id": 7,
+          "id": 10,
           "_eid": "36360904",
           "x": 64,
-          "y": 168,
-          "originX": 60,
+          "y": 176,
+          "originX": 16,
           "originY": 16,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 11,
+          "_eid": "55841307",
+          "x": 0,
+          "y": 224,
+          "width": 256,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "TreeStumpDestructive",
+          "id": 12,
+          "_eid": "36360904",
+          "x": 224,
+          "y": 224,
+          "originX": 16,
+          "originY": 16,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Spike",
+          "id": 13,
+          "_eid": "35514037",
+          "x": 232,
+          "y": 240,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 14,
+          "_eid": "55841307",
+          "x": 0,
+          "y": 360,
+          "width": 256,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "TreeStumpDestructive",
+          "id": 15,
+          "_eid": "36360904",
+          "x": 24,
+          "y": 360,
+          "originX": 16,
+          "originY": 16,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PortalFluid",
+          "id": 18,
+          "_eid": "24775263",
+          "x": -24,
+          "y": -256,
+          "width": 312,
+          "height": 312,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Portal", "depth": 0}
         }
       ]
     },
@@ -101,7 +164,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 32,
-      "gridCellsY": 32,
+      "gridCellsY": 55,
       "decals": [],
       "folder": "../../src/images"
     },
@@ -113,7 +176,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 32,
-      "gridCellsY": 32,
+      "gridCellsY": 55,
       "decals": [],
       "folder": "../../src/images"
     },
@@ -125,7 +188,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 32,
-      "gridCellsY": 32,
+      "gridCellsY": 55,
       "decals": [],
       "folder": "..\\..\\src\\images"
     },
@@ -137,7 +200,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 32,
-      "gridCellsY": 32,
+      "gridCellsY": 55,
       "decals": [],
       "folder": "../../src/images"
     }

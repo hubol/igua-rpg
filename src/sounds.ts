@@ -392,6 +392,11 @@ export const TransitionSlide = new Howl({
     
 });
 
+export const TreeStumpDestroy = new Howl({
+    src: [require("./sound/tree stump destroy.ogg"), require("./sound/tree stump destroy.mp3")],
+    
+});
+
 export const UnorthodoxCharge = new Howl({
     src: [require("./sound/unorthodox charge.ogg"), require("./sound/unorthodox charge.mp3")],
     

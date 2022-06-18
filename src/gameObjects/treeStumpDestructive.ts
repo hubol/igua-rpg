@@ -9,6 +9,7 @@ import {merge} from "../utils/object/merge";
 import { scene } from "../igua/scene";
 import {confetti} from "./confetti";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
+import {TreeStumpDestroy} from "../sounds";
 
 export const resolveTreeStumpDestructive = resolveGameObject('TreeStumpDestructive', e => treeStumpDestructiveImpl().at(e));
 
@@ -26,6 +27,7 @@ function treeStumpDestructiveImpl() {
         })
         .withAsync(async () => {
             await waitHold(() => !cutscene.isPlaying && player.isDucking && s.playerIsOn, 10);
+            TreeStumpDestroy.play();
             scene.pipeStage.children.filter(x => x.collides(destruction)).forEach(destroyPipe as any);
             s.destroy();
         })

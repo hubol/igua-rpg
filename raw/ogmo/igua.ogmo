@@ -1276,8 +1276,8 @@
       "exportID": "36360904",
       "name": "TreeStumpDestructive",
       "limit": -1,
-      "size": {"x": 128, "y": 64},
-      "origin": {"x": 60, "y": 16},
+      "size": {"x": 32, "y": 16},
+      "origin": {"x": 16, "y": 16},
       "originAnchored": true,
       "shape": {
         "label": "Rectangle",
@@ -1290,7 +1290,7 @@
           {"x": 1, "y": 1}
         ]
       },
-      "color": "#ff0000ff",
+      "color": "#9f4cd6ff",
       "tileX": false,
       "tileY": false,
       "tileSize": {"x": 16, "y": 16},
@@ -1309,9 +1309,7 @@
       "values": [
         {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
-      ],
-      "texture": "preview-images/tree stump destructive.png",
-      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABACAMAAADlCI9NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAPUExURYlyrXlhpb+z4qSSxwAAANZA0iQAAAAFdFJOU/////8A+7YOUwAAAAlwSFlzAAAOwgAADsIBFShKgAAAAU5JREFUaEPtk9GSwyAIRTXm/795Ba8VW81wnd2+LGc6DSKEU5Om24/W7huYWw2YrlyLU9p1pIyAgxFI11WuDXXj708g1SmlLBw0Wb4gUI+gjXtD09tn8wwnIGewpuxfjmdIgbySkOGyhzKOAwEwwqyh/EcOOBd4l/meQPvBQ0DW+kEZB9PVBwEE+ZVEGQcpoAMxzwZ6RRkH0aVD5rnz40Adh7crV3SUGS6B/UYph69LxkNgfLeoXxSUM3h62vh+AoqJbbqCHjeOBoyfBu0FWANX/cf8R9DkxF2Ouysms/Jq205oASwFWfZXs68F3fTCCmClaAIGSPFwAoiBpjLUkKOhBBB2dLAcvgYtR+PtW40Yc1e7TggBRIZXTgQODfwCCCw2eWrgFsB1YkoeGpxp/yIhEAIhEAIhEAIhEAIhEAIhEAIhEAIhEAIh8N8F7vsHE7R2J8xil6gAAAAASUVORK5CYII="
+      ]
     }
   ],
   "tilesets": []
