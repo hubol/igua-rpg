@@ -19,7 +19,7 @@ function createScene(source: SceneSource, args: Readonly<SceneMeta>)
     const parallax1Stage = new Container();
     const backgroundGameObjectStage = new Container();
     const terrainContainer = new Container();
-    const pipeStage = new Container();
+    const pipeStage = merge(new Container(), { style: 0 });
     const gameObjectStage = new Container();
     const cameraStage = new Container();
     const playerStage = new Container();

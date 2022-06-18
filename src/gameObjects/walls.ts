@@ -1,10 +1,34 @@
 import {Graphics, SCALE_MODES, SimpleMesh, Sprite} from "pixi.js";
 import {distance, dot, normalize, perpendicular, Vector} from "../utils/math/vector";
-import {LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
+import {JunglePlank, JunglePlankEnd, LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
 import {scene} from "../igua/scene";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 const walls: Wall[] = [];
+
+const pipeTextures = {
+    get main() {
+        switch (scene.pipeStage.style) {
+            case 1:
+                return JunglePlank;
+        }
+        return Pipe;
+    },
+    get right() {
+        switch (scene.pipeStage.style) {
+            case 1:
+                return JunglePlankEnd;
+        }
+        return RightPipeEnd;
+    },
+    get left() {
+        switch (scene.pipeStage.style) {
+            case 1:
+                return JunglePlankEnd;
+        }
+        return LeftPipeEnd;
+    }
+}
 
 export const resolveBlock = resolveGameObject("Block", e =>
     scene.terrainStage.addChild(block(e.x, e.y, e.x + e.width, e.y + e.height)));
@@ -37,14 +61,14 @@ export const resolvePipeHorizontal = resolveGameObject("PipeHorizontal", e => {
 });
 
 export const resolvePipeRightEnd = resolveGameObject("PipeRightEnd", e => {
-    const sprite = Sprite.from(RightPipeEnd);
+    const sprite = Sprite.from(pipeTextures.right);
     sprite.x = e.x;
     sprite.y = e.y;
     return scene.pipeStage.addChild(sprite);
 });
 
 export const resolvePipeLeftEnd = resolveGameObject("PipeLeftEnd", e => {
-    const sprite = Sprite.from(LeftPipeEnd);
+    const sprite = Sprite.from(pipeTextures.left);
     sprite.anchor.set(1, 0);
     sprite.x = e.x;
     sprite.y = e.y;
@@ -207,12 +231,14 @@ export function slope(x0: number, y0: number, x1: number, y1: number, isGround: 
 export function pipe(x0: number, y0: number, x1: number, y1: number)
 {
     const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1, true);
+    const texture = pipeTextures.main;
+    const height = texture.height;
 
-    Pipe.baseTexture.scaleMode = SCALE_MODES.LINEAR;
+    texture.baseTexture.scaleMode = SCALE_MODES.LINEAR;
 
     const simpleMesh = new SimpleMesh(
-        Pipe,
-        new Float32Array([ x0, y0, x1, y1, x1, y1 + 16, x0, y0 + 16]),
+        texture,
+        new Float32Array([ x0, y0, x1, y1, x1, y1 + height, x0, y0 + height]),
         new Float32Array([ 0, 0, 0, 0, 0, 1, 0, 1]),
         new Uint16Array([ 0, 1, 3, 1, 2, 3 ]));
 
