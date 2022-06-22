@@ -102,6 +102,11 @@ export const TitleScreen = new Howl({
     preload: false
 });
 
+export const UnrealCrusher = new Howl({
+    src: [require("./music/unreal-crusher.ogg"), require("./music/unreal-crusher.mp3")],
+    preload: false
+});
+
 export const VolcanoCaveMusic = new Howl({
     src: [require("./music/volcano-cave-music.ogg"), require("./music/volcano-cave-music.mp3")],
     preload: false
