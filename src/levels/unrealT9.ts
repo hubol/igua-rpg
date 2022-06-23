@@ -21,14 +21,58 @@ export function UnrealT9() {
     const level = applyOgmoLevel(UnrealT9Args);
     const receiver = letterReceiver().show();
     keyboard({ push: receiver.push }).at(level.PlaceKeys).show(scene.terrainStage);
+    const c = checker(receiver).show();
+    c.y = 100;
+}
 
-    const t = IguaText.Large().at(64, 64)
-        .withStep(() => t.text = (`${receiver.text}${receiver.letter ?? ''}`))
-        .show();
+function bigText(width: number, separation: number, workTextColor = 0xffffff, workHighlightColor = 0) {
+    const highlightp = 4;
+    const highlight = new Graphics().withStep(() => {
+        highlight.clear()
+            .beginFill(0xffffff)
+            .drawRect(-highlightp - 2, -highlightp + 2, width + (highlightp + 2) * 2, 9 + highlightp * 2 );
+    })
+        .hide();
+    const c = merge(container(), { text: '', color: 0x000000, highlight, work: false });
+    const tc = container().withStep(() => {
+        tc.removeAllChildren();
+        let x = 0;
+        for (let i = 0; i < c.text.length; i++) {
+            const tcc = container();
+            const t = IguaText.Large();
+            (t.anchor as any).set(0.5, 0);
+            t.tint = c.color;
+            if (i === c.text.length - 1 && c.work) {
+                t.tint = workTextColor;
+                new Graphics().beginFill(workHighlightColor).drawRect(-5, 0, 10, 12).show(tcc);
+            }
+            t.text = c.text[i].toUpperCase();
+            tcc.at(x, 0);
+            t.show(tcc);
+            tc.addChild(tcc);
+            x += separation;
+        }
+    });
+    c.addChild(highlight, tc);
+    return c;
+}
+
+function checker(receiver: LetterReceiver, target = 'iguarpg', width = 200, lineSeparation = 32) {
+    const separation = Math.floor(width / (target.length - 1));
+    const targetText = bigText(width, separation);
+    targetText.text = target;
+
+    const typedText = bigText(width, separation)
+        .withStep(() => {
+            typedText.text = `${receiver.text}${receiver.letter ?? ''}`;
+            typedText.work = receiver.confirmUnit > 0;
+        }).at(0, lineSeparation);
+
+    return container(targetText, typedText).at(Math.floor((256 - width) / 2), 100);
 }
 
 function letterReceiver() {
-    const confirmAfterFrames = 30;
+    const confirmAfterFrames = 40;
     let framesUntilConfirm = -1;
     let lastPushIndex = Undefined<number>();
     let pushesOnThis = 0;
@@ -75,7 +119,8 @@ function letterReceiver() {
     return c;
 }
 
-type PushLetter = ReturnType<typeof letterReceiver>['push'];
+type LetterReceiver = ReturnType<typeof letterReceiver>;
+type PushLetter = LetterReceiver['push'];
 
 const keyboardLetters = [
     ['a', 'b', 'c'],
