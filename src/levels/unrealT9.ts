@@ -14,6 +14,8 @@ import {getWorldCenter} from "../igua/gameplay/getCenter";
 import {merge} from "../utils/object/merge";
 import {Key} from "../utils/browser/key";
 import {IguaText} from "../igua/text";
+import {wait} from "../cutscene/wait";
+import {sleep} from "../cutscene/sleep";
 
 export function UnrealT9() {
     scene.backgroundColor = 0x60B0E0;
@@ -68,7 +70,18 @@ function checker(receiver: LetterReceiver, target = 'iguarpg', width = 200, line
             typedText.work = receiver.confirmUnit > 0;
         }).at(0, lineSeparation);
 
-    return container(targetText, typedText).at(Math.floor((256 - width) / 2), 100);
+    return container(targetText, typedText).at(Math.floor((256 - width) / 2), 100).withAsync(async () => {
+        while (true) {
+            await wait(() => receiver.text.length >= target.length);
+            receiver.receivePushes = false;
+            await sleep(500);
+            if (receiver.text === target)
+                break;
+            receiver.text = '';
+            receiver.reset();
+            receiver.receivePushes = true;
+        }
+    });
 }
 
 function letterReceiver() {
@@ -80,6 +93,10 @@ function letterReceiver() {
     function confirm() {
         if (c.letter)
             c.text += c.letter;
+        reset();
+    }
+
+    function reset() {
         framesUntilConfirm = -1;
         lastPushIndex = undefined;
         pushesOnThis = 0;
@@ -99,6 +116,7 @@ function letterReceiver() {
     const c = merge(container(), {
         receivePushes: true,
         push,
+        reset,
         text: '',
         get letter() {
             if (lastPushIndex === undefined)
