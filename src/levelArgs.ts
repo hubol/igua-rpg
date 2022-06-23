@@ -30,7 +30,9 @@ import { Rainbow2 } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
+import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolveTreeStumpDestructive } from "./gameObjects/treeStumpDestructive";
+import { resolveCommonClown } from "./gameObjects/commonClown";
 import { resolveSpike } from "./gameObjects/spike";
 import { GroundSpeckles } from "./textures";
 import { CracksA } from "./textures";
@@ -39,7 +41,6 @@ import { PoppingRocksBox } from "./textures";
 import { resolveJungleTree } from "./gameObjects/jungleTree";
 import { resolvePool } from "./gameObjects/pool";
 import { resolveTreeStump } from "./gameObjects/treeStump";
-import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveSign } from "./gameObjects/sign";
@@ -55,7 +56,6 @@ import { DinerTable } from "./textures";
 import { JunglePlankDecoration } from "./textures";
 import { BookCollection } from "./textures";
 import { DontPoster } from "./textures";
-import { resolveCommonClown } from "./gameObjects/commonClown";
 import { JungleBrushHeavy } from "./textures";
 import { GlowingEdge } from "./textures";
 import { CloudLong } from "./textures";
@@ -5821,7 +5821,7 @@ SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":608,"y":0,"width":32,"heig
 
 export const UnrealDuckStumpArgs = {
     width: 256,
-height: 440,
+height: 1016,
 gameObjectsSupplier: () => {
   return {
     // @ts-ignore
@@ -5848,7 +5848,81 @@ PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":360,"
 // @ts-ignore
 TreeStumpDestructive_2: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":24,"y":360,"flippedX":false,"flippedY":false,"uid":"36360904_15","name":"","depth":0}),
 // @ts-ignore
-Portal: resolvePortalFluid({"type":"PortalFluid","x":-24,"y":-256,"width":312,"height":312,"flippedX":false,"flippedY":false,"uid":"24775263_18","name":"Portal","depth":0})
+PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":24,"y":288,"flippedX":false,"flippedY":false,"uid":"63428932_19","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":112,"y":440,"width":16,"height":248,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_5: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":440,"width":112,"flippedX":false,"flippedY":false,"uid":"55841307_21","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":128,"y":440,"width":128,"flippedX":false,"flippedY":false,"uid":"55841307_22","visible":true,"name":"","depth":0}),
+// @ts-ignore
+TreeStumpDestructive_3: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":208,"y":440,"flippedX":false,"flippedY":false,"uid":"36360904_23","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":480,"width":112,"flippedX":false,"flippedY":false,"uid":"55841307_24","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":128,"y":480,"width":128,"flippedX":false,"flippedY":false,"uid":"55841307_25","visible":true,"name":"","depth":0}),
+// @ts-ignore
+TreeStumpDestructive_4: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":160,"y":480,"flippedX":false,"flippedY":false,"uid":"36360904_26","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_9: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":512,"width":112,"flippedX":false,"flippedY":false,"uid":"55841307_27","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_10: resolvePipeHorizontal({"type":"PipeHorizontal","x":128,"y":512,"width":128,"flippedX":false,"flippedY":false,"uid":"55841307_28","visible":true,"name":"","depth":0}),
+// @ts-ignore
+TreeStumpDestructive_5: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":72,"y":512,"flippedX":false,"flippedY":false,"uid":"36360904_29","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_11: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":560,"width":112,"flippedX":false,"flippedY":false,"uid":"55841307_30","visible":true,"name":"","depth":0}),
+// @ts-ignore
+TreeStumpDestructive_6: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":56,"y":560,"flippedX":false,"flippedY":false,"uid":"36360904_32","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_12: resolvePipeHorizontal({"type":"PipeHorizontal","x":24,"y":688,"width":248,"flippedX":false,"flippedY":false,"uid":"55841307_33","visible":true,"name":"","depth":0}),
+// @ts-ignore
+CommonClown: resolveCommonClown({"type":"CommonClown","x":144,"y":656,"flippedX":false,"flippedY":false,"uid":"68762216_36","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_13: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":744,"width":256,"flippedX":false,"flippedY":false,"uid":"55841307_39","visible":true,"name":"","depth":0}),
+// @ts-ignore
+ClownActivator: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":72,"y":688,"flippedX":false,"flippedY":false,"uid":"36360904_40","name":"ClownActivator","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":240,"y":584,"width":16,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_43","name":"","depth":0}),
+// @ts-ignore
+CommonClown_1: resolveCommonClown({"type":"CommonClown","x":176,"y":672,"flippedX":false,"flippedY":false,"uid":"68762216_49","name":"","depth":0}),
+// @ts-ignore
+CommonClown_2: resolveCommonClown({"type":"CommonClown","x":208,"y":648,"flippedX":false,"flippedY":false,"uid":"68762216_50","name":"","depth":0}),
+// @ts-ignore
+TreeStumpDestructive_7: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":184,"y":744,"flippedX":false,"flippedY":false,"uid":"36360904_51","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_14: resolvePipeHorizontal({"type":"PipeHorizontal","x":-16,"y":688,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_52","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeRightEnd_1: resolvePipeRightEnd({"type":"PipeRightEnd","x":16,"y":688,"flippedX":false,"flippedY":false,"uid":"63418353_53","name":"","depth":0}),
+// @ts-ignore
+PipeLeftEnd_1: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":24,"y":688,"flippedX":false,"flippedY":false,"uid":"63428932_54","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_15: resolvePipeHorizontal({"type":"PipeHorizontal","x":33,"y":814,"width":224,"flippedX":false,"flippedY":false,"uid":"55841307_55","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeLeftEnd_2: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":33,"y":814,"flippedX":false,"flippedY":false,"uid":"63428932_56","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_16: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":856,"width":256,"flippedX":false,"flippedY":false,"uid":"55841307_57","visible":true,"name":"","depth":0}),
+// @ts-ignore
+TreeStumpDestructive_8: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":216,"y":856,"flippedX":false,"flippedY":false,"uid":"36360904_58","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_17: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":798,"width":232,"flippedX":false,"flippedY":false,"uid":"55841307_59","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeRightEnd_2: resolvePipeRightEnd({"type":"PipeRightEnd","x":231,"y":798,"flippedX":false,"flippedY":false,"uid":"63418353_60","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_18: resolvePipeHorizontal({"type":"PipeHorizontal","x":26,"y":782,"width":232,"flippedX":false,"flippedY":false,"uid":"55841307_61","visible":true,"name":"","depth":0}),
+// @ts-ignore
+PipeLeftEnd_3: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":26,"y":782,"flippedX":false,"flippedY":false,"uid":"63428932_62","name":"","depth":0}),
+// @ts-ignore
+HiddenBlock: resolveBlock({"type":"Block","x":128,"y":688,"width":112,"height":8,"flippedX":false,"flippedY":false,"uid":"55823268_63","name":"HiddenBlock","depth":0}),
+// @ts-ignore
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":72,"y":928,"flippedX":false,"flippedY":false,"uid":"56004563_64","name":"","depth":0}),
+// @ts-ignore
+ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":72,"y":944,"flippedX":false,"flippedY":false,"uid":"56004563_65","name":"","depth":0}),
+// @ts-ignore
+ValuableOrange_2: resolveValuableOrange({"type":"ValuableOrange","x":72,"y":960,"flippedX":false,"flippedY":false,"uid":"56004563_66","name":"","depth":0}),
+// @ts-ignore
+ValuableOrange_3: resolveValuableOrange({"type":"ValuableOrange","x":72,"y":976,"flippedX":false,"flippedY":false,"uid":"56004563_67","name":"","depth":0}),
+// @ts-ignore
+Portal: resolvePortalFluid({"type":"PortalFluid","x":-24,"y":-256,"width":312,"height":312,"flippedX":false,"flippedY":false,"uid":"24775263_69","name":"Portal","depth":0})
 };
 }
 };

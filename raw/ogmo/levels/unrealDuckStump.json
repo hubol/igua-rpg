@@ -1,7 +1,7 @@
 {
   "ogmoVersion": "3.4.0-hubol",
   "width": 256,
-  "height": 440,
+  "height": 1016,
   "offsetX": 0,
   "offsetY": 0,
   "layers": [
@@ -13,7 +13,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 32,
-      "gridCellsY": 55,
+      "gridCellsY": 127,
       "entities": [
         {
           "name": "Block",
@@ -143,8 +143,398 @@
           "values": {"name": "", "depth": 0}
         },
         {
+          "name": "PipeLeftEnd",
+          "id": 19,
+          "_eid": "63428932",
+          "x": 24,
+          "y": 288,
+          "originX": 16,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 20,
+          "_eid": "55823268",
+          "x": 112,
+          "y": 440,
+          "width": 16,
+          "height": 248,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 21,
+          "_eid": "55841307",
+          "x": 0,
+          "y": 440,
+          "width": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 22,
+          "_eid": "55841307",
+          "x": 128,
+          "y": 440,
+          "width": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "TreeStumpDestructive",
+          "id": 23,
+          "_eid": "36360904",
+          "x": 208,
+          "y": 440,
+          "originX": 16,
+          "originY": 16,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 24,
+          "_eid": "55841307",
+          "x": 0,
+          "y": 480,
+          "width": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 25,
+          "_eid": "55841307",
+          "x": 128,
+          "y": 480,
+          "width": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "TreeStumpDestructive",
+          "id": 26,
+          "_eid": "36360904",
+          "x": 160,
+          "y": 480,
+          "originX": 16,
+          "originY": 16,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 27,
+          "_eid": "55841307",
+          "x": 0,
+          "y": 512,
+          "width": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 28,
+          "_eid": "55841307",
+          "x": 128,
+          "y": 512,
+          "width": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "TreeStumpDestructive",
+          "id": 29,
+          "_eid": "36360904",
+          "x": 72,
+          "y": 512,
+          "originX": 16,
+          "originY": 16,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 30,
+          "_eid": "55841307",
+          "x": 0,
+          "y": 560,
+          "width": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "TreeStumpDestructive",
+          "id": 32,
+          "_eid": "36360904",
+          "x": 56,
+          "y": 560,
+          "originX": 16,
+          "originY": 16,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 33,
+          "_eid": "55841307",
+          "x": 24,
+          "y": 688,
+          "width": 248,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "CommonClown",
+          "id": 36,
+          "_eid": "68762216",
+          "x": 144,
+          "y": 656,
+          "originX": 8,
+          "originY": 62,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 39,
+          "_eid": "55841307",
+          "x": 0,
+          "y": 744,
+          "width": 256,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "TreeStumpDestructive",
+          "id": 40,
+          "_eid": "36360904",
+          "x": 72,
+          "y": 688,
+          "originX": 16,
+          "originY": 16,
+          "values": {"name": "ClownActivator", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 43,
+          "_eid": "55823268",
+          "x": 240,
+          "y": 584,
+          "width": 16,
+          "height": 104,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "CommonClown",
+          "id": 49,
+          "_eid": "68762216",
+          "x": 176,
+          "y": 672,
+          "originX": 8,
+          "originY": 62,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "CommonClown",
+          "id": 50,
+          "_eid": "68762216",
+          "x": 208,
+          "y": 648,
+          "originX": 8,
+          "originY": 62,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "TreeStumpDestructive",
+          "id": 51,
+          "_eid": "36360904",
+          "x": 184,
+          "y": 744,
+          "originX": 16,
+          "originY": 16,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 52,
+          "_eid": "55841307",
+          "x": -16,
+          "y": 688,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeRightEnd",
+          "id": 53,
+          "_eid": "63418353",
+          "x": 16,
+          "y": 688,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeLeftEnd",
+          "id": 54,
+          "_eid": "63428932",
+          "x": 24,
+          "y": 688,
+          "originX": 16,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 55,
+          "_eid": "55841307",
+          "x": 33,
+          "y": 814,
+          "width": 224,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeLeftEnd",
+          "id": 56,
+          "_eid": "63428932",
+          "x": 33,
+          "y": 814,
+          "originX": 16,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 57,
+          "_eid": "55841307",
+          "x": 0,
+          "y": 856,
+          "width": 256,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "TreeStumpDestructive",
+          "id": 58,
+          "_eid": "36360904",
+          "x": 216,
+          "y": 856,
+          "originX": 16,
+          "originY": 16,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 59,
+          "_eid": "55841307",
+          "x": 0,
+          "y": 798,
+          "width": 232,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeRightEnd",
+          "id": 60,
+          "_eid": "63418353",
+          "x": 231,
+          "y": 798,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 61,
+          "_eid": "55841307",
+          "x": 26,
+          "y": 782,
+          "width": 232,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeLeftEnd",
+          "id": 62,
+          "_eid": "63428932",
+          "x": 26,
+          "y": 782,
+          "originX": 16,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 63,
+          "_eid": "55823268",
+          "x": 128,
+          "y": 688,
+          "width": 112,
+          "height": 8,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "HiddenBlock", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 64,
+          "_eid": "56004563",
+          "x": 72,
+          "y": 928,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 65,
+          "_eid": "56004563",
+          "x": 72,
+          "y": 944,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 66,
+          "_eid": "56004563",
+          "x": 72,
+          "y": 960,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 67,
+          "_eid": "56004563",
+          "x": 72,
+          "y": 976,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
           "name": "PortalFluid",
-          "id": 18,
+          "id": 69,
           "_eid": "24775263",
           "x": -24,
           "y": -256,
@@ -164,7 +554,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 32,
-      "gridCellsY": 55,
+      "gridCellsY": 127,
       "decals": [],
       "folder": "../../src/images"
     },
@@ -176,7 +566,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 32,
-      "gridCellsY": 55,
+      "gridCellsY": 127,
       "decals": [],
       "folder": "../../src/images"
     },
@@ -188,7 +578,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 32,
-      "gridCellsY": 55,
+      "gridCellsY": 127,
       "decals": [],
       "folder": "..\\..\\src\\images"
     },
@@ -200,7 +590,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 32,
-      "gridCellsY": 55,
+      "gridCellsY": 127,
       "decals": [],
       "folder": "../../src/images"
     }

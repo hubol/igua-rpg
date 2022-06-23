@@ -1,5 +1,5 @@
 import {Graphics, SCALE_MODES, SimpleMesh, Sprite} from "pixi.js";
-import {distance, dot, normalize, perpendicular, Vector} from "../utils/math/vector";
+import {distance, dot, normalize, perpendicular, Vector, vnew} from "../utils/math/vector";
 import {JunglePlank, JunglePlankEnd, LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
 import {scene} from "../igua/scene";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
@@ -80,6 +80,7 @@ function empty(result: PushResult) {
     delete result.hitCeiling;
     delete result.hitGround;
     delete result.isOnGround;
+    delete result.solidNormal;
 }
 
 const isOnGroundResult: PushResult = {};
@@ -95,10 +96,20 @@ export function push(xy: Pushable, radius: number) {
     return pushImpl(xy, radius, pushResult);
 }
 
+const isTouchingSolidResult: PushResult = {};
 export function isTouchingSolid(xy: Pushable, radius: number) {
-    empty(isOnGroundResult);
-    pushImpl(xy, radius, isOnGroundResult, false, true);
-    return !!isOnGroundResult.hitWall || !!isOnGroundResult.hitWall || !!isOnGroundResult.hitCeiling;
+    empty(isTouchingSolidResult);
+    pushImpl(xy, radius, isTouchingSolidResult, false, true);
+    return !!isTouchingSolidResult.hitWall || !!isTouchingSolidResult.hitWall || !!isTouchingSolidResult.hitCeiling;
+}
+
+const getTouchedSolidNormalResult: PushResult = {};
+const getTouchedSolidNormalV = vnew();
+export function getTouchedSolidNormal(xy: Pushable, radius: number) {
+    empty(getTouchedSolidNormalResult);
+    pushImpl(xy, radius, getTouchedSolidNormalResult, false, true);
+    if (getTouchedSolidNormalResult.solidNormal)
+        return getTouchedSolidNormalV.at(getTouchedSolidNormalResult.solidNormal);
 }
 
 function pushImpl(xy: Pushable, radius: number, result: PushResult, correctPosition = true, stopIfOnGround = false) {
@@ -110,10 +121,10 @@ function pushImpl(xy: Pushable, radius: number, result: PushResult, correctPosit
         const alongForward = offsetDotForward > 0 && offsetDotForward < s.length;
         const absOffsetDotNormal = Math.abs(offsetDotNormal);
 
-        const canCorrectPosition = !s.isPipe
+        const shouldCorrectPosition = !s.isPipe
             || (xy.vspeed === undefined || (xy.vspeed > 0 && offsetDotNormal >= 0) || (xy.vspeed === 0 && offsetDotNormal >= radius * .9))
             || (s.normal.x !== 0 && xy.hspeed !== undefined && (xy.hspeed !== 0 && Math.sign(s.normal.x) !== Math.sign(xy.hspeed)));
-        const isGround = s.isGround && canCorrectPosition;
+        const isGround = s.isGround && shouldCorrectPosition;
 
         if (alongForward && absOffsetDotNormal < radius + 0.1 && isGround) {
             result.isOnGround = true;
@@ -121,7 +132,7 @@ function pushImpl(xy: Pushable, radius: number, result: PushResult, correctPosit
                 break;
         }
 
-        if (canCorrectPosition && absOffsetDotNormal < radius) {
+        if (shouldCorrectPosition && absOffsetDotNormal < radius) {
             if (alongForward) {
                 if (isGround)
                     result.hitGround = true;
@@ -129,6 +140,7 @@ function pushImpl(xy: Pushable, radius: number, result: PushResult, correctPosit
                     result.hitCeiling = true;
                 if (s.isWall)
                     result.hitWall = true;
+                result.solidNormal = s.normal;
 
                 if (correctPosition) {
                     xy.x = s.x + s.forward.x * offsetDotForward + s.normal.x * radius;
@@ -284,6 +296,7 @@ interface PushResult
     hitGround?: boolean;
     hitCeiling?: boolean;
     hitWall?: boolean;
+    solidNormal?: Vector;
 }
 
 export interface Pushable

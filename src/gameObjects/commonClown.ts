@@ -3,7 +3,7 @@ import {ClownSpikeBall, CommonClown} from "../textures";
 import {scene} from "../igua/scene";
 import {merge} from "../utils/object/merge";
 import { lerp } from "../utils/math/number";
-import {isOnGround} from "./walls";
+import {getTouchedSolidNormal, isOnGround} from "./walls";
 import {player} from "./player";
 import {isPlayerMoving} from "../igua/logic/isPlayerInteractingWith";
 import {isOnScreen} from "../igua/logic/isOnScreen";
@@ -15,17 +15,17 @@ import {track} from "../igua/track";
 import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {hat} from "./hat";
+import {getWorldCenter} from "../igua/gameplay/getCenter";
 
 const clownTxs = subimageTextures(CommonClown, 2);
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
 
 export const commonClown = track(commonClownImpl);
 
-function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous = true, portal = false } = {}) {
-    const container = merge(new Container(), { hspeed, vspeed: 0, portal, dangerous });
+function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous = true, portal = false, bounceAgainstWall = false } = {}) {
+    const container = merge(new Container(), { hspeed, vspeed: 0, portal, dangerous, bounceAgainstWall, limitedRangeEnabled });
     container.ext.isHatParent = true;
-    const mask = new Graphics().beginFill(0x000000).drawRect(0, 0, 18, 15).at(-9, -16);
-    mask.visible = false;
+    const mask = new Graphics().beginFill(0x000000).drawRect(0, 0, 18, 15).hide().at(-9, -16);
     const hatSprite = hat(Sprite.from(clownTxs[0]), 0.8);
     const sprite = Sprite.from(clownTxs[1]);
     const spikeBall = Sprite.from(ClownSpikeBall);
@@ -65,6 +65,13 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
         // @ts-ignore
         spikeBall.y = graphics.currentPath.points[graphics.currentPath.points.length - 1];
 
+        if (container.bounceAgainstWall) {
+            const normal = getTouchedSolidNormal(getWorldCenter(mask), 8);
+            if (normal && normal.y === 0) {
+                container.hspeed = Math.abs(container.hspeed) * normal.x;
+            }
+        }
+
         container.x += knockbackSpeed;
         knockbackSpeed = lerp(knockbackSpeed, 0, 0.1);
         if (container.vspeed > -5 && container.vspeed < 5)
@@ -79,11 +86,12 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
         const spring = 10 * scale + 4;
         const radius = Math.max(8, container.vspeed);
         const pushable = { x: container.x, y: container.y + spring - radius };
+
         if (container.vspeed > 0 && isOnGround(pushable, radius)) {
             if (isOnScreen(container) && !scene.ext.simulated)
                 CommonClownLand.play();
             container.vspeed = health.nearDeath ? -9 : -6;
-            if (!limitedRangeEnabled)
+            if (!container.limitedRangeEnabled)
                 return;
             if ((distanceTraveled > 128 && container.hspeed > 0) || (distanceTraveled <= 0 && container.hspeed < 0))
                 container.hspeed *= -1;
