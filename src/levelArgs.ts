@@ -6796,6 +6796,19 @@ SnowmanSpawn: {"type":"Anchor","x":384,"y":224,"flippedX":false,"flippedY":false
 }
 };
 
+export const UnrealT9Args = {
+    width: 256,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":208,"width":256,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":16,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":true,"name":"","depth":0},
+PlaceKeys: {"type":"Anchor","x":48,"y":208,"flippedX":false,"flippedY":false,"uid":"25979726_3","name":"PlaceKeys","depth":0}
+};
+}
+};
+
 export const VolcanoCavernArgs = {
     width: 896,
 height: 256,
