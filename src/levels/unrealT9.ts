@@ -66,19 +66,19 @@ function checker(receiver: LetterReceiver, target = 'iguarpg', width = 200, line
 
     const typedText = bigText(width, separation)
         .withStep(() => {
-            typedText.text = `${receiver.text}${receiver.letter ?? ''}`;
+            typedText.text = `${receiver.text}${receiver.letter ?? ''}`.substring(0, target.length);
             typedText.work = receiver.confirmUnit > 0;
         }).at(0, lineSeparation);
 
     return container(targetText, typedText).at(Math.floor((256 - width) / 2), 100).withAsync(async () => {
         while (true) {
             await wait(() => receiver.text.length >= target.length);
+            receiver.reset();
             receiver.receivePushes = false;
             await sleep(500);
             if (receiver.text === target)
                 break;
             receiver.text = '';
-            receiver.reset();
             receiver.receivePushes = true;
         }
     });
