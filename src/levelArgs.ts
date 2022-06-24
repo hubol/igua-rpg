@@ -5922,7 +5922,8 @@ ValuableOrange_2: resolveValuableOrange({"type":"ValuableOrange","x":72,"y":960,
 // @ts-ignore
 ValuableOrange_3: resolveValuableOrange({"type":"ValuableOrange","x":72,"y":976,"flippedX":false,"flippedY":false,"uid":"56004563_67","name":"","depth":0}),
 // @ts-ignore
-Portal: resolvePortalFluid({"type":"PortalFluid","x":-24,"y":-256,"width":312,"height":312,"flippedX":false,"flippedY":false,"uid":"24775263_69","name":"Portal","depth":0})
+Portal: resolvePortalFluid({"type":"PortalFluid","x":-24,"y":-264,"width":312,"height":312,"flippedX":false,"flippedY":false,"uid":"24775263_69","name":"Portal","depth":0}),
+KeyPiece: {"type":"Anchor","x":204,"y":976,"flippedX":false,"flippedY":false,"uid":"25979726_70","name":"KeyPiece","depth":0}
 };
 }
 };

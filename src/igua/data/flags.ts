@@ -75,7 +75,13 @@ export function getInitialFlags()
         volcano: {
             key: {
                 hiddenInCave: false,
-            }
+            },
+            bigKey: {
+                piece1: false,
+                piece2: false,
+                piece3: false,
+                reward: false,
+            },
         }
     };
 }

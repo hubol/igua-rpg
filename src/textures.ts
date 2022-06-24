@@ -7,6 +7,7 @@ export let ArrowPoison: PIXI.Texture;
 export let BackpackIcon: PIXI.Texture;
 export let BigKey1: PIXI.Texture;
 export let BigKey2: PIXI.Texture;
+export let BigKey3: PIXI.Texture;
 export let BiguaCrests: PIXI.Texture;
 export let BiguaEye: PIXI.Texture;
 export let BiguaFace: PIXI.Texture;
@@ -215,6 +216,9 @@ export function loadTexturesAsync()
 
     const BigKey2Path = require("./images/big key2.png");
     loader.add(BigKey2Path); 
+
+    const BigKey3Path = require("./images/big key3.png");
+    loader.add(BigKey3Path); 
 
     const BiguaCrestsPath = require("./images/bigua/crests.png");
     loader.add(BiguaCrestsPath); 
@@ -789,6 +793,7 @@ export function loadTexturesAsync()
             BackpackIcon = resources[BackpackIconPath]?.texture as PIXI.Texture;
             BigKey1 = resources[BigKey1Path]?.texture as PIXI.Texture;
             BigKey2 = resources[BigKey2Path]?.texture as PIXI.Texture;
+            BigKey3 = resources[BigKey3Path]?.texture as PIXI.Texture;
             BiguaCrests = resources[BiguaCrestsPath]?.texture as PIXI.Texture;
             BiguaEye = resources[BiguaEyePath]?.texture as PIXI.Texture;
             BiguaFace = resources[BiguaFacePath]?.texture as PIXI.Texture;
