@@ -58,6 +58,8 @@ function hint() {
             }
         });
 
+    n.canBlink = false;
+
     return n;
 }
 
