@@ -16,6 +16,7 @@ import {Key} from "../utils/browser/key";
 import {IguaText} from "../igua/text";
 import {wait} from "../cutscene/wait";
 import {sleep} from "../cutscene/sleep";
+import {KeyboardType} from "../sounds";
 
 export function UnrealT9() {
     scene.backgroundColor = 0x60B0E0;
@@ -179,6 +180,7 @@ function keyboard({ gap = 10, width = 15, height = 36, push = Force<PushLetter>(
             return selected = undefined;
         selected = getClosestToPlayer(c.children);
         if (Key.justWentDown('ArrowDown')) {
+            KeyboardType.play();
             const i = c.getChildIndex(selected);
             push(i);
         }

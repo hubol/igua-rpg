@@ -277,6 +277,11 @@ export const InventoryOpen = new Howl({
     
 });
 
+export const KeyboardType = new Howl({
+    src: [require("./sound/keyboard type.ogg"), require("./sound/keyboard type.mp3")],
+    
+});
+
 export const LooksPageBack = new Howl({
     src: [require("./sound/looks page back.ogg"), require("./sound/looks page back.mp3")],
     

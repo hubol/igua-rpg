@@ -67,6 +67,7 @@ export let GiantsDinerTable: PIXI.Texture;
 export let GiantsExterior: PIXI.Texture;
 export let GiantsFoodStash: PIXI.Texture;
 export let GlowingCircle: PIXI.Texture;
+export let GlowingDiamond: PIXI.Texture;
 export let GlowingEdge: PIXI.Texture;
 export let GreenCable: PIXI.Texture;
 export let GroundSpeckles: PIXI.Texture;
@@ -394,6 +395,9 @@ export function loadTexturesAsync()
 
     const GlowingCirclePath = require("./images/glowing circle.png");
     loader.add(GlowingCirclePath); 
+
+    const GlowingDiamondPath = require("./images/glowing diamond.png");
+    loader.add(GlowingDiamondPath); 
 
     const GlowingEdgePath = require("./images/glowing edge.png");
     loader.add(GlowingEdgePath); 
@@ -845,6 +849,7 @@ export function loadTexturesAsync()
             GiantsExterior = resources[GiantsExteriorPath]?.texture as PIXI.Texture;
             GiantsFoodStash = resources[GiantsFoodStashPath]?.texture as PIXI.Texture;
             GlowingCircle = resources[GlowingCirclePath]?.texture as PIXI.Texture;
+            GlowingDiamond = resources[GlowingDiamondPath]?.texture as PIXI.Texture;
             GlowingEdge = resources[GlowingEdgePath]?.texture as PIXI.Texture;
             GreenCable = resources[GreenCablePath]?.texture as PIXI.Texture;
             GroundSpeckles = resources[GroundSpecklesPath]?.texture as PIXI.Texture;
