@@ -6804,7 +6804,8 @@ gameObjectsSupplier: () => {
     // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":208,"width":256,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 Player: {"type":"Player","x":16,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":true,"name":"","depth":0},
-PlaceKeys: {"type":"Anchor","x":48,"y":208,"flippedX":false,"flippedY":false,"uid":"25979726_3","name":"PlaceKeys","depth":0}
+PlaceKeys: {"type":"Anchor","x":48,"y":208,"flippedX":false,"flippedY":false,"uid":"25979726_3","name":"PlaceKeys","depth":0},
+Hint: {"type":"Anchor","x":200,"y":208,"flippedX":false,"flippedY":false,"uid":"25979726_4","name":"Hint","depth":0}
 };
 }
 };

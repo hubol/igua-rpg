@@ -46,6 +46,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "PlaceKeys", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 4,
+          "_eid": "25979726",
+          "x": 200,
+          "y": 208,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Hint", "depth": 0}
         }
       ]
     },

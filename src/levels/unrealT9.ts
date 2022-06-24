@@ -17,6 +17,8 @@ import {IguaText} from "../igua/text";
 import {wait} from "../cutscene/wait";
 import {sleep} from "../cutscene/sleep";
 import {KeyboardType} from "../sounds";
+import {npc} from "../gameObjects/npc";
+import {approachLinear} from "../utils/math/number";
 
 export function UnrealT9() {
     scene.backgroundColor = 0x60B0E0;
@@ -25,7 +27,38 @@ export function UnrealT9() {
     const receiver = letterReceiver().show();
     keyboard({ push: receiver.push }).at(level.PlaceKeys).show(scene.terrainStage);
     const c = checker(receiver).show();
+    let typed = false;
+    const h = hint().at([6, 0].add(level.Hint)).ahead()
+        .withAsync(async () => {
+           await sleep(12_000);
+           if (!typed)
+               h.targetAlpha = 1;
+        })
+        .withStep(() => {
+            if (!!receiver.letter) {
+                typed = true;
+                h.targetAlpha = 0;
+            }
+        });
+    h.scale.x = -1;
+
     c.y = 100;
+}
+
+function hint() {
+    const n = merge(npc(0, 0, 15), { targetAlpha: 0 })
+        .withStep(() => {
+            n.ext.opaqueAlpha = approachLinear(n.ext.opaqueAlpha, n.targetAlpha * 0.75, 0.025);
+            n.opaqueTint = 0x59771B;
+        })
+        .withAsync(async () => {
+            while (true) {
+                n.isDucking = !n.isDucking;
+                await sleep(300);
+            }
+        });
+
+    return n;
 }
 
 function bigText(width: number, separation: number, workTextColor = 0xffffff, workHighlightColor = 0) {
