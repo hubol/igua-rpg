@@ -107,6 +107,11 @@ export const UnrealCrusher = new Howl({
     preload: false
 });
 
+export const UnrealT9Music = new Howl({
+    src: [require("./music/unreal-t9-music.ogg"), require("./music/unreal-t9-music.mp3")],
+    preload: false
+});
+
 export const VolcanoCaveMusic = new Howl({
     src: [require("./music/volcano-cave-music.ogg"), require("./music/volcano-cave-music.mp3")],
     preload: false

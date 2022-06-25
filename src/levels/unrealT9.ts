@@ -19,10 +19,13 @@ import {sleep} from "../cutscene/sleep";
 import {KeyboardType} from "../sounds";
 import {npc} from "../gameObjects/npc";
 import {approachLinear} from "../utils/math/number";
+import {jukebox} from "../igua/jukebox";
+import {UnrealT9Music} from "../musics";
 
 export function UnrealT9() {
     scene.backgroundColor = 0x60B0E0;
     scene.terrainColor = 0x40A020;
+    jukebox.play(UnrealT9Music);
     const level = applyOgmoLevel(UnrealT9Args);
     const receiver = letterReceiver().show();
     keyboard({ push: receiver.push }).at(level.PlaceKeys).show(scene.terrainStage);
