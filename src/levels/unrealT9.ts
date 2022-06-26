@@ -16,7 +16,7 @@ import {Key} from "../utils/browser/key";
 import {IguaText} from "../igua/text";
 import {wait} from "../cutscene/wait";
 import {sleep} from "../cutscene/sleep";
-import {BallonPop, KeyboardType} from "../sounds";
+import {BallonPop, CheckerLooksGood, KeyboardType} from "../sounds";
 import {npc} from "../gameObjects/npc";
 import {approachLinear} from "../utils/math/number";
 import {jukebox} from "../igua/jukebox";
@@ -145,10 +145,15 @@ function checker(receiver: LetterReceiver, target = 'iguarpg', width = 200, line
 
             highlights.forEach(x => x.visible = true);
 
-            if (receiver.text !== target)
+            if (receiver.text !== target) {
                 highlights.forEach(x => x.tint = 0xD55038);
-            else
+                player.damage(1);
+                await sleep(250);
+            }
+            else {
+                CheckerLooksGood.play();
                 highlights.forEach(x => x.tint = 0x8FD85B);
+            }
 
             await sleep(500);
             if (receiver.text === target)

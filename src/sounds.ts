@@ -107,6 +107,11 @@ export const ChargeElectricBolt = new Howl({
     
 });
 
+export const CheckerLooksGood = new Howl({
+    src: [require("./sound/checker looks good.ogg"), require("./sound/checker looks good.mp3")],
+    
+});
+
 export const ClownExplode = new Howl({
     src: [require("./sound/clown explode.ogg"), require("./sound/clown explode.mp3")],
     
