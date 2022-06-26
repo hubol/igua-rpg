@@ -4,7 +4,7 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {GlowingDiamond, KeyboardT9} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {container} from "../utils/pixi/container";
-import {DisplayObject, Graphics, Sprite} from "pixi.js";
+import {Container, DisplayObject, Graphics, Sprite} from "pixi.js";
 import {trimFrame} from "../utils/pixi/trimFrame";
 import {Undefined} from "../utils/types/undefined";
 import {player} from "../gameObjects/player";
@@ -16,12 +16,20 @@ import {Key} from "../utils/browser/key";
 import {IguaText} from "../igua/text";
 import {wait} from "../cutscene/wait";
 import {sleep} from "../cutscene/sleep";
-import {KeyboardType} from "../sounds";
+import {BallonPop, KeyboardType} from "../sounds";
 import {npc} from "../gameObjects/npc";
 import {approachLinear} from "../utils/math/number";
 import {jukebox} from "../igua/jukebox";
 import {UnrealT9Music} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
+import {confetti} from "../gameObjects/confetti";
+import {lerp} from "../cutscene/lerp";
+import {bigKeyPiece} from "../gameObjects/bigKey";
+import {progress} from "../igua/data/progress";
+import {now} from "../utils/now";
+import {ballons} from "../gameObjects/ballons";
+import {teleportToTheRoomOfDoors} from "../gameObjects/portalFluid";
+import {volcanoBigKeyTextures} from "./volcanoTemple";
 
 export function UnrealT9() {
     scene.backgroundColor = 0xEAE179;
@@ -29,8 +37,12 @@ export function UnrealT9() {
     jukebox.play(UnrealT9Music);
     const level = applyOgmoLevel(UnrealT9Args);
     const receiver = letterReceiver().show();
-    keyboard({ push: receiver.push }).at(level.PlaceKeys).show(scene.terrainStage);
+    const kb = keyboard({ push: receiver.push }).at(level.PlaceKeys).show(scene.terrainStage);
     const c = checker(receiver).show();
+    c.withAsync(async () => {
+        await wait(() => c.won);
+        await lerp(kb, 'x').to(256).over(500);
+    });
     let typed = false;
     const h = hint().at([6, 0].add(level.Hint)).ahead()
         .withAsync(async () => {
@@ -78,7 +90,15 @@ function bigText(width: number, separation: number, workTextColor = 0xffffff, wo
     })
         .hide();
     const c = merge(container(), { text: '', color: 0x000000, highlight, work: false });
+    let state = Undefined<any>();
     const tc = container().withStep(() => {
+        {
+            const { text, color, work } = c;
+            const nextState = { text, color, work };
+            if (JSON.stringify(nextState) === JSON.stringify(state))
+                return;
+            state = nextState;
+        }
         tc.removeAllChildren();
         let x = 0;
         for (let i = 0; i < c.text.length; i++) {
@@ -115,18 +135,65 @@ function checker(receiver: LetterReceiver, target = 'iguarpg', width = 200, line
     targetText.color = 0x21297A;
     typedText.color = 0x21297A;
 
-    return container(targetText, typedText).at(Math.floor((256 - width) / 2), 100).withAsync(async () => {
+    const highlights = [targetText.highlight, typedText.highlight];
+
+    const c = merge(container(targetText, typedText), { won: false }).at(Math.floor((256 - width) / 2), 100).withAsync(async () => {
         while (true) {
             await wait(() => receiver.text.length >= target.length);
             receiver.reset();
             receiver.receivePushes = false;
+
+            highlights.forEach(x => x.visible = true);
+
+            if (receiver.text !== target)
+                highlights.forEach(x => x.tint = 0xD55038);
+            else
+                highlights.forEach(x => x.tint = 0x8FD85B);
+
             await sleep(500);
             if (receiver.text === target)
                 break;
             receiver.text = '';
             receiver.receivePushes = true;
+            highlights.forEach(x => x.visible = false);
         }
+        c.won = true;
+        const top = explodeBigText(targetText);
+        await sleep(62);
+        await explodeBigText(typedText);
+        await top;
+        await lerp(targetText.highlight, 'alpha').to(0).over(250);
+        await lerp(typedText.highlight, 'alpha').to(0).over(250);
+        createReward();
     });
+
+    return c;
+}
+
+function createReward() {
+    let ky = -20;
+    const key = bigKeyPiece(progress.flags.volcano.bigKey, volcanoBigKeyTextures[1], "piece2")
+        .at(128 - 24, 0)
+        .withStep(() => {
+            if (ky < 120)
+                ky++;
+            key.y = ky + Math.sin(now.s * 2) * 2;
+        })
+        .show();
+    ballons({ target: key, state: [1, 1, 1], offset: [27, 9], string: 18 });
+    key.onCollect = teleportToTheRoomOfDoors;
+}
+
+async function explodeBigText(b: ReturnType<typeof bigText>) {
+    while (true) {
+        const letter = (b.children[1] as Container).children[0];
+        if (!letter)
+            break;
+        BallonPop.play();
+        confetti().at(getWorldCenter(letter)).ahead();
+        letter.destroy();
+        await sleep(125);
+    }
 }
 
 function letterReceiver() {
@@ -220,6 +287,7 @@ function keyboard({ gap = 10, width = 15, height = 36, push = Force<PushLetter>(
     const mask = new Graphics().beginFill(0xff0000).drawRect(0, -8, c.width, c.height).hide();
 
     c.withStep(() => {
+        mask.at(c);
         if (!player.collides(mask))
             return selected = undefined;
         selected = getClosestToPlayer(c.children);
