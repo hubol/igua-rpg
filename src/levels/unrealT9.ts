@@ -1,7 +1,7 @@
 import {scene} from "../igua/scene";
 import {UnrealT9Args} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
-import {KeyboardT9} from "../textures";
+import {GlowingDiamond, KeyboardT9} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {container} from "../utils/pixi/container";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
@@ -21,10 +21,11 @@ import {npc} from "../gameObjects/npc";
 import {approachLinear} from "../utils/math/number";
 import {jukebox} from "../igua/jukebox";
 import {UnrealT9Music} from "../musics";
+import {decalsOf} from "../gameObjects/decal";
 
 export function UnrealT9() {
-    scene.backgroundColor = 0x60B0E0;
-    scene.terrainColor = 0x40A020;
+    scene.backgroundColor = 0xEAE179;
+    scene.terrainColor = 0xD55038;
     jukebox.play(UnrealT9Music);
     const level = applyOgmoLevel(UnrealT9Args);
     const receiver = letterReceiver().show();
@@ -44,6 +45,8 @@ export function UnrealT9() {
             }
         });
     h.scale.x = -1;
+
+    decalsOf(GlowingDiamond).forEach(x => x.tinted(0xF8F8C0));
 
     c.y = 100;
 }
@@ -103,11 +106,14 @@ function checker(receiver: LetterReceiver, target = 'iguarpg', width = 200, line
     const targetText = bigText(width, separation);
     targetText.text = target;
 
-    const typedText = bigText(width, separation)
+    const typedText = bigText(width, separation, 0xffffff, 0x21297A)
         .withStep(() => {
             typedText.text = `${receiver.text}${receiver.letter ?? ''}`.substring(0, target.length);
             typedText.work = receiver.confirmUnit > 0;
         }).at(0, lineSeparation);
+
+    targetText.color = 0x21297A;
+    typedText.color = 0x21297A;
 
     return container(targetText, typedText).at(Math.floor((256 - width) / 2), 100).withAsync(async () => {
         while (true) {
@@ -203,9 +209,9 @@ function keyboard({ gap = 10, width = 15, height = 36, push = Force<PushLetter>(
         key.anchor.at(0, 0.5);
         const keyc = container(back, key).show(c).at(x, 0)
             .withStep(() => {
-                back.tint = 0x303030;
+                back.tint = 0x21297A;
                 if (selected === keyc) {
-                    back.tint = 0x808080;
+                    back.tint = 0x4E6DC4;
                 }
             });
         x += width + gap;

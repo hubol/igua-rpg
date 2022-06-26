@@ -11,6 +11,7 @@ import { resolveGate } from "./gameObjects/gate";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { KeyGreen } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
+import { GlowingDiamond } from "./textures";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveNpc } from "./gameObjects/npc";
@@ -6802,7 +6803,40 @@ export const UnrealT9Args = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    GlowingDiamond: resolveDecalGameObject({
+    x: 40,
+y: 40,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingDiamond
+}),
+GlowingDiamond_1: resolveDecalGameObject({
+    x: 224,
+y: 104,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingDiamond
+}),
+GlowingDiamond_2: resolveDecalGameObject({
+    x: 88,
+y: 168,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingDiamond
+}),
+// @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":208,"width":256,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 Player: {"type":"Player","x":16,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":true,"name":"","depth":0},
 PlaceKeys: {"type":"Anchor","x":48,"y":208,"flippedX":false,"flippedY":false,"uid":"25979726_3","name":"PlaceKeys","depth":0},
