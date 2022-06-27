@@ -244,7 +244,7 @@ export function pipe(x0: number, y0: number, x1: number, y1: number)
 {
     const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1, true);
     const texture = pipeTextures.main;
-    const height = texture.height;
+    const height = texture === Pipe ? 16 : texture.height;
 
     texture.baseTexture.scaleMode = SCALE_MODES.LINEAR;
 
