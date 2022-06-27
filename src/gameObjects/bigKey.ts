@@ -3,6 +3,10 @@ import {PropertiesOf} from "../utils/types/propertiesOf";
 import {merge} from "../utils/object/merge";
 import {player} from "./player";
 import {CollectGeneric} from "../sounds";
+import {now} from "../utils/now";
+import {ballons} from "./ballons";
+import {trimFrame} from "../utils/pixi/trimFrame";
+import {Force} from "../utils/types/force";
 
 export function bigKeyMeter<T>(...pieces: [Texture, boolean][])
 {
@@ -33,4 +37,21 @@ export function bigKeyPiece<T>(progress: T, texture: Texture, key: keyof Propert
                 sprite.destroy();
             }
         });
+}
+
+export function makeFlyIn(piece: ReturnType<typeof bigKeyPiece>, down = 140) {
+    piece.texture = trimFrame(piece.texture.clone());
+    let ystart = Force<number>();
+    let traveled = 0;
+    piece.trimHitbox().centerAnchor()
+        .withStep(() => {
+            if (ystart === undefined)
+                ystart = piece.y;
+            if (traveled < down)
+                traveled++;
+            piece.y = ystart + traveled + Math.sin(now.s * 2) * 2;
+        })
+    ballons({ target: piece, state: [1, 1, 1], offset: [0, 0], string: 18 });
+
+    return piece;
 }

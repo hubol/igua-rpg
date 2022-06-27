@@ -15,7 +15,7 @@ import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
 import {track} from "../igua/track";
 import {sleep} from "../cutscene/sleep";
-import {bigKeyPiece} from "../gameObjects/bigKey";
+import {bigKeyPiece, makeFlyIn} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {desertBigKeyTextures} from "./desertTemple";
 import {jukebox} from "../igua/jukebox";
@@ -23,7 +23,6 @@ import {Hemaboss1} from "../musics";
 import {FlameOff, FlameOn, SnowmanDie, SnowmanHurt, SnowmanLand} from "../sounds";
 import {rng} from "../utils/math/rng";
 import {confetti} from "../gameObjects/confetti";
-import {ballons} from "../gameObjects/ballons";
 import {flake} from "../gameObjects/flake";
 
 let holdingFlame = false;
@@ -132,15 +131,7 @@ const snowman = (groundY, retreatX) => {
         {
             confetti().at(container).show();
             SnowmanDie.play();
-            let ky = 0;
-            const key = bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[2], "piece3")
-                .at(retreatX - 40, 0)
-                .withStep(() => {
-                    if (ky < 120)
-                        ky++;
-                    key.y = ky + Math.sin(now.s * 2) * 2;
-                });
-            ballons({ target: key, state: [1, 1, 1], offset: [39, 9], string: 18 });
+            const key = makeFlyIn(bigKeyPiece(progress.flags.desert.bigKey, desertBigKeyTextures[2], "piece3"), 132).at(retreatX, 0);
             key.onCollect = teleportToTheRoomOfDoors;
             scene.gameObjectStage.addChild(key);
             jukebox.currentSong?.fade(1, 0, 1000);

@@ -24,10 +24,8 @@ import {UnrealT9Music} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
 import {confetti} from "../gameObjects/confetti";
 import {lerp} from "../cutscene/lerp";
-import {bigKeyPiece} from "../gameObjects/bigKey";
+import {bigKeyPiece, makeFlyIn} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
-import {now} from "../utils/now";
-import {ballons} from "../gameObjects/ballons";
 import {teleportToTheRoomOfDoors} from "../gameObjects/portalFluid";
 import {volcanoBigKeyTextures} from "./volcanoTemple";
 
@@ -176,16 +174,9 @@ function checker(receiver: LetterReceiver, target = 'iguarpg', width = 200, line
 }
 
 function createReward() {
-    let ky = -20;
-    const key = bigKeyPiece(progress.flags.volcano.bigKey, volcanoBigKeyTextures[1], "piece2")
-        .at(128 - 24, 0)
-        .withStep(() => {
-            if (ky < 120)
-                ky++;
-            key.y = ky + Math.sin(now.s * 2) * 2;
-        })
+    const key = makeFlyIn(bigKeyPiece(progress.flags.volcano.bigKey, volcanoBigKeyTextures[1], "piece2"))
+        .at(128, -20)
         .show();
-    ballons({ target: key, state: [1, 1, 1], offset: [27, 9], string: 18 });
     key.onCollect = teleportToTheRoomOfDoors;
 }
 
