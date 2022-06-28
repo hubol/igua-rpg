@@ -150,6 +150,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "BossCamera", "depth": 0}
+        },
+        {
+          "name": "Sign",
+          "id": 13,
+          "_eid": "86706091",
+          "x": 120,
+          "y": 216,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "Volcano", "message": "This way to the volcano.", "name": "", "depth": 0}
         }
       ]
     },
