@@ -174,7 +174,42 @@
       "gridCellHeight": 8,
       "gridCellsX": 83,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 18.516858771597953,
+          "y": 116.89593940674891,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 0.1930228939583003,
+          "y": 91.47900577002292,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 45.50248228231385,
+          "y": 235.01497775151984,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 1.5707963267948966,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 29.50248228231385, "y": 260.01497775151984, "scaleX": -1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "volcano/mineral debris.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "../../src/images"
     },
     {
@@ -187,7 +222,17 @@
       "gridCellsX": 83,
       "gridCellsY": 32,
       "decals": [
-        {"x": 81, "y": 122, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/pillar broken.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 81,
+          "y": 122,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/pillar broken.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },

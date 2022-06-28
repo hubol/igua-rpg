@@ -192,6 +192,7 @@ export let UnorthodoxClownSparkle: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
 export let VineLarge: PIXI.Texture;
 export let VineSmall: PIXI.Texture;
+export let VolcanoMineralDebris: PIXI.Texture;
 export let VolcanoPillarBroken: PIXI.Texture;
 export let WhiskeyGlass: PIXI.Texture;
 export let WonderBallonPotion: PIXI.Texture;
@@ -772,6 +773,9 @@ export function loadTexturesAsync()
     const VineSmallPath = require("./images/vine small.png");
     loader.add(VineSmallPath); 
 
+    const VolcanoMineralDebrisPath = require("./images/volcano/mineral debris.png");
+    loader.add(VolcanoMineralDebrisPath); 
+
     const VolcanoPillarBrokenPath = require("./images/volcano/pillar broken.png");
     loader.add(VolcanoPillarBrokenPath); 
 
@@ -978,6 +982,7 @@ export function loadTexturesAsync()
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
             VineLarge = resources[VineLargePath]?.texture as PIXI.Texture;
             VineSmall = resources[VineSmallPath]?.texture as PIXI.Texture;
+            VolcanoMineralDebris = resources[VolcanoMineralDebrisPath]?.texture as PIXI.Texture;
             VolcanoPillarBroken = resources[VolcanoPillarBrokenPath]?.texture as PIXI.Texture;
             WhiskeyGlass = resources[WhiskeyGlassPath]?.texture as PIXI.Texture;
             WonderBallonPotion = resources[WonderBallonPotionPath]?.texture as PIXI.Texture;

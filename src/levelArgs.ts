@@ -11,6 +11,7 @@ import { resolveGate } from "./gameObjects/gate";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { KeyGreen } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
+import { VolcanoMineralDebris } from "./textures";
 import { GlowingDiamond } from "./textures";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { resolveSlopeLeft } from "./gameObjects/walls";
@@ -3586,7 +3587,51 @@ export const JungleBossArenaArgs = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    VolcanoPillarBroken: resolveDecalGameObject({
+    VolcanoMineralDebris: resolveDecalGameObject({
+    x: 18.516858771597953,
+y: 116.89593940674891,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_1: resolveDecalGameObject({
+    x: 0.1930228939583003,
+y: 91.47900577002292,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_2: resolveDecalGameObject({
+    x: 45.50248228231385,
+y: 235.01497775151984,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 1.5707963267948966,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_3: resolveDecalGameObject({
+    x: 29.50248228231385,
+y: 260.01497775151984,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 1.5707963267948966,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoPillarBroken: resolveDecalGameObject({
     x: 81,
 y: 122,
 originX: 0.5,
@@ -6871,6 +6916,116 @@ scaleY: 1,
 rotation: 0,
 layerName: "TerrainDecals",
 texture: VolcanoPillarBroken
+}),
+VolcanoMineralDebris: resolveDecalGameObject({
+    x: 584,
+y: 136,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_1: resolveDecalGameObject({
+    x: 552,
+y: 120,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_2: resolveDecalGameObject({
+    x: 379,
+y: 140,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_3: resolveDecalGameObject({
+    x: 408,
+y: 128,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_4: resolveDecalGameObject({
+    x: 172.82731131783095,
+y: 135.4517572901208,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_5: resolveDecalGameObject({
+    x: 200.47891663012325,
+y: 146.09497968065233,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_6: resolveDecalGameObject({
+    x: 744.5496835651861,
+y: 65.33658833056273,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_7: resolveDecalGameObject({
+    x: 771.032168564193,
+y: 75.31549572149288,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_8: resolveDecalGameObject({
+    x: 812.4830146495951,
+y: 228.0695396288081,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_9: resolveDecalGameObject({
+    x: 835.895066605239,
+y: 244.95692136730526,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
 }),
 VolcanoPillarBroken_2: resolveDecalGameObject({
     x: 792,

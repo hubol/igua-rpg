@@ -395,6 +395,116 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 584,
+          "y": 136,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 552,
+          "y": 120,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 379,
+          "y": 140,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 408,
+          "y": 128,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 172.82731131783095,
+          "y": 135.4517572901208,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 200.47891663012325,
+          "y": 146.09497968065233,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 744.5496835651861,
+          "y": 65.33658833056273,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 771.032168564193,
+          "y": 75.31549572149288,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 812.4830146495951,
+          "y": 228.0695396288081,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 835.895066605239,
+          "y": 244.95692136730526,
+          "scaleX": -1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "../../src/images"
