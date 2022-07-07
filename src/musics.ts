@@ -117,6 +117,11 @@ export const VolcanoCaveMusic = new Howl({
     preload: false
 });
 
+export const VolcanoSomething = new Howl({
+    src: [require("./music/volcano-something.ogg"), require("./music/volcano-something.mp3")],
+    preload: false
+});
+
 export const Witch = new Howl({
     src: [require("./music/witch.ogg"), require("./music/witch.mp3")],
     preload: false
