@@ -74,21 +74,10 @@
           "values": {"levelName": "VolcanoTown", "checkpointName": "FromShop", "name": "", "depth": 0}
         },
         {
-          "name": "PipeHorizontal",
-          "id": 8,
-          "_eid": "55841307",
-          "x": 56,
-          "y": 128,
-          "width": 176,
-          "originX": 0,
-          "originY": 0,
-          "values": {"visible": true, "name": "", "depth": 0}
-        },
-        {
           "name": "Door",
           "id": 9,
           "_eid": "55913988",
-          "x": 64,
+          "x": 56,
           "y": 96,
           "originX": 0,
           "originY": 0,
@@ -125,17 +114,6 @@
           "originX": 11,
           "originY": 27,
           "values": {"faceRight": true, "name": "", "depth": 0}
-        },
-        {
-          "name": "PipeHorizontal",
-          "id": 13,
-          "_eid": "55841307",
-          "x": 24,
-          "y": 160,
-          "width": 16,
-          "originX": 0,
-          "originY": 0,
-          "values": {"visible": true, "name": "", "depth": 0}
         },
         {
           "name": "SlopeLeft",
@@ -232,6 +210,62 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromInnSave", "faceRight": false, "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 24,
+          "_eid": "55841307",
+          "x": 56,
+          "y": 80,
+          "width": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 25,
+          "_eid": "55841307",
+          "x": 152,
+          "y": 56,
+          "width": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 26,
+          "_eid": "55823268",
+          "x": 56,
+          "y": 128,
+          "width": 176,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 27,
+          "_eid": "55823268",
+          "x": 24,
+          "y": 160,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 28,
+          "_eid": "55940370",
+          "x": 100,
+          "y": 128,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromUpper", "faceRight": true, "depth": 0}
         }
       ]
     },
@@ -269,6 +303,17 @@
       "gridCellsX": 32,
       "gridCellsY": 32,
       "decals": [
+        {
+          "x": 0,
+          "y": 0,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/floral wallpaper.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
         {
           "x": 128,
           "y": 184,
@@ -320,6 +365,51 @@
           "scaleY": 1,
           "rotation": 0,
           "texture": "bottle1.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 80,
+          "y": 80,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/shelf small.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"x": 176, "y": 56, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "jungle/shelf small.png", "originX": 0.5, "originY": 0},
+        {
+          "x": 95.03222828189746,
+          "y": 75.03946086085345,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "book collection.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 160.86054538866964,
+          "y": 51.11824180292804,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "book collection.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 66.97425705606014,
+          "y": 72.88115538194289,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "rose vase.png",
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}

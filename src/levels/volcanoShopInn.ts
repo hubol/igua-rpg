@@ -34,7 +34,7 @@ export function VolcanoShopInn() {
     const indoorsHeatWaveIndex = scene.backgroundGameObjectStage.getChildIndex(level.VolcanoBrickWall) + 1;
     scene.backgroundGameObjectStage.addChildAt(heatWaves(scene.width + 256, 80, 0).at(-128, 280), indoorsHeatWaveIndex);
 
-    scene.backgroundGameObjectStage.addChildAt(cracks(3245.1269, 0x755E9B), 0);
+    scene.backgroundGameObjectStage.addChildAt(cracks(3245.1269, 0x755E9B), 1);
 
     level.Shopkeeper.cutscene = async () => {
         const purchases = await shop();

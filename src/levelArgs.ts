@@ -9,11 +9,14 @@ import { resolveRegion } from "./gameObjects/region";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveDecalGameObject } from "./gameObjects/decal";
+import { RoseVase } from "./textures";
+import { BookCollection } from "./textures";
+import { JungleShelfSmall } from "./textures";
 import { Bottle1 } from "./textures";
 import { Bottle2 } from "./textures";
-import { JungleShelfSmall } from "./textures";
 import { JungleShelfLarge } from "./textures";
 import { VolcanoBrickWall } from "./textures";
+import { VolcanoFloralWallpaper } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { resolveClownSneezy } from "./gameObjects/clownSneezy";
@@ -30,7 +33,6 @@ import { Column } from "./textures";
 import { OverheadLamp } from "./textures";
 import { Pipe } from "./textures";
 import { ColorfulBricks } from "./textures";
-import { RoseVase } from "./textures";
 import { LightShelf } from "./textures";
 import { FlyCage } from "./textures";
 import { FlyCageBroken } from "./textures";
@@ -61,7 +63,6 @@ import { SignNeonBar } from "./textures";
 import { KeyYellow } from "./textures";
 import { DinerTable } from "./textures";
 import { JunglePlankDecoration } from "./textures";
-import { BookCollection } from "./textures";
 import { DontPoster } from "./textures";
 import { JungleBrushHeavy } from "./textures";
 import { GlowingEdge } from "./textures";
@@ -7170,7 +7171,18 @@ export const VolcanoShopInnArgs = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    VolcanoBrickWall: resolveDecalGameObject({
+    VolcanoFloralWallpaper: resolveDecalGameObject({
+    x: 0,
+y: 0,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoFloralWallpaper
+}),
+VolcanoBrickWall: resolveDecalGameObject({
     x: 128,
 y: 184,
 originX: 0.5,
@@ -7225,6 +7237,61 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: Bottle1
 }),
+JungleShelfSmall_1: resolveDecalGameObject({
+    x: 80,
+y: 80,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleShelfSmall
+}),
+JungleShelfSmall_2: resolveDecalGameObject({
+    x: 176,
+y: 56,
+originX: 0.5,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleShelfSmall
+}),
+BookCollection: resolveDecalGameObject({
+    x: 95.03222828189746,
+y: 75.03946086085345,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: BookCollection
+}),
+BookCollection_1: resolveDecalGameObject({
+    x: 160.86054538866964,
+y: 51.11824180292804,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: BookCollection
+}),
+RoseVase: resolveDecalGameObject({
+    x: 66.97425705606014,
+y: 72.88115538194289,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: RoseVase
+}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
 // @ts-ignore
@@ -7236,16 +7303,12 @@ Block_3: resolveBlock({"type":"Block","x":232,"y":24,"width":24,"height":208,"fl
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":40,"y":200,"flippedX":false,"flippedY":false,"uid":"55913988_7","levelName":"VolcanoTown","checkpointName":"FromShop","name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":56,"y":128,"width":176,"flippedX":false,"flippedY":false,"uid":"55841307_8","visible":true,"name":"","depth":0}),
-// @ts-ignore
-Door_1: resolveDoor({"type":"Door","x":64,"y":96,"flippedX":false,"flippedY":false,"uid":"55913988_9","levelName":"VolcanoTown","checkpointName":"FromInn","name":"","depth":0}),
+Door_1: resolveDoor({"type":"Door","x":56,"y":96,"flippedX":false,"flippedY":false,"uid":"55913988_9","levelName":"VolcanoTown","checkpointName":"FromInn","name":"","depth":0}),
 // @ts-ignore
 Innkeeper: resolveNpc({"type":"NpcIguana","x":152,"y":126,"flippedX":true,"flippedY":false,"uid":"26367058_10","name":"Innkeeper","style":16,"depth":0}),
 // @ts-ignore
 Shopkeeper: resolveNpc({"type":"NpcIguana","x":184,"y":232,"flippedX":true,"flippedY":false,"uid":"26367058_11","name":"Shopkeeper","style":17,"depth":0}),
 Player: {"type":"Player","x":88,"y":232,"flippedX":false,"flippedY":false,"uid":"55988047_12","faceRight":true,"name":"","depth":0},
-// @ts-ignore
-PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":24,"y":160,"width":16,"flippedX":false,"flippedY":false,"uid":"55841307_13","visible":true,"name":"","depth":0}),
 // @ts-ignore
 SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":16,"y":216,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_14","name":"","depth":0}),
 // @ts-ignore
@@ -7257,10 +7320,19 @@ SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":8,"y":16,"width":32,"heigh
 // @ts-ignore
 Window1: resolveRegion({"type":"Region","x":96,"y":176,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_18","name":"Window1","depth":0}),
 // @ts-ignore
-PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":96,"y":216,"width":64,"flippedX":false,"flippedY":false,"uid":"55841307_19","visible":false,"name":"","depth":0}),
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":96,"y":216,"width":64,"flippedX":false,"flippedY":false,"uid":"55841307_19","visible":false,"name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":184,"y":200,"width":44,"flippedX":false,"flippedY":false,"uid":"55841307_21","visible":false,"name":"","depth":0}),
-FromInnSave: {"type":"Checkpoint","x":208,"y":128,"flippedX":false,"flippedY":false,"uid":"55940370_23","name":"FromInnSave","faceRight":false,"depth":0}
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":184,"y":200,"width":44,"flippedX":false,"flippedY":false,"uid":"55841307_21","visible":false,"name":"","depth":0}),
+FromInnSave: {"type":"Checkpoint","x":208,"y":128,"flippedX":false,"flippedY":false,"uid":"55940370_23","name":"FromInnSave","faceRight":false,"depth":0},
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":56,"y":80,"width":48,"flippedX":false,"flippedY":false,"uid":"55841307_24","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":152,"y":56,"width":48,"flippedX":false,"flippedY":false,"uid":"55841307_25","visible":false,"name":"","depth":0}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":56,"y":128,"width":176,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_26","name":"","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":24,"y":160,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_27","name":"","depth":0}),
+FromUpper: {"type":"Checkpoint","x":100,"y":128,"flippedX":false,"flippedY":false,"uid":"55940370_28","name":"FromUpper","faceRight":true,"depth":0}
 };
 }
 };
