@@ -90,4 +90,6 @@ async function keepValuableTroveInOkSpot() {
     const container = valuable.instances[0].parent;
     if (container.y < 140)
         await lerp(container, 'y').to(140).over(1_000);
+    if (container.y > 180)
+        await lerp(container, 'y').to(180).over(1_000);
 }
