@@ -1,7 +1,6 @@
 import {scene} from "../igua/scene";
 import { VolcanoShopInnArgs } from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
-import {cracks} from "../gameObjects/cracks";
 import {jukebox} from "../igua/jukebox";
 import {VolcanoCaveMusic, VolcanoSomething} from "../musics";
 import {mirror} from "../gameObjects/mirror";
@@ -17,7 +16,7 @@ import {player} from "../gameObjects/player";
 import {progress} from "../igua/data/progress";
 
 export function VolcanoShopInn() {
-    scene.backgroundColor = 0xA8B1E0;
+    scene.backgroundColor = 0x5A9C67;
     scene.terrainColor = 0;
     const level = applyOgmoLevel(VolcanoShopInnArgs);
 
@@ -33,8 +32,6 @@ export function VolcanoShopInn() {
 
     const indoorsHeatWaveIndex = scene.backgroundGameObjectStage.getChildIndex(level.VolcanoBrickWall) + 1;
     scene.backgroundGameObjectStage.addChildAt(heatWaves(scene.width + 256, 80, 0).at(-128, 280), indoorsHeatWaveIndex);
-
-    scene.backgroundGameObjectStage.addChildAt(cracks(3245.1269, 0x755E9B), 1);
 
     level.Shopkeeper.cutscene = async () => {
         const purchases = await shop();
