@@ -80,6 +80,8 @@ export let JungleLever: PIXI.Texture;
 export let JunglePlankDecoration: PIXI.Texture;
 export let JunglePlankEnd: PIXI.Texture;
 export let JunglePlank: PIXI.Texture;
+export let JungleShelfLarge: PIXI.Texture;
+export let JungleShelfSmall: PIXI.Texture;
 export let JungleTempleExterior: PIXI.Texture;
 export let JungleTent: PIXI.Texture;
 export let JungleTreeBranch: PIXI.Texture;
@@ -192,6 +194,8 @@ export let UnorthodoxClownSparkle: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
 export let VineLarge: PIXI.Texture;
 export let VineSmall: PIXI.Texture;
+export let VolcanoBrickWall: PIXI.Texture;
+export let VolcanoCurtain: PIXI.Texture;
 export let VolcanoMineralDebris: PIXI.Texture;
 export let VolcanoPillarBroken: PIXI.Texture;
 export let WhiskeyGlass: PIXI.Texture;
@@ -436,6 +440,12 @@ export function loadTexturesAsync()
 
     const JunglePlankPath = require("./images/jungle/plank.png");
     loader.add(JunglePlankPath); 
+
+    const JungleShelfLargePath = require("./images/jungle/shelf large.png");
+    loader.add(JungleShelfLargePath); 
+
+    const JungleShelfSmallPath = require("./images/jungle/shelf small.png");
+    loader.add(JungleShelfSmallPath); 
 
     const JungleTempleExteriorPath = require("./images/jungle/temple exterior.png");
     loader.add(JungleTempleExteriorPath); 
@@ -773,6 +783,12 @@ export function loadTexturesAsync()
     const VineSmallPath = require("./images/vine small.png");
     loader.add(VineSmallPath); 
 
+    const VolcanoBrickWallPath = require("./images/volcano/brick wall.png");
+    loader.add(VolcanoBrickWallPath); 
+
+    const VolcanoCurtainPath = require("./images/volcano/curtain.png");
+    loader.add(VolcanoCurtainPath); 
+
     const VolcanoMineralDebrisPath = require("./images/volcano/mineral debris.png");
     loader.add(VolcanoMineralDebrisPath); 
 
@@ -870,6 +886,8 @@ export function loadTexturesAsync()
             JunglePlankDecoration = resources[JunglePlankDecorationPath]?.texture as PIXI.Texture;
             JunglePlankEnd = resources[JunglePlankEndPath]?.texture as PIXI.Texture;
             JunglePlank = resources[JunglePlankPath]?.texture as PIXI.Texture;
+            JungleShelfLarge = resources[JungleShelfLargePath]?.texture as PIXI.Texture;
+            JungleShelfSmall = resources[JungleShelfSmallPath]?.texture as PIXI.Texture;
             JungleTempleExterior = resources[JungleTempleExteriorPath]?.texture as PIXI.Texture;
             JungleTent = resources[JungleTentPath]?.texture as PIXI.Texture;
             JungleTreeBranch = resources[JungleTreeBranchPath]?.texture as PIXI.Texture;
@@ -982,6 +1000,8 @@ export function loadTexturesAsync()
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
             VineLarge = resources[VineLargePath]?.texture as PIXI.Texture;
             VineSmall = resources[VineSmallPath]?.texture as PIXI.Texture;
+            VolcanoBrickWall = resources[VolcanoBrickWallPath]?.texture as PIXI.Texture;
+            VolcanoCurtain = resources[VolcanoCurtainPath]?.texture as PIXI.Texture;
             VolcanoMineralDebris = resources[VolcanoMineralDebrisPath]?.texture as PIXI.Texture;
             VolcanoPillarBroken = resources[VolcanoPillarBrokenPath]?.texture as PIXI.Texture;
             WhiskeyGlass = resources[WhiskeyGlassPath]?.texture as PIXI.Texture;

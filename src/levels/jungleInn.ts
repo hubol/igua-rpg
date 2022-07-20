@@ -5,14 +5,11 @@ import {jukebox} from "../igua/jukebox";
 import {JungleInn as Music, JungleMusic} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles} from "../textures";
-import {ask} from "../cutscene/ask";
-import {spendValuables} from "../igua/logic/spendValuables";
-import {show} from "../cutscene/dialog";
 import {ChargeElectricBolt} from "../sounds";
 import {progress} from "../igua/data/progress";
 import {player} from "../gameObjects/player";
 import {sleep} from "../cutscene/sleep";
-import {restAtInn} from "../igua/logic/restAtInn";
+import {chargeToRestAtInn} from "../igua/logic/restAtInn";
 import {lerp} from "../cutscene/lerp";
 
 export function JungleInn() {
@@ -28,28 +25,18 @@ export function JungleInn() {
         wall.destroy();
 
     level.Innkeeper.cutscene = async () => {
-        if (await ask("Do you want to rest here? It costs 10 valuables."))
-        {
-            if (spendValuables(10))
+        await chargeToRestAtInn(async () => {
+            if (!wall.destroyed)
             {
-                await show("Thanks for resting here.");
-                if (!wall.destroyed)
-                {
-                    const id = ChargeElectricBolt.play();
-                    ChargeElectricBolt.rate(0.5, id);
-                    await lerp(wall, 'alpha').to(0).over(750);
-                    wall.destroy();
-                }
-
-                progress.checkpointName = "FromInnSave";
-                await player.walkTo(level.SleepHere.x);
-                await sleep(250);
-                await restAtInn();
+                const id = ChargeElectricBolt.play();
+                ChargeElectricBolt.rate(0.5, id);
+                await lerp(wall, 'alpha').to(0).over(750);
+                wall.destroy();
             }
-            else
-                await show("You dont have enough money.");
-        }
-        else
-            await show("Come back later!")
+
+            progress.checkpointName = "FromInnSave";
+            await player.walkTo(level.SleepHere.x);
+            await sleep(250);
+        })
     };
 }

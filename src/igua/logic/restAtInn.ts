@@ -6,6 +6,8 @@ import {sleep} from "../../cutscene/sleep";
 import {show} from "../../cutscene/dialog";
 import {InnRefresh} from "../../sounds";
 import {persistence} from "../data/persistence";
+import {ask} from "../../cutscene/ask";
+import {spendValuables} from "./spendValuables";
 
 export async function restAtInn() {
     player.mods.add(Sleepy);
@@ -20,4 +22,20 @@ export async function restAtInn() {
     progress.poisonLevel = Math.min(progress.poisonLevel, 1);
     player.mods.remove(Sleepy);
     await persistence.save();
+}
+
+export async function chargeToRestAtInn(beforeRestAtInn: () => Promise<unknown>, cost = 10) {
+    if (await ask(`Do you want to rest here? It costs ${cost} valuables.`))
+    {
+        if (spendValuables(cost))
+        {
+            await show("Thanks for resting here.");
+            await beforeRestAtInn();
+            await restAtInn();
+        }
+        else
+            await show("You dont have enough money.");
+    }
+    else
+        await show("Come back later!")
 }

@@ -4,8 +4,8 @@ import {container} from "../utils/pixi/container";
 import {range} from "../utils/range";
 import {now} from "../utils/now";
 
-export function heatWaves(width: number, height: number) {
-    const f = (i: number) => (x: number) => Math.sin(x * (0.02 + i / 32) + now.s * (1 + i / 16 + Math.sin(i * 2) * 0.3) - i * 2) * 4;
+export function heatWaves(width: number, height: number, speed = 1) {
+    const f = (i: number) => (x: number) => Math.sin(x * (0.02 + i / 32) + now.s * speed * (1 + i / 16 + Math.sin(i * 2) * 0.3) - i * 2) * 4;
     const g = range(6).map((i) => {
         const ff = f(i);
         const g = new Graphics()

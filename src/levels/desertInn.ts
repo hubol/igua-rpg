@@ -8,13 +8,10 @@ import {now} from "../utils/now";
 import {lerp} from "../utils/math/number";
 import { DragRock} from "../sounds";
 import {scene} from "../igua/scene";
-import {spendValuables} from "../igua/logic/spendValuables";
 import {player} from "../gameObjects/player";
-import {show} from "../cutscene/dialog";
 import {sleep} from "../cutscene/sleep";
 import {move} from "../cutscene/move";
-import {ask} from "../cutscene/ask";
-import { restAtInn } from "../igua/logic/restAtInn";
+import {chargeToRestAtInn} from "../igua/logic/restAtInn";
 import {cutOutWindow} from "../igua/cutOutWindow";
 
 export function DesertInn()
@@ -42,28 +39,18 @@ export function DesertInn()
 
     level.Innkeeper.mods.add(Lazy);
     level.Innkeeper.cutscene = async () => {
-        if (await ask("Do you want to rest here? It costs 10 valuables."))
-        {
-            if (spendValuables(10))
+        await chargeToRestAtInn(async () => {
+            if (!level.RoomWall.destroyed)
             {
-                await show("Thanks for resting here.");
-                if (!level.RoomWall.destroyed)
-                {
-                    DragRock.play();
-                    await move(level.RoomWall).to(level.RoomWall.x, level.RoomWall.y - level.RoomWall.height).over(1_000);
-                    DragRock.stop();
-                    level.RoomWall.destroy();
-                }
-
-                progress.checkpointName = "FromInnSave";
-                await player.walkTo(level.SleepHere.x);
-                await sleep(250);
-                await restAtInn();
+                DragRock.play();
+                await move(level.RoomWall).to(level.RoomWall.x, level.RoomWall.y - level.RoomWall.height).over(1_000);
+                DragRock.stop();
+                level.RoomWall.destroy();
             }
-            else
-                await show("You dont have enough money.");
-        }
-        else
-            await show("Come back later!")
+
+            progress.checkpointName = "FromInnSave";
+            await player.walkTo(level.SleepHere.x);
+            await sleep(250);
+        })
     };
 }

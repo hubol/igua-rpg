@@ -1,0 +1,343 @@
+{
+  "ogmoVersion": "3.4.0-hubol",
+  "width": 256,
+  "height": 256,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 3,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 4,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 24,
+          "width": 24,
+          "height": 208,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 5,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 232,
+          "width": 256,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 6,
+          "_eid": "55823268",
+          "x": 232,
+          "y": 24,
+          "width": 24,
+          "height": 208,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 7,
+          "_eid": "55913988",
+          "x": 40,
+          "y": 200,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "VolcanoTown", "checkpointName": "FromShop", "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 8,
+          "_eid": "55841307",
+          "x": 56,
+          "y": 128,
+          "width": 176,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 9,
+          "_eid": "55913988",
+          "x": 64,
+          "y": 96,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "VolcanoTown", "checkpointName": "FromInn", "name": "", "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 10,
+          "_eid": "26367058",
+          "x": 152,
+          "y": 126,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "Innkeeper", "style": 16, "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 11,
+          "_eid": "26367058",
+          "x": 184,
+          "y": 232,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "Shopkeeper", "style": 17, "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 12,
+          "_eid": "55988047",
+          "x": 88,
+          "y": 232,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 13,
+          "_eid": "55841307",
+          "x": 24,
+          "y": 160,
+          "width": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 14,
+          "_eid": "55845599",
+          "x": 16,
+          "y": 216,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 15,
+          "_eid": "55824435",
+          "x": 208,
+          "y": 216,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 16,
+          "_eid": "55824435",
+          "x": 208,
+          "y": 8,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 17,
+          "_eid": "55845599",
+          "x": 8,
+          "y": 16,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 18,
+          "_eid": "25971607",
+          "x": 96,
+          "y": 176,
+          "width": 64,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window1", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 19,
+          "_eid": "55841307",
+          "x": 96,
+          "y": 216,
+          "width": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 21,
+          "_eid": "55841307",
+          "x": 184,
+          "y": 200,
+          "width": 44,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 23,
+          "_eid": "55940370",
+          "x": 208,
+          "y": 128,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromInnSave", "faceRight": false, "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [
+        {
+          "x": 128,
+          "y": 184,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/brick wall.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 128.2025035305514,
+          "y": 221.00495049114,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/shelf large.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 206.30797352869226,
+          "y": 204.78928197941525,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/shelf small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 193.06517757745036,
+          "y": 193.84370573400108,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "bottle2.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 201.98379525889897,
+          "y": 188.70874403862157,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "bottle1.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    }
+  ]
+}

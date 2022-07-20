@@ -28,7 +28,7 @@ export function DesertShop() {
     scene.parallax1Stage.addChild(tintedWindow);
 
     level.Shopkeeper.cutscene = async () => {
-        const purchases = await shop('ClawPowder', 'SpicedNectar', 'SweetBerry', 'WonderBallon', 'CommonPoison', 'BitterMedicine');
+        const purchases = await shop();
         if (purchases.length > 0)
             await show("Thanks for your business!");
         else

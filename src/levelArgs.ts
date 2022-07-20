@@ -1,25 +1,32 @@
 // This file is generated. Do not touch.
-import { resolveGate } from "./gameObjects/gate";
 import { resolveBlock } from "./gameObjects/walls";
-import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveSlopeLeft } from "./gameObjects/walls";
+import { resolveSlopeRight } from "./gameObjects/walls";
+import { resolveSign } from "./gameObjects/sign";
+import { resolveGate } from "./gameObjects/gate";
+import { resolvePipeHorizontal } from "./gameObjects/walls";
+import { resolveRegion } from "./gameObjects/region";
+import { resolveNpc } from "./gameObjects/npc";
+import { resolveDoor } from "./gameObjects/door";
+import { resolveDecalGameObject } from "./gameObjects/decal";
+import { Bottle1 } from "./textures";
+import { Bottle2 } from "./textures";
+import { JungleShelfSmall } from "./textures";
+import { JungleShelfLarge } from "./textures";
+import { VolcanoBrickWall } from "./textures";
+import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { resolveClownSneezy } from "./gameObjects/clownSneezy";
 import { resolveClownWonderful } from "./gameObjects/clownWonderful";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
-import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
-import { resolveSlopeRight } from "./gameObjects/walls";
-import { resolveDecalGameObject } from "./gameObjects/decal";
 import { KeyGreen } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
 import { VolcanoMineralDebris } from "./textures";
 import { GlowingDiamond } from "./textures";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
-import { resolveNpc } from "./gameObjects/npc";
 import { GlowingCircle } from "./textures";
 import { Column } from "./textures";
-import { resolveRegion } from "./gameObjects/region";
 import { OverheadLamp } from "./textures";
 import { Pipe } from "./textures";
 import { ColorfulBricks } from "./textures";
@@ -44,8 +51,6 @@ import { PoppingRocksBox } from "./textures";
 import { resolveJungleTree } from "./gameObjects/jungleTree";
 import { resolvePool } from "./gameObjects/pool";
 import { resolveTreeStump } from "./gameObjects/treeStump";
-import { resolveDoor } from "./gameObjects/door";
-import { resolveSign } from "./gameObjects/sign";
 import { JunglePlank } from "./textures";
 import { JungleTempleExterior } from "./textures";
 import { JungleHouse1 } from "./textures";
@@ -64,7 +69,6 @@ import { CloudLong } from "./textures";
 import { JungleTreeRoot } from "./textures";
 import { PaSpeaker } from "./textures";
 import { CocktailGlass } from "./textures";
-import { Bottle1 } from "./textures";
 import { resolveBigua } from "./gameObjects/bigua";
 import { GiantsExterior } from "./textures";
 import { Obelisk } from "./textures";
@@ -81,7 +85,6 @@ import { CrudeHouseC } from "./textures";
 import { CrateWooden } from "./textures";
 import { CrudeHouseB } from "./textures";
 import { GreenCable } from "./textures";
-import { Bottle2 } from "./textures";
 import { WhiskeyGlass } from "./textures";
 import { WoodenStool } from "./textures";
 import { Anchor } from "./textures";
@@ -7162,16 +7165,166 @@ FromTown: {"type":"Checkpoint","x":72,"y":208,"flippedX":false,"flippedY":false,
 }
 };
 
+export const VolcanoShopInnArgs = {
+    width: 256,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    VolcanoBrickWall: resolveDecalGameObject({
+    x: 128,
+y: 184,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoBrickWall
+}),
+JungleShelfLarge: resolveDecalGameObject({
+    x: 128.2025035305514,
+y: 221.00495049114,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleShelfLarge
+}),
+JungleShelfSmall: resolveDecalGameObject({
+    x: 206.30797352869226,
+y: 204.78928197941525,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: JungleShelfSmall
+}),
+Bottle2: resolveDecalGameObject({
+    x: 193.06517757745036,
+y: 193.84370573400108,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Bottle2
+}),
+Bottle1: resolveDecalGameObject({
+    x: 201.98379525889897,
+y: 188.70874403862157,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: Bottle1
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":24,"width":24,"height":208,"flippedX":false,"flippedY":false,"uid":"55823268_4","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":232,"width":256,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":232,"y":24,"width":24,"height":208,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":40,"y":200,"flippedX":false,"flippedY":false,"uid":"55913988_7","levelName":"VolcanoTown","checkpointName":"FromShop","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":56,"y":128,"width":176,"flippedX":false,"flippedY":false,"uid":"55841307_8","visible":true,"name":"","depth":0}),
+// @ts-ignore
+Door_1: resolveDoor({"type":"Door","x":64,"y":96,"flippedX":false,"flippedY":false,"uid":"55913988_9","levelName":"VolcanoTown","checkpointName":"FromInn","name":"","depth":0}),
+// @ts-ignore
+Innkeeper: resolveNpc({"type":"NpcIguana","x":152,"y":126,"flippedX":true,"flippedY":false,"uid":"26367058_10","name":"Innkeeper","style":16,"depth":0}),
+// @ts-ignore
+Shopkeeper: resolveNpc({"type":"NpcIguana","x":184,"y":232,"flippedX":true,"flippedY":false,"uid":"26367058_11","name":"Shopkeeper","style":17,"depth":0}),
+Player: {"type":"Player","x":88,"y":232,"flippedX":false,"flippedY":false,"uid":"55988047_12","faceRight":true,"name":"","depth":0},
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":24,"y":160,"width":16,"flippedX":false,"flippedY":false,"uid":"55841307_13","visible":true,"name":"","depth":0}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":16,"y":216,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_14","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":208,"y":216,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_15","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":208,"y":8,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_16","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":8,"y":16,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_17","name":"","depth":0}),
+// @ts-ignore
+Window1: resolveRegion({"type":"Region","x":96,"y":176,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"25971607_18","name":"Window1","depth":0}),
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":96,"y":216,"width":64,"flippedX":false,"flippedY":false,"uid":"55841307_19","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":184,"y":200,"width":44,"flippedX":false,"flippedY":false,"uid":"55841307_21","visible":false,"name":"","depth":0}),
+FromInnSave: {"type":"Checkpoint","x":208,"y":128,"flippedX":false,"flippedY":false,"uid":"55940370_23","name":"FromInnSave","faceRight":false,"depth":0}
+};
+}
+};
+
 export const VolcanoTownArgs = {
     width: 768,
 height: 320,
 gameObjectsSupplier: () => {
   return {
     // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":272,"width":768,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":0,"y":288,"width":768,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 Player: {"type":"Player","x":688,"y":272,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":736,"y":240,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_2","levelName":"VolcanoCavern","checkpointName":"FromTown","name":"","depth":0})
+Gate: resolveGate({"type":"Gate","x":736,"y":240,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_2","levelName":"VolcanoCavern","checkpointName":"FromTown","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":648,"y":272,"width":120,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":272,"width":120,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_4","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":280,"y":0,"width":32,"height":128,"flippedX":false,"flippedY":true,"uid":"55845599_5","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":376,"y":0,"width":32,"height":128,"flippedX":false,"flippedY":true,"uid":"55824435_6","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":408,"y":128,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_7","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":440,"y":160,"width":176,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_8","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":616,"y":0,"width":152,"height":192,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":408,"y":0,"width":208,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268_10","name":"","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":440,"y":128,"width":176,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_11","name":"","depth":0}),
+// @ts-ignore
+Block_6: resolveBlock({"type":"Block","x":696,"y":192,"width":72,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_12","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_3: resolveSlopeRight({"type":"SlopeRight","x":616,"y":192,"width":80,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_13","name":"","depth":0}),
+// @ts-ignore
+Sign: resolveSign({"type":"Sign","x":608,"y":288,"flippedX":false,"flippedY":false,"uid":"86706091_14","title":"Town","message":"This is the volcano town.","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":248,"y":128,"width":32,"height":24,"flippedX":false,"flippedY":true,"uid":"55845599_15","name":"","depth":0}),
+// @ts-ignore
+Block_7: resolveBlock({"type":"Block","x":0,"y":152,"width":32,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_19","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":208,"y":152,"width":40,"height":8,"flippedX":false,"flippedY":true,"uid":"55845599_20","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_4: resolveSlopeRight({"type":"SlopeRight","x":176,"y":144,"width":32,"height":16,"flippedX":false,"flippedY":true,"uid":"55824435_21","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_5: resolveSlopeRight({"type":"SlopeRight","x":144,"y":136,"width":32,"height":8,"flippedX":false,"flippedY":true,"uid":"55824435_22","name":"","depth":0}),
+// @ts-ignore
+Block_8: resolveBlock({"type":"Block","x":88,"y":120,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_23","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_3: resolveSlopeLeft({"type":"SlopeLeft","x":56,"y":136,"width":32,"height":16,"flippedX":false,"flippedY":true,"uid":"55845599_24","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_4: resolveSlopeLeft({"type":"SlopeLeft","x":32,"y":152,"width":24,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_25","name":"","depth":0}),
+// @ts-ignore
+Block_9: resolveBlock({"type":"Block","x":0,"y":0,"width":280,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268_26","name":"","depth":0}),
+// @ts-ignore
+Block_10: resolveBlock({"type":"Block","x":0,"y":128,"width":248,"height":8,"flippedX":false,"flippedY":false,"uid":"55823268_27","name":"","depth":0}),
+// @ts-ignore
+Block_11: resolveBlock({"type":"Block","x":0,"y":136,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_28","name":"","depth":0}),
+// @ts-ignore
+Block_12: resolveBlock({"type":"Block","x":176,"y":128,"width":72,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_29","name":"","depth":0}),
+// @ts-ignore
+Block_13: resolveBlock({"type":"Block","x":208,"y":136,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_30","name":"","depth":0})
 };
 }
 };

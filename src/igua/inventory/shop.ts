@@ -15,7 +15,7 @@ import {IguaText} from "../text";
 
 type Purchases = PotionType[];
 
-export function shop(...potions: PotionType[]) {
+export function shop(potions: PotionType[] = ['ClawPowder', 'SpicedNectar', 'SweetBerry', 'WonderBallon', 'CommonPoison', 'BitterMedicine']) {
     return new Promise<Purchases>(r => {
         shopImpl(r, potions);
     });

@@ -28,7 +28,7 @@ export function JungleBar() {
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0xA7ADCC);
     mirror(level.BigMirror.width, level.BigMirror.height, 0x8CC468, 0xB6E168).at(level.BigMirror).behind();
     level.Barkeeper.cutscene = async () => {
-        const purchases = await shop('ClawPowder', 'SpicedNectar', 'SweetBerry', 'WonderBallon', 'CommonPoison', 'BitterMedicine');
+        const purchases = await shop();
         if (purchases.length > 0)
             await show("Thank you. Come again!");
         else
