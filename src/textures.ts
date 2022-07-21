@@ -195,8 +195,10 @@ export let ValuableIcon: PIXI.Texture;
 export let VineLarge: PIXI.Texture;
 export let VineSmall: PIXI.Texture;
 export let VolcanoBrickWall: PIXI.Texture;
+export let VolcanoChain: PIXI.Texture;
 export let VolcanoCurtain: PIXI.Texture;
 export let VolcanoFloralWallpaper: PIXI.Texture;
+export let VolcanoInnShopBuilding: PIXI.Texture;
 export let VolcanoMineralDebris: PIXI.Texture;
 export let VolcanoPillarBroken: PIXI.Texture;
 export let WhiskeyGlass: PIXI.Texture;
@@ -787,11 +789,17 @@ export function loadTexturesAsync()
     const VolcanoBrickWallPath = require("./images/volcano/brick wall.png");
     loader.add(VolcanoBrickWallPath); 
 
+    const VolcanoChainPath = require("./images/volcano/chain.png");
+    loader.add(VolcanoChainPath); 
+
     const VolcanoCurtainPath = require("./images/volcano/curtain.png");
     loader.add(VolcanoCurtainPath); 
 
     const VolcanoFloralWallpaperPath = require("./images/volcano/floral wallpaper.png");
     loader.add(VolcanoFloralWallpaperPath); 
+
+    const VolcanoInnShopBuildingPath = require("./images/volcano/inn shop building.png");
+    loader.add(VolcanoInnShopBuildingPath); 
 
     const VolcanoMineralDebrisPath = require("./images/volcano/mineral debris.png");
     loader.add(VolcanoMineralDebrisPath); 
@@ -1005,8 +1013,10 @@ export function loadTexturesAsync()
             VineLarge = resources[VineLargePath]?.texture as PIXI.Texture;
             VineSmall = resources[VineSmallPath]?.texture as PIXI.Texture;
             VolcanoBrickWall = resources[VolcanoBrickWallPath]?.texture as PIXI.Texture;
+            VolcanoChain = resources[VolcanoChainPath]?.texture as PIXI.Texture;
             VolcanoCurtain = resources[VolcanoCurtainPath]?.texture as PIXI.Texture;
             VolcanoFloralWallpaper = resources[VolcanoFloralWallpaperPath]?.texture as PIXI.Texture;
+            VolcanoInnShopBuilding = resources[VolcanoInnShopBuildingPath]?.texture as PIXI.Texture;
             VolcanoMineralDebris = resources[VolcanoMineralDebrisPath]?.texture as PIXI.Texture;
             VolcanoPillarBroken = resources[VolcanoPillarBrokenPath]?.texture as PIXI.Texture;
             WhiskeyGlass = resources[WhiskeyGlassPath]?.texture as PIXI.Texture;
