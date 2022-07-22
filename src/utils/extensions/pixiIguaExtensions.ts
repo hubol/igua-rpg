@@ -12,7 +12,7 @@ declare global {
         export interface DisplayObject {
             ahead(): this;
             show(parent?: Container): this;
-            behind(): this;
+            behind(index?: number): this;
             withInteraction(interaction: () => void): this;
             withCutscene(cutscene: Cutscene): this;
             asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>, action?: () => void);
@@ -84,8 +84,10 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     },
 });
 
-PIXI.DisplayObject.prototype.behind = function () {
-    return scene.backgroundGameObjectStage.addChild(this);
+PIXI.DisplayObject.prototype.behind = function (index) {
+    if (index === undefined)
+        return scene.backgroundGameObjectStage.addChild(this);
+    return scene.backgroundGameObjectStage.addChildAt(this, index);
 }
 
 PIXI.DisplayObject.prototype.ahead = function () {

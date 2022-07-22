@@ -1,0 +1,280 @@
+{
+  "ogmoVersion": "3.4.0-hubol",
+  "width": 512,
+  "height": 256,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 0,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 224,
+          "width": 512,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 1,
+          "_eid": "55913988",
+          "x": 32,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "VolcanoTown", "checkpointName": "FromTemple", "name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 2,
+          "_eid": "55913988",
+          "x": 160,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "UnrealDuckStump", "checkpointName": "", "name": "Door1", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 3,
+          "_eid": "55913988",
+          "x": 240,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "UnrealT9", "checkpointName": "", "name": "Door2", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 4,
+          "_eid": "55913988",
+          "x": 320,
+          "y": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "UnrealSnowman", "checkpointName": "", "name": "Door3", "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 11,
+          "_eid": "55988047",
+          "x": 80,
+          "y": 224,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "Sign",
+          "id": 12,
+          "_eid": "86706091",
+          "x": 136,
+          "y": 160,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "Big Key", "message": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 14,
+          "_eid": "55824435",
+          "x": 288,
+          "y": 0,
+          "width": 224,
+          "height": 224,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 15,
+          "_eid": "55845599",
+          "x": 0,
+          "y": 0,
+          "width": 224,
+          "height": 224,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 16,
+          "_eid": "25979726",
+          "x": 229,
+          "y": 120,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "BigKey", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 17,
+          "_eid": "55823268",
+          "x": 116,
+          "y": 160,
+          "width": 40,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 18,
+          "_eid": "55991906",
+          "x": 480,
+          "y": 220,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 19,
+          "_eid": "56004563",
+          "x": 458,
+          "y": 220,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "decals": [
+        {
+          "x": 119,
+          "y": 137,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/chain.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 119,
+          "y": 128,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/chain.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 154, "y": 137, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {"x": 154, "y": 98, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {"x": 154, "y": 95, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5}
+      ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "decals": [
+        {
+          "x": 256,
+          "y": 0,
+          "scaleX": 40,
+          "scaleY": 2,
+          "rotation": 0,
+          "texture": "glowing circle.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 176,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key red.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "Key1"}
+        },
+        {
+          "x": 256,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key red.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "Key2"}
+        },
+        {
+          "x": 336,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "key red.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "Key3"}
+        }
+      ],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    }
+  ]
+}

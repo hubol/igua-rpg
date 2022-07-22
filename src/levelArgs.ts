@@ -11,6 +11,11 @@ import { resolveDecalGameObject } from "./gameObjects/decal";
 import { VolcanoInnShopBuilding } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
 import { VolcanoMineralDebris } from "./textures";
+import { resolveValuableOrange } from "./gameObjects/valuable";
+import { resolveValuableBlue } from "./gameObjects/valuable";
+import { KeyRed } from "./textures";
+import { GlowingCircle } from "./textures";
+import { VolcanoChain } from "./textures";
 import { resolveNpc } from "./gameObjects/npc";
 import { RoseVase } from "./textures";
 import { BookCollection } from "./textures";
@@ -20,17 +25,14 @@ import { Bottle2 } from "./textures";
 import { JungleShelfLarge } from "./textures";
 import { VolcanoBrickWall } from "./textures";
 import { VolcanoFloralWallpaper } from "./textures";
-import { resolveValuableBlue } from "./gameObjects/valuable";
 import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { resolveClownSneezy } from "./gameObjects/clownSneezy";
 import { resolveClownWonderful } from "./gameObjects/clownWonderful";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { KeyGreen } from "./textures";
-import { VolcanoChain } from "./textures";
 import { GlowingDiamond } from "./textures";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
-import { GlowingCircle } from "./textures";
 import { Column } from "./textures";
 import { OverheadLamp } from "./textures";
 import { Pipe } from "./textures";
@@ -44,7 +46,6 @@ import { Rainbow2 } from "./textures";
 import { SpikyBrushB } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
-import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolveTreeStumpDestructive } from "./gameObjects/treeStumpDestructive";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { resolveSpike } from "./gameObjects/spike";
@@ -80,7 +81,6 @@ import { OrnateCarpet } from "./textures";
 import { GiantsDinerTable } from "./textures";
 import { GiantsFoodStash } from "./textures";
 import { resolveBoulder } from "./gameObjects/boulder";
-import { KeyRed } from "./textures";
 import { SignTavern } from "./textures";
 import { SignInn } from "./textures";
 import { CrudeHouse } from "./textures";
@@ -7357,6 +7357,138 @@ Block_4: resolveBlock({"type":"Block","x":56,"y":128,"width":176,"height":16,"fl
 // @ts-ignore
 Block_5: resolveBlock({"type":"Block","x":24,"y":160,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_27","name":"","depth":0}),
 FromUpper: {"type":"Checkpoint","x":100,"y":128,"flippedX":false,"flippedY":false,"uid":"55940370_28","name":"FromUpper","faceRight":true,"depth":0}
+};
+}
+};
+
+export const VolcanoTempleArgs = {
+    width: 512,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    VolcanoChain: resolveDecalGameObject({
+    x: 119,
+y: 137,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoChain
+}),
+VolcanoChain_1: resolveDecalGameObject({
+    x: 119,
+y: 128,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoChain
+}),
+VolcanoChain_2: resolveDecalGameObject({
+    x: 154,
+y: 137,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoChain
+}),
+VolcanoChain_3: resolveDecalGameObject({
+    x: 154,
+y: 98,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoChain
+}),
+VolcanoChain_4: resolveDecalGameObject({
+    x: 154,
+y: 95,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoChain
+}),
+GlowingCircle: resolveDecalGameObject({
+    x: 256,
+y: 0,
+originX: 0.5,
+originY: 0.5,
+scaleX: 40,
+scaleY: 2,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: GlowingCircle
+}),
+Key1: resolveDecalGameObject({
+    x: 176,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: KeyRed
+}),
+Key2: resolveDecalGameObject({
+    x: 256,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: KeyRed
+}),
+Key3: resolveDecalGameObject({
+    x: 336,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: KeyRed
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":512,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":32,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_1","levelName":"VolcanoTown","checkpointName":"FromTemple","name":"","depth":0}),
+// @ts-ignore
+Door1: resolveDoor({"type":"Door","x":160,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_2","levelName":"UnrealDuckStump","checkpointName":"","name":"Door1","depth":0}),
+// @ts-ignore
+Door2: resolveDoor({"type":"Door","x":240,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_3","levelName":"UnrealT9","checkpointName":"","name":"Door2","depth":0}),
+// @ts-ignore
+Door3: resolveDoor({"type":"Door","x":320,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"UnrealSnowman","checkpointName":"","name":"Door3","depth":0}),
+Player: {"type":"Player","x":80,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_11","faceRight":true,"name":"","depth":0},
+// @ts-ignore
+Sign: resolveSign({"type":"Sign","x":136,"y":160,"flippedX":false,"flippedY":false,"uid":"86706091_12","title":"Big Key","message":"","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":288,"y":0,"width":224,"height":224,"flippedX":false,"flippedY":true,"uid":"55824435_14","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":0,"y":0,"width":224,"height":224,"flippedX":false,"flippedY":true,"uid":"55845599_15","name":"","depth":0}),
+BigKey: {"type":"Anchor","x":229,"y":120,"flippedX":false,"flippedY":false,"uid":"25979726_16","name":"BigKey","depth":0},
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":116,"y":160,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_17","name":"","depth":0}),
+// @ts-ignore
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":480,"y":220,"flippedX":false,"flippedY":false,"uid":"55991906_18","name":"","depth":0}),
+// @ts-ignore
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":458,"y":220,"flippedX":false,"flippedY":false,"uid":"56004563_19","name":"","depth":0})
 };
 }
 };
