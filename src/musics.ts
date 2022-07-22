@@ -87,6 +87,11 @@ export const Shop = new Howl({
     preload: false
 });
 
+export const SomberVolcano = new Howl({
+    src: [require("./music/somber-volcano.ogg"), require("./music/somber-volcano.mp3")],
+    preload: false
+});
+
 export const Temple = new Howl({
     src: [require("./music/temple.ogg"), require("./music/temple.mp3")],
     preload: false

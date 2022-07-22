@@ -644,6 +644,28 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 232,
+          "y": 89,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/chain.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 232,
+          "y": 40,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/chain.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "../../src/images"

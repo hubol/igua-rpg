@@ -2,7 +2,7 @@ import {scene} from "../igua/scene";
 import { VolcanoShopInnArgs } from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {jukebox} from "../igua/jukebox";
-import {VolcanoCaveMusic, VolcanoSomething} from "../musics";
+import {SomberVolcano, VolcanoSomething} from "../musics";
 import {mirror} from "../gameObjects/mirror";
 import {heatWaves} from "../gameObjects/heatWaves";
 import {shop} from "../igua/inventory/shop";
@@ -20,7 +20,7 @@ export function VolcanoShopInn() {
     scene.terrainColor = 0;
     const level = applyOgmoLevel(VolcanoShopInnArgs);
 
-    jukebox.play(VolcanoSomething).warm(VolcanoCaveMusic);
+    jukebox.play(SomberVolcano).warm(VolcanoSomething);
 
     {
         const window = mirror(level.Window1.width, level.Window1.height, 0x9F4F5D, 0xC38792).at(level.Window1).behind();

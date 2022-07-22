@@ -7262,7 +7262,7 @@ layerName: "BackgroundDecals",
 texture: Bottle1
 }),
 JungleShelfSmall_1: resolveDecalGameObject({
-    x: 80,
+    x: 72,
 y: 80,
 originX: 0.5,
 originY: 0,
@@ -7284,7 +7284,7 @@ layerName: "BackgroundDecals",
 texture: JungleShelfSmall
 }),
 BookCollection: resolveDecalGameObject({
-    x: 95.03222828189746,
+    x: 87.03222828189746,
 y: 75.03946086085345,
 originX: 0.5,
 originY: 0.5,
@@ -7306,7 +7306,7 @@ layerName: "BackgroundDecals",
 texture: BookCollection
 }),
 RoseVase: resolveDecalGameObject({
-    x: 66.97425705606014,
+    x: 58.97425705606014,
 y: 72.88115538194289,
 originX: 0.5,
 originY: 0.5,
@@ -7349,7 +7349,7 @@ PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":96,"y":216,"w
 PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":184,"y":200,"width":44,"flippedX":false,"flippedY":false,"uid":"55841307_21","visible":false,"name":"","depth":0}),
 FromInnSave: {"type":"Checkpoint","x":208,"y":128,"flippedX":false,"flippedY":false,"uid":"55940370_23","name":"FromInnSave","faceRight":false,"depth":0},
 // @ts-ignore
-PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":56,"y":80,"width":48,"flippedX":false,"flippedY":false,"uid":"55841307_24","visible":false,"name":"","depth":0}),
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":48,"y":80,"width":48,"flippedX":false,"flippedY":false,"uid":"55841307_24","visible":false,"name":"","depth":0}),
 // @ts-ignore
 PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":152,"y":56,"width":48,"flippedX":false,"flippedY":false,"uid":"55841307_25","visible":false,"name":"","depth":0}),
 // @ts-ignore
