@@ -20,7 +20,7 @@ export function drawPool(g: Graphics, xmax: number, ymax: number, f: (x: number)
     g.moveTo(0, ymax);
     while (true) {
         const y = f(x);
-        g.lineTo(x, Math.round(y));
+        g.lineTo(x, y);
         if (x >= xmax)
             break;
         x = Math.min(xmax, x + 4);
