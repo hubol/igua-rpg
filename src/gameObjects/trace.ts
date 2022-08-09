@@ -45,10 +45,11 @@ export function trace(v: Vector[]) {
                 pen.lineTo(v[i + 1].x, v[i + 1].y);
             }
 
-            pen.lineTo(mask.x, mask.y);
             pen
-                .beginFill(pen.line.color)
-                .drawCircle(mask.x, mask.y, 2);
+                .lineTo(mask.x, mask.y)
+                .beginFill(pen.line.color);
+            if (!state.winner)
+                pen.drawCircle(Math.round(mask.x), Math.round(mask.y), 2);
         });
 
     return container(g, pen, mask);
