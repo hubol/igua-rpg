@@ -32,6 +32,7 @@ export namespace Ogmo
         flippedX?: boolean;
         flippedY?: boolean;
         values?: any;
+        nodes?: { x: number, y: number }[];
     }
 
     export interface Decal

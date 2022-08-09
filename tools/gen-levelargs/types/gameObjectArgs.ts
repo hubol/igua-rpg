@@ -10,4 +10,5 @@ interface GameObjectArgsBase
     height: number;
     flippedX: boolean;
     flippedY: boolean;
+    nodes: { x: number, y: number }[];
 }

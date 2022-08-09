@@ -49,6 +49,7 @@ import { SpikyBrushA } from "./textures";
 import { resolveTreeStumpDestructive } from "./gameObjects/treeStumpDestructive";
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { resolveSpike } from "./gameObjects/spike";
+import { resolvePath } from "./gameObjects/resolvePath";
 import { GroundSpeckles } from "./textures";
 import { CracksA } from "./textures";
 import { VineSmall } from "./textures";
@@ -5869,6 +5870,26 @@ SlopeLeft_1: resolveSlopeLeft({"type":"SlopeLeft","x":344,"y":0,"width":32,"heig
 SlopeRight_2: resolveSlopeRight({"type":"SlopeRight","x":576,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_21","name":"","depth":0}),
 // @ts-ignore
 SlopeLeft_2: resolveSlopeLeft({"type":"SlopeLeft","x":608,"y":0,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_22","name":"","depth":0})
+};
+}
+};
+
+export const UnrealDrawingArgs = {
+    width: 256,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":24,"width":24,"height":208,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":232,"width":256,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":232,"y":24,"width":24,"height":208,"flippedX":false,"flippedY":false,"uid":"55823268_4","name":"","depth":0}),
+Player: {"type":"Player","x":128,"y":232,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+Path: resolvePath({"type":"Path","x":200,"y":208,"flippedX":false,"flippedY":false,"uid":"02678853_6","nodes":[{"x":176,"y":168},{"x":64,"y":168},{"x":40,"y":208}],"name":"","depth":0})
 };
 }
 };
