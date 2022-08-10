@@ -13,7 +13,7 @@ export function trace(v: Vector[]) {
     for (let i = 0; i < v.length; i++)
         g.lineTo(v[i].x, v[i].y);
 
-    const mask = new Graphics().drawRect(0, 0, 1, 1).hide();
+    const mask = new Graphics().drawRect(-1, -1, 2, 2).hide();
 
     const state = {
         index: 0,
@@ -28,7 +28,8 @@ export function trace(v: Vector[]) {
 
     const pen = new Graphics()
         .withStep(() => {
-            while (!state.winner && mask.collides(player)) {
+            let count = 0;
+            while (!state.winner && mask.collides(player) && count++ < 4) {
                 mask.moveTowards(state.target, 1);
                 if (distance(mask, state.target) < 3) {
                     mask.at(state.target);
