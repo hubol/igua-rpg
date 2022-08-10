@@ -2,6 +2,8 @@ import {distance, Vector} from "../utils/math/vector";
 import {Graphics} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {player} from "./player";
+import {PenDraw} from "../sounds";
+import {rng} from "../utils/math/rng";
 
 export function trace(v: Vector[]) {
     if (v.length < 2)
@@ -30,6 +32,8 @@ export function trace(v: Vector[]) {
         .withStep(() => {
             let count = 0;
             while (!state.winner && mask.collides(player) && count++ < 4) {
+                if (count === 1)
+                    PenDraw.volume(0.1).rate(0.5 + rng() * 1.5).play();
                 mask.moveTowards(state.target, 1);
                 if (distance(mask, state.target) < 3) {
                     mask.at(state.target);

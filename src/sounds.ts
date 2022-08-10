@@ -307,6 +307,11 @@ export const MirrorShardUse = new Howl({
     
 });
 
+export const PenDraw = new Howl({
+    src: [require("./sound/pen draw.ogg"), require("./sound/pen draw.mp3")],
+    
+});
+
 export const PoppingRockPop = new Howl({
     src: [require("./sound/popping rock pop.ogg"), require("./sound/popping rock pop.mp3")],
     
