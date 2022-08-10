@@ -4,6 +4,7 @@ import {container} from "../utils/pixi/container";
 import {player} from "./player";
 import {PenDraw} from "../sounds";
 import {rng} from "../utils/math/rng";
+import {merge} from "../utils/object/merge";
 
 export function trace(v: Vector[]) {
     if (v.length < 2)
@@ -32,8 +33,10 @@ export function trace(v: Vector[]) {
         .withStep(() => {
             let count = 0;
             while (!state.winner && mask.collides(player) && count++ < 4) {
-                if (count === 1)
-                    PenDraw.volume(0.1).rate(0.5 + rng() * 1.5).play();
+                if (count === 1) {
+                    // @ts-ignore
+                    PenDraw.volume(0.2).rate(0.5 + rng() * 1.5).play();
+                }
                 mask.moveTowards(state.target, 1);
                 if (distance(mask, state.target) < 3) {
                     mask.at(state.target);
@@ -57,5 +60,5 @@ export function trace(v: Vector[]) {
                 pen.drawCircle(Math.round(mask.x), Math.round(mask.y), 2);
         });
 
-    return container(g, pen, mask);
+    return merge(container(g, pen, mask), { get winner() { return state.winner; } });
 }

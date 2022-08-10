@@ -3,7 +3,7 @@ import {BigKey3, KeyGreen} from "../textures";
 import {scene} from "../igua/scene";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {VolcanoTempleArgs} from "../levelArgs";
-import {UnrealCrusher, UnrealT9Music, VolcanoSomething} from "../musics";
+import {UnrealCrusher, UnrealDrawingMusic, UnrealT9Music, VolcanoSomething} from "../musics";
 import {cracks} from "../gameObjects/cracks";
 import {heatWaves} from "../gameObjects/heatWaves";
 import {progress} from "../igua/data/progress";
@@ -25,7 +25,7 @@ export function VolcanoTemple() {
         [true, bigKey.piece2, [level.Key2, level.Door2]],
         [true, bigKey.piece3, [level.Key3, level.Door3]]);
 
-    util.playMusic().warm(VolcanoSomething, UnrealCrusher, UnrealT9Music);
+    util.playMusic().warm(VolcanoSomething, UnrealCrusher, UnrealT9Music, UnrealDrawingMusic);
 
     cracks(1090.378, 0x481018).behind(1);
     const waves = heatWaves(scene.width + 256, 80, 0).at(-128, 260).behind(0);

@@ -7495,7 +7495,7 @@ Door1: resolveDoor({"type":"Door","x":160,"y":192,"flippedX":false,"flippedY":fa
 // @ts-ignore
 Door2: resolveDoor({"type":"Door","x":240,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_3","levelName":"UnrealT9","checkpointName":"","name":"Door2","depth":0}),
 // @ts-ignore
-Door3: resolveDoor({"type":"Door","x":320,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"UnrealSnowman","checkpointName":"","name":"Door3","depth":0}),
+Door3: resolveDoor({"type":"Door","x":320,"y":192,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"UnrealDrawing","checkpointName":"","name":"Door3","depth":0}),
 Player: {"type":"Player","x":80,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_11","faceRight":true,"name":"","depth":0},
 // @ts-ignore
 Sign: resolveSign({"type":"Sign","x":136,"y":160,"flippedX":false,"flippedY":false,"uid":"86706091_12","title":"Big Key","message":"","name":"","depth":0}),
