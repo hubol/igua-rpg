@@ -472,6 +472,11 @@ export const UnorthodoxWave = new Howl({
     
 });
 
+export const WinDrawing = new Howl({
+    src: [require("./sound/win drawing.ogg"), require("./sound/win drawing.mp3")],
+    
+});
+
 export const WonderfulDash = new Howl({
     src: [require("./sound/wonderful dash.ogg"), require("./sound/wonderful dash.mp3")],
     

@@ -35,6 +35,7 @@ function createScene(source: SceneSource, args: Readonly<SceneMeta>)
             backgroundGraphics.beginFill(value);
             backgroundGraphics.drawRect(0, 0, 256, 256);
         },
+        backgroundGraphics,
         terrainColor: 0,
         camera: createCamera(args.isLevel),
         trackedDisplayObjects: {},

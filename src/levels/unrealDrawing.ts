@@ -9,6 +9,8 @@ import {progress} from "../igua/data/progress";
 import {volcanoBigKeyTextures} from "./volcanoTemple";
 import {teleportToTheRoomOfDoors} from "../gameObjects/portalFluid";
 import {wait} from "../cutscene/wait";
+import { WinDrawing } from "../sounds";
+import {sleep} from "../cutscene/sleep";
 
 export function UnrealDrawing() {
     scene.backgroundColor = 0xE0B050;
@@ -21,13 +23,19 @@ export function UnrealDrawing() {
 
     scene.gameObjectStage.withAsync(async () => {
         await wait(() => path.winner);
+        WinDrawing.play();
+        scene.terrainStage.hueShift = 180;
+        scene.backgroundGraphics.hueShift = 180;
         createReward();
+        jukebox.currentSong!.fade(1, 0, 100);
+        await sleep(500);
+        jukebox.currentSong!.fade(0, 1, 30_000);
     });
 }
 
 function createReward() {
     const key = makeFlyIn(bigKeyPiece(progress.flags.volcano.bigKey, volcanoBigKeyTextures[2], "piece3"))
         .at(128, -20)
-        .show();
+        .ahead();
     key.onCollect = teleportToTheRoomOfDoors;
 }
