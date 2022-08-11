@@ -67,25 +67,67 @@
           "name": "Player",
           "id": 5,
           "_eid": "55988047",
-          "x": 128,
-          "y": 232,
+          "x": 200,
+          "y": 64,
           "originX": 11,
           "originY": 27,
           "values": {"faceRight": false, "name": "", "depth": 0}
         },
         {
+          "name": "Block",
+          "id": 7,
+          "_eid": "55823268",
+          "x": 176,
+          "y": 64,
+          "width": 72,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
           "name": "Path",
-          "id": 6,
+          "id": 8,
           "_eid": "02678853",
-          "x": 200,
-          "y": 208,
+          "x": 48,
+          "y": 104,
           "originX": 0,
           "originY": 0,
           "nodes": [
-            {"x": 176, "y": 168},
-            {"x": 64, "y": 168},
-            {"x": 40, "y": 208}
+            {"x": 48, "y": 48},
+            {"x": 72, "y": 48},
+            {"x": 72, "y": 104},
+            {"x": 216, "y": 104},
+            {"x": 216, "y": 216},
+            {"x": 48, "y": 216},
+            {"x": 48, "y": 160},
+            {"x": 152, "y": 160},
+            {"x": 152, "y": 48}
           ],
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 9,
+          "_eid": "55823268",
+          "x": 24,
+          "y": 128,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 10,
+          "_eid": "55823268",
+          "x": 176,
+          "y": 184,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
           "values": {"name": "", "depth": 0}
         }
       ]

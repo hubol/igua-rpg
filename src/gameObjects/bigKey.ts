@@ -41,9 +41,10 @@ export function bigKeyPiece<T>(progress: T, texture: Texture, key: keyof Propert
 
 export function makeFlyIn(piece: ReturnType<typeof bigKeyPiece>, down = 140) {
     piece.texture = trimFrame(piece.texture.clone());
+    piece.hitbox = [0, 0, 1, 1];
     let ystart = Force<number>();
     let traveled = 0;
-    piece.trimHitbox().centerAnchor()
+    piece.centerAnchor()
         .withStep(() => {
             if (ystart === undefined)
                 ystart = piece.y;

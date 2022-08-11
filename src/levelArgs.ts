@@ -5889,9 +5889,15 @@ Block_1: resolveBlock({"type":"Block","x":0,"y":24,"width":24,"height":208,"flip
 Block_2: resolveBlock({"type":"Block","x":0,"y":232,"width":256,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
 // @ts-ignore
 Block_3: resolveBlock({"type":"Block","x":232,"y":24,"width":24,"height":208,"flippedX":false,"flippedY":false,"uid":"55823268_4","name":"","depth":0}),
-Player: {"type":"Player","x":128,"y":232,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":false,"name":"","depth":0},
+Player: {"type":"Player","x":200,"y":64,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-Path: resolvePath({"type":"Path","x":200,"y":208,"flippedX":false,"flippedY":false,"uid":"02678853_6","nodes":[{"x":176,"y":168},{"x":64,"y":168},{"x":40,"y":208}],"name":"","depth":0})
+Block_4: resolveBlock({"type":"Block","x":176,"y":64,"width":72,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
+// @ts-ignore
+Path: resolvePath({"type":"Path","x":48,"y":104,"flippedX":false,"flippedY":false,"uid":"02678853_8","nodes":[{"x":48,"y":48},{"x":72,"y":48},{"x":72,"y":104},{"x":216,"y":104},{"x":216,"y":216},{"x":48,"y":216},{"x":48,"y":160},{"x":152,"y":160},{"x":152,"y":48}],"name":"","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":24,"y":128,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
+// @ts-ignore
+Block_6: resolveBlock({"type":"Block","x":176,"y":184,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_10","name":"","depth":0})
 };
 }
 };
