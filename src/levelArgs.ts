@@ -5985,7 +5985,7 @@ PipeLeftEnd_2: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":33,"y":814,"flippedX
 // @ts-ignore
 PipeHorizontal_16: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":856,"width":256,"flippedX":false,"flippedY":false,"uid":"55841307_57","visible":true,"name":"","depth":0}),
 // @ts-ignore
-TreeStumpDestructive_8: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":216,"y":856,"flippedX":false,"flippedY":false,"uid":"36360904_58","name":"","depth":0}),
+FinalStump: resolveTreeStumpDestructive({"type":"TreeStumpDestructive","x":216,"y":856,"flippedX":false,"flippedY":false,"uid":"36360904_58","name":"FinalStump","depth":0}),
 // @ts-ignore
 PipeHorizontal_17: resolvePipeHorizontal({"type":"PipeHorizontal","x":0,"y":798,"width":232,"flippedX":false,"flippedY":false,"uid":"55841307_59","visible":true,"name":"","depth":0}),
 // @ts-ignore
@@ -6006,7 +6006,8 @@ ValuableOrange_2: resolveValuableOrange({"type":"ValuableOrange","x":72,"y":960,
 ValuableOrange_3: resolveValuableOrange({"type":"ValuableOrange","x":72,"y":976,"flippedX":false,"flippedY":false,"uid":"56004563_67","name":"","depth":0}),
 // @ts-ignore
 Portal: resolvePortalFluid({"type":"PortalFluid","x":-24,"y":-264,"width":312,"height":312,"flippedX":false,"flippedY":false,"uid":"24775263_69","name":"Portal","depth":0}),
-KeyPiece: {"type":"Anchor","x":204,"y":976,"flippedX":false,"flippedY":false,"uid":"25979726_70","name":"KeyPiece","depth":0}
+KeyPiece: {"type":"Anchor","x":204,"y":976,"flippedX":false,"flippedY":false,"uid":"25979726_70","name":"KeyPiece","depth":0},
+StumpBallonPosition: {"type":"Anchor","x":24,"y":856,"flippedX":false,"flippedY":false,"uid":"25979726_71","name":"StumpBallonPosition","depth":0}
 };
 }
 };

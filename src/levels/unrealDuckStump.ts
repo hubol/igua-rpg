@@ -12,6 +12,7 @@ import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {volcanoBigKeyTextures} from "./volcanoTemple";
 import {teleportToTheRoomOfDoors} from "../gameObjects/portalFluid";
+import {resolveTreeStumpDestructive} from "../gameObjects/treeStumpDestructive";
 
 export function UnrealDuckStump() {
     scene.backgroundColor = 0xD99536;
@@ -46,6 +47,13 @@ export function UnrealDuckStump() {
         x.limitedRangeEnabled = false;
         x.dangerous = false;
     });
+
+    scene.gameObjectStage.withAsync(async () => {
+        await wait(() => progress.ballons.length > 0);
+        resolveTreeStumpDestructive(level.StumpBallonPosition as any);
+        level.FinalStump.destroy();
+    });
+
     level.HiddenBlock.hide();
     cracks(69, 0xC64A31).show(scene.parallax1Stage);
     const key = bigKeyPiece(progress.flags.volcano.bigKey, volcanoBigKeyTextures[0], 'piece1').show().at(level.KeyPiece);
