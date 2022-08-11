@@ -466,6 +466,26 @@
           "originX": 0,
           "originY": 0,
           "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 41,
+          "_eid": "55913988",
+          "x": 456,
+          "y": 256,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "VolcanoTemple", "checkpointName": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 42,
+          "_eid": "55940370",
+          "x": 432,
+          "y": 288,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromTemple", "faceRight": false, "depth": 0}
         }
       ]
     },
@@ -544,6 +564,17 @@
           "scaleY": 1,
           "rotation": 0,
           "texture": "volcano/inn shop building.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 432,
+          "y": 288,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/temple exterior.png",
           "originX": 0.5,
           "originY": 1,
           "values": {"name": ""}

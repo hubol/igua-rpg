@@ -1,13 +1,14 @@
 // This file is generated. Do not touch.
+import { resolveDoor } from "./gameObjects/door";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveRegion } from "./gameObjects/region";
-import { resolveDoor } from "./gameObjects/door";
 import { resolveBlock } from "./gameObjects/walls";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDecalGameObject } from "./gameObjects/decal";
+import { VolcanoTempleExterior } from "./textures";
 import { VolcanoInnShopBuilding } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
 import { VolcanoMineralDebris } from "./textures";
@@ -7563,6 +7564,17 @@ rotation: 0,
 layerName: "BackgroundDecals",
 texture: VolcanoInnShopBuilding
 }),
+VolcanoTempleExterior: resolveDecalGameObject({
+    x: 432,
+y: 288,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoTempleExterior
+}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":88,"y":288,"width":768,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 Player: {"type":"Player","x":776,"y":272,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
@@ -7635,7 +7647,10 @@ PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":156,"y":226,"
 // @ts-ignore
 PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":199,"y":185,"width":56,"flippedX":false,"flippedY":false,"uid":"55841307_39","visible":false,"name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":168,"y":193,"width":24,"flippedX":false,"flippedY":false,"uid":"55841307_40","visible":false,"name":"","depth":0})
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":168,"y":193,"width":24,"flippedX":false,"flippedY":false,"uid":"55841307_40","visible":false,"name":"","depth":0}),
+// @ts-ignore
+Door_2: resolveDoor({"type":"Door","x":456,"y":256,"flippedX":false,"flippedY":false,"uid":"55913988_41","levelName":"VolcanoTemple","checkpointName":"","name":"","depth":0}),
+FromTemple: {"type":"Checkpoint","x":432,"y":288,"flippedX":false,"flippedY":false,"uid":"55940370_42","name":"FromTemple","faceRight":false,"depth":0}
 };
 }
 };
