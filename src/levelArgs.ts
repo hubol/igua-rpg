@@ -1,6 +1,6 @@
 // This file is generated. Do not touch.
-import { resolveDoor } from "./gameObjects/door";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
+import { resolveDoor } from "./gameObjects/door";
 import { resolveRegion } from "./gameObjects/region";
 import { resolveBlock } from "./gameObjects/walls";
 import { resolveSlopeLeft } from "./gameObjects/walls";
@@ -7650,7 +7650,17 @@ PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":199,"y":185
 PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":168,"y":193,"width":24,"flippedX":false,"flippedY":false,"uid":"55841307_40","visible":false,"name":"","depth":0}),
 // @ts-ignore
 Door_2: resolveDoor({"type":"Door","x":456,"y":256,"flippedX":false,"flippedY":false,"uid":"55913988_41","levelName":"VolcanoTemple","checkpointName":"","name":"","depth":0}),
-FromTemple: {"type":"Checkpoint","x":432,"y":288,"flippedX":false,"flippedY":false,"uid":"55940370_42","name":"FromTemple","faceRight":false,"depth":0}
+FromTemple: {"type":"Checkpoint","x":432,"y":288,"flippedX":false,"flippedY":false,"uid":"55940370_42","name":"FromTemple","faceRight":false,"depth":0},
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":342,"y":246,"width":180,"flippedX":false,"flippedY":false,"uid":"55841307_44","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":367,"y":204,"width":129,"flippedX":false,"flippedY":false,"uid":"55841307_45","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_5: resolvePipeHorizontal({"type":"PipeHorizontal","x":391,"y":162,"width":81,"flippedX":false,"flippedY":false,"uid":"55841307_46","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":414,"y":120,"width":35,"flippedX":false,"flippedY":false,"uid":"55841307_47","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":428,"y":99,"width":7,"flippedX":false,"flippedY":false,"uid":"55841307_48","visible":false,"name":"","depth":0})
 };
 }
 };
