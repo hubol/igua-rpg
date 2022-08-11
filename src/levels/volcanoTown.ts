@@ -14,7 +14,6 @@ export function VolcanoTown() {
     jukebox.play(VolcanoSomething).warm(VolcanoCaveMusic, SomberVolcano, Temple);
 
     mirror(level.PubWindow.width, level.PubWindow.height, 0x9F4F5D, 0xC38792).at(level.PubWindow).behind();
-    level.Chimney.hueShift = 340;
 
     cracks(3245.1269, 0x481018).show(scene.parallax1Stage);
     heatWaves(scene.width + 256, 80).at(-128, 300 - 30).show(scene.parallax1Stage);

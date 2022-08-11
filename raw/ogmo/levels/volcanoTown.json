@@ -535,12 +535,50 @@
           "name": "PipeHorizontal",
           "id": 48,
           "_eid": "55841307",
-          "x": 428,
+          "x": 425,
           "y": 99,
-          "width": 7,
+          "width": 13,
           "originX": 0,
           "originY": 0,
           "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 49,
+          "_eid": "55823268",
+          "x": 304,
+          "y": 267,
+          "width": 48,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 50,
+          "_eid": "55845599",
+          "x": 352,
+          "y": 267,
+          "width": 64,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 51,
+          "_eid": "55824435",
+          "x": 240,
+          "y": 267,
+          "width": 64,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -555,22 +593,22 @@
       "gridCellsY": 40,
       "decals": [
         {
-          "x": 240,
-          "y": 296,
-          "scaleX": 1,
+          "x": 204,
+          "y": 303,
+          "scaleX": -1,
           "scaleY": 1,
-          "rotation": 0,
+          "rotation": 1.5707963267948966,
           "texture": "volcano/mineral debris.png",
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
         },
         {
-          "x": 210.59289835728964,
-          "y": 298.0737757830632,
+          "x": 164.59289835728964,
+          "y": 303.0737757830632,
           "scaleX": 1,
           "scaleY": -1,
-          "rotation": 0,
+          "rotation": 1.5707963267948966,
           "texture": "volcano/mineral debris.png",
           "originX": 0.5,
           "originY": 0.5,
@@ -588,7 +626,41 @@
       "gridCellHeight": 8,
       "gridCellsX": 107,
       "gridCellsY": 40,
-      "decals": [],
+      "decals": [
+        {
+          "x": 303.7924084823596,
+          "y": 136.4314040811575,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 335.5249247179295,
+          "y": 127.85504834181428,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 272.4887100337569,
+          "y": 129.7847283831665,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {
@@ -632,6 +704,39 @@
           "texture": "volcano/temple exterior.png",
           "originX": 0.5,
           "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 303.8718512710436,
+          "y": 172.20932237684607,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/crystal.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 325.72834537844824,
+          "y": 164.3093847476637,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/crystal.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 537.7100050948424,
+          "y": 279.3851428794205,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/crystal.png",
+          "originX": 0.5,
+          "originY": 0.5,
           "values": {"name": ""}
         }
       ],

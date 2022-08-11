@@ -1,13 +1,14 @@
 // This file is generated. Do not touch.
+import { resolveSlopeRight } from "./gameObjects/walls";
+import { resolveSlopeLeft } from "./gameObjects/walls";
+import { resolveBlock } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveRegion } from "./gameObjects/region";
-import { resolveBlock } from "./gameObjects/walls";
-import { resolveSlopeLeft } from "./gameObjects/walls";
-import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDecalGameObject } from "./gameObjects/decal";
+import { VolcanoCrystal } from "./textures";
 import { VolcanoTempleExterior } from "./textures";
 import { VolcanoInnShopBuilding } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
@@ -7521,25 +7522,58 @@ height: 320,
 gameObjectsSupplier: () => {
   return {
     VolcanoMineralDebris: resolveDecalGameObject({
-    x: 240,
-y: 296,
+    x: 204,
+y: 303,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 1.5707963267948966,
+layerName: "FrontDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_1: resolveDecalGameObject({
+    x: 164.59289835728964,
+y: 303.0737757830632,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 1.5707963267948966,
+layerName: "FrontDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_2: resolveDecalGameObject({
+    x: 303.7924084823596,
+y: 136.4314040811575,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-layerName: "FrontDecals",
+layerName: "TerrainDecals",
 texture: VolcanoMineralDebris
 }),
-VolcanoMineralDebris_1: resolveDecalGameObject({
-    x: 210.59289835728964,
-y: 298.0737757830632,
+VolcanoMineralDebris_3: resolveDecalGameObject({
+    x: 335.5249247179295,
+y: 127.85504834181428,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_4: resolveDecalGameObject({
+    x: 272.4887100337569,
+y: 129.7847283831665,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
 scaleY: -1,
 rotation: 0,
-layerName: "FrontDecals",
+layerName: "TerrainDecals",
 texture: VolcanoMineralDebris
 }),
 Chimney: resolveDecalGameObject({
@@ -7574,6 +7608,39 @@ scaleY: 1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: VolcanoTempleExterior
+}),
+VolcanoCrystal: resolveDecalGameObject({
+    x: 303.8718512710436,
+y: 172.20932237684607,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystal
+}),
+VolcanoCrystal_1: resolveDecalGameObject({
+    x: 325.72834537844824,
+y: 164.3093847476637,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystal
+}),
+VolcanoCrystal_2: resolveDecalGameObject({
+    x: 537.7100050948424,
+y: 279.3851428794205,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystal
 }),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":88,"y":288,"width":768,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
@@ -7660,7 +7727,13 @@ PipeHorizontal_5: resolvePipeHorizontal({"type":"PipeHorizontal","x":391,"y":162
 // @ts-ignore
 PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":414,"y":120,"width":35,"flippedX":false,"flippedY":false,"uid":"55841307_47","visible":false,"name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":428,"y":99,"width":7,"flippedX":false,"flippedY":false,"uid":"55841307_48","visible":false,"name":"","depth":0})
+PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":425,"y":99,"width":13,"flippedX":false,"flippedY":false,"uid":"55841307_48","visible":false,"name":"","depth":0}),
+// @ts-ignore
+Block_16: resolveBlock({"type":"Block","x":304,"y":267,"width":48,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_49","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_5: resolveSlopeLeft({"type":"SlopeLeft","x":352,"y":267,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_50","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_6: resolveSlopeRight({"type":"SlopeRight","x":240,"y":267,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_51","name":"","depth":0})
 };
 }
 };
