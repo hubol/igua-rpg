@@ -2,6 +2,11 @@ import { Howl } from 'howler';
     
 // This file is generated. Do not touch.
 
+export const AboveVolcano = new Howl({
+    src: [require("./music/above-volcano.ogg"), require("./music/above-volcano.mp3")],
+    preload: false
+});
+
 export const Bluehouse = new Howl({
     src: [require("./music/bluehouse.ogg"), require("./music/bluehouse.mp3")],
     preload: false
