@@ -160,6 +160,16 @@
           "originX": 14,
           "originY": 18,
           "values": {"title": "Volcano", "message": "This way to the volcano.", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 14,
+          "_eid": "55940370",
+          "x": 280,
+          "y": 216,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "DefeatedBoss", "faceRight": false, "depth": 0}
         }
       ]
     },
@@ -218,7 +228,17 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 29.50248228231385, "y": 260.01497775151984, "scaleX": -1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "volcano/mineral debris.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 29.50248228231385,
+          "y": 260.01497775151984,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 1.5707963267948966,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },

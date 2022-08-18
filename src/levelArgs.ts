@@ -3673,7 +3673,8 @@ FromVolcano: {"type":"Checkpoint","x":56,"y":216,"flippedX":false,"flippedY":fal
 ActivateBossRegion: resolveRegion({"type":"Region","x":168,"y":136,"width":224,"height":80,"flippedX":false,"flippedY":false,"uid":"25971607_11","name":"ActivateBossRegion","depth":0}),
 BossCamera: {"type":"Anchor","x":152,"y":0,"flippedX":false,"flippedY":false,"uid":"25979726_12","name":"BossCamera","depth":0},
 // @ts-ignore
-Sign: resolveSign({"type":"Sign","x":120,"y":216,"flippedX":false,"flippedY":false,"uid":"86706091_13","title":"Volcano","message":"This way to the volcano.","name":"","depth":0})
+Sign: resolveSign({"type":"Sign","x":120,"y":216,"flippedX":false,"flippedY":false,"uid":"86706091_13","title":"Volcano","message":"This way to the volcano.","name":"","depth":0}),
+DefeatedBoss: {"type":"Checkpoint","x":280,"y":216,"flippedX":false,"flippedY":false,"uid":"55940370_14","name":"DefeatedBoss","faceRight":false,"depth":0}
 };
 }
 };

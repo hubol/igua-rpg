@@ -59,6 +59,7 @@ export function JungleBossArena() {
             player.invulnerableFrameCount += 120;
             player.withStep(() => player.visible = true);
             await sleep(1);
+            progress.checkpointName = 'DefeatedBoss';
             progress.flags.jungle.defeatedUnorthodoxAngel = true;
             await persistence.save();
             scene.gameObjectStage.withAsync(keepValuableTroveInOkSpot);
