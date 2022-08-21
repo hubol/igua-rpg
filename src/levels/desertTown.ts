@@ -116,6 +116,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
             lastStackedCrate
                 ? { x: lastStackedCrate.x + Math.round(rng.polar * 6), y: lastStackedCrate.y - lastStackedCrate.height }
                 : level.DropCrateAnchor).behind();
+        nextCrate.withInteraction(stackCrateByPlayer);
         resolvePipeHorizontal({ ...vector(nextCrate), width: nextCrate.width, visible: false } as any);
         lastStackedCrate = nextCrate;
         if (playSound && isOnScreen(level.DropCrateAnchor))
@@ -164,8 +165,9 @@ function enhanceCrateStacker(level: DesertTownLevel)
             }
             else {
                 await show("I hope the ballon I gave you was useful.");
-                await show("Before the invaders came, we used to play with ballons all the time.");
-                await show("Once, someone I knew made a fortress in the sky.");
+                await show("Before the invaders came, we used ballons all the time.");
+                await show("Once, someone I knew told me of a city in the sky.");
+                await show("I think it would take a lot of ballons to get there.");
             }
         }
         else if (tiredOfWorking)
@@ -218,7 +220,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
 
     crates.forEach(x => x.withInteraction(crateInteraction));
 
-    level.DropCrateRegion.withInteraction(() => {
+    function stackCrateByPlayer() {
         if (!playerHasCrate)
             return;
 
@@ -227,7 +229,9 @@ function enhanceCrateStacker(level: DesertTownLevel)
         cutscene.play(async () => {
             await show("You placed the crate.");
         });
-    });
+    }
+
+    level.DropCrateRegion.withInteraction(stackCrateByPlayer);
 }
 
 function enhanceDigSpot(level: DesertTownLevel)
