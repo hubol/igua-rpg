@@ -7,6 +7,11 @@ export const AboveVolcano = new Howl({
     preload: false
 });
 
+export const AnotherHouse = new Howl({
+    src: [require("./music/another-house.ogg"), require("./music/another-house.mp3")],
+    preload: false
+});
+
 export const Bluehouse = new Howl({
     src: [require("./music/bluehouse.ogg"), require("./music/bluehouse.mp3")],
     preload: false
