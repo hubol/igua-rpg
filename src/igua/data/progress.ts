@@ -7,13 +7,17 @@ export function getInitialProgress()
     return {
         version: 1,
         health: 100,
-        maxHealth: 100,
         valuables: 100,
         looks: getDefaultLooks(),
-        level: 1,
-        poisonLevel: 0,
-        intelligenceLevel: 0,
-        ballons: [] as number[],
+        status: {
+            poison: 0,
+            ballons: [] as number[],
+        },
+        levels: {
+            strength: 1,
+            intelligence: 0,
+            vigor: 0,
+        },
         inventory: [] as (PotionType | undefined)[],
         shopPurchases: {} as Record<PotionType, number | undefined>,
         levelName: "ChooseYourLooksBeginning",

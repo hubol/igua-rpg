@@ -2,6 +2,7 @@ import {inventory} from "./inventory";
 import {PotionType} from "./potions";
 import {progress} from "../data/progress";
 import {ConsumeBallon, ConsumeBerry, ConsumeElixir, ConsumeMedicine, ConsumePoison, ConsumePowder} from "../../sounds";
+import {derivedStats} from "../gameplay/derivedStats";
 
 export function consumePotion(index: number) {
     const potion = inventory.get(index);
@@ -14,28 +15,28 @@ export function consumePotion(index: number) {
 function consumePotionImpl(potion: PotionType) {
     switch (potion) {
         case "WonderBallon":
-            progress.ballons.push(1);
+            progress.status.ballons.push(1);
             ConsumeBallon.play();
             break;
         case "CommonPoison":
             ConsumePoison.play();
-            progress.poisonLevel += 1;
+            progress.status.poison += 1;
             break;
         case "SpicedNectar":
             ConsumeElixir.play();
-            progress.maxHealth += 15;
+            progress.levels.vigor += 1;
             break;
         case "BitterMedicine":
             ConsumeMedicine.play();
-            progress.poisonLevel = 0;
+            progress.status.poison = 0;
             break;
         case "SweetBerry":
             ConsumeBerry.play();
-            progress.health = Math.min(progress.maxHealth, progress.health + progress.maxHealth * .334);
+            progress.health = Math.min(derivedStats.maxHealth, progress.health + derivedStats.maxHealth * .334);
             break;
         case "ClawPowder":
             ConsumePowder.play();
-            progress.level += 1;
+            progress.levels.strength += 1;
             break;
 
     }

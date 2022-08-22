@@ -10,7 +10,7 @@ export function messageBox(message: string) {
     return container(
         Sprite.from(MessageBox),
         IguaText.Large(message, { maxWidth: 196 }).at(6, 6))
-    .at(24, progress.poisonLevel > 0 ? 38 : 27);
+    .at(24, progress.status.poison > 0 ? 38 : 27);
 }
 
 export async function show(message: string)

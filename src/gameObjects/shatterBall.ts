@@ -108,7 +108,7 @@ export function shatterBall(radius = 20) {
     }
 
     function advanceCrackPath({ path }: Crack, dv: Vector) {
-        const crackFactor = Math.min(radius / 2, progress.level + 1);
+        const crackFactor = Math.min(radius / 2, progress.levels.strength + 1);
         const randomize = path.length > 1;
         const crackVector = dv.vcpy();
         if (randomize)

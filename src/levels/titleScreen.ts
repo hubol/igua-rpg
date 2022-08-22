@@ -179,7 +179,7 @@ function saveFileInfo() {
             c.visible = true;
             headContainer.removeAllChildren();
             headContainer.addChild(iguanaHead(makeIguanaPuppetArgsFromLooks(progress.looks)));
-            level.text = `Claw Level ${progress.level}`;
+            level.text = `Claw Level ${progress.levels.strength}`;
             completion.text = Math.floor(getCompletion(progress) * 100).toFixed(0) + '%';
             valuables.text = progress.valuables.toString();
             return c;

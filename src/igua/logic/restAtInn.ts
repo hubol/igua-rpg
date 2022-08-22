@@ -8,6 +8,7 @@ import {InnRefresh} from "../../sounds";
 import {persistence} from "../data/persistence";
 import {ask} from "../../cutscene/ask";
 import {spendValuables} from "./spendValuables";
+import {derivedStats} from "../gameplay/derivedStats";
 
 export async function restAtInn() {
     player.mods.add(Sleepy);
@@ -15,11 +16,11 @@ export async function restAtInn() {
     const rate = fasterRest ? 0.75 : 0.25;
     const minMs = fasterRest ? 3_000 : 4_000;
     await Promise.all([
-        wait(() => (progress.health = Math.min(progress.health + rate, progress.maxHealth)) >= progress.maxHealth),
+        wait(() => (progress.health = Math.min(progress.health + rate, derivedStats.maxHealth)) >= derivedStats.maxHealth),
         sleep(minMs) ]);
     await show("Full health restored!");
     InnRefresh.play();
-    progress.poisonLevel = Math.min(progress.poisonLevel, 1);
+    progress.status.poison = Math.min(progress.status.poison, 1);
     player.mods.remove(Sleepy);
     await persistence.save();
 }

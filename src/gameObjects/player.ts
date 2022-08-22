@@ -16,6 +16,7 @@ import {ballons, DisplayState} from "./ballons";
 import {game} from "../igua/game";
 import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
 import {showQuitMenu} from "../igua/inventory/showQuitMenu";
+import {derivedStats} from "../igua/gameplay/derivedStats";
 
 export function playerPuppetArgs() {
     return makeIguanaPuppetArgsFromLooks(progress.looks);
@@ -85,7 +86,7 @@ function createPlayer(behavior = true)
                 switch (effect) {
                     case "poison":
                         EffectPoison.play();
-                        progress.poisonLevel += 1;
+                        progress.status.poison += 1;
                         break;
                 }
 
@@ -121,7 +122,7 @@ function createPlayer(behavior = true)
                 return true;
             },
             get strength() {
-                return 10 + (progress.level - 1) * 5;
+                return derivedStats.attackPower;
             }
         });
 
@@ -158,20 +159,20 @@ function createPlayer(behavior = true)
         if (playerKey.justWentDown("Escape"))
             showQuitMenu();
 
-        if (playerCharacterHasControl() && progress.health > 5 && progress.poisonLevel > 0)
-            player.drain(Math.min(progress.health - 5, 0.01 * Math.pow(progress.poisonLevel, 2)));
+        if (playerCharacterHasControl() && progress.health > 5 && progress.status.poison > 0)
+            player.drain(Math.min(progress.health - 5, 0.01 * Math.pow(progress.status.poison, 2)));
 
         if (!engine.isOnGround) {
             ballonLifeTick = (ballonLifeTick + 1) % 60;
             if (playerCharacterHasControl() && ballonLifeTick === 0) {
-                for (let i = 0; i < progress.ballons.length; i++)
-                    progress.ballons[i] -= 1 / 59.5;
+                for (let i = 0; i < progress.status.ballons.length; i++)
+                    progress.status.ballons[i] -= 1 / 59.5;
             }
         }
 
-        const baseSpeed = !progress.poisonLevel ? 2.5 : 3.25;
-        player.engine.walkSpeed = baseSpeed + Math.max(0, 0.5 * (progress.poisonLevel - 1));
-        player.engine.gravity = Math.max(0.02, 0.15 - Math.min(1, progress.ballons.length) * 0.01 - Math.max(0, progress.ballons.length - 1) * 0.00625);
+        const baseSpeed = !progress.status.poison ? 2.5 : 3.25;
+        player.engine.walkSpeed = baseSpeed + Math.max(0, 0.5 * (progress.status.poison - 1));
+        player.engine.gravity = Math.max(0.02, 0.15 - Math.min(1, progress.status.ballons.length) * 0.01 - Math.max(0, progress.status.ballons.length - 1) * 0.00625);
 
         player.isDucking = (playerKey.isDown("ArrowDown") && engine.coyote > 0) || player.mods.has(Sleepy);
 
@@ -229,9 +230,9 @@ function createPlayer(behavior = true)
         }
     }
 
-    if (progress.ballons.length !== displayState.length)
+    if (progress.status.ballons.length !== displayState.length)
         displayState = [];
-    ballons({ target: player, state: progress.ballons, offset, string: 24, ticker: game.hudStage.ticker, displayState });
+    ballons({ target: player, state: progress.status.ballons, offset, string: 24, ticker: game.hudStage.ticker, displayState });
 
     return player;
 }

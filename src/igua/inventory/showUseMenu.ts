@@ -116,7 +116,7 @@ function useImpl() {
     InventoryOpen.play();
 
     const clawLevel = IguaText.Large("", { tint: 0x00ff00 })
-        .withStep(() => clawLevel.text = `Claw Level ${progress.level}`)
+        .withStep(() => clawLevel.text = `Claw Level ${progress.levels.strength}`)
         .at(255, 256);
     clawLevel.anchor.set(1, 1);
 

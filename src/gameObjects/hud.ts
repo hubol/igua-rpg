@@ -4,6 +4,7 @@ import {player} from "./player";
 import {scene} from "../igua/scene";
 import {IguaText} from "../igua/text";
 import {clownHealthUi} from "./utils/clownUtils";
+import {derivedStats} from "../igua/gameplay/derivedStats";
 
 export function hud()
 {
@@ -11,7 +12,7 @@ export function hud()
         .withStep(() => {
             healthbar.clear();
             healthbar.beginFill(0xff0000);
-            healthbar.drawRect(0, 0, progress.maxHealth, 16);
+            healthbar.drawRect(0, 0, derivedStats.maxHealth, 16);
             healthbar.beginFill(0x0000ff);
             healthbar.drawRect(0, 0, Math.max(Math.sign(progress.health), progress.health), 16);
         });
@@ -26,13 +27,13 @@ export function hud()
 
     const poisoned = IguaText.Large("You are poisoned", { tint: 0x00ff00 })
         .withStep(() => {
-            poisoned.visible = progress.poisonLevel > 0;
+            poisoned.visible = progress.status.poison > 0;
             if (!poisoned.visible)
                 return;
-            if (progress.poisonLevel < 2)
+            if (progress.status.poison < 2)
                 poisoned.text = "You are poisoned";
             else
-                poisoned.text = `You are poisoned x${Math.floor(progress.poisonLevel)}`;
+                poisoned.text = `You are poisoned x${Math.floor(progress.status.poison)}`;
         })
         .at(2, 24);
 

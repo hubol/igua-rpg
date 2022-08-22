@@ -45,7 +45,7 @@ function secretCloud(d: Sprite) {
     d.withStep(() => {
         if (rectangleDistance(d, player) < 64 && player.x >= d.x)
             framesNear++;
-        if (framesNear === 4 * 60 || progress.intelligenceLevel > 0) {
+        if (framesNear === 4 * 60 || progress.levels.intelligence > 0) {
             const b = d.getBounds();
             const p = resolvePipeHorizontal({x: scene.camera.x + b.x, y: Math.round(scene.camera.y + b.y + b.height / 2), width: b.width, height: 8} as any);
             p.visible = false;

@@ -49,7 +49,7 @@ export function UnrealDuckStump() {
     });
 
     scene.gameObjectStage.withAsync(async () => {
-        await wait(() => progress.ballons.length > 0);
+        await wait(() => progress.status.ballons.length > 0);
         resolveTreeStumpDestructive(level.StumpBallonPosition as any);
         level.FinalStump.destroy();
     });
