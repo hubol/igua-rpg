@@ -6,6 +6,9 @@ export const inventory = {
     get usedSlotsCount() {
         return progress.inventory.filter(x => x).length;
     },
+    get freeSlotsCount() {
+        return this.slotsCount - this.usedSlotsCount;
+    },
     get isFull() {
         return this.usedSlotsCount >= this.slotsCount;
     },

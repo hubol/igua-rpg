@@ -579,6 +579,16 @@
           "originY": 0,
           "flippedY": false,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 52,
+          "_eid": "56004563",
+          "x": 495.0926416251212,
+          "y": 157.99299500729916,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -656,6 +666,17 @@
           "scaleY": -1,
           "rotation": 0,
           "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 496,
+          "y": 120,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/chain.png",
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
@@ -737,6 +758,17 @@
           "texture": "volcano/crystal.png",
           "originX": 0.5,
           "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 368,
+          "y": 88,
+          "scaleX": 3,
+          "scaleY": 4,
+          "rotation": -1.5707963267948966,
+          "texture": "glowing edge.png",
+          "originX": 0,
+          "originY": 0,
           "values": {"name": ""}
         }
       ],

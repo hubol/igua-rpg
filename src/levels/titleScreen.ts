@@ -19,6 +19,7 @@ import {PurchaseFail} from "../sounds";
 import {getCompletion} from "../igua/data/getCompletion";
 import {jukebox} from "../igua/jukebox";
 import {TitleScreen as Music} from "../musics";
+import {Vibratey} from "../igua/puppet/mods/vibratey";
 
 export async function TitleScreen() {
     jukebox.play(Music);
@@ -145,15 +146,7 @@ function character() {
             const puppet = iguanaPuppet(makeIguanaPuppetArgsFromLooks(looks));
             if (scared) {
                 puppet.duckImmediately();
-                puppet.withAsync(async () => {
-                    const ms = 100;
-                    while (true) {
-                        puppet.x += 1;
-                        await sleep(ms);
-                        puppet.x -= 1;
-                        await sleep(ms);
-                    }
-                })
+                puppet.mods.add(Vibratey);
             }
             c.addChild(puppet);
         }

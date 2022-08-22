@@ -6,6 +6,8 @@ import {SomberVolcano, Temple, VolcanoCaveMusic, VolcanoSomething} from "../musi
 import {cracks} from "../gameObjects/cracks";
 import {heatWaves} from "../gameObjects/heatWaves";
 import {mirror} from "../gameObjects/mirror";
+import {prankster} from "../gameObjects/prankster";
+import {player} from "../gameObjects/player";
 
 export function VolcanoTown() {
     scene.backgroundColor = 0x78917D;
@@ -17,4 +19,6 @@ export function VolcanoTown() {
 
     cracks(3245.1269, 0x481018).show(scene.parallax1Stage);
     heatWaves(scene.width + 256, 80).at(-128, 300 - 30).show(scene.parallax1Stage);
+
+    prankster().at([64, 0].add(player));
 }

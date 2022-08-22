@@ -149,6 +149,7 @@ export let PoppingRock: PIXI.Texture;
 export let PoppingRocksBox: PIXI.Texture;
 export let PotteryOrangeDamaged: PIXI.Texture;
 export let PotteryOrange: PIXI.Texture;
+export let PrisonTiny: PIXI.Texture;
 export let Rainbow1: PIXI.Texture;
 export let Rainbow2: PIXI.Texture;
 export let RightPipeEnd: PIXI.Texture;
@@ -653,6 +654,9 @@ export function loadTexturesAsync()
     const PotteryOrangePath = require("./images/pottery orange.png");
     loader.add(PotteryOrangePath); 
 
+    const PrisonTinyPath = require("./images/prison tiny.png");
+    loader.add(PrisonTinyPath); 
+
     const Rainbow1Path = require("./images/rainbow1.png");
     loader.add(Rainbow1Path); 
 
@@ -975,6 +979,7 @@ export function loadTexturesAsync()
             PoppingRocksBox = resources[PoppingRocksBoxPath]?.texture as PIXI.Texture;
             PotteryOrangeDamaged = resources[PotteryOrangeDamagedPath]?.texture as PIXI.Texture;
             PotteryOrange = resources[PotteryOrangePath]?.texture as PIXI.Texture;
+            PrisonTiny = resources[PrisonTinyPath]?.texture as PIXI.Texture;
             Rainbow1 = resources[Rainbow1Path]?.texture as PIXI.Texture;
             Rainbow2 = resources[Rainbow2Path]?.texture as PIXI.Texture;
             RightPipeEnd = resources[RightPipeEndPath]?.texture as PIXI.Texture;

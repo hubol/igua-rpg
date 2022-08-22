@@ -36,7 +36,7 @@ function playerPuppet() {
     return puppet;
 }
 
-type Player = ReturnType<typeof createPlayer>;
+export type Player = ReturnType<typeof createPlayer>;
 export let player: Player;
 
 export function setPlayer(newPlayer: Player) {

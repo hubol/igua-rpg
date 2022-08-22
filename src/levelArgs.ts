@@ -1,4 +1,5 @@
 // This file is generated. Do not touch.
+import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveBlock } from "./gameObjects/walls";
@@ -8,16 +9,16 @@ import { resolveRegion } from "./gameObjects/region";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveDecalGameObject } from "./gameObjects/decal";
+import { GlowingEdge } from "./textures";
 import { VolcanoCrystal } from "./textures";
 import { VolcanoTempleExterior } from "./textures";
 import { VolcanoInnShopBuilding } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
+import { VolcanoChain } from "./textures";
 import { VolcanoMineralDebris } from "./textures";
-import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { KeyRed } from "./textures";
 import { GlowingCircle } from "./textures";
-import { VolcanoChain } from "./textures";
 import { resolveNpc } from "./gameObjects/npc";
 import { RoseVase } from "./textures";
 import { BookCollection } from "./textures";
@@ -71,7 +72,6 @@ import { DinerTable } from "./textures";
 import { JunglePlankDecoration } from "./textures";
 import { DontPoster } from "./textures";
 import { JungleBrushHeavy } from "./textures";
-import { GlowingEdge } from "./textures";
 import { CloudLong } from "./textures";
 import { JungleTreeRoot } from "./textures";
 import { PaSpeaker } from "./textures";
@@ -7584,6 +7584,17 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: VolcanoMineralDebris
 }),
+VolcanoChain: resolveDecalGameObject({
+    x: 496,
+y: 120,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoChain
+}),
 Chimney: resolveDecalGameObject({
     x: 232,
 y: 184,
@@ -7649,6 +7660,17 @@ scaleY: -1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: VolcanoCrystal
+}),
+GlowingEdge: resolveDecalGameObject({
+    x: 368,
+y: 88,
+originX: 0,
+originY: 0,
+scaleX: 3,
+scaleY: 4,
+rotation: -1.5707963267948966,
+layerName: "BackgroundDecals",
+texture: GlowingEdge
 }),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":88,"y":288,"width":768,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
@@ -7741,7 +7763,9 @@ Block_16: resolveBlock({"type":"Block","x":304,"y":267,"width":48,"height":24,"f
 // @ts-ignore
 SlopeLeft_5: resolveSlopeLeft({"type":"SlopeLeft","x":352,"y":267,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55845599_50","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_6: resolveSlopeRight({"type":"SlopeRight","x":240,"y":267,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_51","name":"","depth":0})
+SlopeRight_6: resolveSlopeRight({"type":"SlopeRight","x":240,"y":267,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_51","name":"","depth":0}),
+// @ts-ignore
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":495.0926416251212,"y":157.99299500729916,"flippedX":false,"flippedY":false,"uid":"56004563_52","name":"","depth":0})
 };
 }
 };

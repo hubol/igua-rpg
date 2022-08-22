@@ -73,8 +73,10 @@ export function getInitialFlags()
             discussedOpeningDesertTemple: false,
         },
         volcano: {
+            satisfiedPrankster: false,
             key: {
                 hiddenInCave: false,
+                fromPrankster: false,
             },
             bigKey: {
                 piece1: false,
