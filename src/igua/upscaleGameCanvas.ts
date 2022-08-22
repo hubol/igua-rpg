@@ -41,7 +41,5 @@ function makeDoUpscale(canvas: HTMLCanvasElement)
 
 function getSteppedScale(linearScale: number)
 {
-    if (window.devicePixelRatio > 0)
-        return Math.max(1, Math.floor(linearScale * window.devicePixelRatio)) / window.devicePixelRatio;
     return Math.max(1, Math.floor(linearScale));
 }
