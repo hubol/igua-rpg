@@ -37,12 +37,16 @@ function upgradeProgressVersion(progress: Progress & Record<string, any>) {
         case undefined:
             progress.version = 1;
         case 1:
-            progress.levels.vigor = Math.round((progress.maxHealth - 100) / 15);
-            progress.levels.strength = progress.level;
-            progress.levels.intelligence = progress.intelligenceLevel;
+            progress.levels = {
+                vigor: Math.round((progress.maxHealth - 100) / 15),
+                strength: progress.level,
+                intelligence: progress.intelligenceLevel,
+            };
 
-            progress.status.poison = progress.poisonLevel;
-            progress.status.ballons = progress.ballons;
+            progress.status = {
+                poison: progress.poisonLevel,
+                ballons: progress.ballons
+            };
 
             progress.version = 2;
     }
