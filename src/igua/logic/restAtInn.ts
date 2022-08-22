@@ -35,7 +35,7 @@ export async function chargeToRestAtInn(beforeRestAtInn: () => Promise<unknown>,
             await restAtInn();
         }
         else
-            await show("You dont have enough money.");
+            await show("You don't have enough money.");
     }
     else
         await show("Come back later!")
