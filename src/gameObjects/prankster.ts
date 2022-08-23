@@ -75,9 +75,11 @@ export function prankster() {
         }
     })
 
-    npc.ext.vibrateMs = 200;
-    npc.mods.add(Vibratey);
-    npc.duckImmediately();
+    if (!volcano.satisfiedPrankster) {
+        npc.ext.vibrateMs = 200;
+        npc.mods.add(Vibratey);
+        npc.duckImmediately();
+    }
 
     return npc;
 }
