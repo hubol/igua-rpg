@@ -1,4 +1,5 @@
 // This file is generated. Do not touch.
+import { resolveGate } from "./gameObjects/gate";
 import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveSlopeLeft } from "./gameObjects/walls";
@@ -7,7 +8,6 @@ import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveRegion } from "./gameObjects/region";
 import { resolveSign } from "./gameObjects/sign";
-import { resolveGate } from "./gameObjects/gate";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { GlowingEdge } from "./textures";
 import { VolcanoCrystal } from "./textures";
@@ -6929,6 +6929,33 @@ Hint: {"type":"Anchor","x":200,"y":208,"flippedX":false,"flippedY":false,"uid":"
 }
 };
 
+export const VolcanoAboveArgs = {
+    width: 512,
+height: 320,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":256,"width":104,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":168,"y":256,"width":344,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+Player: {"type":"Player","x":192,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":120,"width":56,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":0,"y":64,"width":32,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_4","name":"","depth":0}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":328,"y":160,"width":80,"height":96,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":408,"y":88,"width":104,"height":168,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":256,"y":160,"width":72,"flippedX":false,"flippedY":false,"uid":"55841307_7","visible":true,"name":"","depth":0}),
+Prankster: {"type":"Anchor","x":280,"y":160,"flippedX":false,"flippedY":false,"uid":"25979726_8","name":"Prankster","depth":0},
+// @ts-ignore
+Gate: resolveGate({"type":"Gate","x":104,"y":288,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_9","levelName":"VolcanoTown","checkpointName":"FromAbove","name":"","depth":0})
+};
+}
+};
+
 export const VolcanoCavernArgs = {
     width: 1072,
 height: 256,
@@ -7864,7 +7891,10 @@ SlopeLeft_5: resolveSlopeLeft({"type":"SlopeLeft","x":352,"y":267,"width":64,"he
 // @ts-ignore
 SlopeRight_6: resolveSlopeRight({"type":"SlopeRight","x":240,"y":267,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_51","name":"","depth":0}),
 // @ts-ignore
-ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":495.0926416251212,"y":157.99299500729916,"flippedX":false,"flippedY":false,"uid":"56004563_52","name":"","depth":0})
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":495.0926416251212,"y":157.99299500729916,"flippedX":false,"flippedY":false,"uid":"56004563_52","name":"","depth":0}),
+// @ts-ignore
+Gate_1: resolveGate({"type":"Gate","x":400,"y":0,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_53","levelName":"VolcanoAbove","checkpointName":"FromTown","name":"","depth":0}),
+FromAbove: {"type":"Checkpoint","x":432,"y":72,"flippedX":false,"flippedY":false,"uid":"55940370_54","name":"FromAbove","faceRight":true,"depth":0}
 };
 }
 };

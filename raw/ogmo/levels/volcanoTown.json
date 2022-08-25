@@ -589,6 +589,28 @@
           "originX": 8,
           "originY": 14,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 53,
+          "_eid": "55920197",
+          "x": 400,
+          "y": 0,
+          "width": 64,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "VolcanoAbove", "checkpointName": "FromTown", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 54,
+          "_eid": "55940370",
+          "x": 432,
+          "y": 72,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromAbove", "faceRight": true, "depth": 0}
         }
       ]
     },

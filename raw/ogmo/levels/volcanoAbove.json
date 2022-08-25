@@ -1,0 +1,184 @@
+{
+  "ogmoVersion": "3.4.0-hubol",
+  "width": 512,
+  "height": 320,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 40,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 0,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 256,
+          "width": 104,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 1,
+          "_eid": "55823268",
+          "x": 168,
+          "y": 256,
+          "width": 344,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 2,
+          "_eid": "55988047",
+          "x": 192,
+          "y": 256,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 3,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 120,
+          "width": 56,
+          "height": 136,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 4,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 64,
+          "width": 32,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 5,
+          "_eid": "55823268",
+          "x": 328,
+          "y": 160,
+          "width": 80,
+          "height": 96,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 6,
+          "_eid": "55823268",
+          "x": 408,
+          "y": 88,
+          "width": 104,
+          "height": 168,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 7,
+          "_eid": "55841307",
+          "x": 256,
+          "y": 160,
+          "width": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 8,
+          "_eid": "25979726",
+          "x": 280,
+          "y": 160,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Prankster", "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 9,
+          "_eid": "55920197",
+          "x": 104,
+          "y": 288,
+          "width": 64,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "VolcanoTown", "checkpointName": "FromAbove", "name": "", "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 40,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 40,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 40,
+      "decals": [],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 64,
+      "gridCellsY": 40,
+      "decals": [],
+      "folder": "../../src/images"
+    }
+  ]
+}
