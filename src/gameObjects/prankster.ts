@@ -87,12 +87,13 @@ export function prankster() {
 function cagedKey() {
     const { volcano } = progress.flags;
 
+    let count = 0;
     const cage = Sprite.from(PrisonTiny);
     const key = Sprite.from(KeyGreen)
         .at(4, 3)
         .withStep(() => {
-            key.ext.collectible = volcano.satisfiedPrankster && !cutscene.isPlaying;
-            cage.visible = !key.ext.collectible;
+            key.ext.collectible = volcano.satisfiedPrankster && !cutscene.isPlaying && count++ >= 20;
+            cage.visible = !volcano.satisfiedPrankster;
         })
         .asCollectible(volcano.key, 'fromPrankster');
 
