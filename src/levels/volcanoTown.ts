@@ -8,6 +8,8 @@ import {heatWaves} from "../gameObjects/heatWaves";
 import {mirror} from "../gameObjects/mirror";
 import {prankster} from "../gameObjects/prankster";
 import {player} from "../gameObjects/player";
+import {decalsOf} from "../gameObjects/decal";
+import {GroundSpeckles} from "../textures";
 
 export function VolcanoTown() {
     scene.backgroundColor = 0x78917D;
@@ -19,6 +21,7 @@ export function VolcanoTown() {
 
     cracks(3245.1269, 0x481018).show(scene.parallax1Stage);
     heatWaves(scene.width + 256, 80).at(-128, 300 - 30).show(scene.parallax1Stage);
+    decalsOf(GroundSpeckles).forEach(x => x.tinted(0x6D1913));
 
     prankster().at([64, 0].add(player));
 }

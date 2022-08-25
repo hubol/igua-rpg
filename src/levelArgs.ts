@@ -14,6 +14,7 @@ import { VolcanoCrystal } from "./textures";
 import { VolcanoTempleExterior } from "./textures";
 import { VolcanoInnShopBuilding } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
+import { GroundSpeckles } from "./textures";
 import { VolcanoChain } from "./textures";
 import { VolcanoMineralDebris } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
@@ -53,7 +54,6 @@ import { resolveTreeStumpDestructive } from "./gameObjects/treeStumpDestructive"
 import { resolveCommonClown } from "./gameObjects/commonClown";
 import { resolveSpike } from "./gameObjects/spike";
 import { resolvePath } from "./gameObjects/resolvePath";
-import { GroundSpeckles } from "./textures";
 import { CracksA } from "./textures";
 import { VineSmall } from "./textures";
 import { PoppingRocksBox } from "./textures";
@@ -7121,6 +7121,50 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: VolcanoChain
 }),
+GroundSpeckles: resolveDecalGameObject({
+    x: 427.4136394542653,
+y: 125.09904506465152,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_1: resolveDecalGameObject({
+    x: 1019.9936753074551,
+y: 121.62915545978575,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_2: resolveDecalGameObject({
+    x: 38.014917130438434,
+y: 220.3282375537458,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_3: resolveDecalGameObject({
+    x: 676.6432216897812,
+y: 236.82566151983525,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
 VolcanoPillarBroken_2: resolveDecalGameObject({
     x: 968,
 y: 136,
@@ -7594,6 +7638,61 @@ scaleY: 1,
 rotation: 0,
 layerName: "TerrainDecals",
 texture: VolcanoChain
+}),
+GroundSpeckles: resolveDecalGameObject({
+    x: 771.966961178674,
+y: 284.97556625338854,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_1: resolveDecalGameObject({
+    x: 204.93007172605934,
+y: 121.86193027911287,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_2: resolveDecalGameObject({
+    x: 87.05279743713716,
+y: 286.03725545153935,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_3: resolveDecalGameObject({
+    x: 491.3685928337703,
+y: 300.5245799185397,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_4: resolveDecalGameObject({
+    x: 548.0598924848547,
+y: 145.82459273507197,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
 }),
 Chimney: resolveDecalGameObject({
     x: 232,

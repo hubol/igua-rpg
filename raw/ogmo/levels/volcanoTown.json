@@ -680,6 +680,61 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 771.966961178674,
+          "y": 284.97556625338854,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 204.93007172605934,
+          "y": 121.86193027911287,
+          "scaleX": -1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 87.05279743713716,
+          "y": 286.03725545153935,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 491.3685928337703,
+          "y": 300.5245799185397,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 548.0598924848547,
+          "y": 145.82459273507197,
+          "scaleX": -1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "../../src/images"

@@ -8,6 +8,8 @@ import {progress} from "../igua/data/progress";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
 import {heatWaves} from "../gameObjects/heatWaves";
+import {decalsOf} from "../gameObjects/decal";
+import {GroundSpeckles} from "../textures";
 
 export function VolcanoCavern() {
     scene.backgroundColor = 0x78917D;
@@ -25,4 +27,5 @@ export function VolcanoCavern() {
 
     cracks(3245.1269, 0x481018).show(scene.parallax1Stage);
     heatWaves(scene.width + 256, 80).at(-128, 256 - 30).show(scene.parallax1Stage);
+    decalsOf(GroundSpeckles).forEach(x => x.tinted(0x6D1913));
 }

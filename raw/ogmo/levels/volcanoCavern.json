@@ -666,6 +666,50 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 427.4136394542653,
+          "y": 125.09904506465152,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 1019.9936753074551,
+          "y": 121.62915545978575,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 38.014917130438434,
+          "y": 220.3282375537458,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 676.6432216897812,
+          "y": 236.82566151983525,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "../../src/images"
