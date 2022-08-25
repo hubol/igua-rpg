@@ -35,6 +35,7 @@ import { resolveClownWonderful } from "./gameObjects/clownWonderful";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { KeyGreen } from "./textures";
+import { CloudLong } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { GlowingDiamond } from "./textures";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
@@ -72,7 +73,6 @@ import { DinerTable } from "./textures";
 import { JunglePlankDecoration } from "./textures";
 import { DontPoster } from "./textures";
 import { JungleBrushHeavy } from "./textures";
-import { CloudLong } from "./textures";
 import { JungleTreeRoot } from "./textures";
 import { PaSpeaker } from "./textures";
 import { CocktailGlass } from "./textures";
@@ -7076,6 +7076,105 @@ scaleY: 1,
 rotation: 0,
 layerName: "TerrainDecals",
 texture: SmallDecorativeRock
+}),
+GroundSpeckles: resolveDecalGameObject({
+    x: 357.9628823456876,
+y: 172.9029188417225,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_1: resolveDecalGameObject({
+    x: 199.13426518180154,
+y: 269.52629230523974,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_2: resolveDecalGameObject({
+    x: 75.03954043944121,
+y: 270.47358028037223,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_3: resolveDecalGameObject({
+    x: 437.21930959844184,
+y: 103.75089665704841,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+CloudLong: resolveDecalGameObject({
+    x: 88,
+y: 32,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 120,
+y: 40,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 264,
+y: 88,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_3: resolveDecalGameObject({
+    x: 424,
+y: 40,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_4: resolveDecalGameObject({
+    x: 392,
+y: 48,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
 }),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":256,"width":104,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),

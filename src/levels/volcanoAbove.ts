@@ -10,6 +10,8 @@ import {player} from "../gameObjects/player";
 import {distance} from "../utils/math/vector";
 import {Container} from "pixi.js";
 import {wait} from "../cutscene/wait";
+import {decalsOf} from "../gameObjects/decal";
+import {CloudLong, GroundSpeckles} from "../textures";
 
 export function VolcanoAbove() {
     scene.backgroundColor = 0x98C0E0;
@@ -29,5 +31,7 @@ export function VolcanoAbove() {
         })
     }
 
+    decalsOf(CloudLong).forEach(x => x.tinted(0xEFE1E2));
+    decalsOf(GroundSpeckles).forEach(x => x.tinted(0x490512));
     prankster().at([0, -3].add(level.Prankster));
 }
