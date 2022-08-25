@@ -7081,7 +7081,7 @@ texture: SmallDecorativeRock
 Block: resolveBlock({"type":"Block","x":0,"y":256,"width":104,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":168,"y":256,"width":344,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
-Player: {"type":"Player","x":192,"y":256,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
+Player: {"type":"Player","x":136,"y":272,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":true,"name":"","depth":0},
 // @ts-ignore
 Block_2: resolveBlock({"type":"Block","x":0,"y":120,"width":56,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
 // @ts-ignore
@@ -7094,7 +7094,7 @@ Block_5: resolveBlock({"type":"Block","x":408,"y":88,"width":104,"height":168,"f
 PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":256,"y":160,"width":72,"flippedX":false,"flippedY":false,"uid":"55841307_7","visible":true,"name":"","depth":0}),
 Prankster: {"type":"Anchor","x":280,"y":160,"flippedX":false,"flippedY":false,"uid":"25979726_8","name":"Prankster","depth":0},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":104,"y":288,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_9","levelName":"VolcanoTown","checkpointName":"FromAbove","name":"","depth":0}),
+ToTownGate: resolveGate({"type":"Gate","x":104,"y":304,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_9","levelName":"VolcanoTown","checkpointName":"FromAbove","name":"ToTownGate","depth":0}),
 // @ts-ignore
 PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":312,"y":224,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_10","visible":false,"name":"","depth":0}),
 // @ts-ignore
@@ -7106,7 +7106,8 @@ PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":256,"y":160,"flippedX"
 // @ts-ignore
 ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":44,"y":120,"flippedX":false,"flippedY":false,"uid":"56004563_14","name":"","depth":0}),
 // @ts-ignore
-ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":16,"y":64,"flippedX":false,"flippedY":false,"uid":"56004563_15","name":"","depth":0})
+ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":16,"y":64,"flippedX":false,"flippedY":false,"uid":"56004563_15","name":"","depth":0}),
+PlayerStopEntry: {"type":"Anchor","x":192,"y":264,"flippedX":false,"flippedY":false,"uid":"25979726_16","name":"PlayerStopEntry","depth":0}
 };
 }
 };

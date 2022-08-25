@@ -7,6 +7,7 @@ import {areRectanglesOverlapping} from "../utils/math/rectangle";
 import {scene} from "../igua/scene";
 import {player} from "./player";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
+import {merge} from "../utils/object/merge";
 
 export const resolveGate = resolveGameObject("Gate", args => {
     const destination = {
@@ -20,10 +21,11 @@ export function gate(x, y, width, height, destination: { checkpointName, levelNa
 {
     const bounds = { x, y, width, height };
 
-    const container = new Graphics().drawRect(0, 0, width, height).at(x, y);
+    const container = merge(new Graphics(), { active: true });
+    container.drawRect(0, 0, width, height).at(x, y);
 
     return container.withStep(() => {
-        if (areRectanglesOverlapping(player.rectangle, bounds))
+        if (container.active && areRectanglesOverlapping(player.rectangle, bounds))
         {
             Gate.volume(0.4);
             Gate.play();
