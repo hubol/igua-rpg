@@ -129,6 +129,69 @@
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "VolcanoTown", "checkpointName": "FromAbove", "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 10,
+          "_eid": "55841307",
+          "x": 312,
+          "y": 224,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 11,
+          "_eid": "55841307",
+          "x": 288,
+          "y": 232,
+          "width": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 12,
+          "_eid": "55841307",
+          "x": 272,
+          "y": 248,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeLeftEnd",
+          "id": 13,
+          "_eid": "63428932",
+          "x": 256,
+          "y": 160,
+          "originX": 16,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 14,
+          "_eid": "56004563",
+          "x": 44,
+          "y": 120,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 15,
+          "_eid": "56004563",
+          "x": 16,
+          "y": 64,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -153,7 +216,151 @@
       "gridCellHeight": 8,
       "gridCellsX": 64,
       "gridCellsY": 40,
-      "decals": [],
+      "decals": [
+        {
+          "x": 320.7622984779005,
+          "y": 251.56355242121094,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 326.1243222681649,
+          "y": 241.26846674390322,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 305.3196699619389,
+          "y": 252.6359571792638,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 288.80463668792447,
+          "y": 252.8504381308744,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 310.4672128005928,
+          "y": 243.84223816323015,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 322.4781460907851,
+          "y": 232.260266776259,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 274.2199319784052,
+          "y": 251.56355242121094,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 297,
+          "y": 244,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 325.9098413165543,
+          "y": 223.25206680861473,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 307.4644794780447,
+          "y": 234.83403819558592,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 283.44261289766007,
+          "y": 242.76983340517728,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 294.1666604781889,
+          "y": 233.76163343753302,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 258.5628225108331,
+          "y": 253.06491908248498,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "small decorative rock.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {

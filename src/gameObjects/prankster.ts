@@ -27,6 +27,8 @@ export function prankster() {
             cagedKey().at([16, -36].add(npc)).show(npc.parent);
         });
 
+    npc.scale.x = -1;
+
     npc.withCutscene(async () => {
         if (volcano.satisfiedPrankster) {
             await show(`It was an honor to share my final prank with you.`);

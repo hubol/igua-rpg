@@ -35,6 +35,7 @@ import { resolveClownWonderful } from "./gameObjects/clownWonderful";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { KeyGreen } from "./textures";
+import { SmallDecorativeRock } from "./textures";
 import { GlowingDiamond } from "./textures";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { Column } from "./textures";
@@ -48,7 +49,6 @@ import { Cobweb } from "./textures";
 import { Rainbow1 } from "./textures";
 import { Rainbow2 } from "./textures";
 import { SpikyBrushB } from "./textures";
-import { SmallDecorativeRock } from "./textures";
 import { SpikyBrushA } from "./textures";
 import { resolveTreeStumpDestructive } from "./gameObjects/treeStumpDestructive";
 import { resolveCommonClown } from "./gameObjects/commonClown";
@@ -6934,7 +6934,150 @@ export const VolcanoAboveArgs = {
 height: 320,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    SmallDecorativeRock: resolveDecalGameObject({
+    x: 320.7622984779005,
+y: 251.56355242121094,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_1: resolveDecalGameObject({
+    x: 326.1243222681649,
+y: 241.26846674390322,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_2: resolveDecalGameObject({
+    x: 305.3196699619389,
+y: 252.6359571792638,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_3: resolveDecalGameObject({
+    x: 288.80463668792447,
+y: 252.8504381308744,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_4: resolveDecalGameObject({
+    x: 310.4672128005928,
+y: 243.84223816323015,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_5: resolveDecalGameObject({
+    x: 322.4781460907851,
+y: 232.260266776259,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_6: resolveDecalGameObject({
+    x: 274.2199319784052,
+y: 251.56355242121094,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_7: resolveDecalGameObject({
+    x: 297,
+y: 244,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_8: resolveDecalGameObject({
+    x: 325.9098413165543,
+y: 223.25206680861473,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_9: resolveDecalGameObject({
+    x: 307.4644794780447,
+y: 234.83403819558592,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_10: resolveDecalGameObject({
+    x: 283.44261289766007,
+y: 242.76983340517728,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_11: resolveDecalGameObject({
+    x: 294.1666604781889,
+y: 233.76163343753302,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_12: resolveDecalGameObject({
+    x: 258.5628225108331,
+y: 253.06491908248498,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+// @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":256,"width":104,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":168,"y":256,"width":344,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
@@ -6951,7 +7094,19 @@ Block_5: resolveBlock({"type":"Block","x":408,"y":88,"width":104,"height":168,"f
 PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":256,"y":160,"width":72,"flippedX":false,"flippedY":false,"uid":"55841307_7","visible":true,"name":"","depth":0}),
 Prankster: {"type":"Anchor","x":280,"y":160,"flippedX":false,"flippedY":false,"uid":"25979726_8","name":"Prankster","depth":0},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":104,"y":288,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_9","levelName":"VolcanoTown","checkpointName":"FromAbove","name":"","depth":0})
+Gate: resolveGate({"type":"Gate","x":104,"y":288,"width":64,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_9","levelName":"VolcanoTown","checkpointName":"FromAbove","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_1: resolvePipeHorizontal({"type":"PipeHorizontal","x":312,"y":224,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_10","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":288,"y":232,"width":40,"flippedX":false,"flippedY":false,"uid":"55841307_11","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":272,"y":248,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_12","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":256,"y":160,"flippedX":false,"flippedY":false,"uid":"63428932_13","name":"","depth":0}),
+// @ts-ignore
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":44,"y":120,"flippedX":false,"flippedY":false,"uid":"56004563_14","name":"","depth":0}),
+// @ts-ignore
+ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":16,"y":64,"flippedX":false,"flippedY":false,"uid":"56004563_15","name":"","depth":0})
 };
 }
 };

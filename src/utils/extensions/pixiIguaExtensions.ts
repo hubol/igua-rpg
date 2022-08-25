@@ -97,10 +97,7 @@ PIXI.DisplayObject.prototype.ahead = function () {
 PIXI.DisplayObject.prototype.asCollectible = function (object, key, action)
 {
     return this.withStep(() => {
-        if (this.ext.collectible === false)
-            return;
-
-        if (!object[key] && this.collides(player))
+        if (this.ext.collectible !== false && !object[key] && this.collides(player))
         {
             (object as any)[key] = true;
             CollectGeneric.play();
