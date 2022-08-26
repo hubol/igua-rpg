@@ -5,7 +5,7 @@ import {getDefaultLooks} from "../looks/getDefaultLooks";
 export function getInitialProgress()
 {
     return {
-        version: 1,
+        version: 2,
         health: 100,
         valuables: 100,
         looks: getDefaultLooks(),
