@@ -115,7 +115,7 @@ function newExcessItems() {
 
     const c = container(gfx, text)
         .withStep(() => {
-            if (inventory.usedSlotsCount == inventory.slotsCount)
+            if (inventory.usedSlotsCount <= inventory.slotsCount)
                 return c.visible = false;
             text.text = inventory.usedSlotsCount > inventory.slotsCount ? `+${inventory.usedSlotsCount - inventory.slotsCount}` : '';
             gfx
