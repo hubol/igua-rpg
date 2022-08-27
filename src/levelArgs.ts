@@ -1,4 +1,5 @@
 // This file is generated. Do not touch.
+import { resolveDoor } from "./gameObjects/door";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveValuableOrange } from "./gameObjects/valuable";
@@ -6,11 +7,11 @@ import { resolveSlopeRight } from "./gameObjects/walls";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolveBlock } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
-import { resolveDoor } from "./gameObjects/door";
 import { resolveRegion } from "./gameObjects/region";
 import { resolveDecalGameObject } from "./gameObjects/decal";
-import { GlowingEdge } from "./textures";
 import { VolcanoCrystal } from "./textures";
+import { VolcanoCrystalBuilding } from "./textures";
+import { GlowingEdge } from "./textures";
 import { VolcanoTempleExterior } from "./textures";
 import { VolcanoInnShopBuilding } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
@@ -8069,6 +8070,28 @@ rotation: -1.5707963267948966,
 layerName: "BackgroundDecals",
 texture: GlowingEdge
 }),
+VolcanoCrystalBuilding: resolveDecalGameObject({
+    x: 612,
+y: 247,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalBuilding
+}),
+VolcanoCrystal_3: resolveDecalGameObject({
+    x: 629,
+y: 216,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystal
+}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":88,"y":288,"width":768,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 Player: {"type":"Player","x":776,"y":272,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
@@ -8170,7 +8193,9 @@ FromAbove: {"type":"Checkpoint","x":432,"y":72,"flippedX":false,"flippedY":false
 Gate_2: resolveGate({"type":"Gate","x":0,"y":240,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_55","levelName":"VolcanoBossArena","checkpointName":"FromTown","name":"","depth":0}),
 FromBossArena: {"type":"Checkpoint","x":72,"y":272,"flippedX":false,"flippedY":false,"uid":"55940370_56","name":"FromBossArena","faceRight":false,"depth":0},
 // @ts-ignore
-Sign_1: resolveSign({"type":"Sign","x":72,"y":272,"flippedX":false,"flippedY":false,"uid":"86706091_57","title":"Lava","message":"Lava pools ahead.","name":"","depth":0})
+Sign_1: resolveSign({"type":"Sign","x":72,"y":272,"flippedX":false,"flippedY":false,"uid":"86706091_57","title":"Lava","message":"Lava pools ahead.","name":"","depth":0}),
+// @ts-ignore
+Door_3: resolveDoor({"type":"Door","x":607,"y":256,"flippedX":false,"flippedY":false,"uid":"55913988_58","levelName":"","checkpointName":"","name":"","depth":0})
 };
 }
 };
