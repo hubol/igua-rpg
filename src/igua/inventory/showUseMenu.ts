@@ -12,6 +12,7 @@ import {consumePotion} from "./consumePotion";
 import {range} from "../../utils/range";
 import {IguaText} from "../text";
 import {progress} from "../data/progress";
+import {container} from "../../utils/pixi/container";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
@@ -108,6 +109,24 @@ function gui(c: Controller, margin = 2, size = 24) {
     return gfx;
 }
 
+function newExcessItems() {
+    const gfx = new Graphics();
+    const text = IguaText.Large("", { tint: 0xffffff }).at(2, -1);
+
+    const c = container(gfx, text)
+        .withStep(() => {
+            if (inventory.usedSlotsCount == inventory.slotsCount)
+                return c.visible = false;
+            text.text = inventory.usedSlotsCount > inventory.slotsCount ? `+${inventory.usedSlotsCount - inventory.slotsCount}` : '';
+            gfx
+                .clear()
+                .beginFill(0x005870)
+                .drawRect(0, 0, text.textWidth + 3, 11);
+        });
+
+    return c;
+}
+
 function useImpl() {
     const row = 6;
     const slots = inventory.slotsCount;
@@ -120,7 +139,7 @@ function useImpl() {
         .at(255, 256);
     clawLevel.anchor.set(1, 1);
 
-    c.addChild(gui(c), clawLevel);
+    c.addChild(gui(c), clawLevel, newExcessItems().at(207, 117));
 
     game.hudStage.addChild(c);
     game.hudStage.ticker.update();
