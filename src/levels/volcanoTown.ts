@@ -20,4 +20,8 @@ export function VolcanoTown() {
     cracks(3245.1269, 0x481018).show(scene.parallax1Stage);
     heatWaves(scene.width + 256, 80).at(-128, 300 - 30).show(scene.parallax1Stage);
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x6D1913));
+    const frontWaves = heatWaves(scene.width + 256, 80, -0.5).at(-128, scene.height).ahead();
+    frontWaves.angle = 16;
+    frontWaves.scale.x = 2;
+    frontWaves.scale.y = 1.4;
 }

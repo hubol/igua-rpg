@@ -198,6 +198,7 @@ export let VineSmall: PIXI.Texture;
 export let VolcanoBrickWall: PIXI.Texture;
 export let VolcanoChain: PIXI.Texture;
 export let VolcanoCrystalBuilding: PIXI.Texture;
+export let VolcanoCrystalStoop: PIXI.Texture;
 export let VolcanoCrystal: PIXI.Texture;
 export let VolcanoCurtain: PIXI.Texture;
 export let VolcanoFloralWallpaper: PIXI.Texture;
@@ -802,6 +803,9 @@ export function loadTexturesAsync()
     const VolcanoCrystalBuildingPath = require("./images/volcano/crystal building.png");
     loader.add(VolcanoCrystalBuildingPath); 
 
+    const VolcanoCrystalStoopPath = require("./images/volcano/crystal stoop.png");
+    loader.add(VolcanoCrystalStoopPath); 
+
     const VolcanoCrystalPath = require("./images/volcano/crystal.png");
     loader.add(VolcanoCrystalPath); 
 
@@ -1032,6 +1036,7 @@ export function loadTexturesAsync()
             VolcanoBrickWall = resources[VolcanoBrickWallPath]?.texture as PIXI.Texture;
             VolcanoChain = resources[VolcanoChainPath]?.texture as PIXI.Texture;
             VolcanoCrystalBuilding = resources[VolcanoCrystalBuildingPath]?.texture as PIXI.Texture;
+            VolcanoCrystalStoop = resources[VolcanoCrystalStoopPath]?.texture as PIXI.Texture;
             VolcanoCrystal = resources[VolcanoCrystalPath]?.texture as PIXI.Texture;
             VolcanoCurtain = resources[VolcanoCurtainPath]?.texture as PIXI.Texture;
             VolcanoFloralWallpaper = resources[VolcanoFloralWallpaperPath]?.texture as PIXI.Texture;

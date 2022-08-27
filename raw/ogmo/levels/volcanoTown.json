@@ -632,7 +632,7 @@
           "y": 272,
           "originX": 6,
           "originY": 12,
-          "values": {"name": "FromBossArena", "faceRight": false, "depth": 0}
+          "values": {"name": "FromBossArena", "faceRight": true, "depth": 0}
         },
         {
           "name": "Sign",
@@ -649,10 +649,46 @@
           "id": 58,
           "_eid": "55913988",
           "x": 607,
-          "y": 256,
+          "y": 248,
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 59,
+          "_eid": "55823268",
+          "x": 573,
+          "y": 280,
+          "width": 77,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 60,
+          "_eid": "55841307",
+          "x": 573.4697670912739,
+          "y": 237.20527954834742,
+          "width": 76,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 61,
+          "_eid": "55845599",
+          "x": 649,
+          "y": 280,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -799,6 +835,17 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 635,
+          "y": 284,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/crystal stoop.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "../../src/images"
@@ -892,7 +939,7 @@
         },
         {
           "x": 612,
-          "y": 247,
+          "y": 239,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": 0,
@@ -901,7 +948,17 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 629, "y": 216, "scaleX": 1, "scaleY": -1, "rotation": 0, "texture": "volcano/crystal.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 629,
+          "y": 208,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/crystal.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },

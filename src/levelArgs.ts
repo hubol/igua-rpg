@@ -1,12 +1,12 @@
 // This file is generated. Do not touch.
+import { resolveSlopeLeft } from "./gameObjects/walls";
+import { resolvePipeHorizontal } from "./gameObjects/walls";
+import { resolveBlock } from "./gameObjects/walls";
 import { resolveDoor } from "./gameObjects/door";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveValuableOrange } from "./gameObjects/valuable";
 import { resolveSlopeRight } from "./gameObjects/walls";
-import { resolveSlopeLeft } from "./gameObjects/walls";
-import { resolveBlock } from "./gameObjects/walls";
-import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveRegion } from "./gameObjects/region";
 import { resolveDecalGameObject } from "./gameObjects/decal";
 import { VolcanoCrystal } from "./textures";
@@ -15,6 +15,7 @@ import { GlowingEdge } from "./textures";
 import { VolcanoTempleExterior } from "./textures";
 import { VolcanoInnShopBuilding } from "./textures";
 import { VolcanoPillarBroken } from "./textures";
+import { VolcanoCrystalStoop } from "./textures";
 import { GroundSpeckles } from "./textures";
 import { VolcanoChain } from "./textures";
 import { VolcanoMineralDebris } from "./textures";
@@ -7993,6 +7994,17 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
+VolcanoCrystalStoop: resolveDecalGameObject({
+    x: 635,
+y: 284,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoCrystalStoop
+}),
 Chimney: resolveDecalGameObject({
     x: 232,
 y: 184,
@@ -8072,7 +8084,7 @@ texture: GlowingEdge
 }),
 VolcanoCrystalBuilding: resolveDecalGameObject({
     x: 612,
-y: 247,
+y: 239,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -8083,7 +8095,7 @@ texture: VolcanoCrystalBuilding
 }),
 VolcanoCrystal_3: resolveDecalGameObject({
     x: 629,
-y: 216,
+y: 208,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -8191,11 +8203,17 @@ Gate_1: resolveGate({"type":"Gate","x":400,"y":0,"width":64,"height":32,"flipped
 FromAbove: {"type":"Checkpoint","x":432,"y":72,"flippedX":false,"flippedY":false,"uid":"55940370_54","name":"FromAbove","faceRight":true,"depth":0},
 // @ts-ignore
 Gate_2: resolveGate({"type":"Gate","x":0,"y":240,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_55","levelName":"VolcanoBossArena","checkpointName":"FromTown","name":"","depth":0}),
-FromBossArena: {"type":"Checkpoint","x":72,"y":272,"flippedX":false,"flippedY":false,"uid":"55940370_56","name":"FromBossArena","faceRight":false,"depth":0},
+FromBossArena: {"type":"Checkpoint","x":72,"y":272,"flippedX":false,"flippedY":false,"uid":"55940370_56","name":"FromBossArena","faceRight":true,"depth":0},
 // @ts-ignore
 Sign_1: resolveSign({"type":"Sign","x":72,"y":272,"flippedX":false,"flippedY":false,"uid":"86706091_57","title":"Lava","message":"Lava pools ahead.","name":"","depth":0}),
 // @ts-ignore
-Door_3: resolveDoor({"type":"Door","x":607,"y":256,"flippedX":false,"flippedY":false,"uid":"55913988_58","levelName":"","checkpointName":"","name":"","depth":0})
+Door_3: resolveDoor({"type":"Door","x":607,"y":248,"flippedX":false,"flippedY":false,"uid":"55913988_58","levelName":"","checkpointName":"","name":"","depth":0}),
+// @ts-ignore
+Block_17: resolveBlock({"type":"Block","x":573,"y":280,"width":77,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_59","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":573.4697670912739,"y":237.20527954834742,"width":76,"flippedX":false,"flippedY":false,"uid":"55841307_60","visible":false,"name":"","depth":0}),
+// @ts-ignore
+SlopeLeft_6: resolveSlopeLeft({"type":"SlopeLeft","x":649,"y":280,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55845599_61","name":"","depth":0})
 };
 }
 };
