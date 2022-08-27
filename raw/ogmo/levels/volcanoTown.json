@@ -652,7 +652,7 @@
           "y": 248,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "VolcanoOracle", "checkpointName": "FromTown", "name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -689,6 +689,16 @@
           "originY": 0,
           "flippedY": false,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 62,
+          "_eid": "55940370",
+          "x": 644,
+          "y": 280,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromOracle", "faceRight": true, "depth": 0}
         }
       ]
     },

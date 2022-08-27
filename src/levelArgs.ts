@@ -7565,6 +7565,26 @@ FromTown: {"type":"Checkpoint","x":72,"y":208,"flippedX":false,"flippedY":false,
 }
 };
 
+export const VolcanoOracleArgs = {
+    width: 256,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":192,"width":256,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":48,"width":32,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":224,"y":48,"width":32,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":40,"y":160,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"VolcanoTown","checkpointName":"FromOracle","name":"","depth":0}),
+Player: {"type":"Player","x":96,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":true,"name":"","depth":0}
+};
+}
+};
+
 export const VolcanoShopInnArgs = {
     width: 256,
 height: 256,
@@ -8207,13 +8227,14 @@ FromBossArena: {"type":"Checkpoint","x":72,"y":272,"flippedX":false,"flippedY":f
 // @ts-ignore
 Sign_1: resolveSign({"type":"Sign","x":72,"y":272,"flippedX":false,"flippedY":false,"uid":"86706091_57","title":"Lava","message":"Lava pools ahead.","name":"","depth":0}),
 // @ts-ignore
-Door_3: resolveDoor({"type":"Door","x":607,"y":248,"flippedX":false,"flippedY":false,"uid":"55913988_58","levelName":"","checkpointName":"","name":"","depth":0}),
+Door_3: resolveDoor({"type":"Door","x":607,"y":248,"flippedX":false,"flippedY":false,"uid":"55913988_58","levelName":"VolcanoOracle","checkpointName":"FromTown","name":"","depth":0}),
 // @ts-ignore
 Block_17: resolveBlock({"type":"Block","x":573,"y":280,"width":77,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_59","name":"","depth":0}),
 // @ts-ignore
 PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":573.4697670912739,"y":237.20527954834742,"width":76,"flippedX":false,"flippedY":false,"uid":"55841307_60","visible":false,"name":"","depth":0}),
 // @ts-ignore
-SlopeLeft_6: resolveSlopeLeft({"type":"SlopeLeft","x":649,"y":280,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55845599_61","name":"","depth":0})
+SlopeLeft_6: resolveSlopeLeft({"type":"SlopeLeft","x":649,"y":280,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55845599_61","name":"","depth":0}),
+FromOracle: {"type":"Checkpoint","x":644,"y":280,"flippedX":false,"flippedY":false,"uid":"55940370_62","name":"FromOracle","faceRight":true,"depth":0}
 };
 }
 };
