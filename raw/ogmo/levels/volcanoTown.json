@@ -611,6 +611,38 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromAbove", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 55,
+          "_eid": "55920197",
+          "x": 0,
+          "y": 240,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "VolcanoBossArena", "checkpointName": "FromTown", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 56,
+          "_eid": "55940370",
+          "x": 72,
+          "y": 272,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromBossArena", "faceRight": false, "depth": 0}
+        },
+        {
+          "name": "Sign",
+          "id": 57,
+          "_eid": "86706091",
+          "x": 72,
+          "y": 272,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "Lava", "message": "Lava pools ahead.", "name": "", "depth": 0}
         }
       ]
     },
