@@ -67,7 +67,7 @@
           "name": "Door",
           "id": 4,
           "_eid": "55913988",
-          "x": 40,
+          "x": 184,
           "y": 160,
           "originX": 0,
           "originY": 0,
@@ -77,11 +77,11 @@
           "name": "Player",
           "id": 5,
           "_eid": "55988047",
-          "x": 96,
+          "x": 160,
           "y": 192,
           "originX": 11,
           "originY": 27,
-          "values": {"faceRight": true, "name": "", "depth": 0}
+          "values": {"faceRight": false, "name": "", "depth": 0}
         }
       ]
     },

@@ -7579,8 +7579,8 @@ Block_2: resolveBlock({"type":"Block","x":0,"y":48,"width":32,"height":160,"flip
 // @ts-ignore
 Block_3: resolveBlock({"type":"Block","x":224,"y":48,"width":32,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
 // @ts-ignore
-Door: resolveDoor({"type":"Door","x":40,"y":160,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"VolcanoTown","checkpointName":"FromOracle","name":"","depth":0}),
-Player: {"type":"Player","x":96,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":true,"name":"","depth":0}
+Door: resolveDoor({"type":"Door","x":184,"y":160,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"VolcanoTown","checkpointName":"FromOracle","name":"","depth":0}),
+Player: {"type":"Player","x":160,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":false,"name":"","depth":0}
 };
 }
 };
