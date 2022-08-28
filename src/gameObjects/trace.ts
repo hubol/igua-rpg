@@ -1,4 +1,4 @@
-import {distance, Vector} from "../utils/math/vector";
+import {distance, Vector, vnew} from "../utils/math/vector";
 import {Graphics} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {player} from "./player";
@@ -29,10 +29,13 @@ export function trace(v: Vector[]) {
     };
     mask.at(v[state.index]);
 
+    const speed = vnew();
+
     const pen = new Graphics()
         .withStep(() => {
             let count = 0;
-            while (!state.winner && mask.collides(player) && count++ < 4) {
+            const max = Math.max(4, Math.ceil(speed.at(player.hspeed, player.vspeed).vlength));
+            while (!state.winner && mask.collides(player) && count++ < max) {
                 if (count === 1) {
                     // @ts-ignore
                     PenDraw.volume(0.2).rate(0.5 + rng() * 1.5).play();
