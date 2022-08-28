@@ -12,6 +12,7 @@ import {player} from "../../gameObjects/player";
 import {cutscene} from "../../cutscene/cutscene";
 import {persistence} from "../data/persistence";
 import {PropertiesOf} from "../../utils/types/propertiesOf";
+import {Vector} from "../../utils/math/vector";
 
 export function makeTempleLevelUtil(
     ...quests: [unlocked: boolean, completed: boolean, displayObjects: DisplayObject[]][]) {
@@ -28,7 +29,7 @@ export function makeTempleLevelUtil(
         get allCompleted() {
             return quests.every(([_, c]) => c);
         },
-        tryGiveReward<T>(progress: T, progressRewardKey: keyof PropertiesOf<T, boolean>, bigKey: DisplayObject, rewardTitle: string) {
+        tryGiveReward<T>(progress: T, progressRewardKey: keyof PropertiesOf<T, boolean>, bigKey: Vector, rewardTitle: string) {
             if (util.allCompleted && !progress[progressRewardKey])
                 scene.gameObjectStage.withAsync(async () => {
                     await wait(() => player.x >= bigKey.x - 25 && !cutscene.isPlaying);
