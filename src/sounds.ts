@@ -47,6 +47,11 @@ export const BiguaSniff = new Howl({
     
 });
 
+export const BookInformationHalt = new Howl({
+    src: [require("./sound/book information halt.ogg"), require("./sound/book information halt.mp3")],
+    
+});
+
 export const BoulderBless = new Howl({
     src: [require("./sound/boulder bless.ogg"), require("./sound/boulder bless.mp3")],
     
@@ -309,6 +314,11 @@ export const MirrorShardUse = new Howl({
 
 export const OracleUnlockDoor = new Howl({
     src: [require("./sound/oracle unlock door.ogg"), require("./sound/oracle unlock door.mp3")],
+    
+});
+
+export const PageFlip = new Howl({
+    src: [require("./sound/page flip.ogg"), require("./sound/page flip.mp3")],
     
 });
 

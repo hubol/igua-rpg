@@ -5,6 +5,7 @@ import * as PIXI from "pixi.js";
 export let Anchor: PIXI.Texture;
 export let ArrowPoison: PIXI.Texture;
 export let BackpackIcon: PIXI.Texture;
+export let BallColorful: PIXI.Texture;
 export let BigKey1: PIXI.Texture;
 export let BigKey2: PIXI.Texture;
 export let BigKey3: PIXI.Texture;
@@ -96,6 +97,7 @@ export let KeyYellowShrunken: PIXI.Texture;
 export let KeyYellow: PIXI.Texture;
 export let KeyboardT9: PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture;
+export let LibraryBook: PIXI.Texture;
 export let LightShelf: PIXI.Texture;
 export let LockedDoor: PIXI.Texture;
 export let LooksClub: PIXI.Texture;
@@ -142,6 +144,7 @@ export let OverheadLampLight: PIXI.Texture;
 export let OverheadLamp: PIXI.Texture;
 export let OversizedAngel: PIXI.Texture;
 export let PaSpeaker: PIXI.Texture;
+export let ParticleInformation: PIXI.Texture;
 export let Pipe: PIXI.Texture;
 export let PlayerBallonPop: PIXI.Texture;
 export let PlayerBalloon: PIXI.Texture;
@@ -225,6 +228,9 @@ export function loadTexturesAsync()
 
     const BackpackIconPath = require("./images/backpack icon.png");
     loader.add(BackpackIconPath); 
+
+    const BallColorfulPath = require("./images/ball colorful.png");
+    loader.add(BallColorfulPath); 
 
     const BigKey1Path = require("./images/big key1.png");
     loader.add(BigKey1Path); 
@@ -499,6 +505,9 @@ export function loadTexturesAsync()
     const LeftPipeEndPath = require("./images/left pipe end.png");
     loader.add(LeftPipeEndPath); 
 
+    const LibraryBookPath = require("./images/library book.png");
+    loader.add(LibraryBookPath); 
+
     const LightShelfPath = require("./images/light shelf.png");
     loader.add(LightShelfPath); 
 
@@ -636,6 +645,9 @@ export function loadTexturesAsync()
 
     const PaSpeakerPath = require("./images/pa speaker.png");
     loader.add(PaSpeakerPath); 
+
+    const ParticleInformationPath = require("./images/particle information.png");
+    loader.add(ParticleInformationPath); 
 
     const PipePath = require("./images/pipe.png");
     loader.add(PipePath); 
@@ -851,6 +863,7 @@ export function loadTexturesAsync()
             Anchor = resources[AnchorPath]?.texture as PIXI.Texture;
             ArrowPoison = resources[ArrowPoisonPath]?.texture as PIXI.Texture;
             BackpackIcon = resources[BackpackIconPath]?.texture as PIXI.Texture;
+            BallColorful = resources[BallColorfulPath]?.texture as PIXI.Texture;
             BigKey1 = resources[BigKey1Path]?.texture as PIXI.Texture;
             BigKey2 = resources[BigKey2Path]?.texture as PIXI.Texture;
             BigKey3 = resources[BigKey3Path]?.texture as PIXI.Texture;
@@ -942,6 +955,7 @@ export function loadTexturesAsync()
             KeyYellow = resources[KeyYellowPath]?.texture as PIXI.Texture;
             KeyboardT9 = resources[KeyboardT9Path]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
+            LibraryBook = resources[LibraryBookPath]?.texture as PIXI.Texture;
             LightShelf = resources[LightShelfPath]?.texture as PIXI.Texture;
             LockedDoor = resources[LockedDoorPath]?.texture as PIXI.Texture;
             LooksClub = resources[LooksClubPath]?.texture as PIXI.Texture;
@@ -988,6 +1002,7 @@ export function loadTexturesAsync()
             OverheadLamp = resources[OverheadLampPath]?.texture as PIXI.Texture;
             OversizedAngel = resources[OversizedAngelPath]?.texture as PIXI.Texture;
             PaSpeaker = resources[PaSpeakerPath]?.texture as PIXI.Texture;
+            ParticleInformation = resources[ParticleInformationPath]?.texture as PIXI.Texture;
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
             PlayerBallonPop = resources[PlayerBallonPopPath]?.texture as PIXI.Texture;
             PlayerBalloon = resources[PlayerBalloonPath]?.texture as PIXI.Texture;
