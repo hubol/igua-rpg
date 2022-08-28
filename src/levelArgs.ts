@@ -40,6 +40,7 @@ import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { KeyGreen } from "./textures";
 import { CloudLong } from "./textures";
+import { BallColorful } from "./textures";
 import { SmallDecorativeRock } from "./textures";
 import { GlowingDiamond } from "./textures";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
@@ -6934,7 +6935,7 @@ Hint: {"type":"Anchor","x":200,"y":208,"flippedX":false,"flippedY":false,"uid":"
 };
 
 export const VolcanoAboveArgs = {
-    width: 512,
+    width: 768,
 height: 320,
 gameObjectsSupplier: () => {
   return {
@@ -7125,6 +7126,171 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
+SmallDecorativeRock_13: resolveDecalGameObject({
+    x: 547.1075191957178,
+y: 172.04751222544726,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_14: resolveDecalGameObject({
+    x: 563.3013671899864,
+y: 172.04751222544726,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_15: resolveDecalGameObject({
+    x: 592.4065264229288,
+y: 171.6098406580346,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_16: resolveDecalGameObject({
+    x: 607.0685239312531,
+y: 172.2663480091536,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_17: resolveDecalGameObject({
+    x: 549.0770412490748,
+y: 161.54339460754326,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_18: resolveDecalGameObject({
+    x: 560.7695167040421,
+y: 165.63757352607493,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_19: resolveDecalGameObject({
+    x: 589.3428254510401,
+y: 163.29408087719392,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_20: resolveDecalGameObject({
+    x: 546.8886834120115,
+y: 151.4769485570519,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_21: resolveDecalGameObject({
+    x: 563.4260240551611,
+y: 155.00879904299626,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_22: resolveDecalGameObject({
+    x: 575.4952151842551,
+y: 160.44647061040894,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_23: resolveDecalGameObject({
+    x: 547.9828623305431,
+y: 140.09748780432258,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_24: resolveDecalGameObject({
+    x: 558.5506809203358,
+y: 146.03653191103658,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+SmallDecorativeRock_25: resolveDecalGameObject({
+    x: 575.4456453673669,
+y: 172.62679103915775,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: SmallDecorativeRock
+}),
+GroundSpeckles_4: resolveDecalGameObject({
+    x: 664.2193095984419,
+y: 189.75089665704843,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+BallColorful: resolveDecalGameObject({
+    x: 664,
+y: 168,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: BallColorful
+}),
 CloudLong: resolveDecalGameObject({
     x: 88,
 y: 32,
@@ -7180,6 +7346,28 @@ rotation: 0,
 layerName: "Parallax1Decals",
 texture: CloudLong
 }),
+CloudLong_5: resolveDecalGameObject({
+    x: 600,
+y: 48,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_6: resolveDecalGameObject({
+    x: 664,
+y: 64,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":256,"width":104,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
@@ -7192,7 +7380,7 @@ Block_3: resolveBlock({"type":"Block","x":0,"y":64,"width":32,"height":56,"flipp
 // @ts-ignore
 Block_4: resolveBlock({"type":"Block","x":328,"y":160,"width":80,"height":96,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0}),
 // @ts-ignore
-Block_5: resolveBlock({"type":"Block","x":408,"y":88,"width":104,"height":168,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
+Block_5: resolveBlock({"type":"Block","x":408,"y":88,"width":136,"height":168,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
 // @ts-ignore
 PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":256,"y":160,"width":72,"flippedX":false,"flippedY":false,"uid":"55841307_7","visible":true,"name":"","depth":0}),
 Prankster: {"type":"Anchor","x":280,"y":160,"flippedX":false,"flippedY":false,"uid":"25979726_8","name":"Prankster","depth":0},
@@ -7210,7 +7398,21 @@ PipeLeftEnd: resolvePipeLeftEnd({"type":"PipeLeftEnd","x":256,"y":160,"flippedX"
 ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":44,"y":120,"flippedX":false,"flippedY":false,"uid":"56004563_14","name":"","depth":0}),
 // @ts-ignore
 ValuableOrange_1: resolveValuableOrange({"type":"ValuableOrange","x":16,"y":64,"flippedX":false,"flippedY":false,"uid":"56004563_15","name":"","depth":0}),
-PlayerStopEntry: {"type":"Anchor","x":192,"y":264,"flippedX":false,"flippedY":false,"uid":"25979726_16","name":"PlayerStopEntry","depth":0}
+PlayerStopEntry: {"type":"Anchor","x":192,"y":264,"flippedX":false,"flippedY":false,"uid":"25979726_16","name":"PlayerStopEntry","depth":0},
+KeepCameraToLeft: {"type":"Anchor","x":512,"y":0,"flippedX":false,"flippedY":false,"uid":"25979726_17","name":"KeepCameraToLeft","depth":0},
+// @ts-ignore
+Block_6: resolveBlock({"type":"Block","x":512,"y":176,"width":256,"height":144,"flippedX":false,"flippedY":false,"uid":"55823268_18","name":"","depth":0}),
+// @ts-ignore
+Block_7: resolveBlock({"type":"Block","x":736,"y":0,"width":32,"height":176,"flippedX":false,"flippedY":false,"uid":"55823268_19","name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":526,"y":137,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_20","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_5: resolvePipeHorizontal({"type":"PipeHorizontal","x":536,"y":152,"width":32,"flippedX":false,"flippedY":false,"uid":"55841307_21","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_6: resolvePipeHorizontal({"type":"PipeHorizontal","x":568,"y":160,"width":28,"flippedX":false,"flippedY":false,"uid":"55841307_22","visible":false,"name":"","depth":0}),
+// @ts-ignore
+PipeHorizontal_7: resolvePipeHorizontal({"type":"PipeHorizontal","x":596,"y":168,"width":18,"flippedX":false,"flippedY":false,"uid":"55841307_23","visible":false,"name":"","depth":0}),
+Book: {"type":"Anchor","x":664,"y":160,"flippedX":false,"flippedY":false,"uid":"25979726_24","name":"Book","depth":0}
 };
 }
 };

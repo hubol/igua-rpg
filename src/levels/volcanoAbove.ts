@@ -12,6 +12,8 @@ import {Container} from "pixi.js";
 import {wait} from "../cutscene/wait";
 import {decalsOf} from "../gameObjects/decal";
 import {CloudLong, GroundSpeckles} from "../textures";
+import {cameraLock} from "../gameObjects/cameraLock";
+import {libraryBook} from "../gameObjects/libraryBook";
 
 export function VolcanoAbove() {
     scene.backgroundColor = 0x98C0E0;
@@ -19,6 +21,8 @@ export function VolcanoAbove() {
     const level = applyOgmoLevel(VolcanoAboveArgs);
     jukebox.play(AboveVolcano).warm(VolcanoSomething);
     heatWaves(scene.width + 256, 80, 1, 0x912235).at(-128, 330 - 30).show(scene.parallax1Stage);
+
+    cameraLock({ maxX: level.KeepCameraToLeft.x }, () => player.x >= level.KeepCameraToLeft.x - 16);
 
     if (distance(player, level.Player) < 80) {
         level.ToTownGate.active = false;
@@ -34,4 +38,5 @@ export function VolcanoAbove() {
     decalsOf(CloudLong).forEach(x => x.tinted(0xEFE1E2));
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x490512));
     prankster().at([0, -3].add(level.Prankster));
+    libraryBook().at([-1, 4].add(level.Book)).show();
 }

@@ -38,7 +38,7 @@ export function libraryBook() {
             s.texture = bookTxs[Math.floor(state.image) % bookTxs.length];
             const brain = Math.min(state.brain, 1);
             getPlayerHead().scale.set(1 + brain);
-            getPlayerHead().position.set(brain * -6, brain * 6);
+            getPlayerHead().position.set(brain * -8, brain * 9);
 
             const thisImage = Math.floor(state.image);
             if (thisImage > lastImage && thisImage > 0 && thisImage % 6 === 0)
