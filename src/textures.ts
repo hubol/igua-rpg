@@ -199,11 +199,13 @@ export let VolcanoBrickWall: PIXI.Texture;
 export let VolcanoChain: PIXI.Texture;
 export let VolcanoCrystalBuilding: PIXI.Texture;
 export let VolcanoCrystalStoop: PIXI.Texture;
+export let VolcanoCrystalTile: PIXI.Texture;
 export let VolcanoCrystal: PIXI.Texture;
 export let VolcanoCurtain: PIXI.Texture;
 export let VolcanoFloralWallpaper: PIXI.Texture;
 export let VolcanoInnShopBuilding: PIXI.Texture;
 export let VolcanoMineralDebris: PIXI.Texture;
+export let VolcanoOracleHouseReflection: PIXI.Texture;
 export let VolcanoPillarBroken: PIXI.Texture;
 export let VolcanoTempleExterior: PIXI.Texture;
 export let WhiskeyGlass: PIXI.Texture;
@@ -806,6 +808,9 @@ export function loadTexturesAsync()
     const VolcanoCrystalStoopPath = require("./images/volcano/crystal stoop.png");
     loader.add(VolcanoCrystalStoopPath); 
 
+    const VolcanoCrystalTilePath = require("./images/volcano/crystal tile.png");
+    loader.add(VolcanoCrystalTilePath); 
+
     const VolcanoCrystalPath = require("./images/volcano/crystal.png");
     loader.add(VolcanoCrystalPath); 
 
@@ -820,6 +825,9 @@ export function loadTexturesAsync()
 
     const VolcanoMineralDebrisPath = require("./images/volcano/mineral debris.png");
     loader.add(VolcanoMineralDebrisPath); 
+
+    const VolcanoOracleHouseReflectionPath = require("./images/volcano/oracle house reflection.png");
+    loader.add(VolcanoOracleHouseReflectionPath); 
 
     const VolcanoPillarBrokenPath = require("./images/volcano/pillar broken.png");
     loader.add(VolcanoPillarBrokenPath); 
@@ -1037,11 +1045,13 @@ export function loadTexturesAsync()
             VolcanoChain = resources[VolcanoChainPath]?.texture as PIXI.Texture;
             VolcanoCrystalBuilding = resources[VolcanoCrystalBuildingPath]?.texture as PIXI.Texture;
             VolcanoCrystalStoop = resources[VolcanoCrystalStoopPath]?.texture as PIXI.Texture;
+            VolcanoCrystalTile = resources[VolcanoCrystalTilePath]?.texture as PIXI.Texture;
             VolcanoCrystal = resources[VolcanoCrystalPath]?.texture as PIXI.Texture;
             VolcanoCurtain = resources[VolcanoCurtainPath]?.texture as PIXI.Texture;
             VolcanoFloralWallpaper = resources[VolcanoFloralWallpaperPath]?.texture as PIXI.Texture;
             VolcanoInnShopBuilding = resources[VolcanoInnShopBuildingPath]?.texture as PIXI.Texture;
             VolcanoMineralDebris = resources[VolcanoMineralDebrisPath]?.texture as PIXI.Texture;
+            VolcanoOracleHouseReflection = resources[VolcanoOracleHouseReflectionPath]?.texture as PIXI.Texture;
             VolcanoPillarBroken = resources[VolcanoPillarBrokenPath]?.texture as PIXI.Texture;
             VolcanoTempleExterior = resources[VolcanoTempleExteriorPath]?.texture as PIXI.Texture;
             WhiskeyGlass = resources[WhiskeyGlassPath]?.texture as PIXI.Texture;

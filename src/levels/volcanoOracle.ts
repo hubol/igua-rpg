@@ -22,7 +22,7 @@ import {oracleAdviceVolcano} from "../igua/oracleAdvice";
 
 export function VolcanoOracle() {
     scene.backgroundColor = 0x60B0E0;
-    scene.terrainColor = 0x40A020;
+    scene.terrainColor = 0x6D1913;
     const level = applyOgmoLevel(VolcanoOracleArgs);
     jukebox.play(AnotherHouse).warm(VolcanoSomething);
 

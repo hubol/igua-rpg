@@ -31,6 +31,8 @@ import { Bottle2 } from "./textures";
 import { JungleShelfLarge } from "./textures";
 import { VolcanoBrickWall } from "./textures";
 import { VolcanoFloralWallpaper } from "./textures";
+import { VolcanoCrystalTile } from "./textures";
+import { VolcanoOracleHouseReflection } from "./textures";
 import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { resolveClownSneezy } from "./gameObjects/clownSneezy";
 import { resolveClownWonderful } from "./gameObjects/clownWonderful";
@@ -7570,7 +7572,282 @@ export const VolcanoOracleArgs = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    VolcanoOracleHouseReflection: resolveDecalGameObject({
+    x: 127,
+y: 128,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoOracleHouseReflection
+}),
+VolcanoCrystalTile: resolveDecalGameObject({
+    x: 48,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_1: resolveDecalGameObject({
+    x: 80,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_2: resolveDecalGameObject({
+    x: 48,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_3: resolveDecalGameObject({
+    x: 80,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_4: resolveDecalGameObject({
+    x: 112,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_5: resolveDecalGameObject({
+    x: 112,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_6: resolveDecalGameObject({
+    x: 144,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_7: resolveDecalGameObject({
+    x: 144,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_8: resolveDecalGameObject({
+    x: 176,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_9: resolveDecalGameObject({
+    x: 176,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_10: resolveDecalGameObject({
+    x: 208,
+y: 80,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_11: resolveDecalGameObject({
+    x: 208,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_12: resolveDecalGameObject({
+    x: 48,
+y: 144,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_13: resolveDecalGameObject({
+    x: 80,
+y: 144,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_14: resolveDecalGameObject({
+    x: 112,
+y: 144,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_15: resolveDecalGameObject({
+    x: 144,
+y: 144,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_16: resolveDecalGameObject({
+    x: 176,
+y: 144,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_17: resolveDecalGameObject({
+    x: 208,
+y: 144,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_18: resolveDecalGameObject({
+    x: 48,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_19: resolveDecalGameObject({
+    x: 80,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_20: resolveDecalGameObject({
+    x: 112,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_21: resolveDecalGameObject({
+    x: 144,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_22: resolveDecalGameObject({
+    x: 176,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+VolcanoCrystalTile_23: resolveDecalGameObject({
+    x: 208,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystalTile
+}),
+// @ts-ignore
 Block: resolveBlock({"type":"Block","x":0,"y":192,"width":256,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
