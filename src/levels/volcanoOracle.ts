@@ -50,9 +50,9 @@ function enrichRescueOracle(level: GameObjectsType<typeof VolcanoOracleArgs>) {
         const ticker = new AsshatTicker();
         scene.gameObjectStage.withStep(() => ticker.update());
 
-        await sleep(250);
+        await sleep(300);
         Gate.play();
-        await sleep(250);
+        await sleep(100);
 
         const stage = container().withTicker(ticker).show();
         const clown = clownWonderful().at([7, level.Door.height + 2].add(level.Door)).show(stage);
