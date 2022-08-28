@@ -17,6 +17,8 @@ import {wait} from "../cutscene/wait";
 import {approachLinear} from "../utils/math/number";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {giftValuables} from "../cutscene/giftValuables";
+import {ask} from "../cutscene/ask";
+import {oracleAdviceVolcano} from "../igua/oracleAdvice";
 
 export function VolcanoOracle() {
     scene.backgroundColor = 0x60B0E0;
@@ -26,6 +28,8 @@ export function VolcanoOracle() {
 
     if (!progress.flags.volcano.rescuedOracle)
         enrichRescueOracle(level);
+    else
+        enrichSpeakingOracle(level);
 }
 
 function enrichRescueOracle(level: GameObjectsType<typeof VolcanoOracleArgs>) {
@@ -97,8 +101,24 @@ function enrichRescueOracle(level: GameObjectsType<typeof VolcanoOracleArgs>) {
                 await show('If you need guidance on your mission, do not hesitate to ask me.');
                 OracleUnlockDoor.play();
                 progress.flags.volcano.rescuedOracle = true;
+                enrichSpeakingOracle(level);
                 level.Door.locked = false;
             })
         })
     })
+}
+
+function enrichSpeakingOracle(level: GameObjectsType<typeof VolcanoOracleArgs>) {
+    let talkedAlready = false;
+    level.Oracle.cutscene = async () => {
+        if (!talkedAlready && progress.flags.volcano.rescuedOracle) {
+            await show('Thank you for rescuing me.');
+            talkedAlready = true;
+        }
+
+        if (await ask('Do you need some advice?'))
+            await oracleAdviceVolcano();
+        else
+            await show('Come back anytime if you change your mind!');
+    }
 }

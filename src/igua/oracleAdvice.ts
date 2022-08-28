@@ -36,7 +36,7 @@ export async function oracleAdviceDesert() {
             }
             const allKeys = desert.key.fromTopOfCrateStack && desert.key.fromInn && desert.key.fromDiggingInTown;
             if (allKeys) {
-                await show(`You need to find the big key pieces by entering the unreal worlds.`);
+                await sayNeedBigKeyPieces();
                 if (!desert.bigKey.piece1) {
                     await show(`You'll need to navigate a green maze to find one piece.`);
                     return await show(`If necessary, look up for a firefly who can help you through the maze.`);
@@ -50,7 +50,7 @@ export async function oracleAdviceDesert() {
                 }
             }
             else {
-                await show(`You will need to acquire some keys to continue.`);
+                await sayNeedKeys();
                 if (!desert.key.fromInn) {
                     return await show(`One is in the desert inn.`);
                 }
@@ -78,7 +78,7 @@ export async function oracleAdviceJungle() {
 
     const allKeys = jungle.key.fromSickIguana && jungle.key.fromBiguaRepair && jungle.key.fromSpider;
     if (allKeys) {
-        await show(`You need to find the big key pieces by entering the unreal worlds.`);
+        await sayNeedBigKeyPieces();
         if (!jungle.bigKey.piece1) {
             return await show(`One piece requires you to dodge common angels.`);
         }
@@ -90,7 +90,7 @@ export async function oracleAdviceJungle() {
         }
     }
     else {
-        await show(`You will need to acquire some keys to continue your mission.`);
+        await sayNeedKeys();
         if (!jungle.key.fromSickIguana) {
             return await show(`One is with a sick iguana in the jungle.`);
         }
@@ -109,4 +109,51 @@ export async function oracleAdviceJungle() {
     }
 
     await show("I don't have any advice right now.");
+}
+
+export async function oracleAdviceVolcano() {
+    const { key, bigKey } = progress.flags.volcano;
+    if (bigKey.reward) {
+        // TODO
+        // await show(`You repaired the big key and received the blessing of jungle!`);
+        // return await show(`Follow the jungle spirit to continue your task.`);
+    }
+
+    const allKeys = key.hiddenInCave && key.fromPrankster && true; // TODO
+    if (allKeys) {
+        await sayNeedBigKeyPieces();
+        if (!bigKey.piece1) {
+            await show(`One piece requires you to quickly and cleverly duck on tree stumps.`);
+            return await show(`If your speed feels insufficient, you might want to visit the bar.`);
+        }
+        if (!bigKey.piece2) {
+            return await show(`One piece requires you to utilize ancient technology.`);
+        }
+        if (!bigKey.piece3) {
+            return await show(`One piece requires you to draw.`);
+        }
+    }
+    else {
+        await sayNeedKeys();
+        if (!key.hiddenInCave) {
+            return await show(`One is hidden in the eastern cave.`);
+        }
+        if (!key.fromPrankster) {
+            return await show(`One is guarded by a notorious prankster who stays above the temple.`);
+        }
+        // TODO
+        // if (!key.fromSpider) {
+        //     return await show(`One is monitored closely by a cautious spider in the deep jungle.`);
+        // }
+    }
+
+    await show("I don't have any advice right now.");
+}
+
+function sayNeedBigKeyPieces() {
+    return show(`You need to find the big key pieces by entering the unreal worlds.`);
+}
+
+function sayNeedKeys() {
+    return show(`You will need to acquire some keys to continue your mission.`);
 }
