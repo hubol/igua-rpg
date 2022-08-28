@@ -42,7 +42,7 @@ export function libraryBook() {
 
             const thisImage = Math.floor(state.image);
             if (thisImage > lastImage && thisImage > 0 && thisImage % 6 === 0)
-                information().at([0, -8].add(s)).ahead().on('removed', () => state.brain += 0.052);
+                information().at([0, -8].add(s)).ahead(1).on('removed', () => state.brain += 0.052);
             lastImage = thisImage;
         })
         .withStep(() => {
@@ -65,7 +65,7 @@ export function libraryBook() {
             await sleep(1_000);
             await wait(() => information.instances.length <= 0);
             await lerp(state, 'image').to(0).over(1_000);
-            await sleep(500);
+            await sleep(250);
             await lerp(state, 'brain').to(0).over(200);
             await sleep(500);
             progress.levels.intelligence += 1;

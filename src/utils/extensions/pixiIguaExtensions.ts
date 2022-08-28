@@ -10,7 +10,7 @@ import {DisplayObject} from "pixi.js";
 declare global {
     namespace PIXI {
         export interface DisplayObject {
-            ahead(): this;
+            ahead(index?: number): this;
             show(parent?: Container): this;
             behind(index?: number): this;
             withInteraction(interaction: () => void): this;
@@ -90,8 +90,10 @@ PIXI.DisplayObject.prototype.behind = function (index) {
     return scene.backgroundGameObjectStage.addChildAt(this, index);
 }
 
-PIXI.DisplayObject.prototype.ahead = function () {
-    return scene.playerStage.addChild(this);
+PIXI.DisplayObject.prototype.ahead = function (index) {
+    if (index === undefined)
+        return scene.playerStage.addChild(this);
+    return scene.playerStage.addChildAt(this, index);
 }
 
 PIXI.DisplayObject.prototype.asCollectible = function (object, key, action)

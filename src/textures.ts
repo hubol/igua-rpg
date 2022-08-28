@@ -165,6 +165,7 @@ export let SignNeonInn: PIXI.Texture;
 export let SignInn: PIXI.Texture;
 export let SignTavern: PIXI.Texture;
 export let Sign: PIXI.Texture;
+export let SkylightTriangle: PIXI.Texture;
 export let SmallDecorativeRock: PIXI.Texture;
 export let SnowmanFace: PIXI.Texture;
 export let SnowmanFlakes: PIXI.Texture;
@@ -205,6 +206,7 @@ export let VolcanoCrystalStoop: PIXI.Texture;
 export let VolcanoCrystalTile: PIXI.Texture;
 export let VolcanoCrystal: PIXI.Texture;
 export let VolcanoCurtain: PIXI.Texture;
+export let VolcanoDeadBush: PIXI.Texture;
 export let VolcanoFloralWallpaper: PIXI.Texture;
 export let VolcanoInnShopBuilding: PIXI.Texture;
 export let VolcanoMineralDebris: PIXI.Texture;
@@ -709,6 +711,9 @@ export function loadTexturesAsync()
     const SignPath = require("./images/sign.png");
     loader.add(SignPath); 
 
+    const SkylightTrianglePath = require("./images/skylight triangle.png");
+    loader.add(SkylightTrianglePath); 
+
     const SmallDecorativeRockPath = require("./images/small decorative rock.png");
     loader.add(SmallDecorativeRockPath); 
 
@@ -828,6 +833,9 @@ export function loadTexturesAsync()
 
     const VolcanoCurtainPath = require("./images/volcano/curtain.png");
     loader.add(VolcanoCurtainPath); 
+
+    const VolcanoDeadBushPath = require("./images/volcano/dead bush.png");
+    loader.add(VolcanoDeadBushPath); 
 
     const VolcanoFloralWallpaperPath = require("./images/volcano/floral wallpaper.png");
     loader.add(VolcanoFloralWallpaperPath); 
@@ -1023,6 +1031,7 @@ export function loadTexturesAsync()
             SignInn = resources[SignInnPath]?.texture as PIXI.Texture;
             SignTavern = resources[SignTavernPath]?.texture as PIXI.Texture;
             Sign = resources[SignPath]?.texture as PIXI.Texture;
+            SkylightTriangle = resources[SkylightTrianglePath]?.texture as PIXI.Texture;
             SmallDecorativeRock = resources[SmallDecorativeRockPath]?.texture as PIXI.Texture;
             SnowmanFace = resources[SnowmanFacePath]?.texture as PIXI.Texture;
             SnowmanFlakes = resources[SnowmanFlakesPath]?.texture as PIXI.Texture;
@@ -1063,6 +1072,7 @@ export function loadTexturesAsync()
             VolcanoCrystalTile = resources[VolcanoCrystalTilePath]?.texture as PIXI.Texture;
             VolcanoCrystal = resources[VolcanoCrystalPath]?.texture as PIXI.Texture;
             VolcanoCurtain = resources[VolcanoCurtainPath]?.texture as PIXI.Texture;
+            VolcanoDeadBush = resources[VolcanoDeadBushPath]?.texture as PIXI.Texture;
             VolcanoFloralWallpaper = resources[VolcanoFloralWallpaperPath]?.texture as PIXI.Texture;
             VolcanoInnShopBuilding = resources[VolcanoInnShopBuildingPath]?.texture as PIXI.Texture;
             VolcanoMineralDebris = resources[VolcanoMineralDebrisPath]?.texture as PIXI.Texture;

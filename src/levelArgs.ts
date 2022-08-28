@@ -42,6 +42,7 @@ import { KeyGreen } from "./textures";
 import { CloudLong } from "./textures";
 import { BallColorful } from "./textures";
 import { SmallDecorativeRock } from "./textures";
+import { VolcanoDeadBush } from "./textures";
 import { GlowingDiamond } from "./textures";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
 import { Column } from "./textures";
@@ -6939,7 +6940,51 @@ export const VolcanoAboveArgs = {
 height: 320,
 gameObjectsSupplier: () => {
   return {
-    SmallDecorativeRock: resolveDecalGameObject({
+    VolcanoDeadBush: resolveDecalGameObject({
+    x: 394.5502326229828,
+y: 152.85496374385605,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "FrontDecals",
+texture: VolcanoDeadBush
+}),
+VolcanoDeadBush_1: resolveDecalGameObject({
+    x: 477.6095179224652,
+y: 81.28741339342513,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "FrontDecals",
+texture: VolcanoDeadBush
+}),
+VolcanoDeadBush_2: resolveDecalGameObject({
+    x: 720.0186535135153,
+y: 169.03717745284493,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "FrontDecals",
+texture: VolcanoDeadBush
+}),
+VolcanoDeadBush_3: resolveDecalGameObject({
+    x: 71.20466132548324,
+y: 248.84376424286185,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "FrontDecals",
+texture: VolcanoDeadBush
+}),
+SmallDecorativeRock: resolveDecalGameObject({
     x: 320.7622984779005,
 y: 251.56355242121094,
 originX: 0.5,

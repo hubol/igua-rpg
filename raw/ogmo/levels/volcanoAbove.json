@@ -302,7 +302,12 @@
       "gridCellHeight": 8,
       "gridCellsX": 96,
       "gridCellsY": 40,
-      "decals": [],
+      "decals": [
+        {"x": 394.5502326229828, "y": 152.85496374385605, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/dead bush.png", "originX": 0.5, "originY": 0.5},
+        {"x": 477.6095179224652, "y": 81.28741339342513, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "volcano/dead bush.png", "originX": 0.5, "originY": 0.5},
+        {"x": 720.0186535135153, "y": 169.03717745284493, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/dead bush.png", "originX": 0.5, "originY": 0.5},
+        {"x": 71.20466132548324, "y": 248.84376424286185, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/dead bush.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "../../src/images"
     },
     {

@@ -8,10 +8,10 @@ import {prankster} from "../gameObjects/prankster";
 import {cutscene} from "../cutscene/cutscene";
 import {player} from "../gameObjects/player";
 import {distance} from "../utils/math/vector";
-import {Container} from "pixi.js";
+import {Container, Sprite} from "pixi.js";
 import {wait} from "../cutscene/wait";
 import {decalsOf} from "../gameObjects/decal";
-import {CloudLong, GroundSpeckles} from "../textures";
+import {CloudLong, GroundSpeckles, SkylightTriangle} from "../textures";
 import {cameraLock} from "../gameObjects/cameraLock";
 import {libraryBook} from "../gameObjects/libraryBook";
 
@@ -38,5 +38,7 @@ export function VolcanoAbove() {
     decalsOf(CloudLong).forEach(x => x.tinted(0xEFE1E2));
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x490512));
     prankster().at([0, -3].add(level.Prankster));
-    libraryBook().at([-1, 4].add(level.Book)).show();
+    const book = libraryBook().at([-1, 4].add(level.Book)).show();
+    const triangle = Sprite.from(SkylightTriangle).at(book.x + 2, 0).ahead();
+    triangle.anchor.x = 0.5;
 }
