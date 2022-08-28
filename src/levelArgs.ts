@@ -7580,7 +7580,9 @@ Block_2: resolveBlock({"type":"Block","x":0,"y":48,"width":32,"height":160,"flip
 Block_3: resolveBlock({"type":"Block","x":224,"y":48,"width":32,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
 // @ts-ignore
 Door: resolveDoor({"type":"Door","x":184,"y":160,"flippedX":false,"flippedY":false,"uid":"55913988_4","levelName":"VolcanoTown","checkpointName":"FromOracle","name":"","depth":0}),
-Player: {"type":"Player","x":160,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":false,"name":"","depth":0}
+Player: {"type":"Player","x":160,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_5","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+Oracle: resolveNpc({"type":"NpcIguana","x":56,"y":192,"flippedX":false,"flippedY":false,"uid":"26367058_6","name":"Oracle","style":10,"depth":0})
 };
 }
 };

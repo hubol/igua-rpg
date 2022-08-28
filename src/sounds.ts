@@ -307,6 +307,11 @@ export const MirrorShardUse = new Howl({
     
 });
 
+export const OracleUnlockDoor = new Howl({
+    src: [require("./sound/oracle unlock door.ogg"), require("./sound/oracle unlock door.mp3")],
+    
+});
+
 export const PenDraw = new Howl({
     src: [require("./sound/pen draw.ogg"), require("./sound/pen draw.mp3")],
     

@@ -74,6 +74,7 @@ export function getInitialFlags()
         },
         volcano: {
             satisfiedPrankster: false,
+            rescuedOracle: false,
             key: {
                 hiddenInCave: false,
                 fromPrankster: false,

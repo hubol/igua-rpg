@@ -26,7 +26,8 @@ function door(levelName: string, checkpointName: string)
                             level.goto(sprite.levelName);
                         });
 
-                cutscene.play(async () => await show("Closed."));
+                if (sprite.ext.showClosedMessage !== false)
+                    cutscene.play(async () => await show("Closed."));
             }
         });
     return sprite;
