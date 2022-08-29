@@ -11,7 +11,7 @@ import {devProgress} from "./dev/devProgress";
 import {scene, sceneStack} from "./scene";
 import {devWindow} from "./dev/devWindow";
 import {TitleScreen} from "../levels/titleScreen";
-import {startGamepadListener} from "./io/gamepad";
+import {advanceInput, startInput} from "./io/input";
 
 export let game: ReturnType<typeof createGame>;
 function createGame(application: AsshatApplication)
@@ -21,11 +21,12 @@ function createGame(application: AsshatApplication)
     const ticker = new AsshatTicker();
 
     startKeyListener();
-    startGamepadListener();
+    startInput();
     ticker.add(advanceKeyListener);
 
     application.ticker.add(() => {
         ticker.update();
+        advanceInput();
         scene.ticker.update();
         stepPlayerCamera();
     });

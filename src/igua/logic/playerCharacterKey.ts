@@ -1,14 +1,14 @@
-import {Key} from "../../utils/browser/key";
 import {cutscene} from "../../cutscene/cutscene";
+import {Input} from "../io/input";
 
 export function playerCharacterHasControl()
 {
     return !cutscene.isPlaying;
 }
 
-export const playerCharacterKey: typeof Key = {
-    justWentDown: key => playerCharacterHasControl() && Key.justWentDown(key),
-    isDown: key => playerCharacterHasControl() && Key.isDown(key),
-    isUp: key => !playerCharacterHasControl() || Key.isUp(key),
-    justWentUp: key => !playerCharacterHasControl() ||  Key.justWentUp(key)
+export const playerCharacterKey: typeof Input = {
+    justWentDown: key => playerCharacterHasControl() && Input.justWentDown(key),
+    isDown: key => playerCharacterHasControl() && Input.isDown(key),
+    isUp: key => !playerCharacterHasControl() || Input.isUp(key),
+    justWentUp: key => !playerCharacterHasControl() ||  Input.justWentUp(key)
 };

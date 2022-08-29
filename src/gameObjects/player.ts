@@ -154,9 +154,9 @@ function createPlayer(behavior = true)
             return;
         }
 
-        if (playerKey.justWentDown("KeyU"))
+        if (playerKey.justWentDown("InventoryMenuToggle"))
             showUseMenu();
-        if (playerKey.justWentDown("Escape"))
+        if (playerKey.justWentDown("PauseMenuToggle"))
             showQuitMenu();
 
         if (playerCharacterHasControl() && progress.health > 5 && progress.status.poison > 0)
@@ -174,28 +174,28 @@ function createPlayer(behavior = true)
         player.engine.walkSpeed = baseSpeed + Math.max(0, 0.5 * (progress.status.poison - 1));
         player.engine.gravity = Math.max(0.02, 0.15 - Math.min(1, progress.status.ballons.length) * 0.01 - Math.max(0, progress.status.ballons.length - 1) * 0.00625);
 
-        player.isDucking = (playerKey.isDown("ArrowDown") && engine.coyote > 0) || player.mods.has(Sleepy);
+        player.isDucking = (playerKey.isDown("Duck") && engine.coyote > 0) || player.mods.has(Sleepy);
 
         if (!player.isDucking)
         {
             const isKnockedBack = Math.abs(player.engine.knockback.x) > 0.05;
             const deltaHspeed = isKnockedBack ? 0.01 : 0.5;
-            if (playerKey.isDown("ArrowRight"))
+            if (playerKey.isDown("MoveRight"))
                 player.hspeed += deltaHspeed;
-            if (playerKey.isDown("ArrowLeft"))
+            if (playerKey.isDown("MoveLeft"))
                 player.hspeed -= deltaHspeed;
-            if ((playerKey.isUp("ArrowRight") && playerKey.isUp("ArrowLeft")) || isKnockedBack)
+            if ((playerKey.isUp("MoveRight") && playerKey.isUp("MoveLeft")) || isKnockedBack)
                 player.hspeed *= 0.8;
         }
 
         if (scene.source === UnrealFlight)
         {
-            if (playerKey.isDown("Space"))
+            if (playerKey.isDown("Jump"))
                 player.vspeed -= 0.3;
             return;
         }
 
-        if (playerKey.justWentDown("Space"))
+        if (playerKey.justWentDown("Jump"))
             bufferedJump = 5;
         if (engine.coyote > 0 && bufferedJump)
         {
@@ -207,7 +207,7 @@ function createPlayer(behavior = true)
         if (bufferedJump > 0)
             bufferedJump--;
 
-        if (player.vspeed !== 0 && playerKey.isDown("Space"))
+        if (player.vspeed !== 0 && playerKey.isDown("Jump"))
         {
             if (player.vspeed < 0)
                 player.vspeed -= 0.09;
