@@ -42,7 +42,7 @@ export function libraryBook() {
 
             const thisImage = Math.floor(state.image);
             if (thisImage > lastImage && thisImage > 0 && thisImage % 6 === 0)
-                information().at([0, -8].add(s)).ahead(1).on('removed', () => state.brain += 0.052);
+                information().at([0, -8].add(s)).ahead(player.index + 1).on('removed', () => state.brain += 0.052);
             lastImage = thisImage;
         })
         .withStep(() => {

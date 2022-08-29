@@ -22,6 +22,7 @@ declare global {
             ticker: AsshatTicker;
             hueShift: number;
             opaqueTint: number;
+            readonly index: number;
             readonly hasFilter: boolean;
             readonly ext: Record<string, any>;
             readonly hasExt: boolean;
@@ -176,6 +177,18 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
             if (!this._ext)
                 this._ext = {};
             return this._ext;
+        },
+        enumerable: false,
+        configurable: true,
+    },
+});
+
+Object.defineProperties(PIXI.DisplayObject.prototype, {
+    index: {
+        get: function () {
+            if (!this.parent)
+                return 0;
+            return this.parent.getChildIndex(this);
         },
         enumerable: false,
         configurable: true,
