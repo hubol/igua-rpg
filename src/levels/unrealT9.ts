@@ -12,7 +12,6 @@ import {Force} from "../utils/types/force";
 import {distance} from "../utils/math/vector";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
 import {merge} from "../utils/object/merge";
-import {Key} from "../utils/browser/key";
 import {IguaText} from "../igua/text";
 import {wait} from "../cutscene/wait";
 import {sleep} from "../cutscene/sleep";
@@ -28,6 +27,7 @@ import {bigKeyPiece, makeFlyIn} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {teleportToTheRoomOfDoors} from "../gameObjects/portalFluid";
 import {volcanoBigKeyTextures} from "./volcanoTemple";
+import {Input} from "../igua/io/input";
 
 export function UnrealT9() {
     scene.backgroundColor = 0xEAE179;
@@ -287,7 +287,7 @@ function keyboard({ gap = 10, width = 15, height = 36, push = Force<PushLetter>(
         if (!player.collides(mask))
             return selected = undefined;
         selected = getClosestToPlayer(c.children);
-        if (Key.justWentDown('ArrowDown')) {
+        if (Input.justWentDown('SelectDown')) {
             KeyboardType.play();
             const i = c.getChildIndex(selected);
             push(i);

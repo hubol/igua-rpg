@@ -1,7 +1,7 @@
 import {DisplayObject} from "pixi.js";
-import {Key, KeyCode} from "../../utils/browser/key";
+import {Action, Input} from "../io/input";
 
-export function makeKeyRepeat(o: DisplayObject, keyCode: KeyCode) {
+export function makeActionRepeat(o: DisplayObject, action: Action) {
     let keyDownFor = 0;
     let repeats = 0;
     let justWentDown = false;
@@ -13,7 +13,7 @@ export function makeKeyRepeat(o: DisplayObject, keyCode: KeyCode) {
     }
 
     o.withStep(() => {
-        if (!Key.isDown(keyCode))
+        if (!Input.isDown(action))
             reset();
         else {
             keyDownFor++;

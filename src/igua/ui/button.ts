@@ -1,6 +1,6 @@
 import {Graphics} from "pixi.js";
 import {merge} from "../../utils/object/merge";
-import {Key} from "../../utils/browser/key";
+import {Input} from "../io/input";
 
 export function button(onPress: () => unknown, width = 96, height = 30) {
     let jigglesOnPress = false;
@@ -25,7 +25,7 @@ export function button(onPress: () => unknown, width = 96, height = 30) {
         else
             g.pivot.x = 0;
 
-        if (g.selected && Key.justWentDown('Space')) {
+        if (g.selected && Input.justWentDown('Confirm')) {
             g.onPress();
             if (jigglesOnPress)
                 factor = 8;

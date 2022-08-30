@@ -2,7 +2,6 @@ import {EscapeTickerAndExecute} from "../../utils/asshatTicker";
 import {scene} from "../scene";
 import {game} from "../game";
 import {Container, Graphics, Sprite} from "pixi.js";
-import {Key} from "../../utils/browser/key";
 import {merge} from "../../utils/object/merge";
 import {cyclic} from "../../utils/math/number";
 import {inventory} from "./inventory";
@@ -13,6 +12,8 @@ import {range} from "../../utils/range";
 import {IguaText} from "../text";
 import {progress} from "../data/progress";
 import {container} from "../../utils/pixi/container";
+import {Input} from "../io/input";
+import {wait} from "../../cutscene/wait";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
@@ -22,38 +23,38 @@ let defaultIndex = 0;
 
 function controller(row: number, slots: number) {
     scene.ticker.doNextUpdate = false;
-    let destroyOnNextStep = false;
     const c = merge(new Container(), { index: defaultIndex, row, slots, type: undefined as PotionType | undefined }).withStep(() => {
-        if (destroyOnNextStep) {
-            scene.ticker.doNextUpdate = true;
-            InventoryClose.play();
-            return c.destroy();
-        }
-        if (Key.justWentDown("KeyU"))
-            return destroyOnNextStep = true;
         const left = Math.floor(c.index / row) * row;
         const right = Math.min(left + row, slots);
+        // TODO fix conflict with DisplayObject.index
         const previousIndex = c.index;
-        if (Key.justWentDown("ArrowRight")) {
+        if (Input.justWentDown("SelectRight")) {
             c.index = cyclic(c.index + 1, left, right);
         }
-        else if (Key.justWentDown("ArrowLeft")) {
+        else if (Input.justWentDown("SelectLeft")) {
             c.index = cyclic(c.index - 1, left, right);
         }
-        else if (Key.justWentDown("ArrowUp")) {
+        else if (Input.justWentDown("SelectUp")) {
             c.index = cyclic(c.index + (right - left), 0, slots);
         }
-        else if (Key.justWentDown("ArrowDown")) {
+        else if (Input.justWentDown("SelectDown")) {
             c.index = cyclic(c.index + (right - left), 0, slots);
         }
         defaultIndex = c.index;
         c.type = inventory.get(c.index);
         if (previousIndex !== c.index)
             SelectOption.play();
-        else if (c.type && Key.justWentDown("Space"))
+        else if (c.type && Input.justWentDown("Confirm"))
             consumePotion(c.index);
 
-    });
+    })
+        .withAsync(async () => {
+            await wait(() => Input.isUp('InventoryMenuToggle'));
+            await wait(() => Input.justWentDown('InventoryMenuToggle') || Input.justWentDown('MenuEscape'));
+            scene.ticker.doNextUpdate = true;
+            InventoryClose.play();
+            c.destroy();
+        });
 
     return c;
 }

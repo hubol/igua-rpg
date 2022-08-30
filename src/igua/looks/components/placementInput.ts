@@ -1,14 +1,14 @@
 import {button} from "./button";
 import {merge} from "../../../utils/object/merge";
 import {Container, Graphics, Sprite} from "pixi.js";
-import {Key} from "../../../utils/browser/key";
 import {looksContext} from "./looksUiRoot";
 import {Vector} from "../../../utils/math/vector";
-import {makeKeyRepeat} from "../makeKeyRepeat";
+import {makeActionRepeat} from "../makeActionRepeat";
 import {UiPlacementReticle} from "../../../textures";
 import {PlacementInput} from "../looksModel";
 import {LooksPageBack, LooksPageInto} from "../../../sounds";
 import {scene} from "../../scene";
+import {Input} from "../../io/input";
 
 export function placementInput(text: string, input: { value: Vector } & PlacementInput, width = 96, height = 30) {
     const c = merge(new Container(), { selected: false });
@@ -17,10 +17,10 @@ export function placementInput(text: string, input: { value: Vector } & Placemen
     let inputSelected = false;
 
     const g = new Graphics();
-    const left = makeKeyRepeat(g, 'ArrowLeft');
-    const right = makeKeyRepeat(g, 'ArrowRight');
-    const up = makeKeyRepeat(g, 'ArrowUp');
-    const down = makeKeyRepeat(g, 'ArrowDown');
+    const left = makeActionRepeat(g, 'SelectLeft');
+    const right = makeActionRepeat(g, 'SelectRight');
+    const up = makeActionRepeat(g, 'SelectUp');
+    const down = makeActionRepeat(g, 'SelectDown');
 
     const reticle = Sprite.from(UiPlacementReticle);
     reticle.anchor.set(2/6, 2/6);
@@ -48,11 +48,11 @@ export function placementInput(text: string, input: { value: Vector } & Placemen
 
     g.withStep(() => {
         if (inputSelected) {
-            if (Key.isDown('ArrowLeft') && Key.isDown('ArrowRight')) {
+            if (Input.isDown('SelectLeft') && Input.isDown('SelectRight')) {
                 left.reset();
                 right.reset();
             }
-            if (Key.isDown('ArrowUp') && Key.isDown('ArrowDown')) {
+            if (Input.isDown('SelectUp') && Input.isDown('SelectDown')) {
                 up.reset();
                 down.reset();
             }
@@ -87,7 +87,7 @@ export function placementInput(text: string, input: { value: Vector } & Placemen
     g.addChild(reticle);
 
     c.withStep(() => {
-        if (c.selected && Key.justWentDown("Space")) {
+        if (c.selected && Input.justWentDown("Confirm")) {
             inputSelected = !inputSelected;
             (inputSelected ? LooksPageInto : LooksPageBack).play();
             looksContext.page.navigation = !inputSelected;

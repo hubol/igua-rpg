@@ -1,17 +1,17 @@
 import {game} from "../igua/game";
-import {Key, KeyCode} from "../utils/browser/key";
 import {invisibleObject} from "../gameObjects/utils/invisibleObject";
 import {wait} from "./wait";
+import {Action, Input} from "../igua/io/input";
 
-export async function waitForKey(keyCode: KeyCode)
+export async function waitForInput(action: Action)
 {
     let wasUp = false;
     let advance = false;
 
     const displayObject = invisibleObject().withStep(() => {
-        if (wasUp && Key.justWentDown(keyCode))
+        if (wasUp && Input.justWentDown(action))
             advance = true;
-        if (Key.isUp(keyCode))
+        if (Input.isUp(action))
             wasUp = true;
     });
     game.hudStage.addChild(displayObject);

@@ -8,8 +8,8 @@ import {toHexColorString} from "../../../utils/toHexColorString";
 import {Graphics} from "pixi.js";
 import {looksContext} from "./looksUiRoot";
 import {merge} from "../../../utils/object/merge";
-import {Key} from "../../../utils/browser/key";
 import {findColorValues} from "../findColorValues";
+import {Input} from "../../io/input";
 
 function readHsv(input) {
     const hex = toHexColorString(input.value);
@@ -124,7 +124,7 @@ function copyButton(color: number, onSelect: () => unknown, onPress: () => unkno
 
         if (g.selected) {
             onSelect();
-            if (Key.justWentDown('Space'))
+            if (Input.justWentDown('Confirm'))
                 onPress();
         }
     });

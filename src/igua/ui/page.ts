@@ -1,7 +1,7 @@
 import {Container} from "pixi.js";
-import {Key} from "../../utils/browser/key";
 import {cyclic} from "../../utils/math/number";
 import {merge} from "../../utils/object/merge";
+import {Input} from "../io/input";
 
 export type PageState = { selectionIndex: number };
 export type PageElement = Container & { selected: boolean };
@@ -48,13 +48,13 @@ export function page(elements: PageElement[], state: PageState) {
     c.addChild(...elements);
     c.withStep(() => {
         if (c.navigation) {
-            if (Key.justWentDown('ArrowUp'))
+            if (Input.justWentDown('SelectUp'))
                 select(0, -1);
-            if (Key.justWentDown('ArrowDown'))
+            if (Input.justWentDown('SelectDown'))
                 select(0, 1);
-            if (Key.justWentDown('ArrowLeft'))
+            if (Input.justWentDown('SelectLeft'))
                 select(-1, 0);
-            if (Key.justWentDown('ArrowRight'))
+            if (Input.justWentDown('SelectRight'))
                 select(1, 0);
         }
         updateSelection();
