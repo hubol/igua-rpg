@@ -38,7 +38,7 @@ type GamepadControls = ControlsBase<GamepadControl[]>;
 
 const defaultGamepadControls: GamepadControls = {
     Confirm: [ button(StandardMapping.Button.BUTTON_BOTTOM) ],
-    Duck: [ button(StandardMapping.Button.D_PAD_BOTTOM), button(StandardMapping.Button.BUMPER_LEFT) ],
+    Duck: [ button(StandardMapping.Button.D_PAD_BOTTOM), button(StandardMapping.Button.BUMPER_LEFT), button(StandardMapping.Button.BUMPER_RIGHT) ],
     Interact: [ button(StandardMapping.Button.BUTTON_TOP), button(StandardMapping.Button.D_PAD_UP) ],
     InventoryMenuToggle: [ button(StandardMapping.Button.BUTTON_CONTROL_RIGHT) ],
     Jump: [ button(StandardMapping.Button.BUTTON_BOTTOM) ],
