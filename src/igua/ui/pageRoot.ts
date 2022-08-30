@@ -1,8 +1,8 @@
 import {Container, DisplayObject} from "pixi.js";
 import {page} from "./page";
-import {advanceKeyListener} from "../../utils/browser/key";
 import {merge} from "../../utils/object/merge";
 import {LooksPageInto, SelectOption} from "../../sounds";
+import {advanceInput} from "../io/input";
 
 export function pageRoot({ playSounds = true } = {}) {
     const pageContainer = new Container();
@@ -23,7 +23,7 @@ export function pageRoot({ playSounds = true } = {}) {
 
         pageContainer.removeAllChildren();
         pageContainer.addChild(p);
-        advanceKeyListener();
+        advanceInput();
         pageContainer.ticker.update();
         return p;
     };
