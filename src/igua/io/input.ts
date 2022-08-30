@@ -65,7 +65,11 @@ function setMode(nextMode: Mode) {
 export function startInput() {
     document.addEventListener("keydown", () => setMode(Mode.Keyboard));
     Gamepads.start();
-    Gamepads.addEventListener('connect', e => e.gamepad.addEventListener('buttonpress', () => setMode(Mode.Gamepad)));
+    Gamepads.addEventListener('connect', e => {
+        if (mode === Mode.None)
+            setMode(Mode.Gamepad);
+        e.gamepad.addEventListener('buttonpress', () => setMode(Mode.Gamepad));
+    });
 }
 
 export function advanceInput() {
