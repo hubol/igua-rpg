@@ -18,41 +18,41 @@ export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
 }
 
-let defaultIndex = 0;
+let defaultSelection = 0;
 
 function controller(row: number, slots: number) {
     scene.ticker.doNextUpdate = false;
     let destroyOnNextStep = false;
-    const c = merge(new Container(), { index: defaultIndex, row, slots, type: undefined as PotionType | undefined }).withStep(() => {
+    const c = merge(new Container(), { selection: defaultSelection, row, slots, type: undefined as PotionType | undefined }).withStep(() => {
         if (destroyOnNextStep) {
             scene.ticker.doNextUpdate = true;
             InventoryClose.play();
             return c.destroy();
         }
-        if (Input.justWentDown("InventoryMenuToggle"))
+        if (Input.justWentDown("InventoryMenuToggle") || Input.justWentDown("MenuEscape"))
             return destroyOnNextStep = true;
-        const left = Math.floor(c.index / row) * row;
+        const left = Math.floor(c.selection / row) * row;
         const right = Math.min(left + row, slots);
-        // TODO fix conflict with DisplayObject.index
-        const previousIndex = c.index;
+
+        const previousSelection = c.selection;
         if (Input.justWentDown("SelectRight")) {
-            c.index = cyclic(c.index + 1, left, right);
+            c.selection = cyclic(c.selection + 1, left, right);
         }
         else if (Input.justWentDown("SelectLeft")) {
-            c.index = cyclic(c.index - 1, left, right);
+            c.selection = cyclic(c.selection - 1, left, right);
         }
         else if (Input.justWentDown("SelectUp")) {
-            c.index = cyclic(c.index + (right - left), 0, slots);
+            c.selection = cyclic(c.selection + (right - left), 0, slots);
         }
         else if (Input.justWentDown("SelectDown")) {
-            c.index = cyclic(c.index + (right - left), 0, slots);
+            c.selection = cyclic(c.selection + (right - left), 0, slots);
         }
-        defaultIndex = c.index;
-        c.type = inventory.get(c.index);
-        if (previousIndex !== c.index)
+        defaultSelection = c.selection;
+        c.type = inventory.get(c.selection);
+        if (previousSelection !== c.selection)
             SelectOption.play();
         else if (c.type && Input.justWentDown("Confirm"))
-            consumePotion(c.index);
+            consumePotion(c.selection);
 
     });
 
@@ -70,7 +70,7 @@ function gui(c: Controller, margin = 2, size = 24) {
             const ny = Math.floor(i / c.row);
             const x = nx * (size + margin);
             const y = ny * (size + margin);
-            gfx.beginFill(i === c.index ? 0x00ff00 : 0x005870);
+            gfx.beginFill(i === c.selection ? 0x00ff00 : 0x005870);
             gfx.drawRect(x, y, size, size);
             const item = items[i];
             const potion = inventory.potion(i);
