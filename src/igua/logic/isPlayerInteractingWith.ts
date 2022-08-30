@@ -1,10 +1,10 @@
 import {DisplayObject} from "pixi.js";
-import {playerCharacterKey} from "./playerCharacterKey";
+import {PlayerCharacterInput} from "./playerCharacterInput";
 import {player} from "../../gameObjects/player";
 
 export function isPlayerInteractingWith(object: DisplayObject)
 {
-    return playerCharacterKey.justWentDown("Interact") && object.collides(player);
+    return PlayerCharacterInput.justWentDown("Interact") && object.collides(player);
 }
 
 export function isPlayerMoving() {
