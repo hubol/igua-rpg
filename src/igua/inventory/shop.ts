@@ -142,6 +142,11 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[]) {
 
     c.addChild(tip, inventoryFull);
 
+    function complete() {
+        resolve(purchases);
+        c.destroy();
+    }
+
     const cursor = iguanaHead(playerPuppetArgs()).withStep(() => {
         const nothingSelected = selectedIndex === -1;
         const previousSelectedIndex = selectedIndex;
@@ -175,15 +180,16 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[]) {
 
             if (Input.justWentDown('Confirm')) {
                 if (doneSelected) {
-                    resolve(purchases);
-                    c.destroy();
-                    return;
+                    return complete();
                 }
                 else {
                     buyPotion();
                 }
             }
         }
+
+        if (Input.justWentDown("MenuEscape"))
+            return complete();
 
         if (error > 0) {
             cursor.x += (error % 2 === 0 ? 1 : -1) * Math.ceil(error / 6);
