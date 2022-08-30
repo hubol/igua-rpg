@@ -4,6 +4,7 @@ import {Undefined} from "../../utils/types/undefined";
 import {defaultGamepad, defaultKeyboardControls} from "./controls";
 import {Key} from "../../utils/browser/key";
 import {Force} from "../../utils/types/force";
+import {distance, vnew} from "../../utils/math/vector";
 
 const actions = ['MoveLeft', 'MoveRight', 'Duck', 'Jump', 'Interact',
     'InventoryMenuToggle', 'PauseMenuToggle', 'MenuEscape',
@@ -94,14 +95,21 @@ function applyInput() {
     }
 }
 
+const v1 = vnew();
+const v2 = vnew();
 function applyGamepadToInput(g: Gamepad) {
     Object.entries(defaultGamepad.controls).forEach(([action, controls]) => {
         let down = false;
         for (const c of controls) {
             if (c.kind === 'button')
                 down ||= g.buttons[c.index].pressed;
-            else
+            else if (c.kind === 'axis')
                 down ||= Math.sign(g.axes[c.index]) === c.sign && Math.abs(g.axes[c.index]) > defaultGamepad.config.stickDeadZone;
+            else if (c.kind === 'axisUnit') {
+                v1.at(g.axes[c.indices[0]], g.axes[c.indices[1]]);
+                v2.at(c.unit);
+                down ||= distance(v1, v2) < 0.5;
+            }
         }
         workingState[action] = down;
     })

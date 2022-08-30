@@ -1,5 +1,6 @@
 import {Action} from "./input";
 import {StandardMapping} from "./standardMapping";
+import {Vector} from "../../utils/math/vector";
 
 type ControlsBase<T> = {
     [index in Action]: T;
@@ -26,13 +27,19 @@ export const defaultKeyboardControls: KeyboardControls = {
 function button(index: number) {
     return { index, kind: 'button' as const };
 }
+
 function axis(index: number, sign: 1 | -1) {
     return { index, sign, kind: 'axis' as const };
 }
 
+function axisUnit(indices: number[], unit: Vector) {
+    return { indices, unit, kind: 'axisUnit' as const };
+}
+
 type ButtonControl = ReturnType<typeof button>;
 type AxisControl = ReturnType<typeof axis>;
-type GamepadControl = ButtonControl | AxisControl;
+type AxisUnitControl = ReturnType<typeof axisUnit>;
+type GamepadControl = ButtonControl | AxisControl | AxisUnitControl;
 
 type GamepadControls = ControlsBase<GamepadControl[]>;
 
@@ -46,10 +53,10 @@ const defaultGamepadControls: GamepadControls = {
     MoveLeft: [ button(StandardMapping.Button.D_PAD_LEFT), axis(StandardMapping.Axis.JOYSTICK_LEFT_HORIZONTAL, -1), axis(StandardMapping.Axis.JOYSTICK_RIGHT_HORIZONTAL, -1) ],
     MoveRight: [ button(StandardMapping.Button.D_PAD_RIGHT), axis(StandardMapping.Axis.JOYSTICK_LEFT_HORIZONTAL, 1), axis(StandardMapping.Axis.JOYSTICK_RIGHT_HORIZONTAL, 1) ],
     PauseMenuToggle: [ button(StandardMapping.Button.BUTTON_CONTROL_LEFT) ],
-    SelectDown: [ button(StandardMapping.Button.D_PAD_BOTTOM), axis(StandardMapping.Axis.JOYSTICK_LEFT_VERTICAL, 1), axis(StandardMapping.Axis.JOYSTICK_RIGHT_VERTICAL, 1) ],
-    SelectLeft: [ button(StandardMapping.Button.D_PAD_LEFT), axis(StandardMapping.Axis.JOYSTICK_LEFT_HORIZONTAL, -1), axis(StandardMapping.Axis.JOYSTICK_RIGHT_HORIZONTAL, -1) ],
-    SelectRight: [ button(StandardMapping.Button.D_PAD_RIGHT), axis(StandardMapping.Axis.JOYSTICK_LEFT_HORIZONTAL, 1), axis(StandardMapping.Axis.JOYSTICK_RIGHT_HORIZONTAL, 1) ],
-    SelectUp: [ button(StandardMapping.Button.D_PAD_UP), axis(StandardMapping.Axis.JOYSTICK_LEFT_VERTICAL, -1), axis(StandardMapping.Axis.JOYSTICK_RIGHT_VERTICAL, -1) ]
+    SelectDown: [ button(StandardMapping.Button.D_PAD_BOTTOM), axisUnit(StandardMapping.Axis.JOYSTICK_LEFT, [0, 1]), axisUnit(StandardMapping.Axis.JOYSTICK_RIGHT, [0, 1]) ],
+    SelectLeft: [ button(StandardMapping.Button.D_PAD_LEFT), axisUnit(StandardMapping.Axis.JOYSTICK_LEFT, [-1, 0]), axisUnit(StandardMapping.Axis.JOYSTICK_RIGHT, [-1, 0]) ],
+    SelectRight: [ button(StandardMapping.Button.D_PAD_RIGHT), axisUnit(StandardMapping.Axis.JOYSTICK_LEFT, [1, 0]), axisUnit(StandardMapping.Axis.JOYSTICK_RIGHT, [1, 0]) ],
+    SelectUp: [ button(StandardMapping.Button.D_PAD_UP), axisUnit(StandardMapping.Axis.JOYSTICK_LEFT, [0, -1]), axisUnit(StandardMapping.Axis.JOYSTICK_RIGHT, [0, -1]) ]
 }
 
 export const defaultGamepad = {
