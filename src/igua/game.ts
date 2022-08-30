@@ -23,10 +23,10 @@ function createGame(application: AsshatApplication)
     startKeyListener();
     startInput();
     ticker.add(advanceKeyListener);
+    ticker.add(advanceInput);
 
     application.ticker.add(() => {
         ticker.update();
-        advanceInput();
         scene.ticker.update();
         stepPlayerCamera();
     });

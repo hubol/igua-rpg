@@ -11,7 +11,7 @@ export const defaultKeyboardControls: KeyboardControls = {
     Confirm: "Space",
     Duck: "ArrowDown",
     Interact: "ArrowUp",
-    InventoryMenuToggle: "U",
+    InventoryMenuToggle: "KeyU",
     Jump: "Space",
     MenuEscape: "Escape",
     MoveLeft: "ArrowLeft",

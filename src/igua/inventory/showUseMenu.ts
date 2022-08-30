@@ -12,8 +12,7 @@ import {range} from "../../utils/range";
 import {IguaText} from "../text";
 import {progress} from "../data/progress";
 import {container} from "../../utils/pixi/container";
-import {Input} from "../io/input";
-import {wait} from "../../cutscene/wait";
+import { Input } from "../io/input";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
@@ -23,7 +22,15 @@ let defaultIndex = 0;
 
 function controller(row: number, slots: number) {
     scene.ticker.doNextUpdate = false;
+    let destroyOnNextStep = false;
     const c = merge(new Container(), { index: defaultIndex, row, slots, type: undefined as PotionType | undefined }).withStep(() => {
+        if (destroyOnNextStep) {
+            scene.ticker.doNextUpdate = true;
+            InventoryClose.play();
+            return c.destroy();
+        }
+        if (Input.justWentDown("InventoryMenuToggle"))
+            return destroyOnNextStep = true;
         const left = Math.floor(c.index / row) * row;
         const right = Math.min(left + row, slots);
         // TODO fix conflict with DisplayObject.index
@@ -47,14 +54,7 @@ function controller(row: number, slots: number) {
         else if (c.type && Input.justWentDown("Confirm"))
             consumePotion(c.index);
 
-    })
-        .withAsync(async () => {
-            await wait(() => Input.isUp('InventoryMenuToggle'));
-            await wait(() => Input.justWentDown('InventoryMenuToggle') || Input.justWentDown('MenuEscape'));
-            scene.ticker.doNextUpdate = true;
-            InventoryClose.play();
-            c.destroy();
-        });
+    });
 
     return c;
 }
