@@ -1,8 +1,8 @@
 import {merge} from "../../../utils/object/merge";
 import {Graphics} from "pixi.js";
-import {Key} from "../../../utils/browser/key";
 import {IguaText} from "../../text";
-import {makeKeyRepeat} from "../makeKeyRepeat";
+import {makeActionRepeat} from "../makeActionRepeat";
+import {Input} from "../../io/input";
 
 interface Binding<T> {
     get(): T;
@@ -34,7 +34,7 @@ export function valueSlider(
             if (!g.selected)
                 return;
 
-            if (Key.isDown('ArrowLeft') && Key.isDown('ArrowRight')) {
+            if (Input.isDown('SelectLeft') && Input.isDown('SelectRight')) {
                 left.reset();
                 right.reset();
             }
@@ -71,8 +71,8 @@ export function valueSlider(
                 .drawRect(8, height - 12, (width - 16) * unit, 4);
         });
 
-    const left = makeKeyRepeat(g,'ArrowLeft');
-    const right = makeKeyRepeat(g,'ArrowRight');
+    const left = makeActionRepeat(g,'SelectLeft');
+    const right = makeActionRepeat(g,'SelectRight');
 
     const font = IguaText.Large(text).at(width / 2, 4);
     // @ts-ignore

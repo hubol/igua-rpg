@@ -1,13 +1,13 @@
 import {Container} from "pixi.js";
 import {game} from "../igua/game";
-import {waitForKey} from "./waitForKey";
-import {Key} from "../utils/browser/key";
+import {waitForInput} from "./waitForInput";
 import {SelectOption} from "../sounds";
 import {IguaZone} from "./runInIguaZone";
 import {iguanaHead} from "../igua/puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../gameObjects/player";
 import {IguaText} from "../igua/text";
 import {messageBox} from "./dialog";
+import {Input} from "../igua/io/input";
 
 type Answer = string;
 
@@ -63,14 +63,14 @@ async function askImpl<T extends Answer>(question: string, answers: T[]): Promis
             const nothingSelected = selectedIndex === -1;
             const previousSelectedIndex = selectedIndex;
 
-            if (Key.justWentDown("ArrowLeft") && (selectedIndex > 0 || nothingSelected))
+            if (Input.justWentDown("SelectLeft") && (selectedIndex > 0 || nothingSelected))
             {
                 if (nothingSelected)
                     selectedIndex = 0;
                 else
                     selectedIndex--;
             }
-            else if (Key.justWentDown("ArrowRight") && (selectedIndex < answers.length - 1 || nothingSelected))
+            else if (Input.justWentDown("SelectRight") && (selectedIndex < answers.length - 1 || nothingSelected))
             {
                 if (nothingSelected)
                     selectedIndex = answers.length - 1;
@@ -97,7 +97,7 @@ async function askImpl<T extends Answer>(question: string, answers: T[]): Promis
         throw e;
     });
 
-    await waitForKey("Space");
+    await waitForInput("Confirm");
     dialogContainer.destroy();
 
     return answers[selectedIndex];

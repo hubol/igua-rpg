@@ -13,7 +13,6 @@ import {button as uiButton} from "../igua/ui/button";
 import {IguaText} from "../igua/text";
 import {persistence, SaveFile} from "../igua/data/persistence";
 import {PageElement} from "../igua/ui/page";
-import {sleep} from "../cutscene/sleep";
 import {Progress} from "../igua/data/progress";
 import {PurchaseFail} from "../sounds";
 import {getCompletion} from "../igua/data/getCompletion";
@@ -118,7 +117,7 @@ export async function TitleScreen() {
             loadButton('File 1', SaveFile.Slot1),
             loadButton('File 2', SaveFile.Slot2).at(0, 30),
             loadButton('File 3', SaveFile.Slot3).at(0, 60),
-            button('Back', () => goto(rootPage(), 1)).center().at(0, 95),
+            button('Back', () => goto(rootPage(), 1)).center().escape().at(0, 95),
         ];
     }
 
@@ -132,7 +131,7 @@ export async function TitleScreen() {
             newButton('File 1', SaveFile.Slot1),
             newButton('File 2', SaveFile.Slot2).at(0, 30),
             newButton('File 3', SaveFile.Slot3).at(0, 60),
-            button('Back', () => goto(rootPage(), 2)).center().at(0, 95),
+            button('Back', () => goto(rootPage(), 2)).center().escape().at(0, 95),
         ];
     }
 

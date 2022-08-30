@@ -2,7 +2,6 @@ import {EscapeTickerAndExecute} from "../../utils/asshatTicker";
 import {scene} from "../scene";
 import {game} from "../game";
 import {Container, Graphics, Sprite} from "pixi.js";
-import {Key} from "../../utils/browser/key";
 import {merge} from "../../utils/object/merge";
 import {cyclic} from "../../utils/math/number";
 import {inventory} from "./inventory";
@@ -13,45 +12,47 @@ import {range} from "../../utils/range";
 import {IguaText} from "../text";
 import {progress} from "../data/progress";
 import {container} from "../../utils/pixi/container";
+import { Input } from "../io/input";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
 }
 
-let defaultIndex = 0;
+let defaultSelection = 0;
 
 function controller(row: number, slots: number) {
     scene.ticker.doNextUpdate = false;
     let destroyOnNextStep = false;
-    const c = merge(new Container(), { index: defaultIndex, row, slots, type: undefined as PotionType | undefined }).withStep(() => {
+    const c = merge(new Container(), { selection: defaultSelection, row, slots, type: undefined as PotionType | undefined }).withStep(() => {
         if (destroyOnNextStep) {
             scene.ticker.doNextUpdate = true;
             InventoryClose.play();
             return c.destroy();
         }
-        if (Key.justWentDown("KeyU"))
+        if (Input.justWentDown("InventoryMenuToggle") || Input.justWentDown("MenuEscape"))
             return destroyOnNextStep = true;
-        const left = Math.floor(c.index / row) * row;
+        const left = Math.floor(c.selection / row) * row;
         const right = Math.min(left + row, slots);
-        const previousIndex = c.index;
-        if (Key.justWentDown("ArrowRight")) {
-            c.index = cyclic(c.index + 1, left, right);
+
+        const previousSelection = c.selection;
+        if (Input.justWentDown("SelectRight")) {
+            c.selection = cyclic(c.selection + 1, left, right);
         }
-        else if (Key.justWentDown("ArrowLeft")) {
-            c.index = cyclic(c.index - 1, left, right);
+        else if (Input.justWentDown("SelectLeft")) {
+            c.selection = cyclic(c.selection - 1, left, right);
         }
-        else if (Key.justWentDown("ArrowUp")) {
-            c.index = cyclic(c.index + (right - left), 0, slots);
+        else if (Input.justWentDown("SelectUp")) {
+            c.selection = cyclic(c.selection + (right - left), 0, slots);
         }
-        else if (Key.justWentDown("ArrowDown")) {
-            c.index = cyclic(c.index + (right - left), 0, slots);
+        else if (Input.justWentDown("SelectDown")) {
+            c.selection = cyclic(c.selection + (right - left), 0, slots);
         }
-        defaultIndex = c.index;
-        c.type = inventory.get(c.index);
-        if (previousIndex !== c.index)
+        defaultSelection = c.selection;
+        c.type = inventory.get(c.selection);
+        if (previousSelection !== c.selection)
             SelectOption.play();
-        else if (c.type && Key.justWentDown("Space"))
-            consumePotion(c.index);
+        else if (c.type && Input.justWentDown("Confirm"))
+            consumePotion(c.selection);
 
     });
 
@@ -69,7 +70,7 @@ function gui(c: Controller, margin = 2, size = 24) {
             const ny = Math.floor(i / c.row);
             const x = nx * (size + margin);
             const y = ny * (size + margin);
-            gfx.beginFill(i === c.index ? 0x00ff00 : 0x005870);
+            gfx.beginFill(i === c.selection ? 0x00ff00 : 0x005870);
             gfx.drawRect(x, y, size, size);
             const item = items[i];
             const potion = inventory.potion(i);

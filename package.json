@@ -46,6 +46,7 @@
   "dependencies": {
     "colord": "^2.9.2",
     "deep-object-diff": "^1.1.0",
+    "gamepads": "^1.2.2",
     "howler": "^2.2.3",
     "pixi-filters": "^3.1.1",
     "pixi.js": "^5.3.2",

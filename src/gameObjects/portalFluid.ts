@@ -1,6 +1,6 @@
 import {Container, Graphics} from "pixi.js";
 import {player} from "./player";
-import {playerCharacterHasControl} from "../igua/logic/playerCharacterKey";
+import {playerCharacterHasControl} from "../igua/logic/playerCharacterInput";
 import {cutscene} from "../cutscene/cutscene";
 import {level} from "../igua/level/level";
 import {scene} from "../igua/scene";

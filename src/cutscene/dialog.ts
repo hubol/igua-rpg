@@ -1,7 +1,7 @@
 import {game} from "../igua/game";
 import {Sprite} from "pixi.js";
 import {MessageBox} from "../textures";
-import {waitForKey} from "./waitForKey";
+import {waitForInput} from "./waitForInput";
 import {IguaText} from "../igua/text";
 import {container} from "../utils/pixi/container";
 import {progress} from "../igua/data/progress";
@@ -19,6 +19,6 @@ export async function show(message: string)
 
     game.hudStage.addChild(box);
 
-    await waitForKey("Space")
+    await waitForInput("Confirm")
         .finally(() => box.destroy());
 }

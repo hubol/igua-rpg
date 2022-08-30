@@ -5,13 +5,13 @@ import {merge} from "../../utils/object/merge";
 import {BackpackIcon, ValuableIcon} from "../../textures";
 import {iguanaHead} from "../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../gameObjects/player";
-import {Key} from "../../utils/browser/key";
 import {Purchase, PurchaseFail, SelectOption} from "../../sounds";
 import {cyclic} from "../../utils/math/number";
 import {progress} from "../data/progress";
 import {inventory} from "./inventory";
 import {spendValuables} from "../logic/spendValuables";
 import {IguaText} from "../text";
+import {Input} from "../io/input";
 
 type Purchases = PotionType[];
 
@@ -142,18 +142,23 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[]) {
 
     c.addChild(tip, inventoryFull);
 
+    function complete() {
+        resolve(purchases);
+        c.destroy();
+    }
+
     const cursor = iguanaHead(playerPuppetArgs()).withStep(() => {
         const nothingSelected = selectedIndex === -1;
         const previousSelectedIndex = selectedIndex;
 
-        if (Key.justWentDown("ArrowUp"))
+        if (Input.justWentDown("SelectUp"))
         {
             if (nothingSelected)
                 selectedIndex = buttons.length - 1;
             else
                 selectedIndex--;
         }
-        else if (Key.justWentDown("ArrowDown"))
+        else if (Input.justWentDown("SelectDown"))
         {
             if (nothingSelected)
                 selectedIndex = 0;
@@ -173,17 +178,18 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[]) {
             if (doneSelected)
                 cursor.y -= 8;
 
-            if (Key.justWentDown('Space')) {
+            if (Input.justWentDown('Confirm')) {
                 if (doneSelected) {
-                    resolve(purchases);
-                    c.destroy();
-                    return;
+                    return complete();
                 }
                 else {
                     buyPotion();
                 }
             }
         }
+
+        if (Input.justWentDown("MenuEscape"))
+            return complete();
 
         if (error > 0) {
             cursor.x += (error % 2 === 0 ? 1 : -1) * Math.ceil(error / 6);

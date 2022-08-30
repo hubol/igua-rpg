@@ -8,7 +8,7 @@ import {progress} from "./data/progress";
 import {defaults} from "../utils/object/defaults";
 import {merge} from "../utils/object/merge";
 import {defaultSceneMeta, SceneMeta} from "./level/setSceneMeta";
-import {advanceKeyListener} from "../utils/browser/key";
+import {advanceInput} from "./io/input";
 
 function createScene(source: SceneSource, args: Readonly<SceneMeta>)
 {
@@ -95,7 +95,7 @@ function onScenePushed() {
 
     scene.ext.__player = player;
     const result = scene.source();
-    advanceKeyListener();
+    advanceInput();
     scene.ticker.update();
     return result;
 }
