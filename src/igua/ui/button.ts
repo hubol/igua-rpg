@@ -4,15 +4,21 @@ import {Input} from "../io/input";
 
 export function button(onPress: () => unknown, width = 96, height = 30) {
     let jigglesOnPress = false;
+    let escapes = false;
 
     function jiggle() {
         jigglesOnPress = true;
         return g;
     }
 
+    function escape() {
+        escapes = true;
+        return g;
+    }
+
     let factor = 0;
 
-    const g = merge(new Graphics(), { selected: false, jiggle, onPress }).withStep(() => {
+    const g = merge(new Graphics(), { selected: false, jiggle, onPress, escape }).withStep(() => {
         g.clear().beginFill(0x005870);
         if (g.selected)
             g.lineStyle(2, 0x00FF00, 1, 0);
@@ -29,6 +35,9 @@ export function button(onPress: () => unknown, width = 96, height = 30) {
             g.onPress();
             if (jigglesOnPress)
                 factor = 8;
+        }
+        else if (escapes && Input.justWentDown('MenuEscape')) {
+            g.onPress();
         }
     });
 

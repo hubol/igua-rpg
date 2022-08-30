@@ -40,7 +40,7 @@ export function makeModelPageElements(boundInputModel: BoundInputModel) {
     }
 
     if (looksContext.path.length > 0)
-        elements.push(button('Back', looksContext.back));
+        elements.push(button('Back', looksContext.back).escape());
     else
         elements.push(inspirationButton(), button('Done', looksContext.save));
 
