@@ -63,7 +63,10 @@ function setMode(nextMode: Mode) {
 }
 
 export function startInput() {
-    document.addEventListener("keydown", () => setMode(Mode.Keyboard));
+    document.addEventListener("keydown", (e) => {
+        if (keyCodeIsInControls(e.code))
+            setMode(Mode.Keyboard);
+    });
     Gamepads.start();
     Gamepads.addEventListener('connect', e => {
         if (mode === Mode.None)
@@ -123,4 +126,8 @@ export function tryGetGamepad() {
     }
 
     return gamepad;
+}
+
+function keyCodeIsInControls(keyCode: string) {
+    return Object.values(defaultKeyboardControls).some(x => x === keyCode);
 }
