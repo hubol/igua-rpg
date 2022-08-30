@@ -70,8 +70,7 @@ export function startInput() {
     });
     Gamepads.start();
     Gamepads.addEventListener('connect', e => {
-        if (mode === Mode.None)
-            setMode(Mode.Gamepad);
+        setMode(Mode.Gamepad);
         e.gamepad.addEventListener('buttonpress', () => setMode(Mode.Gamepad));
     });
 }
