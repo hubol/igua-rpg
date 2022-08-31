@@ -19,6 +19,7 @@ import {getCompletion} from "../igua/data/getCompletion";
 import {jukebox} from "../igua/jukebox";
 import {TitleScreen as Music} from "../musics";
 import {Vibratey} from "../igua/puppet/mods/vibratey";
+import {environment} from "../igua/environment";
 
 export async function TitleScreen() {
     jukebox.play(Music);
@@ -94,6 +95,9 @@ export async function TitleScreen() {
             button('Load Game', () => goto(loadPage())).center().at(0, 30),
             button('New Game', () => goto(newPage())).center().at(0, 60),
         ];
+
+        if (environment.isElectron)
+            e.push(button('Quit', () => window.close()).center().at(0, 90 + 5));
 
         if (!peek?.lastPlayedSaveFile)
             e[0].disabled();
