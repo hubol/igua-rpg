@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 384,
+  "width": 512,
   "height": 256,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,14 +12,14 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 48,
+      "gridCellsX": 64,
       "gridCellsY": 32,
       "entities": [
         {
           "name": "Block",
           "id": 0,
           "_eid": "55823268",
-          "x": 224,
+          "x": 352,
           "y": 208,
           "width": 160,
           "height": 48,
@@ -31,7 +31,7 @@
           "name": "Block",
           "id": 1,
           "_eid": "55823268",
-          "x": 224,
+          "x": 352,
           "y": 0,
           "width": 160,
           "height": 160,
@@ -43,7 +43,7 @@
           "name": "Player",
           "id": 2,
           "_eid": "55988047",
-          "x": 280,
+          "x": 424,
           "y": 208,
           "originX": 11,
           "originY": 27,
@@ -53,13 +53,25 @@
           "name": "Gate",
           "id": 3,
           "_eid": "55920197",
-          "x": 352,
+          "x": 480,
           "y": 176,
           "width": 32,
           "height": 32,
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "VolcanoTown", "checkpointName": "FromBossArena", "name": "", "depth": 0}
+        },
+        {
+          "name": "Lava",
+          "id": 4,
+          "_eid": "98209396",
+          "x": 0,
+          "y": 208,
+          "width": 352,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -70,7 +82,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 48,
+      "gridCellsX": 64,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"
@@ -82,9 +94,32 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 48,
+      "gridCellsX": 64,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 381.5930595662703,
+          "y": 220.51552327733887,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 381.11427546753197,
+          "y": 147.2615561703749,
+          "scaleX": -1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {
@@ -94,7 +129,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 48,
+      "gridCellsX": 64,
       "gridCellsY": 32,
       "decals": [],
       "folder": "..\\..\\src\\images"
@@ -106,9 +141,65 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 48,
+      "gridCellsX": 64,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 24,
+          "y": 200,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/crystal.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 92.34110086626939,
+          "y": 196.40688958366852,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/crystal.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 182.95752381871657,
+          "y": 201.97376880941613,
+          "scaleX": -1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/crystal.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 255.94549588962963,
+          "y": 197.33470278795977,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/crystal.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 279.7593681331055,
+          "y": 192.69563676650344,
+          "scaleX": -1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/crystal.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     }
   ]

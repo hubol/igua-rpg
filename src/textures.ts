@@ -209,6 +209,7 @@ export let VolcanoCurtain: PIXI.Texture;
 export let VolcanoDeadBush: PIXI.Texture;
 export let VolcanoFloralWallpaper: PIXI.Texture;
 export let VolcanoInnShopBuilding: PIXI.Texture;
+export let VolcanoLavaBubble: PIXI.Texture;
 export let VolcanoMineralDebris: PIXI.Texture;
 export let VolcanoOracleHouseReflection: PIXI.Texture;
 export let VolcanoPillarBroken: PIXI.Texture;
@@ -843,6 +844,9 @@ export function loadTexturesAsync()
     const VolcanoInnShopBuildingPath = require("./images/volcano/inn shop building.png");
     loader.add(VolcanoInnShopBuildingPath); 
 
+    const VolcanoLavaBubblePath = require("./images/volcano/lava bubble.png");
+    loader.add(VolcanoLavaBubblePath); 
+
     const VolcanoMineralDebrisPath = require("./images/volcano/mineral debris.png");
     loader.add(VolcanoMineralDebrisPath); 
 
@@ -1075,6 +1079,7 @@ export function loadTexturesAsync()
             VolcanoDeadBush = resources[VolcanoDeadBushPath]?.texture as PIXI.Texture;
             VolcanoFloralWallpaper = resources[VolcanoFloralWallpaperPath]?.texture as PIXI.Texture;
             VolcanoInnShopBuilding = resources[VolcanoInnShopBuildingPath]?.texture as PIXI.Texture;
+            VolcanoLavaBubble = resources[VolcanoLavaBubblePath]?.texture as PIXI.Texture;
             VolcanoMineralDebris = resources[VolcanoMineralDebrisPath]?.texture as PIXI.Texture;
             VolcanoOracleHouseReflection = resources[VolcanoOracleHouseReflectionPath]?.texture as PIXI.Texture;
             VolcanoPillarBroken = resources[VolcanoPillarBrokenPath]?.texture as PIXI.Texture;
