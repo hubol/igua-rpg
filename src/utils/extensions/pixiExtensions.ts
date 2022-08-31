@@ -22,7 +22,7 @@ declare global {
             ticker: AsshatTicker;
             hueShift: number;
             opaqueTint: number;
-            readonly index: number;
+            index: number;
             readonly hasFilter: boolean;
             readonly ext: Record<string, any>;
             readonly hasExt: boolean;
@@ -189,6 +189,10 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
             if (!this.parent)
                 return 0;
             return this.parent.getChildIndex(this);
+        },
+        set: function (index) {
+            if (this.parent)
+                this.parent.setChildIndex(this, index);
         },
         enumerable: false,
         configurable: true,
