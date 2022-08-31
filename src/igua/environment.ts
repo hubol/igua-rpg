@@ -1,3 +1,5 @@
+import packageJson from '../../package.json'
+
 export const environment = {
     get isProduction()
     {
@@ -12,5 +14,8 @@ export const environment = {
     {
         // https://stackoverflow.com/a/7768006
         return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    },
+    get version() {
+        return packageJson.version;
     }
 };

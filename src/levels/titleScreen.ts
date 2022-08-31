@@ -198,7 +198,7 @@ function title() {
 }
 
 function showDemoText() {
-    const demo = IguaText.Large('Demo', {tint: 0x005870}).at(254, 255).show();
+    const demo = IguaText.Large(`Demo Ver. ${environment.version}`, {tint: 0x005870}).at(254, 255).show();
     // @ts-ignore
     demo.anchor.set(1);
 }
