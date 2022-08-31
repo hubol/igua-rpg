@@ -39,6 +39,7 @@ import { resolveClownWonderful } from "./gameObjects/clownWonderful";
 import { resolvePipeLeftEnd } from "./gameObjects/walls";
 import { resolvePipeRightEnd } from "./gameObjects/walls";
 import { KeyGreen } from "./textures";
+import { resolveLava } from "./gameObjects/lava";
 import { CloudLong } from "./textures";
 import { BallColorful } from "./textures";
 import { SmallDecorativeRock } from "./textures";
@@ -7467,13 +7468,37 @@ export const VolcanoBossArenaArgs = {
 height: 256,
 gameObjectsSupplier: () => {
   return {
-    // @ts-ignore
+    GroundSpeckles: resolveDecalGameObject({
+    x: 253.59305956627028,
+y: 220.51552327733887,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+GroundSpeckles_1: resolveDecalGameObject({
+    x: 253.11427546753197,
+y: 147.2615561703749,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+// @ts-ignore
 Block: resolveBlock({"type":"Block","x":224,"y":208,"width":160,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":224,"y":0,"width":160,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
-Player: {"type":"Player","x":280,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
+Player: {"type":"Player","x":296,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":352,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_3","levelName":"VolcanoTown","checkpointName":"FromBossArena","name":"","depth":0})
+Gate: resolveGate({"type":"Gate","x":352,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_3","levelName":"VolcanoTown","checkpointName":"FromBossArena","name":"","depth":0}),
+// @ts-ignore
+Lava: resolveLava({"type":"Lava","x":0,"y":208,"width":224,"height":48,"flippedX":false,"flippedY":false,"uid":"98209396_4","name":"","depth":0})
 };
 }
 };
