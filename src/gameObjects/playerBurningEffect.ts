@@ -50,7 +50,7 @@ function playerMaskedOverlay() {
     const inner = container();
 
     const c = container(inner)
-        .withTicker(game.endTicker)
+        .withTicker(scene.endTicker)
         .withStep(() => {
             const p1 = scene.camera.vcpy();
             const p2 = player.vcpy();

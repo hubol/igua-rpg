@@ -13,6 +13,7 @@ import {advanceInput} from "./io/input";
 function createScene(source: SceneSource, args: Readonly<SceneMeta>)
 {
     const ticker = new AsshatTicker();
+    const endTicker = merge(new AsshatTicker(), { get doNextUpdate() { return ticker.doNextUpdate; } });
     const backgroundGraphics = new Graphics();
     const terrainStage = new Container();
 
@@ -48,6 +49,7 @@ function createScene(source: SceneSource, args: Readonly<SceneMeta>)
         gameObjectStage,
         playerStage,
         ticker,
+        endTicker,
         ext: {} as Record<string, any>,
         destroy()
         {
