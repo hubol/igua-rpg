@@ -29,11 +29,11 @@ function playerBurningEffect() {
         return Math.round(lerp(10, -15, burnf()));
     }
 
-    const targetalpha = () => Math.max(0.2, burnf());
+    const targetalpha = () => Math.max(0.67, burnf() * 2);
 
     const g = new Graphics()
         .withStep(() => {
-            g.clear().beginFill(0xff0000);
+            g.clear().beginFill(0xDD4335);
             drawPool(g, 64, 48, f);
             g.alpha = approachLinear(g.alpha, targetalpha(), 0.1);
             g.y = approachLinear(g.y, targety(), 2);

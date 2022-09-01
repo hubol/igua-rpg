@@ -1,5 +1,6 @@
 import {iguanaPuppet} from "../igua/puppet/iguanaPuppet";
 import {
+    BurnedPlayer,
     CharacterHurt, CharacterHurtDefense, EffectPoison
 } from "../sounds";
 import {playerCharacterHasControl, PlayerCharacterInput as playerKey} from "../igua/logic/playerCharacterInput";
@@ -203,7 +204,7 @@ function createPlayer(behavior = true)
             player.vspeed = -1.33;
             player.engine.knockback.x = (0.67 + Math.random() * 1.1) * -Math.sign(player.hspeed);
             player.invulnerableFrameCount = 20;
-            // TODO sfx?
+            BurnedPlayer.play();
             player.drain(damageStatusConsts.burnStatusDrain);
             progress.status.burn = 0;
         }

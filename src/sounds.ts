@@ -62,6 +62,11 @@ export const BounceBall = new Howl({
     
 });
 
+export const BurnedPlayer = new Howl({
+    src: [require("./sound/burned player.ogg"), require("./sound/burned player.mp3")],
+    
+});
+
 export const ChangeLooks = new Howl({
     src: [require("./sound/change looks.ogg"), require("./sound/change looks.mp3")],
     

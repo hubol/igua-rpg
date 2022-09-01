@@ -3,7 +3,7 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {VolcanoBossArenaArgs} from "../levelArgs";
 import {cracks} from "../gameObjects/cracks";
 import {jukebox} from "../igua/jukebox";
-import {VolcanoSomething} from "../musics";
+import {AmbientLava, VolcanoSomething} from "../musics";
 import {heatWaves} from "../gameObjects/heatWaves";
 import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles} from "../textures";
@@ -13,7 +13,7 @@ export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
     scene.terrainColor = 0x912235;
     const level = applyOgmoLevel(VolcanoBossArenaArgs);
-    jukebox.stop().warm(VolcanoSomething);
+    jukebox.play(AmbientLava).warm(VolcanoSomething);
 
     const farBackStage = scene.parallax1Stage.parent.addChildAt(container(), scene.parallax1Stage.index).withStep(() => {
         farBackStage.at(0, 0).add(scene.camera, -0.8);
