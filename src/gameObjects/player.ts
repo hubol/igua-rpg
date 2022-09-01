@@ -200,6 +200,9 @@ function createPlayer(behavior = true)
             PlayerBurningEffect.value;
 
         if (progress.status.burn >= damageStatusConsts.burnStatusResistance) {
+            player.vspeed = -1.33;
+            player.engine.knockback.x = (0.67 + Math.random() * 1.1) * -Math.sign(player.hspeed);
+            player.invulnerableFrameCount = 20;
             // TODO sfx?
             player.drain(damageStatusConsts.burnStatusDrain);
             progress.status.burn = 0;
