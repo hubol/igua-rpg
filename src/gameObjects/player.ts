@@ -17,6 +17,9 @@ import {game} from "../igua/game";
 import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
 import {showQuitMenu} from "../igua/inventory/showQuitMenu";
 import {derivedStats} from "../igua/gameplay/derivedStats";
+import {lava} from "./lava";
+import {damageStatusConsts} from "../igua/gameplay/damageStatusConsts";
+import {PlayerBurningEffect} from "./playerBurningEffect";
 
 export function playerPuppetArgs() {
     return makeIguanaPuppetArgsFromLooks(progress.looks);
@@ -186,6 +189,20 @@ function createPlayer(behavior = true)
                 player.hspeed -= deltaHspeed;
             if ((playerKey.isUp("MoveRight") && playerKey.isUp("MoveLeft")) || isKnockedBack)
                 player.hspeed *= 0.8;
+        }
+
+        if (player.collides(lava.instances))
+            progress.status.burn += damageStatusConsts.burnStatusBuildUp;
+        else
+            progress.status.burn = Math.max(0, progress.status.burn - damageStatusConsts.burnStatusRecover);
+
+        if (progress.status.burn > 0)
+            PlayerBurningEffect.value;
+
+        if (progress.status.burn >= damageStatusConsts.burnStatusResistance) {
+            // TODO sfx?
+            player.drain(damageStatusConsts.burnStatusDrain);
+            progress.status.burn = 0;
         }
 
         if (scene.source === UnrealFlight)

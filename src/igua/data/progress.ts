@@ -12,6 +12,7 @@ export function getInitialProgress()
         status: {
             poison: 0,
             ballons: [] as number[],
+            burn: 0,
         },
         levels: {
             strength: 1,

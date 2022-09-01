@@ -9,13 +9,14 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {VolcanoLavaBubble} from "../textures";
 import {animatedSprite} from "../igua/animatedSprite";
 import {makePseudo} from "../utils/math/makePseudo";
+import { track } from "../igua/track";
 
 const f = (x: number) => Math.sin(x * 0.2 + now.s + Math.sin(x)) * 2 - 1;
 
-export const resolveLava = resolveGameObject('Lava', (e) => lava(e.width, e.height).at(e));
+export const resolveLava = resolveGameObject('Lava', (e) => lavaImpl(e.width, e.height).at(e));
 
-export function lava(width: number, height: number) {
-    const mask = new Graphics().drawRect(0, 0, width, height).hide();
+function lavaImpl(width: number, height: number) {
+    const mask = lava(width, height);
     const g = new Graphics()
         .withStep(() => {
             g.clear().lineStyle(1, 0xECD51F).beginFill(0xDD4335);
@@ -38,6 +39,12 @@ export function lava(width: number, height: number) {
     }
 
     return c;
+}
+
+export const lava = track(lavaMaskImpl);
+
+function lavaMaskImpl(width: number, height: number) {
+    return new Graphics().drawRect(0, 0, width, height).hide();
 }
 
 const bubbleTxs = subimageTextures(VolcanoLavaBubble, 2);

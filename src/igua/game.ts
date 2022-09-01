@@ -19,6 +19,7 @@ function createGame(application: AsshatApplication)
     application.ticker.start();
 
     const ticker = new AsshatTicker();
+    const endTicker = new AsshatTicker();
 
     startKeyListener();
     startInput();
@@ -29,6 +30,7 @@ function createGame(application: AsshatApplication)
         ticker.update();
         scene.ticker.update();
         stepPlayerCamera();
+        endTicker.update();
     });
 
     const sceneStage = new Container();
@@ -41,6 +43,7 @@ function createGame(application: AsshatApplication)
         sceneStage,
         maxFps: application.maxFps,
         ticker,
+        endTicker,
         get width() {
             return application.renderer.width;
         },

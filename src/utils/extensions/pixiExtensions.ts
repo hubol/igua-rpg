@@ -18,6 +18,7 @@ declare global {
             at(vector: Vector): this;
             at(x: number, y: number): this;
             hide(): this;
+            filter(filter: Filter): this;
             destroyed: boolean;
             ticker: AsshatTicker;
             hueShift: number;
@@ -256,6 +257,13 @@ PIXI.Sprite.prototype.centerAnchor = function () {
 
 PIXI.DisplayObject.prototype.hide = function () {
     this.visible = false;
+    return this;
+}
+
+PIXI.DisplayObject.prototype.filter = function (filter) {
+    if (!this.filters)
+        this.filters = [];
+    this.filters.push(filter);
     return this;
 }
 
