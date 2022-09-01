@@ -142,7 +142,7 @@ export async function oracleAdviceVolcano() {
             return await show(`One is guarded by a notorious prankster who stays above the temple.`);
         }
         if (!key.fromLava) {
-            return await show(`One awaits you in the lava pit.`);
+            return await show(`One is keeping out of the heat at the lava pool.`);
         }
     }
 
