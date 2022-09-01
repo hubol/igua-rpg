@@ -7464,12 +7464,12 @@ Book: {"type":"Anchor","x":664,"y":160,"flippedX":false,"flippedY":false,"uid":"
 };
 
 export const VolcanoBossArenaArgs = {
-    width: 512,
+    width: 712,
 height: 256,
 gameObjectsSupplier: () => {
   return {
     GroundSpeckles: resolveDecalGameObject({
-    x: 381.5930595662703,
+    x: 581.5930595662703,
 y: 220.51552327733887,
 originX: 0.5,
 originY: 0.5,
@@ -7480,7 +7480,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 GroundSpeckles_1: resolveDecalGameObject({
-    x: 381.11427546753197,
+    x: 581.114275467532,
 y: 147.2615561703749,
 originX: 0.5,
 originY: 0.5,
@@ -7490,8 +7490,52 @@ rotation: 0,
 layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
+VolcanoChain: resolveDecalGameObject({
+    x: 64,
+y: 24,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoChain
+}),
+VolcanoChain_1: resolveDecalGameObject({
+    x: 64,
+y: 72,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoChain
+}),
+VolcanoChain_2: resolveDecalGameObject({
+    x: 64,
+y: 120,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoChain
+}),
+Key: resolveDecalGameObject({
+    x: 63.2169322634974,
+y: 151.95385182388233,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0.728575132948694,
+layerName: "BackgroundDecals",
+texture: KeyGreen
+}),
 VolcanoCrystal: resolveDecalGameObject({
-    x: 24,
+    x: 224,
 y: 200,
 originX: 0.5,
 originY: 0.5,
@@ -7502,7 +7546,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_1: resolveDecalGameObject({
-    x: 92.34110086626939,
+    x: 292.34110086626936,
 y: 196.40688958366852,
 originX: 0.5,
 originY: 0.5,
@@ -7513,7 +7557,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_2: resolveDecalGameObject({
-    x: 182.95752381871657,
+    x: 382.9575238187166,
 y: 201.97376880941613,
 originX: 0.5,
 originY: 0.5,
@@ -7524,7 +7568,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_3: resolveDecalGameObject({
-    x: 255.94549588962963,
+    x: 455.9454958896296,
 y: 197.33470278795977,
 originX: 0.5,
 originY: 0.5,
@@ -7535,7 +7579,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_4: resolveDecalGameObject({
-    x: 279.7593681331055,
+    x: 479.7593681331055,
 y: 192.69563676650344,
 originX: 0.5,
 originY: 0.5,
@@ -7545,15 +7589,59 @@ rotation: 0,
 layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
+VolcanoCrystal_5: resolveDecalGameObject({
+    x: 138.7593681331055,
+y: 196.69563676650344,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: VolcanoCrystal
+}),
+VolcanoCrystal_6: resolveDecalGameObject({
+    x: 114.94549588962963,
+y: 201.33470278795977,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: VolcanoCrystal
+}),
+VolcanoCrystal_7: resolveDecalGameObject({
+    x: 41.957523818716595,
+y: 205.97376880941613,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: VolcanoCrystal
+}),
+VolcanoCrystal_8: resolveDecalGameObject({
+    x: -48.65889913373064,
+y: 200.40688958366852,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: -1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: VolcanoCrystal
+}),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":352,"y":208,"width":160,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":552,"y":208,"width":160,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":352,"y":0,"width":160,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
-Player: {"type":"Player","x":424,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
+Block_1: resolveBlock({"type":"Block","x":552,"y":0,"width":160,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+Player: {"type":"Player","x":624,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":480,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_3","levelName":"VolcanoTown","checkpointName":"FromBossArena","name":"","depth":0}),
+Gate: resolveGate({"type":"Gate","x":680,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_3","levelName":"VolcanoTown","checkpointName":"FromBossArena","name":"","depth":0}),
 // @ts-ignore
-Lava: resolveLava({"type":"Lava","x":0,"y":208,"width":352,"height":48,"flippedX":false,"flippedY":false,"uid":"98209396_4","name":"","depth":0})
+Lava: resolveLava({"type":"Lava","x":0,"y":208,"width":552,"height":48,"flippedX":false,"flippedY":false,"uid":"98209396_4","name":"","depth":0})
 };
 }
 };

@@ -23,7 +23,7 @@ export function VolcanoTemple() {
     const util = makeTempleLevelUtil(
         [key.hiddenInCave, bigKey.piece1, [level.Key1, level.Door1]],
         [key.fromPrankster, bigKey.piece2, [level.Key2, level.Door2]],
-        [true, bigKey.piece3, [level.Key3, level.Door3]]);
+        [key.fromLava, bigKey.piece3, [level.Key3, level.Door3]]);
 
     util.playMusic().warm(VolcanoSomething, UnrealCrusher, UnrealT9Music, UnrealDrawingMusic);
 

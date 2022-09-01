@@ -141,10 +141,9 @@ export async function oracleAdviceVolcano() {
         if (!key.fromPrankster) {
             return await show(`One is guarded by a notorious prankster who stays above the temple.`);
         }
-        // TODO
-        // if (!key.fromSpider) {
-        //     return await show(`One is monitored closely by a cautious spider in the deep jungle.`);
-        // }
+        if (!key.fromLava) {
+            return await show(`One awaits you in the lava pit.`);
+        }
     }
 
     await show("I don't have any advice right now.");

@@ -78,6 +78,7 @@ export function getInitialFlags()
             key: {
                 hiddenInCave: false,
                 fromPrankster: false,
+                fromLava: false,
             },
             bigKey: {
                 piece1: false,

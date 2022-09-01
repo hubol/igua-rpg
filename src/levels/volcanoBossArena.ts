@@ -8,6 +8,9 @@ import {heatWaves} from "../gameObjects/heatWaves";
 import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles} from "../textures";
 import {container} from "../utils/pixi/container";
+import {lerp} from "../utils/math/number";
+import {now} from "../utils/now";
+import {progress} from "../igua/data/progress";
 
 export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -23,4 +26,10 @@ export function VolcanoBossArena() {
         .show(scene.parallax1Stage)
         .on('removed', () => farBackStage.destroy());
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x6D1913));
+
+    level.Key
+        .withStep(() => {
+            level.Key.angle = lerp(35, 55, (Math.sin(now.ms * 0.0025) + 1) / 2);
+        })
+        .asCollectible(progress.flags.volcano.key, "fromLava");
 }

@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 512,
+  "width": 712,
   "height": 256,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,14 +12,14 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 64,
+      "gridCellsX": 89,
       "gridCellsY": 32,
       "entities": [
         {
           "name": "Block",
           "id": 0,
           "_eid": "55823268",
-          "x": 352,
+          "x": 552,
           "y": 208,
           "width": 160,
           "height": 48,
@@ -31,7 +31,7 @@
           "name": "Block",
           "id": 1,
           "_eid": "55823268",
-          "x": 352,
+          "x": 552,
           "y": 0,
           "width": 160,
           "height": 160,
@@ -43,7 +43,7 @@
           "name": "Player",
           "id": 2,
           "_eid": "55988047",
-          "x": 424,
+          "x": 624,
           "y": 208,
           "originX": 11,
           "originY": 27,
@@ -53,7 +53,7 @@
           "name": "Gate",
           "id": 3,
           "_eid": "55920197",
-          "x": 480,
+          "x": 680,
           "y": 176,
           "width": 32,
           "height": 32,
@@ -67,7 +67,7 @@
           "_eid": "98209396",
           "x": 0,
           "y": 208,
-          "width": 352,
+          "width": 552,
           "height": 48,
           "originX": 0,
           "originY": 0,
@@ -82,7 +82,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 64,
+      "gridCellsX": 89,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"
@@ -94,11 +94,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 64,
+      "gridCellsX": 89,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 381.5930595662703,
+          "x": 581.5930595662703,
           "y": 220.51552327733887,
           "scaleX": 1,
           "scaleY": 1,
@@ -109,7 +109,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 381.11427546753197,
+          "x": 581.114275467532,
           "y": 147.2615561703749,
           "scaleX": -1,
           "scaleY": -1,
@@ -129,9 +129,34 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 64,
+      "gridCellsX": 89,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 64,
+          "y": 24,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/chain.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 64, "y": 72, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {"x": 64, "y": 120, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {
+          "x": 63.2169322634974,
+          "y": 151.95385182388233,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0.728575132948694,
+          "texture": "key green.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "Key"}
+        }
+      ],
       "folder": "..\\..\\src\\images"
     },
     {
@@ -141,11 +166,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 64,
+      "gridCellsX": 89,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 24,
+          "x": 224,
           "y": 200,
           "scaleX": 1,
           "scaleY": -1,
@@ -156,7 +181,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 92.34110086626939,
+          "x": 292.34110086626936,
           "y": 196.40688958366852,
           "scaleX": 1,
           "scaleY": -1,
@@ -167,7 +192,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 182.95752381871657,
+          "x": 382.9575238187166,
           "y": 201.97376880941613,
           "scaleX": -1,
           "scaleY": -1,
@@ -178,7 +203,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 255.94549588962963,
+          "x": 455.9454958896296,
           "y": 197.33470278795977,
           "scaleX": 1,
           "scaleY": -1,
@@ -189,7 +214,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 279.7593681331055,
+          "x": 479.7593681331055,
           "y": 192.69563676650344,
           "scaleX": -1,
           "scaleY": -1,
@@ -198,7 +223,11 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
-        }
+        },
+        {"x": 138.7593681331055, "y": 196.69563676650344, "scaleX": -1, "scaleY": -1, "rotation": 0, "texture": "volcano/crystal.png", "originX": 0.5, "originY": 0.5},
+        {"x": 114.94549588962963, "y": 201.33470278795977, "scaleX": 1, "scaleY": -1, "rotation": 0, "texture": "volcano/crystal.png", "originX": 0.5, "originY": 0.5},
+        {"x": 41.957523818716595, "y": 205.97376880941613, "scaleX": -1, "scaleY": -1, "rotation": 0, "texture": "volcano/crystal.png", "originX": 0.5, "originY": 0.5},
+        {"x": -48.65889913373064, "y": 200.40688958366852, "scaleX": 1, "scaleY": -1, "rotation": 0, "texture": "volcano/crystal.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../src/images"
     }
