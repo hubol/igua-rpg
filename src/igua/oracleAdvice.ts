@@ -119,7 +119,7 @@ export async function oracleAdviceVolcano() {
         // return await show(`Follow the jungle spirit to continue your task.`);
     }
 
-    const allKeys = key.hiddenInCave && key.fromPrankster && true; // TODO
+    const allKeys = key.hiddenInCave && key.fromPrankster && key.fromLava;
     if (allKeys) {
         await sayNeedBigKeyPieces();
         if (!bigKey.piece1) {
