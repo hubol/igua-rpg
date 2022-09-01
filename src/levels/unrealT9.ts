@@ -287,7 +287,7 @@ function keyboard({ gap = 10, width = 15, height = 36, push = Force<PushLetter>(
         if (!player.collides(mask))
             return selected = undefined;
         selected = getClosestToPlayer(c.children);
-        if (Input.justWentDown('SelectDown')) {
+        if (Input.justWentDown('Duck')) {
             KeyboardType.play();
             const i = c.getChildIndex(selected);
             push(i);
