@@ -7,9 +7,10 @@ export function getCompletion(progress: Progress) {
         return b ? 1 : 0;
     }
 
-    const { desert, jungle } = progress.flags;
+    const { desert, jungle, volcano } = progress.flags;
     const { key: dk, bigKey: dbk, costumeMirror } = desert;
     const { key: jk, bigKey: jbk } = jungle;
+    const { key: vk, bigKey: vbk } = volcano;
     return (
         n(dk.fromDiggingInTown) + n(dk.fromInn) + n(dk.fromTopOfCrateStack) +
         n(dbk.piece1) + n(dbk.piece2) + n(dbk.piece3) + n(dbk.reward) +
@@ -17,7 +18,9 @@ export function getCompletion(progress: Progress) {
         n(desert.defeatedOversizedAngel) + n(costumeMirror.shardCollected) + n(costumeMirror.repaired) +
         n(jk.fromBiguaRepair) + n(jk.fromSpider) + n(jk.fromSickIguana) +
         n(jbk.piece1) + n(jbk.piece2) + n(jbk.piece3) + n(jbk.reward) +
-        n(jungle.defeatedUnorthodoxAngel)) / numbers;
+        n(jungle.defeatedUnorthodoxAngel) +
+        n(vk.hiddenInCave) + n(vk.fromPrankster) + n(vk.fromLava) +
+        n(vbk.piece1) + n(vbk.piece2) + n(vbk.piece3) + n(vbk.reward)) / numbers;
 }
 
 /*
