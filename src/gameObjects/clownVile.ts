@@ -1,4 +1,4 @@
-import {Sprite} from "pixi.js";
+import {DisplayObject, Sprite} from "pixi.js";
 import {
     VileClownEar,
     VileClownEyebrow,
@@ -14,8 +14,21 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {flipH} from "../utils/pixi/flip";
 import {now} from "../utils/now";
+import {moveTowards, vnew} from "../utils/math/vector";
+import {lerp as nlerp} from "../utils/math/number";
+import {getWorldCenter} from "../igua/gameplay/getCenter";
+import {player} from "./player";
+import {sleep} from "../cutscene/sleep";
+import {rng} from "../utils/math/rng";
+import {lerp} from "../cutscene/lerp";
+import {Force} from "../utils/types/force";
 
 export function clownVile() {
+    const controls = {
+        facing: vnew(),
+        blink: 0.45,
+    }
+
     function newEye() {
         const eyebrow = Sprite.from(VileClownEyebrow);
         const eyelid = Sprite.from(eyelidTxs[0]);
@@ -32,16 +45,39 @@ export function clownVile() {
         return c;
     }
 
+    let __center = Force<DisplayObject>();
+
     function newHead() {
         const mask = Sprite.from(VileClownHead);
         const sprite = Sprite.from(VileClownHead);
+        __center = sprite;
         const eyeL = newEye();
         const eyeR = newEye().at(15, 0);
         flipH(eyeR.eyebrow).pivot.x -= 1;
         const mouth = Sprite.from(mouthTxs[0]).at(-2, 18);
         const hair = newHair().at(-8, -14);
         const ears = newEars();
-        const face = container(eyeL, eyeR, mouth).filter(alphaMaskFilter(mask)).at(18, 0);
+        const face = container(eyeL, eyeR, mouth.filter(alphaMaskFilter(mask)));
+
+        const v = vnew();
+        function directFacialFeatures() {
+            const ftx = nlerp(-1, 22, (controls.facing.x + 1) / 2);
+            const fty = nlerp(-3, 3, (controls.facing.y + 1) / 2);
+
+            const etx = nlerp(2, -2, (controls.facing.x + 1) / 2);
+            const ety = nlerp(1, -1, (controls.facing.y + 1) / 2);
+
+            face.moveTowards(v.at(ftx, fty), 1);
+            ears.moveTowards(v.at(etx, ety), 1);
+        }
+
+        function adjustEyelids() {
+            eyeL.closed = controls.blink;
+            eyeR.closed = controls.blink;
+        }
+
+        face.withStep(directFacialFeatures).withStep(adjustEyelids);
+
         return container(mask, ears, sprite, hair, face);
     }
 
@@ -64,7 +100,18 @@ export function clownVile() {
         return c;
     }
 
-    return newHead();
+    return newHead()
+        .withStep(() => {
+            const target = getWorldCenter(player).add(getWorldCenter(__center), -1).normalize();
+            moveTowards(controls.facing, target, 0.1);
+        })
+        .withAsync(async () => {
+            while (true) {
+                await sleep(500 + rng() * 2000);
+                await lerp(controls, 'blink').to(1).over(170);
+                await lerp(controls, 'blink').to(0.45).over(120);
+            }
+        });
 }
 
 const eyelidTxs = subimageTextures(VileClownEyelid, 12);
