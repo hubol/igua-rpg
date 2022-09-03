@@ -67,6 +67,8 @@ export function clownVile() {
             const etx = nlerp(2, -2, (controls.facing.x + 1) / 2);
             const ety = nlerp(1, -1, (controls.facing.y + 1) / 2);
 
+            hair.pivot.at(0, Math.max(0, controls.facing.y) * -2).vround();
+
             face.moveTowards(v.at(ftx, fty), 1);
             ears.moveTowards(v.at(etx, ety), 1);
         }
