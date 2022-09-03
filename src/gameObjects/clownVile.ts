@@ -141,9 +141,11 @@ export function clownVile() {
                 l.y = me.y;
                 r.y = me.y;
 
-                const f = Math.min(6, dist < 32 ? dist / 7 : dist / 32);
-                const tl = getTrajectory(l).normalize().scale(f);
-                const tr = getTrajectory(r).normalize().scale(f);
+                const f = dist < 32 ? dist / 7 : dist / 32;
+                const fx = Math.min(4, f);
+                const fy = Math.min(6, f);
+                const tl = getTrajectory(l).normalize().scale(fx, fy);
+                const tr = getTrajectory(r).normalize().scale(fx, fy);
 
                 moveTowards(controls.eyeL.pos, tl, 0.2);
                 moveTowards(controls.eyeR.pos, tr, 0.2);

@@ -10,6 +10,7 @@ declare global {
         add(vector: Vector, scalar: number): Vector;
         normalize(): Vector;
         scale(f: number): Vector;
+        scale(x: number, y: number): Vector;
         at(vector: Vector): Vector;
         at(x: number, y: number): Vector;
         vlength: number;
@@ -107,7 +108,7 @@ Object.defineProperties(Object.prototype, {
         value: function (...args) {
             const me = this;
             me.x *= args[0];
-            me.y *= args[0];
+            me.y *= args[1] === undefined ? args[0] : args[1];
             return me;
         },
         enumerable: false,
