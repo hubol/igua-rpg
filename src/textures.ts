@@ -197,6 +197,14 @@ export let UnorthodoxClownMouth: PIXI.Texture;
 export let UnorthodoxClownSpark: PIXI.Texture;
 export let UnorthodoxClownSparkle: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
+export let VileClownEar: PIXI.Texture;
+export let VileClownEyebrow: PIXI.Texture;
+export let VileClownEyelid: PIXI.Texture;
+export let VileClownHair: PIXI.Texture;
+export let VileClownHead: PIXI.Texture;
+export let VileClownMock: PIXI.Texture;
+export let VileClownMouth: PIXI.Texture;
+export let VileClownPupil: PIXI.Texture;
 export let VineLarge: PIXI.Texture;
 export let VineSmall: PIXI.Texture;
 export let VolcanoBrickWall: PIXI.Texture;
@@ -808,6 +816,30 @@ export function loadTexturesAsync()
     const ValuableIconPath = require("./images/valuable icon.png");
     loader.add(ValuableIconPath); 
 
+    const VileClownEarPath = require("./images/vile clown/ear.png");
+    loader.add(VileClownEarPath); 
+
+    const VileClownEyebrowPath = require("./images/vile clown/eyebrow.png");
+    loader.add(VileClownEyebrowPath); 
+
+    const VileClownEyelidPath = require("./images/vile clown/eyelid.png");
+    loader.add(VileClownEyelidPath); 
+
+    const VileClownHairPath = require("./images/vile clown/hair.png");
+    loader.add(VileClownHairPath); 
+
+    const VileClownHeadPath = require("./images/vile clown/head.png");
+    loader.add(VileClownHeadPath); 
+
+    const VileClownMockPath = require("./images/vile clown/mock.png");
+    loader.add(VileClownMockPath); 
+
+    const VileClownMouthPath = require("./images/vile clown/mouth.png");
+    loader.add(VileClownMouthPath); 
+
+    const VileClownPupilPath = require("./images/vile clown/pupil.png");
+    loader.add(VileClownPupilPath); 
+
     const VineLargePath = require("./images/vine large.png");
     loader.add(VineLargePath); 
 
@@ -1067,6 +1099,14 @@ export function loadTexturesAsync()
             UnorthodoxClownSpark = resources[UnorthodoxClownSparkPath]?.texture as PIXI.Texture;
             UnorthodoxClownSparkle = resources[UnorthodoxClownSparklePath]?.texture as PIXI.Texture;
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
+            VileClownEar = resources[VileClownEarPath]?.texture as PIXI.Texture;
+            VileClownEyebrow = resources[VileClownEyebrowPath]?.texture as PIXI.Texture;
+            VileClownEyelid = resources[VileClownEyelidPath]?.texture as PIXI.Texture;
+            VileClownHair = resources[VileClownHairPath]?.texture as PIXI.Texture;
+            VileClownHead = resources[VileClownHeadPath]?.texture as PIXI.Texture;
+            VileClownMock = resources[VileClownMockPath]?.texture as PIXI.Texture;
+            VileClownMouth = resources[VileClownMouthPath]?.texture as PIXI.Texture;
+            VileClownPupil = resources[VileClownPupilPath]?.texture as PIXI.Texture;
             VineLarge = resources[VineLargePath]?.texture as PIXI.Texture;
             VineSmall = resources[VineSmallPath]?.texture as PIXI.Texture;
             VolcanoBrickWall = resources[VolcanoBrickWallPath]?.texture as PIXI.Texture;

@@ -11,6 +11,7 @@ import {container} from "../utils/pixi/container";
 import {lerp} from "../utils/math/number";
 import {now} from "../utils/now";
 import {progress} from "../igua/data/progress";
+import {clownVile} from "../gameObjects/clownVile";
 
 export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -32,4 +33,6 @@ export function VolcanoBossArena() {
             level.Key.angle = lerp(35, 55, (Math.sin(now.ms * 0.0025) + 1) / 2);
         })
         .asCollectible(progress.flags.volcano.key, "fromLava");
+
+    clownVile().at(300, 128).show();
 }
