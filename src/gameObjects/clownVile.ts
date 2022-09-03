@@ -14,7 +14,7 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {flipH} from "../utils/pixi/flip";
 import {now} from "../utils/now";
-import {moveTowards, vnew} from "../utils/math/vector";
+import {moveTowards, Vector, vnew} from "../utils/math/vector";
 import {lerp as nlerp} from "../utils/math/number";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
 import {player} from "./player";
@@ -25,17 +25,27 @@ import {Force} from "../utils/types/force";
 
 export function clownVile() {
     const controls = {
+        eyeL: { pos: vnew() },
+        eyeR: { pos: vnew() },
         facing: vnew(),
-        blink: 0.45,
+        blink: 0,
+    }
+
+    const behaviors = {
+        facePlayer: true,
+        lookAtPlayer: true,
     }
 
     function newEye() {
         const eyebrow = Sprite.from(VileClownEyebrow);
         const eyelid = Sprite.from(eyelidTxs[0]);
         const pupil = Sprite.from(VileClownPupil);
-        const c = merge(container(pupil, eyelid, eyebrow), { pupil, closed: 0.45, eyebrow })
+        const c = merge(container(pupil, eyelid, eyebrow), { pupil, blink: 0, eyebrow })
             .withStep(() => {
-                eyelid.texture = eyelidTxs[Math.floor(Math.max(0, Math.min(1, c.closed) * eyelidTxs.length))];
+                const lookUpF = Math.min(pupil.y, 0) / 12;
+                const min = 0.45 + lookUpF;
+                const closed = nlerp(min, 1, c.blink);
+                eyelid.texture = eyelidTxs[Math.floor(Math.max(0, Math.min(1, closed) * eyelidTxs.length))];
             });
 
         eyebrow.pivot.at(1, 7);
@@ -74,13 +84,21 @@ export function clownVile() {
         }
 
         function adjustEyelids() {
-            eyeL.closed = controls.blink;
-            eyeR.closed = controls.blink;
+            eyeL.blink = controls.blink;
+            eyeR.blink = controls.blink;
         }
 
-        face.withStep(directFacialFeatures).withStep(adjustEyelids);
+        function positionPupils() {
+            eyeL.pupil.at(controls.eyeL.pos);
+            eyeR.pupil.at(controls.eyeR.pos);
+        }
 
-        return container(mask, ears, sprite, hair, face);
+        face
+            .withStep(directFacialFeatures)
+            .withStep(adjustEyelids)
+            .withStep(positionPupils);
+
+        return merge(container(mask, ears, sprite, hair, face), { eyeL, eyeR });
     }
 
     function newEars() {
@@ -102,18 +120,44 @@ export function clownVile() {
         return c;
     }
 
-    return newHead()
+    function getTrajectory(d: Vector | DisplayObject) {
+        const p = getWorldCenter(player);
+        const c = 'parent' in d ? getWorldCenter(d) : d;
+        return p.add(c, -1);
+    }
+
+    const head = newHead()
         .withStep(() => {
-            const target = getWorldCenter(player).add(getWorldCenter(__center), -1).normalize();
-            moveTowards(controls.facing, target, 0.1);
+            const me = getWorldCenter(__center);
+            const target = getTrajectory(me);
+            const dist = target.vlength;
+            target.normalize();
+
+            if (behaviors.facePlayer)
+                moveTowards(controls.facing, target, 0.1);
+            if (behaviors.lookAtPlayer) {
+                const l = dist < 40 ? getWorldCenter(head.eyeL) : me;
+                const r = dist < 40 ? getWorldCenter(head.eyeR) : me;
+                l.y = me.y;
+                r.y = me.y;
+
+                const f = Math.min(6, dist < 32 ? dist / 7 : dist / 32);
+                const tl = getTrajectory(l).normalize().scale(f);
+                const tr = getTrajectory(r).normalize().scale(f);
+
+                moveTowards(controls.eyeL.pos, tl, 0.2);
+                moveTowards(controls.eyeR.pos, tr, 0.2);
+            }
         })
         .withAsync(async () => {
             while (true) {
                 await sleep(500 + rng() * 2000);
                 await lerp(controls, 'blink').to(1).over(170);
-                await lerp(controls, 'blink').to(0.45).over(120);
+                await lerp(controls, 'blink').to(0).over(120);
             }
         });
+
+    return head;
 }
 
 const eyelidTxs = subimageTextures(VileClownEyelid, 12);
