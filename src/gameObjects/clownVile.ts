@@ -1,5 +1,6 @@
 import {Sprite} from "pixi.js";
 import {
+    VileClownEar,
     VileClownEyebrow,
     VileClownEyelid,
     VileClownHair,
@@ -39,8 +40,15 @@ export function clownVile() {
         flipH(eyeR.eyebrow).pivot.x -= 1;
         const mouth = Sprite.from(mouthTxs[0]).at(-2, 18);
         const hair = newHair().at(-8, -14);
+        const ears = newEars();
         const face = container(eyeL, eyeR, mouth).filter(alphaMaskFilter(mask)).at(18, 0);
-        return container(mask, sprite, hair, face);
+        return container(mask, ears, sprite, hair, face);
+    }
+
+    function newEars() {
+        const earL = Sprite.from(VileClownEar).at(-7, 12);
+        const earR = flipH(Sprite.from(VileClownEar)).at([53, 0].add(earL));
+        return container(earL, earR);
     }
 
     function newHair() {
