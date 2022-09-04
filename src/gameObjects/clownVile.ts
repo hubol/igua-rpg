@@ -5,8 +5,7 @@ import {
     VileClownEyelid,
     VileClownHair,
     VileClownHead,
-    VileClownMouth,
-    VileClownPupil
+    VileClownMouth, VileClownPupil
 } from "../textures";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
@@ -23,33 +22,71 @@ import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {Force} from "../utils/types/force";
 
+enum Expression {
+    Default,
+    Happy
+}
+
 export function clownVile() {
     const controls = {
-        eyeL: { pos: vnew() },
-        eyeR: { pos: vnew() },
+        eyeL: { pos: vnew(), img: 0 },
+        eyeR: { pos: vnew(), img: 0 },
+        eyebrowsF: 0,
+        mouth: { img: 0 },
         facing: vnew(),
         blink: 0,
+        unblink: 0,
     }
 
-    const behaviors = {
+    const automation = {
         facePlayer: true,
         lookAtPlayer: true,
+        widenEyes: false,
     }
 
-    function newEye() {
+    const defaultAutomation = { ...automation };
+
+    let expression = Expression.Default;
+
+    function showExpression() {
+        if (expression === Expression.Default) {
+            Object.assign(automation, defaultAutomation);
+            controls.mouth.img = 0;
+            controls.eyeL.img = 0;
+            controls.eyeR.img = 0;
+            controls.eyebrowsF = 0;
+        }
+        else if (expression === Expression.Happy) {
+            controls.eyeL.pos.scale(0);
+            controls.eyeR.pos.scale(0);
+            automation.facePlayer = true;
+            automation.lookAtPlayer = false;
+            automation.widenEyes = true;
+            controls.mouth.img = 1;
+            controls.eyeL.img = 1;
+            controls.eyeR.img = 1;
+            controls.facing.y = Math.min(0, controls.facing.y);
+            controls.eyebrowsF = 1;
+        }
+    }
+
+    function newEye(control: { img: number }) {
         const eyebrow = Sprite.from(VileClownEyebrow);
+        const mask = Sprite.from(eyelidTxs.last);
         const eyelid = Sprite.from(eyelidTxs[0]);
-        const pupil = Sprite.from(VileClownPupil);
-        const c = merge(container(pupil, eyelid, eyebrow), { pupil, blink: 0, eyebrow })
+        const pupil = Sprite.from(pupilTxs[0]).filter(alphaMaskFilter(mask));
+        const c = merge(container(mask, pupil, eyelid, eyebrow), { pupil, blink: 0, eyebrow })
             .withStep(() => {
                 const lookUpF = Math.min(pupil.y, 0) / 12;
                 const min = 0.45 + lookUpF;
-                const closed = nlerp(min, 1, c.blink);
+                const closed = nlerp(nlerp(min, 1, c.blink), 0, controls.unblink);
+                pupil.texture = pupilTxs[control.img];
                 eyelid.texture = eyelidTxs[Math.floor(Math.max(0, Math.min(1, closed) * eyelidTxs.length))];
+                eyebrow.y = Math.sin(now.s * Math.PI * 6) * controls.eyebrowsF;
             });
 
         eyebrow.pivot.at(1, 7);
-        pupil.pivot.at(-3, -3);
+        pupil.pivot.at(-1, -3);
         c.pivot.at(0, -7);
 
         return c;
@@ -61,8 +98,8 @@ export function clownVile() {
         const mask = Sprite.from(VileClownHead);
         const sprite = Sprite.from(VileClownHead);
         __center = sprite;
-        const eyeL = newEye();
-        const eyeR = newEye().at(15, 0);
+        const eyeL = newEye(controls.eyeL);
+        const eyeR = newEye(controls.eyeR).at(15, 0);
         flipH(eyeR.eyebrow).pivot.x -= 1;
         const mouth = Sprite.from(mouthTxs[0]).at(-2, 18);
         const hair = newHair().at(-8, -14);
@@ -93,10 +130,15 @@ export function clownVile() {
             eyeR.pupil.at(controls.eyeR.pos);
         }
 
+        function updateMouth() {
+            mouth.texture = mouthTxs[controls.mouth.img];
+        }
+
         face
             .withStep(directFacialFeatures)
             .withStep(adjustEyelids)
-            .withStep(positionPupils);
+            .withStep(positionPupils)
+            .withStep(updateMouth);
 
         return merge(container(mask, ears, sprite, hair, face), { eyeL, eyeR });
     }
@@ -127,15 +169,16 @@ export function clownVile() {
     }
 
     const head = newHead()
+        .withStep(showExpression)
         .withStep(() => {
             const me = getWorldCenter(__center);
             const target = getTrajectory(me);
             const dist = target.vlength;
             target.normalize();
 
-            if (behaviors.facePlayer)
+            if (automation.facePlayer)
                 moveTowards(controls.facing, target, 0.1);
-            if (behaviors.lookAtPlayer) {
+            if (automation.lookAtPlayer) {
                 const l = dist < 40 ? getWorldCenter(head.eyeL) : me;
                 const r = dist < 40 ? getWorldCenter(head.eyeR) : me;
                 l.y = me.y;
@@ -150,12 +193,21 @@ export function clownVile() {
                 moveTowards(controls.eyeL.pos, tl, 0.2);
                 moveTowards(controls.eyeR.pos, tr, 0.2);
             }
+            controls.unblink = nlerp(controls.unblink, automation.widenEyes ? 1 : 0, 0.125);
         })
         .withAsync(async () => {
             while (true) {
                 await sleep(500 + rng() * 2000);
                 await lerp(controls, 'blink').to(1).over(170);
                 await lerp(controls, 'blink').to(0).over(120);
+            }
+        })
+        .withAsync(async () => {
+            while (true) {
+                expression = Expression.Default;
+                await sleep(2000);
+                expression = Expression.Happy;
+                await sleep(2000);
             }
         });
 
@@ -164,4 +216,5 @@ export function clownVile() {
 
 const eyelidTxs = subimageTextures(VileClownEyelid, 12);
 const mouthTxs = subimageTextures(VileClownMouth, { width: 32 });
+const pupilTxs = subimageTextures(VileClownPupil, { width: 10 });
 const hairTxs = subimageTextures(VileClownHair, 4);

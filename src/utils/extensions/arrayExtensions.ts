@@ -1,8 +1,11 @@
+import PIXI from "pixi.js";
+
 declare global {
     interface Array<T> {
         removeFirst(...T);
         removeAll(T);
         firstOrDefault(): T | undefined;
+        readonly last: T;
         filterInPlace(predicate: (value: T, index: number, array: T[]) => boolean): this;
     }
 }
@@ -52,7 +55,14 @@ Object.defineProperties(Array.prototype, {
             return this;
         },
         enumerable: false
-    }
+    },
+    last: {
+        get: function () {
+            return this[this.length - 1];
+        },
+        enumerable: false,
+        configurable: true,
+    },
 });
 
 export default 0;
