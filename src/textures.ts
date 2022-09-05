@@ -200,6 +200,7 @@ export let ValuableIcon: PIXI.Texture;
 export let VileClownEar: PIXI.Texture;
 export let VileClownEyebrow: PIXI.Texture;
 export let VileClownEyelid: PIXI.Texture;
+export let VileClownFoot: PIXI.Texture;
 export let VileClownHair: PIXI.Texture;
 export let VileClownHead: PIXI.Texture;
 export let VileClownMock: PIXI.Texture;
@@ -825,6 +826,9 @@ export function loadTexturesAsync()
     const VileClownEyelidPath = require("./images/vile clown/eyelid.png");
     loader.add(VileClownEyelidPath); 
 
+    const VileClownFootPath = require("./images/vile clown/foot.png");
+    loader.add(VileClownFootPath); 
+
     const VileClownHairPath = require("./images/vile clown/hair.png");
     loader.add(VileClownHairPath); 
 
@@ -1102,6 +1106,7 @@ export function loadTexturesAsync()
             VileClownEar = resources[VileClownEarPath]?.texture as PIXI.Texture;
             VileClownEyebrow = resources[VileClownEyebrowPath]?.texture as PIXI.Texture;
             VileClownEyelid = resources[VileClownEyelidPath]?.texture as PIXI.Texture;
+            VileClownFoot = resources[VileClownFootPath]?.texture as PIXI.Texture;
             VileClownHair = resources[VileClownHairPath]?.texture as PIXI.Texture;
             VileClownHead = resources[VileClownHeadPath]?.texture as PIXI.Texture;
             VileClownMock = resources[VileClownMockPath]?.texture as PIXI.Texture;

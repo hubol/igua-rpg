@@ -1,8 +1,8 @@
-import {DisplayObject, Sprite} from "pixi.js";
+import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {
     VileClownEar,
     VileClownEyebrow,
-    VileClownEyelid,
+    VileClownEyelid, VileClownFoot,
     VileClownHair,
     VileClownHead,
     VileClownMouth, VileClownPupil
@@ -22,6 +22,44 @@ import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {Force} from "../utils/types/force";
 import {move} from "../cutscene/move";
+import {clownHealth} from "./utils/clownUtils";
+import {ClownHurt} from "../sounds";
+import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
+import {wait} from "../cutscene/wait";
+
+export function clownVile() {
+    const health = clownHealth(1200);
+
+    const legl = vileLeg(-1).at(-10, 0);
+    const legr = vileLeg().at(10, 0);
+    const head = vileHead().at(-24, -32);
+
+    const hurtbox = new Graphics().beginFill(0xff0000).drawRect(4, 2, 41, 26).show(head).hide();
+
+    let invulnerable = 0;
+
+    function takeDamage() {
+        if (player.collides(hurtbox) && invulnerable <= 0) {
+            c.hostile = true;
+            bouncePlayerOffDisplayObject(hurtbox);
+            invulnerable = 15;
+            ClownHurt.play();
+            health.damage();
+        }
+
+        head.visible = invulnerable-- > 0 ? !head.visible : true;
+    }
+
+    const c = merge(container(legl, legr, head), { hostile: false })
+        .withStep(takeDamage)
+        .withAsync(async () => {
+            await wait(() => c.hostile);
+            head.expression = Expression.Surprise;
+            await sleep(300);
+            head.expression = Expression.Hostile;
+        });
+    return c;
+}
 
 enum Expression {
     Resting,
@@ -34,10 +72,30 @@ enum Expression {
     Spit
 }
 
-export function clownVile() {
+function vileLeg(xscale = 1) {
+    const s = Sprite.from(VileClownFoot);
+    s.pivot.at(1, 1);
+    s.scale.x = xscale;
+    const gfx = new Graphics();
+    const c = merge(container(gfx, s), { knee: vnew().at(10 * xscale, 10), foot: vnew().at(0, 20) })
+        .withStep(() => {
+            gfx
+                .clear()
+                .lineStyle(2, 0x0D1C7C)
+                .quadraticCurveTo(
+                    c.knee.x + Math.round(Math.sin(now.s * Math.PI + xscale) * 2) * 2,
+                    c.knee.y + Math.round(Math.cos(now.s * Math.PI - xscale) * 2) * 2,
+                    c.foot.x, c.foot.y);
+            s.at(c.foot);
+        });
+    return c;
+}
+
+function vileHead() {
     const controls = {
         eyeL: { pos: vnew(), img: 0 },
         eyeR: { pos: vnew(), img: 0 },
+        hair: { y: 0 },
         eyebrows: { img: 0, y: 0 },
         mouth: { pos: vnew(), img: 0 },
         facing: vnew(),
@@ -50,6 +108,7 @@ export function clownVile() {
         lookAtPlayer: true,
         widenEyes: false,
         wiggleEyebrows: 0,
+        hairVspeed: 0,
     }
 
     const defaultAutomation = { ...automation };
@@ -65,9 +124,11 @@ export function clownVile() {
         controls.eyebrows.img = 0;
         controls.eyebrows.y = 0;
     }
+    
+    let expression = Expression.Resting;
 
     function showExpression(first = false, auto = {} as typeof automation) {
-        if (h.expression === Expression.Resting) {
+        if (expression === Expression.Resting) {
             auto.facePlayer = false;
             auto.lookAtPlayer = false;
 
@@ -75,7 +136,7 @@ export function clownVile() {
                 const c = container()
                     .withStep(() => {
                         controls.eyeL.pos.at(controls.eyeR.pos);
-                        if (h.expression !== Expression.Resting)
+                        if (expression !== Expression.Resting)
                             c.destroy();
                     })
                     .withAsync(async () => {
@@ -91,7 +152,7 @@ export function clownVile() {
                     .show(h);
             }
         }
-        else if (h.expression === Expression.Happy) {
+        else if (expression === Expression.Happy) {
             moveTowards(controls.eyeL.pos, [0, 0], 1);
             moveTowards(controls.eyeR.pos, [0, 0], 1);
             controls.eyeL.pos.y += Math.sin(now.s * Math.PI * 5) * 0.67;
@@ -105,20 +166,21 @@ export function clownVile() {
             controls.eyeR.img = 1;
             controls.facing.y = Math.min(0, controls.facing.y);
         }
-        else if (h.expression === Expression.Surprise) {
+        else if (expression === Expression.Surprise) {
+            auto.hairVspeed = -2;
             auto.facePlayer = false;
             auto.lookAtPlayer = true;
             auto.widenEyes = true;
             auto.wiggleEyebrows = 1;
             controls.mouth.img = 2;
         }
-        else if (h.expression === Expression.Angry) {
+        else if (expression === Expression.Angry) {
             auto.facePlayer = false;
             auto.lookAtPlayer = true;
             controls.mouth.img = 3;
             controls.eyebrows.img = 1;
         }
-        else if (h.expression === Expression.Evil) {
+        else if (expression === Expression.Evil) {
             const f = now.s * Math.PI * 3;
             const v = vnew().at(Math.sin(f) * 3, Math.cos(f) * 6);
             const s = 2;
@@ -128,7 +190,7 @@ export function clownVile() {
             controls.mouth.img = 1;
             controls.eyebrows.img = 1;
         }
-        else if (h.expression === Expression.ChargeSpit) {
+        else if (expression === Expression.ChargeSpit) {
             if (first) {
                 controls.mouth.img = 4;
                 controls.eyebrows.y = 2;
@@ -137,7 +199,7 @@ export function clownVile() {
             controls.mouth.img = Math.min(7, controls.mouth.img + 0.1);
             controls.eyebrows.y = Math.max(-2, controls.eyebrows.y - 0.1);
         }
-        else if (h.expression === Expression.Spit) {
+        else if (expression === Expression.Spit) {
             controls.eyeL.pos.vlength = Math.min(controls.eyeL.pos.vlength, 3);
             controls.eyeR.pos.vlength = Math.min(controls.eyeR.pos.vlength, 3);
             auto.lookAtPlayer = false;
@@ -155,7 +217,7 @@ export function clownVile() {
         resetAutomation();
         resetControls();
 
-        h.expression = e;
+        expression = e;
 
         showExpression(true, automation);
     }
@@ -205,7 +267,14 @@ export function clownVile() {
             const etx = nlerp(2, -2, (controls.facing.x + 1) / 2);
             const ety = nlerp(1, -1, (controls.facing.y + 1) / 2);
 
-            hair.pivot.at(0, Math.max(0, controls.facing.y) * -2).vround();
+            hair.pivot.at(0, Math.max(0, controls.facing.y) * -2 - controls.hair.y).vround();
+            controls.hair.y += automation.hairVspeed;
+            if (controls.hair.y >= 0) {
+                controls.hair.y = 0;
+                automation.hairVspeed = 0;
+            }
+            else
+                automation.hairVspeed += 0.4;
 
             face.moveTowards(v.at(ftx, fty), 1);
             ears.moveTowards(v.at(etx, ety), 1);
@@ -260,7 +329,7 @@ export function clownVile() {
         return p.add(c, -1);
     }
 
-    const h = merge(newHead(), { expression: Expression.Resting })
+    const h = merge(newHead(), { get expression() { return expression; }, set expression(e: Expression) { setExpression(e); }, automation })
         .withStep(showExpression)
         .withStep(() => {
             const me = getWorldCenter(__center);

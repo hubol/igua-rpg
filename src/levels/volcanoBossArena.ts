@@ -34,5 +34,5 @@ export function VolcanoBossArena() {
         })
         .asCollectible(progress.flags.volcano.key, "fromLava");
 
-    clownVile().at(300, 128).show();
+    clownVile().at(300, 128 + 60).show();
 }
