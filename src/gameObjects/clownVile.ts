@@ -21,9 +21,11 @@ import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {Force} from "../utils/types/force";
+import {move} from "../cutscene/move";
 
 enum Expression {
-    Default,
+    Resting,
+    Hostile,
     Happy,
     Surprise,
     Angry,
@@ -64,58 +66,84 @@ export function clownVile() {
         controls.eyebrows.y = 0;
     }
 
-    let expression = Expression.Default;
+    function showExpression(first = false, auto = {} as typeof automation) {
+        if (h.expression === Expression.Resting) {
+            auto.facePlayer = false;
+            auto.lookAtPlayer = false;
 
-    function showExpression() {
-        if (expression === Expression.Happy) {
+            if (first) {
+                const c = container()
+                    .withStep(() => {
+                        controls.eyeL.pos.at(controls.eyeR.pos);
+                        if (h.expression !== Expression.Resting)
+                            c.destroy();
+                    })
+                    .withAsync(async () => {
+                        while (true) {
+                            await move(controls.facing).to(rng.unitVector).over(300 + rng.int(700));
+                            await sleep(rng.int(300));
+                            const looking = rng.unitVector.scale(rng.int(4));
+                            const ms = 200 + rng.int(450);
+                            await move(controls.eyeR.pos).to(looking).over(ms);
+                            await sleep(rng.int(550) + 250);
+                        }
+                    })
+                    .show(h);
+            }
+        }
+        else if (h.expression === Expression.Happy) {
             moveTowards(controls.eyeL.pos, [0, 0], 1);
             moveTowards(controls.eyeR.pos, [0, 0], 1);
             controls.eyeL.pos.y += Math.sin(now.s * Math.PI * 5) * 0.67;
             controls.eyeR.pos.y += Math.sin(now.s * Math.PI * 5) * 0.67
-            automation.facePlayer = true;
-            automation.lookAtPlayer = false;
-            automation.widenEyes = true;
-            automation.wiggleEyebrows = 0;
+            auto.facePlayer = true;
+            auto.lookAtPlayer = false;
+            auto.widenEyes = true;
+            auto.wiggleEyebrows = 0;
             controls.mouth.img = 1;
             controls.eyeL.img = 1;
             controls.eyeR.img = 1;
             controls.facing.y = Math.min(0, controls.facing.y);
         }
-        else if (expression === Expression.Surprise) {
-            automation.facePlayer = false;
-            automation.lookAtPlayer = true;
-            automation.widenEyes = true;
-            automation.wiggleEyebrows = 1;
+        else if (h.expression === Expression.Surprise) {
+            auto.facePlayer = false;
+            auto.lookAtPlayer = true;
+            auto.widenEyes = true;
+            auto.wiggleEyebrows = 1;
             controls.mouth.img = 2;
         }
-        else if (expression === Expression.Angry) {
-            automation.facePlayer = false;
-            automation.lookAtPlayer = true;
+        else if (h.expression === Expression.Angry) {
+            auto.facePlayer = false;
+            auto.lookAtPlayer = true;
             controls.mouth.img = 3;
             controls.eyebrows.img = 1;
         }
-        else if (expression === Expression.Evil) {
+        else if (h.expression === Expression.Evil) {
             const f = now.s * Math.PI * 3;
             const v = vnew().at(Math.sin(f) * 3, Math.cos(f) * 6);
             const s = 2;
             moveTowards(controls.eyeL.pos, v, s);
             moveTowards(controls.eyeR.pos, v, s);
-            automation.widenEyes = true;
+            auto.widenEyes = true;
             controls.mouth.img = 1;
             controls.eyebrows.img = 1;
         }
-        else if (expression === Expression.ChargeSpit) {
-            automation.widenEyes = true;
+        else if (h.expression === Expression.ChargeSpit) {
+            if (first) {
+                controls.mouth.img = 4;
+                controls.eyebrows.y = 2;
+            }
+            auto.widenEyes = true;
             controls.mouth.img = Math.min(7, controls.mouth.img + 0.1);
             controls.eyebrows.y = Math.max(-2, controls.eyebrows.y - 0.1);
         }
-        else if (expression === Expression.Spit) {
+        else if (h.expression === Expression.Spit) {
             controls.eyeL.pos.vlength = Math.min(controls.eyeL.pos.vlength, 3);
             controls.eyeR.pos.vlength = Math.min(controls.eyeR.pos.vlength, 3);
-            automation.lookAtPlayer = false;
+            auto.lookAtPlayer = false;
             moveTowards(controls.mouth.pos, controls.facing.vcpy().scale(2), 0.2);
-            automation.widenEyes = true;
-            automation.facePlayer = false;
+            auto.widenEyes = true;
+            auto.facePlayer = false;
             controls.mouth.img = 8;
             controls.eyebrows.img = 1;
             controls.eyeL.img = 2;
@@ -127,14 +155,9 @@ export function clownVile() {
         resetAutomation();
         resetControls();
 
-        if (e === Expression.ChargeSpit) {
-            controls.mouth.img = 4;
-            controls.eyebrows.y = 2;
-        }
+        h.expression = e;
 
-        expression = e;
-
-        showExpression();
+        showExpression(true, automation);
     }
 
     function newEye(control: { img: number }) {
@@ -237,7 +260,7 @@ export function clownVile() {
         return p.add(c, -1);
     }
 
-    const head = newHead()
+    const h = merge(newHead(), { expression: Expression.Resting })
         .withStep(showExpression)
         .withStep(() => {
             const me = getWorldCenter(__center);
@@ -248,8 +271,8 @@ export function clownVile() {
             if (automation.facePlayer)
                 moveTowards(controls.facing, target, 0.1);
             if (automation.lookAtPlayer) {
-                const l = dist < 40 ? getWorldCenter(head.eyeL) : me;
-                const r = dist < 40 ? getWorldCenter(head.eyeR) : me;
+                const l = dist < 40 ? getWorldCenter(h.eyeL) : me;
+                const r = dist < 40 ? getWorldCenter(h.eyeR) : me;
                 l.y = me.y;
                 r.y = me.y;
 
@@ -270,17 +293,11 @@ export function clownVile() {
                 await lerp(controls, 'blink').to(1).over(170);
                 await lerp(controls, 'blink').to(0).over(120);
             }
-        })
-        .withAsync(async () => {
-            while (true) {
-                for (let i = 0; i < Object.keys(Expression).length / 2; i++) {
-                    setExpression(i);
-                    await sleep(2000);
-                }
-            }
         });
 
-    return head;
+    setExpression(Expression.Resting);
+
+    return h;
 }
 
 const eyelidTxs = subimageTextures(VileClownEyelid, 12);
