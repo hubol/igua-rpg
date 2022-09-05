@@ -19,11 +19,16 @@ import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {giftValuables} from "../cutscene/giftValuables";
 import {ask} from "../cutscene/ask";
 import {oracleAdviceVolcano} from "../igua/oracleAdvice";
+import {decalsOf} from "../gameObjects/decal";
+import {CrackSmall} from "../textures";
 
 export function VolcanoOracle() {
     scene.backgroundColor = 0x60B0E0;
     scene.terrainColor = 0x6D1913;
     const level = applyOgmoLevel(VolcanoOracleArgs);
+
+    decalsOf(CrackSmall).forEach(x => x.tinted(0x6D1913));
+
     jukebox.play(AnotherHouse).warm(VolcanoSomething);
 
     if (!progress.flags.volcano.rescuedOracle)

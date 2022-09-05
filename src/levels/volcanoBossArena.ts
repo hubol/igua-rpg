@@ -6,7 +6,7 @@ import {jukebox} from "../igua/jukebox";
 import {AmbientLava, VolcanoSomething} from "../musics";
 import {heatWaves} from "../gameObjects/heatWaves";
 import {decalsOf} from "../gameObjects/decal";
-import {GroundSpeckles} from "../textures";
+import {CrackSmall, GroundSpeckles} from "../textures";
 import {container} from "../utils/pixi/container";
 import {lerp} from "../utils/math/number";
 import {now} from "../utils/now";
@@ -27,6 +27,7 @@ export function VolcanoBossArena() {
         .show(scene.parallax1Stage)
         .on('removed', () => farBackStage.destroy());
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x6D1913));
+    level.BossExit.tinted(0x6D1913);
 
     level.Key
         .withStep(() => {
@@ -34,5 +35,5 @@ export function VolcanoBossArena() {
         })
         .asCollectible(progress.flags.volcano.key, "fromLava");
 
-    clownVile().at(300, 128 + 60).show();
+    clownVile().at(level.Boss).show();
 }

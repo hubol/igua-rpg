@@ -1,5 +1,5 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {BigKey3, KeyGreen} from "../textures";
+import {BigKey3, CrackSmall, KeyGreen} from "../textures";
 import {scene} from "../igua/scene";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {VolcanoTempleArgs} from "../levelArgs";
@@ -9,6 +9,7 @@ import {heatWaves} from "../gameObjects/heatWaves";
 import {progress} from "../igua/data/progress";
 import {makeTempleLevelUtil} from "../igua/gameplay/templeLevelUtil";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
+import {decalsOf} from "../gameObjects/decal";
 
 export function VolcanoTemple() {
     scene.backgroundColor = 0x651913;
@@ -34,7 +35,7 @@ export function VolcanoTemple() {
     util.makeBigKeyMeter(volcanoBigKeyTextures).at(level.BigKey).behind();
     level.Sign.cutscene = util.signCutscene;
     level.GlowingCircle.tinted(0xFFE451).alpha = 0.625;
-
+    decalsOf(CrackSmall).forEach(x => x.tinted(0x651913));
     util.tryGiveReward(bigKey, 'reward', level.BigKey, 'Blessing of Fire');
 }
 

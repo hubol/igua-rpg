@@ -233,6 +233,17 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 304,
+          "y": 233,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crack small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "../../src/images"
