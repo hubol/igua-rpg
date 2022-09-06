@@ -26,6 +26,7 @@ import {clownHealth} from "./utils/clownUtils";
 import {ClownHurt} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {wait} from "../cutscene/wait";
+import {confetti} from "./confetti";
 
 export function clownVile() {
     const health = clownHealth(1200);
@@ -38,13 +39,19 @@ export function clownVile() {
 
     let invulnerable = 0;
 
+    function die() {
+        confetti(32, 64).at(getWorldCenter(head)).ahead();
+        c.destroy();
+    }
+
     function takeDamage() {
         if (player.collides(hurtbox) && invulnerable <= 0) {
             c.hostile = true;
             bouncePlayerOffDisplayObject(hurtbox);
             invulnerable = 15;
             ClownHurt.play();
-            health.damage();
+            if (health.damage())
+                return die();
         }
 
         head.visible = invulnerable-- > 0 ? !head.visible : true;
