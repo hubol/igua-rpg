@@ -7,6 +7,14 @@ import {clownHealthUi} from "./utils/clownUtils";
 import {derivedStats} from "../igua/gameplay/derivedStats";
 import {healthbar} from "../igua/ui/healthbar";
 
+enum Color {
+    Empty = 0xff0000,
+    Hurt = 0xa00000,
+    Heal = 0x00ff00,
+    Life = 0x0000ff,
+    Vulnerable = 0x180098,
+}
+
 export function hud()
 {
     const healthbarGfx = new Graphics()
@@ -15,13 +23,13 @@ export function hud()
             const { life, heal, hurt } = healthbar(progress, progress.health, max);
 
             healthbarGfx.clear();
-            healthbarGfx.beginFill(0xff0000);
+            healthbarGfx.beginFill(Color.Empty);
             healthbarGfx.drawRect(0, 0, max, 16);
-            healthbarGfx.beginFill(0xffff00);
+            healthbarGfx.beginFill(Color.Hurt);
             healthbarGfx.drawRect(0, 0, hurt, 16);
-            healthbarGfx.beginFill(0x00ff00);
+            healthbarGfx.beginFill(Color.Heal);
             healthbarGfx.drawRect(0, 0, heal, 16);
-            healthbarGfx.beginFill(0x0000ff);
+            healthbarGfx.beginFill(progress.health <= 1 ? Color.Vulnerable : Color.Life);
             healthbarGfx.drawRect(0, 0, Math.max(Math.sign(life), life), 16);
         });
 
@@ -67,13 +75,13 @@ function clownHealthBar() {
 
             const { life, heal, hurt } = healthbar(clownHealth, clownHealth.unit, 1);
 
-            g.beginFill(0xff0000);
+            g.beginFill(Color.Empty);
             g.drawRect(0, 0, width, height);
-            g.beginFill(0xffff00);
+            g.beginFill(Color.Hurt);
             g.drawRect(0, 0, hurt * width, height);
-            g.beginFill(0x00ff00);
+            g.beginFill(Color.Heal);
             g.drawRect(0, 0, heal * width, height);
-            g.beginFill(clownHealth.nearDeath ? 0x180098 : 0x0000ff);
+            g.beginFill(clownHealth.nearDeath ? Color.Vulnerable : Color.Life);
             const w = life * width;
             if (w > 0)
                 g.drawRect(0, 0, Math.ceil(w), height);
