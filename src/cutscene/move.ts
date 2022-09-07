@@ -1,4 +1,4 @@
-import {lerp, Vector} from "../utils/math/vector";
+import {lerp, Vector, vnew} from "../utils/math/vector";
 import {wait} from "./wait";
 import {game} from "../igua/game";
 
@@ -37,6 +37,45 @@ class Move
                     this._vector.y += speed.y;
                     return --ticksUntilResolve <= 0;
                 });
+        });
+    }
+
+    off(offset: Vector): MoveTime;
+    off(x: number, y: number): MoveTime;
+    off()
+    {
+        const offset = getVector(arguments);
+        const traveled = vnew();
+        const next = vnew();
+
+        const sx = Math.sign(offset.x);
+        const sy = Math.sign(offset.y);
+
+        return moveOver(async ms => {
+            let currentTick = 0;
+
+            return await wait(() => {
+                currentTick++;
+                const currentMs = (currentTick * 1000) / game.maxFps;
+                const factor = Math.min(currentMs / ms, 1);
+                next.at(offset).scale(factor);
+                if (Math.abs(next.x - traveled.x) >= 1) {
+                    this._vector.x += sx;
+                    traveled.x += sx;
+                }
+                if (Math.abs(next.y - traveled.y) >= 1) {
+                    this._vector.y += sy;
+                    traveled.y += sy;
+                }
+
+                if (factor >= 1) {
+                    this._vector.x += offset.x - traveled.x;
+                    this._vector.y += offset.y - traveled.y;
+                    return true;
+                }
+
+                return false;
+            });
         });
     }
 
