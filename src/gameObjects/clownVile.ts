@@ -23,7 +23,7 @@ import {lerp} from "../cutscene/lerp";
 import {Force} from "../utils/types/force";
 import {move} from "../cutscene/move";
 import {clownHealth} from "./utils/clownUtils";
-import {ClownHurt} from "../sounds";
+import {ClownExplode, ClownHurt} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {wait} from "../cutscene/wait";
 import {confetti} from "./confetti";
@@ -40,6 +40,7 @@ export function clownVile() {
     let invulnerable = 0;
 
     function die() {
+        ClownExplode.play();
         confetti(32, 64).at(getWorldCenter(head)).ahead();
         c.destroy();
     }

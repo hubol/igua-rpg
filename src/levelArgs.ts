@@ -7700,11 +7700,13 @@ Gate: resolveGate({"type":"Gate","x":784,"y":176,"width":32,"height":32,"flipped
 Lava: resolveLava({"type":"Lava","x":-192,"y":208,"width":848,"height":48,"flippedX":false,"flippedY":false,"uid":"98209396_4","name":"","depth":0}),
 Boss: {"type":"Anchor","x":404,"y":188,"flippedX":false,"flippedY":false,"uid":"25979726_6","name":"Boss","depth":0},
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":-96,"y":0,"width":192,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
+Block_2: resolveBlock({"type":"Block","x":0,"y":144,"width":96,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_15","name":"","depth":0}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":0,"y":144,"width":96,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_15","name":"","depth":0}),
+BossExit: resolveBlock({"type":"Block","x":80,"y":56,"width":16,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"BossExit","depth":0}),
 // @ts-ignore
-BossExit: resolveBlock({"type":"Block","x":80,"y":56,"width":16,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"BossExit","depth":0})
+ValuableSpawnX: resolveRegion({"type":"Region","x":128,"y":0,"width":496,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607_17","name":"ValuableSpawnX","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":-96,"y":0,"width":192,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_18","name":"","depth":0})
 };
 }
 };

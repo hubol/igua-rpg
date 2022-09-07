@@ -86,6 +86,7 @@ export function getInitialFlags()
                 piece3: false,
                 reward: false,
             },
+            defeatedVileAngel: false,
         }
     };
 }
