@@ -46,6 +46,12 @@ export function clownVile() {
         return move(c).off(0, -dy);
     }
 
+    async function resetFeetPose(ms: number) {
+        const p1 = move(footr).off((c.x + 10) - footr.x, 0).over(ms);
+        await move(footl).off((c.x - 10) - footl.x, 0).over(ms);
+        await p1;
+    }
+
     const head = vileHead().at(-24, -32);
 
     const hurtbox = new Graphics().beginFill(0xff0000).drawRect(4, 2, 41, 26).show(head).hide();
@@ -68,7 +74,7 @@ export function clownVile() {
         .withAsyncOnce(async ({ ms, dx }) => {
             hitWall = false;
             let once = false;
-            await stretchLegs(40).over(ms);
+            await Promise.all([stretchLegs(40).over(ms), resetFeetPose(ms)]);
             while (!once || !hitWall) {
                 await move(dx < 0 ? footl : footr).off(dx, 0).over(ms);
                 await move(c).off(dx, 0).over(ms);
