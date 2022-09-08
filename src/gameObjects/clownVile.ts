@@ -28,6 +28,7 @@ import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {wait} from "../cutscene/wait";
 import {confetti} from "./confetti";
 import {newGravity} from "./utils/newGravity";
+import {attack, attackRunner} from "./attacks";
 
 export function clownVile() {
     const health = clownHealth(1200);
@@ -42,15 +43,18 @@ export function clownVile() {
 
     let invulnerable = 0;
 
-    async function walkLeft(ms = 500) {
-        let once = false;
-        while (!once || !hitWall) {
-            await move(footl).off(-40, 0).over(ms);
-            await move(c).off(-40, 0).over(ms);
-            await move(footr).off(-40, 0).over(ms);
-            once = true;
-        }
-    }
+    const runner = attackRunner().show(head);
+    const walk = attack({ ms: 300, dx: -40 })
+        .withAsyncOnce(async ({ ms, dx }) => {
+            hitWall = false;
+            let once = false;
+            while (!once || !hitWall) {
+                await move(dx < 0 ? footl : footr).off(dx, 0).over(ms);
+                await move(c).off(dx, 0).over(ms);
+                await move(dx < 0 ? footr : footl).off(dx, 0).over(ms);
+                once = true;
+            }
+        });
 
     function updateLegs() {
         legl.foot.at(getWorldPos(footl)).add(getWorldPos(legl), -1);
@@ -90,8 +94,9 @@ export function clownVile() {
             head.expression = Expression.Surprise;
             await sleep(300);
             head.expression = Expression.Hostile;
+            runner.reset(walk);
+            runner.push(walk, { dx: 40 });
         })
-        .withAsync(walkLeft)
         .withStep(updateLegs);
 
     c.transform.onPositionChanged(() => {
