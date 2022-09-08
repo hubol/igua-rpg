@@ -29,6 +29,7 @@ import {wait} from "../cutscene/wait";
 import {confetti} from "./confetti";
 import {newGravity} from "./utils/newGravity";
 import {attack, attackRunner} from "./attacks";
+import {Undefined} from "../utils/types/undefined";
 
 export function clownVile() {
     const health = clownHealth(1200);
@@ -55,11 +56,18 @@ export function clownVile() {
                 once = true;
             }
         });
+    const jump = attack()
+        .withAsyncOnce(async ({ }) => {
+            await move(c).off(0, 10).over(200);
+            speed.y = -8;
+            grav = 0.2;
+            await sleep(2000);
+        });
 
     function onSpawnedWithPosition() {
         if (footl) return;
-        footl = foot().at([-10, 20].add(c));
-        footr = foot().at([10, 20].add(c));
+        footl = foot(c, [-10, 0]).at([-10, 20].add(c));
+        footr = foot(c, [10, 0]).at([10, 20].add(c));
     }
 
     function updateLegs() {
@@ -87,20 +95,33 @@ export function clownVile() {
     }
 
     let hitWall = false;
+    let grav = 0;
+
+    function doHeadPhysics() {
+        if (runner.current !== jump)
+            grav = 0;
+        let gravScale = 1;
+        if (speed.y > 0 && (footl.length < 32 || footr.length < 32)) {
+            gravScale = 0;
+            speed.y *= 0.5;
+        }
+
+        const r = gravity(grav * gravScale);
+        if (r.hitWall)
+            hitWall = true;
+    }
 
     const c = merge(container(legl, legr, head), { hostile: false })
-        .withStep(() => {
-            const r = gravity(0);
-            if (r.hitWall)
-                hitWall = true;
-        })
+        .withStep(doHeadPhysics)
         .withStep(takeDamage)
         .withAsync(async () => {
             await wait(() => c.hostile);
             head.expression = Expression.Surprise;
             await sleep(300);
             head.expression = Expression.Hostile;
-            runner.reset(walk());
+            runner.reset(jump());
+            runner.push(jump());
+            runner.push(walk());
             runner.push(walk({ dx: 40 }));
         })
         .withStep(updateLegs);
@@ -113,12 +134,34 @@ export function clownVile() {
     return c;
 }
 
-function foot() {
+const v1 = vnew();
+const v2 = vnew();
+
+function foot(src: DisplayObject, srcOff: Vector) {
     const speed = vnew();
     const offset = [0, -6];
-    const c = container();
+
+    function getLegInfo() {
+        const root = v1.at(src).add(srcOff);
+        const leg = v2.at(c).add(root, -1);
+        return [root, leg];
+    }
+
+    const c = merge(container(), { max: Undefined<number>(), get length() { return getLegInfo()[1].vlength; } });
+    c.max = 64;
     const gravity = newGravity(c, speed, offset, Math.abs(offset.y));
-    return c.withStep(() => gravity(0.8)).show();
+    return c.withStep(() => {
+        if (c.max !== undefined) {
+            const [root, leg] = getLegInfo();
+            if (leg.vlength > c.max) {
+                leg.vlength = c.max;
+                c.at(root).add(leg);
+                speed.scale(0);
+                return;
+            }
+        }
+        gravity(0.8);
+    }).show();
 }
 
 type Foot = ReturnType<typeof foot>;
