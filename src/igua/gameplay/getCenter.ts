@@ -1,6 +1,7 @@
 import {player} from "../../gameObjects/player";
 import {DisplayObject, Rectangle} from "pixi.js";
 import {scene} from "../scene";
+import {vnew} from "../../utils/math/vector";
 
 const r = new Rectangle();
 
@@ -22,4 +23,10 @@ export function getWorldCenter(d: DisplayObject) {
 
 export function getWorldBounds(d: DisplayObject) {
     return d.getBounds(false, r).add(scene.camera);
+}
+
+const v = vnew();
+
+export function getWorldPos(d: DisplayObject) {
+    return v.at(d.worldTransform.tx, d.worldTransform.ty).add(scene.camera);
 }

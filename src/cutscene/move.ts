@@ -47,6 +47,7 @@ class Move
         const offset = getVector(arguments);
         const traveled = vnew();
         const next = vnew();
+        const tmp = vnew();
 
         const sx = Math.sign(offset.x);
         const sy = Math.sign(offset.y);
@@ -59,14 +60,10 @@ class Move
                 const currentMs = (currentTick * 1000) / game.maxFps;
                 const factor = Math.min(currentMs / ms, 1);
                 next.at(offset).scale(factor);
-                if (Math.abs(next.x - traveled.x) >= 1) {
-                    this._vector.x += sx;
-                    traveled.x += sx;
-                }
-                if (Math.abs(next.y - traveled.y) >= 1) {
-                    this._vector.y += sy;
-                    traveled.y += sy;
-                }
+
+                tmp.at(next).add(traveled, -1);
+                this._vector.add(tmp);
+                traveled.at(next);
 
                 if (factor >= 1) {
                     this._vector.x += offset.x - traveled.x;

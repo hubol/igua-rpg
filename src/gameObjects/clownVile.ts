@@ -15,7 +15,7 @@ import {flipH} from "../utils/pixi/flip";
 import {now} from "../utils/now";
 import {moveTowards, Vector, vnew} from "../utils/math/vector";
 import {lerp as nlerp} from "../utils/math/number";
-import {getWorldCenter} from "../igua/gameplay/getCenter";
+import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
@@ -27,10 +27,13 @@ import {ClownExplode, ClownHurt} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {wait} from "../cutscene/wait";
 import {confetti} from "./confetti";
+import {newGravity} from "./utils/newGravity";
 
 export function clownVile() {
     const health = clownHealth(1200);
 
+    let footl = Force<Foot>();
+    let footr = Force<Foot>();
     const legl = vileLeg(-1).at(-10, 0);
     const legr = vileLeg().at(10, 0);
     const head = vileHead().at(-24, -32);
@@ -38,6 +41,21 @@ export function clownVile() {
     const hurtbox = new Graphics().beginFill(0xff0000).drawRect(4, 2, 41, 26).show(head).hide();
 
     let invulnerable = 0;
+
+    async function walkLeft(ms = 500) {
+        let once = false;
+        while (!once || !hitWall) {
+            await move(footl).off(-40, 0).over(ms);
+            await move(c).off(-40, 0).over(ms);
+            await move(footr).off(-40, 0).over(ms);
+            once = true;
+        }
+    }
+
+    function updateLegs() {
+        legl.foot.at(getWorldPos(footl)).add(getWorldPos(legl), -1);
+        legr.foot.at(getWorldPos(footr)).add(getWorldPos(legr), -1);
+    }
 
     function die() {
         ClownExplode.play();
@@ -58,16 +76,45 @@ export function clownVile() {
         head.visible = invulnerable-- > 0 ? !head.visible : true;
     }
 
+    let hitWall = false;
+
     const c = merge(container(legl, legr, head), { hostile: false })
+        .withStep(() => {
+            const r = gravity(0);
+            if (r.hitWall)
+                hitWall = true;
+        })
         .withStep(takeDamage)
         .withAsync(async () => {
             await wait(() => c.hostile);
             head.expression = Expression.Surprise;
             await sleep(300);
             head.expression = Expression.Hostile;
-        });
+        })
+        .withAsync(walkLeft)
+        .withStep(updateLegs);
+
+    c.transform.onPositionChanged(() => {
+        if (footl) return;
+        footl = foot().at([-10, 20].add(c));
+        footr = foot().at([10, 20].add(c));
+    });
+
+    const speed = vnew();
+    const gravity = newGravity(c, speed, [0, -25], 25);
+
     return c;
 }
+
+function foot() {
+    const speed = vnew();
+    const offset = [0, -6];
+    const c = container();
+    const gravity = newGravity(c, speed, offset, Math.abs(offset.y));
+    return c.withStep(() => gravity(0.8)).show();
+}
+
+type Foot = ReturnType<typeof foot>;
 
 enum Expression {
     Resting,
@@ -85,14 +132,23 @@ function vileLeg(xscale = 1) {
     s.pivot.at(1, 1);
     s.scale.x = xscale;
     const gfx = new Graphics();
-    const c = merge(container(gfx, s), { knee: vnew().at(10 * xscale, 10), foot: vnew().at(0, 20) })
+    const v = vnew();
+    const knee = vnew().at(10 * xscale, 10);
+    const c = merge(container(gfx, s), { foot: vnew().at(0, 20) })
         .withStep(() => {
+            const kx = c.foot.x / 2 + 200 / c.foot.y * xscale;
+            const ky = Math.max(c.foot.y / 2 + Math.min(c.foot.x * -xscale, 0), 0);
+            v.at(kx, ky);
+            if (isNaN(knee.x) || isNaN(knee.y) || !isFinite(knee.x) || !isFinite(knee.y))
+                knee.at(v);
+            else
+                moveTowards(knee, v, 1);
             gfx
                 .clear()
                 .lineStyle(2, 0x0D1C7C)
                 .quadraticCurveTo(
-                    c.knee.x + Math.round(Math.sin(now.s * Math.PI + xscale) * 2) * 2,
-                    c.knee.y + Math.round(Math.cos(now.s * Math.PI - xscale) * 2) * 2,
+                    knee.x + Math.round(Math.sin(now.s * Math.PI + xscale) * 2) * 2,
+                    knee.y + Math.round(Math.cos(now.s * Math.PI - xscale) * 2) * 2,
                     c.foot.x, c.foot.y);
             s.at(c.foot);
         });
