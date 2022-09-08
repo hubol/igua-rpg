@@ -14,7 +14,7 @@ import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {flipH} from "../utils/pixi/flip";
 import {now} from "../utils/now";
 import {moveTowards, Vector, vnew} from "../utils/math/vector";
-import {lerp as nlerp} from "../utils/math/number";
+import {approachLinear, lerp as nlerp} from "../utils/math/number";
 import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {sleep} from "../cutscene/sleep";
@@ -184,6 +184,7 @@ function vileLeg(xscale = 1) {
     const gfx = new Graphics();
     const v = vnew();
     const knee = vnew().at(10 * xscale, 10);
+    let footPrevY = Force<number>();
     const c = merge(container(gfx, s), { foot: vnew().at(0, 20) })
         .withStep(() => {
             const kx = c.foot.x / 2 + 200 / c.foot.y * xscale;
@@ -200,7 +201,16 @@ function vileLeg(xscale = 1) {
                     knee.x + Math.round(Math.sin(now.s * Math.PI + xscale) * 2) * 2,
                     knee.y + Math.round(Math.cos(now.s * Math.PI - xscale) * 2) * 2,
                     c.foot.x, c.foot.y);
+
             s.at(c.foot);
+            const fy = getWorldPos(c).y + c.foot.y;
+            if (footPrevY !== undefined) {
+                const diff = fy - footPrevY;
+                const target = Math.abs(diff) < 0.1 ? 0 : Math.sign(diff) * -40 * xscale;
+                s.angle = approachLinear(s.angle, target, 10);
+            }
+
+            footPrevY = fy;
         });
     return c;
 }

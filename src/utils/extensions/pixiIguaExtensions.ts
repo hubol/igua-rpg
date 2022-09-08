@@ -11,7 +11,7 @@ declare global {
     namespace PIXI {
         export interface DisplayObject {
             ahead(index?: number): this;
-            show(parent?: Container): this;
+            show(parent?: Container, index?: number): this;
             behind(index?: number): this;
             withInteraction(interaction: () => void): this;
             withCutscene(cutscene: Cutscene): this;
@@ -26,8 +26,10 @@ declare global {
     }
 }
 
-PIXI.DisplayObject.prototype.show = function (parent = scene.gameObjectStage) {
-    return parent.addChild(this);
+PIXI.DisplayObject.prototype.show = function (parent = scene.gameObjectStage, index) {
+    if (index === undefined)
+        return parent.addChild(this);
+    return parent.addChildAt(this, index);
 }
 
 PIXI.DisplayObject.prototype.liveFor = function (frames) {
