@@ -20,6 +20,9 @@ export function attackRunner() {
         },
         get current() {
             return c.children[0]?.ext.__src;
+        },
+        get isEmpty() {
+            return c.children.length === 0;
         }
     };
     const c = container()

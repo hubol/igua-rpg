@@ -154,6 +154,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 21,
+          "_eid": "55940370",
+          "x": 480,
+          "y": 208,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "Debug", "faceRight": false, "depth": 0}
         }
       ]
     },

@@ -36,8 +36,6 @@ export function clownVile() {
 
     let footl = Force<Foot>();
     let footr = Force<Foot>();
-    const legl = vileLeg(-1).at(-10, 0);
-    const legr = vileLeg().at(10, 0);
     const head = vileHead().at(-24, -32);
 
     const hurtbox = new Graphics().beginFill(0xff0000).drawRect(4, 2, 41, 26).show(head).hide();
@@ -66,13 +64,8 @@ export function clownVile() {
 
     function onSpawnedWithPosition() {
         if (footl) return;
-        footl = foot(c, [-10, 0]).at([-10, 20].add(c));
-        footr = foot(c, [10, 0]).at([10, 20].add(c));
-    }
-
-    function updateLegs() {
-        legl.foot.at(getWorldPos(footl)).add(getWorldPos(legl), -1);
-        legr.foot.at(getWorldPos(footr)).add(getWorldPos(legr), -1);
+        footl = leg(c, [-10, 0]).at([-10, 20].add(c));
+        footr = leg(c, [10, 0]).at([10, 20].add(c));
     }
 
     function die() {
@@ -111,7 +104,7 @@ export function clownVile() {
             hitWall = true;
     }
 
-    const c = merge(container(legl, legr, head), { hostile: false })
+    const c = merge(container(head), { hostile: false })
         .withStep(doHeadPhysics)
         .withStep(takeDamage)
         .withAsync(async () => {
@@ -124,7 +117,6 @@ export function clownVile() {
             runner.push(walk());
             runner.push(walk({ dx: 40 }));
         })
-        .withStep(updateLegs);
 
     c.transform.onPositionChanged(onSpawnedWithPosition);
 
@@ -137,47 +129,11 @@ export function clownVile() {
 const v1 = vnew();
 const v2 = vnew();
 
-function foot(src: DisplayObject, srcOff: Vector) {
+function leg(src: DisplayObject, srcOff: Vector) {
     const speed = vnew();
     const offset = [0, -6];
 
-    function getLegInfo() {
-        const root = v1.at(src).add(srcOff);
-        const leg = v2.at(c).add(root, -1);
-        return [root, leg];
-    }
-
-    const c = merge(container(), { max: Undefined<number>(), get length() { return getLegInfo()[1].vlength; } });
-    c.max = 64;
-    const gravity = newGravity(c, speed, offset, Math.abs(offset.y));
-    return c.withStep(() => {
-        if (c.max !== undefined) {
-            const [root, leg] = getLegInfo();
-            if (leg.vlength > c.max) {
-                leg.vlength = c.max;
-                c.at(root).add(leg);
-                speed.scale(0);
-                return;
-            }
-        }
-        gravity(0.8);
-    }).show();
-}
-
-type Foot = ReturnType<typeof foot>;
-
-enum Expression {
-    Resting,
-    Hostile,
-    Happy,
-    Surprise,
-    Angry,
-    Evil,
-    ChargeSpit,
-    Spit
-}
-
-function vileLeg(xscale = 1) {
+    const xscale = Math.sign(srcOff.x);
     const s = Sprite.from(VileClownFoot);
     s.pivot.at(1, 1);
     s.scale.x = xscale;
@@ -185,10 +141,15 @@ function vileLeg(xscale = 1) {
     const v = vnew();
     const knee = vnew().at(10 * xscale, 10);
     let footPrevY = Force<number>();
-    const c = merge(container(gfx, s), { foot: vnew().at(0, 20) })
+    const leg = container(gfx, s)
         .withStep(() => {
-            const kx = c.foot.x / 2 + 200 / c.foot.y * xscale;
-            const ky = Math.max(c.foot.y / 2 + Math.min(c.foot.x * -xscale, 0), 0);
+            if (src.destroyed)
+                return leg.destroy();
+
+            leg.at(src).add(srcOff);
+            const footv = v1.at(foot).add(leg, -1);
+            const kx = footv.x / 2 + 200 / footv.y * xscale;
+            const ky = Math.max(footv.y / 2 + Math.min(footv.x * -xscale, 0), 0);
             v.at(kx, ky);
             if (isNaN(knee.x) || isNaN(knee.y) || !isFinite(knee.x) || !isFinite(knee.y))
                 knee.at(v);
@@ -200,19 +161,56 @@ function vileLeg(xscale = 1) {
                 .quadraticCurveTo(
                     knee.x + Math.round(Math.sin(now.s * Math.PI + xscale) * 2) * 2,
                     knee.y + Math.round(Math.cos(now.s * Math.PI - xscale) * 2) * 2,
-                    c.foot.x, c.foot.y);
+                    footv.x, footv.y);
 
-            s.at(c.foot);
-            const fy = getWorldPos(c).y + c.foot.y;
+            s.at(footv);
+            const fy = getWorldPos(leg).y + footv.y;
             if (footPrevY !== undefined) {
                 const diff = fy - footPrevY;
-                const target = Math.abs(diff) < 0.1 ? 0 : Math.sign(diff) * -40 * xscale;
+                const target = Math.abs(diff) < 1 ? 0 : Math.sign(diff) * -40 * xscale;
                 s.angle = approachLinear(s.angle, target, 10);
             }
 
             footPrevY = fy;
-        });
-    return c;
+        })
+        .show();
+
+    function getLegNormal() {
+        const legn = v2.at(foot).add(leg, -1);
+        return [legn];
+    }
+
+    const foot = merge(container(), { max: Undefined<number>(), get length() { return getLegNormal()[0].vlength; } });
+    foot.max = 64;
+    const gravity = newGravity(foot, speed, offset, Math.abs(offset.y));
+    return foot.withStep(() => {
+        if (src.destroyed)
+            return foot.destroy();
+
+        if (foot.max !== undefined) {
+            const [legn] = getLegNormal();
+            if (legn.vlength > foot.max) {
+                legn.vlength = foot.max;
+                foot.at(leg).add(legn);
+                speed.scale(0);
+                return;
+            }
+        }
+        gravity(0.8);
+    }).show();
+}
+
+type Foot = ReturnType<typeof leg>;
+
+enum Expression {
+    Resting,
+    Hostile,
+    Happy,
+    Surprise,
+    Angry,
+    Evil,
+    ChargeSpit,
+    Spit
 }
 
 function vileHead() {
