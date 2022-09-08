@@ -9,6 +9,7 @@ import {merge} from "../utils/object/merge";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {sleep} from "../cutscene/sleep";
 import {track} from "../igua/track";
+import {getWorldPos} from "../igua/gameplay/getCenter";
 
 export type ValuableType = keyof typeof valuableStyles;
 
@@ -34,8 +35,7 @@ function valuableImpl(x, y, uid, type: ValuableType)
     return sprite.withStep(() => {
         if (sprite.collectible && player.collides(sprite))
         {
-            const particle = smallPop(12);
-            particle.position.set(sprite.x, sprite.y - 7);
+            smallPop(12).at(getWorldPos(sprite).add(0, -7));
 
             if (uid)
                 progress.flags.objects.gotLevelValuable.add(uid);
