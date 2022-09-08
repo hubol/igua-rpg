@@ -56,6 +56,12 @@ export function clownVile() {
             }
         });
 
+    function onSpawnedWithPosition() {
+        if (footl) return;
+        footl = foot().at([-10, 20].add(c));
+        footr = foot().at([10, 20].add(c));
+    }
+
     function updateLegs() {
         legl.foot.at(getWorldPos(footl)).add(getWorldPos(legl), -1);
         legr.foot.at(getWorldPos(footr)).add(getWorldPos(legr), -1);
@@ -99,11 +105,7 @@ export function clownVile() {
         })
         .withStep(updateLegs);
 
-    c.transform.onPositionChanged(() => {
-        if (footl) return;
-        footl = foot().at([-10, 20].add(c));
-        footr = foot().at([10, 20].add(c));
-    });
+    c.transform.onPositionChanged(onSpawnedWithPosition);
 
     const speed = vnew();
     const gravity = newGravity(c, speed, [0, -25], 25);
