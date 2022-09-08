@@ -10,13 +10,13 @@ export function attackRunner() {
         clear() {
             queue.length = 0;
         },
-        push<T extends {}>(attack: Attack<T>, args: Partial<T> = {}) {
-            queue.push(attack.__ctor(args));
+        push(d: DisplayObject) {
+            queue.push(d);
         },
-        reset<T extends {}>(attack: Attack<T>, args: Partial<T> = {}) {
+        reset(d: DisplayObject) {
             api.clear();
             c.removeAllChildren();
-            attack.__ctor(args).show(c);
+            d.show(c);
         },
         get current() {
             return c.children[0]?.ext.__src;
@@ -42,11 +42,11 @@ export function attack<T extends {}>(defaultArgs = {} as T) {
     const asyncs: AsyncFn[] = [];
     const asyncOnces: AsyncFn[] = [];
 
-    function __ctor(partialArgs = {} as Partial<T>) {
+    function constructor(partialArgs = {} as Partial<T>) {
         defaults(defaultArgs, partialArgs);
         const args = partialArgs as T;
         const self = merge(container(), args);
-        self.ext.__src = m;
+        self.ext.__src = constructor;
         for (const step of steps)
             self.withStep(() => step(self));
         for (const async of asyncs)
@@ -68,7 +68,7 @@ export function attack<T extends {}>(defaultArgs = {} as T) {
         return self;
     }
 
-    const m = {
+    merge(constructor, {
         withStep(fn: StepFn) {
             steps.push(fn);
             return this;
@@ -80,11 +80,18 @@ export function attack<T extends {}>(defaultArgs = {} as T) {
         withAsyncOnce(fn: AsyncFn) {
             asyncOnces.push(fn);
             return this;
-        },
-        __ctor
-    }
+        }
+    });
 
-    return m;
+    // Unfortunately, I cannot get it to infer a merged callable interface + pojo
+    type Ctor = {
+        (args?: Partial<T>): Container & T,
+        withStep(fn: StepFn): Ctor,
+        withAsync(fn: AsyncFn): Ctor,
+        withAsyncOnce(fn: AsyncFn): Ctor,
+    };
+
+    return constructor as any as Ctor;
 }
 
 type Attack<T> = ReturnType<typeof attack>;

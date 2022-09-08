@@ -94,8 +94,8 @@ export function clownVile() {
             head.expression = Expression.Surprise;
             await sleep(300);
             head.expression = Expression.Hostile;
-            runner.reset(walk);
-            runner.push(walk, { dx: 40 });
+            runner.reset(walk());
+            runner.push(walk({ dx: 40 }));
         })
         .withStep(updateLegs);
 
