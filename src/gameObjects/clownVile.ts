@@ -36,6 +36,16 @@ export function clownVile() {
 
     let footl = Force<Foot>();
     let footr = Force<Foot>();
+
+    function getLegHeight() {
+        return footr.y - c.y;
+    }
+
+    function stretchLegs(target: number) {
+        const dy = target - getLegHeight();
+        return move(c).off(0, -dy);
+    }
+
     const head = vileHead().at(-24, -32);
 
     const hurtbox = new Graphics().beginFill(0xff0000).drawRect(4, 2, 41, 26).show(head).hide();
@@ -47,6 +57,18 @@ export function clownVile() {
         .withAsyncOnce(async ({ ms, dx }) => {
             hitWall = false;
             let once = false;
+            while (!once || !hitWall) {
+                await move(dx < 0 ? footl : footr).off(dx, 0).over(ms);
+                await move(c).off(dx, 0).over(ms);
+                await move(dx < 0 ? footr : footl).off(dx, 0).over(ms);
+                once = true;
+            }
+        });
+    const flee = attack({ ms: 100, dx: -40 })
+        .withAsyncOnce(async ({ ms, dx }) => {
+            hitWall = false;
+            let once = false;
+            await stretchLegs(40).over(ms);
             while (!once || !hitWall) {
                 await move(dx < 0 ? footl : footr).off(dx, 0).over(ms);
                 await move(c).off(dx, 0).over(ms);
@@ -112,10 +134,10 @@ export function clownVile() {
             head.expression = Expression.Surprise;
             await sleep(300);
             head.expression = Expression.Hostile;
-            runner.reset(jump());
-            runner.push(jump());
-            runner.push(walk());
-            runner.push(walk({ dx: 40 }));
+            // runner.reset(jump());
+            // runner.push(jump());
+            runner.push(flee());
+            runner.push(flee({ dx: 40 }));
         })
 
     c.transform.onPositionChanged(onSpawnedWithPosition);
