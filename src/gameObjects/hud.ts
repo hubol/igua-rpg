@@ -68,16 +68,19 @@ function clownHealthBar() {
     const width = 128;
     const height = 4;
 
+    let display = 9;
+
     const mask = dither();
 
     const g = new Graphics()
         .withStep(() => {
-            g.clear();
-
-            const { clownHealth, display } = clownHealthUi.value;
+            const { clownHealth } = clownHealthUi.value;
+            display = clownHealth ? 9 : display - 1;
             mask.unit = display / 9;
             if (!clownHealth)
                 return;
+
+            g.clear();
 
             const { life, heal, hurt } = healthbar(clownHealth, clownHealth.unit, 1);
 
