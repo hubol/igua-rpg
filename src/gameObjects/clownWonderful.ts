@@ -322,8 +322,11 @@ export function clownWonderful() {
                 ClownHurt.play();
                 behaviors.invulnerable = consts.recoveryFrames;
                 bouncePlayerOffDisplayObject(head);
-                if (health.damage())
-                    dieClown(c, drop(c.vsPlayerHitCount) && 15, [0, -8]);
+                if (health.damage()) {
+                    const dropFifteen = drop(c.vsPlayerHitCount);
+                    const dropFive = drop(c.vsPlayerHitCount / 2);
+                    dieClown(c, dropFifteen ? 15 : dropFive, [0, -8]);
+                }
             }
         })
         .withAsync(async () => {
