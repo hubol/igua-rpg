@@ -31,7 +31,7 @@ import {newGravity} from "./utils/newGravity";
 import {attack, attackRunner} from "./attacks";
 import {Undefined} from "../utils/types/undefined";
 import {rayIntersectsWallDistance} from "../igua/logic/rayIntersectsWall";
-import {spikeVile} from "./spikeVile";
+import {spikeVile, spikeVilePreview} from "./spikeVile";
 
 const unitv = {
     left: [-1, 0],
@@ -134,19 +134,24 @@ export function clownVile() {
             for (let i = 0; i <= 8; i++) {
                 head.chargeSpitSpeed = 2;
                 head.expression = Expression.ChargeSpit;
+
+                const spd = vnew().at(player).add(mouthv(), -1).normalize().scale(3);
+                if (spd.y > -1) {
+                    spd.y -= 2;
+                }
+                else {
+                    spd.scale(1.67);
+                }
+                spd.add(rng.unitVector, 0.1);
+                const pv = spikeVilePreview(spd).show(c).withStep(() => pv.at(mouthv()).add(c, -1));
+
                 await wait(() => head.isSpitCharged);
                 head.expression = Expression.Spit;
                 await sleep(50);
+                pv.destroy();
                 const s = spikeVile().at(mouthv()).show();
-                s.speed.at(player).add(mouthv(), -1).normalize().scale(3);
-                if (s.speed.y > -1) {
-                    s.speed.y -= 2;
-                    // s.speed.x *= 0.6;
-                }
-                else {
-                    s.speed.scale(1.67);
-                }
-                s.speed.add(rng.unitVector, 0.1);
+                s.speed.at(spd);
+
                 await sleep(150);
                 if (i >= 1 && hdistToPlayer())
                     break;
