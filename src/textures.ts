@@ -58,6 +58,7 @@ export let CrudeHouse: PIXI.Texture;
 export let DesertTempleLever: PIXI.Texture;
 export let DesertTemple: PIXI.Texture;
 export let DinerTable: PIXI.Texture;
+export let Dither: PIXI.Texture;
 export let DontPoster: PIXI.Texture;
 export let DuckGiant: PIXI.Texture;
 export let ElectricBolt: PIXI.Texture;
@@ -400,6 +401,9 @@ export function loadTexturesAsync()
 
     const DinerTablePath = require("./images/diner table.png");
     loader.add(DinerTablePath); 
+
+    const DitherPath = require("./images/dither.png");
+    loader.add(DitherPath); 
 
     const DontPosterPath = require("./images/dont poster.png");
     loader.add(DontPosterPath); 
@@ -968,6 +972,7 @@ export function loadTexturesAsync()
             DesertTempleLever = resources[DesertTempleLeverPath]?.texture as PIXI.Texture;
             DesertTemple = resources[DesertTemplePath]?.texture as PIXI.Texture;
             DinerTable = resources[DinerTablePath]?.texture as PIXI.Texture;
+            Dither = resources[DitherPath]?.texture as PIXI.Texture;
             DontPoster = resources[DontPosterPath]?.texture as PIXI.Texture;
             DuckGiant = resources[DuckGiantPath]?.texture as PIXI.Texture;
             ElectricBolt = resources[ElectricBoltPath]?.texture as PIXI.Texture;

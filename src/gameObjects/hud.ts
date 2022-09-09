@@ -6,6 +6,9 @@ import {IguaText} from "../igua/text";
 import {clownHealthUi} from "./utils/clownUtils";
 import {derivedStats} from "../igua/gameplay/derivedStats";
 import {healthbar} from "../igua/ui/healthbar";
+import {container} from "../utils/pixi/container";
+import {dither} from "./dither";
+import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 
 enum Color {
     Empty = 0xff0000,
@@ -65,11 +68,14 @@ function clownHealthBar() {
     const width = 128;
     const height = 4;
 
+    const mask = dither();
+
     const g = new Graphics()
         .withStep(() => {
             g.clear();
 
-            const clownHealth = clownHealthUi.value.clownHealth;
+            const { clownHealth, display } = clownHealthUi.value;
+            mask.unit = display / 9;
             if (!clownHealth)
                 return;
 
@@ -86,7 +92,8 @@ function clownHealthBar() {
             if (w > 0)
                 g.drawRect(0, 0, Math.ceil(w), height);
         })
+        .filter(alphaMaskFilter(mask))
         .at((256 - width) / 2, 240);
 
-    return g;
+    return container(mask, g);
 }

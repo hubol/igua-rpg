@@ -61,8 +61,11 @@ export const clownHealthUi = new SceneLocal(() => {
             },
             set clownHealth(c) {
                 if (c && (!c.isDead || clownHealth === c))
-                    show = 60;
+                    show = 63;
                 clownHealth = c;
+            },
+            get display() {
+                return show;
             }
         })
         .withStep(() => {
