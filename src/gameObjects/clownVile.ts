@@ -30,6 +30,13 @@ import {confetti} from "./confetti";
 import {newGravity} from "./utils/newGravity";
 import {attack, attackRunner} from "./attacks";
 import {Undefined} from "../utils/types/undefined";
+import {rayIntersectsWallDistance} from "../igua/logic/rayIntersectsWall";
+import {spikeVile} from "./spikeVile";
+
+const unitv = {
+    left: [-1, 0],
+    right: [1, 0],
+}
 
 export function clownVile() {
     const health = clownHealth(1200);
@@ -59,36 +66,125 @@ export function clownVile() {
     let invulnerable = 0;
 
     const runner = attackRunner().show(head);
-    const walk = attack({ ms: 300, dx: -40 })
-        .withAsyncOnce(async ({ ms, dx }) => {
-            hitWall = false;
-            let once = false;
-            while (!once || !hitWall) {
-                await move(dx < 0 ? footl : footr).off(dx, 0).over(ms);
-                await move(c).off(dx, 0).over(ms);
-                await move(dx < 0 ? footr : footl).off(dx, 0).over(ms);
-                once = true;
-            }
-        });
+
     const flee = attack({ ms: 100, dx: -40 })
         .withAsyncOnce(async ({ ms, dx }) => {
+            head.expression = Expression.Hostile;
             hitWall = false;
-            let once = false;
-            await Promise.all([stretchLegs(40).over(ms), resetFeetPose(ms)]);
-            while (!once || !hitWall) {
-                await move(dx < 0 ? footl : footr).off(dx, 0).over(ms);
+
+            const front = dx < 0 ? footl : footr;
+            const rear = dx < 0 ? footr : footl;
+            const bounce = -2;
+
+            const prepMs = ms * 2.5;
+            await Promise.all([stretchLegs(40).over(prepMs), resetFeetPose(prepMs)]);
+            while (true) {
+                front.speed.y = bounce;
+                await move(front).off(dx, 0).over(ms);
                 await move(c).off(dx, 0).over(ms);
-                await move(dx < 0 ? footr : footl).off(dx, 0).over(ms);
-                once = true;
+                rear.speed.y = bounce;
+                await move(rear).off(dx, 0).over(ms);
+                if (hdistToPlayer() > 160 || hitWall || isNearWall())
+                    break;
             }
         });
-    const jump = attack()
-        .withAsyncOnce(async ({ }) => {
+
+    const cv = vnew();
+
+    function hdistToPlayer() {
+        return Math.abs(player.x - c.x);
+    }
+
+    function freeSpaceOnLeft() {
+        cv.at(c).add(0, -64);
+        return rayIntersectsWallDistance(cv, unitv.left);
+    }
+
+    function freeSpaceOnRight() {
+        cv.at(c).add(0, -64);
+        return rayIntersectsWallDistance(cv, unitv.right);
+    }
+
+    function isNearWall() {
+        return freeSpaceOnLeft() < 60
+            || freeSpaceOnRight() < 60;
+    }
+
+    function hasSimilarSpaceOnBothSides() {
+        const ld = freeSpaceOnLeft();
+        const rd = freeSpaceOnRight();
+        return Math.abs(ld - rd) < 96;
+    }
+
+    const pickDirectionAndFlee = (ms = 100) => {
+        const leftd = freeSpaceOnLeft();
+        const rightd = freeSpaceOnRight();
+        const pd = hdistToPlayer();
+        const goLeft = pd < 32 ? leftd > rightd : leftd > 96;
+        const dx = (goLeft ? -1 : 1) * 40;
+        return flee({ dx, ms });
+    }
+
+    function mouthv() {
+        return getWorldCenter(head.mouth);
+    }
+
+    const spit = attack()
+        .withAsyncOnce(async ({}) => {
+            for (let i = 0; i <= 8; i++) {
+                head.chargeSpitSpeed = 2;
+                head.expression = Expression.ChargeSpit;
+                await wait(() => head.isSpitCharged);
+                head.expression = Expression.Spit;
+                await sleep(50);
+                const s = spikeVile().at(mouthv()).show();
+                s.speed.at(player).add(mouthv(), -1).normalize().scale(3);
+                if (s.speed.y > -1) {
+                    s.speed.y -= 2;
+                    // s.speed.x *= 0.6;
+                }
+                else {
+                    s.speed.scale(1.67);
+                }
+                s.speed.add(rng.unitVector, 0.1);
+                await sleep(150);
+                if (i >= 1 && hdistToPlayer())
+                    break;
+            }
+        });
+
+    const jump = attack({ dx: 0 })
+        .withAsyncOnce(async ({ dx }) => {
+            head.expression = Expression.Happy;
             await move(c).off(0, 10).over(200);
             speed.y = -8;
             grav = 0.2;
-            await sleep(2000);
+            speed.x = dx;
+            footl.speed.x = dx;
+            footr.speed.x = dx;
+            await wait(() => speed.y > 0);
+            await wait(() => footl.isOnGround);
+            speed.x = 0;
+            footl.speed.x = 0;
+            footr.speed.x = 0;
         });
+
+    const jumpIntoFreeSpace = () =>
+        jump({dx: (freeSpaceOnLeft() > freeSpaceOnRight() ? -1 : 1) * (rng() + 1)})
+
+    async function doAs() {
+        await wait(() => c.hostile);
+        head.expression = Expression.Surprise;
+        await sleep(300);
+        head.expression = Expression.Hostile;
+        while (true) {
+            if (hasSimilarSpaceOnBothSides())
+                await runner.run(pickDirectionAndFlee());
+            else
+                await runner.run(jumpIntoFreeSpace());
+            await runner.run(spit());
+        }
+    }
 
     function onSpawnedWithPosition() {
         if (footl) return;
@@ -135,16 +231,7 @@ export function clownVile() {
     const c = merge(container(head), { hostile: false })
         .withStep(doHeadPhysics)
         .withStep(takeDamage)
-        .withAsync(async () => {
-            await wait(() => c.hostile);
-            head.expression = Expression.Surprise;
-            await sleep(300);
-            head.expression = Expression.Hostile;
-            // runner.reset(jump());
-            // runner.push(jump());
-            runner.push(flee());
-            runner.push(flee({ dx: 40 }));
-        })
+        .withAsync(doAs);
 
     c.transform.onPositionChanged(onSpawnedWithPosition);
 
@@ -158,7 +245,6 @@ const v1 = vnew();
 const v2 = vnew();
 
 function leg(src: DisplayObject, srcOff: Vector) {
-    const speed = vnew();
     const offset = [0, -6];
 
     const xscale = Math.sign(srcOff.x);
@@ -208,9 +294,14 @@ function leg(src: DisplayObject, srcOff: Vector) {
         return [legn];
     }
 
-    const foot = merge(container(), { max: Undefined<number>(), get length() { return getLegNormal()[0].vlength; } });
+    const foot = merge(container(), {
+        speed: vnew(),
+        max: Undefined<number>(),
+        get length() { return getLegNormal()[0].vlength; },
+        isOnGround: false,
+    });
     foot.max = 64;
-    const gravity = newGravity(foot, speed, offset, Math.abs(offset.y));
+    const gravity = newGravity(foot, foot.speed, offset, Math.abs(offset.y));
     return foot.withStep(() => {
         if (src.destroyed)
             return foot.destroy();
@@ -220,11 +311,14 @@ function leg(src: DisplayObject, srcOff: Vector) {
             if (legn.vlength > foot.max) {
                 legn.vlength = foot.max;
                 foot.at(leg).add(legn);
-                speed.scale(0);
+                foot.speed.y = 0;
+                foot.add(foot.speed);
+                foot.isOnGround = false;
                 return;
             }
         }
-        gravity(0.8);
+        const r = gravity(0.8);
+        foot.isOnGround = !!r.isOnGround;
     }).show();
 }
 
@@ -259,6 +353,7 @@ function vileHead() {
         widenEyes: false,
         wiggleEyebrows: 0,
         hairVspeed: 0,
+        chargeSpitSpeed: 1,
     }
 
     const defaultAutomation = { ...automation };
@@ -346,8 +441,8 @@ function vileHead() {
                 controls.eyebrows.y = 2;
             }
             auto.widenEyes = true;
-            controls.mouth.img = Math.min(7, controls.mouth.img + 0.1);
-            controls.eyebrows.y = Math.max(-2, controls.eyebrows.y - 0.1);
+            controls.mouth.img = Math.min(7, controls.mouth.img + 0.1 * automation.chargeSpitSpeed);
+            controls.eyebrows.y = Math.max(-2, controls.eyebrows.y - 0.1 * automation.chargeSpitSpeed);
         }
         else if (expression === Expression.Spit) {
             controls.eyeL.pos.vlength = Math.min(controls.eyeL.pos.vlength, 3);
@@ -451,7 +546,7 @@ function vileHead() {
             .withStep(positionPupils)
             .withStep(updateMouth);
 
-        return merge(container(mask, ears, sprite, hair, face), { eyeL, eyeR });
+        return merge(container(mask, ears, sprite, hair, face), { eyeL, eyeR, mouth });
     }
 
     function newEars() {
@@ -479,7 +574,17 @@ function vileHead() {
         return p.add(c, -1);
     }
 
-    const h = merge(newHead(), { get expression() { return expression; }, set expression(e: Expression) { setExpression(e); }, automation })
+    const h = merge(newHead(), {
+            get expression() { return expression; },
+            set expression(e: Expression) { setExpression(e); },
+            automation,
+            get isSpitCharged() {
+                return controls.mouth.img >= 7 && expression === Expression.ChargeSpit;
+            },
+            set chargeSpitSpeed(value: number) {
+                automation.chargeSpitSpeed = value;
+            }
+        })
         .withStep(showExpression)
         .withStep(() => {
             const me = getWorldCenter(__center);

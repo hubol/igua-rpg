@@ -7,16 +7,19 @@ import {wait} from "../cutscene/wait";
 export function attackRunner() {
     const queue: DisplayObject[] = [];
     const api = {
-        clear() {
-            queue.length = 0;
-        },
-        push(d: DisplayObject) {
-            queue.push(d);
-        },
-        reset(d: DisplayObject) {
-            api.clear();
-            c.removeAllChildren();
-            d.show(c);
+        // clear() {
+        //     queue.length = 0;
+        // },
+        // push(d: DisplayObject) {
+        //     queue.push(d);
+        // },
+        // reset(d: DisplayObject) {
+        //     api.clear();
+        //     c.removeAllChildren();
+        //     d.show(c);
+        // },
+        run(d: DisplayObject) {
+            return new Promise<void>(r => d.show(c).on('removed', r))
         },
         get current() {
             return c.children[0]?.ext.__src;

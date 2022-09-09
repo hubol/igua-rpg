@@ -14,6 +14,16 @@ export function rayIntersectsWall(start: Vector, unit: Vector, length = 256, rad
     return false;
 }
 
+export function rayIntersectsWallDistance(start: Vector, unit: Vector, length = 512, radius = 4) {
+    for (let i = 0; i < length; i += radius * 2) {
+        v.at(start).add(unit, i);
+        const r = push(v, radius);
+        if (r.hitWall || r.hitCeiling || r.hitGround)
+            return i;
+    }
+    return length;
+}
+
 const u = vnew();
 
 export function rayToPlayerIntersectsWall(start: Vector) {
