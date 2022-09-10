@@ -70,5 +70,6 @@ export const clownHealthUi = new SceneLocal(() => {
             if (show <= 0)
                 clownHealth = undefined;
         })
+        .on('removed', () => clownHealth = undefined)
         .show();
 })
