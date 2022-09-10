@@ -213,6 +213,9 @@ export function clownVile() {
                 return die();
         }
 
+        if (runner.current === jump && player.collides(hurtbox) && speed.y < 0)
+            player.y += speed.y;
+
         head.visible = invulnerable-- > 0 ? !head.visible : true;
     }
 
