@@ -20,7 +20,7 @@ function getLvalue(state: State) {
 export function healthbar(identity: object, value: number, max: number) {
     let state = states.get(identity);
     if (!state)
-        states.set(identity, state = newState(max));
+        states.set(identity, state = newState(value));
 
     if (value !== state.target) {
         if (Math.abs(value - state.target) > 0.01 * max) {
