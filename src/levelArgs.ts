@@ -9044,7 +9044,7 @@ FromAbove: {"type":"Checkpoint","x":432,"y":72,"flippedX":false,"flippedY":false
 Gate_2: resolveGate({"type":"Gate","x":0,"y":240,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_55","levelName":"VolcanoBossArena","checkpointName":"FromTown","name":"","depth":0}),
 FromBossArena: {"type":"Checkpoint","x":72,"y":272,"flippedX":false,"flippedY":false,"uid":"55940370_56","name":"FromBossArena","faceRight":true,"depth":0},
 // @ts-ignore
-Sign_1: resolveSign({"type":"Sign","x":72,"y":272,"flippedX":false,"flippedY":false,"uid":"86706091_57","title":"Lava","message":"Lava pools ahead.","name":"","depth":0}),
+Sign_1: resolveSign({"type":"Sign","x":72,"y":272,"flippedX":false,"flippedY":false,"uid":"86706091_57","title":"Lava","message":"Danger! Lava pools ahead.","name":"","depth":0}),
 // @ts-ignore
 Door_3: resolveDoor({"type":"Door","x":607,"y":248,"flippedX":false,"flippedY":false,"uid":"55913988_58","levelName":"VolcanoOracle","checkpointName":"FromTown","name":"","depth":0}),
 // @ts-ignore

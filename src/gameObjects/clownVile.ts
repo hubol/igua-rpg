@@ -292,6 +292,7 @@ function leg(src: DisplayObject, srcOff: Vector) {
             gfx
                 .clear()
                 .lineStyle(2, 0x0D1C7C)
+                .moveTo(0, -2)
                 .quadraticCurveTo(
                     knee.x + Math.round(Math.sin(now.s * Math.PI + xscale) * 2) * 2,
                     knee.y + Math.round(Math.cos(now.s * Math.PI - xscale) * 2) * 2,

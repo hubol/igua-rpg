@@ -642,7 +642,7 @@
           "y": 272,
           "originX": 14,
           "originY": 18,
-          "values": {"title": "Lava", "message": "Lava pools ahead.", "name": "", "depth": 0}
+          "values": {"title": "Lava", "message": "Danger! Lava pools ahead.", "name": "", "depth": 0}
         },
         {
           "name": "Door",

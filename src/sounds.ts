@@ -497,6 +497,11 @@ export const VileJump = new Howl({
     
 });
 
+export const VileSpikeLand = new Howl({
+    src: [require("./sound/vile spike land.ogg"), require("./sound/vile spike land.mp3")],
+    
+});
+
 export const VileSpit = new Howl({
     src: [require("./sound/vile spit.ogg"), require("./sound/vile spit.mp3")],
     

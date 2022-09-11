@@ -114,9 +114,8 @@ export async function oracleAdviceJungle() {
 export async function oracleAdviceVolcano() {
     const { key, bigKey } = progress.flags.volcano;
     if (bigKey.reward) {
-        // TODO
-        // await show(`You repaired the big key and received the blessing of jungle!`);
-        // return await show(`Follow the jungle spirit to continue your task.`);
+        await show(`You repaired the big key and received the blessing of fire!`);
+        return await show(`Vanquish the vile invader in the lava pools to continue your mission.`);
     }
 
     const allKeys = key.hiddenInCave && key.fromPrankster && key.fromLava;
@@ -142,7 +141,7 @@ export async function oracleAdviceVolcano() {
             return await show(`One is guarded by a notorious prankster who stays above the temple.`);
         }
         if (!key.fromLava) {
-            return await show(`One is keeping out of the heat at the lava pool.`);
+            return await show(`One is keeping out of the heat at the lava pools.`);
         }
     }
 

@@ -7,17 +7,24 @@ import {newGravity} from "./utils/newGravity";
 import {approachLinear} from "../utils/math/number";
 import {getWorldPos} from "../igua/gameplay/getCenter";
 import {now} from "../utils/now";
+import { VileSpikeLand } from "../sounds";
 
 const grav = 0.25;
 
 export function spikeVile(damage = 35) {
     let life = 60 * 6;
+    let grounded = false;
     const s = merge(Sprite.from(ClownSpikeBall), { speed: vnew() }).withStep(() => {
         if (mask.collides(player.feet))
             player.damage(damage);
         const r = gravity(grav);
-        if (r.isOnGround)
-            s.speed.x = approachLinear(s.speed.x, 0, 1);
+        if (r.isOnGround) {
+            s.speed.x = approachLinear(s.speed.x, 0, 4);
+            if (!grounded) {
+                VileSpikeLand.play();
+                grounded = true;
+            }
+        }
         life--;
         if (life < 30)
             s.visible = !s.visible;
