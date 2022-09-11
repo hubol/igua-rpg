@@ -18,6 +18,7 @@ import {keepSavingValuables, trove140} from "../gameObjects/valuableTrove";
 import {sleep} from "../cutscene/sleep";
 import {persistence} from "../igua/data/persistence";
 import {slidingDoor} from "../gameObjects/slidingDoor";
+import {freezeSceneAndShowMessage} from "../cutscene/freezeSceneAndShowMessage";
 
 export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -38,7 +39,7 @@ export function VolcanoBossArena() {
         .withStep(() => {
             level.Key.angle = lerp(35, 55, (Math.sin(now.ms * 0.0025) + 1) / 2);
         })
-        .asCollectible(progress.flags.volcano.key, "fromLava");
+        .asCollectible(progress.flags.volcano.key, "fromLava", () => freezeSceneAndShowMessage('Found temple key.'));
 
     if (!progress.flags.volcano.defeatedVileAngel)
         enrichBoss(level);

@@ -5,11 +5,10 @@ import {cracks} from "../gameObjects/cracks";
 import {jukebox} from "../igua/jukebox";
 import {VolcanoCaveMusic, VolcanoSomething} from "../musics";
 import {progress} from "../igua/data/progress";
-import {cutscene} from "../cutscene/cutscene";
-import {show} from "../cutscene/dialog";
 import {heatWaves} from "../gameObjects/heatWaves";
 import {decalsOf} from "../gameObjects/decal";
 import {CrackSmall, GroundSpeckles} from "../textures";
+import {freezeSceneAndShowMessage} from "../cutscene/freezeSceneAndShowMessage";
 
 export function VolcanoCavern() {
     scene.backgroundColor = 0x78917D;
@@ -17,13 +16,7 @@ export function VolcanoCavern() {
     const level = applyOgmoLevel(VolcanoCavernArgs);
     jukebox.play(VolcanoCaveMusic).warm(VolcanoSomething);
 
-    level.KeyGreen.asCollectible(progress.flags.volcano.key, 'hiddenInCave', () => {
-        scene.ticker.doNextUpdate = false;
-        cutscene.play(async () => {
-            await show('Found hidden temple key.');
-            scene.ticker.doNextUpdate = true;
-        });
-    });
+    level.KeyGreen.asCollectible(progress.flags.volcano.key, 'hiddenInCave', () => freezeSceneAndShowMessage('Found hidden temple key.'));
 
     cracks(3245.1269, 0x481018).show(scene.parallax1Stage);
     heatWaves(scene.width + 256, 80).at(-128, 256 - 30).show(scene.parallax1Stage);
