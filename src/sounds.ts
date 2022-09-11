@@ -492,6 +492,26 @@ export const UnorthodoxWave = new Howl({
     
 });
 
+export const VileJump = new Howl({
+    src: [require("./sound/vile jump.ogg"), require("./sound/vile jump.mp3")],
+    
+});
+
+export const VileSpit = new Howl({
+    src: [require("./sound/vile spit.ogg"), require("./sound/vile spit.mp3")],
+    
+});
+
+export const VileStepR = new Howl({
+    src: [require("./sound/vile step r.ogg"), require("./sound/vile step r.mp3")],
+    
+});
+
+export const VileStep = new Howl({
+    src: [require("./sound/vile step.ogg"), require("./sound/vile step.mp3")],
+    
+});
+
 export const WinDrawing = new Howl({
     src: [require("./sound/win drawing.ogg"), require("./sound/win drawing.mp3")],
     

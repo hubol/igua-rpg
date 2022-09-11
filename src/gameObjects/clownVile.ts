@@ -23,7 +23,7 @@ import {lerp} from "../cutscene/lerp";
 import {Force} from "../utils/types/force";
 import {move} from "../cutscene/move";
 import {clownHealth} from "./utils/clownUtils";
-import {ClownExplode, ClownHurt} from "../sounds";
+import {ClownExplode, ClownHurt, VileJump, VileSpit, VileStep, VileStepR} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {wait} from "../cutscene/wait";
 import {confetti} from "./confetti";
@@ -153,6 +153,7 @@ export function clownVile() {
                 }
 
                 await wait(() => head.isSpitCharged);
+                VileSpit.play();
                 head.expression = Expression.Spit;
                 head.automation.facePlayer = false;
                 await sleep(50);
@@ -171,6 +172,7 @@ export function clownVile() {
         .withAsyncOnce(async ({ dx }) => {
             head.expression = Expression.Happy;
             await move(c).off(0, 10).over(200);
+            VileJump.play();
             speed.y = -7;
             grav = 0.2;
             speed.x = dx;
@@ -265,6 +267,7 @@ function leg(src: DisplayObject, srcOff: Vector) {
     const offset = [0, -6];
 
     const xscale = Math.sign(srcOff.x);
+    const stepSound = xscale === 1 ? VileStepR : VileStep;
     const s = Sprite.from(VileClownFoot);
     s.pivot.at(1, 1);
     s.scale.x = xscale;
@@ -335,7 +338,10 @@ function leg(src: DisplayObject, srcOff: Vector) {
             }
         }
         const r = gravity(0.8);
+        const prevOnGround = foot.isOnGround;
         foot.isOnGround = !!r.isOnGround;
+        if (!prevOnGround && foot.isOnGround)
+            stepSound.play();
     }).show();
 }
 
