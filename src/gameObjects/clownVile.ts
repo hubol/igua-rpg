@@ -240,14 +240,26 @@ export function clownVile() {
         c.destroy();
     }
 
+    const knockback = vnew();
+
     function takeDamage() {
         if (player.collides(hurtbox) && invulnerable <= 0) {
+            knockback.add(c.vcpy().add(player, -1).normalize().scale(4));
             c.hostile = true;
             bouncePlayerOffDisplayObject(hurtbox);
             invulnerable = 15;
             ClownHurt.play();
             if (health.damage())
                 return die();
+        }
+
+        if (Math.abs(knockback.x) > Math.abs(knockback.y) && Math.abs(knockback.x) >= 1) {
+            c.x += Math.sign(knockback.x);
+            knockback.x -= Math.sign(knockback.x);
+        }
+        else if (Math.abs(knockback.y) >= 1) {
+            c.y += Math.sign(knockback.y);
+            knockback.y -= Math.sign(knockback.y);
         }
 
         if (runner.current === jump && player.collides(hurtbox) && speed.y < 0)
