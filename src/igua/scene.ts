@@ -29,6 +29,9 @@ function createScene(source: SceneSource, args: Readonly<SceneMeta>)
     stage.addChild(backgroundGraphics, parallax1Stage, cameraStage);
     game.sceneStage.addChild(stage);
 
+    let ticks = 0;
+    gameObjectStage.withStep(() => ticks += 1);
+
     return merge(args, {
         source,
         set backgroundColor(value: number) {
@@ -66,7 +69,13 @@ function createScene(source: SceneSource, args: Readonly<SceneMeta>)
             stage.visible = value;
         },
         width: 0,
-        height: 0
+        height: 0,
+        get ticks() {
+            return ticks;
+        },
+        get s() {
+            return ticks / 60;
+        }
     });
 }
 
