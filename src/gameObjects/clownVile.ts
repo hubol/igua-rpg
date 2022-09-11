@@ -184,7 +184,7 @@ export function clownVile() {
 
                 self.flailSoundId = VileFlail.play();
                 VileFlail.volume(0, self.flailSoundId);
-                VileFlail.fade(0, 0.7, 2000, self.flailSoundId);
+                VileFlail.fade(0, 1, 2000, self.flailSoundId);
                 VileFlail.loop(true, self.flailSoundId);
             }
 
@@ -206,7 +206,7 @@ export function clownVile() {
             armr.state = Arm.Relax;
         })
         .withCleanup(({ flailSoundId }) => {
-            VileFlail.fade(0.7, 0, 300, flailSoundId);
+            VileFlail.fade(1, 0, 300, flailSoundId);
             setTimeout(() => VileFlail.stop(flailSoundId), 300);
         });
 
