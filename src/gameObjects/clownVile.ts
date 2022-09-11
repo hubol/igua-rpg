@@ -146,8 +146,9 @@ export function clownVile() {
                 const pv = spikeVilePreview(speed).show(c).withStep(() => pv.at(mouthv()).add(c, -1));
                 if (prevEndX !== undefined) {
                     pv.withStep(() => {
+                        const f = Math.abs(speed.x) < 1 ? 0.3 : 0.1;
                         if (Math.abs(pv.end.x - prevEndX) < 15)
-                            speed.x += dx * 0.1;
+                            speed.x += dx * f;
                     });
                 }
 
@@ -161,7 +162,7 @@ export function clownVile() {
                 s.speed.at(speed);
 
                 await sleep(150);
-                if (i >= 1 && (hdistToPlayer() > 96 || hdistToPlayer() < 32))
+                if (i >= 1 && (hdistToPlayer() > 96 || hdistToPlayer() < 32 || Math.sign(speed.x) !== Math.sign(player.x - c.x)))
                     break;
             }
         });

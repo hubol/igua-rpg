@@ -13,13 +13,14 @@ const grav = 0.25;
 export function spikeVile(damage = 35) {
     let life = 60 * 6;
     const s = merge(Sprite.from(ClownSpikeBall), { speed: vnew() }).withStep(() => {
-        if (mask.collides(player))
+        const dying = life < 30;
+        if (!dying && mask.collides(player))
             player.damage(damage);
         const r = gravity(grav);
         if (r.isOnGround)
             s.speed.x = approachLinear(s.speed.x, 0, 1);
         life--;
-        if (life < 30)
+        if (dying)
             s.visible = !s.visible;
         if (life <= 0)
             s.destroy();
