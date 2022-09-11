@@ -90,6 +90,7 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
         canBlink: true,
         isClosingEyes: false,
         closedEyesUnit: 0,
+        feet: [ args.backLeftFoot, args.backRightFoot, args.frontLeftFoot, args.frontRightFoot ],
         duckImmediately()
         {
             player.isDucking = true;
