@@ -199,6 +199,8 @@ export let UnorthodoxClownMouth: PIXI.Texture;
 export let UnorthodoxClownSpark: PIXI.Texture;
 export let UnorthodoxClownSparkle: PIXI.Texture;
 export let ValuableIcon: PIXI.Texture;
+export let VileClownArmRest: PIXI.Texture;
+export let VileClownArmUp: PIXI.Texture;
 export let VileClownEar: PIXI.Texture;
 export let VileClownEyebrow: PIXI.Texture;
 export let VileClownEyelid: PIXI.Texture;
@@ -825,6 +827,12 @@ export function loadTexturesAsync()
     const ValuableIconPath = require("./images/valuable icon.png");
     loader.add(ValuableIconPath); 
 
+    const VileClownArmRestPath = require("./images/vile clown/arm rest.png");
+    loader.add(VileClownArmRestPath); 
+
+    const VileClownArmUpPath = require("./images/vile clown/arm up.png");
+    loader.add(VileClownArmUpPath); 
+
     const VileClownEarPath = require("./images/vile clown/ear.png");
     loader.add(VileClownEarPath); 
 
@@ -1113,6 +1121,8 @@ export function loadTexturesAsync()
             UnorthodoxClownSpark = resources[UnorthodoxClownSparkPath]?.texture as PIXI.Texture;
             UnorthodoxClownSparkle = resources[UnorthodoxClownSparklePath]?.texture as PIXI.Texture;
             ValuableIcon = resources[ValuableIconPath]?.texture as PIXI.Texture;
+            VileClownArmRest = resources[VileClownArmRestPath]?.texture as PIXI.Texture;
+            VileClownArmUp = resources[VileClownArmUpPath]?.texture as PIXI.Texture;
             VileClownEar = resources[VileClownEarPath]?.texture as PIXI.Texture;
             VileClownEyebrow = resources[VileClownEyebrowPath]?.texture as PIXI.Texture;
             VileClownEyelid = resources[VileClownEyelidPath]?.texture as PIXI.Texture;

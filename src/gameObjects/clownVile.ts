@@ -1,5 +1,7 @@
-import {DisplayObject, Graphics, Sprite} from "pixi.js";
+import {DisplayObject, Graphics, Sprite, Texture} from "pixi.js";
 import {
+    VileClownArmRest,
+    VileClownArmUp,
     VileClownEar,
     VileClownEyebrow,
     VileClownEyelid, VileClownFoot,
@@ -14,7 +16,7 @@ import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {flipH} from "../utils/pixi/flip";
 import {now} from "../utils/now";
 import {moveTowards, Vector, vnew} from "../utils/math/vector";
-import {approachLinear, lerp as nlerp} from "../utils/math/number";
+import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {sleep} from "../cutscene/sleep";
@@ -32,10 +34,16 @@ import {attack, attackRunner} from "./attacks";
 import {Undefined} from "../utils/types/undefined";
 import {rayIntersectsWallDistance} from "../igua/logic/rayIntersectsWall";
 import {spikeVile, spikeVilePreview} from "./spikeVile";
+import {animatedSprite} from "../igua/animatedSprite";
+import {dither} from "./dither";
 
 const unitv = {
     left: [-1, 0],
     right: [1, 0],
+}
+
+const damage = {
+    flailUp: 40,
 }
 
 export function clownVile() {
@@ -60,6 +68,8 @@ export function clownVile() {
     }
 
     const head = vileHead().at(-24, -32);
+    const arml = arm().show(head, 0);
+    const armr = arm(false).show(head, 0);
 
     const hurtbox = new Graphics().beginFill(0xff0000).drawRect(4, 2, 41, 26).show(head).hide();
 
@@ -170,6 +180,11 @@ export function clownVile() {
 
     const jump = attack({ dx: 0 })
         .withAsyncOnce(async ({ dx }) => {
+            if (health.unit < 0.67) {
+                arml.state = Arm.Up;
+                armr.state = Arm.Up;
+            }
+
             head.expression = Expression.Happy;
             await move(c).off(0, 10).over(200);
             VileJump.play();
@@ -183,6 +198,9 @@ export function clownVile() {
             speed.x = 0;
             footl.speed.x = 0;
             footr.speed.x = 0;
+
+            arml.state = Arm.Relax;
+            armr.state = Arm.Relax;
         });
 
     const jumpIntoFreeSpace = () =>
@@ -227,6 +245,9 @@ export function clownVile() {
         if (runner.current === jump && player.collides(hurtbox) && speed.y < 0)
             player.y += speed.y;
 
+        if (runner.current === flee && player.collides(hurtbox))
+            player.x += speed.x;
+
         head.visible = invulnerable-- > 0 ? !head.visible : true;
     }
 
@@ -259,6 +280,90 @@ export function clownVile() {
 
     return c;
 }
+
+enum Arm {
+    Up,
+    Relax
+}
+
+function getTexturesForArm(arm: Arm) {
+    switch (arm) {
+        case Arm.Up:
+            return armUpTxs;
+    }
+    return armRelaxTxs;
+}
+
+function arm(left = true) {
+    let thisState = Arm.Up;
+    let thisStateFor = 0;
+
+    const c = merge(container(), { subimage: left ? 1 : 0, speed: 0, state: Arm.Relax })
+        .withStep(() => {
+            c.x = left ? 7 : 42;
+            c.scale.x = left ? 1 : -1;
+
+            if (thisState !== c.state) {
+                thisStateFor = 0;
+                thisState = c.state;
+
+                if (c.state === Arm.Up)
+                    c.y = 40;
+            }
+
+            thisStateFor++;
+
+            if (c.state === Arm.Up) {
+                c.y = approachLinear(c.y, 0, 2);
+                c.speed = approachLinear(c.speed, 0.3, 0.01);
+                if (Math.abs(c.speed) > 0.1 && player.collides(hitboxUp) && thisStateFor > 30) {
+                    player.damage(damage.flailUp);
+                    bouncePlayerOffDisplayObject(c.parent, 4);
+                }
+            }
+            else if (c.state === Arm.Relax) {
+                c.speed = 0.05;
+                c.y = 0;
+            }
+        });
+
+    const hitboxUp = new Graphics().beginFill(0xff0000).drawRect(-11, -30, 18, 12).hide();
+
+    const s = Sprite.from(armUpTxs[0])
+        .withStep(() => {
+            const txs = getTexturesForArm(c.state);
+            s.texture = txs[Math.floor(cyclic(c.subimage += c.speed, 0, txs.length))];
+            s.anchor.at(s.texture.defaultAnchor);
+        });
+
+    let life = 0;
+
+    const ghost = Sprite.from(armUpTxs[0])
+        .withStep(() => {
+            ghost.visible = Math.abs(c.speed) > 0.1;
+            life--;
+            if (ghost.texture !== s.texture && life <= 0) {
+                life = 5;
+                ghost.texture = s.texture;
+            }
+            ghost.anchor.at(ghost.texture.defaultAnchor);
+        });
+    ghost.alpha = 0.25;
+
+    c.addChild(ghost, s, hitboxUp);
+
+    return c;
+}
+
+const armUpTxs = subimageTextures(VileClownArmUp, { width: 62 }).map(x => {
+    x.defaultAnchor.at(35 / 62, 46 / 50)
+    return x;
+});
+
+const armRelaxTxs = subimageTextures(VileClownArmRest, { width: 12 }).map(x => {
+    x.defaultAnchor.at(-8 / 12, -32 / 10)
+    return x;
+});
 
 const v1 = vnew();
 const v2 = vnew();
