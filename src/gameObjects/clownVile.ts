@@ -1,4 +1,4 @@
-import {DisplayObject, Graphics, Sprite, Texture} from "pixi.js";
+import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {
     VileClownArmRest,
     VileClownArmUp,
@@ -25,7 +25,7 @@ import {lerp} from "../cutscene/lerp";
 import {Force} from "../utils/types/force";
 import {move} from "../cutscene/move";
 import {clownHealth} from "./utils/clownUtils";
-import {ClownExplode, ClownHurt, VileJump, VileSpit, VileStep, VileStepR} from "../sounds";
+import {ClownExplode, ClownHurt, VileFlail, VileJump, VileRoar, VileSpit, VileStep, VileStepR} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {wait} from "../cutscene/wait";
 import {confetti} from "./confetti";
@@ -34,8 +34,6 @@ import {attack, attackRunner} from "./attacks";
 import {Undefined} from "../utils/types/undefined";
 import {rayIntersectsWallDistance} from "../igua/logic/rayIntersectsWall";
 import {spikeVile, spikeVilePreview} from "./spikeVile";
-import {animatedSprite} from "../igua/animatedSprite";
-import {dither} from "./dither";
 
 const unitv = {
     left: [-1, 0],
@@ -178,11 +176,16 @@ export function clownVile() {
             }
         });
 
-    const jump = attack({ dx: 0 })
-        .withAsyncOnce(async ({ dx }) => {
+    const jump = attack({ dx: 0, flailSoundId: -1 })
+        .withAsyncOnce(async ({ dx }, self) => {
             if (health.unit < 0.67) {
                 arml.state = Arm.Up;
                 armr.state = Arm.Up;
+
+                self.flailSoundId = VileFlail.play();
+                VileFlail.volume(0, self.flailSoundId);
+                VileFlail.fade(0, 0.7, 2000, self.flailSoundId);
+                VileFlail.loop(true, self.flailSoundId);
             }
 
             head.expression = Expression.Happy;
@@ -201,6 +204,10 @@ export function clownVile() {
 
             arml.state = Arm.Relax;
             armr.state = Arm.Relax;
+        })
+        .withCleanup(({ flailSoundId }) => {
+            VileFlail.fade(0.7, 0, 300, flailSoundId);
+            setTimeout(() => VileFlail.stop(flailSoundId), 300);
         });
 
     const jumpIntoFreeSpace = () =>
@@ -208,6 +215,7 @@ export function clownVile() {
 
     async function doAs() {
         await wait(() => c.hostile);
+        VileRoar.play();
         head.expression = Expression.Surprise;
         await sleep(300);
         head.expression = Expression.Hostile;

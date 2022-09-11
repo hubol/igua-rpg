@@ -41,10 +41,11 @@ export function attackRunner() {
 
 export function attack<T extends {}>(defaultArgs = {} as T) {
     type Self = Container & T;
-    type StepFn = (self: Self) => unknown;
-    type AsyncFn = (self: Self) => Promise<unknown>;
+    type SyncFn = (self: Self, self2: Self) => unknown;
+    type AsyncFn = (self: Self, self2: Self) => Promise<unknown>;
 
-    const steps: StepFn[] = [];
+    const steps: SyncFn[] = [];
+    const cleanups: SyncFn[] = [];
     const asyncs: AsyncFn[] = [];
     const asyncOnces: AsyncFn[] = [];
 
@@ -54,9 +55,11 @@ export function attack<T extends {}>(defaultArgs = {} as T) {
         const self = merge(container(), args);
         self.ext.__src = constructor;
         for (const step of steps)
-            self.withStep(() => step(self));
+            self.withStep(() => step(self, self));
+        for (const cleanup of cleanups)
+            self.on('removed', () => cleanup(self, self));
         for (const async of asyncs)
-            self.withAsync(() => async(self));
+            self.withAsync(() => async(self, self));
         if (asyncOnces.length > 0) {
             let remaining = asyncOnces.length;
             const maybeDestroySelf = () => {
@@ -66,7 +69,7 @@ export function attack<T extends {}>(defaultArgs = {} as T) {
 
             for (const async of asyncOnces)
                 self.withAsync(async () => {
-                    await async(self);
+                    await async(self, self);
                     maybeDestroySelf();
                 });
         }
@@ -75,8 +78,12 @@ export function attack<T extends {}>(defaultArgs = {} as T) {
     }
 
     merge(constructor, {
-        withStep(fn: StepFn) {
+        withStep(fn: SyncFn) {
             steps.push(fn);
+            return this;
+        },
+        withCleanup(fn: SyncFn) {
+            cleanups.push(fn);
             return this;
         },
         withAsync(fn: AsyncFn) {
@@ -92,7 +99,8 @@ export function attack<T extends {}>(defaultArgs = {} as T) {
     // Unfortunately, I cannot get it to infer a merged callable interface + pojo
     type Ctor = {
         (args?: Partial<T>): Container & T,
-        withStep(fn: StepFn): Ctor,
+        withStep(fn: SyncFn): Ctor,
+        withCleanup(fn: SyncFn): Ctor,
         withAsync(fn: AsyncFn): Ctor,
         withAsyncOnce(fn: AsyncFn): Ctor,
     };

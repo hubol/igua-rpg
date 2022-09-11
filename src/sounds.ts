@@ -492,8 +492,18 @@ export const UnorthodoxWave = new Howl({
     
 });
 
+export const VileFlail = new Howl({
+    src: [require("./sound/vile flail.ogg"), require("./sound/vile flail.mp3")],
+    
+});
+
 export const VileJump = new Howl({
     src: [require("./sound/vile jump.ogg"), require("./sound/vile jump.mp3")],
+    
+});
+
+export const VileRoar = new Howl({
+    src: [require("./sound/vile roar.ogg"), require("./sound/vile roar.mp3")],
     
 });
 
