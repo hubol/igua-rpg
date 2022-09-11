@@ -131,29 +131,37 @@ export function clownVile() {
 
     const spit = attack()
         .withAsyncOnce(async ({}) => {
-            for (let i = 0; i <= 8; i++) {
-                head.chargeSpitSpeed = 2;
-                head.expression = Expression.ChargeSpit;
+            let dx = player.x < c.x ? -1 : 1;
+            dx *= hdistToPlayer() * 0.02;
+            const speed = vnew().at(dx, -2 - rng());
+            if (hdistToPlayer() < 48)
+                speed.y -= 2;
+            let prevEndX = Force<number>();
 
-                const spd = vnew().at(player).add(mouthv(), -1).normalize().scale(3);
-                if (spd.y > -1) {
-                    spd.y -= 2;
+            for (let i = 0; i <= 5; i++) {
+                head.expression = Expression.ChargeSpit;
+                head.automation.facePlayer = false;
+                head.automation.chargeSpitSpeed = 2.25;
+
+                const pv = spikeVilePreview(speed).show(c).withStep(() => pv.at(mouthv()).add(c, -1));
+                if (prevEndX !== undefined) {
+                    pv.withStep(() => {
+                        if (Math.abs(pv.end.x - prevEndX) < 15)
+                            speed.x += dx * 0.1;
+                    });
                 }
-                else {
-                    spd.scale(1.67);
-                }
-                spd.add(rng.unitVector, 0.1);
-                const pv = spikeVilePreview(spd).show(c).withStep(() => pv.at(mouthv()).add(c, -1));
 
                 await wait(() => head.isSpitCharged);
                 head.expression = Expression.Spit;
+                head.automation.facePlayer = false;
                 await sleep(50);
+                prevEndX = pv.end.x;
                 pv.destroy();
                 const s = spikeVile().at(mouthv()).show();
-                s.speed.at(spd);
+                s.speed.at(speed);
 
                 await sleep(150);
-                if (i >= 1 && hdistToPlayer())
+                if (i >= 1 && (hdistToPlayer() > 96 || hdistToPlayer() < 32))
                     break;
             }
         });
@@ -162,7 +170,7 @@ export function clownVile() {
         .withAsyncOnce(async ({ dx }) => {
             head.expression = Expression.Happy;
             await move(c).off(0, 10).over(200);
-            speed.y = -8;
+            speed.y = -7;
             grav = 0.2;
             speed.x = dx;
             footl.speed.x = dx;
@@ -588,9 +596,6 @@ function vileHead() {
             automation,
             get isSpitCharged() {
                 return controls.mouth.img >= 7 && expression === Expression.ChargeSpit;
-            },
-            set chargeSpitSpeed(value: number) {
-                automation.chargeSpitSpeed = value;
             }
         })
         .withStep(showExpression)

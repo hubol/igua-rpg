@@ -38,29 +38,31 @@ const v = vnew();
 const rainbow = [0xD0D020, 0x8FAF1C];
 
 export function spikeVilePreview(speed: Vector) {
-    let maxi = 0;
-    const g = new Graphics()
+    let maxSteps = 0;
+    const g = merge(new Graphics(), { end: vnew() })
         .withStep(() => {
-            maxi += 2;
-            speed2.at(speed);
+            maxSteps += 4;
+            simSpeed.at(speed);
             g.clear();
             const gv = v.at(getWorldPos(g));
-            dummy.at(gv);
+            simPos.at(gv);
             let yprev = 0;
-            for (let i = 0; i < Math.min(maxi, 60 * 4); i++) {
+            for (let i = 0; i < 60 * 4; i++) {
                 g.lineStyle(1, rainbow[Math.floor(i + now.s * 16) % 2]);
                 const r = gravity(grav);
-                const y = dummy.y - v.y;
-                if (!r.isOnGround || Math.abs(y - yprev) > 3)
-                    g.lineTo(dummy.x - v.x, y);
+                const y = simPos.y - v.y;
+                if ((!r.isOnGround || Math.abs(y - yprev) > 3) && i < maxSteps)
+                    g.lineTo(simPos.x - v.x, y);
                 yprev = y;
                 if (r.isOnGround)
                     break;
             }
+            g.end.at(simPos);
         })
 
-    const speed2 = vnew();
-    const dummy = vnew();
-    const gravity = newGravity(dummy as any, speed2, vnew(), 5);
+    const simSpeed = vnew();
+    const simPos = vnew();
+
+    const gravity = newGravity(simPos as any, simSpeed, vnew(), 5);
     return g;
 }
