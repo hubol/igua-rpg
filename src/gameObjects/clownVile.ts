@@ -104,14 +104,16 @@ export function clownVile() {
         return Math.abs(player.x - c.x);
     }
 
+    function freeSpaceOn(unit: Vector) {
+        return rayIntersectsWallDistance(cv.at(c).add(0, -96), unit);
+    }
+
     function freeSpaceOnLeft() {
-        cv.at(c).add(0, -64);
-        return rayIntersectsWallDistance(cv, unitv.left);
+        return freeSpaceOn(unitv.left);
     }
 
     function freeSpaceOnRight() {
-        cv.at(c).add(0, -64);
-        return rayIntersectsWallDistance(cv, unitv.right);
+        return freeSpaceOn(unitv.right);
     }
 
     function isNearWall() {
@@ -119,19 +121,21 @@ export function clownVile() {
             || freeSpaceOnRight() < 60;
     }
 
-    function hasSimilarSpaceOnBothSides() {
-        const ld = freeSpaceOnLeft();
-        const rd = freeSpaceOnRight();
-        return Math.abs(ld - rd) < 96;
-    }
-
-    const pickDirectionAndFlee = (ms = 100) => {
+    let healthUnitAtLastFlee = 2;
+    const maybeFlee = async (ms = 100) => {
+        if (health.unit > healthUnitAtLastFlee - 0.35)
+            return false;
         const leftd = freeSpaceOnLeft();
         const rightd = freeSpaceOnRight();
         const pd = hdistToPlayer();
         const goLeft = pd < 32 ? leftd > rightd : leftd > 96;
+        if ((goLeft && leftd < 128) || (!goLeft && rightd < 128))
+            return false;
+
+        healthUnitAtLastFlee = health.unit;
         const dx = (goLeft ? -1 : 1) * 40;
-        return flee({ dx, ms });
+        await runner.run(flee({ dx, ms }));
+        return true;
     }
 
     function mouthv() {
@@ -205,8 +209,11 @@ export function clownVile() {
         });
 
     const rushTowardsPlayer = () => {
-        const right = player.x > c.x;
-        return rush({ dx: right ? 2 : -2 });
+        const right = player.x > c.x || freeSpaceOnLeft() < 100;
+        const aggressive = health.unit < 0.5;
+        const f = aggressive ? 3.3 : 2.2;
+        const prepMs = aggressive ? 600 : 1000;
+        return rush({ dx: (right ? 1 : -1) * f, prepMs });
     }
 
     const jump = attack({ dx: 0, flailSoundId: -1 })
@@ -229,10 +236,9 @@ export function clownVile() {
             speed.x = dx;
             footl.speed.x = dx;
             footr.speed.x = dx;
-            footl.speed.y = rng();
-            footr.speed.y = rng();
-            await wait(() => speed.y > 0);
-            await wait(() => footl.isOnGround);
+            const panic = sleep(2000);
+            const landed = wait(() => speed.y > 0).then(() => wait(() => footl.isOnGround));
+            await Promise.race([ panic, landed ]);
             speed.x = 0;
             footl.speed.x = 0;
             footr.speed.x = 0;
@@ -248,7 +254,7 @@ export function clownVile() {
     const jumpIntoFreeSpace = () =>
         jump({dx: (freeSpaceOnLeft() > freeSpaceOnRight() ? -1 : 1) * (rng() + 1)})
 
-    let behaviorFlag = false;
+    let behaviorFlag = true;
 
     async function doAs() {
         await wait(() => c.hostile);
@@ -257,15 +263,20 @@ export function clownVile() {
         await sleep(300);
         head.expression = Expression.Hostile;
         while (true) {
-            if (hasSimilarSpaceOnBothSides())
-                await runner.run(pickDirectionAndFlee());
-            else {
-                if (behaviorFlag = !behaviorFlag)
-                    await runner.run(jumpIntoFreeSpace());
+            if (await maybeFlee()) {
+                if (behaviorFlag)
+                    await runner.run(spit());
                 else
                     await runner.run(rushTowardsPlayer());
             }
-            await runner.run(spit());
+            else {
+                if (behaviorFlag)
+                    await runner.run(jumpIntoFreeSpace());
+                else
+                    await runner.run(rushTowardsPlayer());
+                await runner.run(spit());
+            }
+            behaviorFlag = !behaviorFlag;
         }
     }
 
@@ -370,6 +381,7 @@ function arm(left = true) {
             if (thisState !== c.state) {
                 thisStateFor = 0;
                 thisState = c.state;
+                c.subimage = left ? 1 : 0;
 
                 if (c.state === Arm.Up)
                     c.y = 40;
@@ -477,7 +489,7 @@ function leg(src: DisplayObject, srcOff: Vector) {
 
             leg.at(src).add(srcOff);
             const footv = v1.at(foot).add(leg, -1);
-            const kx = footv.x / 2 + 200 / footv.y * xscale;
+            let kx = footv.x / 2 + Math.min(200 / footv.y, 48) * xscale;
             const ky = Math.max(footv.y / 2 + Math.min(footv.x * -xscale, 0), 0);
             v.at(kx, ky);
             if (isNaN(knee.x) || isNaN(knee.y) || !isFinite(knee.x) || !isFinite(knee.y))

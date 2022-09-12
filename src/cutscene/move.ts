@@ -12,6 +12,7 @@ function moveOver(doMove: (ms: number) => Promise<any>)
     return {
         async over(ms: number)
         {
+            ms = fixMs(ms);
             return await doMove(ms) as void;
         }
     }
@@ -48,9 +49,6 @@ class Move
         const traveled = vnew();
         const next = vnew();
         const tmp = vnew();
-
-        const sx = Math.sign(offset.x);
-        const sy = Math.sign(offset.y);
 
         return moveOver(async ms => {
             let currentTick = 0;
@@ -106,4 +104,10 @@ function getVector(vectorArgs: IArguments): Vector
     if (vectorArgs.length === 2)
         return { x: vectorArgs[0], y: vectorArgs[1] };
     return vectorArgs[0];
+}
+
+function fixMs(ms: number) {
+    if (ms === 0 || isNaN(ms) || !isFinite(ms))
+        return 1;
+    return ms;
 }
