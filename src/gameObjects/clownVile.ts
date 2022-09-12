@@ -183,7 +183,8 @@ export function clownVile() {
 
     const rush = attack({ dx: 1, prepMs: 1000 })
         .withAsyncOnce(async ({ dx, prepMs }) => {
-            head.expression = Expression.Evil;
+            VileRoar.play();
+            head.expression = Expression.Yell;
 
             const right = dx > 0;
             if (right) {
@@ -196,6 +197,9 @@ export function clownVile() {
             }
 
             await Promise.all([stretchLegs(16).over(prepMs), resetFeetPose(prepMs)]);
+
+            head.expression = Expression.Evil;
+
             const distance = (right ? freeSpaceOnRight() : freeSpaceOnLeft()) * 0.9 * Math.sign(dx);
             const front = right ? footr : footl;
             const back = right ? footl : footr;
@@ -567,7 +571,8 @@ enum Expression {
     Angry,
     Evil,
     ChargeSpit,
-    Spit
+    Spit,
+    Yell
 }
 
 function vileHead() {
@@ -580,6 +585,7 @@ function vileHead() {
         facing: vnew(),
         blink: 0,
         unblink: 0,
+        ext1: 0,
     }
 
     const automation = {
@@ -660,15 +666,29 @@ function vileHead() {
             controls.mouth.img = 3;
             controls.eyebrows.img = 1;
         }
-        else if (expression === Expression.Evil) {
+        else if (expression === Expression.Evil || expression === Expression.Yell) {
             const f = now.s * Math.PI * 3;
             const v = vnew().at(Math.sin(f) * 3, Math.cos(f) * 6);
             const s = 2;
             moveTowards(controls.eyeL.pos, v, s);
             moveTowards(controls.eyeR.pos, v, s);
             auto.widenEyes = true;
-            controls.mouth.img = 1;
             controls.eyebrows.img = 1;
+
+            if (expression === Expression.Evil) {
+                controls.mouth.img = 1;
+            }
+            else {
+                auto.wiggleEyebrows = 1;
+                if (first) {
+                    controls.ext1 = 0;
+                    controls.mouth.img = 4;
+                }
+                else {
+                    controls.ext1 = approachLinear(controls.ext1, 3, 0.1);
+                    controls.mouth.img = [8, 7, 8, 3][Math.floor(controls.ext1)];
+                }
+            }
         }
         else if (expression === Expression.ChargeSpit) {
             if (first) {
