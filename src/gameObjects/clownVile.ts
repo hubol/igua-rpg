@@ -254,7 +254,7 @@ export function clownVile() {
     const jumpIntoFreeSpace = () =>
         jump({dx: (freeSpaceOnLeft() > freeSpaceOnRight() ? -1 : 1) * (rng() + 1)})
 
-    let behaviorFlag = true;
+    let behaviorCount = 0;
 
     async function doAs() {
         await wait(() => c.hostile);
@@ -264,19 +264,23 @@ export function clownVile() {
         head.expression = Expression.Hostile;
         while (true) {
             if (await maybeFlee()) {
-                if (behaviorFlag)
+                if (behaviorCount % 2 === 0)
                     await runner.run(spit());
                 else
                     await runner.run(rushTowardsPlayer());
             }
             else {
-                if (behaviorFlag)
+                if (behaviorCount % 4 === 0)
                     await runner.run(jumpIntoFreeSpace());
-                else
+                else if (behaviorCount % 2 === 1)
                     await runner.run(rushTowardsPlayer());
+                else if (behaviorCount % 4 === 2) {
+                    for (let i = 0; i < 2; i++)
+                        await runner.run(jumpIntoFreeSpace());
+                }
                 await runner.run(spit());
             }
-            behaviorFlag = !behaviorFlag;
+            behaviorCount++;
         }
     }
 
