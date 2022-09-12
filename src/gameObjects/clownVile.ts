@@ -1,6 +1,6 @@
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {
-    VileClownArmRest,
+    VileClownArmRest, VileClownArmSide,
     VileClownArmUp,
     VileClownEar,
     VileClownEyebrow,
@@ -42,6 +42,7 @@ const unitv = {
 
 const damage = {
     flailUp: 40,
+    flailSide: 45,
 }
 
 export function clownVile() {
@@ -176,6 +177,38 @@ export function clownVile() {
             }
         });
 
+    const rush = attack({ dx: 1, prepMs: 1000 })
+        .withAsyncOnce(async ({ dx, prepMs }) => {
+            head.expression = Expression.Evil;
+
+            const right = dx > 0;
+            if (right) {
+                armr.state = Arm.Side;
+                arml.state = Arm.Relax;
+            }
+            else {
+                arml.state = Arm.Side;
+                armr.state = Arm.Relax;
+            }
+
+            await Promise.all([stretchLegs(16).over(prepMs), resetFeetPose(prepMs)]);
+            const distance = (right ? freeSpaceOnRight() : freeSpaceOnLeft()) * 0.9 * Math.sign(dx);
+            const front = right ? footr : footl;
+            const back = right ? footl : footr;
+            const ms = Math.abs(distance) * 1250 / 128 / Math.abs(dx);
+            const p1 = move(c).off(distance, 0).over(ms);
+            const p2 = move(front).off(distance, 0).over(ms - 100);
+            const p3 = move(back).off(distance, 0).over(ms + 300);
+            await Promise.all([ p1, p2, p3 ]);
+            armr.state = Arm.Relax;
+            arml.state = Arm.Relax;
+        });
+
+    const rushTowardsPlayer = () => {
+        const right = player.x > c.x;
+        return rush({ dx: right ? 2 : -2 });
+    }
+
     const jump = attack({ dx: 0, flailSoundId: -1 })
         .withAsyncOnce(async ({ dx }, self) => {
             if (health.unit < 0.67) {
@@ -196,6 +229,8 @@ export function clownVile() {
             speed.x = dx;
             footl.speed.x = dx;
             footr.speed.x = dx;
+            footl.speed.y = rng();
+            footr.speed.y = rng();
             await wait(() => speed.y > 0);
             await wait(() => footl.isOnGround);
             speed.x = 0;
@@ -213,6 +248,8 @@ export function clownVile() {
     const jumpIntoFreeSpace = () =>
         jump({dx: (freeSpaceOnLeft() > freeSpaceOnRight() ? -1 : 1) * (rng() + 1)})
 
+    let behaviorFlag = false;
+
     async function doAs() {
         await wait(() => c.hostile);
         VileRoar.play();
@@ -222,8 +259,12 @@ export function clownVile() {
         while (true) {
             if (hasSimilarSpaceOnBothSides())
                 await runner.run(pickDirectionAndFlee());
-            else
-                await runner.run(jumpIntoFreeSpace());
+            else {
+                if (behaviorFlag = !behaviorFlag)
+                    await runner.run(jumpIntoFreeSpace());
+                else
+                    await runner.run(rushTowardsPlayer());
+            }
             await runner.run(spit());
         }
     }
@@ -303,13 +344,16 @@ export function clownVile() {
 
 enum Arm {
     Up,
-    Relax
+    Relax,
+    Side
 }
 
 function getTexturesForArm(arm: Arm) {
     switch (arm) {
         case Arm.Up:
             return armUpTxs;
+        case Arm.Side:
+            return armSideTxs;
     }
     return armRelaxTxs;
 }
@@ -329,25 +373,46 @@ function arm(left = true) {
 
                 if (c.state === Arm.Up)
                     c.y = 40;
+                else if (c.state === Arm.Side)
+                    c.pivot.x = -20;
             }
 
             thisStateFor++;
 
+            const dangerous = Math.abs(c.speed) > 0.1 && thisStateFor > 30;
+
             if (c.state === Arm.Up) {
                 c.y = approachLinear(c.y, 0, 2);
                 c.speed = approachLinear(c.speed, 0.3, 0.01);
-                if (Math.abs(c.speed) > 0.1 && player.collides(hitboxUp) && thisStateFor > 30) {
+                if (dangerous && player.collides(hitboxUp)) {
                     player.damage(damage.flailUp);
                     bouncePlayerOffDisplayObject(c.parent, 4);
                 }
             }
-            else if (c.state === Arm.Relax) {
-                c.speed = 0.05;
+            else {
                 c.y = 0;
+            }
+
+            if (c.state === Arm.Side) {
+                c.pivot.x = approachLinear(c.pivot.x, 0, 2);
+                c.speed = approachLinear(c.speed, 0.4, 0.01);
+                if (dangerous && player.collides(hitboxSide)) {
+                    player.damage(damage.flailSide);
+                    player.hspeed = 0;
+                    player.engine.knockback.x = (left ? -1 : 1) * 4;
+                }
+            }
+            else {
+                c.pivot.x = 0;
+            }
+
+            if (c.state === Arm.Relax) {
+                c.speed = 0.05;
             }
         });
 
     const hitboxUp = new Graphics().beginFill(0xff0000).drawRect(-11, -30, 18, 12).hide();
+    const hitboxSide = new Graphics().beginFill(0xff0000).drawRect(-30, 7, 24, 26).hide();
 
     const s = Sprite.from(armUpTxs[0])
         .withStep(() => {
@@ -370,13 +435,18 @@ function arm(left = true) {
         });
     ghost.alpha = 0.25;
 
-    c.addChild(ghost, s, hitboxUp);
+    c.addChild(ghost, s, hitboxUp, hitboxSide);
 
     return c;
 }
 
 const armUpTxs = subimageTextures(VileClownArmUp, { width: 62 }).map(x => {
     x.defaultAnchor.at(35 / 62, 46 / 50)
+    return x;
+});
+
+const armSideTxs = subimageTextures(VileClownArmSide, { width: 54 }).map(x => {
+    x.defaultAnchor.at(41 / 54, 20 / 72)
     return x;
 });
 
