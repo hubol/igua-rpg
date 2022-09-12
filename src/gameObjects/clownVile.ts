@@ -40,9 +40,10 @@ const unitv = {
     right: [1, 0],
 }
 
-const damage = {
-    flailUp: 40,
-    flailSide: 45,
+export const clownVileDamage = {
+    flailUp: 45,
+    flailSide: 50,
+    spike: 40,
 }
 
 export function clownVile() {
@@ -123,13 +124,19 @@ export function clownVile() {
 
     let healthUnitAtLastFlee = 2;
     const maybeFlee = async (ms = 100) => {
-        if (health.unit > healthUnitAtLastFlee - 0.35)
+        if (health.unit > healthUnitAtLastFlee - 0.21)
             return false;
+        const pd = hdistToPlayer();
+        if (pd > 108)
+            return false;
+
         const leftd = freeSpaceOnLeft();
         const rightd = freeSpaceOnRight();
-        const pd = hdistToPlayer();
-        const goLeft = pd < 32 ? leftd > rightd : leftd > 96;
-        if ((goLeft && leftd < 128) || (!goLeft && rightd < 128))
+        const playerIsClose = pd < 32;
+        const goLeft = playerIsClose ? leftd > rightd : player.x > c.x && leftd > 80;
+        const goRight = playerIsClose ? rightd > leftd : player.x < c.x && rightd > 80;
+
+        if (!goLeft && !goRight)
             return false;
 
         healthUnitAtLastFlee = health.unit;
@@ -267,23 +274,17 @@ export function clownVile() {
         await sleep(300);
         head.expression = Expression.Hostile;
         while (true) {
-            if (await maybeFlee()) {
-                if (behaviorCount % 2 === 0)
-                    await runner.run(spit());
-                else
-                    await runner.run(rushTowardsPlayer());
-            }
-            else {
-                if (behaviorCount % 4 === 0)
+            await maybeFlee();
+            if (behaviorCount % 4 === 0)
+                await runner.run(jumpIntoFreeSpace());
+            else if (behaviorCount % 2 === 1)
+                await runner.run(rushTowardsPlayer());
+            else if (behaviorCount % 4 === 2) {
+                for (let i = 0; i < 2; i++)
                     await runner.run(jumpIntoFreeSpace());
-                else if (behaviorCount % 2 === 1)
-                    await runner.run(rushTowardsPlayer());
-                else if (behaviorCount % 4 === 2) {
-                    for (let i = 0; i < 2; i++)
-                        await runner.run(jumpIntoFreeSpace());
-                }
-                await runner.run(spit());
             }
+            await maybeFlee();
+            await runner.run(spit());
             behaviorCount++;
         }
     }
@@ -405,7 +406,7 @@ function arm(left = true) {
                 c.y = approachLinear(c.y, 0, 2);
                 c.speed = approachLinear(c.speed, 0.3, 0.01);
                 if (dangerous && player.collides(hitboxUp)) {
-                    player.damage(damage.flailUp);
+                    player.damage(clownVileDamage.flailUp);
                     bouncePlayerOffDisplayObject(c.parent, 4);
                 }
             }
@@ -417,7 +418,7 @@ function arm(left = true) {
                 c.pivot.x = approachLinear(c.pivot.x, 0, 2);
                 c.speed = approachLinear(c.speed, 0.4, 0.01);
                 if (dangerous && player.collides(hitboxSide)) {
-                    player.damage(damage.flailSide);
+                    player.damage(clownVileDamage.flailSide);
                     player.hspeed = 0;
                     player.engine.knockback.x = (left ? -1 : 1) * 4;
                 }

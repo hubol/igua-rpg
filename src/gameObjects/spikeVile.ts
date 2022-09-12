@@ -8,10 +8,11 @@ import {approachLinear} from "../utils/math/number";
 import {getWorldPos} from "../igua/gameplay/getCenter";
 import {now} from "../utils/now";
 import { VileSpikeLand } from "../sounds";
+import {clownVileDamage} from "./clownVile";
 
 const grav = 0.25;
 
-export function spikeVile(damage = 35) {
+export function spikeVile(damage = clownVileDamage.spike) {
     let life = 60 * 6;
     let grounded = false;
     const s = merge(Sprite.from(ClownSpikeBall), { speed: vnew() }).withStep(() => {
