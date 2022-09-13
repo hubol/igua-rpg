@@ -9,10 +9,11 @@ import {getWorldPos} from "../igua/gameplay/getCenter";
 import {now} from "../utils/now";
 import { VileSpikeLand } from "../sounds";
 import {clownVileDamage} from "./clownVile";
+import {track} from "../igua/track";
 
 const grav = 0.25;
 
-export function spikeVile(damage = clownVileDamage.spike) {
+function spikeVileImpl(damage = clownVileDamage.spike) {
     let life = 60 * 6;
     let grounded = false;
     const s = merge(Sprite.from(ClownSpikeBall), { speed: vnew() }).withStep(() => {
@@ -40,6 +41,8 @@ export function spikeVile(damage = clownVileDamage.spike) {
 
     return s;
 }
+
+export const spikeVile = track(spikeVileImpl);
 
 const v = vnew();
 

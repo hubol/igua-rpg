@@ -164,6 +164,16 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "Debug", "faceRight": false, "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 22,
+          "_eid": "55940370",
+          "x": 72,
+          "y": 144,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "DefeatedBoss", "faceRight": true, "depth": 0}
         }
       ]
     },

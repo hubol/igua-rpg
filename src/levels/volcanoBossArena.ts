@@ -19,6 +19,8 @@ import {sleep} from "../cutscene/sleep";
 import {persistence} from "../igua/data/persistence";
 import {slidingDoor} from "../gameObjects/slidingDoor";
 import {freezeSceneAndShowMessage} from "../cutscene/freezeSceneAndShowMessage";
+import {spikeVile} from "../gameObjects/spikeVile";
+import {smallPop} from "../gameObjects/smallPop";
 
 export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -68,10 +70,13 @@ function enrichBoss(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
         let bossX = 0;
         boss.withStep(() => bossX = boss.x);
         await wait(() => boss.destroyed);
+        spikeVile.instances.forEach(x => smallPop(12).at(x));
+        spikeVile.destroyAll();
         progress.flags.volcano.defeatedVileAngel = true;
         progress.status.burn = 0;
         const x = Math.max(level.ValuableSpawnX.x, Math.min(level.ValuableSpawnX.x + level.ValuableSpawnX.width, bossX));
         trove140().at(x, 168).show();
+        progress.checkpointName = "DefeatedBoss";
         await persistence.save();
         scene.gameObjectStage.withAsync(async () => {
             jukebox.currentSong?.fade(1, 0, 1000);
