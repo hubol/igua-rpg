@@ -25,7 +25,17 @@ import {lerp} from "../cutscene/lerp";
 import {Force} from "../utils/types/force";
 import {move} from "../cutscene/move";
 import {clownHealth} from "./utils/clownUtils";
-import {ClownExplode, ClownHurt, VileFlail, VileJump, VileRoar, VileSpit, VileStep, VileStepR} from "../sounds";
+import {
+    ClownExplode,
+    ClownHurt,
+    UnorthodoxCharge,
+    VileFlail,
+    VileJump,
+    VileRoar,
+    VileSpit,
+    VileStep,
+    VileStepR
+} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {wait} from "../cutscene/wait";
 import {confetti} from "./confetti";
@@ -245,7 +255,9 @@ export function clownVile() {
 
     const jump = attack({ dx: 0, flailSoundId: -1 })
         .withAsyncOnce(async ({ dx }, self) => {
-            if (health.unit < 0.67) {
+            UnorthodoxCharge.play();
+            const aggressive = health.unit < 0.67;
+            if (aggressive) {
                 arml.state = Arm.Up;
                 armr.state = Arm.Up;
 
@@ -256,7 +268,7 @@ export function clownVile() {
             }
 
             head.expression = Expression.Happy;
-            await move(c).off(0, 10).over(200);
+            await move(c).off(0, 10).over(aggressive ? 200 : 330);
             VileJump.play();
             speed.y = -7;
             grav = 0.2;
