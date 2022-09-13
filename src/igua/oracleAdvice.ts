@@ -112,8 +112,8 @@ export async function oracleAdviceJungle() {
 }
 
 export async function oracleAdviceVolcano() {
-    const { key, bigKey } = progress.flags.volcano;
-    if (bigKey.reward) {
+    const { key, bigKey, defeatedVileAngel  } = progress.flags.volcano;
+    if (bigKey.reward && !defeatedVileAngel) {
         await show(`You repaired the big key and received the blessing of fire!`);
         return await show(`Vanquish the vile invader in the lava pools to continue your mission.`);
     }
