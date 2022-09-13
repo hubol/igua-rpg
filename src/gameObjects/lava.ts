@@ -1,5 +1,4 @@
 import {Graphics} from "pixi.js";
-import {now} from "../utils/now";
 import {drawPool} from "./pool";
 import {container} from "../utils/pixi/container";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
@@ -10,8 +9,9 @@ import {VolcanoLavaBubble} from "../textures";
 import {animatedSprite} from "../igua/animatedSprite";
 import {makePseudo} from "../utils/math/makePseudo";
 import { track } from "../igua/track";
+import {scene} from "../igua/scene";
 
-const f = (x: number) => Math.sin(x * 0.2 + now.s + Math.sin(x)) * 2 - 1;
+const f = (x: number) => Math.sin(x * 0.2 + scene.s + Math.sin(x)) * 2 - 1;
 
 export const resolveLava = resolveGameObject('Lava', (e) => lavaImpl(e.width, e.height).at(e));
 
