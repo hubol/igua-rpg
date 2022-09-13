@@ -217,6 +217,22 @@ export function clownVile() {
             await Promise.all([ p1, p2, p3 ]);
             armr.state = Arm.Relax;
             arml.state = Arm.Relax;
+        })
+        .withAsync(async ({ dx }) => {
+            await wait(() => head.expression === Expression.Evil);
+
+            const front = dx > 0 ? footr : footl;
+            const rear = dx > 0 ? footl : footr;
+            const bounce = -2;
+
+            const ms = 300 / Math.abs(dx);
+
+            while (true) {
+                front.speed.y = bounce;
+                await sleep(ms);
+                rear.speed.y = bounce;
+                await sleep(ms);
+            }
         });
 
     const rushTowardsPlayer = () => {
