@@ -107,7 +107,7 @@ function getVector(vectorArgs: IArguments): Vector
 }
 
 function fixMs(ms: number) {
-    if (ms === 0 || isNaN(ms) || !isFinite(ms))
+    if (ms <= 0 || isNaN(ms) || !isFinite(ms))
         return 1;
     return ms;
 }
