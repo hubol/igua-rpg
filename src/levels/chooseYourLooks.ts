@@ -9,6 +9,7 @@ import {level} from "../igua/level/level";
 import {recreatePlayerInPlace} from "../gameObjects/player";
 import {jukebox} from "../igua/jukebox";
 import {Country} from "../musics";
+import {persistence} from "../igua/data/persistence";
 
 function defaultArgs() {
     return ({
@@ -39,6 +40,7 @@ export function ChooseYourLooksFromMirror() {
             progress.looks = x;
             sceneStack.pop();
             recreatePlayerInPlace();
+            setTimeout(persistence.save);
         },
         defaultLooks: JSON.parse(JSON.stringify(progress.looks))
     });

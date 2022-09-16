@@ -381,7 +381,8 @@ PipeHorizontal_2: resolvePipeHorizontal({"type":"PipeHorizontal","x":48,"y":120,
 // @ts-ignore
 PipeHorizontal_3: resolvePipeHorizontal({"type":"PipeHorizontal","x":184,"y":120,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_55","visible":false,"name":"","depth":0}),
 // @ts-ignore
-PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":320,"y":136,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_56","visible":false,"name":"","depth":0})
+PipeHorizontal_4: resolvePipeHorizontal({"type":"PipeHorizontal","x":320,"y":136,"width":80,"flippedX":false,"flippedY":false,"uid":"55841307_56","visible":false,"name":"","depth":0}),
+MirrorCheckpoint: {"type":"Checkpoint","x":304,"y":224,"flippedX":false,"flippedY":false,"uid":"55940370_57","name":"MirrorCheckpoint","faceRight":false,"depth":0}
 };
 }
 };

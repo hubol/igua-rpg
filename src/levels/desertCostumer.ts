@@ -50,6 +50,7 @@ export function DesertCostumer()
     const m = mirror(level.MirrorRegion.width, level.MirrorRegion.height).at(level.MirrorRegion).behind()
         .withCutscene(async () => {
             if (flags.repaired) {
+                progress.checkpointName = 'MirrorCheckpoint';
                 sceneStack.push(ChooseYourLooksFromMirror);
             }
             else if (flags.shardCollected) {
