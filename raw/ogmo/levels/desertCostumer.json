@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 448,
   "height": 256,
   "offsetX": 0,
@@ -234,6 +234,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 57,
+          "_eid": "55940370",
+          "x": 304,
+          "y": 224,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "MirrorCheckpoint", "faceRight": false, "depth": 0}
         }
       ]
     },
