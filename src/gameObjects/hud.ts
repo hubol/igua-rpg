@@ -23,7 +23,7 @@ export function hud()
     const healthbarGfx = new Graphics()
         .withStep(() => {
             const max = derivedStats.maxHealth;
-            const { life, heal, hurt } = healthbar(progress, progress.health, max);
+            const { life, heal, hurt } = healthbar(progress, progress.health, max, progress.health);
 
             healthbarGfx.clear();
             healthbarGfx.beginFill(Color.Empty);

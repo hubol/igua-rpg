@@ -17,10 +17,10 @@ function getLvalue(state: State) {
     return lerp(state.from, state.target, y);
 }
 
-export function healthbar(identity: object, value: number, max: number) {
+export function healthbar(identity: object, value: number, max: number, initial = max) {
     let state = states.get(identity);
     if (!state)
-        states.set(identity, state = newState(value));
+        states.set(identity, state = newState(initial));
 
     if (value !== state.target) {
         if (Math.abs(value - state.target) > 0.01 * max) {
