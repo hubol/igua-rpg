@@ -5847,6 +5847,30 @@ Spike_4: resolveSpike({"type":"Spike","x":160,"y":194,"flippedX":false,"flippedY
 }
 };
 
+export const UnrealBlindArgs = {
+    width: 768,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    // @ts-ignore
+PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":-8,"y":240,"width":808,"height":24,"flippedX":false,"flippedY":false,"uid":"24775263_0","name":"","depth":0}),
+Player: {"type":"Player","x":56,"y":56,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":40,"y":176,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":168,"y":112,"width":56,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":136,"y":176,"width":32,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_4","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":280,"y":208,"width":136,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_5","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":328,"y":176,"width":88,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_6","name":"","depth":0}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":416,"y":176,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0})
+};
+}
+};
+
 export const UnrealClownDodgerArgs = {
     width: 912,
 height: 256,

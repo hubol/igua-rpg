@@ -128,6 +128,7 @@ function pushImpl(xy: Pushable, radius: number, result: PushResult, correctPosit
 
         if (alongForward && absOffsetDotNormal < radius + 0.1 && isGround) {
             result.isOnGround = true;
+            result.solidNormal = s.normal;
             if (stopIfOnGround)
                 break;
         }
