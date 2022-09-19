@@ -39,7 +39,7 @@ enum Leg {
 export const resolveClownWonderful = resolveGameObject('ClownWonderful', e => clownWonderful().at([0, 2].add(e)));
 
 export function clownWonderful() {
-    const health = clownHealth(200);
+    const health = clownHealth(195);
     const drop = clownDrop(0.95, 0.62, 0.1);
 
     const consts = {
