@@ -66,7 +66,7 @@ export async function oracleAdviceDesert() {
             return;
         }
     }
-    await show("I don't have any advice right now.");
+    await sayNoAdvice();
 }
 
 export async function oracleAdviceJungle() {
@@ -108,18 +108,20 @@ export async function oracleAdviceJungle() {
         }
     }
 
-    await show("I don't have any advice right now.");
+    await sayNoAdvice();
 }
 
 export async function oracleAdviceVolcano() {
     const { key, bigKey, defeatedVileAngel  } = progress.flags.volcano;
-    if (bigKey.reward && !defeatedVileAngel) {
-        await show(`You repaired the big key and received the blessing of fire!`);
-        return await show(`Vanquish the vile invader in the lava pools to continue your mission.`);
-    }
-
     const allKeys = key.hiddenInCave && key.fromPrankster && key.fromLava;
-    if (allKeys) {
+
+    if (bigKey.reward) {
+        if (!defeatedVileAngel) {
+            await show(`You repaired the big key and received the blessing of fire!`);
+            return await show(`Vanquish the vile invader in the lava pools to continue your mission.`);
+        }
+    }
+    else if (allKeys) {
         await sayNeedBigKeyPieces();
         if (!bigKey.piece1) {
             await show(`One piece requires you to quickly and cleverly duck on tree stumps.`);
@@ -145,7 +147,7 @@ export async function oracleAdviceVolcano() {
         }
     }
 
-    await show("I don't have any advice right now.");
+    await sayNoAdvice();
 }
 
 function sayNeedBigKeyPieces() {
@@ -154,4 +156,8 @@ function sayNeedBigKeyPieces() {
 
 function sayNeedKeys() {
     return show(`You will need to acquire some keys to continue your mission.`);
+}
+
+function sayNoAdvice() {
+    return show("I don't have any advice right now.");
 }
