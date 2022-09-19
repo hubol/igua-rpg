@@ -11,7 +11,7 @@ const LoadingBarColor = 0xCCAE0A;
 const LoadingBarY = 256 - 32;
 const MinimumLoadingScreenTimeS = 0.2;
 
-export function newReady() {
+function newReady() {
     return {
         ready() {
             this.readySince = now.s;
@@ -25,10 +25,15 @@ export function newReady() {
 
 type Ready = ReturnType<typeof newReady>;
 
-export function showLoadingScreen(app: AsshatApplication, ready: Ready) {
+export function showLoadingScreen(app: AsshatApplication) {
+    const ready = newReady();
+    return [ ready, getLoadingScreenPromiseForEnvironment(app, ready) ] as const;
+}
+
+function getLoadingScreenPromiseForEnvironment(app: AsshatApplication, ready: Ready) {
     if (!environment.isProduction || environment.isElectron)
         return showEmptyScreen(app, ready);
-    return showLoadingScreenImpl(app, ready);
+    return showLoadingBarScreen(app, ready);
 }
 
 function makeStage(app: AsshatApplication, doneFn: () => boolean, animateFn = () => { }) {
@@ -54,7 +59,7 @@ function makeStage(app: AsshatApplication, doneFn: () => boolean, animateFn = ()
     return [stage, promise] as const;
 }
 
-function showLoadingScreenImpl(app: AsshatApplication, ready: Ready) {
+function showLoadingBarScreen(app: AsshatApplication, ready: Ready) {
     const startTimeS = now.s;
 
     function getTargetUnit() {
