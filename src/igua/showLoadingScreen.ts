@@ -25,19 +25,33 @@ export function newReady() {
 
 type Ready = ReturnType<typeof newReady>;
 
-function makeStage(app: AsshatApplication) {
+export function showLoadingScreen(app: AsshatApplication, ready: Ready) {
+    if (!environment.isProduction || environment.isElectron)
+        return showEmptyScreen(app, ready);
+    return showLoadingScreenImpl(app, ready);
+}
+
+function makeStage(app: AsshatApplication, doneFn: () => boolean, animateFn = () => { }) {
     const stage = new Container();
     app.stage.addChild(stage);
     const bg = new Graphics().beginFill(0x002C38).drawRect(0, 0, 256, 256);
     stage.addChild(bg);
 
-    return stage;
-}
+    const promise = new Promise<void>(r => {
+        function animate() {
+            if (doneFn())
+                r();
+            else
+                requestAnimationFrame(animate);
 
-export function showLoadingScreen(app: AsshatApplication, ready: Ready) {
-    if (!environment.isProduction || environment.isElectron)
-        return showEmptyScreen(app, ready);
-    return showLoadingScreenImpl(app, ready);
+            animateFn();
+        }
+
+        animate();
+    })
+    .then(() => stage.destroy());
+
+    return [stage, promise] as const;
 }
 
 function showLoadingScreenImpl(app: AsshatApplication, ready: Ready) {
@@ -49,41 +63,23 @@ function showLoadingScreenImpl(app: AsshatApplication, ready: Ready) {
         return Math.min(MaxUnitUntilReady, window.performance.getEntriesByType("resource").length / ExpectedResourceLength);
     }
 
-    const stage = makeStage(app);
     const gfx = new Graphics();
     gfx.y = LoadingBarY;
     let unit = 0;
+    const [stage, promise] = makeStage(
+        app,
+        () => unit >= 1 && now.s >= startTimeS + MinimumLoadingScreenTimeS,
+        () => {
+            unit = approachLinear(unit, getTargetUnit(), LoadingBarInterpolationFactor);
+            gfx.clear().lineStyle(1, LoadingBarColor).lineTo(256 * unit, 0);
+        });
 
     stage.addChild(gfx);
 
-    return new Promise<void>(r => {
-        function animate() {
-            if (unit >= 1 && now.s >= startTimeS + MinimumLoadingScreenTimeS)
-                r();
-            else
-                requestAnimationFrame(animate);
-
-            unit = approachLinear(unit, getTargetUnit(), LoadingBarInterpolationFactor);
-            gfx.clear().lineStyle(1, LoadingBarColor).lineTo(256 * unit, 0);
-        }
-
-        animate();
-    })
-    .then(() => stage.destroy());
+    return promise;
 }
 
 function showEmptyScreen(app: AsshatApplication, ready: Ready) {
-    const stage = makeStage(app);
-
-    return new Promise<void>(r => {
-        function animate() {
-            if (ready.isReady)
-                r();
-            else
-                requestAnimationFrame(animate);
-        }
-
-        animate();
-    })
-    .then(() => stage.destroy());
+    const [, promise] = makeStage(app, () => ready.isReady);
+    return promise;
 }
