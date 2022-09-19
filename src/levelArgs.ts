@@ -5866,7 +5866,13 @@ Block_3: resolveBlock({"type":"Block","x":280,"y":208,"width":136,"height":16,"f
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":328,"y":176,"width":88,"height":32,"flippedX":false,"flippedY":false,"uid":"55824435_6","name":"","depth":0}),
 // @ts-ignore
-Block_4: resolveBlock({"type":"Block","x":416,"y":176,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0})
+Block_4: resolveBlock({"type":"Block","x":416,"y":176,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":464,"y":104,"width":48,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":"","depth":0}),
+// @ts-ignore
+Block_6: resolveBlock({"type":"Block","x":544,"y":104,"width":48,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
+// @ts-ignore
+Block_7: resolveBlock({"type":"Block","x":648,"y":208,"width":80,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_10","name":"","depth":0})
 };
 }
 };
