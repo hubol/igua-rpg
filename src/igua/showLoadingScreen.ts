@@ -25,9 +25,18 @@ export function newReady() {
 
 type Ready = ReturnType<typeof newReady>;
 
+function makeStage(app: AsshatApplication) {
+    const stage = new Container();
+    app.stage.addChild(stage);
+    const bg = new Graphics().beginFill(0x002C38).drawRect(0, 0, 256, 256);
+    stage.addChild(bg);
+
+    return stage;
+}
+
 export function showLoadingScreen(app: AsshatApplication, ready: Ready) {
-    if (!environment.isProduction)
-        return Promise.resolve();
+    if (!environment.isProduction || environment.isElectron)
+        return showEmptyScreen(app, ready);
     return showLoadingScreenImpl(app, ready);
 }
 
@@ -40,17 +49,14 @@ function showLoadingScreenImpl(app: AsshatApplication, ready: Ready) {
         return Math.min(MaxUnitUntilReady, window.performance.getEntriesByType("resource").length / ExpectedResourceLength);
     }
 
-    const stage = new Container();
+    const stage = makeStage(app);
+    const gfx = new Graphics();
+    gfx.y = LoadingBarY;
+    let unit = 0;
+
+    stage.addChild(gfx);
 
     return new Promise<void>(r => {
-        app.stage.addChild(stage);
-        const bg = new Graphics().beginFill(0x002C38).drawRect(0, 0, 256, 256);
-        const gfx = new Graphics();
-        gfx.y = LoadingBarY;
-        let unit = 0;
-
-        stage.addChild(bg, gfx);
-
         function animate() {
             if (unit >= 1 && now.s >= startTimeS + MinimumLoadingScreenTimeS)
                 r();
@@ -59,6 +65,22 @@ function showLoadingScreenImpl(app: AsshatApplication, ready: Ready) {
 
             unit = approachLinear(unit, getTargetUnit(), LoadingBarInterpolationFactor);
             gfx.clear().lineStyle(1, LoadingBarColor).lineTo(256 * unit, 0);
+        }
+
+        animate();
+    })
+    .then(() => stage.destroy());
+}
+
+function showEmptyScreen(app: AsshatApplication, ready: Ready) {
+    const stage = makeStage(app);
+
+    return new Promise<void>(r => {
+        function animate() {
+            if (ready.isReady)
+                r();
+            else
+                requestAnimationFrame(animate);
         }
 
         animate();
