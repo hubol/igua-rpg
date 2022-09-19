@@ -20,6 +20,7 @@ import {make2dCanvasSink} from "./utils/browser/make2dCanvasSink";
 import {Howl} from "howler";
 import {useDynamicsCompressor} from "./utils/browser/useDynamicsCompressor";
 import {handlePromiseCancellation} from "./utils/promise/cancellationToken";
+import {newReady, showLoadingScreen} from "./igua/showLoadingScreen";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -30,8 +31,13 @@ async function initialize()
     try {
         upscaleGameCanvas(addGameCanvasToDocument(application.canvasElement));
 
+        const ready = newReady();
+
+        const loadingScreenPromise = showLoadingScreen(application, ready);
         const howls = Object.values(require("./sounds")) as Howl[];
         await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
+        ready.ready();
+        await loadingScreenPromise;
         useDynamicsCompressor();
         require("./utils/extensions/**/*.*");
         if (publishGameObjectResolversIsRequested())
