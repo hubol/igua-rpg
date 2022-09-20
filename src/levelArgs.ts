@@ -5848,12 +5848,12 @@ Spike_4: resolveSpike({"type":"Spike","x":160,"y":194,"flippedX":false,"flippedY
 };
 
 export const UnrealBlindArgs = {
-    width: 768,
+    width: 1024,
 height: 256,
 gameObjectsSupplier: () => {
   return {
     // @ts-ignore
-PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":-8,"y":240,"width":808,"height":24,"flippedX":false,"flippedY":false,"uid":"24775263_0","name":"","depth":0}),
+PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":-8,"y":240,"width":1040,"height":24,"flippedX":false,"flippedY":false,"uid":"24775263_0","name":"","depth":0}),
 Player: {"type":"Player","x":56,"y":56,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":40,"y":176,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
@@ -5872,7 +5872,11 @@ Block_5: resolveBlock({"type":"Block","x":464,"y":104,"width":48,"height":16,"fl
 // @ts-ignore
 Block_6: resolveBlock({"type":"Block","x":544,"y":104,"width":48,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
 // @ts-ignore
-Block_7: resolveBlock({"type":"Block","x":648,"y":208,"width":80,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_10","name":"","depth":0})
+Block_7: resolveBlock({"type":"Block","x":648,"y":208,"width":80,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_10","name":"","depth":0}),
+// @ts-ignore
+Block_8: resolveBlock({"type":"Block","x":760,"y":192,"width":72,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_11","name":"","depth":0}),
+// @ts-ignore
+Block_9: resolveBlock({"type":"Block","x":872,"y":176,"width":88,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_12","name":"","depth":0})
 };
 }
 };
