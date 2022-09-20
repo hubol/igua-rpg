@@ -22,11 +22,14 @@ export function camera(followPlayer: boolean)
             scene.cameraStage.y = -value;
             scene.parallax1Stage.y = -value * 0.9;
         },
+        mode: <CameraMode>'default',
         width: 256,
         height: 256,
         followPlayer
     };
 }
+
+export type CameraMode = 'default' | 'ahead';
 
 export function moveCameraToPlayerTarget(speed: number) {
     const pspeed = vnew();

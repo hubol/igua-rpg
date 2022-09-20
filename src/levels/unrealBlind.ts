@@ -8,7 +8,7 @@ import {spikeBounce} from "../gameObjects/spikeBounce";
 export function UnrealBlind() {
     scene.backgroundColor = 0x002C38;
     scene.terrainColor = 0x002C38;
-    // scene.camera.mode = 'ahead';
+    scene.camera.mode = 'ahead';
     const level = applyOgmoLevel(UnrealBlindArgs);
     scene.terrainStage.index += 3;
     grid(32).tinted(0x005870).show(scene.terrainStage);
