@@ -7,12 +7,16 @@ import {spikeBounce} from "../gameObjects/spikeBounce";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {capitalBigKeyTextures} from "./capitalTemple";
+import {jukebox} from "../igua/jukebox";
+import {UnrealBlindMusic} from "../musics";
 
 export function UnrealBlind() {
     scene.backgroundColor = 0x002C38;
     scene.terrainColor = 0x002C38;
     scene.camera.mode = 'ahead';
     const level = applyOgmoLevel(UnrealBlindArgs);
+    jukebox.play(UnrealBlindMusic);
+
     scene.terrainStage.index += 3;
     grid(32).tinted(0x005870).show(scene.terrainStage);
     scene.gameObjectStage.withAsync(async () => {

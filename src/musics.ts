@@ -127,6 +127,11 @@ export const TitleScreen = new Howl({
     preload: false
 });
 
+export const UnrealBlindMusic = new Howl({
+    src: [require("./music/unreal blind music.ogg"), require("./music/unreal blind music.mp3")],
+    preload: false
+});
+
 export const UnrealCrusher = new Howl({
     src: [require("./music/unreal-crusher.ogg"), require("./music/unreal-crusher.mp3")],
     preload: false
