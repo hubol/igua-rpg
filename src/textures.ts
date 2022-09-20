@@ -6,6 +6,7 @@ export let Anchor: PIXI.Texture;
 export let ArrowPoison: PIXI.Texture;
 export let BackpackIcon: PIXI.Texture;
 export let BallColorful: PIXI.Texture;
+export let BigKey4: PIXI.Texture;
 export let BigKey1: PIXI.Texture;
 export let BigKey2: PIXI.Texture;
 export let BigKey3: PIXI.Texture;
@@ -248,6 +249,9 @@ export function loadTexturesAsync()
 
     const BallColorfulPath = require("./images/ball colorful.png");
     loader.add(BallColorfulPath); 
+
+    const BigKey4Path = require("./images/big key 4.png");
+    loader.add(BigKey4Path); 
 
     const BigKey1Path = require("./images/big key1.png");
     loader.add(BigKey1Path); 
@@ -932,6 +936,7 @@ export function loadTexturesAsync()
             ArrowPoison = resources[ArrowPoisonPath]?.texture as PIXI.Texture;
             BackpackIcon = resources[BackpackIconPath]?.texture as PIXI.Texture;
             BallColorful = resources[BallColorfulPath]?.texture as PIXI.Texture;
+            BigKey4 = resources[BigKey4Path]?.texture as PIXI.Texture;
             BigKey1 = resources[BigKey1Path]?.texture as PIXI.Texture;
             BigKey2 = resources[BigKey2Path]?.texture as PIXI.Texture;
             BigKey3 = resources[BigKey3Path]?.texture as PIXI.Texture;
