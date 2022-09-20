@@ -17,6 +17,11 @@ export const AnotherHouse = new Howl({
     preload: false
 });
 
+export const BlindHouse = new Howl({
+    src: [require("./music/blind house.ogg"), require("./music/blind house.mp3")],
+    preload: false
+});
+
 export const Bluehouse = new Howl({
     src: [require("./music/bluehouse.ogg"), require("./music/bluehouse.mp3")],
     preload: false
