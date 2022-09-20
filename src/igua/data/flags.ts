@@ -87,6 +87,14 @@ export function getInitialFlags()
                 reward: false,
             },
             defeatedVileAngel: false,
+        },
+        capital: {
+            bigKey: {
+                piece1: false,
+                piece2: false,
+                piece3: false,
+                reward: false,
+            },
         }
     };
 }

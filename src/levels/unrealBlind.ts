@@ -4,6 +4,9 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {Graphics} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
 import {spikeBounce} from "../gameObjects/spikeBounce";
+import {bigKeyPiece} from "../gameObjects/bigKey";
+import {progress} from "../igua/data/progress";
+import {capitalBigKeyTextures} from "./capitalTemple";
 
 export function UnrealBlind() {
     scene.backgroundColor = 0x002C38;
@@ -17,6 +20,7 @@ export function UnrealBlind() {
         for (let i = 0; i < 5; i++)
             scene.gameObjectStage.withAsync(() => showSpikesForever(128 - 256 * i));
     });
+    bigKeyPiece(progress.flags.capital.bigKey, capitalBigKeyTextures[0], 'piece1').at(level.Key).show(scene.terrainStage);
 }
 
 function grid(cell: number, width = scene.width, height = scene.height) {

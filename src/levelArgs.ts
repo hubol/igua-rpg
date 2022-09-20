@@ -5876,7 +5876,8 @@ Block_7: resolveBlock({"type":"Block","x":648,"y":208,"width":80,"height":16,"fl
 // @ts-ignore
 Block_8: resolveBlock({"type":"Block","x":760,"y":192,"width":72,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_11","name":"","depth":0}),
 // @ts-ignore
-Block_9: resolveBlock({"type":"Block","x":872,"y":176,"width":88,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_12","name":"","depth":0})
+Block_9: resolveBlock({"type":"Block","x":872,"y":176,"width":88,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_12","name":"","depth":0}),
+Key: {"type":"Anchor","x":912,"y":64,"flippedX":false,"flippedY":false,"uid":"25979726_13","name":"Key","depth":0}
 };
 }
 };
