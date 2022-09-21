@@ -7744,7 +7744,7 @@ ValuableSpawnX: resolveRegion({"type":"Region","x":128,"y":0,"width":496,"height
 // @ts-ignore
 Block_3: resolveBlock({"type":"Block","x":-96,"y":0,"width":192,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_18","name":"","depth":0}),
 // @ts-ignore
-Block_4: resolveBlock({"type":"Block","x":656,"y":152,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_19","name":"","depth":0}),
+Block_4: resolveBlock({"type":"Block","x":656,"y":160,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_19","name":"","depth":0}),
 // @ts-ignore
 Block_5: resolveBlock({"type":"Block","x":656,"y":200,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
 Debug: {"type":"Checkpoint","x":480,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370_21","name":"Debug","faceRight":false,"depth":0},
