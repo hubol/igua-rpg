@@ -1,13 +1,13 @@
 import {SharpClownHead, SharpClownLegs, SharpClownTail} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {Graphics, Sprite} from "pixi.js";
+import {Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {hat} from "./hat";
 import {merge} from "../utils/object/merge";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
-import {cyclic, lerp as nlerp} from "../utils/math/number";
+import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {vnew} from "../utils/math/vector";
 import {newGravity} from "./utils/newGravity";
@@ -56,19 +56,29 @@ export function clownSharp() {
     return c;
 }
 
+const tailxs = [-1, -1, -1, 1, 1, 1];
+const tailx = [ 10, 9, 8, -8, -9, -10 ];
+
 function newLegs() {
     const legs = Sprite.from(legsTxs[0]);
     const tail = Sprite.from(tailTxs[0]).at(-10, -1);
 
     let tailIndex = rng() * tailTxs.length;
+    let facingUnit = 1;
 
     const c = merge(container(tail, legs), { facing: 1, pedometer: 0, splits: false, tailSpeed: 0.1 })
         .withStep(() => {
             const img = c.splits ? 3 : Math.floor(cyclic(c.pedometer, 0, 3));
             legs.texture = legsTxs[img];
-            c.scale.x = c.facing;
-            c.pivot.x = (Math.sign(c.facing - 1)) + 10;
-            c.pivot.y = img === 2 ? 1 : 0;
+            legs.scale.x = c.facing;
+            legs.pivot.x = (Math.sign(c.facing - 1)) + 10;
+            legs.pivot.y = img === 2 ? 1 : 0;
+
+            facingUnit = approachLinear(facingUnit, c.facing, 0.1);
+            const f = (facingUnit + 1) / 2;
+            tail.scale.x = tailxs[Math.floor(nlerp(0, tailxs.length - 1, f))];
+            tail.x = tailx[Math.floor(nlerp(0, tailx.length - 1, f))];
+            tail.pivot.at(legs.pivot);
 
             tailIndex += c.tailSpeed;
             tail.texture = tailTxs[Math.floor(cyclic(tailIndex, 0, tailTxs.length))];
