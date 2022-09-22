@@ -11,6 +11,7 @@ import {cyclic, lerp as nlerp} from "../utils/math/number";
 import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {vnew} from "../utils/math/vector";
 import {newGravity} from "./utils/newGravity";
+import {wait} from "../cutscene/wait";
 
 export function clownSharp() {
     const automation = {
@@ -33,9 +34,21 @@ export function clownSharp() {
 
     const body = container(legs, head);
     body.pivot.set(16, 33);
-    const c = container(body)
+    const c = merge(container(body), { isOnGround: false })
         .withStep(() => {
-            gravity(0.5);
+            const r = gravity(0.5);
+            c.isOnGround = !!r.isOnGround;
+        })
+        .withAsync(async () => {
+            while (true) {
+                await wait(() => c.isOnGround);
+                head.shouting = true;
+                speed.y = -5;
+                await wait(() => speed.y >= 0);
+                head.shouting = false;
+                await wait(() => c.isOnGround);
+                await sleep(1000);
+            }
         });
     const gravity = newGravity(c, speed, [0, -8], 7);
 
