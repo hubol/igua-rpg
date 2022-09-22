@@ -9,8 +9,6 @@ import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
-import {vnew} from "../utils/math/vector";
-import {newGravity} from "./utils/newGravity";
 import {wait} from "../cutscene/wait";
 import {clownHealth} from "./utils/clownUtils";
 import {player} from "./player";
@@ -41,8 +39,6 @@ export function clownSharp() {
         });
     const legs = newLegs().at(17, 24);
 
-    const speed = vnew();
-
     const body = container(legs, head);
     body.pivot.set(16, 33);
 
@@ -61,26 +57,20 @@ export function clownSharp() {
         invulnerable--;
     }
 
-    function doPhysics() {
-        const r = gravity(0.5);
-        c.isOnGround = !!r.isOnGround;
-    }
-
-    const c = merge(container(body), { isOnGround: false })
+    const c = merge(container(body), {})
         .withStep(handleDamage)
-        .withStep(doPhysics)
+        .withGravityAndWallResist([0, -8], 7, 0.5)
         .withAsync(async () => {
             while (true) {
                 await wait(() => c.isOnGround);
                 head.shouting = true;
-                speed.y = -5;
-                await wait(() => speed.y >= 0);
+                c.speed.y = -5;
+                await wait(() => c.speed.y >= 0);
                 head.shouting = false;
                 await wait(() => c.isOnGround);
                 await sleep(1000);
             }
         });
-    const gravity = newGravity(c, speed, [0, -8], 7);
 
     c.ext.isHatParent = true;
     return c;

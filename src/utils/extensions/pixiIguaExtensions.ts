@@ -6,6 +6,9 @@ import {player} from "../../gameObjects/player";
 import {scene} from "../../igua/scene";
 import {cutscene, Cutscene} from "../../cutscene/cutscene";
 import {DisplayObject} from "pixi.js";
+import {Vector, vnew} from "../math/vector";
+import {merge} from "../object/merge";
+import {applyGravity} from "../../gameObjects/utils/newGravity";
 
 declare global {
     namespace PIXI {
@@ -18,12 +21,24 @@ declare global {
             asCollectible<T>(object: T, key: keyof PropertiesOf<T, boolean>, action?: () => void);
             liveFor(frames: number): this;
 
+            withGravityAndWallResist(offset: Vector, radius: number, gravity: number): this & { speed: Vector, gravity: number, isOnGround: boolean };
+
             damageSource(d: DisplayObject): this;
             damagePlayer(damage: number): boolean | undefined;
             effectPlayer(effect: 'poison'): boolean | undefined;
             vsPlayerHitCount: number;
         }
     }
+}
+
+PIXI.DisplayObject.prototype.withGravityAndWallResist = function (offset, radius, gravity) {
+    const c = merge(this, { speed: vnew(), gravity, isOnGround: false })
+        .withStep(() => {
+            const r = applyGravity(this, c.speed, offset, radius, gravity)
+            c.isOnGround = !!r.isOnGround;
+        });
+
+    return c;
 }
 
 PIXI.DisplayObject.prototype.show = function (parent = scene.gameObjectStage, index) {
