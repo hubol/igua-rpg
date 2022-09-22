@@ -10,13 +10,14 @@ import {lerp} from "../cutscene/lerp";
 import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {wait} from "../cutscene/wait";
-import {clownHealth} from "./utils/clownUtils";
+import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
 import {ClownHurt} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 
 export function clownSharp() {
-    const health = clownHealth(390);
+    const health = clownHealth(450);
+    const drop = clownDrop(0.9, 0.4, 0.3);
 
     const consts = {
         recoveryFrames: 15,
@@ -54,12 +55,19 @@ export function clownSharp() {
     let invulnerable = -1;
     let timeSinceLastDamage = 100;
 
+    function die() {
+        const dropFifteen = drop(c.vsPlayerHitCount);
+        dieClown(c, dropFifteen && 15, [0, -16]);
+    }
+
     function handleDamage() {
         if (player.collides(hitbox) && invulnerable <= 0) {
             timeSinceLastDamage = 0;
             ClownHurt.play();
-            health.damage();
             bouncePlayerOffDisplayObject(hitbox);
+            if (health.damage())
+                return die();
+
             const v = getOffsetFromPlayer(hitbox).normalize();
             if (Math.abs(v.x) > 0.2)
                 c.speed.x += -3 * Math.sign(v.x);
