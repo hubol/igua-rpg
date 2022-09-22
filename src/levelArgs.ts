@@ -5866,7 +5866,7 @@ gameObjectsSupplier: () => {
   return {
     // @ts-ignore
 PortalFluid: resolvePortalFluid({"type":"PortalFluid","x":-8,"y":240,"width":1040,"height":24,"flippedX":false,"flippedY":false,"uid":"24775263_0","name":"","depth":0}),
-Player: {"type":"Player","x":56,"y":56,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
+Player: {"type":"Player","x":56,"y":56,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":true,"name":"","depth":0},
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":40,"y":176,"width":40,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
 // @ts-ignore

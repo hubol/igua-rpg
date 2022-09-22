@@ -18,7 +18,7 @@ export function UnrealBlind() {
     jukebox.play(UnrealBlindMusic);
 
     scene.terrainStage.index += 3;
-    grid(32).tinted(0x005870).show(scene.terrainStage);
+    grid(32).tinted(0x004153).show(scene.terrainStage);
     scene.gameObjectStage.withAsync(async () => {
         await sleep(1000);
         for (let i = 0; i < 5; i++)

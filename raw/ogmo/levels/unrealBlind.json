@@ -35,7 +35,7 @@
           "y": 56,
           "originX": 11,
           "originY": 27,
-          "values": {"faceRight": false, "name": "", "depth": 0}
+          "values": {"faceRight": true, "name": "", "depth": 0}
         },
         {
           "name": "Block",
