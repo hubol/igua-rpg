@@ -39,14 +39,15 @@ function newHead() {
             }
         });
 
-    const mullet = Sprite.from(headTxs[HeadFrame.Mullet]).show(c);
-    const head = Sprite.from(headTxs[HeadFrame.Head]).show(c);
+    const mullet = Sprite.from(headTxs[HeadFrame.Mullet]);
+    const head = Sprite.from(headTxs[HeadFrame.Head]);
     const mouth = Sprite.from(headTxs[HeadFrame.Mouth]);
-    const hair = Sprite.from(headTxs[HeadFrame.Hair]).show(c);
+    const hair = Sprite.from(headTxs[HeadFrame.Hair]);
     const eyes = Sprite.from(headTxs[HeadFrame.EyeDefault]).show(c);
     const eyelids = Sprite.from(headTxs[HeadFrame.EyelidsOpen]).show(c);
     const nose = Sprite.from(headTxs[HeadFrame.Nose]);
 
+    const headAndHair = container(mullet, head, hair).show(c, 0);
     const face = container(mouth, nose).show(c);
     face.pivot.x = 17;
     face.x = face.pivot.x;
@@ -55,7 +56,9 @@ function newHead() {
 
     c.withStep(() => {
         face.scale.x = Math.sign(c.facing) || 1;
-        hair.texture = headTxs[HeadFrame.Hair + Math.sign(c.breeze) + 1];
+        headAndHair.scale.x = face.scale.x;
+        headAndHair.x = Math.sign(headAndHair.scale.x - 1) * -33;
+        hair.texture = headTxs[HeadFrame.Hair + Math.sign(Math.round(c.breeze) * c.facing) + 1];
         if (c.angry)
             eyes.texture = headTxs[HeadFrame.EyeAngry];
         else
