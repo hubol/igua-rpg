@@ -9,6 +9,8 @@ import {progress} from "../igua/data/progress";
 import {capitalBigKeyTextures} from "./capitalTemple";
 import {jukebox} from "../igua/jukebox";
 import {UnrealBlindMusic} from "../musics";
+import {container} from "../utils/pixi/container";
+import {game} from "../igua/game";
 
 export function UnrealBlind() {
     scene.backgroundColor = 0x002C38;
@@ -17,14 +19,18 @@ export function UnrealBlind() {
     const level = applyOgmoLevel(UnrealBlindArgs);
     jukebox.play(UnrealBlindMusic);
 
+    grid(32).tinted(0x004153).behind();
+    const gridf = grid(32).tinted(0x004153).show(scene.cameraStage);
+    gridf.mask = scene.terrainStage;
     scene.terrainStage.index += 3;
-    grid(32).tinted(0x004153).show(scene.terrainStage);
+    // Beware! Deranged hack. Pixi artificially sets renderable to false of mask objects. So I have to reset it every frame ^_^
+    container().withTicker(game.hudStage.ticker).withStep(() => scene.terrainStage.renderable = true).show();
     scene.gameObjectStage.withAsync(async () => {
         await sleep(1000);
         for (let i = 0; i < 5; i++)
             scene.gameObjectStage.withAsync(() => showSpikesForever(128 - 256 * i));
     });
-    bigKeyPiece(progress.flags.capital.bigKey, capitalBigKeyTextures[0], 'piece1').at(level.Key).show(scene.terrainStage);
+    bigKeyPiece(progress.flags.capital.bigKey, capitalBigKeyTextures[0], 'piece1').at(level.Key).ahead();
 }
 
 function grid(cell: number, width = scene.width, height = scene.height) {
@@ -52,7 +58,7 @@ async function showSpikesForever(x = 0) {
 
 async function show4Spikes(x: number) {
     for (let i = 0; i < 4; i++) {
-        spikeBounce().at(x + i * 16, 0).show(scene.terrainStage);
+        spikeBounce().at(x + i * 16, 0).show(scene.cameraStage);
         await sleep(40);
     }
 }
