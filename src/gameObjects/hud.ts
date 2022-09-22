@@ -25,15 +25,17 @@ export function hud()
             const max = derivedStats.maxHealth;
             const { life, heal, hurt } = healthbar(progress, progress.health, max, progress.health);
 
+            const f = Math.min(1, 256 / max);
+
             healthbarGfx.clear();
             healthbarGfx.beginFill(Color.Empty);
-            healthbarGfx.drawRect(0, 0, max, 16);
+            healthbarGfx.drawRect(0, 0, max * f, 16);
             healthbarGfx.beginFill(Color.Hurt);
-            healthbarGfx.drawRect(0, 0, hurt, 16);
+            healthbarGfx.drawRect(0, 0, hurt * f, 16);
             healthbarGfx.beginFill(Color.Heal);
-            healthbarGfx.drawRect(0, 0, heal, 16);
+            healthbarGfx.drawRect(0, 0, heal * f, 16);
             healthbarGfx.beginFill(progress.health <= 1 ? Color.Vulnerable : Color.Life);
-            healthbarGfx.drawRect(0, 0, Math.max(Math.sign(life), life), 16);
+            healthbarGfx.drawRect(0, 0, Math.max(Math.sign(life), life * f), 16);
         });
 
     const valuables = IguaText.Large("", { tint: 0x00ff00 })
@@ -44,7 +46,7 @@ export function hud()
         })
         .at(2, 15);
 
-    const poisoned = IguaText.Large("You are poisoned", { tint: 0x00ff00 })
+    const poisoned = IguaText.Large("", { tint: 0x00ff00 })
         .withStep(() => {
             poisoned.visible = progress.status.poison > 0;
             if (!poisoned.visible)
