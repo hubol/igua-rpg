@@ -1,6 +1,6 @@
 import {SharpClownHead, SharpClownLegs, SharpClownTail} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {Sprite} from "pixi.js";
+import {Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {hat} from "./hat";
 import {merge} from "../utils/object/merge";
@@ -12,12 +12,23 @@ import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {vnew} from "../utils/math/vector";
 import {newGravity} from "./utils/newGravity";
 import {wait} from "../cutscene/wait";
+import {clownHealth} from "./utils/clownUtils";
+import {player} from "./player";
+import {ClownHurt} from "../sounds";
+import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 
 export function clownSharp() {
+    const health = clownHealth(395);
+
+    const consts = {
+        recoveryFrames: 15,
+    }
+
     const automation = {
         facePlayer: true,
         lookAtPlayer: true,
     };
+
     const head = newHead()
         .withStep(() => {
             const ox = getOffsetFromPlayer(head).normalize().x;
@@ -34,11 +45,30 @@ export function clownSharp() {
 
     const body = container(legs, head);
     body.pivot.set(16, 33);
+
+    const hitbox = new Graphics().beginFill(0xff0000).drawRect(7, 10, 17, 12).hide().show(body);
+    let invulnerable = -1;
+
+    function handleDamage() {
+        if (player.collides(hitbox) && invulnerable <= 0) {
+            ClownHurt.play();
+            health.damage();
+            bouncePlayerOffDisplayObject(hitbox);
+            invulnerable = consts.recoveryFrames;
+        }
+
+        c.visible = invulnerable > 0 ? !c.visible : true;
+        invulnerable--;
+    }
+
+    function doPhysics() {
+        const r = gravity(0.5);
+        c.isOnGround = !!r.isOnGround;
+    }
+
     const c = merge(container(body), { isOnGround: false })
-        .withStep(() => {
-            const r = gravity(0.5);
-            c.isOnGround = !!r.isOnGround;
-        })
+        .withStep(handleDamage)
+        .withStep(doPhysics)
         .withAsync(async () => {
             while (true) {
                 await wait(() => c.isOnGround);
