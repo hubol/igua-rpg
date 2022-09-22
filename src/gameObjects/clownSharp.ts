@@ -1,6 +1,6 @@
 import {SharpClownHead, SharpClownLegs, SharpClownTail} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {Sprite} from "pixi.js";
+import {Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {hat} from "./hat";
 import {merge} from "../utils/object/merge";
@@ -9,6 +9,8 @@ import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {cyclic, lerp as nlerp} from "../utils/math/number";
 import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
+import {vnew} from "../utils/math/vector";
+import {newGravity} from "./utils/newGravity";
 
 export function clownSharp() {
     const automation = {
@@ -26,7 +28,18 @@ export function clownSharp() {
             legs.pedometer += 0.1;
         });
     const legs = newLegs().at(17, 24);
-    const c = container(legs, head);
+
+    const speed = vnew();
+
+    const body = container(legs, head);
+    body.pivot.set(16, 33);
+    const c = container(body)
+        .withStep(() => {
+            gravity(0.5);
+        });
+    const gravity = newGravity(c, speed, [0, -8], 7);
+
+    c.ext.isHatParent = true;
     return c;
 }
 
