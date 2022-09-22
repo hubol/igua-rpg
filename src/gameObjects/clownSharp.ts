@@ -16,7 +16,7 @@ import {ClownHurt} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 
 export function clownSharp() {
-    const health = clownHealth(395);
+    const health = clownHealth(390);
 
     const consts = {
         recoveryFrames: 15,
@@ -25,6 +25,8 @@ export function clownSharp() {
     const automation = {
         facePlayer: true,
         lookAtPlayer: true,
+        matchBreezeToHspeed: true,
+        autoExpression: true,
     };
 
     const head = newHead()
@@ -34,6 +36,12 @@ export function clownSharp() {
                 head.looking = Math.abs(ox) > 0.3 ? Math.sign(ox) : 0;
             if (automation.facePlayer && ox !== 0)
                 head.facing = Math.sign(ox);
+            if (automation.matchBreezeToHspeed)
+                head.breeze = Math.sign(c.speed.x);
+            if (automation.autoExpression) {
+                head.shouting = c.speed.y < 0 || timeSinceLastDamage < 20;
+                head.angry = timeSinceLastDamage < 25;
+            }
             legs.facing = head.facing;
             legs.pedometer += 0.1;
         });
@@ -44,29 +52,38 @@ export function clownSharp() {
 
     const hitbox = new Graphics().beginFill(0xff0000).drawRect(7, 10, 17, 12).hide().show(body);
     let invulnerable = -1;
+    let timeSinceLastDamage = 100;
 
     function handleDamage() {
         if (player.collides(hitbox) && invulnerable <= 0) {
+            timeSinceLastDamage = 0;
             ClownHurt.play();
             health.damage();
             bouncePlayerOffDisplayObject(hitbox);
+            const v = getOffsetFromPlayer(hitbox).normalize();
+            if (Math.abs(v.x) > 0.2)
+                c.speed.x += -3 * Math.sign(v.x);
             invulnerable = consts.recoveryFrames;
         }
 
         c.visible = invulnerable > 0 ? !c.visible : true;
         invulnerable--;
+        timeSinceLastDamage++;
+    }
+
+    function doPrePhysics() {
+        c.speed.x = approachLinear(c.speed.x, 0, 0.2);
     }
 
     const c = merge(container(body), {})
         .withStep(handleDamage)
+        .withStep(doPrePhysics)
         .withGravityAndWallResist([0, -8], 7, 0.5)
         .withAsync(async () => {
             while (true) {
                 await wait(() => c.isOnGround);
-                head.shouting = true;
                 c.speed.y = -5;
                 await wait(() => c.speed.y >= 0);
-                head.shouting = false;
                 await wait(() => c.isOnGround);
                 await sleep(1000);
             }
