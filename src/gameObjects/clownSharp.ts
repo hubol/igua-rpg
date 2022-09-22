@@ -1,4 +1,4 @@
-import {SharpClownHead} from "../textures";
+import {SharpClownHead, SharpClownLegs, SharpClownTail} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
@@ -7,7 +7,7 @@ import {merge} from "../utils/object/merge";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
-import { lerp as nlerp } from "../utils/math/number";
+import {cyclic, lerp as nlerp} from "../utils/math/number";
 import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
 
 export function clownSharp() {
@@ -22,8 +22,32 @@ export function clownSharp() {
                 head.looking = Math.abs(ox) > 0.3 ? Math.sign(ox) : 0;
             if (automation.facePlayer && ox !== 0)
                 head.facing = Math.sign(ox);
+            legs.facing = head.facing;
+            legs.pedometer += 0.1;
         });
-    const c = container(head);
+    const legs = newLegs().at(17, 24);
+    const c = container(legs, head);
+    return c;
+}
+
+function newLegs() {
+    const legs = Sprite.from(legsTxs[0]);
+    const tail = Sprite.from(tailTxs[0]).at(-10, -1);
+
+    let tailIndex = rng() * tailTxs.length;
+
+    const c = merge(container(tail, legs), { facing: 1, pedometer: 0, splits: false, tailSpeed: 0.1 })
+        .withStep(() => {
+            const img = c.splits ? 3 : Math.floor(cyclic(c.pedometer, 0, 3));
+            legs.texture = legsTxs[img];
+            c.scale.x = c.facing;
+            c.pivot.x = (Math.sign(c.facing - 1)) + 10;
+            c.pivot.y = img === 2 ? 1 : 0;
+
+            tailIndex += c.tailSpeed;
+            tail.texture = tailTxs[Math.floor(cyclic(tailIndex, 0, tailTxs.length))];
+        });
+
     return c;
 }
 
@@ -84,3 +108,6 @@ enum HeadFrame {
     Nose = 16,
     Hat = 17,
 }
+
+const legsTxs = subimageTextures(SharpClownLegs, { width: 20 });
+const tailTxs = subimageTextures(SharpClownTail, { width: 20 });

@@ -9,5 +9,5 @@ export function CapitalEntry() {
     scene.terrainColor = 0x40A020;
     const level = applyOgmoLevel(CapitalEntryArgs);
 
-    clownSharp().at([-130, -40].add(player)).show();
+    clownSharp().at([-130, -40 + 16].add(player)).show();
 }

@@ -163,6 +163,8 @@ export let RockCracks: PIXI.Texture;
 export let Rope: PIXI.Texture;
 export let RoseVase: PIXI.Texture;
 export let SharpClownHead: PIXI.Texture;
+export let SharpClownLegs: PIXI.Texture;
+export let SharpClownTail: PIXI.Texture;
 export let ShrunkenSalad: PIXI.Texture;
 export let SignNeonBar: PIXI.Texture;
 export let SignNeonInn: PIXI.Texture;
@@ -722,6 +724,12 @@ export function loadTexturesAsync()
     const SharpClownHeadPath = require("./images/sharp clown/head.png");
     loader.add(SharpClownHeadPath); 
 
+    const SharpClownLegsPath = require("./images/sharp clown/legs.png");
+    loader.add(SharpClownLegsPath); 
+
+    const SharpClownTailPath = require("./images/sharp clown/tail.png");
+    loader.add(SharpClownTailPath); 
+
     const ShrunkenSaladPath = require("./images/shrunken salad.png");
     loader.add(ShrunkenSaladPath); 
 
@@ -1097,6 +1105,8 @@ export function loadTexturesAsync()
             Rope = resources[RopePath]?.texture as PIXI.Texture;
             RoseVase = resources[RoseVasePath]?.texture as PIXI.Texture;
             SharpClownHead = resources[SharpClownHeadPath]?.texture as PIXI.Texture;
+            SharpClownLegs = resources[SharpClownLegsPath]?.texture as PIXI.Texture;
+            SharpClownTail = resources[SharpClownTailPath]?.texture as PIXI.Texture;
             ShrunkenSalad = resources[ShrunkenSaladPath]?.texture as PIXI.Texture;
             SignNeonBar = resources[SignNeonBarPath]?.texture as PIXI.Texture;
             SignNeonInn = resources[SignNeonInnPath]?.texture as PIXI.Texture;
