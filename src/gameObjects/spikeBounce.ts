@@ -4,14 +4,13 @@ import {player} from "./player";
 import {merge} from "../utils/object/merge";
 import {vnew} from "../utils/math/vector";
 import { VileSpikeLand } from "../sounds";
-import {clownVileDamage} from "./clownVile";
 import {scene} from "../igua/scene";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {getTouchedSolidNormal} from "./walls";
 
 const grav = 0.25;
 
-export function spikeBounce(damage = clownVileDamage.spike) {
+export function spikeBounce(damage = 50) {
     let bounced = false;
     const s = merge(Sprite.from(ClownSpikeBall), { speed: vnew() }).withStep(() => {
         if (mask.collides(player))
