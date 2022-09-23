@@ -17,6 +17,7 @@ import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {now} from "../utils/now";
 import {Force} from "../utils/types/force";
 import {getWorldPos} from "../igua/gameplay/getCenter";
+import {whiten} from "../utils/pixi/whiten";
 
 export function clownSharp() {
     const health = clownHealth(450);
@@ -104,7 +105,9 @@ export function clownSharp() {
                 c.speed.y = -3;
                 await wait(() => c.speed.y >= 0);
                 await wait(() => c.isOnGround);
+                armr.fork.visible = false;
                 await sleep(1000);
+                armr.fork.visible = true;
             }
         });
 
@@ -209,7 +212,7 @@ function newArm(right = true) {
     const fork = newFork();
     const start = [3, -8];
     const end = [11, 0];
-    const c = merge(container(g, fork), { pose: 0 })
+    const c = merge(container(g, fork), { pose: 0, fork })
         .withStep(() => {
            end.y = (c.pose < 0 ? 13 * c.pose : 8 * c.pose) + start.y;
            g.clear().lineStyle(2, 0xCD423F).moveTo(start.x, start.y).lineTo(end.x, end.y);
@@ -224,10 +227,23 @@ function newFork() {
     const s = Sprite.from(forkTxs[0]);
     const hitbox1 = new Graphics().hide().beginFill(0xff0000).drawRect(2, 2, 5, 5);
     const hitbox2 = new Graphics().at(0, 3).hide().beginFill(0xff0000).drawRect(2, 2, 5, 5);
-    const c = merge(container(s, hitbox1, hitbox2), { expanded: 0, hitboxes: [ hitbox1, hitbox2 ] })
+    const hitboxes = [ hitbox1, hitbox2 ];
+    let lastVisible = false;
+    const c = merge(container(s, hitbox1, hitbox2), { expanded: 0, damage: 20 })
         .withStep(() => {
+            const xscale = c.worldTransform.a;
+            if (c.visible && !lastVisible) {
+                c.expanded = 0;
+                white.factor = 1;
+            }
+            lastVisible = c.visible;
+            white.factor = Math.max(0, white.factor - 0.067);
+            c.expanded = approachLinear(c.expanded, 1, 0.05);
             s.texture = forkTxs[Math.floor(nlerp(0, forkTxs.length - 1, c.expanded))];
+            if (c.visible && c.expanded >= 0.9 && c.damage > 0 && player.collides(hitboxes))
+                c.damagePlayer(c.damage);
         });
+    const white = whiten(c);
 
     c.pivot.at(-4, -26).scale(-1);
 
