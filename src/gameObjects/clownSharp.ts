@@ -97,11 +97,11 @@ export function clownSharp() {
         .withStep(doAnimation)
         .withStep(handleDamage)
         .withStep(doPrePhysics)
-        .withGravityAndWallResist([0, -8], 7, 0.5)
+        .withGravityAndWallResist([0, -8], 7, 0.2)
         .withAsync(async () => {
             while (true) {
                 await wait(() => c.isOnGround);
-                c.speed.y = -5;
+                c.speed.y = -3;
                 await wait(() => c.speed.y >= 0);
                 await wait(() => c.isOnGround);
                 await sleep(1000);
