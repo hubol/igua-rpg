@@ -65,7 +65,7 @@ export function clownSharp() {
 
     function die() {
         const dropFifteen = drop(c.vsPlayerHitCount);
-        dieClown(c, dropFifteen && 15, [0, -16]);
+        dieClown(c, dropFifteen && 15, [0, -10]);
     }
 
     function handleDamage() {
@@ -114,13 +114,14 @@ export function clownSharp() {
 
     const armr = newArm().show(c);
     const arml = newArm(false).at(1, 0).show(c);
+    [armr, arml].forEach(x => x.damageSource(c));
 
     const stab = attack({ arm: armr })
         .withAsyncOnce(async ({ arm }) => {
             resetArms(1);
             await Promise.all([arm.pose().over(700), sleep(200).then(() => arm.fork.reveal().over(400))])
             c.speed.x = 3 * (arm === armr ? 1 : -1);
-            await Promise.all([arm.pose(0.2).over(120), arm.fork.rotate(90).over(180)]);
+            await Promise.all([arm.pose(0).over(120), arm.fork.rotate(90).over(180)]);
             await sleep(500);
         });
 
