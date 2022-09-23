@@ -12,20 +12,24 @@ import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
 import {ClownHurt} from "../sounds";
-import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
+import {bouncePlayerOffDisplayObject, knockbackPlayer} from "../igua/bouncePlayer";
 import {Force} from "../utils/types/force";
 import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
 import {whiten} from "../utils/pixi/whiten";
 import {attack, attackRunner} from "./attacks";
 import {smallPop} from "./smallPop";
+import {vnew} from "../utils/math/vector";
+
+const consts = {
+    recoveryFrames: 15,
+    damage: {
+        stab: 50,
+    }
+}
 
 export function clownSharp() {
     const health = clownHealth(450);
     const drop = clownDrop(1, 0.5, 0.3);
-
-    const consts = {
-        recoveryFrames: 15,
-    }
 
     const automation = {
         facePlayer: true,
@@ -109,6 +113,7 @@ export function clownSharp() {
             x.fork.visible = false;
             x.fork.angle = 0;
             x.fork.expanded = 0;
+            x.fork.damage = 0;
         });
     }
 
@@ -119,6 +124,7 @@ export function clownSharp() {
     const stab = attack({ arm: armr })
         .withAsyncOnce(async ({ arm }) => {
             resetArms(1);
+            arm.fork.damage = consts.damage.stab;
             await Promise.all([arm.pose().over(700), sleep(200).then(() => arm.fork.reveal().over(400))])
             c.speed.x = 3 * (arm === armr ? 1 : -1);
             await Promise.all([arm.pose(0).over(120), arm.fork.rotate(90).over(180)]);
@@ -265,9 +271,8 @@ function newFork() {
         return lerp(c, 'angle').to(angle);
     }
 
-    const c = merge(container(s, hitbox1, hitbox2), { expanded: 0, damage: 20, reveal, rotate })
+    const c = merge(container(s, hitbox1, hitbox2), { expanded: 0, damage: 0, reveal, rotate })
         .withStep(() => {
-            const xscale = c.worldTransform.a;
             if (c.visible && !lastVisible) {
                 c.expanded = 0;
                 white.factor = 1;
@@ -277,15 +282,22 @@ function newFork() {
             lastVisible = c.visible;
             white.factor = Math.max(0, white.factor - 0.067);
             s.texture = forkTxs[Math.floor(nlerp(0, forkTxs.length - 1, c.expanded))];
-            if (c.visible && c.expanded >= 0.9 && c.damage > 0 && player.collides(hitboxes))
-                c.damagePlayer(c.damage);
+            if (c.visible && c.expanded >= 0.9 && c.damage > 0 && player.collides(hitboxes)) {
+                if (c.damagePlayer(c.damage)) {
+                    const knock = v.at(getWorldCenter(hitbox1)).add(getWorldCenter(pivot), -1).normalize().scale(3);
+                    knockbackPlayer(knock);
+                }
+            }
         });
     const white = whiten(c);
 
     c.pivot.at(-4, -26).scale(-1);
+    const pivot = new Graphics().beginFill(0x0000ff).drawRect(c.pivot.x, c.pivot.y, 1, 1).hide().show(c);
 
     return c;
 }
+
+const v = vnew();
 
 const forkTxs = subimageTextures(SharpClownFork, { width: 10 });
 

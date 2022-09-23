@@ -5,13 +5,16 @@ import {DisplayObject, Rectangle} from "pixi.js";
 import {scene} from "./scene";
 
 export function bouncePlayer(self: Vector, factor = 3) {
+    const dir = player.vcpy().add(0, -8).add(self, -1).normalize().scale(factor);
+    knockbackPlayer(dir);
+    return dir;
+}
+
+export function knockbackPlayer(v: Vector) {
     player.hspeed = 0;
     player.engine.knockback.y = 0;
-
-    const dir = player.vcpy().add(0, -8).add(self, -1).normalize().scale(factor);
-    player.engine.knockback.x = dir.x;
-    player.vspeed = dir.y;
-    return dir;
+    player.engine.knockback.x = v.x;
+    player.vspeed = v.y;
 }
 
 export function bouncePlayerOffDisplayObject(d: DisplayObject, factor = 3) {
