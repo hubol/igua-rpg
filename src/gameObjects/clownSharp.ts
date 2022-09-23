@@ -14,7 +14,6 @@ import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
 import {ClownHurt} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
-import {getWorldBounds} from "../igua/gameplay/getCenter";
 import {now} from "../utils/now";
 
 export function clownSharp() {
@@ -32,22 +31,7 @@ export function clownSharp() {
         autoExpression: true,
     };
 
-    const head = newHead()
-        .withStep(() => {
-            const ox = getOffsetFromPlayer(head).normalize().x;
-            if (automation.lookAtPlayer)
-                head.looking = Math.abs(ox) > 0.3 ? Math.sign(ox) : 0;
-            if (automation.facePlayer && ox !== 0)
-                head.facing = Math.sign(ox);
-            if (automation.matchBreezeToHspeed)
-                head.breeze = Math.sign(c.speed.x);
-            if (automation.autoExpression) {
-                head.shouting = c.speed.y < 0 || timeSinceLastDamage < 20;
-                head.angry = timeSinceLastDamage < 25;
-            }
-            legs.facing = head.facing;
-            legs.pedometer += 0.1;
-        });
+    const head = newHead();
     const legs = newLegs().at(17, 24);
 
     const body = container(legs, head);
@@ -56,6 +40,23 @@ export function clownSharp() {
     const hitbox = new Graphics().beginFill(0xff0000).drawRect(7, 10, 17, 12).hide().show(body);
     let invulnerable = -1;
     let timeSinceLastDamage = 100;
+
+    function doAnimation() {
+        const ox = getOffsetFromPlayer(head).normalize().x;
+        if (automation.lookAtPlayer)
+            head.looking = Math.abs(ox) > 0.3 ? Math.sign(ox) : 0;
+        if (automation.facePlayer && ox !== 0)
+            head.facing = Math.sign(ox);
+        if (automation.matchBreezeToHspeed)
+            head.breeze = Math.sign(c.speed.x);
+        if (automation.autoExpression) {
+            head.shouting = c.speed.y < 0 || timeSinceLastDamage < 20;
+            head.angry = timeSinceLastDamage < 25;
+        }
+        head.x = Math.sin(Math.max(0, 30 - timeSinceLastDamage));
+        legs.facing = head.facing;
+        legs.pedometer += 0.1;
+    }
 
     function die() {
         const dropFifteen = drop(c.vsPlayerHitCount);
@@ -89,6 +90,7 @@ export function clownSharp() {
     }
 
     const c = merge(container(body), {})
+        .withStep(doAnimation)
         .withStep(handleDamage)
         .withStep(doPrePhysics)
         .withGravityAndWallResist([0, -8], 7, 0.5)
