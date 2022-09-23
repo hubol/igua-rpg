@@ -112,26 +112,30 @@ export function clownSharp() {
         });
     }
 
-    const stab = attack({})
-        .withAsyncOnce(async () => {
+    const armr = newArm().show(c);
+    const arml = newArm(false).at(1, 0).show(c);
+
+    const stab = attack({ arm: armr })
+        .withAsyncOnce(async ({ arm }) => {
             resetArms(1);
-            await Promise.all([armr.pose().over(700), sleep(200).then(() => armr.fork.reveal().over(400))])
-            c.speed.x = 3;
-            await Promise.all([armr.pose(0.2).over(120), armr.fork.rotate(90).over(180)]);
+            await Promise.all([arm.pose().over(700), sleep(200).then(() => arm.fork.reveal().over(400))])
+            c.speed.x = 3 * (arm === armr ? 1 : -1);
+            await Promise.all([arm.pose(0.2).over(120), arm.fork.rotate(90).over(180)]);
             await sleep(500);
         });
 
+    function stabTowardsPlayer() {
+        return stab({ arm: getOffsetFromPlayer(c).x > 0 ? armr : arml });
+    }
+
     async function doAs() {
         while (true) {
-            await attacks.run(stab());
+            await attacks.run(stabTowardsPlayer());
             await sleep(1000);
         }
     }
 
     setTimeout(() => c.withAsync(doAs));
-
-    const armr = newArm().show(c);
-    const arml = newArm(false).at(1, 0).show(c);
 
     c.ext.isHatParent = true;
     return c;
