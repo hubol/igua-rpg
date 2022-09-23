@@ -278,7 +278,7 @@ function newFork() {
                 white.factor = 1;
             }
             else if (!c.visible && lastVisible)
-                smallPop(12).at(getWorldCenter(c));
+                smallPop(8).at(getWorldCenter(pivot));
             lastVisible = c.visible;
             white.factor = Math.max(0, white.factor - 0.067);
             s.texture = forkTxs[Math.floor(nlerp(0, forkTxs.length - 1, c.expanded))];
@@ -289,6 +289,7 @@ function newFork() {
                 }
             }
         });
+    c.visible = false;
     const white = whiten(c);
 
     c.pivot.at(-4, -26).scale(-1);
