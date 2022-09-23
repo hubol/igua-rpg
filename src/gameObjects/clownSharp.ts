@@ -15,6 +15,8 @@ import {player} from "./player";
 import {ClownHurt} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {now} from "../utils/now";
+import {Force} from "../utils/types/force";
+import {getWorldPos} from "../igua/gameplay/getCenter";
 
 export function clownSharp() {
     const health = clownHealth(450);
@@ -37,7 +39,9 @@ export function clownSharp() {
     const body = container(legs, head);
     body.pivot.set(16, 33);
 
-    const hitbox = new Graphics().beginFill(0xff0000).drawRect(7, 10, 17, 12).hide().show(body);
+    const hitbox1 = new Graphics().beginFill(0xff0000).drawRect(7, 10, 17, 12).hide().show(body);
+    const hitbox2 = new Graphics().beginFill(0xff0000).drawRect(13, 22, 6, 10).hide().show(body);
+    const hitboxes = [ hitbox1, hitbox2 ];
     let invulnerable = -1;
     let timeSinceLastDamage = 100;
 
@@ -64,16 +68,16 @@ export function clownSharp() {
     }
 
     function handleDamage() {
-        if (player.collides(hitbox) && invulnerable <= 0) {
+        if (player.collides(hitboxes) && invulnerable <= 0) {
             timeSinceLastDamage = 0;
             ClownHurt.play();
 
             const phspeed = player.hspeed;
-            bouncePlayerOffDisplayObject(hitbox);
+            bouncePlayerOffDisplayObject(hitbox1);
             if (health.damage())
                 return die();
 
-            const v = getOffsetFromPlayer(hitbox).normalize();
+            const v = getOffsetFromPlayer(hitbox1).normalize();
             c.speed.x += -1 * Math.sign(v.x);
             if (Math.abs(v.x) > 0.2)
                 c.speed.x += Math.min(Math.abs(phspeed * 0.6), 3) * Math.sign(phspeed);
@@ -174,7 +178,16 @@ function newHead() {
 
     hat(Sprite.from(headTxs[HeadFrame.Hat])).show(c);
 
+    let lastWorldPosY = Force<number>();
+
     c.withStep(() => {
+        const wpy = getWorldPos(c).y;
+        if (lastWorldPosY !== undefined) {
+            const target = wpy < lastWorldPosY ? 2 : 0;
+            mullet.y = approachLinear(mullet.y, target, 0.1);
+        }
+        lastWorldPosY = wpy;
+
         face.scale.x = Math.sign(c.facing) || 1;
         headAndHair.scale.x = face.scale.x;
         headAndHair.x = Math.sign(headAndHair.scale.x - 1) * -33;
