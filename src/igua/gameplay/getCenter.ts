@@ -21,8 +21,8 @@ export function getWorldCenter(d: DisplayObject) {
     return getCenter(d).add(scene.camera);
 }
 
-export function getWorldBounds(d: DisplayObject) {
-    return d.getBounds(false, r).add(scene.camera);
+export function getWorldBounds(d: DisplayObject): Rectangle {
+    return <Rectangle>d.getBounds(false, r).add(scene.camera);
 }
 
 const v = vnew();

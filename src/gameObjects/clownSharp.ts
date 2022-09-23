@@ -1,4 +1,4 @@
-import {SharpClownHead, SharpClownLegs, SharpClownTail} from "../textures";
+import {SharpClownFork, SharpClownHead, SharpClownLegs, SharpClownTail} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
@@ -14,6 +14,8 @@ import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
 import {ClownHurt} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
+import {getWorldBounds} from "../igua/gameplay/getCenter";
+import {now} from "../utils/now";
 
 export function clownSharp() {
     const health = clownHealth(450);
@@ -100,6 +102,14 @@ export function clownSharp() {
             }
         });
 
+    const armr = newArm().show(c);
+    const arml = newArm(false).at(1, 0).show(c);
+
+    c.withStep(() => {
+        armr.pose = Math.sin(now.s * Math.PI * 2);
+        arml.pose = Math.sin(now.s * Math.PI * 2 + Math.PI / 2);
+    })
+
     c.ext.isHatParent = true;
     return c;
 }
@@ -177,6 +187,39 @@ function newHead() {
 
     return c;
 }
+
+function newArm(right = true) {
+    const g = new Graphics();
+
+    const fork = newFork();
+    const start = [3, -8];
+    const end = [11, 0];
+    const c = merge(container(g, fork), { pose: 0 })
+        .withStep(() => {
+           end.y = (c.pose < 0 ? 13 * c.pose : 8 * c.pose) + start.y;
+           g.clear().lineStyle(2, 0xCD423F).moveTo(start.x, start.y).lineTo(end.x, end.y);
+           fork.at(end);
+           c.scale.x = right ? 1 : -1;
+        });
+
+    return c;
+}
+
+function newFork() {
+    const s = Sprite.from(forkTxs[0]);
+    const hitbox1 = new Graphics().hide().beginFill(0xff0000).drawRect(2, 2, 5, 5);
+    const hitbox2 = new Graphics().at(0, 3).hide().beginFill(0xff0000).drawRect(2, 2, 5, 5);
+    const c = merge(container(s, hitbox1, hitbox2), { expanded: 0, hitboxes: [ hitbox1, hitbox2 ] })
+        .withStep(() => {
+            s.texture = forkTxs[Math.floor(nlerp(0, forkTxs.length - 1, c.expanded))];
+        });
+
+    c.pivot.at(-4, -26).scale(-1);
+
+    return c;
+}
+
+const forkTxs = subimageTextures(SharpClownFork, { width: 10 });
 
 const headTxs = subimageTextures(SharpClownHead, { width: 30 });
 
