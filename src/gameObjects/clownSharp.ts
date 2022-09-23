@@ -17,7 +17,7 @@ import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 
 export function clownSharp() {
     const health = clownHealth(450);
-    const drop = clownDrop(0.9, 0.4, 0.3);
+    const drop = clownDrop(1, 0.5, 0.3);
 
     const consts = {
         recoveryFrames: 15,
@@ -64,13 +64,16 @@ export function clownSharp() {
         if (player.collides(hitbox) && invulnerable <= 0) {
             timeSinceLastDamage = 0;
             ClownHurt.play();
+
+            const phspeed = player.hspeed;
             bouncePlayerOffDisplayObject(hitbox);
             if (health.damage())
                 return die();
 
             const v = getOffsetFromPlayer(hitbox).normalize();
+            c.speed.x += -1 * Math.sign(v.x);
             if (Math.abs(v.x) > 0.2)
-                c.speed.x += -3 * Math.sign(v.x);
+                c.speed.x += Math.min(Math.abs(phspeed * 0.6), 3) * Math.sign(phspeed);
             invulnerable = consts.recoveryFrames;
         }
 
