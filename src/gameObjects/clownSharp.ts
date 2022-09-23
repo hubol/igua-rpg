@@ -9,15 +9,15 @@ import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
-import {wait} from "../cutscene/wait";
 import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
 import {ClownHurt} from "../sounds";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
-import {now} from "../utils/now";
 import {Force} from "../utils/types/force";
-import {getWorldPos} from "../igua/gameplay/getCenter";
+import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
 import {whiten} from "../utils/pixi/whiten";
+import {attack, attackRunner} from "./attacks";
+import {smallPop} from "./smallPop";
 
 export function clownSharp() {
     const health = clownHealth(450);
@@ -98,26 +98,40 @@ export function clownSharp() {
         .withStep(doAnimation)
         .withStep(handleDamage)
         .withStep(doPrePhysics)
-        .withGravityAndWallResist([0, -8], 7, 0.2)
-        .withAsync(async () => {
-            while (true) {
-                await wait(() => c.isOnGround);
-                c.speed.y = -3;
-                await wait(() => c.speed.y >= 0);
-                await wait(() => c.isOnGround);
-                armr.fork.visible = false;
-                await sleep(1000);
-                armr.fork.visible = true;
-            }
+        .withGravityAndWallResist([0, -8], 7, 0.2);
+
+    const attacks = attackRunner().show(c);
+
+    function resetArms(pose = 0) {
+        [arml, armr].forEach(x => {
+            x.poseUnit = pose;
+            x.visible = false;
+            x.fork.visible = false;
+            x.fork.angle = 0;
+            x.fork.expanded = 0;
         });
+    }
+
+    const stab = attack({})
+        .withAsyncOnce(async () => {
+            resetArms(1);
+            await Promise.all([armr.pose().over(700), sleep(200).then(() => armr.fork.reveal().over(400))])
+            c.speed.x = 3;
+            await Promise.all([armr.pose(0.2).over(120), armr.fork.rotate(90).over(180)]);
+            await sleep(500);
+        });
+
+    async function doAs() {
+        while (true) {
+            await attacks.run(stab());
+            await sleep(1000);
+        }
+    }
+
+    setTimeout(() => c.withAsync(doAs));
 
     const armr = newArm().show(c);
     const arml = newArm(false).at(1, 0).show(c);
-
-    c.withStep(() => {
-        armr.pose = Math.sin(now.s * Math.PI * 2);
-        arml.pose = Math.sin(now.s * Math.PI * 2 + Math.PI / 2);
-    })
 
     c.ext.isHatParent = true;
     return c;
@@ -212,9 +226,15 @@ function newArm(right = true) {
     const fork = newFork();
     const start = [3, -8];
     const end = [11, 0];
-    const c = merge(container(g, fork), { pose: 0, fork })
+
+    function pose(target = -1) {
+        c.visible = true;
+        return lerp(c, 'poseUnit').to(target);
+    }
+
+    const c = merge(container(g, fork), { poseUnit: 0, fork, pose })
         .withStep(() => {
-           end.y = (c.pose < 0 ? 13 * c.pose : 8 * c.pose) + start.y;
+           end.y = (c.poseUnit < 0 ? 13 * c.poseUnit : 8 * c.poseUnit) + start.y;
            g.clear().lineStyle(2, 0xCD423F).moveTo(start.x, start.y).lineTo(end.x, end.y);
            fork.at(end);
            c.scale.x = right ? 1 : -1;
@@ -229,16 +249,28 @@ function newFork() {
     const hitbox2 = new Graphics().at(0, 3).hide().beginFill(0xff0000).drawRect(2, 2, 5, 5);
     const hitboxes = [ hitbox1, hitbox2 ];
     let lastVisible = false;
-    const c = merge(container(s, hitbox1, hitbox2), { expanded: 0, damage: 20 })
+
+    function reveal() {
+        c.visible = true;
+        return lerp(c, 'expanded').to(1);
+    }
+
+    function rotate(angle: number) {
+        c.visible = true;
+        return lerp(c, 'angle').to(angle);
+    }
+
+    const c = merge(container(s, hitbox1, hitbox2), { expanded: 0, damage: 20, reveal, rotate })
         .withStep(() => {
             const xscale = c.worldTransform.a;
             if (c.visible && !lastVisible) {
                 c.expanded = 0;
                 white.factor = 1;
             }
+            else if (!c.visible && lastVisible)
+                smallPop(12).at(getWorldCenter(c));
             lastVisible = c.visible;
             white.factor = Math.max(0, white.factor - 0.067);
-            c.expanded = approachLinear(c.expanded, 1, 0.05);
             s.texture = forkTxs[Math.floor(nlerp(0, forkTxs.length - 1, c.expanded))];
             if (c.visible && c.expanded >= 0.9 && c.damage > 0 && player.collides(hitboxes))
                 c.damagePlayer(c.damage);
