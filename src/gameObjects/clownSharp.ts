@@ -47,13 +47,30 @@ export function clownSharp() {
     const hitbox1 = new Graphics().beginFill(0xff0000).drawRect(7, 10, 17, 12).hide().show(body);
     const hitbox2 = new Graphics().beginFill(0xff0000).drawRect(13, 22, 6, 10).hide().show(body);
     const hitboxes = [ hitbox1, hitbox2 ];
+
     let invulnerable = -1;
     let timeSinceLastDamage = 100;
+    let timeSinceLastArmLift = 100;
+    let prevMinArmPose = 1;
 
     function doAnimation() {
-        const ox = getOffsetFromPlayer(head).normalize().x;
-        if (automation.lookAtPlayer)
+        const minArmPose = Math.min(armr.poseUnit, arml.poseUnit);
+        if (minArmPose < prevMinArmPose)
+            timeSinceLastArmLift = 0;
+        prevMinArmPose = minArmPose;
+
+        head.face.y = timeSinceLastArmLift < 10 ? -1 : 0;
+
+        timeSinceLastArmLift++;
+
+        const off = getOffsetFromPlayer(head);
+        const rox = off.x;
+        const ox = off.normalize().x;
+        if (automation.lookAtPlayer) {
             head.looking = Math.abs(ox) > 0.3 ? Math.sign(ox) : 0;
+            const tfx = Math.abs(rox) > 64 ? head.looking : 0;
+            head.face.x = approachLinear(head.face.x, tfx, 0.05);
+        }
         if (automation.facePlayer && ox !== 0)
             head.facing = Math.sign(ox);
         if (automation.matchBreezeToHspeed)
@@ -180,7 +197,7 @@ function newLegs() {
 }
 
 function newHead() {
-    const c = merge(container(), { facing: 1, looking: 0, breeze: 0, angry: false, shouting: false, blinkUnit: 0 } )
+    const c = merge(container(), { face: vnew(), facing: 1, looking: 0, breeze: 0, angry: false, shouting: false, blinkUnit: 0 } )
         .withAsync(async () => {
             await sleep(500 + rng.int(500));
             while (true) {
@@ -200,9 +217,10 @@ function newHead() {
     const nose = Sprite.from(headTxs[HeadFrame.Nose]);
 
     const headAndHair = container(mullet, head, hair).show(c, 0);
-    const face = container(mouth, nose).show(c);
-    face.pivot.x = 17;
-    face.x = face.pivot.x;
+    const mouthnose = container(mouth, nose).show(c);
+    mouthnose.pivot.x = 17;
+
+    const face = [ eyes, eyelids ];
 
     hat(Sprite.from(headTxs[HeadFrame.Hat])).show(c);
 
@@ -216,8 +234,8 @@ function newHead() {
         }
         lastWorldPosY = wpy;
 
-        face.scale.x = Math.sign(c.facing) || 1;
-        headAndHair.scale.x = face.scale.x;
+        mouthnose.scale.x = Math.sign(c.facing) || 1;
+        headAndHair.scale.x = mouthnose.scale.x;
         headAndHair.x = Math.sign(headAndHair.scale.x - 1) * -33;
         hair.texture = headTxs[HeadFrame.Hair + Math.sign(Math.round(c.breeze) * c.facing) + 1];
         if (c.angry)
@@ -226,6 +244,9 @@ function newHead() {
             eyes.texture = headTxs[HeadFrame.EyeDefault + Math.sign(c.looking) + 1];
         mouth.texture = headTxs[HeadFrame.Mouth + (c.shouting ? 1 : 0)];
         eyelids.texture = headTxs[Math.floor(nlerp(HeadFrame.EyelidsOpen, HeadFrame.EyelidsClosed, c.blinkUnit))];
+        face.forEach(x => x.at(c.face));
+        mouthnose.x = mouthnose.pivot.x + c.face.x;
+        mouthnose.y = c.face.y;
     });
 
     return c;
