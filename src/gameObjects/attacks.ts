@@ -2,23 +2,11 @@ import {defaults} from "../utils/object/defaults";
 import { merge } from "../utils/object/merge";
 import {container} from "../utils/pixi/container";
 import {Container, DisplayObject} from "pixi.js";
-import {wait} from "../cutscene/wait";
 
 export function attackRunner() {
-    const queue: DisplayObject[] = [];
     const api = {
-        // clear() {
-        //     queue.length = 0;
-        // },
-        // push(d: DisplayObject) {
-        //     queue.push(d);
-        // },
-        // reset(d: DisplayObject) {
-        //     api.clear();
-        //     c.removeAllChildren();
-        //     d.show(c);
-        // },
         run(d: DisplayObject) {
+            this.hurtPlayerThisAttack = false;
             return new Promise<void>(r => d.show(c).on('removed', r))
         },
         get current() {
@@ -26,14 +14,16 @@ export function attackRunner() {
         },
         get isEmpty() {
             return c.children.length === 0;
-        }
+        },
+        hurtPlayerThisAttack: false
     };
+    let lastVsPlayerHitCount = 0;
+
     const c = container()
-        .withAsync(async () => {
-            while (true) {
-                await wait(() => c.children.length === 0 && queue.length > 0);
-                const d = queue.shift()!;
-                d.show(c);
+        .withStep(() => {
+            if (c.parent.vsPlayerHitCount !== lastVsPlayerHitCount) {
+                lastVsPlayerHitCount = c.parent.vsPlayerHitCount;
+                api.hurtPlayerThisAttack = true;
             }
         });
     return merge(c, api);
