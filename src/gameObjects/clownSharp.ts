@@ -154,7 +154,7 @@ export function clownSharp() {
             let count = 0;
             while (c.stamina > 0 && hSignToPlayer(c) === sign) {
                 await sleep(250);
-                c.stamina -= 40;
+                c.stamina -= 35;
                 arm.fork.expanded = 0.5;
                 await Promise.all([
                     arm.pose().over(300),
