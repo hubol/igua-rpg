@@ -9,7 +9,9 @@ export function attackRunner() {
         run(d: DisplayObject) {
             this.hurtPlayerThisAttack = false;
             return new Promise<void>((rs, rj) => d.show(c).on('removed', () => {
-                if (!IguaZone.cancellationToken?.rejectIfCancelled(rj))
+                if (c.destroyed)
+                    IguaZone.cancellationToken?.rejectIfCancelled(rj);
+                else
                     rs();
             }))
         },
