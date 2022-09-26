@@ -19,6 +19,7 @@ import {whiten} from "../utils/pixi/whiten";
 import {attack, attackRunner} from "./attacks";
 import {smallPop} from "./smallPop";
 import {vnew} from "../utils/math/vector";
+import {Invulnerable} from "../pixins/invulnerable";
 
 const consts = {
     recoveryFrames: 15,
@@ -48,7 +49,6 @@ export function clownSharp() {
     const hitbox2 = new Graphics().beginFill(0xff0000).drawRect(13, 22, 6, 10).hide().show(body);
     const hitboxes = [ hitbox1, hitbox2 ];
 
-    let invulnerable = -1;
     let timeSinceLastDamage = 100;
     let timeSinceLastArmLift = 100;
     let prevMinArmPose = 1;
@@ -90,7 +90,7 @@ export function clownSharp() {
     }
 
     function handleDamage() {
-        if (player.collides(hitboxes) && invulnerable <= 0) {
+        if (player.collides(hitboxes) && c.invulnerable <= 0) {
             timeSinceLastDamage = 0;
             ClownHurt.play();
 
@@ -103,11 +103,9 @@ export function clownSharp() {
             c.speed.x += -1 * Math.sign(v.x);
             if (Math.abs(v.x) > 0.2)
                 c.speed.x += Math.min(Math.abs(phspeed * 0.6), 3) * Math.sign(phspeed);
-            invulnerable = consts.recoveryFrames;
+            c.invulnerable = consts.recoveryFrames;
         }
 
-        c.visible = invulnerable > 0 ? !c.visible : true;
-        invulnerable--;
         timeSinceLastDamage++;
     }
 
@@ -116,6 +114,7 @@ export function clownSharp() {
     }
 
     const c = merge(container(body), {})
+        .withPixin(Invulnerable())
         .withStep(doAnimation)
         .withStep(handleDamage)
         .withStep(doPrePhysics)

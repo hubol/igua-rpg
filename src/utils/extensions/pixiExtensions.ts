@@ -6,6 +6,7 @@ import {Container, filters, Rectangle} from "pixi.js";
 import {toHexColorString} from "../toHexColorString";
 import {colord} from "colord";
 import {CancellationToken} from "../promise/cancellationToken";
+import {PixinType} from "../pixi/pixin";
 
 declare global {
     namespace PIXI {
@@ -15,6 +16,7 @@ declare global {
             useNearestFiltering(): this;
             withStep(step: () => void): this;
             withAsync(async: PromiseFn): this;
+            withPixin<TValues>(pixin: PixinType<this, TValues>): this & TValues;
             at(vector: Vector): this;
             at(x: number, y: number): this;
             hide(): this;
@@ -249,6 +251,11 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
         configurable: true,
     },
 });
+
+PIXI.DisplayObject.prototype.withPixin = function (pixin) {
+    pixin(this);
+    return this as any;
+}
 
 PIXI.Sprite.prototype.centerAnchor = function () {
     this.anchor.set(0.5, 0.5);
