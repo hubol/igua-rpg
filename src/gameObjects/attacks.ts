@@ -2,12 +2,16 @@ import {defaults} from "../utils/object/defaults";
 import { merge } from "../utils/object/merge";
 import {container} from "../utils/pixi/container";
 import {Container, DisplayObject} from "pixi.js";
+import {IguaZone} from "../cutscene/runInIguaZone";
 
 export function attackRunner() {
     const api = {
         run(d: DisplayObject) {
             this.hurtPlayerThisAttack = false;
-            return new Promise<void>(r => d.show(c).on('removed', r))
+            return new Promise<void>((rs, rj) => d.show(c).on('removed', () => {
+                if (!IguaZone.cancellationToken?.rejectIfCancelled(rj))
+                    rs();
+            }))
         },
         get current() {
             return c.children[0]?.ext.__src;
