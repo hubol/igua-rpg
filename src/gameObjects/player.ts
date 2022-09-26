@@ -123,6 +123,8 @@ function createPlayer(behavior = true)
 
                 conditionallyGotoDeathScreen();
 
+                if (player.isDead)
+                    return;
                 return true;
             },
             get strength() {
