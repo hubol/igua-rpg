@@ -8,7 +8,7 @@ import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
-import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
+import {getOffsetFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
 import {ClownHurt} from "../sounds";
@@ -20,6 +20,8 @@ import {attack, attackRunner} from "./attacks";
 import {smallPop} from "./smallPop";
 import {vnew} from "../utils/math/vector";
 import {Invulnerable} from "../pixins/invulnerable";
+import {Stamina} from "../pixins/stamina";
+import {wait} from "../cutscene/wait";
 
 const consts = {
     recoveryFrames: 15,
@@ -115,6 +117,7 @@ export function clownSharp() {
 
     const c = merge(container(body), {})
         .withPixin(Invulnerable())
+        .withPixin(Stamina())
         .withStep(doAnimation)
         .withStep(handleDamage)
         .withStep(doPrePhysics)
@@ -139,22 +142,41 @@ export function clownSharp() {
 
     const stab = attack({ arm: armr })
         .withAsyncOnce(async ({ arm }) => {
+            const sign = arm === armr ? 1 : -1;
+
             resetArms(1);
+            c.stamina -= 40;
             arm.fork.damage = consts.damage.stab;
             await Promise.all([arm.pose().over(700), sleep(200).then(() => arm.fork.reveal().over(400))])
             c.speed.x = 3 * (arm === armr ? 1 : -1);
             await Promise.all([arm.pose(0).over(120), arm.fork.rotate(90).over(180)]);
+
+            let count = 0;
+            while (c.stamina > 0 && hSignToPlayer(c) === sign) {
+                await sleep(250);
+                c.stamina -= 40;
+                arm.fork.expanded = 0.5;
+                await Promise.all([
+                    arm.pose().over(300),
+                    arm.fork.rotate(0).over(300),
+                    sleep(100).then(() => arm.fork.reveal().over(200))])
+                if (++count > 1)
+                    c.speed.y = -2;
+                c.speed.x = 4 * (arm === armr ? 1 : -1);
+                await Promise.all([arm.pose(0).over(100), arm.fork.rotate(90).over(140)]);
+            }
+
             await sleep(500);
         });
 
     function stabTowardsPlayer() {
-        return stab({ arm: getOffsetFromPlayer(c).x > 0 ? armr : arml });
+        return stab({ arm: hSignToPlayer(c) > 0 ? armr : arml });
     }
 
     async function doAs() {
         while (true) {
+            await wait(() => c.stamina > 0);
             await attacks.run(stabTowardsPlayer());
-            await sleep(1000);
         }
     }
 
