@@ -26,7 +26,7 @@ export function playerPuppetArgs() {
     return makeIguanaPuppetArgsFromLooks(progress.looks);
 }
 
-function playerPuppet() {
+export function playerPuppet() {
     const puppet = iguanaPuppet(playerPuppetArgs());
 
     const defaultCollides = puppet.collides;
