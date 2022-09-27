@@ -8,7 +8,7 @@ import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
-import {getOffsetFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
+import {distFromPlayer, getOffsetFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {clownDrop, clownDropSpawn, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
 import {ClownHurt} from "../sounds";
@@ -22,11 +22,15 @@ import {vnew} from "../utils/math/vector";
 import {Invulnerable} from "../pixins/invulnerable";
 import {Stamina} from "../pixins/stamina";
 import {wait} from "../cutscene/wait";
+import {Dithered} from "../pixins/dithered";
+import {empBlast} from "./empBlast";
+import {scene} from "../igua/scene";
 
 const consts = {
     recoveryFrames: 15,
     damage: {
         stab: 50,
+        empBlast: 88,
     }
 }
 
@@ -137,12 +141,15 @@ export function clownSharp() {
             x.fork.angle = 0;
             x.fork.expanded = 0;
             x.fork.damage = 0;
+            x.fork.glowUnit = 0;
         });
     }
 
     const armr = newArm().show(c);
     const arml = newArm(false).at(1, 0).show(c);
-    [armr, arml].forEach(x => x.damageSource(c));
+    const arms = [arml, armr];
+    const forks = arms.map(x => x.fork);
+    arms.forEach(x => x.damageSource(c));
 
     const stab = attack({ arm: armr })
         .withAsyncOnce(async ({ arm }) => {
@@ -173,6 +180,50 @@ export function clownSharp() {
             await sleep(500);
         });
 
+    const upCloseSlam = attack({})
+        .withAsyncOnce(async () => {
+            resetArms(1);
+            forks.forEach(x => x.visible = true);
+
+            const raise = arms.flatMap(arm => [
+                arm.pose(-0.75).over(1000),
+                arm.fork.reveal(0.75).over(1000),
+                arm.fork.glow(1).over(1000)
+            ]);
+
+            await Promise.all(raise);
+            await sleep(250);
+
+            const raise2 = arms.flatMap(arm => [
+                arm.pose(-1).over(333),
+                arm.fork.reveal(1).over(333)
+            ]);
+
+            await Promise.all(raise2);
+            await sleep(125);
+
+            const slam = arms.flatMap(arm => [
+                arm.pose(1).over(200),
+                arm.fork.rotate(90).over(150)
+            ]);
+
+            await Promise.all(slam);
+            head.hat.bounce();
+
+            forks.forEach(x => x.glowUnit = 0);
+            c.opaqueTint = 0x0D1C7C;
+            const blast = empBlast(80, 0, consts.damage.empBlast, 1000)
+                .damageSource(c)
+                .at([0, -8].add(c))
+                .show(scene.gameObjectStage, 0);
+
+            await wait(() => blast.destroyed);
+            c.stamina -= 100;
+            c.filters = [];
+            // @ts-ignore
+            delete c.__opaqueTintFilter;
+        });
+
     function stabTowardsPlayer() {
         return stab({ arm: hSignToPlayer(c) > 0 ? armr : arml });
     }
@@ -180,7 +231,10 @@ export function clownSharp() {
     async function doAs() {
         while (true) {
             await wait(() => c.stamina > 0);
-            await attacks.run(stabTowardsPlayer());
+            if (distFromPlayer(c) < 80 && c.stamina > 40)
+                await attacks.run(upCloseSlam());
+            else
+                await attacks.run(stabTowardsPlayer());
         }
     }
 
@@ -247,7 +301,7 @@ function newHead() {
 
     const face = [ eyes, eyelids ];
 
-    hat(Sprite.from(headTxs[HeadFrame.Hat])).show(c);
+    const theHat = hat(Sprite.from(headTxs[HeadFrame.Hat])).show(c);
 
     let lastWorldPosY = Force<number>();
 
@@ -274,7 +328,7 @@ function newHead() {
         mouthnose.y = c.face.y;
     });
 
-    return c;
+    return merge(c, { hat: theHat });
 }
 
 function newArm(right = true) {
@@ -307,9 +361,9 @@ function newFork() {
     const hitboxes = [ hitbox1, hitbox2 ];
     let lastVisible = false;
 
-    function reveal() {
+    function reveal(target = 1) {
         c.visible = true;
-        return lerp(c, 'expanded').to(1);
+        return lerp(c, 'expanded').to(target);
     }
 
     function rotate(angle: number) {
@@ -317,7 +371,30 @@ function newFork() {
         return lerp(c, 'angle').to(angle);
     }
 
-    const c = merge(container(s, hitbox1, hitbox2), { expanded: 0, damage: 0, reveal, rotate })
+    function glow(factor: number) {
+        return lerp(c, 'glowUnit').to(factor);
+    }
+
+    const glowGfx = new Graphics()
+        .beginFill(0xFF3D87)
+        .drawCircle(0, 0, 10)
+        .withStep(() => {
+            glowGfx.at(4, nlerp(14, 6, c.expanded));
+            glowGfx.dither = c.glowUnit;
+        })
+        .withPixin(Dithered({ dither: 0 }));
+    glowGfx.alpha = 0.75;
+
+    const glowGfxBack = new Graphics()
+        .beginFill(0xFF6DB7)
+        .drawCircle(0, 0, 14)
+        .withStep(() => {
+            glowGfxBack.at(glowGfx);
+            glowGfxBack.dither = glowGfx.dither - 0.5;
+        })
+        .withPixin(Dithered({ dither: 0 }));
+
+    const c = merge(container(glowGfxBack, glowGfx, s, hitbox1, hitbox2), { expanded: 0, damage: 0, reveal, rotate, glowUnit: 0, glow })
         .withStep(() => {
             if (c.visible && !lastVisible) {
                 c.expanded = 0;
@@ -335,6 +412,7 @@ function newFork() {
                 }
             }
         });
+
     c.visible = false;
     const white = whiten(c);
 

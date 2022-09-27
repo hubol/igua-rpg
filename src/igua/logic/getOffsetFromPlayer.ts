@@ -13,3 +13,7 @@ export function hSignToPlayer(src: DisplayObject) {
 export function hDistFromPlayer(src: DisplayObject) {
     return Math.abs(getOffsetFromPlayer(src).x);
 }
+
+export function distFromPlayer(src: DisplayObject) {
+    return getOffsetFromPlayer(src).vlength;
+}
