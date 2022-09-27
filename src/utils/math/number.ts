@@ -3,6 +3,8 @@ export function lerp(a: number, b: number, factor: number)
     return a * (1 - factor) + b * factor;
 }
 
+export const nlerp = lerp;
+
 export function approachLinear(a: number, b: number, factor: number)
 {
     if (a < b)
