@@ -211,7 +211,7 @@ export function clownSharp() {
             head.hat.bounce();
 
             forks.forEach(x => x.glowUnit = 0);
-            c.opaqueTint = 0x0D1C7C;
+            c.opaqueTint = 0xCD423F;
             const blast = empBlast(80, 0, consts.damage.empBlast, 1000)
                 .damageSource(c)
                 .at([0, -8].add(c))
