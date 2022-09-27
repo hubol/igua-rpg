@@ -252,7 +252,7 @@ function oversizedClownImpl() {
     });
 
     function shootElectricBolt() {
-        if (behavior !== hostile)
+        if (behavior !== hostile || player.isDead)
             return;
         electricContainer.addChild(electricBolt(electricBoltContainer, consts.damage.bolt).at(33, 25));
     }

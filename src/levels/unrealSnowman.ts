@@ -165,6 +165,8 @@ const snowman = (groundY, retreatX) => {
 
         const litTorch = torch.instances.filter(x => x.burning)[0];
         retreat += litTorch ? 1 : -1;
+        if (player.isDead)
+            retreat = 1000;
         retreat = Math.max(0, Math.min(120, retreat));
         if (litTorch && container.collides(litTorch))
             damage(0.625);
