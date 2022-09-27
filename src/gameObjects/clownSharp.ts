@@ -11,7 +11,7 @@ import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {distFromPlayer, getOffsetFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {clownDrop, clownDropSpawn, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
-import {ClownHurt} from "../sounds";
+import {ClownHurt, SharpSwipe, SharpSwipeFollowup} from "../sounds";
 import {bouncePlayerOffDisplayObject, knockbackPlayer} from "../igua/bouncePlayer";
 import {Force} from "../utils/types/force";
 import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
@@ -159,6 +159,7 @@ export function clownSharp() {
             c.stamina -= 40;
             arm.fork.damage = consts.damage.stab;
             await Promise.all([arm.pose().over(700), sleep(200).then(() => arm.fork.reveal().over(400))])
+            SharpSwipe.play();
             c.speed.x = 3 * (arm === armr ? 1 : -1);
             await Promise.all([arm.pose(0).over(120), arm.fork.rotate(90).over(180)]);
 
@@ -171,8 +172,12 @@ export function clownSharp() {
                     arm.pose().over(300),
                     arm.fork.rotate(0).over(300),
                     sleep(100).then(() => arm.fork.reveal().over(200))])
-                if (++count > 1)
+                if (++count > 1) {
+                    SharpSwipeFollowup.play();
                     c.speed.y = -2;
+                }
+                else
+                    SharpSwipe.play();
                 c.speed.x = 4 * (arm === armr ? 1 : -1);
                 await Promise.all([arm.pose(0).over(100), arm.fork.rotate(90).over(140)]);
             }

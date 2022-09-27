@@ -352,6 +352,16 @@ export const SelectOption = new Howl({
     
 });
 
+export const SharpSwipeFollowup = new Howl({
+    src: [require("./sound/sharp swipe followup.ogg"), require("./sound/sharp swipe followup.mp3")],
+    
+});
+
+export const SharpSwipe = new Howl({
+    src: [require("./sound/sharp swipe.ogg"), require("./sound/sharp swipe.mp3")],
+    
+});
+
 export const SneezyPropellerBlast = new Howl({
     src: [require("./sound/sneezy propeller blast.ogg"), require("./sound/sneezy propeller blast.mp3")],
     
