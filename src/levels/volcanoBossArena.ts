@@ -21,6 +21,7 @@ import {slidingDoor} from "../gameObjects/slidingDoor";
 import {freezeSceneAndShowMessage} from "../cutscene/freezeSceneAndShowMessage";
 import {spikeVile} from "../gameObjects/spikeVile";
 import {smallPop} from "../gameObjects/smallPop";
+import {player} from "../gameObjects/player";
 
 export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -52,7 +53,7 @@ export function VolcanoBossArena() {
 function enrichBossDoor(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
     const door = slidingDoor(level.BossExit.tinted(0x6D1913), false);
     const { volcano } = progress.flags;
-    if (volcano.defeatedVileAngel)
+    if (volcano.defeatedVileAngel || player.x < 192)
         door.openInstantly();
     else
         door.withAsync(async () => {
