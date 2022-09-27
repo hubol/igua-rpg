@@ -110,16 +110,17 @@ function createPlayer(behavior = true)
                 {
                     CharacterHurtDefense.play();
                     const preventDeath = progress.health > 1;
-                    progress.health -= health * 0.8;
+                    progress.health -= Math.max(1, Math.floor(health * 0.8));
                     if (preventDeath)
                         progress.health = Math.max(progress.health, 1);
+                    player.invulnerableFrameCount = 90;
                 }
                 else
                 {
                     CharacterHurt.play();
                     progress.health -= health;
+                    player.invulnerableFrameCount = 60;
                 }
-                player.invulnerableFrameCount = 60;
 
                 conditionallyGotoDeathScreen();
 
