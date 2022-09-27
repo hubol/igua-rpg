@@ -234,6 +234,7 @@ export let VolcanoOracleHouseReflection: PIXI.Texture;
 export let VolcanoPillarBroken: PIXI.Texture;
 export let VolcanoTempleExterior: PIXI.Texture;
 export let WhiskeyGlass: PIXI.Texture;
+export let WhiteRectangle: PIXI.Texture;
 export let WonderBallonPotion: PIXI.Texture;
 export let WoodenStool: PIXI.Texture;
 
@@ -938,6 +939,9 @@ export function loadTexturesAsync()
     const WhiskeyGlassPath = require("./images/whiskey glass.png");
     loader.add(WhiskeyGlassPath); 
 
+    const WhiteRectanglePath = require("./images/white rectangle.png");
+    loader.add(WhiteRectanglePath); 
+
     const WonderBallonPotionPath = require("./images/wonder ballon potion.png");
     loader.add(WonderBallonPotionPath); 
 
@@ -1180,6 +1184,7 @@ export function loadTexturesAsync()
             VolcanoPillarBroken = resources[VolcanoPillarBrokenPath]?.texture as PIXI.Texture;
             VolcanoTempleExterior = resources[VolcanoTempleExteriorPath]?.texture as PIXI.Texture;
             WhiskeyGlass = resources[WhiskeyGlassPath]?.texture as PIXI.Texture;
+            WhiteRectangle = resources[WhiteRectanglePath]?.texture as PIXI.Texture;
             WonderBallonPotion = resources[WonderBallonPotionPath]?.texture as PIXI.Texture;
             WoodenStool = resources[WoodenStoolPath]?.texture as PIXI.Texture;
 

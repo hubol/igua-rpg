@@ -51,6 +51,7 @@ function createScene(source: SceneSource, args: Readonly<SceneMeta>)
         terrainContainer,
         gameObjectStage,
         playerStage,
+        stage,
         ticker,
         endTicker,
         ext: {} as Record<string, any>,
