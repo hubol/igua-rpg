@@ -8,18 +8,25 @@ import {container} from "../../utils/pixi/container";
 import {merge} from "../../utils/object/merge";
 import {Undefined} from "../../utils/types/undefined";
 import {rng} from "../../utils/math/rng";
-import {vnew} from "../../utils/math/vector";
+import {Vector, vnew} from "../../utils/math/vector";
 import {progress} from "../../igua/data/progress";
+
+const v = vnew();
 
 export function dieClown(container: DisplayObject, drop: boolean | number, offset = vnew()) {
     ClownExplode.play();
-    if (drop)
-        valuable(container.x + offset.x, container.y + offset.y, undefined, drop === 15 ? "ValuableBlue" : "ValuableOrange")
-            .delayCollectible()
-            .show();
+
+    clownDropSpawn(v.at(offset).add(container), drop);
 
     confetti().at(offset.add(container)).show();
     container.destroy();
+}
+
+export function clownDropSpawn(vec: Vector, drop: boolean | number) {
+    if (drop)
+        valuable(vec.x, vec.y, undefined, drop === 15 ? "ValuableBlue" : "ValuableOrange")
+            .delayCollectible()
+            .show();
 }
 
 export function clownHealth(maxHealth: number) {

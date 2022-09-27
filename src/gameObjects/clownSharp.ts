@@ -9,7 +9,7 @@ import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {getOffsetFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
-import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
+import {clownDrop, clownDropSpawn, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
 import {ClownHurt} from "../sounds";
 import {bouncePlayerOffDisplayObject, knockbackPlayer} from "../igua/bouncePlayer";
@@ -87,8 +87,12 @@ export function clownSharp() {
     }
 
     function die() {
-        const dropFifteen = drop(c.vsPlayerHitCount);
-        dieClown(c, dropFifteen && 15, [0, -10]);
+        const drop15 = drop(c.vsPlayerHitCount);
+        const drop5 = drop(c.vsPlayerHitCount);
+        const dropBoth = drop5 && drop15;
+
+        clownDropSpawn([0, dropBoth ? -2 : -10].add(c), drop15 && 15);
+        dieClown(c, drop5, [0, dropBoth ? -17 : -10]);
     }
 
     function handleDamage() {
