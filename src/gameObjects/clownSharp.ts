@@ -341,15 +341,19 @@ export function clownSharp() {
     return c;
 }
 
+let bulletIndex = 0;
+const bulletColors = [ 0xFF6DB7, 0xFF3D87 ];
+
 function bullet(speed: Vector, life = 120) {
     const s = Sprite.from(SharpClownBullet)
         .withStep(() => {
-            if (life-- <= 0)
+            if (life-- <= 0 || s.ext.damageSource.destroyed)
                 return s.destroy();
             s.add(speed);
             if (s.collides(player))
                 s.damagePlayer(consts.damage.bullet);
         })
+        .tinted(bulletColors[bulletIndex = (bulletIndex + 1) % 2]);
 
     return s;
 }
