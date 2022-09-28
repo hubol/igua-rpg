@@ -162,6 +162,7 @@ export let RightPipeEnd: PIXI.Texture;
 export let RockCracks: PIXI.Texture;
 export let Rope: PIXI.Texture;
 export let RoseVase: PIXI.Texture;
+export let SharpClownBullet: PIXI.Texture;
 export let SharpClownFork: PIXI.Texture;
 export let SharpClownHead: PIXI.Texture;
 export let SharpClownLegs: PIXI.Texture;
@@ -723,6 +724,9 @@ export function loadTexturesAsync()
     const RoseVasePath = require("./images/rose vase.png");
     loader.add(RoseVasePath); 
 
+    const SharpClownBulletPath = require("./images/sharp clown/bullet.png");
+    loader.add(SharpClownBulletPath); 
+
     const SharpClownForkPath = require("./images/sharp clown/fork.png");
     loader.add(SharpClownForkPath); 
 
@@ -1112,6 +1116,7 @@ export function loadTexturesAsync()
             RockCracks = resources[RockCracksPath]?.texture as PIXI.Texture;
             Rope = resources[RopePath]?.texture as PIXI.Texture;
             RoseVase = resources[RoseVasePath]?.texture as PIXI.Texture;
+            SharpClownBullet = resources[SharpClownBulletPath]?.texture as PIXI.Texture;
             SharpClownFork = resources[SharpClownForkPath]?.texture as PIXI.Texture;
             SharpClownHead = resources[SharpClownHeadPath]?.texture as PIXI.Texture;
             SharpClownLegs = resources[SharpClownLegsPath]?.texture as PIXI.Texture;

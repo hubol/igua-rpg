@@ -1,4 +1,4 @@
-import {SharpClownFork, SharpClownHead, SharpClownLegs, SharpClownTail} from "../textures";
+import {SharpClownBullet, SharpClownFork, SharpClownHead, SharpClownLegs, SharpClownTail} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
@@ -18,19 +18,29 @@ import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
 import {whiten} from "../utils/pixi/whiten";
 import {attack, attackRunner} from "./attacks";
 import {smallPop} from "./smallPop";
-import {vnew} from "../utils/math/vector";
+import {moveTowards, Vector, vnew} from "../utils/math/vector";
 import {Invulnerable} from "../pixins/invulnerable";
 import {Stamina} from "../pixins/stamina";
 import {wait} from "../cutscene/wait";
 import {Dithered} from "../pixins/dithered";
 import {empBlast} from "./empBlast";
 import {scene} from "../igua/scene";
+import {range} from "../utils/range";
+import {waitHold} from "../cutscene/waitHold";
 
 const consts = {
     recoveryFrames: 15,
     damage: {
         stab: 50,
         empBlast: 88,
+        bullet: 40,
+    },
+    bullet: {
+        speed: 1.33,
+        life: 120,
+        get travel() {
+            return this.life * this.speed - 16;
+        }
     }
 }
 
@@ -103,8 +113,11 @@ export function clownSharp() {
         dieClown(c, drop5, [0, dropBoth ? -17 : -10]);
     }
 
+    let tookDamageVolatile = false;
+
     function handleDamage() {
         if (player.collides(hitboxes) && c.invulnerable <= 0) {
+            tookDamageVolatile = true;
             timeSinceLastDamage = 0;
             ClownHurt.play();
 
@@ -155,6 +168,45 @@ export function clownSharp() {
     const forks = arms.map(x => x.fork);
     arms.forEach(x => x.damageSource(c));
 
+    const bullets = attack({ arm: armr, fire: false, delay: 4, step: 0, aim: vnew() })
+        .withAsyncOnce(async ({ arm }, self) => {
+            self.aim = vnew();
+            resetArms(1);
+            await Promise.all([
+                arm.pose().over(700),
+                sleep(200).then(() => arm.fork.reveal().over(400)),
+                arm.fork.glow(1).over(500)
+            ]);
+            self.fire = true;
+            tookDamageVolatile = false;
+            await Promise.race([
+                wait(() => tookDamageVolatile).then(() => sleep(100)),
+                sleep(500).then(() => wait(() => c.stamina <= 0)),
+                waitHold(() => distFromPlayer(arm.fork.prongs) > consts.bullet.travel, 60 * 2),
+                wait(() => player.isDead)
+            ]);
+            self.fire = false;
+            await Promise.all([
+                arm.pose(0).over(400),
+                arm.fork.reveal(0.5).over(300),
+                arm.fork.glow(0).over(200)
+            ]);
+            resetArms(1);
+            await sleep(200);
+        })
+        .withStep(({ arm, fire, aim }, self) => {
+            if (!fire || ++self.step % self.delay)
+                return;
+
+            const speed = getOffsetFromPlayer(arm.fork.prongs).normalize();
+            if (aim.x === 0 && aim.y === 0)
+                aim.at(speed);
+            else
+                moveTowards(aim, speed, 0.1);
+            bullet(aim.vcpy().normalize().scale(consts.bullet.speed), consts.bullet.life).damageSource(c).at(getWorldPos(arm.fork.prongs)).show();
+            c.stamina--;
+        })
+
     const stab = attack({ arm: armr })
         .withAsyncOnce(async ({ arm }) => {
             automation.facePlayer = false;
@@ -164,7 +216,7 @@ export function clownSharp() {
             resetArms(1);
             c.stamina -= 40;
             arm.fork.damage = consts.damage.stab;
-            await Promise.all([arm.pose().over(700), sleep(200).then(() => arm.fork.reveal().over(400))])
+            await Promise.all([arm.pose().over(500), sleep(150).then(() => arm.fork.reveal().over(300))])
             SharpSwipe.play();
             c.speed.x = 3 * (arm === armr ? 1 : -1);
             await Promise.all([arm.pose(0).over(120), arm.fork.rotate(90).over(180)]);
@@ -257,12 +309,16 @@ export function clownSharp() {
     async function doAs() {
         while (true) {
             await wait(() => c.stamina > 0);
-            if (distFromPlayer(c) < 80 && c.stamina > 40)
+            const dist = distFromPlayer(c);
+            if (dist > 70 && dist < 100 && c.stamina > 40 && hSignToPlayer(c) !== Math.sign(player.scale.x))
                 await run(upCloseSlam());
-            else
+            else if (c.stamina > 20 && dist < consts.bullet.travel && dist > 70)
+                await run(bullets());
+            else if (c.stamina > 4)
                 await run(stabTowardsPlayer());
 
             await wait(() => hDistFromPlayer(c) <= 140 || c.stamina >= 30);
+            await sleep(80);
         }
     }
 
@@ -270,6 +326,19 @@ export function clownSharp() {
 
     c.ext.isHatParent = true;
     return c;
+}
+
+function bullet(speed: Vector, life = 120) {
+    const s = Sprite.from(SharpClownBullet)
+        .withStep(() => {
+            if (life-- <= 0)
+                return s.destroy();
+            s.add(speed);
+            if (s.collides(player))
+                s.damagePlayer(consts.damage.bullet);
+        })
+
+    return s;
 }
 
 const tailxs = [-1, -1, -1, 1, 1, 1];
@@ -422,7 +491,8 @@ function newFork() {
         })
         .withPixin(Dithered({ dither: 0 }));
 
-    const c = merge(container(glowGfxBack, glowGfx, s, hitbox1, hitbox2), { expanded: 0, damage: 0, reveal, rotate, glowUnit: 0, glow })
+    const source = { expanded: 0, damage: 0, reveal, rotate, glowUnit: 0, glow, prongs: glowGfx };
+    const c = merge(container(glowGfxBack, glowGfx, s, hitbox1, hitbox2), source)
         .withStep(() => {
             if (c.visible && !lastVisible) {
                 c.expanded = 0;
