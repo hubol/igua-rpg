@@ -8,7 +8,7 @@ import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
-import {distFromPlayer, getOffsetFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
+import {distFromPlayer, getOffsetFromPlayer, hDistFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {clownDrop, clownDropSpawn, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
 import {ClownHurt, SharpSlamCharge, SharpSlamReady, SharpSwipe, SharpSwipeFollowup} from "../sounds";
@@ -189,6 +189,7 @@ export function clownSharp() {
             }
 
             await sleep(500);
+            resetArms();
         });
 
     const upCloseSlam = attack({})
@@ -239,6 +240,7 @@ export function clownSharp() {
             c.filters = [];
             // @ts-ignore
             delete c.__opaqueTintFilter;
+            resetArms();
         });
 
     function stabTowardsPlayer() {
@@ -258,6 +260,8 @@ export function clownSharp() {
                 await run(upCloseSlam());
             else
                 await run(stabTowardsPlayer());
+
+            await wait(() => hDistFromPlayer(c) <= 140 || c.stamina < c.staminaMax);
         }
     }
 
