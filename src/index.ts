@@ -1,3 +1,11 @@
+// Try to prevent Parcel 2 HMR
+// @ts-ignore
+if (module && module.hot) {
+    console.log('reload');
+    // @ts-ignore
+    module.hot.dispose(() => location.reload());
+}
+
 import "zone.js";
 
 Zone[Zone.__symbol__('ignoreConsoleErrorUncaughtError')] = true;
