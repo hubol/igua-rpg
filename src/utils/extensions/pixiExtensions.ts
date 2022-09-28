@@ -16,7 +16,7 @@ declare global {
             useNearestFiltering(): this;
             withStep(step: () => void): this;
             withAsync(async: PromiseFn): this;
-            withPixin<TValues>(pixin: PixinType<this, TValues>): this & TValues;
+            withPixin<TFeatures>(pixin: PixinType<this, TFeatures>): this & TFeatures;
             at(vector: Vector): this;
             at(x: number, y: number): this;
             hide(): this;
