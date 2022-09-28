@@ -1,6 +1,6 @@
 import {SharpClownFork, SharpClownHead, SharpClownLegs, SharpClownTail} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {Graphics, Sprite} from "pixi.js";
+import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {hat} from "./hat";
 import {merge} from "../utils/object/merge";
@@ -11,7 +11,7 @@ import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {distFromPlayer, getOffsetFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {clownDrop, clownDropSpawn, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
-import {ClownHurt, SharpSwipe, SharpSwipeFollowup} from "../sounds";
+import {ClownHurt, SharpSlamCharge, SharpSlamReady, SharpSwipe, SharpSwipeFollowup} from "../sounds";
 import {bouncePlayerOffDisplayObject, knockbackPlayer} from "../igua/bouncePlayer";
 import {Force} from "../utils/types/force";
 import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
@@ -87,6 +87,10 @@ export function clownSharp() {
         }
         head.x = Math.sin(Math.max(0, 30 - timeSinceLastDamage));
         legs.facing = head.facing;
+
+        legs.splits = c.speed.y < 0;
+        if (legs.splits)
+            legs.pedometer = 0;
         legs.pedometer += 0.1;
     }
 
@@ -153,7 +157,9 @@ export function clownSharp() {
 
     const stab = attack({ arm: armr })
         .withAsyncOnce(async ({ arm }) => {
+            automation.facePlayer = false;
             const sign = arm === armr ? 1 : -1;
+            head.facing = sign;
 
             resetArms(1);
             c.stamina -= 40;
@@ -196,6 +202,8 @@ export function clownSharp() {
                 arm.fork.glow(1).over(1000)
             ]);
 
+            SharpSlamCharge.play();
+
             await Promise.all(raise);
             await sleep(250);
 
@@ -205,7 +213,11 @@ export function clownSharp() {
             ]);
 
             await Promise.all(raise2);
+
             await sleep(125);
+
+            SharpSlamReady.play();
+            automation.facePlayer = false;
 
             const slam = arms.flatMap(arm => [
                 arm.pose(1).over(200),
@@ -233,13 +245,19 @@ export function clownSharp() {
         return stab({ arm: hSignToPlayer(c) > 0 ? armr : arml });
     }
 
+    async function run(d: DisplayObject) {
+        await attacks.run(d);
+        automation.lookAtPlayer = true;
+        automation.facePlayer = true;
+    }
+
     async function doAs() {
         while (true) {
             await wait(() => c.stamina > 0);
             if (distFromPlayer(c) < 80 && c.stamina > 40)
-                await attacks.run(upCloseSlam());
+                await run(upCloseSlam());
             else
-                await attacks.run(stabTowardsPlayer());
+                await run(stabTowardsPlayer());
         }
     }
 
