@@ -104,7 +104,6 @@ export function clownSharp() {
     }
 
     function handleDamage() {
-        console.log(c.stamina);
         if (player.collides(hitboxes) && c.invulnerable <= 0) {
             timeSinceLastDamage = 0;
             ClownHurt.play();
