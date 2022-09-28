@@ -337,7 +337,6 @@ export function clownUnorthodox() {
 
     async function legsAs() {
         legs.withStep(() => behaviors.evade++);
-        let idle = 0;
         await wait(() => behaviors.legs.speed.y > 0 || behaviors.legs.speed.y === 0);
         await wait(() => behaviors.legs.speed.y === 0);
         await wait(() => head.aggressive);
@@ -354,14 +353,8 @@ export function clownUnorthodox() {
                 await doMove(moves.spark)();
             else if (player.collides(triggers.stomp) && count(moves.stomp) < 2)
                 await doStompInPlayerDirection();
-            else if (count(moves.slam) < 2 || idle > 120) {
-                idle = 0;
+            else
                 await doMove(moves.slam)();
-            }
-            else {
-                idle++;
-                await sleep(1);
-            }
         }
     }
 
