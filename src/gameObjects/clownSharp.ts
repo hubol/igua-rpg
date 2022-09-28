@@ -104,6 +104,7 @@ export function clownSharp() {
     }
 
     function handleDamage() {
+        console.log(c.stamina);
         if (player.collides(hitboxes) && c.invulnerable <= 0) {
             timeSinceLastDamage = 0;
             ClownHurt.play();
@@ -261,7 +262,7 @@ export function clownSharp() {
             else
                 await run(stabTowardsPlayer());
 
-            await wait(() => hDistFromPlayer(c) <= 140 || c.stamina < c.staminaMax);
+            await wait(() => hDistFromPlayer(c) <= 140 || c.stamina >= 30);
         }
     }
 
