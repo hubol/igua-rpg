@@ -32,7 +32,7 @@ function logObject(title, object, color) {
     console.log(`%c${title} ${JSON.stringify(object)}`, color);
 }
 
-function upgradeProgressVersion(progress: Progress & Record<string, any>) {
+function upgradeProgressVersion(progress: Record<keyof Progress, any> & Record<string, any>) {
     switch (progress.version) {
         case undefined:
             progress.version = 1;
