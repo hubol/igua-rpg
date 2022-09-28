@@ -192,8 +192,8 @@ export function clownSharp() {
             resetArms();
         });
 
-    const upCloseSlam = attack({})
-        .withAsyncOnce(async () => {
+    const upCloseSlam = attack({ chargeSoundId: -1 })
+        .withAsyncOnce(async (self) => {
             resetArms(1);
             forks.forEach(x => x.visible = true);
 
@@ -203,7 +203,7 @@ export function clownSharp() {
                 arm.fork.glow(1).over(1000)
             ]);
 
-            SharpSlamCharge.play();
+            self.chargeSoundId = SharpSlamCharge.play();
 
             await Promise.all(raise);
             await sleep(250);
@@ -241,7 +241,8 @@ export function clownSharp() {
             // @ts-ignore
             delete c.__opaqueTintFilter;
             resetArms();
-        });
+        })
+        .withCleanup(({ chargeSoundId }) => SharpSlamCharge.stop(chargeSoundId));
 
     function stabTowardsPlayer() {
         return stab({ arm: hSignToPlayer(c) > 0 ? armr : arml });
