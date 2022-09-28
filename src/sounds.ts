@@ -352,6 +352,11 @@ export const SelectOption = new Howl({
     
 });
 
+export const SharpBullet = new Howl({
+    src: [require("./sound/sharp bullet.ogg"), require("./sound/sharp bullet.mp3")],
+    
+});
+
 export const SharpSlamCharge = new Howl({
     src: [require("./sound/sharp slam charge.ogg"), require("./sound/sharp slam charge.mp3")],
     

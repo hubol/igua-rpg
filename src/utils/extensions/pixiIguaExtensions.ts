@@ -34,7 +34,7 @@ declare global {
 PIXI.DisplayObject.prototype.withGravityAndWallResist = function (offset, radius, gravity) {
     const c = merge(this, { speed: vnew(), gravity, isOnGround: false })
         .withStep(() => {
-            const r = applyGravity(this, c.speed, offset, radius, gravity)
+            const r = applyGravity(this, c.speed, offset, radius, c.gravity)
             c.isOnGround = !!r.isOnGround;
         });
 

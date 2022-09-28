@@ -11,7 +11,7 @@ import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {distFromPlayer, getOffsetFromPlayer, hDistFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {clownDrop, clownDropSpawn, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
-import {ClownHurt, SharpSlamCharge, SharpSlamReady, SharpSwipe, SharpSwipeFollowup} from "../sounds";
+import {ClownHurt, SharpBullet, SharpSlamCharge, SharpSlamReady, SharpSwipe, SharpSwipeFollowup} from "../sounds";
 import {bouncePlayerOffDisplayObject, knockbackPlayer} from "../igua/bouncePlayer";
 import {Force} from "../utils/types/force";
 import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
@@ -29,6 +29,7 @@ import {range} from "../utils/range";
 import {waitHold} from "../cutscene/waitHold";
 
 const consts = {
+    gravity: 0.2,
     recoveryFrames: 15,
     damage: {
         stab: 50,
@@ -39,7 +40,7 @@ const consts = {
         speed: 1.33,
         life: 120,
         get travel() {
-            return this.life * this.speed - 16;
+            return this.life * this.speed - 30;
         }
     }
 }
@@ -146,7 +147,7 @@ export function clownSharp() {
         .withStep(doAnimation)
         .withStep(handleDamage)
         .withStep(doPrePhysics)
-        .withGravityAndWallResist([0, -8], 7, 0.2);
+        .withGravityAndWallResist([0, -8], 7, consts.gravity);
 
     const attacks = attackRunner().show(c);
 
@@ -203,6 +204,7 @@ export function clownSharp() {
                 aim.at(speed);
             else
                 moveTowards(aim, speed, 0.1);
+            SharpBullet.play();
             bullet(aim.vcpy().normalize().scale(consts.bullet.speed), consts.bullet.life).damageSource(c).at(getWorldPos(arm.fork.prongs)).show();
             c.stamina--;
         })
@@ -249,6 +251,9 @@ export function clownSharp() {
             resetArms(1);
             forks.forEach(x => x.visible = true);
 
+            c.speed.y = -0.3;
+            c.gravity = 0;
+
             const raise = arms.flatMap(arm => [
                 arm.pose(-0.75).over(1000),
                 arm.fork.reveal(0.75).over(1000),
@@ -272,12 +277,16 @@ export function clownSharp() {
             SharpSlamReady.play();
             automation.facePlayer = false;
 
+            c.gravity = 0.5;
+
             const slam = arms.flatMap(arm => [
                 arm.pose(1).over(200),
                 arm.fork.rotate(90).over(150)
             ]);
 
             await Promise.all(slam);
+            await wait(() => c.isOnGround);
+            c.gravity = consts.gravity;
             head.hat.bounce();
 
             forks.forEach(x => x.glowUnit = 0);
@@ -294,6 +303,10 @@ export function clownSharp() {
             delete c.__opaqueTintFilter;
             resetArms();
         })
+        .withStep(() => {
+            if (hDistFromPlayer(c) > 64 && c.speed.y < 0)
+                c.x += hSignToPlayer(c);
+        })
         .withCleanup(({ chargeSoundId }) => SharpSlamCharge.stop(chargeSoundId));
 
     function stabTowardsPlayer() {
@@ -309,12 +322,12 @@ export function clownSharp() {
     async function doAs() {
         while (true) {
             await wait(() => c.stamina > 0);
-            const dist = distFromPlayer(c);
-            if (dist > 70 && dist < 100 && c.stamina > 40 && hSignToPlayer(c) !== Math.sign(player.scale.x))
+            // const dist = distFromPlayer(c);
+            // if (dist > 70 && dist < 100 && c.stamina > 40 && hSignToPlayer(c) !== Math.sign(player.scale.x))
                 await run(upCloseSlam());
-            else if (c.stamina > 20 && dist < consts.bullet.travel && dist > 70)
+            // else if (c.stamina > 20 && dist < consts.bullet.travel && dist > 70)
                 await run(bullets());
-            else if (c.stamina > 4)
+            // else if (c.stamina > 4)
                 await run(stabTowardsPlayer());
 
             await wait(() => hDistFromPlayer(c) <= 140 || c.stamina >= 30);
