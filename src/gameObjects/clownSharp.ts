@@ -25,7 +25,6 @@ import {wait} from "../cutscene/wait";
 import {Dithered} from "../pixins/dithered";
 import {empBlast} from "./empBlast";
 import {scene} from "../igua/scene";
-import {range} from "../utils/range";
 import {waitHold} from "../cutscene/waitHold";
 import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 import {isOnScreen} from "../igua/logic/isOnScreen";
@@ -311,13 +310,39 @@ export function clownSharp() {
         })
         .withCleanup(({ chargeSoundId }) => SharpSlamCharge.stop(chargeSoundId));
 
-    const idle = attack({})
+    const idle = attack()
         .withAsync(async (self) => {
             await Promise.race([
                 waitHold(canSeePlayer, 10),
                 wait(() => health.hasTakenDamage)
             ]);
             self.destroy();
+        });
+
+    const pursuePlayer = attack({ waitingForRefill: false })
+        .withStep((self) => {
+            automation.facePlayer = false;
+            if (hDistFromPlayer(c) <= 64)
+                return self.destroy();
+            if (!rayToPlayerIntersectsWall(getWorldCenter(c)) && c.stamina > 0 && !self.waitingForRefill) {
+                c.stamina -= 1;
+                head.facing = hSignToPlayer(c) ?? 1;
+                c.speed.x = head.facing * 2;
+                legs.pedometer += 0.1;
+                if (c.isOnGround)
+                    c.speed.y = -1.33;
+            }
+            else if (self.waitingForRefill) {
+                if (c.stamina >= 30) {
+                    c.stamina = 100;
+                    self.waitingForRefill = false;
+                }
+            }
+            else if (c.stamina <= 0) {
+                self.waitingForRefill = true;
+            }
+            else
+                self.destroy();
         })
 
     function stabTowardsPlayer() {
@@ -344,12 +369,14 @@ export function clownSharp() {
     }
 
     async function doAs() {
+        resetArms();
         await run(idle());
         await run(getFirstAttack());
         await run(stabTowardsPlayer());
         while (true) {
             await wait(() => c.stamina > 0);
             await run(bullets());
+            await run(pursuePlayer());
             await run(stabTowardsPlayer());
             if (rng() < 0.67) {
                 c.stamina += 100;
@@ -357,6 +384,11 @@ export function clownSharp() {
             }
             await run(upCloseSlam());
             if (rng() < 0.67) {
+                if (hDistFromPlayer(c) > 96) {
+                    await sleep(200);
+                    c.stamina += 100;
+                    await run(pursuePlayer());
+                }
                 c.stamina += 100;
                 await run(stabTowardsPlayer());
             }
