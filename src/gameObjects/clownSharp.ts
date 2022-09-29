@@ -11,7 +11,15 @@ import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {distFromPlayer, getOffsetFromPlayer, hDistFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {clownDrop, clownDropSpawn, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
-import {ClownHurt, SharpBullet, SharpSlamCharge, SharpSlamReady, SharpSwipe, SharpSwipeFollowup} from "../sounds";
+import {
+    ClownHurt,
+    SharpBullet,
+    SharpSlamCharge,
+    SharpSlamReady,
+    SharpStep,
+    SharpSwipe,
+    SharpSwipeFollowup
+} from "../sounds";
 import {bouncePlayerOffDisplayObject, knockbackPlayer} from "../igua/bouncePlayer";
 import {Force} from "../utils/types/force";
 import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
@@ -343,6 +351,15 @@ export function clownSharp() {
             else
                 self.destroy();
         })
+        .withAsync(async () => {
+            while (true) {
+                await wait(() => c.isOnGround);
+                await wait(() => c.speed.y < 0);
+                SharpStep.play();
+                await sleep(40);
+                await wait(() => !c.isOnGround);
+            }
+        })
 
     function stabTowardsPlayer() {
         return stab({ arm: hSignToPlayer(c) > 0 ? armr : arml });
@@ -567,6 +584,7 @@ function newFork() {
         .withStep(() => {
             glowGfxBack.at(glowGfx);
             glowGfxBack.dither = glowGfx.dither - 0.5;
+            glowGfxBack.scale.set(Math.max(0.5, glowGfx.dither));
         })
         .withPixin(Dithered({ dither: 0 }));
 

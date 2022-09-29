@@ -367,6 +367,11 @@ export const SharpSlamReady = new Howl({
     
 });
 
+export const SharpStep = new Howl({
+    src: [require("./sound/sharp step.ogg"), require("./sound/sharp step.mp3")],
+    
+});
+
 export const SharpSwipeFollowup = new Howl({
     src: [require("./sound/sharp swipe followup.ogg"), require("./sound/sharp swipe followup.mp3")],
     
