@@ -41,9 +41,9 @@ const consts = {
     gravity: 0.2,
     recoveryFrames: 15,
     damage: {
-        stab: 50,
+        stab: 60,
         empBlast: 88,
-        bullet: 45,
+        bullet: 50,
     },
     bullet: {
         speed: 1.33,
@@ -177,6 +177,8 @@ export function clownSharp() {
     const forks = arms.map(x => x.fork);
     arms.forEach(x => x.damageSource(c));
 
+    let bulletIndex = 0;
+
     const bullets = attack({ arm: armr, fire: false, delay: 4, step: 0, aim: vnew() })
         .withAsyncOnce(async ({ arm }, self) => {
             self.aim = vnew();
@@ -213,7 +215,11 @@ export function clownSharp() {
             else
                 moveTowards(aim, speed, 0.1);
             SharpBullet.play();
-            bullet(aim.vcpy().normalize().scale(consts.bullet.speed), consts.bullet.life).damageSource(c).at(getWorldPos(arm.fork.prongs)).show();
+            bullet(aim.vcpy().normalize().scale(consts.bullet.speed), consts.bullet.life)
+                .tinted(bulletColors[bulletIndex = (bulletIndex + 1) % 2])
+                .damageSource(c)
+                .at(getWorldPos(arm.fork.prongs))
+                .show();
             c.stamina--;
         })
 
@@ -341,7 +347,7 @@ export function clownSharp() {
             }
             else if (self.waitingForRefill) {
                 if (c.stamina >= 30) {
-                    c.stamina = 100;
+                    c.stamina = 70 + rng.int(30);
                     self.waitingForRefill = false;
                 }
             }
@@ -390,19 +396,22 @@ export function clownSharp() {
         await run(getFirstAttack());
         await run(stabTowardsPlayer());
         while (true) {
+            const first = rng.choose([bullets, upCloseSlam]);
+            const second = first === bullets ? upCloseSlam : bullets;
+
             await wait(() => c.stamina > 0);
-            await run(bullets());
+            await run(first());
             await run(pursuePlayer());
             await run(stabTowardsPlayer());
             if (rng() < 0.67) {
                 c.stamina += 100;
                 await run(stabTowardsPlayer());
             }
-            await run(upCloseSlam());
+            await run(second());
             if (rng() < 0.67) {
                 if (hDistFromPlayer(c) > 96) {
                     await sleep(200);
-                    c.stamina += 100;
+                    c.stamina += 50 + rng.int(50);
                     await run(pursuePlayer());
                 }
                 c.stamina += 100;
@@ -420,7 +429,6 @@ export function clownSharp() {
     return c;
 }
 
-let bulletIndex = 0;
 const bulletColors = [ 0xFF6DB7, 0xFF3D87 ];
 
 function bullet(speed: Vector, life = 120) {
@@ -431,8 +439,7 @@ function bullet(speed: Vector, life = 120) {
             s.add(speed);
             if (s.collides(player))
                 s.damagePlayer(consts.damage.bullet);
-        })
-        .tinted(bulletColors[bulletIndex = (bulletIndex + 1) % 2]);
+        });
 
     return s;
 }
