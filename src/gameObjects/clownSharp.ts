@@ -182,7 +182,7 @@ export function clownSharp() {
             tookDamageVolatile = false;
             await Promise.race([
                 wait(() => tookDamageVolatile).then(() => sleep(100)),
-                sleep(500).then(() => wait(() => c.stamina <= 0)),
+                sleep(2000),
                 waitHold(() => distFromPlayer(arm.fork.prongs) > consts.bullet.travel, 60 * 2),
                 wait(() => player.isDead)
             ]);
