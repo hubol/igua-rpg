@@ -15,6 +15,9 @@ export function attackRunner() {
                     rs();
             }))
         },
+        clear() {
+            c.removeAllChildren();
+        },
         get current() {
             return c.children[0]?.ext.__src;
         },

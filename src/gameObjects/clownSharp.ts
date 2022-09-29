@@ -35,7 +35,7 @@ const consts = {
     damage: {
         stab: 50,
         empBlast: 88,
-        bullet: 40,
+        bullet: 45,
     },
     bullet: {
         speed: 1.33,
@@ -56,7 +56,6 @@ export function clownSharp() {
         matchBreezeToHspeed: true,
         autoExpression: true,
     };
-
     const head = newHead();
     const legs = newLegs().at(17, 24);
 
