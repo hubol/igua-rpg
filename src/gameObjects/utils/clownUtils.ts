@@ -38,6 +38,9 @@ export function clownHealth(maxHealth: number) {
         get unit() {
             return this.health / maxHealth;
         },
+        get hasTakenDamage() {
+            return this.unit < 1;
+        },
         get nearDeath() {
             return this.health < maxHealth && this.health <= player.strength;
         },

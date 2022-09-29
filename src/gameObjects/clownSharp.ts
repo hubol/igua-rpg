@@ -27,6 +27,8 @@ import {empBlast} from "./empBlast";
 import {scene} from "../igua/scene";
 import {range} from "../utils/range";
 import {waitHold} from "../cutscene/waitHold";
+import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
+import {isOnScreen} from "../igua/logic/isOnScreen";
 
 const consts = {
     gravity: 0.2,
@@ -309,6 +311,15 @@ export function clownSharp() {
         })
         .withCleanup(({ chargeSoundId }) => SharpSlamCharge.stop(chargeSoundId));
 
+    const idle = attack({})
+        .withAsync(async (self) => {
+            await Promise.race([
+                waitHold(canSeePlayer, 10),
+                wait(() => health.hasTakenDamage)
+            ]);
+            self.destroy();
+        })
+
     function stabTowardsPlayer() {
         return stab({ arm: hSignToPlayer(c) > 0 ? armr : arml });
     }
@@ -319,16 +330,36 @@ export function clownSharp() {
         automation.facePlayer = true;
     }
 
+    function canSeePlayer() {
+        return hSignToPlayer(c) === head.looking
+            && hDistFromPlayer(c) < 200
+            && isOnScreen(c)
+            && !rayToPlayerIntersectsWall(getWorldCenter(c));
+    }
+
+    function getFirstAttack(): DisplayObject {
+        if (health.hasTakenDamage)
+            return stabTowardsPlayer();
+        return rng.choose([upCloseSlam, bullets, stabTowardsPlayer])();
+    }
+
     async function doAs() {
+        await run(idle());
+        await run(getFirstAttack());
+        await run(stabTowardsPlayer());
         while (true) {
             await wait(() => c.stamina > 0);
-            // const dist = distFromPlayer(c);
-            // if (dist > 70 && dist < 100 && c.stamina > 40 && hSignToPlayer(c) !== Math.sign(player.scale.x))
-                await run(upCloseSlam());
-            // else if (c.stamina > 20 && dist < consts.bullet.travel && dist > 70)
-                await run(bullets());
-            // else if (c.stamina > 4)
+            await run(bullets());
+            await run(stabTowardsPlayer());
+            if (rng() < 0.67) {
+                c.stamina += 100;
                 await run(stabTowardsPlayer());
+            }
+            await run(upCloseSlam());
+            if (rng() < 0.67) {
+                c.stamina += 100;
+                await run(stabTowardsPlayer());
+            }
 
             await wait(() => hDistFromPlayer(c) <= 140 || c.stamina >= 30);
             await sleep(80);
