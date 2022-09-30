@@ -13,7 +13,7 @@ import {clownDrop, clownDropSpawn, clownHealth, dieClown} from "./utils/clownUti
 import {player} from "./player";
 import {
     ClownHurt,
-    SharpBullet,
+    SharpBullet, SharpNotice,
     SharpSlamCharge,
     SharpSlamReady,
     SharpStep,
@@ -323,13 +323,31 @@ export function clownSharp() {
         })
         .withCleanup(({ chargeSoundId }) => SharpSlamCharge.stop(chargeSoundId));
 
-    const idle = attack()
+    const idle = attack({ noticed: false })
         .withAsync(async (self) => {
             await Promise.race([
-                waitHold(canSeePlayer, 10),
+                waitHold(canSeePlayer, 20),
                 wait(() => health.hasTakenDamage)
             ]);
+            self.noticed = true;
+            SharpNotice.play();
+            c.speed.y = -2;
+            await Promise.race([
+                wait(() => c.speed.y >= 0)
+                    .then(() => wait(() => c.isOnGround)),
+                sleep(2000)
+            ]);
             self.destroy();
+            arms.forEach(x => x.visible = false);
+        })
+        .withStep(({ noticed }) => {
+            if (!noticed)
+                return;
+
+            arms.forEach(x => {
+                x.visible = true;
+                x.poseUnit = approachLinear(x.poseUnit, -1, 0.1);
+            });
         });
 
     const pursuePlayer = attack({ waitingForRefill: false })
@@ -379,7 +397,7 @@ export function clownSharp() {
 
     function canSeePlayer() {
         return hSignToPlayer(c) === head.looking
-            && hDistFromPlayer(c) < 200
+            && distFromPlayer(c) < 120
             && isOnScreen(c)
             && !rayToPlayerIntersectsWall(getWorldCenter(c));
     }

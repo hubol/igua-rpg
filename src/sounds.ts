@@ -357,6 +357,11 @@ export const SharpBullet = new Howl({
     
 });
 
+export const SharpNotice = new Howl({
+    src: [require("./sound/sharp notice.ogg"), require("./sound/sharp notice.mp3")],
+    
+});
+
 export const SharpSlamCharge = new Howl({
     src: [require("./sound/sharp slam charge.ogg"), require("./sound/sharp slam charge.mp3")],
     
