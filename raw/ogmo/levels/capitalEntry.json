@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 488,
+  "width": 712,
   "height": 256,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,7 +12,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 89,
       "gridCellsY": 32,
       "entities": [
         {
@@ -21,7 +21,7 @@
           "_eid": "55823268",
           "x": 0,
           "y": 224,
-          "width": 488,
+          "width": 712,
           "height": 32,
           "originX": 0,
           "originY": 0,
@@ -31,7 +31,7 @@
           "name": "Player",
           "id": 1,
           "_eid": "55988047",
-          "x": 416,
+          "x": 640,
           "y": 224,
           "originX": 11,
           "originY": 27,
@@ -46,7 +46,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 89,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"
@@ -58,7 +58,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 89,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"
@@ -70,7 +70,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 89,
       "gridCellsY": 32,
       "decals": [],
       "folder": "..\\..\\src\\images"
@@ -82,14 +82,14 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 89,
       "gridCellsY": 32,
       "decals": [
-        {"x": 16, "y": 168, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 392, "y": 104, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 352, "y": 96, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 120, "y": 96, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 72, "y": 64, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5}
+        {"x": 240, "y": 168, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 616, "y": 104, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 576, "y": 96, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 344, "y": 96, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 296, "y": 64, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../src/images"
     }

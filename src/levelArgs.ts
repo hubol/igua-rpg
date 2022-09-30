@@ -110,12 +110,12 @@ import { DesertTemple } from "./textures";
 import { CandleSmallRed } from "./textures";
 
 export const CapitalEntryArgs = {
-    width: 488,
+    width: 712,
 height: 256,
 gameObjectsSupplier: () => {
   return {
     CloudLong: resolveDecalGameObject({
-    x: 16,
+    x: 240,
 y: 168,
 originX: 0.5,
 originY: 0.5,
@@ -126,7 +126,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_1: resolveDecalGameObject({
-    x: 392,
+    x: 616,
 y: 104,
 originX: 0.5,
 originY: 0.5,
@@ -137,7 +137,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_2: resolveDecalGameObject({
-    x: 352,
+    x: 576,
 y: 96,
 originX: 0.5,
 originY: 0.5,
@@ -148,7 +148,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_3: resolveDecalGameObject({
-    x: 120,
+    x: 344,
 y: 96,
 originX: 0.5,
 originY: 0.5,
@@ -159,7 +159,7 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_4: resolveDecalGameObject({
-    x: 72,
+    x: 296,
 y: 64,
 originX: 0.5,
 originY: 0.5,
@@ -170,8 +170,8 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":224,"width":488,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
-Player: {"type":"Player","x":416,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0}
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":712,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":640,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0}
 };
 }
 };

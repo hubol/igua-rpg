@@ -325,9 +325,10 @@ export function clownSharp() {
 
     const idle = attack({ noticed: false })
         .withAsync(async (self) => {
+            let startUnit = health.unit;
             await Promise.race([
                 waitHold(canSeePlayer, 20),
-                wait(() => health.hasTakenDamage)
+                wait(() => health.unit < startUnit)
             ]);
             self.noticed = true;
             SharpNotice.play();
@@ -339,6 +340,7 @@ export function clownSharp() {
             ]);
             self.destroy();
             arms.forEach(x => x.visible = false);
+            offscreenForSteps = 0;
         })
         .withStep(({ noticed }) => {
             if (!noticed)
@@ -350,9 +352,13 @@ export function clownSharp() {
             });
         });
 
-    const pursuePlayer = attack({ waitingForRefill: false })
+    const pursuePlayer = attack({ waitingForRefill: false, steps: 0 })
         .withStep((self) => {
             automation.facePlayer = false;
+            if (self.steps++ >= 60 * 3 && !isOnScreen(c)) {
+                offscreenForSteps = 60 * 100;
+                return self.destroy();
+            }
             if (hDistFromPlayer(c) <= 64)
                 return self.destroy();
             if (!rayToPlayerIntersectsWall(getWorldCenter(c)) && c.stamina > 0 && !self.waitingForRefill) {
@@ -389,10 +395,15 @@ export function clownSharp() {
         return stab({ arm: hSignToPlayer(c) > 0 ? armr : arml });
     }
 
+    let offscreenForSteps = 0;
+    c.withStep(() => offscreenForSteps = isOnScreen(c) ? 0 : offscreenForSteps++)
+
     async function run(d: DisplayObject) {
         await attacks.run(d);
         automation.lookAtPlayer = true;
         automation.facePlayer = true;
+        if (offscreenForSteps > 60 * 3)
+            throw new ReturnToIdle();
     }
 
     function canSeePlayer() {
@@ -408,7 +419,7 @@ export function clownSharp() {
         return rng.choose([upCloseSlam, bullets, stabTowardsPlayer])();
     }
 
-    async function doAs() {
+    async function doAsImpl() {
         resetArms();
         await run(idle());
         await run(getFirstAttack());
@@ -418,14 +429,16 @@ export function clownSharp() {
             const second = first === bullets ? upCloseSlam : bullets;
 
             await wait(() => c.stamina > 0);
-            await run(first());
+            if (distFromPlayer(c) < 300)
+                await run(first());
             await run(pursuePlayer());
             await run(stabTowardsPlayer());
             if (rng() < 0.67) {
                 c.stamina += 100;
                 await run(stabTowardsPlayer());
             }
-            await run(second());
+            if (distFromPlayer(c) < 300)
+                await run(second());
             if (rng() < 0.67) {
                 if (hDistFromPlayer(c) > 96) {
                     await sleep(200);
@@ -441,11 +454,25 @@ export function clownSharp() {
         }
     }
 
+    async function doAs() {
+        while (true) {
+            try {
+                await doAsImpl();
+            }
+            catch (e) {
+                if (!(e instanceof ReturnToIdle))
+                    throw e;
+            }
+        }
+    }
+
     setTimeout(() => c.withAsync(doAs));
 
     c.ext.isHatParent = true;
     return c;
 }
+
+class ReturnToIdle { }
 
 const bulletColors = [ 0xFF6DB7, 0xFF3D87 ];
 
