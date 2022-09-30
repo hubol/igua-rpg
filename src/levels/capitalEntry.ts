@@ -5,11 +5,11 @@ import {clownSharp} from "../gameObjects/clownSharp";
 import {player} from "../gameObjects/player";
 
 export function CapitalEntry() {
-    scene.backgroundColor = 0x60B0E0;
-    scene.terrainColor = 0x40A020;
+    scene.backgroundColor = 0xF0C8D0;
+    scene.terrainColor = 0xF0B020;
     const level = applyOgmoLevel(CapitalEntryArgs);
 
     clownSharp().at([-220, -40 + 16].add(player)).show();
-    // clownSharp().at([-100, -40 + 16].add(player)).show();
-    // clownSharp().at([-70, -40 + 16].add(player)).show();
+    clownSharp().at([-250, -40 + 16].add(player)).show();
+    clownSharp().at([-300, -40 + 16].add(player)).show();
 }
