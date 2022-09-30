@@ -325,6 +325,27 @@ export function clownSharp() {
 
     const idle = attack({ noticed: false })
         .withAsync(async (self) => {
+            automation.facePlayer = false;
+            automation.lookAtPlayer = false;
+            head.facing = rng.choose([ -1, 1 ]);
+            head.looking = head.facing;
+            const c = container()
+                .withAsync(async () => {
+                    while (true) {
+                        await sleep(rng.int(1500) + 1000);
+                        const looking = head.looking;
+                        head.looking = 0;
+                        await sleep(100);
+                        head.looking = looking === 1 ? -1 : 1;
+                    }
+                })
+                .show(self);
+            await wait(() => self.noticed);
+            c.destroy();
+            automation.facePlayer = true;
+            automation.lookAtPlayer = true;
+        })
+        .withAsync(async (self) => {
             let startUnit = health.unit;
             await Promise.race([
                 waitHold(canSeePlayer, 20),
