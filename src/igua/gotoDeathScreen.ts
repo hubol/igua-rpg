@@ -4,6 +4,8 @@ import {createStagedFakePlayer, player, playerPuppet} from "../gameObjects/playe
 import {persistence} from "./data/persistence";
 import {environment} from "./environment";
 import {loadDevProgress} from "./game";
+import {merge} from "../utils/object/merge";
+import {Rectangle} from "pixi.js";
 
 export function gotoDeathScreen()
 {
@@ -23,19 +25,34 @@ function createOffscreenFakePlayerAndCorpse() {
     player.destroy();
 
     createStagedFakePlayer();
-    player.x = x;
-
-    const corpse = playerPuppet().at(x, y).withStep(() => {
-            corpse.visible = !corpse.visible;
-            corpse.engine.step();
+    merge(player, {
+            rectangle: new Rectangle(-100000, -100000, 1, 1),
+            collides() {
+                return false;
+            }
         })
+        .hide();
+
+    const corpse = createCorpse()
+        .at(x, y)
+        .withStep(() => player.at(corpse))
         .show(scene.playerStage);
+
     corpse.duckUnit = duckUnit;
     corpse.closedEyesUnit = closedEyesUnit;
     corpse.scale.x = xscale;
+}
+
+function createCorpse() {
+    const corpse = playerPuppet()
+    .withStep(() => {
+        corpse.visible = !corpse.visible;
+        corpse.engine.step();
+    });
     corpse.isDucking = true;
     corpse.canBlink = false;
     corpse.isClosingEyes = true;
+    return corpse;
 }
 
 async function revive() {
