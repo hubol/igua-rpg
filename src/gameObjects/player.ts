@@ -155,9 +155,6 @@ function createPlayer(behavior = true)
             player.canBlink = false;
             player.isClosingEyes = true;
             player.isDucking = true;
-            player.hspeed = 0;
-            player.vspeed = 0;
-            engine.on = false;
             return;
         }
 
