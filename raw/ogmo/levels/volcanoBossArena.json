@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 816,
+  "width": 848,
   "height": 256,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,14 +12,14 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 102,
+      "gridCellsX": 106,
       "gridCellsY": 32,
       "entities": [
         {
           "name": "Block",
           "id": 0,
           "_eid": "55823268",
-          "x": 656,
+          "x": 688,
           "y": 208,
           "width": 160,
           "height": 48,
@@ -31,7 +31,7 @@
           "name": "Block",
           "id": 1,
           "_eid": "55823268",
-          "x": 656,
+          "x": 688,
           "y": 0,
           "width": 160,
           "height": 160,
@@ -43,7 +43,7 @@
           "name": "Player",
           "id": 2,
           "_eid": "55988047",
-          "x": 728,
+          "x": 760,
           "y": 208,
           "originX": 11,
           "originY": 27,
@@ -53,7 +53,7 @@
           "name": "Gate",
           "id": 3,
           "_eid": "55920197",
-          "x": 784,
+          "x": 816,
           "y": 176,
           "width": 32,
           "height": 32,
@@ -65,7 +65,7 @@
           "name": "Lava",
           "id": 4,
           "_eid": "98209396",
-          "x": -192,
+          "x": -160,
           "y": 208,
           "width": 848,
           "height": 48,
@@ -77,7 +77,7 @@
           "name": "Anchor",
           "id": 6,
           "_eid": "25979726",
-          "x": 404,
+          "x": 436,
           "y": 188,
           "originX": 0,
           "originY": 0,
@@ -89,7 +89,7 @@
           "_eid": "55823268",
           "x": 0,
           "y": 144,
-          "width": 96,
+          "width": 128,
           "height": 112,
           "originX": 0,
           "originY": 0,
@@ -99,7 +99,7 @@
           "name": "Block",
           "id": 16,
           "_eid": "55823268",
-          "x": 80,
+          "x": 112,
           "y": 56,
           "width": 16,
           "height": 88,
@@ -111,7 +111,7 @@
           "name": "Region",
           "id": 17,
           "_eid": "25971607",
-          "x": 128,
+          "x": 160,
           "y": 0,
           "width": 496,
           "height": 8,
@@ -123,7 +123,7 @@
           "name": "Block",
           "id": 18,
           "_eid": "55823268",
-          "x": -96,
+          "x": -64,
           "y": 0,
           "width": 192,
           "height": 56,
@@ -135,7 +135,7 @@
           "name": "Block",
           "id": 19,
           "_eid": "55823268",
-          "x": 656,
+          "x": 688,
           "y": 160,
           "width": 16,
           "height": 16,
@@ -147,7 +147,7 @@
           "name": "Block",
           "id": 20,
           "_eid": "55823268",
-          "x": 656,
+          "x": 688,
           "y": 200,
           "width": 16,
           "height": 16,
@@ -159,7 +159,7 @@
           "name": "Checkpoint",
           "id": 21,
           "_eid": "55940370",
-          "x": 480,
+          "x": 512,
           "y": 208,
           "originX": 6,
           "originY": 12,
@@ -169,11 +169,33 @@
           "name": "Checkpoint",
           "id": 22,
           "_eid": "55940370",
-          "x": 72,
+          "x": 104,
           "y": 144,
           "originX": 6,
           "originY": 12,
           "values": {"name": "DefeatedBoss", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 23,
+          "_eid": "55920197",
+          "x": 0,
+          "y": 112,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "CapitalEntry", "checkpointName": "FromVolcano", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 24,
+          "_eid": "55940370",
+          "x": 72,
+          "y": 144,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromCapital", "faceRight": true, "depth": 0}
         }
       ]
     },
@@ -184,7 +206,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 102,
+      "gridCellsX": 106,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"
@@ -196,11 +218,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 102,
+      "gridCellsX": 106,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 685.5930595662703,
+          "x": 717.5930595662703,
           "y": 220.51552327733887,
           "scaleX": 1,
           "scaleY": 1,
@@ -211,7 +233,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 685.114275467532,
+          "x": 717.114275467532,
           "y": 147.2615561703749,
           "scaleX": -1,
           "scaleY": -1,
@@ -222,7 +244,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 64,
+          "x": 96,
           "y": 40,
           "scaleX": 1,
           "scaleY": 1,
@@ -233,7 +255,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 78.66864533342431,
+          "x": 110.66864533342431,
           "y": 203.89731196455642,
           "scaleX": 1,
           "scaleY": 1,
@@ -244,7 +266,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 20.17641350412977,
+          "x": 52.17641350412977,
           "y": 198.1480755027027,
           "scaleX": -1,
           "scaleY": 1,
@@ -255,7 +277,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 40.92365812734107,
+          "x": 72.92365812734107,
           "y": 189.39923740857745,
           "scaleX": 1,
           "scaleY": -1,
@@ -275,11 +297,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 102,
+      "gridCellsX": 106,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 168,
+          "x": 200,
           "y": 24,
           "scaleX": 1,
           "scaleY": 1,
@@ -290,7 +312,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 168,
+          "x": 200,
           "y": 72,
           "scaleX": 1,
           "scaleY": 1,
@@ -301,7 +323,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 168,
+          "x": 200,
           "y": 120,
           "scaleX": 1,
           "scaleY": 1,
@@ -312,7 +334,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 167.21693226349737,
+          "x": 199.21693226349737,
           "y": 151.95385182388233,
           "scaleX": 1,
           "scaleY": 1,
@@ -323,7 +345,7 @@
           "values": {"name": "Key"}
         },
         {
-          "x": 55.42173268332006,
+          "x": 87.42173268332006,
           "y": 129.65717156583645,
           "scaleX": 1,
           "scaleY": -1,
@@ -343,11 +365,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 102,
+      "gridCellsX": 106,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 328,
+          "x": 360,
           "y": 200,
           "scaleX": 1,
           "scaleY": -1,
@@ -358,7 +380,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 396.34110086626936,
+          "x": 428.34110086626936,
           "y": 196.40688958366852,
           "scaleX": 1,
           "scaleY": -1,
@@ -369,7 +391,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 486.9575238187166,
+          "x": 518.9575238187166,
           "y": 201.97376880941613,
           "scaleX": -1,
           "scaleY": -1,
@@ -380,7 +402,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 559.9454958896297,
+          "x": 591.9454958896297,
           "y": 197.33470278795977,
           "scaleX": 1,
           "scaleY": -1,
@@ -391,7 +413,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 583.7593681331055,
+          "x": 615.7593681331055,
           "y": 192.69563676650344,
           "scaleX": -1,
           "scaleY": -1,
@@ -402,7 +424,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 242.7593681331055,
+          "x": 274.7593681331055,
           "y": 196.69563676650344,
           "scaleX": -1,
           "scaleY": -1,
@@ -413,7 +435,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 218.94549588962963,
+          "x": 250.94549588962963,
           "y": 201.33470278795977,
           "scaleX": 1,
           "scaleY": -1,
@@ -424,7 +446,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 145.9575238187166,
+          "x": 177.9575238187166,
           "y": 205.97376880941613,
           "scaleX": -1,
           "scaleY": -1,
@@ -435,7 +457,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 55.34110086626936,
+          "x": 87.34110086626936,
           "y": 200.40688958366852,
           "scaleX": 1,
           "scaleY": -1,

@@ -108,6 +108,7 @@ import { PotteryOrange } from "./textures";
 import { Rope } from "./textures";
 import { DesertTemple } from "./textures";
 import { CandleSmallRed } from "./textures";
+import { resolveClownSharp } from "./gameObjects/clownSharp";
 
 export const CapitalEntryArgs = {
     width: 712,
@@ -173,7 +174,13 @@ texture: CloudLong
 Block: resolveBlock({"type":"Block","x":0,"y":224,"width":712,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 Player: {"type":"Player","x":640,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":680,"y":192,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_2","levelName":"VolcanoBossArena","checkpointName":"FromCapital","name":"","depth":0})
+Gate: resolveGate({"type":"Gate","x":680,"y":192,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_2","levelName":"VolcanoBossArena","checkpointName":"FromCapital","name":"","depth":0}),
+// @ts-ignore
+ClownSharp: resolveClownSharp({"type":"ClownSharp","x":472,"y":224,"flippedX":false,"flippedY":false,"uid":"73460416_3","name":"","depth":0}),
+// @ts-ignore
+ClownSharp_1: resolveClownSharp({"type":"ClownSharp","x":344,"y":224,"flippedX":false,"flippedY":false,"uid":"73460416_4","name":"","depth":0}),
+// @ts-ignore
+ClownSharp_2: resolveClownSharp({"type":"ClownSharp","x":216,"y":224,"flippedX":false,"flippedY":false,"uid":"73460416_5","name":"","depth":0})
 };
 }
 };

@@ -36,6 +36,7 @@ import {scene} from "../igua/scene";
 import {waitHold} from "../cutscene/waitHold";
 import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 import {isOnScreen} from "../igua/logic/isOnScreen";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 const consts = {
     gravity: 0.2,
@@ -53,6 +54,8 @@ const consts = {
         }
     }
 }
+
+export const resolveClownSharp = resolveGameObject('ClownSharp', x => clownSharp().at(x));
 
 export function clownSharp() {
     const health = clownHealth(450);

@@ -48,6 +48,36 @@
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "VolcanoBossArena", "checkpointName": "FromCapital", "name": "", "depth": 0}
+        },
+        {
+          "name": "ClownSharp",
+          "id": 3,
+          "_eid": "73460416",
+          "x": 472,
+          "y": 224,
+          "originX": 15,
+          "originY": 30,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ClownSharp",
+          "id": 4,
+          "_eid": "73460416",
+          "x": 344,
+          "y": 224,
+          "originX": 15,
+          "originY": 30,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ClownSharp",
+          "id": 5,
+          "_eid": "73460416",
+          "x": 216,
+          "y": 224,
+          "originX": 15,
+          "originY": 30,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -97,11 +127,61 @@
       "gridCellsX": 89,
       "gridCellsY": 32,
       "decals": [
-        {"x": 240, "y": 168, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 616, "y": 104, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 576, "y": 96, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 344, "y": 96, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 296, "y": 64, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 240,
+          "y": 168,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 616,
+          "y": 104,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 576,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 344,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 296,
+          "y": 64,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     }
