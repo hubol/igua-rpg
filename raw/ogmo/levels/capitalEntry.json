@@ -1,7 +1,7 @@
 {
   "ogmoVersion": "3.4.0-hubol",
   "width": 712,
-  "height": 256,
+  "height": 360,
   "offsetX": 0,
   "offsetY": 0,
   "layers": [
@@ -13,7 +13,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 89,
-      "gridCellsY": 32,
+      "gridCellsY": 45,
       "entities": [
         {
           "name": "Block",
@@ -21,8 +21,8 @@
           "_eid": "55823268",
           "x": 0,
           "y": 224,
-          "width": 712,
-          "height": 32,
+          "width": 416,
+          "height": 136,
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
@@ -32,7 +32,7 @@
           "id": 1,
           "_eid": "55988047",
           "x": 640,
-          "y": 224,
+          "y": 344,
           "originX": 11,
           "originY": 27,
           "values": {"faceRight": false, "name": "", "depth": 0}
@@ -42,7 +42,7 @@
           "id": 2,
           "_eid": "55920197",
           "x": 680,
-          "y": 192,
+          "y": 312,
           "width": 32,
           "height": 32,
           "originX": 0,
@@ -53,7 +53,7 @@
           "name": "ClownSharp",
           "id": 3,
           "_eid": "73460416",
-          "x": 472,
+          "x": 352,
           "y": 224,
           "originX": 15,
           "originY": 30,
@@ -63,7 +63,7 @@
           "name": "ClownSharp",
           "id": 4,
           "_eid": "73460416",
-          "x": 344,
+          "x": 224,
           "y": 224,
           "originX": 15,
           "originY": 30,
@@ -73,10 +73,96 @@
           "name": "ClownSharp",
           "id": 5,
           "_eid": "73460416",
-          "x": 216,
+          "x": 96,
           "y": 224,
           "originX": 15,
           "originY": 30,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 6,
+          "_eid": "55823268",
+          "x": 416,
+          "y": 344,
+          "width": 296,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 7,
+          "_eid": "55823268",
+          "x": 416,
+          "y": 272,
+          "width": 32,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 8,
+          "_eid": "55823268",
+          "x": 448,
+          "y": 312,
+          "width": 32,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 9,
+          "_eid": "55823268",
+          "x": 504,
+          "y": 224,
+          "width": 208,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 10,
+          "_eid": "55824435",
+          "x": 504,
+          "y": 240,
+          "width": 136,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 11,
+          "_eid": "55823268",
+          "x": 640,
+          "y": 240,
+          "width": 72,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 13,
+          "_eid": "55824435",
+          "x": 608,
+          "y": 256,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
           "values": {"name": "", "depth": 0}
         }
       ]
@@ -89,7 +175,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 89,
-      "gridCellsY": 32,
+      "gridCellsY": 45,
       "decals": [],
       "folder": "../../src/images"
     },
@@ -101,7 +187,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 89,
-      "gridCellsY": 32,
+      "gridCellsY": 45,
       "decals": [],
       "folder": "../../src/images"
     },
@@ -113,7 +199,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 89,
-      "gridCellsY": 32,
+      "gridCellsY": 45,
       "decals": [],
       "folder": "..\\..\\src\\images"
     },
@@ -125,7 +211,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 89,
-      "gridCellsY": 32,
+      "gridCellsY": 45,
       "decals": [
         {
           "x": 240,

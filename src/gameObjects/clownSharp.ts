@@ -420,7 +420,7 @@ export function clownSharp() {
     }
 
     let offscreenForSteps = 0;
-    c.withStep(() => offscreenForSteps = isOnScreen(c) ? 0 : offscreenForSteps++)
+    c.withStep(() => offscreenForSteps = isOnScreen(c) ? 0 : ++offscreenForSteps)
 
     async function run(d: DisplayObject) {
         await attacks.run(d);

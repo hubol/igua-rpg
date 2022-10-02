@@ -112,7 +112,7 @@ import { resolveClownSharp } from "./gameObjects/clownSharp";
 
 export const CapitalEntryArgs = {
     width: 712,
-height: 256,
+height: 360,
 gameObjectsSupplier: () => {
   return {
     CloudLong: resolveDecalGameObject({
@@ -171,16 +171,30 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":0,"y":224,"width":712,"height":32,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
-Player: {"type":"Player","x":640,"y":224,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
+Block: resolveBlock({"type":"Block","x":0,"y":224,"width":416,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Player: {"type":"Player","x":640,"y":344,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":680,"y":192,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_2","levelName":"VolcanoBossArena","checkpointName":"FromCapital","name":"","depth":0}),
+Gate: resolveGate({"type":"Gate","x":680,"y":312,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_2","levelName":"VolcanoBossArena","checkpointName":"FromCapital","name":"","depth":0}),
 // @ts-ignore
-ClownSharp: resolveClownSharp({"type":"ClownSharp","x":472,"y":224,"flippedX":false,"flippedY":false,"uid":"73460416_3","name":"","depth":0}),
+ClownSharp: resolveClownSharp({"type":"ClownSharp","x":352,"y":224,"flippedX":false,"flippedY":false,"uid":"73460416_3","name":"","depth":0}),
 // @ts-ignore
-ClownSharp_1: resolveClownSharp({"type":"ClownSharp","x":344,"y":224,"flippedX":false,"flippedY":false,"uid":"73460416_4","name":"","depth":0}),
+ClownSharp_1: resolveClownSharp({"type":"ClownSharp","x":224,"y":224,"flippedX":false,"flippedY":false,"uid":"73460416_4","name":"","depth":0}),
 // @ts-ignore
-ClownSharp_2: resolveClownSharp({"type":"ClownSharp","x":216,"y":224,"flippedX":false,"flippedY":false,"uid":"73460416_5","name":"","depth":0})
+ClownSharp_2: resolveClownSharp({"type":"ClownSharp","x":96,"y":224,"flippedX":false,"flippedY":false,"uid":"73460416_5","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":416,"y":344,"width":296,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":416,"y":272,"width":32,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":448,"y":312,"width":32,"height":40,"flippedX":false,"flippedY":false,"uid":"55823268_8","name":"","depth":0}),
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":504,"y":224,"width":208,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":504,"y":240,"width":136,"height":24,"flippedX":false,"flippedY":true,"uid":"55824435_10","name":"","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":640,"y":240,"width":72,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_11","name":"","depth":0}),
+// @ts-ignore
+SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":608,"y":256,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_13","name":"","depth":0})
 };
 }
 };
