@@ -200,7 +200,19 @@
       "gridCellHeight": 8,
       "gridCellsX": 89,
       "gridCellsY": 45,
-      "decals": [],
+      "decals": [
+        {
+          "x": 616,
+          "y": 310,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/volcano backdrop.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "..\\..\\src\\images"
     },
     {

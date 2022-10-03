@@ -109,13 +109,25 @@ import { Rope } from "./textures";
 import { DesertTemple } from "./textures";
 import { CandleSmallRed } from "./textures";
 import { resolveClownSharp } from "./gameObjects/clownSharp";
+import { CapitalVolcanoBackdrop } from "./textures";
 
 export const CapitalEntryArgs = {
     width: 712,
 height: 360,
 gameObjectsSupplier: () => {
   return {
-    CloudLong: resolveDecalGameObject({
+    CapitalVolcanoBackdrop: resolveDecalGameObject({
+    x: 616,
+y: 310,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: CapitalVolcanoBackdrop
+}),
+CloudLong: resolveDecalGameObject({
     x: 240,
 y: 168,
 originX: 0.5,

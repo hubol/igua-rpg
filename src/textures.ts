@@ -28,6 +28,7 @@ export let Boulder: PIXI.Texture;
 export let Burst: PIXI.Texture;
 export let Burst2: PIXI.Texture;
 export let CandleSmallRed: PIXI.Texture;
+export let CapitalVolcanoBackdrop: PIXI.Texture;
 export let CharacterBody: PIXI.Texture;
 export let CharacterCrest: PIXI.Texture;
 export let CharacterFoot: PIXI.Texture;
@@ -321,6 +322,9 @@ export function loadTexturesAsync()
 
     const CandleSmallRedPath = require("./images/candle small red.png");
     loader.add(CandleSmallRedPath); 
+
+    const CapitalVolcanoBackdropPath = require("./images/capital/volcano backdrop.png");
+    loader.add(CapitalVolcanoBackdropPath); 
 
     const CharacterBodyPath = require("./images/character/body.png");
     loader.add(CharacterBodyPath); 
@@ -982,6 +986,7 @@ export function loadTexturesAsync()
             Burst = resources[BurstPath]?.texture as PIXI.Texture;
             Burst2 = resources[Burst2Path]?.texture as PIXI.Texture;
             CandleSmallRed = resources[CandleSmallRedPath]?.texture as PIXI.Texture;
+            CapitalVolcanoBackdrop = resources[CapitalVolcanoBackdropPath]?.texture as PIXI.Texture;
             CharacterBody = resources[CharacterBodyPath]?.texture as PIXI.Texture;
             CharacterCrest = resources[CharacterCrestPath]?.texture as PIXI.Texture;
             CharacterFoot = resources[CharacterFootPath]?.texture as PIXI.Texture;
