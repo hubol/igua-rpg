@@ -1,5 +1,6 @@
 import {Rectangle, Texture} from "pixi.js";
 import {getOpaquePixelsBounds} from "./getOpaquePixelsBounds";
+import {environment} from "../../igua/environment";
 
 export function trimFrame(texture: Texture) {
     // @ts-ignore
@@ -19,7 +20,14 @@ export function trimFrame(texture: Texture) {
     const x = originalX - x1;
     const y = originalY - y1;
     texture.defaultAnchor.set(x / width, y / height);
+    if (!environment.isProduction)
+        maybeDevModePanicRestart(texture);
     // @ts-ignore
     texture.__trimmedFrame = true;
     return texture;
+}
+
+function maybeDevModePanicRestart(texture: Texture) {
+    if (texture.defaultAnchor.x < 0 && texture.baseTexture.textureCacheIds[0].includes('foot'))
+        location.reload();
 }
