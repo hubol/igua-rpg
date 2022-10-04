@@ -58,7 +58,7 @@ const consts = {
 export const resolveClownSharp = resolveGameObject('ClownSharp', x => clownSharp().at(x));
 
 export function clownSharp() {
-    const health = clownHealth(450);
+    const health = clownHealth(440);
     const drop = clownDrop(1, 0.5, 0.3);
 
     const automation = {
