@@ -4,15 +4,12 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {jukebox} from "../igua/jukebox";
 import {heatWaves} from "../gameObjects/heatWaves";
 import {cracks} from "../gameObjects/cracks";
-import {irregularRectangle} from "../gameObjects/irregularRectangle";
-import {player} from "../gameObjects/player";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {container} from "../utils/pixi/container";
-import {game} from "../igua/game";
 import {forceRenderable} from "../igua/forceRenderable";
 import {decalsOf} from "../gameObjects/decal";
-import {GroundSpeckles} from "../textures";
-import {Graphics} from "pixi.js";
+import {CapitalVolcanoBackdrop, GroundSpeckles, MessageBox} from "../textures";
+import {Graphics, Sprite} from "pixi.js";
 
 export function CapitalEntry() {
     scene.backgroundColor = 0xF0C8D0;
@@ -24,7 +21,7 @@ export function CapitalEntry() {
 
 function enrichVolcanoTransition(level: GameObjectsType<typeof CapitalEntryArgs>) {
     const drop = level.CapitalVolcanoBackdrop;
-    drop.tinted(0x78917D);
+    decalsOf(CapitalVolcanoBackdrop).forEach(x => x.tinted(0x78917D));
 
     cracks(3789.8267, 0x481018, drop.width, drop.height)
         .at(drop)
@@ -36,16 +33,19 @@ function enrichVolcanoTransition(level: GameObjectsType<typeof CapitalEntryArgs>
         .behind();
     waves.angle = -8;
 
-    const { width: tw, height: th } = level.TerrainTransition;
+    const transitions = <Sprite[]>Object.values(level).filter(x => x instanceof Sprite && x.texture == MessageBox);
     const colors = [0xE89830, 0xD87838, 0xB85038, 0x912235];
-    const t = container().at(level.TerrainTransition);
+    const t = container();
     for (let i = 0; i < colors.length; i++) {
         const p = i * 4;
-        const w = tw - p * 2;
-        const h = th - p * 2;
-        // const seed = 3790.36 + i * 173.987;
-        const g = new Graphics().beginFill(colors[i]).drawRect(0, 0, w, h).at(p, p).show(t);
-        // irregularRectangle(w, h, seed).at(p, p).tinted(colors[i]).show(t);
+        for (const transition of transitions) {
+            const { width: tw, height: th } = transition;
+            const w = tw - p * 2;
+            const h = th - p * 2;
+            // const seed = 3790.36 + i * 173.987;
+            new Graphics().beginFill(colors[i]).drawRect(0, 0, w, h).at([p, p].add(transition)).show(t);
+            // irregularRectangle(w, h, seed).at(p, p).tinted(colors[i]).show(t);
+        }
     }
 
     forceRenderable(scene.terrainStage);

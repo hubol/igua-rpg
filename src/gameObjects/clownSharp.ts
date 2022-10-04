@@ -196,8 +196,7 @@ export function clownSharp() {
             await Promise.race([
                 wait(() => tookDamageVolatile).then(() => sleep(100)),
                 sleep(2000),
-                waitHold(() => distFromPlayer(arm.fork.prongs) > consts.bullet.travel, 60 * 2),
-                wait(() => player.isDead)
+                waitHold(() => distFromPlayer(arm.fork.prongs) > consts.bullet.travel, 60 * 2)
             ]);
             self.fire = false;
             await Promise.all([
@@ -311,6 +310,10 @@ export function clownSharp() {
             const blast = empBlast(80, 0, consts.damage.empBlast, 1000)
                 .damageSource(c)
                 .at([0, -8].add(c))
+                .withStep(() => {
+                    if (c.destroyed)
+                        blast.destroy();
+                })
                 .show(scene.gameObjectStage, 0);
 
             await wait(() => blast.destroyed);
