@@ -9,11 +9,12 @@ import {decalsOf} from "../gameObjects/decal";
 import {CapitalVolcanoBackdrop, GroundSpeckles} from "../textures";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {region} from "../gameObjects/region";
+import {AmbientLava} from "../musics";
 
 export function CapitalEntry() {
     scene.backgroundColor = 0xF0C8D0;
     scene.terrainColor = 0xF0B020;
-    jukebox.stop();
+    jukebox.stop().warm(AmbientLava);
     const level = applyOgmoLevel(CapitalEntryArgs);
     enrichVolcanoTransition(level);
 }
