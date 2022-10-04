@@ -117,7 +117,7 @@ export async function oracleAdviceVolcano() {
 
     if (bigKey.reward) {
         if (!defeatedVileAngel) {
-            await show(`You repaired the big key and received the blessing of fire!`);
+            await show(`You repaired the big key and received the blessing of flame!`);
             return await show(`Vanquish the vile invader in the lava pools to continue your mission.`);
         }
     }

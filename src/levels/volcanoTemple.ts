@@ -36,7 +36,7 @@ export function VolcanoTemple() {
     level.Sign.cutscene = util.signCutscene;
     level.GlowingCircle.tinted(0xFFE451).alpha = 0.625;
     decalsOf(CrackSmall).forEach(x => x.tinted(0x651913));
-    util.tryGiveReward(bigKey, 'reward', level.BigKey, 'Blessing of Fire');
+    util.tryGiveReward(bigKey, 'reward', level.BigKey, 'Blessing of Flame');
 }
 
 export const volcanoBigKeyTextures = subimageTextures(BigKey3, 3);
