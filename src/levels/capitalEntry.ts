@@ -5,11 +5,10 @@ import {jukebox} from "../igua/jukebox";
 import {heatWaves} from "../gameObjects/heatWaves";
 import {cracks} from "../gameObjects/cracks";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
-import {container} from "../utils/pixi/container";
-import {forceRenderable} from "../igua/forceRenderable";
 import {decalsOf} from "../gameObjects/decal";
-import {CapitalVolcanoBackdrop, GroundSpeckles, MessageBox} from "../textures";
-import {Graphics, Sprite} from "pixi.js";
+import {CapitalVolcanoBackdrop, GroundSpeckles} from "../textures";
+import {terrainGradient} from "../gameObjects/outerGradient";
+import {region} from "../gameObjects/region";
 
 export function CapitalEntry() {
     scene.backgroundColor = 0xF0C8D0;
@@ -33,25 +32,9 @@ function enrichVolcanoTransition(level: GameObjectsType<typeof CapitalEntryArgs>
         .behind();
     waves.angle = -8;
 
-    const transitions = <Sprite[]>Object.values(level).filter(x => x instanceof Sprite && x.texture == MessageBox);
+    const transitions = region.instances;
     const colors = [0xE89830, 0xD87838, 0xB85038, 0x912235];
-    const t = container();
-    for (let i = 0; i < colors.length; i++) {
-        const p = i * 4;
-        for (const transition of transitions) {
-            const { width: tw, height: th } = transition;
-            const w = tw - p * 2;
-            const h = th - p * 2;
-            // const seed = 3790.36 + i * 173.987;
-            new Graphics().beginFill(colors[i]).drawRect(0, 0, w, h).at([p, p].add(transition)).show(t);
-            // irregularRectangle(w, h, seed).at(p, p).tinted(colors[i]).show(t);
-        }
-    }
-
-    forceRenderable(scene.terrainStage);
-
-    t.mask = scene.terrainStage;
-    t.show(scene.cameraStage, scene.terrainStage.index + 1);
+    terrainGradient(transitions, colors);
 
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x6D1913));
 }

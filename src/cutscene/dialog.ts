@@ -22,3 +22,8 @@ export async function show(message: string)
     await waitForInput("Confirm")
         .finally(() => box.destroy());
 }
+
+export async function showAll(...messages: string[]) {
+    for (const message of messages)
+        await show(message);
+}

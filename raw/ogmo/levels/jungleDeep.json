@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 696,
+  "width": 904,
   "height": 632,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,7 +12,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 87,
+      "gridCellsX": 113,
       "gridCellsY": 79,
       "entities": [
         {
@@ -135,6 +135,130 @@
           "originX": 12,
           "originY": 22,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 72,
+          "_eid": "25979726",
+          "x": 696,
+          "y": -24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "CameraLock", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 73,
+          "_eid": "55823268",
+          "x": 696,
+          "y": -64,
+          "width": 56,
+          "height": 504,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 74,
+          "_eid": "55823268",
+          "x": 696,
+          "y": 464,
+          "width": 56,
+          "height": 256,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 75,
+          "_eid": "55823268",
+          "x": 752,
+          "y": 488,
+          "width": 128,
+          "height": 232,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 76,
+          "_eid": "55823268",
+          "x": 752,
+          "y": -56,
+          "width": 128,
+          "height": 456,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 77,
+          "_eid": "55823268",
+          "x": 880,
+          "y": -56,
+          "width": 24,
+          "height": 776,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 78,
+          "_eid": "25971607",
+          "x": 716,
+          "y": -64,
+          "width": 232,
+          "height": 768,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 80,
+          "_eid": "26367058",
+          "x": 856,
+          "y": 488,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "Outcast", "style": 19, "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 81,
+          "_eid": "55841307",
+          "x": 806,
+          "y": 448,
+          "width": 28,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 82,
+          "_eid": "55991906",
+          "x": 869,
+          "y": 416,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 83,
+          "_eid": "55991906",
+          "x": 850,
+          "y": 416,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -145,7 +269,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 87,
+      "gridCellsX": 113,
       "gridCellsY": 79,
       "decals": [
         {
@@ -169,7 +293,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 87,
+      "gridCellsX": 113,
       "gridCellsY": 79,
       "decals": [
         {
@@ -336,6 +460,28 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 853.212114577482,
+          "y": 500.6239229487155,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 759,
+          "y": 407,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cobweb.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "../../src/images"
@@ -347,7 +493,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 87,
+      "gridCellsX": 113,
       "gridCellsY": 79,
       "decals": [
         {
@@ -569,6 +715,61 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 696,
+          "y": 400,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "jungle/hidden house walls.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 820,
+          "y": 448,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "light shelf.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 812,
+          "y": 448,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "book collection.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 821,
+          "y": 448,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "book collection.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 684.0129100714782,
+          "y": 451.99630208246225,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "hint arrow.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "HintArrow"}
         }
       ],
       "folder": "..\\..\\src\\images"
@@ -580,7 +781,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 87,
+      "gridCellsX": 113,
       "gridCellsY": 79,
       "decals": [],
       "folder": "../../src/images"
