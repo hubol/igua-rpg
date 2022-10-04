@@ -113,12 +113,45 @@ import { CapitalVolcanoBackdrop } from "./textures";
 
 export const CapitalEntryArgs = {
     width: 712,
-height: 360,
+height: 456,
 gameObjectsSupplier: () => {
   return {
-    CapitalVolcanoBackdrop: resolveDecalGameObject({
+    GroundSpeckles: resolveDecalGameObject({
+    x: 635.2739611362658,
+y: 358.3985537411194,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: GroundSpeckles
+}),
+VolcanoMineralDebris: resolveDecalGameObject({
+    x: 464.17298933786157,
+y: 331.18048085331924,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_1: resolveDecalGameObject({
+    x: 495.84941713868415,
+y: 362.8569086541418,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: -1,
+rotation: 0,
+layerName: "TerrainDecals",
+texture: VolcanoMineralDebris
+}),
+CapitalVolcanoBackdrop: resolveDecalGameObject({
     x: 616,
-y: 310,
+y: 294,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -126,6 +159,28 @@ scaleY: 1,
 rotation: 0,
 layerName: "BackgroundDecals",
 texture: CapitalVolcanoBackdrop
+}),
+VolcanoCrystal: resolveDecalGameObject({
+    x: 632,
+y: 264,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0.11511347263248761,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystal
+}),
+VolcanoCrystal_1: resolveDecalGameObject({
+    x: 683,
+y: 261,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "BackgroundDecals",
+texture: VolcanoCrystal
 }),
 CloudLong: resolveDecalGameObject({
     x: 240,
@@ -194,7 +249,7 @@ ClownSharp_1: resolveClownSharp({"type":"ClownSharp","x":224,"y":224,"flippedX":
 // @ts-ignore
 ClownSharp_2: resolveClownSharp({"type":"ClownSharp","x":96,"y":224,"flippedX":false,"flippedY":false,"uid":"73460416_5","name":"","depth":0}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":416,"y":344,"width":296,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
+Block_1: resolveBlock({"type":"Block","x":416,"y":344,"width":296,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
 // @ts-ignore
 Block_2: resolveBlock({"type":"Block","x":416,"y":272,"width":32,"height":72,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
 // @ts-ignore
@@ -202,11 +257,15 @@ Block_3: resolveBlock({"type":"Block","x":448,"y":312,"width":32,"height":40,"fl
 // @ts-ignore
 Block_4: resolveBlock({"type":"Block","x":504,"y":224,"width":208,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
 // @ts-ignore
-SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":504,"y":240,"width":136,"height":24,"flippedX":false,"flippedY":true,"uid":"55824435_10","name":"","depth":0}),
+TerrainTransition: resolveRegion({"type":"Region","x":432,"y":232,"width":360,"height":280,"flippedX":false,"flippedY":false,"uid":"25971607_14","name":"TerrainTransition","depth":0}),
 // @ts-ignore
-Block_5: resolveBlock({"type":"Block","x":640,"y":240,"width":72,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_11","name":"","depth":0}),
+Block_5: resolveBlock({"type":"Block","x":0,"y":360,"width":416,"height":96,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"","depth":0}),
 // @ts-ignore
-SlopeRight_1: resolveSlopeRight({"type":"SlopeRight","x":608,"y":256,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_13","name":"","depth":0})
+Lava: resolveLava({"type":"Lava","x":496,"y":408,"width":232,"height":48,"flippedX":false,"flippedY":false,"uid":"98209396_17","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":504,"y":240,"width":104,"height":16,"flippedX":false,"flippedY":true,"uid":"55824435_22","name":"","depth":0}),
+// @ts-ignore
+Block_6: resolveBlock({"type":"Block","x":608,"y":240,"width":104,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_23","name":"","depth":0})
 };
 }
 };

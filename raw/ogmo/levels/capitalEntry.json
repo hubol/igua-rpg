@@ -1,7 +1,7 @@
 {
   "ogmoVersion": "3.4.0-hubol",
   "width": 712,
-  "height": 360,
+  "height": 456,
   "offsetX": 0,
   "offsetY": 0,
   "layers": [
@@ -13,7 +13,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 89,
-      "gridCellsY": 45,
+      "gridCellsY": 57,
       "entities": [
         {
           "name": "Block",
@@ -86,7 +86,7 @@
           "x": 416,
           "y": 344,
           "width": 296,
-          "height": 16,
+          "height": 112,
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
@@ -128,25 +128,36 @@
           "values": {"name": "", "depth": 0}
         },
         {
-          "name": "SlopeRight",
-          "id": 10,
-          "_eid": "55824435",
-          "x": 504,
-          "y": 240,
-          "width": 136,
-          "height": 24,
+          "name": "Region",
+          "id": 14,
+          "_eid": "25971607",
+          "x": 432,
+          "y": 232,
+          "width": 360,
+          "height": 280,
           "originX": 0,
           "originY": 0,
-          "flippedY": true,
-          "values": {"name": "", "depth": 0}
+          "values": {"name": "TerrainTransition", "depth": 0}
         },
         {
           "name": "Block",
-          "id": 11,
+          "id": 16,
           "_eid": "55823268",
-          "x": 640,
-          "y": 240,
-          "width": 72,
+          "x": 0,
+          "y": 360,
+          "width": 416,
+          "height": 96,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Lava",
+          "id": 17,
+          "_eid": "98209396",
+          "x": 496,
+          "y": 408,
+          "width": 232,
           "height": 48,
           "originX": 0,
           "originY": 0,
@@ -154,15 +165,27 @@
         },
         {
           "name": "SlopeRight",
-          "id": 13,
+          "id": 22,
           "_eid": "55824435",
-          "x": 608,
-          "y": 256,
-          "width": 32,
-          "height": 32,
+          "x": 504,
+          "y": 240,
+          "width": 104,
+          "height": 16,
           "originX": 0,
           "originY": 0,
           "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 23,
+          "_eid": "55823268",
+          "x": 608,
+          "y": 240,
+          "width": 104,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
           "values": {"name": "", "depth": 0}
         }
       ]
@@ -175,7 +198,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 89,
-      "gridCellsY": 45,
+      "gridCellsY": 57,
       "decals": [],
       "folder": "../../src/images"
     },
@@ -187,8 +210,22 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 89,
-      "gridCellsY": 45,
-      "decals": [],
+      "gridCellsY": 57,
+      "decals": [
+        {
+          "x": 635.2739611362658,
+          "y": 358.3985537411194,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 464.17298933786157, "y": 331.18048085331924, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/mineral debris.png", "originX": 0.5, "originY": 0.5},
+        {"x": 495.84941713868415, "y": 362.8569086541418, "scaleX": -1, "scaleY": -1, "rotation": 0, "texture": "volcano/mineral debris.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "../../src/images"
     },
     {
@@ -199,15 +236,37 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 89,
-      "gridCellsY": 45,
+      "gridCellsY": 57,
       "decals": [
         {
           "x": 616,
-          "y": 310,
+          "y": 294,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": 0,
           "texture": "capital/volcano backdrop.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 632,
+          "y": 264,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0.11511347263248761,
+          "texture": "volcano/crystal.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 683,
+          "y": 261,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/crystal.png",
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
@@ -223,7 +282,7 @@
       "gridCellWidth": 8,
       "gridCellHeight": 8,
       "gridCellsX": 89,
-      "gridCellsY": 45,
+      "gridCellsY": 57,
       "decals": [
         {
           "x": 240,

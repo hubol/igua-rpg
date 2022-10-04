@@ -9,8 +9,7 @@ import {progress} from "../igua/data/progress";
 import {capitalBigKeyTextures} from "./capitalTemple";
 import {jukebox} from "../igua/jukebox";
 import {UnrealBlindMusic} from "../musics";
-import {container} from "../utils/pixi/container";
-import {game} from "../igua/game";
+import {forceRenderable} from "../igua/forceRenderable";
 
 export function UnrealBlind() {
     scene.backgroundColor = 0x002C38;
@@ -23,8 +22,7 @@ export function UnrealBlind() {
     const gridf = grid(32).tinted(0x004153).show(scene.cameraStage);
     gridf.mask = scene.terrainStage;
     scene.terrainStage.index += 3;
-    // Beware! Deranged hack. Pixi artificially sets renderable to false of mask objects. So I have to reset it every frame ^_^
-    container().withTicker(game.hudStage.ticker).withStep(() => scene.terrainStage.renderable = true).show();
+    forceRenderable(scene.terrainStage);
     scene.gameObjectStage.withAsync(async () => {
         await sleep(1000);
         for (let i = 0; i < 5; i++)
