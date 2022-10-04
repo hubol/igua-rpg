@@ -38,6 +38,7 @@ declare global {
 
         export interface Graphics {
             tinted(tint: number): this;
+            readonly pen: Vector;
         }
 
         export interface Container {
@@ -58,6 +59,17 @@ declare global {
         }
     }
 }
+
+Object.defineProperties(PIXI.Graphics.prototype, {
+    pen: {
+        get: function () {
+            const points = this.currentPath?.points ?? [0, 0];
+            return [points[points.length - 2], points[points.length - 1]];
+        },
+        enumerable: false,
+        configurable: true,
+    },
+});
 
 Object.defineProperty(PIXI.DisplayObject.prototype, "destroyed", {
     get: function destroyed() {
