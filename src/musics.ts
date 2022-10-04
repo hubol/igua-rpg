@@ -92,6 +92,11 @@ export const Mimic = new Howl({
     preload: false
 });
 
+export const MysteryNighttimeHouse = new Howl({
+    src: [require("./music/mystery-nighttime-house.ogg"), require("./music/mystery-nighttime-house.mp3")],
+    preload: false
+});
+
 export const Oracle = new Howl({
     src: [require("./music/oracle.ogg"), require("./music/oracle.mp3")],
     preload: false
