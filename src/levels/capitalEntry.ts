@@ -12,6 +12,9 @@ import {region} from "../gameObjects/region";
 import {AmbientLava} from "../musics";
 import {keyChain} from "../gameObjects/keyChain";
 import {progress} from "../igua/data/progress";
+import {manyCapitalBricks} from "../gameObjects/capitalBricks";
+import {makePseudo} from "../utils/math/makePseudo";
+import {getWorldBounds} from "../igua/gameplay/getCenter";
 
 export function CapitalEntry() {
     scene.backgroundColor = 0xF0C8D0;
@@ -20,6 +23,11 @@ export function CapitalEntry() {
     const level = applyOgmoLevel(CapitalEntryArgs);
     enrichVolcanoTransition(level);
     enrichSharpClownWithKey(level);
+
+    manyCapitalBricks(
+        scene.terrainStage.children.filter(x => x.ext.isBlock && getWorldBounds(x).x < 256),
+        makePseudo(1459.798))
+    .show(scene.gameObjectStage);
 }
 
 function enrichSharpClownWithKey(level: GameObjectsType<typeof CapitalEntryArgs>) {

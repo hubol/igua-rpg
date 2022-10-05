@@ -177,6 +177,7 @@ export function block(x0: number, y0: number, x1: number, y1: number)
     graphics.beginFill(0xffffff);
     graphics.drawRect(xmin, ymin, width, height);
     graphics.endFill();
+    graphics.ext.isBlock = true;
 
     const leftWall = { x: xmin, y: ymin, forward: { x: 0, y: 1 }, normal: { x: -1, y: 0 }, length: height, isWall: true };
     const rightWall = { x: xmax, y: ymin, forward: { x: 0, y: 1 }, normal: { x: 1, y: 0 }, length: height, isWall: true};
