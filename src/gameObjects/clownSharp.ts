@@ -333,6 +333,7 @@ export function clownSharp() {
         .withAsync(async (self) => {
             automation.facePlayer = false;
             automation.lookAtPlayer = false;
+            head.face.x = 0;
             head.facing = rng.choose([ -1, 1 ]);
             head.looking = head.facing;
             const c = container()

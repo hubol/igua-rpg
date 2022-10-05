@@ -19,8 +19,6 @@ export function gotoDeathScreen()
     player.hspeed = 0;
     player.vspeed = 0;
 
-    scene.camera.followPlayer = false;
-
     setTimeout(revive, 4_000)
 }
 
