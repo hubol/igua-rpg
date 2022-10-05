@@ -269,9 +269,9 @@ Gate: resolveGate({"type":"Gate","x":680,"y":496,"width":32,"height":32,"flipped
 // @ts-ignore
 ClownSharp: resolveClownSharp({"type":"ClownSharp","x":352,"y":408,"flippedX":false,"flippedY":false,"uid":"73460416_3","name":"","depth":0}),
 // @ts-ignore
-ClownSharp_1: resolveClownSharp({"type":"ClownSharp","x":224,"y":408,"flippedX":false,"flippedY":false,"uid":"73460416_4","name":"","depth":0}),
+SharpWithKey: resolveClownSharp({"type":"ClownSharp","x":224,"y":408,"flippedX":false,"flippedY":false,"uid":"73460416_4","name":"SharpWithKey","depth":0}),
 // @ts-ignore
-ClownSharp_2: resolveClownSharp({"type":"ClownSharp","x":96,"y":408,"flippedX":false,"flippedY":false,"uid":"73460416_5","name":"","depth":0}),
+ClownSharp_1: resolveClownSharp({"type":"ClownSharp","x":96,"y":408,"flippedX":false,"flippedY":false,"uid":"73460416_5","name":"","depth":0}),
 // @ts-ignore
 Block_1: resolveBlock({"type":"Block","x":416,"y":528,"width":296,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
 // @ts-ignore

@@ -89,6 +89,9 @@ export function getInitialFlags()
             defeatedVileAngel: false,
         },
         capital: {
+            key: {
+                fromClown: false,
+            },
             bigKey: {
                 piece1: false,
                 piece2: false,

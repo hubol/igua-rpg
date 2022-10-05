@@ -10,6 +10,8 @@ import {CapitalVolcanoBackdrop, GroundSpeckles} from "../textures";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {region} from "../gameObjects/region";
 import {AmbientLava} from "../musics";
+import {keyChain} from "../gameObjects/keyChain";
+import {progress} from "../igua/data/progress";
 
 export function CapitalEntry() {
     scene.backgroundColor = 0xF0C8D0;
@@ -17,6 +19,13 @@ export function CapitalEntry() {
     jukebox.stop().warm(AmbientLava);
     const level = applyOgmoLevel(CapitalEntryArgs);
     enrichVolcanoTransition(level);
+    enrichSharpClownWithKey(level);
+}
+
+function enrichSharpClownWithKey(level: GameObjectsType<typeof CapitalEntryArgs>) {
+    if (progress.flags.capital.key.fromClown)
+        return;
+    level.SharpWithKey.addChild(keyChain().at(7, -4));
 }
 
 function enrichVolcanoTransition(level: GameObjectsType<typeof CapitalEntryArgs>) {
