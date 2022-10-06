@@ -126,21 +126,10 @@ originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-layerName: "TerrainDecals",
+layerName: "CloseTerrainDecals",
 texture: GroundSpeckles
 }),
 VolcanoMineralDebris: resolveDecalGameObject({
-    x: 464.17298933786157,
-y: 515.1804808533193,
-originX: 0.5,
-originY: 0.5,
-scaleX: 1,
-scaleY: 1,
-rotation: 0,
-layerName: "TerrainDecals",
-texture: VolcanoMineralDebris
-}),
-VolcanoMineralDebris_1: resolveDecalGameObject({
     x: 495.84941713868415,
 y: 546.8569086541418,
 originX: 0.5,
@@ -148,7 +137,18 @@ originY: 0.5,
 scaleX: -1,
 scaleY: -1,
 rotation: 0,
-layerName: "TerrainDecals",
+layerName: "CloseTerrainDecals",
+texture: VolcanoMineralDebris
+}),
+VolcanoMineralDebris_1: resolveDecalGameObject({
+    x: 464.17298933786157,
+y: 515.1804808533193,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
 texture: VolcanoMineralDebris
 }),
 GroundSpeckles_1: resolveDecalGameObject({
@@ -159,7 +159,7 @@ originY: 0.5,
 scaleX: 1,
 scaleY: 1,
 rotation: 0,
-layerName: "TerrainDecals",
+layerName: "CloseTerrainDecals",
 texture: GroundSpeckles
 }),
 CapitalVolcanoBackdrop: resolveDecalGameObject({

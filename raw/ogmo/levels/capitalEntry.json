@@ -271,51 +271,23 @@
       "gridCellHeight": 8,
       "gridCellsX": 89,
       "gridCellsY": 80,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 89,
+      "gridCellsY": 80,
       "decals": [
-        {
-          "x": 635.2739611362658,
-          "y": 542.3985537411194,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "ground speckles.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"name": ""}
-        },
-        {
-          "x": 464.17298933786157,
-          "y": 515.1804808533193,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "volcano/mineral debris.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"name": ""}
-        },
-        {
-          "x": 495.84941713868415,
-          "y": 546.8569086541418,
-          "scaleX": -1,
-          "scaleY": -1,
-          "rotation": 0,
-          "texture": "volcano/mineral debris.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"name": ""}
-        },
-        {
-          "x": 672.2739611362658,
-          "y": 367.3985537411194,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "ground speckles.png",
-          "originX": 0.5,
-          "originY": 0.5,
-          "values": {"name": ""}
-        }
+        {"x": 635.2739611362658, "y": 542.3985537411194, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0.5},
+        {"x": 495.84941713868415, "y": 546.8569086541418, "scaleX": -1, "scaleY": -1, "rotation": 0, "texture": "volcano/mineral debris.png", "originX": 0.5, "originY": 0.5},
+        {"x": 464.17298933786157, "y": 515.1804808533193, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/mineral debris.png", "originX": 0.5, "originY": 0.5},
+        {"x": 672.2739611362658, "y": 367.3985537411194, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../src/images"
     },
