@@ -26,8 +26,8 @@ export function CapitalEntry() {
 
     manyCapitalBricks(
         scene.terrainStage.children.filter(x => x.ext.isBlock && getWorldBounds(x).x < 256),
-        makePseudo(1459.798))
-    .show(scene.gameObjectStage);
+        makePseudo(387459.92793))
+    .show(scene.terrainStage);
 }
 
 function enrichSharpClownWithKey(level: GameObjectsType<typeof CapitalEntryArgs>) {

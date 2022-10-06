@@ -17,21 +17,16 @@ const th = CapitalBricks.height;
 
 export function capitalBricks(width: number, height: number, p: Pseudo) {
     const c = container();
-    height = Math.ceil(nlerp(th, height, p.unit()));
-    let iter = 0;
+    if (height < th)
+        return c;
+    height = Math.min(Math.ceil(nlerp(35, 64, p.unit())), height);
+    const at = vnew();
     while (c.height < height) {
-        const prev = c.children[c.children.length - 1];
-        const at = prev?.vcpy() ?? vnew();
-        at.x = bx(p.int() % (width - tw));
-        if (iter > 0)
-            at.y += by(p.int() % (height - th - at.y));
-
+        at.x = 0;
         const rw = width - at.x;
 
-        if ((prev && prev.x === at.x && prev.y === at.y) || rw < tw || ++iter >= 16)
-            break;
-
         row(rw, p).at(at).show(c);
+        at.y += bh * 2;
     }
 
     return c;
@@ -48,15 +43,17 @@ export function manyCapitalBricks(ds: DisplayObject[], p: Pseudo) {
 }
 
 function row(width: number, p: Pseudo) {
-    width = Math.ceil(nlerp(tw, width, p.unit()));
     const c = container();
-    let iter = 0;
+    const at = vnew();
     while (c.width < width) {
-        const prev = c.children[c.children.length - 1];
-        const at = prev?.vcpy() ?? vnew();
-        at.x += bx(p.int() % (width - tw - at.x));
-        if (prev && prev.x === at.x || ++iter >= 16)
+        let dx = bx(p.int() % (width - tw - at.x));
+        if (isNaN(dx) || !isFinite(dx) || dx < bw)
+            dx = bw;
+        at.x += dx;
+        if (at.x + tw >= width)
             break;
+        if (p.bool())
+            continue;
         const s = Sprite.from(CapitalBricks).at(at).show(c);
         if (p.bool())
             hflip(s);
@@ -68,10 +65,6 @@ function row(width: number, p: Pseudo) {
 
 function bx(x: number) {
     return Math.min(Math.floor(x / bw) * bw, columns * bw);
-}
-
-function by(y: number) {
-    return Math.min(Math.floor(y / bh) * bh * 2, rows * bh);
 }
 
 function hflip(s: Sprite) {
