@@ -1,7 +1,7 @@
 import {setSceneMeta} from "../igua/level/setSceneMeta";
 import {scene} from "../igua/scene";
 import {IguaRpgTitle, ValuableIcon} from "../textures";
-import {Sprite} from "pixi.js";
+import {Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {getDefaultLooks} from "../igua/looks/getDefaultLooks";
@@ -166,8 +166,9 @@ function saveFileInfo() {
     const valuables = IguaText.Large('').at(valuableIcon.x + 11, 10);
     const headContainer = container().at(85, 5);
     const completion = IguaText.Large('').at(0, 10);
+    const newGamePlus = newGamePlusMarker().at(94, 0);
     headContainer.scale.x = -1;
-    const c = merge(container(headContainer, level, valuableIcon, valuables, completion), {
+    const c = merge(container(headContainer, level, valuableIcon, valuables, completion, newGamePlus), {
         clear() {
             c.visible = false;
         },
@@ -178,9 +179,32 @@ function saveFileInfo() {
             level.text = `Claw Level ${progress.levels.strength}`;
             completion.text = Math.floor(getCompletion(progress) * 100).toFixed(0) + '%';
             valuables.text = progress.valuables.toString();
+            newGamePlus.text = getNewGamePlusText(progress.newGamePlus);
             return c;
         }
     });
+    return c;
+}
+
+function getNewGamePlusText(ng: number) {
+    if (ng === 0)
+        return '';
+    if (ng === 1)
+        return 'NG+';
+    return `NG+${ng}`;
+}
+
+function newGamePlusMarker() {
+    const gfx = new Graphics();
+    const text = IguaText.Large('').at(2, -1);
+    const c = merge(container(gfx, text), { set text(value: string) { text.text = value } })
+        .withStep(() => {
+            c.visible = !!text.text;
+            gfx.clear()
+                .beginFill(0x005870)
+                .drawRect(0, 1, text.textWidth + 3, 9)
+                .drawRect(1, 0, text.textWidth + 1, 11);
+        });
     return c;
 }
 
