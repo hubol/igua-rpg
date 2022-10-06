@@ -55,4 +55,11 @@ function enrichVolcanoTransition(level: GameObjectsType<typeof CapitalEntryArgs>
     terrainGradient(transitions, colors);
 
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x6D1913));
+
+    const bgWaves = heatWaves(scene.width + 256, 80, -0.33, 0x912235)
+        .at(-128, level.CapitalVolcanoBackdrop_1.y + 40)
+        .show(scene.parallax1Stage);
+
+    bgWaves.scale.x = 1.33;
+    bgWaves.angle = -8;
 }
