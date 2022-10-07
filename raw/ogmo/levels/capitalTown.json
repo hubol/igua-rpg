@@ -163,8 +163,39 @@
           "originY": 1,
           "values": {"name": ""}
         },
-        {"x": 408, "y": 209, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "capital/planted tree.png", "originX": 0.5, "originY": 1},
-        {"x": 240, "y": 217, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/planted tree.png", "originX": 0.5, "originY": 1}
+        {
+          "x": 408,
+          "y": 209,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/planted tree.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 240,
+          "y": 217,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/planted tree.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 538,
+          "y": 205,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/inn sign.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },

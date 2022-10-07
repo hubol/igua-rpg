@@ -110,6 +110,7 @@ import { PotteryOrange } from "./textures";
 import { Rope } from "./textures";
 import { DesertTemple } from "./textures";
 import { CandleSmallRed } from "./textures";
+import { CapitalInnSign } from "./textures";
 import { CapitalPlantedTree } from "./textures";
 import { CapitalBuilding1 } from "./textures";
 import { CapitalArc } from "./textures";
@@ -455,6 +456,17 @@ scaleY: 1,
 rotation: 0,
 layerName: "CloseTerrainDecals",
 texture: CapitalPlantedTree
+}),
+CapitalInnSign: resolveDecalGameObject({
+    x: 538,
+y: 205,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
+texture: CapitalInnSign
 }),
 CloudLong: resolveDecalGameObject({
     x: 272,

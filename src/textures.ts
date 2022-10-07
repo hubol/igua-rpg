@@ -32,6 +32,7 @@ export let CapitalArc: PIXI.Texture;
 export let CapitalBricks: PIXI.Texture;
 export let CapitalBuilding1: PIXI.Texture;
 export let CapitalBuilding2: PIXI.Texture;
+export let CapitalInnSign: PIXI.Texture;
 export let CapitalPlantedTree: PIXI.Texture;
 export let CapitalVolcanoBackdrop: PIXI.Texture;
 export let CharacterBody: PIXI.Texture;
@@ -343,6 +344,9 @@ export function loadTexturesAsync()
 
     const CapitalBuilding2Path = require("./images/capital/building2.png");
     loader.add(CapitalBuilding2Path); 
+
+    const CapitalInnSignPath = require("./images/capital/inn sign.png");
+    loader.add(CapitalInnSignPath); 
 
     const CapitalPlantedTreePath = require("./images/capital/planted tree.png");
     loader.add(CapitalPlantedTreePath); 
@@ -1026,6 +1030,7 @@ export function loadTexturesAsync()
             CapitalBricks = resources[CapitalBricksPath]?.texture as PIXI.Texture;
             CapitalBuilding1 = resources[CapitalBuilding1Path]?.texture as PIXI.Texture;
             CapitalBuilding2 = resources[CapitalBuilding2Path]?.texture as PIXI.Texture;
+            CapitalInnSign = resources[CapitalInnSignPath]?.texture as PIXI.Texture;
             CapitalPlantedTree = resources[CapitalPlantedTreePath]?.texture as PIXI.Texture;
             CapitalVolcanoBackdrop = resources[CapitalVolcanoBackdropPath]?.texture as PIXI.Texture;
             CharacterBody = resources[CharacterBodyPath]?.texture as PIXI.Texture;
