@@ -269,6 +269,28 @@
           "originX": 14,
           "originY": 18,
           "values": {"title": "Capital", "message": "This is the capital city.", "name": "", "depth": 6}
+        },
+        {
+          "name": "Gate",
+          "id": 35,
+          "_eid": "55920197",
+          "x": 0,
+          "y": 344,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "CapitalTown", "checkpointName": "FromEntry", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 36,
+          "_eid": "55940370",
+          "x": 72,
+          "y": 376,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromTown", "faceRight": true, "depth": 0}
         }
       ]
     },
@@ -306,10 +328,51 @@
       "gridCellsX": 114,
       "gridCellsY": 80,
       "decals": [
-        {"x": 835.2739611362658, "y": 542.3985537411194, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0.5},
-        {"x": 695.8494171386842, "y": 546.8569086541418, "scaleX": -1, "scaleY": -1, "rotation": 0, "texture": "volcano/mineral debris.png", "originX": 0.5, "originY": 0.5},
-        {"x": 664.1729893378615, "y": 515.1804808533193, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/mineral debris.png", "originX": 0.5, "originY": 0.5},
-        {"x": 872.2739611362658, "y": 367.3985537411194, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 835.2739611362658,
+          "y": 542.3985537411194,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 695.8494171386842,
+          "y": 546.8569086541418,
+          "scaleX": -1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 664.1729893378615,
+          "y": 515.1804808533193,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/mineral debris.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 872.2739611362658,
+          "y": 367.3985537411194,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 120, "y": 377, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "capital/planted tree.png", "originX": 0.5, "originY": 1}
       ],
       "folder": "../../src/images"
     },
@@ -435,9 +498,39 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 192, "y": 272, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 240, "y": 304, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 56, "y": 248, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 192,
+          "y": 272,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 240,
+          "y": 304,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 56,
+          "y": 248,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     }

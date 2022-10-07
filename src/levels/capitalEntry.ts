@@ -16,6 +16,7 @@ import {manyCapitalBricks} from "../gameObjects/capitalBricks";
 import {makePseudo} from "../utils/math/makePseudo";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
 import {freezeSceneAndShowMessage} from "../cutscene/freezeSceneAndShowMessage";
+import {game} from "../igua/game";
 
 export function CapitalEntry() {
     scene.backgroundColor = 0xF0C8D0;
@@ -31,6 +32,7 @@ export function CapitalEntry() {
     .show(scene.terrainStage);
 
     level.Sign.interactFn = () => freezeSceneAndShowMessage(level.Sign.message);
+    game.hudStage.ticker.update();
 }
 
 function enrichSharpClownWithKey(level: GameObjectsType<typeof CapitalEntryArgs>) {

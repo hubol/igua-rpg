@@ -97,7 +97,7 @@
           "y": 160,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "CapitalTown", "checkpointName": "FromInn", "name": "", "depth": 0}
         },
         {
           "name": "Player",
@@ -176,7 +176,17 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 224, "y": 64, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "capital/arc.png", "originX": 0, "originY": 0}
+        {
+          "x": 224,
+          "y": 64,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/arc.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },

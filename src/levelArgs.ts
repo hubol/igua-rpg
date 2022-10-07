@@ -110,6 +110,8 @@ import { PotteryOrange } from "./textures";
 import { Rope } from "./textures";
 import { DesertTemple } from "./textures";
 import { CandleSmallRed } from "./textures";
+import { CapitalPlantedTree } from "./textures";
+import { CapitalBuilding1 } from "./textures";
 import { CapitalArc } from "./textures";
 import { resolveClownSharp } from "./gameObjects/clownSharp";
 import { CapitalVolcanoBackdrop } from "./textures";
@@ -162,6 +164,17 @@ scaleY: 1,
 rotation: 0,
 layerName: "CloseTerrainDecals",
 texture: GroundSpeckles
+}),
+CapitalPlantedTree: resolveDecalGameObject({
+    x: 120,
+y: 377,
+originX: 0.5,
+originY: 1,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
+texture: CapitalPlantedTree
 }),
 CapitalVolcanoBackdrop: resolveDecalGameObject({
     x: 816,
@@ -337,7 +350,10 @@ Region_1: resolveRegion({"type":"Region","x":552,"y":560,"width":72,"height":96,
 // @ts-ignore
 Block_9: resolveBlock({"type":"Block","x":0,"y":376,"width":200,"height":264,"flippedX":false,"flippedY":false,"uid":"55823268_33","name":"","depth":0}),
 // @ts-ignore
-Sign: resolveSign({"type":"Sign","x":160,"y":376,"flippedX":false,"flippedY":false,"uid":"86706091_34","title":"Capital","message":"This is the capital city.","name":"","depth":6})
+Sign: resolveSign({"type":"Sign","x":160,"y":376,"flippedX":false,"flippedY":false,"uid":"86706091_34","title":"Capital","message":"This is the capital city.","name":"","depth":6}),
+// @ts-ignore
+Gate_1: resolveGate({"type":"Gate","x":0,"y":344,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_35","levelName":"CapitalTown","checkpointName":"FromEntry","name":"","depth":0}),
+FromTown: {"type":"Checkpoint","x":72,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_36","name":"FromTown","faceRight":true,"depth":0}
 };
 }
 };
@@ -382,11 +398,133 @@ SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":32,"y":64,"width":32,"height
 // @ts-ignore
 SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":192,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_5","name":"","depth":0}),
 // @ts-ignore
-Door: resolveDoor({"type":"Door","x":40,"y":160,"flippedX":false,"flippedY":false,"uid":"55913988_6","levelName":"","checkpointName":"","name":"","depth":0}),
+Door: resolveDoor({"type":"Door","x":40,"y":160,"flippedX":false,"flippedY":false,"uid":"55913988_6","levelName":"CapitalTown","checkpointName":"FromInn","name":"","depth":0}),
 Player: {"type":"Player","x":88,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_7","faceRight":true,"name":"","depth":0},
 // @ts-ignore
 Sign: resolveSign({"type":"Sign","x":128,"y":192,"flippedX":false,"flippedY":false,"uid":"86706091_8","title":"","message":"","name":"","depth":0}),
 SleepHere: {"type":"Anchor","x":184,"y":192,"flippedX":false,"flippedY":false,"uid":"25979726_9","name":"SleepHere","depth":0}
+};
+}
+};
+
+export const CapitalTownArgs = {
+    width: 768,
+height: 320,
+gameObjectsSupplier: () => {
+  return {
+    CapitalBuilding1: resolveDecalGameObject({
+    x: 520,
+y: 234,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
+texture: CapitalBuilding1
+}),
+CapitalPlantedTree: resolveDecalGameObject({
+    x: 640,
+y: 201,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
+texture: CapitalPlantedTree
+}),
+CapitalPlantedTree_1: resolveDecalGameObject({
+    x: 408,
+y: 209,
+originX: 0.5,
+originY: 1,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
+texture: CapitalPlantedTree
+}),
+CapitalPlantedTree_2: resolveDecalGameObject({
+    x: 240,
+y: 217,
+originX: 0.5,
+originY: 1,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
+texture: CapitalPlantedTree
+}),
+CloudLong: resolveDecalGameObject({
+    x: 272,
+y: 152,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_1: resolveDecalGameObject({
+    x: 312,
+y: 168,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_2: resolveDecalGameObject({
+    x: 472,
+y: 88,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_3: resolveDecalGameObject({
+    x: 616,
+y: 136,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_4: resolveDecalGameObject({
+    x: 688,
+y: 160,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":608,"y":200,"width":160,"height":120,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":432,"y":232,"width":176,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":484,"y":202,"flippedX":false,"flippedY":false,"uid":"55913988_2","levelName":"CapitalInn","checkpointName":"","name":"","depth":0}),
+FromInn: {"type":"Checkpoint","x":460,"y":232,"flippedX":false,"flippedY":false,"uid":"55940370_3","name":"FromInn","faceRight":false,"depth":0},
+// @ts-ignore
+Gate: resolveGate({"type":"Gate","x":736,"y":168,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_5","levelName":"CapitalEntry","checkpointName":"FromTown","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":336,"y":208,"width":96,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":208,"y":216,"width":128,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
+Player: {"type":"Player","x":688,"y":200,"flippedX":false,"flippedY":false,"uid":"55988047_8","faceRight":false,"name":"","depth":0}
 };
 }
 };

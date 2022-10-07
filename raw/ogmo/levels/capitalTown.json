@@ -1,0 +1,252 @@
+{
+  "ogmoVersion": "3.4.0-hubol",
+  "width": 768,
+  "height": 320,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 96,
+      "gridCellsY": 40,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 0,
+          "_eid": "55823268",
+          "x": 608,
+          "y": 200,
+          "width": 160,
+          "height": 120,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 1,
+          "_eid": "55823268",
+          "x": 432,
+          "y": 232,
+          "width": 176,
+          "height": 88,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 2,
+          "_eid": "55913988",
+          "x": 484,
+          "y": 202,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "CapitalInn", "checkpointName": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 3,
+          "_eid": "55940370",
+          "x": 460,
+          "y": 232,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromInn", "faceRight": false, "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 5,
+          "_eid": "55920197",
+          "x": 736,
+          "y": 168,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "CapitalEntry", "checkpointName": "FromTown", "name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 6,
+          "_eid": "55823268",
+          "x": 336,
+          "y": 208,
+          "width": 96,
+          "height": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 7,
+          "_eid": "55823268",
+          "x": 208,
+          "y": 216,
+          "width": 128,
+          "height": 104,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 8,
+          "_eid": "55988047",
+          "x": 688,
+          "y": 200,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": false, "name": "", "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 96,
+      "gridCellsY": 40,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 96,
+      "gridCellsY": 40,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 96,
+      "gridCellsY": 40,
+      "decals": [
+        {
+          "x": 520,
+          "y": 234,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/building1.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 640,
+          "y": 201,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/planted tree.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {"x": 408, "y": 209, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "capital/planted tree.png", "originX": 0.5, "originY": 1},
+        {"x": 240, "y": 217, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/planted tree.png", "originX": 0.5, "originY": 1}
+      ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 96,
+      "gridCellsY": 40,
+      "decals": [],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 96,
+      "gridCellsY": 40,
+      "decals": [
+        {
+          "x": 272,
+          "y": 152,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 312,
+          "y": 168,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 472,
+          "y": 88,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 616,
+          "y": 136,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 688,
+          "y": 160,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "../../src/images"
+    }
+  ]
+}
