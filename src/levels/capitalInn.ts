@@ -21,6 +21,13 @@ export function CapitalInn() {
     decalsOf(CapitalArc).forEach(x => x.tinted(0))
     jukebox.play(BlindHouse);
 
+    new Graphics()
+        .beginFill(0xDD6B40)
+        .drawRect(36, 87 - 2, 179, 2)
+        .drawRect(29, 97, 193, 5)
+        .drawRect(31, 114, 196, 23)
+        .behind();
+
     const moodLighting = merge(new Graphics(), { unit: 0 })
         .withStep(() => {
             moodLighting.alpha = Math.floor(moodLighting.unit * 5) / 5;
