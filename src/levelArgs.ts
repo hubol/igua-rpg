@@ -110,6 +110,7 @@ import { PotteryOrange } from "./textures";
 import { Rope } from "./textures";
 import { DesertTemple } from "./textures";
 import { CandleSmallRed } from "./textures";
+import { CapitalArc } from "./textures";
 import { resolveClownSharp } from "./gameObjects/clownSharp";
 import { CapitalVolcanoBackdrop } from "./textures";
 
@@ -337,6 +338,55 @@ Region_1: resolveRegion({"type":"Region","x":552,"y":560,"width":72,"height":96,
 Block_9: resolveBlock({"type":"Block","x":0,"y":376,"width":200,"height":264,"flippedX":false,"flippedY":false,"uid":"55823268_33","name":"","depth":0}),
 // @ts-ignore
 Sign: resolveSign({"type":"Sign","x":160,"y":376,"flippedX":false,"flippedY":false,"uid":"86706091_34","title":"Capital","message":"This is the capital city.","name":"","depth":6})
+};
+}
+};
+
+export const CapitalInnArgs = {
+    width: 256,
+height: 256,
+gameObjectsSupplier: () => {
+  return {
+    CapitalArc: resolveDecalGameObject({
+    x: 32,
+y: 64,
+originX: 0,
+originY: 0,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
+texture: CapitalArc
+}),
+CapitalArc_1: resolveDecalGameObject({
+    x: 224,
+y: 64,
+originX: 0,
+originY: 0,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
+texture: CapitalArc
+}),
+// @ts-ignore
+Block: resolveBlock({"type":"Block","x":0,"y":0,"width":256,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+// @ts-ignore
+Block_1: resolveBlock({"type":"Block","x":0,"y":192,"width":256,"height":64,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+// @ts-ignore
+Block_2: resolveBlock({"type":"Block","x":0,"y":64,"width":32,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268_2","name":"","depth":0}),
+// @ts-ignore
+Block_3: resolveBlock({"type":"Block","x":224,"y":64,"width":32,"height":128,"flippedX":false,"flippedY":false,"uid":"55823268_3","name":"","depth":0}),
+// @ts-ignore
+SlopeLeft: resolveSlopeLeft({"type":"SlopeLeft","x":32,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55845599_4","name":"","depth":0}),
+// @ts-ignore
+SlopeRight: resolveSlopeRight({"type":"SlopeRight","x":192,"y":64,"width":32,"height":32,"flippedX":false,"flippedY":true,"uid":"55824435_5","name":"","depth":0}),
+// @ts-ignore
+Door: resolveDoor({"type":"Door","x":40,"y":160,"flippedX":false,"flippedY":false,"uid":"55913988_6","levelName":"","checkpointName":"","name":"","depth":0}),
+Player: {"type":"Player","x":88,"y":192,"flippedX":false,"flippedY":false,"uid":"55988047_7","faceRight":true,"name":"","depth":0},
+// @ts-ignore
+Sign: resolveSign({"type":"Sign","x":128,"y":192,"flippedX":false,"flippedY":false,"uid":"86706091_8","title":"","message":"","name":"","depth":0}),
+SleepHere: {"type":"Anchor","x":184,"y":192,"flippedX":false,"flippedY":false,"uid":"25979726_9","name":"SleepHere","depth":0}
 };
 }
 };

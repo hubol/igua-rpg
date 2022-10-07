@@ -18,7 +18,14 @@ export function sign(vector: Vector, title: string, message: string)
     const sprite = new Sprite(Sign);
     const text = IguaText.Small(title, { tint: 0xA08030 }).at(1, -2);
 
-    const container = merge(new Container(), { message, cutscene: thisCutscene, interactFn: Force<() => void>() });
+    const container = merge(new Container(), {
+        message,
+        cutscene: thisCutscene,
+        interactFn: Force<() => void>(),
+        set title(value: string) {
+            text.text = value;
+        }
+    });
     container.addChild(sprite, text);
     return container
         .at(vector.x - 14, vector.y - 18)
