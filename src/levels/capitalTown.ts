@@ -38,8 +38,13 @@ function enrichTiming(level: GameObjectsType<typeof CapitalTownArgs>) {
 
     const pipe = level.TimingPipe;
     const counter = measureCounter(CapitalMusicPlease, 119).show();
+
+    let jiggle = 0;
+
     pipe.withStep(() => {
         const m = (counter.measuref * 2) % period;
+        const palpha = pipe.alpha;
+
         pipe.active = m < inactiveStart;
         pipe.visible = pipe.active;
         if (m >= flashStart && m < inactiveStart) {
@@ -48,5 +53,12 @@ function enrichTiming(level: GameObjectsType<typeof CapitalTownArgs>) {
         }
         else
             pipe.alpha = 1;
-    });
+
+        if (palpha !== pipe.alpha)
+            jiggle = 1;
+    })
+        .withStep(() => {
+            pipe.pivot.y = -Math.sign(jiggle);
+            jiggle = Math.max(0, jiggle - 0.3);
+        });
 }

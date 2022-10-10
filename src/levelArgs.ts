@@ -647,7 +647,17 @@ Block_6: resolveBlock({"type":"Block","x":608,"y":0,"width":24,"height":104,"fli
 // @ts-ignore
 Block_7: resolveBlock({"type":"Block","x":256,"y":0,"width":24,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"","depth":0}),
 // @ts-ignore
-Block_8: resolveBlock({"type":"Block","x":432,"y":0,"width":24,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_17","name":"","depth":0})
+Block_8: resolveBlock({"type":"Block","x":432,"y":0,"width":24,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_17","name":"","depth":0}),
+// @ts-ignore
+Block_9: resolveBlock({"type":"Block","x":312,"y":0,"width":24,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_18","name":"","depth":0}),
+// @ts-ignore
+Block_10: resolveBlock({"type":"Block","x":552,"y":0,"width":24,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_19","name":"","depth":0}),
+// @ts-ignore
+Block_11: resolveBlock({"type":"Block","x":744,"y":0,"width":24,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
+// @ts-ignore
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":592,"y":42,"flippedX":false,"flippedY":false,"uid":"55991906_21","name":"","depth":0}),
+// @ts-ignore
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":296,"y":42,"flippedX":false,"flippedY":false,"uid":"56004563_22","name":"","depth":0})
 };
 }
 };

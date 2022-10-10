@@ -195,6 +195,62 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 18,
+          "_eid": "55823268",
+          "x": 312,
+          "y": 0,
+          "width": 24,
+          "height": 104,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 19,
+          "_eid": "55823268",
+          "x": 552,
+          "y": 0,
+          "width": 24,
+          "height": 104,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 20,
+          "_eid": "55823268",
+          "x": 744,
+          "y": 0,
+          "width": 24,
+          "height": 104,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 21,
+          "_eid": "55991906",
+          "x": 592,
+          "y": 42,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 22,
+          "_eid": "56004563",
+          "x": 296,
+          "y": 42,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
