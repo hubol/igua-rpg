@@ -15,7 +15,7 @@
   "compactExport": false,
   "externalScript": "igua-ogmo.js",
   "playCommand": "",
-  "entityTags": ["Terrain"],
+  "entityTags": ["Terrain", "Misc"],
   "layers": [
     {
       "definition": "entity",
@@ -1442,6 +1442,48 @@
         {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
       ]
+    },
+    {
+      "exportID": "37271132",
+      "name": "CapitalBubble",
+      "limit": -1,
+      "size": {"x": 28, "y": 28},
+      "origin": {"x": -2, "y": 0},
+      "originAnchored": false,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": ["Misc"],
+      "values": [
+        {"name": "obscurity", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": 0, "max": 100},
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
+      ],
+      "texture": "preview-images/capital bubble.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURf///wAAAFXC034AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAFlJREFUOE/lkkEOwCAIBOX/n66yU0wLxqQ9Ogdkd25qs6ABsRMrxqG6JW1Aq5lQXTvZMYgvJAmJrWQt2MhT+H5DP15lZfkJpfV+jMKq9pksrY6npppyaqKZXQ2rAKm1jqSxAAAAAElFTkSuQmCC"
     }
   ],
   "tilesets": []

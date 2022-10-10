@@ -114,6 +114,7 @@ import { CapitalInnSign } from "./textures";
 import { CapitalPlantedTree } from "./textures";
 import { CapitalBuilding1 } from "./textures";
 import { CapitalArc } from "./textures";
+import { resolveCapitalBubble } from "./gameObjects/capitalBubble";
 import { resolveClownSharp } from "./gameObjects/clownSharp";
 import { CapitalVolcanoBackdrop } from "./textures";
 
@@ -176,6 +177,17 @@ scaleY: 1,
 rotation: 0,
 layerName: "CloseTerrainDecals",
 texture: CapitalPlantedTree
+}),
+GroundSpeckles_2: resolveDecalGameObject({
+    x: 891.2739611362658,
+y: 238.39855374111937,
+originX: 0.5,
+originY: 0.5,
+scaleX: -1,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
+texture: GroundSpeckles
 }),
 CapitalVolcanoBackdrop: resolveDecalGameObject({
     x: 816,
@@ -309,6 +321,39 @@ rotation: 0,
 layerName: "Parallax1Decals",
 texture: CloudLong
 }),
+CloudLong_8: resolveDecalGameObject({
+    x: 296,
+y: 184,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_9: resolveDecalGameObject({
+    x: 256,
+y: 176,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
+CloudLong_10: resolveDecalGameObject({
+    x: 136,
+y: 112,
+originX: 0.5,
+originY: 0.5,
+scaleX: 1,
+scaleY: 1,
+rotation: 0,
+layerName: "Parallax1Decals",
+texture: CloudLong
+}),
 // @ts-ignore
 Block: resolveBlock({"type":"Block","x":200,"y":408,"width":416,"height":136,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 Player: {"type":"Player","x":840,"y":528,"flippedX":false,"flippedY":false,"uid":"55988047_1","faceRight":false,"name":"","depth":0},
@@ -354,7 +399,59 @@ Block_9: resolveBlock({"type":"Block","x":0,"y":376,"width":200,"height":264,"fl
 Sign: resolveSign({"type":"Sign","x":160,"y":376,"flippedX":false,"flippedY":false,"uid":"86706091_34","title":"Capital","message":"This is the capital city.","name":"","depth":6}),
 // @ts-ignore
 Gate_1: resolveGate({"type":"Gate","x":0,"y":344,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_35","levelName":"CapitalTown","checkpointName":"FromEntry","name":"","depth":0}),
-FromTown: {"type":"Checkpoint","x":72,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_36","name":"FromTown","faceRight":true,"depth":0}
+FromTown: {"type":"Checkpoint","x":72,"y":376,"flippedX":false,"flippedY":false,"uid":"55940370_36","name":"FromTown","faceRight":true,"depth":0},
+// @ts-ignore
+CapitalBubble: resolveCapitalBubble({"type":"CapitalBubble","x":792,"y":288,"flippedX":false,"flippedY":false,"uid":"37271132_37","obscurity":1,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_1: resolveCapitalBubble({"type":"CapitalBubble","x":792,"y":144,"flippedX":false,"flippedY":false,"uid":"37271132_38","obscurity":1,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_2: resolveCapitalBubble({"type":"CapitalBubble","x":664,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_39","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":888,"y":224,"flippedX":false,"flippedY":false,"uid":"55991906_40","name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_3: resolveCapitalBubble({"type":"CapitalBubble","x":880,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_41","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_4: resolveCapitalBubble({"type":"CapitalBubble","x":856,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_42","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_5: resolveCapitalBubble({"type":"CapitalBubble","x":832,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_43","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+ValuableBlue_1: resolveValuableBlue({"type":"ValuableBlue","x":896,"y":96,"flippedX":false,"flippedY":false,"uid":"55991906_44","name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_6: resolveCapitalBubble({"type":"CapitalBubble","x":640,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_45","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_7: resolveCapitalBubble({"type":"CapitalBubble","x":616,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_46","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_8: resolveCapitalBubble({"type":"CapitalBubble","x":592,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_47","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_9: resolveCapitalBubble({"type":"CapitalBubble","x":568,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_48","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_10: resolveCapitalBubble({"type":"CapitalBubble","x":544,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_49","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_11: resolveCapitalBubble({"type":"CapitalBubble","x":520,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_50","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_12: resolveCapitalBubble({"type":"CapitalBubble","x":496,"y":208,"flippedX":false,"flippedY":false,"uid":"37271132_51","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_13: resolveCapitalBubble({"type":"CapitalBubble","x":472,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_52","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_14: resolveCapitalBubble({"type":"CapitalBubble","x":448,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_53","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+ValuableBlue_2: resolveValuableBlue({"type":"ValuableBlue","x":511,"y":208,"flippedX":false,"flippedY":false,"uid":"55991906_54","name":"","depth":0}),
+// @ts-ignore
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":511,"y":192,"flippedX":false,"flippedY":false,"uid":"56004563_55","name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_15: resolveCapitalBubble({"type":"CapitalBubble","x":424,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_57","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_16: resolveCapitalBubble({"type":"CapitalBubble","x":400,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_58","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_17: resolveCapitalBubble({"type":"CapitalBubble","x":376,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_59","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_18: resolveCapitalBubble({"type":"CapitalBubble","x":352,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_60","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+ValuableBlue_3: resolveValuableBlue({"type":"ValuableBlue","x":392,"y":136,"flippedX":false,"flippedY":false,"uid":"55991906_61","name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_19: resolveCapitalBubble({"type":"CapitalBubble","x":328,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_62","obscurity":2,"name":"","depth":0}),
+// @ts-ignore
+CapitalBubble_20: resolveCapitalBubble({"type":"CapitalBubble","x":304,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_63","obscurity":2,"name":"","depth":0})
 };
 }
 };
@@ -458,8 +555,8 @@ layerName: "CloseTerrainDecals",
 texture: CapitalPlantedTree
 }),
 CapitalInnSign: resolveDecalGameObject({
-    x: 538,
-y: 205,
+    x: 536,
+y: 207,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,

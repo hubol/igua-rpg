@@ -30,8 +30,12 @@ const pipeTextures = {
     }
 }
 
-export const resolveBlock = resolveGameObject("Block", e =>
-    scene.terrainStage.addChild(block(e.x, e.y, e.x + e.width, e.y + e.height)));
+export const resolveBlock = resolveGameObject("Block", e => {
+    const d = scene.terrainStage.addChild(block(e.x, e.y, e.x + e.width, e.y + e.height));
+    if (e.visible === false)
+        d.hide();
+    return d;
+});
 
 export const resolveSlopeRight = resolveGameObject("SlopeRight", e => {
     const s = e.flippedY

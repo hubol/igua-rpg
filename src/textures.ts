@@ -30,6 +30,7 @@ export let Burst2: PIXI.Texture;
 export let CandleSmallRed: PIXI.Texture;
 export let CapitalArc: PIXI.Texture;
 export let CapitalBricks: PIXI.Texture;
+export let CapitalBubble: PIXI.Texture;
 export let CapitalBuilding1: PIXI.Texture;
 export let CapitalBuilding2: PIXI.Texture;
 export let CapitalInnSign: PIXI.Texture;
@@ -338,6 +339,9 @@ export function loadTexturesAsync()
 
     const CapitalBricksPath = require("./images/capital/bricks.png");
     loader.add(CapitalBricksPath); 
+
+    const CapitalBubblePath = require("./images/capital/bubble.png");
+    loader.add(CapitalBubblePath); 
 
     const CapitalBuilding1Path = require("./images/capital/building1.png");
     loader.add(CapitalBuilding1Path); 
@@ -1028,6 +1032,7 @@ export function loadTexturesAsync()
             CandleSmallRed = resources[CandleSmallRedPath]?.texture as PIXI.Texture;
             CapitalArc = resources[CapitalArcPath]?.texture as PIXI.Texture;
             CapitalBricks = resources[CapitalBricksPath]?.texture as PIXI.Texture;
+            CapitalBubble = resources[CapitalBubblePath]?.texture as PIXI.Texture;
             CapitalBuilding1 = resources[CapitalBuilding1Path]?.texture as PIXI.Texture;
             CapitalBuilding2 = resources[CapitalBuilding2Path]?.texture as PIXI.Texture;
             CapitalInnSign = resources[CapitalInnSignPath]?.texture as PIXI.Texture;
