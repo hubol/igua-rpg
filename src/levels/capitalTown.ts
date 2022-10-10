@@ -11,6 +11,7 @@ import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {measureCounter} from "../gameObjects/measureCounter";
 
 export function CapitalTown() {
+    scene.pipeStage.style = 2;
     scene.backgroundColor = 0xF0C8D0;
     scene.terrainColor = 0xF0B020;
     jukebox.play(MysteryNighttimeHouse).warm(BlindHouse);

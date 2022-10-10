@@ -641,7 +641,13 @@ TimingPipe: resolvePipeHorizontal({"type":"PipeHorizontal","x":144,"y":136,"widt
 // @ts-ignore
 Block_5: resolveBlock({"type":"Block","x":768,"y":136,"width":64,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_12","name":"","depth":0}),
 TimingKeyAnchor: {"type":"Anchor","x":788,"y":120,"flippedX":false,"flippedY":false,"uid":"25979726_13","name":"TimingKeyAnchor","depth":0},
-DebugTiming: {"type":"Checkpoint","x":120,"y":136,"flippedX":false,"flippedY":false,"uid":"55940370_14","name":"DebugTiming","faceRight":true,"depth":0}
+DebugTiming: {"type":"Checkpoint","x":120,"y":136,"flippedX":false,"flippedY":false,"uid":"55940370_14","name":"DebugTiming","faceRight":true,"depth":0},
+// @ts-ignore
+Block_6: resolveBlock({"type":"Block","x":608,"y":0,"width":24,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_15","name":"","depth":0}),
+// @ts-ignore
+Block_7: resolveBlock({"type":"Block","x":256,"y":0,"width":24,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"","depth":0}),
+// @ts-ignore
+Block_8: resolveBlock({"type":"Block","x":432,"y":0,"width":24,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_17","name":"","depth":0})
 };
 }
 };
