@@ -9,7 +9,7 @@ import {decalsOf} from "../gameObjects/decal";
 import {CapitalVolcanoBackdrop, GroundSpeckles} from "../textures";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {region} from "../gameObjects/region";
-import {AmbientLava} from "../musics";
+import {AmbientLava, CapitalMusicPlease} from "../musics";
 import {keyChain} from "../gameObjects/keyChain";
 import {progress} from "../igua/data/progress";
 import {manyCapitalBricks} from "../gameObjects/capitalBricks";
@@ -21,7 +21,7 @@ import {game} from "../igua/game";
 export function CapitalEntry() {
     scene.backgroundColor = 0xF0C8D0;
     scene.terrainColor = 0xF0B020;
-    jukebox.stop().warm(AmbientLava);
+    jukebox.play(CapitalMusicPlease).warm(AmbientLava);
     const level = applyOgmoLevel(CapitalEntryArgs);
     enrichVolcanoTransition(level);
     enrichSharpClownWithKey(level);

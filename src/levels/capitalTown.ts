@@ -1,6 +1,6 @@
 import {scene} from "../igua/scene";
 import {jukebox} from "../igua/jukebox";
-import {BlindHouse, MysteryNighttimeHouse} from "../musics";
+import {BlindHouse, CapitalMusicPlease} from "../musics";
 import {manyCapitalBricks} from "../gameObjects/capitalBricks";
 import {makePseudo} from "../utils/math/makePseudo";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
@@ -14,7 +14,7 @@ export function CapitalTown() {
     scene.pipeStage.style = 2;
     scene.backgroundColor = 0xF0C8D0;
     scene.terrainColor = 0xF0B020;
-    jukebox.play(MysteryNighttimeHouse).warm(BlindHouse);
+    jukebox.play(CapitalMusicPlease).warm(BlindHouse);
     const level = applyOgmoLevel(CapitalTownArgs);
 
     manyCapitalBricks(
@@ -34,16 +34,16 @@ function enrichTiming(level: GameObjectsType<typeof CapitalTownArgs>) {
     const period = 2;
     const flashStart = period - 2;
     const inactiveStart = period - 1;
-    const flashes = 4;
+    const flashes = 2;
 
     const pipe = level.TimingPipe;
-    const counter = measureCounter(MysteryNighttimeHouse, 114).show();
+    const counter = measureCounter(CapitalMusicPlease, 119).show();
     pipe.withStep(() => {
         const m = (counter.measuref * 2) % period;
         pipe.active = m < inactiveStart;
         pipe.visible = pipe.active;
         if (m >= flashStart && m < inactiveStart) {
-            const mm = Math.floor((m + (period - flashStart)) * flashes) + 1;
+            const mm = Math.floor((m + (period - flashStart)) * flashes);
             pipe.alpha = 1 - (mm % 2) * 0.33;
         }
         else

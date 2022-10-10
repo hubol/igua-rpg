@@ -2,7 +2,7 @@ import {scene} from "../igua/scene";
 import {CapitalInnArgs} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {jukebox} from "../igua/jukebox";
-import {BlindHouse} from "../musics";
+import {BlindHouse, CapitalMusicPlease} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
 import {CapitalArc} from "../textures";
 import {BLEND_MODES, Graphics} from "pixi.js";
@@ -19,7 +19,7 @@ export function CapitalInn() {
     scene.terrainColor = 0;
     const level = applyOgmoLevel(CapitalInnArgs);
     decalsOf(CapitalArc).forEach(x => x.tinted(0))
-    jukebox.play(BlindHouse);
+    jukebox.play(BlindHouse).warm(CapitalMusicPlease);
 
     new Graphics()
         .beginFill(0xDD6B40)
