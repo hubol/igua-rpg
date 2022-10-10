@@ -17,7 +17,7 @@ const th = CapitalBricks.height;
 
 export function capitalBricks(width: number, height: number, p: Pseudo) {
     const c = container();
-    if (height < th)
+    if (height < th || width < tw)
         return c;
     height = Math.min(Math.ceil(nlerp(35, 64, p.unit())), height);
     const at = vnew();

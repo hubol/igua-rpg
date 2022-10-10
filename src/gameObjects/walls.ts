@@ -3,6 +3,7 @@ import {distance, dot, normalize, perpendicular, Vector, vnew} from "../utils/ma
 import {JunglePlank, JunglePlankEnd, LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
 import {scene} from "../igua/scene";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
+import {merge} from "../utils/object/merge";
 
 const walls: Wall[] = [];
 
@@ -119,6 +120,8 @@ export function getTouchedSolidNormal(xy: Pushable, radius: number) {
 function pushImpl(xy: Pushable, radius: number, result: PushResult, correctPosition = true, stopIfOnGround = false) {
     for (let i = 0; i < walls.length; i++) {
         const s = walls[i];
+        if (s.active === false)
+            continue;
         const offset = {x: xy.x - s.x, y: xy.y - s.y};
         const offsetDotNormal = dot(offset, s.normal);
         const offsetDotForward = dot(offset, s.forward);
@@ -260,12 +263,12 @@ export function pipe(x0: number, y0: number, x1: number, y1: number)
         new Float32Array([ 0, 0, 0, 0, 0, 1, 0, 1]),
         new Uint16Array([ 0, 1, 3, 1, 2, 3 ]));
 
-    const slopeWall = { x: x0, y: y0, forward, normal, length, isGround: true, isPipe: true };
+    const slopeWall = { x: x0, y: y0, forward, normal, length, isGround: true, isPipe: true, active: true };
 
     simpleMesh.on('added', () => walls.push(slopeWall));
     simpleMesh.on('removed', () => walls.removeFirst(slopeWall));
 
-    return simpleMesh;
+    return merge(simpleMesh, { get active() { return slopeWall.active; }, set active(value) { slopeWall.active = value; } });
 }
 
 function getSlopeWallProperties(x0: number, y0: number, x1: number, y1: number, isGround: boolean)
@@ -324,4 +327,5 @@ interface Wall
     isCeiling?: boolean;
     isWall?: boolean;
     isPipe?: boolean;
+    active?: boolean;
 }

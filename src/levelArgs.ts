@@ -506,13 +506,13 @@ SleepHere: {"type":"Anchor","x":184,"y":192,"flippedX":false,"flippedY":false,"u
 };
 
 export const CapitalTownArgs = {
-    width: 768,
-height: 320,
+    width: 896,
+height: 440,
 gameObjectsSupplier: () => {
   return {
     CapitalBuilding1: resolveDecalGameObject({
-    x: 520,
-y: 234,
+    x: 648,
+y: 354,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -522,8 +522,8 @@ layerName: "CloseTerrainDecals",
 texture: CapitalBuilding1
 }),
 CapitalPlantedTree: resolveDecalGameObject({
-    x: 640,
-y: 201,
+    x: 768,
+y: 321,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -533,8 +533,8 @@ layerName: "CloseTerrainDecals",
 texture: CapitalPlantedTree
 }),
 CapitalPlantedTree_1: resolveDecalGameObject({
-    x: 408,
-y: 209,
+    x: 536,
+y: 329,
 originX: 0.5,
 originY: 1,
 scaleX: -1,
@@ -544,8 +544,8 @@ layerName: "CloseTerrainDecals",
 texture: CapitalPlantedTree
 }),
 CapitalPlantedTree_2: resolveDecalGameObject({
-    x: 240,
-y: 217,
+    x: 368,
+y: 337,
 originX: 0.5,
 originY: 1,
 scaleX: 1,
@@ -555,8 +555,8 @@ layerName: "CloseTerrainDecals",
 texture: CapitalPlantedTree
 }),
 CapitalInnSign: resolveDecalGameObject({
-    x: 536,
-y: 207,
+    x: 664,
+y: 327,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -566,8 +566,8 @@ layerName: "CloseTerrainDecals",
 texture: CapitalInnSign
 }),
 CloudLong: resolveDecalGameObject({
-    x: 272,
-y: 152,
+    x: 400,
+y: 272,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -577,8 +577,8 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_1: resolveDecalGameObject({
-    x: 312,
-y: 168,
+    x: 440,
+y: 288,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -588,8 +588,8 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_2: resolveDecalGameObject({
-    x: 472,
-y: 88,
+    x: 600,
+y: 208,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -599,8 +599,8 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_3: resolveDecalGameObject({
-    x: 616,
-y: 136,
+    x: 744,
+y: 256,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -610,8 +610,8 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 CloudLong_4: resolveDecalGameObject({
-    x: 688,
-y: 160,
+    x: 816,
+y: 280,
 originX: 0.5,
 originY: 0.5,
 scaleX: 1,
@@ -621,19 +621,27 @@ layerName: "Parallax1Decals",
 texture: CloudLong
 }),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":608,"y":200,"width":160,"height":120,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":736,"y":320,"width":160,"height":120,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":432,"y":232,"width":176,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+Block_1: resolveBlock({"type":"Block","x":560,"y":352,"width":176,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
 // @ts-ignore
-Door: resolveDoor({"type":"Door","x":484,"y":202,"flippedX":false,"flippedY":false,"uid":"55913988_2","levelName":"CapitalInn","checkpointName":"","name":"","depth":0}),
-FromInn: {"type":"Checkpoint","x":460,"y":232,"flippedX":false,"flippedY":false,"uid":"55940370_3","name":"FromInn","faceRight":false,"depth":0},
+Door: resolveDoor({"type":"Door","x":612,"y":322,"flippedX":false,"flippedY":false,"uid":"55913988_2","levelName":"CapitalInn","checkpointName":"","name":"","depth":0}),
+FromInn: {"type":"Checkpoint","x":588,"y":352,"flippedX":false,"flippedY":false,"uid":"55940370_3","name":"FromInn","faceRight":false,"depth":0},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":736,"y":168,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_5","levelName":"CapitalEntry","checkpointName":"FromTown","name":"","depth":0}),
+Gate: resolveGate({"type":"Gate","x":864,"y":288,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_5","levelName":"CapitalEntry","checkpointName":"FromTown","name":"","depth":0}),
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":336,"y":208,"width":96,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
+Block_2: resolveBlock({"type":"Block","x":464,"y":328,"width":96,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_6","name":"","depth":0}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":208,"y":216,"width":128,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
-Player: {"type":"Player","x":688,"y":200,"flippedX":false,"flippedY":false,"uid":"55988047_8","faceRight":false,"name":"","depth":0}
+Block_3: resolveBlock({"type":"Block","x":336,"y":336,"width":128,"height":104,"flippedX":false,"flippedY":false,"uid":"55823268_7","name":"","depth":0}),
+Player: {"type":"Player","x":816,"y":320,"flippedX":false,"flippedY":false,"uid":"55988047_8","faceRight":false,"name":"","depth":0},
+// @ts-ignore
+Block_4: resolveBlock({"type":"Block","x":80,"y":136,"width":64,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_9","name":"","depth":0}),
+// @ts-ignore
+TimingPipe: resolvePipeHorizontal({"type":"PipeHorizontal","x":144,"y":136,"width":624,"flippedX":false,"flippedY":false,"uid":"55841307_10","visible":true,"name":"TimingPipe","depth":0}),
+// @ts-ignore
+Block_5: resolveBlock({"type":"Block","x":768,"y":136,"width":64,"height":24,"flippedX":false,"flippedY":false,"uid":"55823268_12","name":"","depth":0}),
+TimingKeyAnchor: {"type":"Anchor","x":788,"y":120,"flippedX":false,"flippedY":false,"uid":"25979726_13","name":"TimingKeyAnchor","depth":0},
+DebugTiming: {"type":"Checkpoint","x":120,"y":136,"flippedX":false,"flippedY":false,"uid":"55940370_14","name":"DebugTiming","faceRight":true,"depth":0}
 };
 }
 };
