@@ -12,7 +12,7 @@ export const resolveCapitalBubble = resolveGameObject('CapitalBubble', a => capi
 
 function capitalBubble(obscurity: number) {
     const x = rng() * 4;
-    const dx = (0.2 + rng() * 0.3) * 4;
+    const dx = (0.35 + rng() * 0.2) * 6;
 
     const s = Sprite.from(CapitalBubble)
         .centerAnchor()
