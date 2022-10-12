@@ -50,6 +50,8 @@ export function lerp(a: Vector, b: Vector, factor: number): Vector
     return a;
 }
 
+export const vlerp = lerp;
+
 export function moveTowards(a: Vector, b: Vector, d: number) {
     if(d <= 0)
         return a;

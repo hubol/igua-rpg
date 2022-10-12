@@ -431,9 +431,9 @@ CapitalBubble_11: resolveCapitalBubble({"type":"CapitalBubble","x":520,"y":96,"f
 // @ts-ignore
 CapitalBubble_12: resolveCapitalBubble({"type":"CapitalBubble","x":496,"y":208,"flippedX":false,"flippedY":false,"uid":"37271132_51","obscurity":2,"name":"","depth":0}),
 // @ts-ignore
-CapitalBubble_13: resolveCapitalBubble({"type":"CapitalBubble","x":472,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_52","obscurity":2,"name":"","depth":0}),
+CapitalBubble_13: resolveCapitalBubble({"type":"CapitalBubble","x":496,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_52","obscurity":2,"name":"","depth":0}),
 // @ts-ignore
-CapitalBubble_14: resolveCapitalBubble({"type":"CapitalBubble","x":448,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_53","obscurity":2,"name":"","depth":0}),
+CapitalBubble_14: resolveCapitalBubble({"type":"CapitalBubble","x":472,"y":96,"flippedX":false,"flippedY":false,"uid":"37271132_53","obscurity":2,"name":"","depth":0}),
 // @ts-ignore
 ValuableBlue_2: resolveValuableBlue({"type":"ValuableBlue","x":511,"y":208,"flippedX":false,"flippedY":false,"uid":"55991906_54","name":"","depth":0}),
 // @ts-ignore

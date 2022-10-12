@@ -420,7 +420,7 @@
           "name": "CapitalBubble",
           "id": 52,
           "_eid": "37271132",
-          "x": 472,
+          "x": 496,
           "y": 96,
           "values": {"obscurity": 2, "name": "", "depth": 0}
         },
@@ -428,7 +428,7 @@
           "name": "CapitalBubble",
           "id": 53,
           "_eid": "37271132",
-          "x": 448,
+          "x": 472,
           "y": 96,
           "values": {"obscurity": 2, "name": "", "depth": 0}
         },

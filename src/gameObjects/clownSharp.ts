@@ -26,7 +26,7 @@ import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
 import {whiten} from "../utils/pixi/whiten";
 import {attack, attackRunner} from "./attacks";
 import {smallPop} from "./smallPop";
-import {moveTowards, Vector, vnew} from "../utils/math/vector";
+import {moveTowards, Vector, vlerp, vnew} from "../utils/math/vector";
 import {Invulnerable} from "../pixins/invulnerable";
 import {Stamina} from "../pixins/stamina";
 import {wait} from "../cutscene/wait";
@@ -92,13 +92,9 @@ export function clownSharp() {
         timeSinceLastArmLift++;
 
         const off = getOffsetFromPlayer(head);
-        const rox = off.x;
         const ox = off.normalize().x;
-        if (automation.lookAtPlayer) {
+        if (automation.lookAtPlayer)
             head.looking = Math.abs(ox) > 0.3 ? Math.sign(ox) : 0;
-            const tfx = Math.abs(rox) > 64 ? head.looking : 0;
-            head.face.x = approachLinear(head.face.x, tfx, 0.05);
-        }
         if (automation.facePlayer && ox !== 0)
             head.facing = Math.sign(ox);
         if (automation.matchBreezeToHspeed)
@@ -114,6 +110,21 @@ export function clownSharp() {
         if (legs.splits)
             legs.pedometer = 0;
         legs.pedometer += 0.1;
+    }
+
+    async function doFacePlayerAnimation() {
+        let tfx = 1;
+        c.withStep(() => {
+            if (automation.lookAtPlayer)
+                head.face.x = approachLinear(head.face.x, tfx * head.looking, 0.05);
+        });
+
+        while (true) {
+            await wait(() => Math.abs(getOffsetFromPlayer(head).x) <= 64);
+            tfx = 0;
+            await wait(() => Math.abs(getOffsetFromPlayer(head).x) > 72);
+            tfx = 1;
+        }
     }
 
     function die() {
@@ -158,7 +169,8 @@ export function clownSharp() {
         .withStep(doAnimation)
         .withStep(handleDamage)
         .withStep(doPrePhysics)
-        .withGravityAndWallResist([0, -8], 7, consts.gravity);
+        .withGravityAndWallResist([0, -8], 7, consts.gravity)
+        .withAsync(doFacePlayerAnimation);
 
     const attacks = attackRunner().show(c);
 
@@ -216,6 +228,8 @@ export function clownSharp() {
                 aim.at(speed);
             else
                 moveTowards(aim, speed, 0.1);
+            v.at(aim).normalize();
+            vlerp(aim, v, 0.3);
             SharpBullet.play();
             bullet(aim.vcpy().normalize().scale(consts.bullet.speed), consts.bullet.life)
                 .tinted(bulletColors[bulletIndex = (bulletIndex + 1) % 2])
