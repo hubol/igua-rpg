@@ -251,6 +251,28 @@
           "originX": 8,
           "originY": 14,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 23,
+          "_eid": "26367058",
+          "x": 496,
+          "y": 322,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "StatueGuy", "style": 20, "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 24,
+          "_eid": "55841307",
+          "x": 478,
+          "y": 322,
+          "width": 31,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
         }
       ]
     },
@@ -341,6 +363,17 @@
           "texture": "capital/inn sign.png",
           "originX": 0.5,
           "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 493.5,
+          "y": 329,
+          "scaleX": 1.033333333333333,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/platform.png",
+          "originX": 0.5,
+          "originY": 1,
           "values": {"name": ""}
         }
       ],

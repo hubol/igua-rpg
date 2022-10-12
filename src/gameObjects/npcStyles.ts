@@ -37,7 +37,7 @@ import {
     DesertBarkeeperLooks,
     DesertBarGayLooks,
     JungleSpiritLooks,
-    FlameGuyLooks, FlameGuy2Looks, HappyWeeperLooks, CutieMarkGuyLooks
+    FlameGuyLooks, FlameGuy2Looks, HappyWeeperLooks, CutieMarkGuyLooks, StatueGuyLooks
 } from "./npcLooks";
 
 export type NpcStyle = ReturnType<typeof npcStyle>;
@@ -58,6 +58,7 @@ npcStyles[16] = fromLooks(FlameGuyLooks);
 npcStyles[17] = fromLooks(FlameGuy2Looks);
 npcStyles[18] = fromLooks(HappyWeeperLooks);
 npcStyles[19] = fromLooks(CutieMarkGuyLooks);
+npcStyles[20] = fromLooks(StatueGuyLooks);
 
 npcStyles[0] = npcStyle(args => {
     args.body = Sprite.from(NpcWeirdBody);

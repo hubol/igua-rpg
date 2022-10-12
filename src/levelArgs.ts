@@ -110,6 +110,7 @@ import { PotteryOrange } from "./textures";
 import { Rope } from "./textures";
 import { DesertTemple } from "./textures";
 import { CandleSmallRed } from "./textures";
+import { CapitalPlatform } from "./textures";
 import { CapitalInnSign } from "./textures";
 import { CapitalPlantedTree } from "./textures";
 import { CapitalBuilding1 } from "./textures";
@@ -565,6 +566,17 @@ rotation: 0,
 layerName: "CloseTerrainDecals",
 texture: CapitalInnSign
 }),
+CapitalPlatform: resolveDecalGameObject({
+    x: 493.5,
+y: 329,
+originX: 0.5,
+originY: 1,
+scaleX: 1.033333333333333,
+scaleY: 1,
+rotation: 0,
+layerName: "CloseTerrainDecals",
+texture: CapitalPlatform
+}),
 CloudLong: resolveDecalGameObject({
     x: 400,
 y: 272,
@@ -657,7 +669,11 @@ Block_11: resolveBlock({"type":"Block","x":744,"y":0,"width":24,"height":104,"fl
 // @ts-ignore
 ValuableBlue: resolveValuableBlue({"type":"ValuableBlue","x":592,"y":42,"flippedX":false,"flippedY":false,"uid":"55991906_21","name":"","depth":0}),
 // @ts-ignore
-ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":296,"y":42,"flippedX":false,"flippedY":false,"uid":"56004563_22","name":"","depth":0})
+ValuableOrange: resolveValuableOrange({"type":"ValuableOrange","x":296,"y":42,"flippedX":false,"flippedY":false,"uid":"56004563_22","name":"","depth":0}),
+// @ts-ignore
+StatueGuy: resolveNpc({"type":"NpcIguana","x":496,"y":322,"flippedX":true,"flippedY":false,"uid":"26367058_23","name":"StatueGuy","style":20,"depth":0}),
+// @ts-ignore
+PipeHorizontal: resolvePipeHorizontal({"type":"PipeHorizontal","x":478,"y":322,"width":31,"flippedX":false,"flippedY":false,"uid":"55841307_24","visible":false,"name":"","depth":0})
 };
 }
 };

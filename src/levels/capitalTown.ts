@@ -9,6 +9,10 @@ import {DisplayObject, filters} from "pixi.js";
 import {mapRgb} from "../utils/pixi/mapRgb";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {measureCounter} from "../gameObjects/measureCounter";
+import {wait} from "../cutscene/wait";
+import {isOnScreen} from "../igua/logic/isOnScreen";
+import {show} from "../cutscene/dialog";
+import {sparkly} from "../gameObjects/sparkleSmall";
 
 export function CapitalTown() {
     scene.pipeStage.style = 2;
@@ -24,10 +28,47 @@ export function CapitalTown() {
 
     building(level.CapitalBuilding1, 0xA2D6CE, 0xE24F56);
     enrichTiming(level);
+    enrichStatue(level);
 }
 
 function building(d: DisplayObject, walls: number, roof: number) {
     d.filter(mapRgb(new filters.ColorMatrixFilter(), walls, roof));
+}
+
+function enrichStatue(level: GameObjectsType<typeof CapitalTownArgs>) {
+    const c = level.StatueGuy;
+    async function outOfView() {
+        await wait(() => isOnScreen(c));
+        await wait(() => !isOnScreen(c));
+    }
+
+    c.withAsync(async () => {
+        while (true) {
+            await outOfView();
+            c.duckImmediately();
+            await outOfView();
+            c.pivot.x += 3;
+            c.scale.x = 1;
+            c.duckUnit = 0;
+            c.isDucking = false;
+            await outOfView();
+            c.duckImmediately();
+            await outOfView();
+            c.scale.x = -1;
+            c.duckUnit = 0;
+            c.isDucking = false;
+            c.pivot.x -= 3;
+        }
+    });
+
+    sparkly(c);
+
+    c.withCutscene(async () => {
+       await show(`It's a statue...?`);
+    });
+
+    c.canBlink = false;
+    c.pivot.y += 2;
 }
 
 function enrichTiming(level: GameObjectsType<typeof CapitalTownArgs>) {
