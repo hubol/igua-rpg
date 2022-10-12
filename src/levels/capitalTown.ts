@@ -11,8 +11,15 @@ import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {measureCounter} from "../gameObjects/measureCounter";
 import {wait} from "../cutscene/wait";
 import {isOnScreen} from "../igua/logic/isOnScreen";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {sparkly} from "../gameObjects/sparkleSmall";
+import {sleep} from "../cutscene/sleep";
+import {waitHold} from "../cutscene/waitHold";
+import {Vibratey} from "../igua/puppet/mods/vibratey";
+import {CheckerLooksGood} from "../sounds";
+import {progress} from "../igua/data/progress";
+import {player} from "../gameObjects/player";
+import {cutscene} from "../cutscene/cutscene";
 
 export function CapitalTown() {
     scene.pipeStage.style = 2;
@@ -37,9 +44,11 @@ function building(d: DisplayObject, walls: number, roof: number) {
 
 function enrichStatue(level: GameObjectsType<typeof CapitalTownArgs>) {
     const c = level.StatueGuy;
+
     async function outOfView() {
         await wait(() => isOnScreen(c));
         await wait(() => !isOnScreen(c));
+        c.mods.remove(Vibratey);
     }
 
     c.withAsync(async () => {
@@ -61,10 +70,66 @@ function enrichStatue(level: GameObjectsType<typeof CapitalTownArgs>) {
         }
     });
 
+    c.withAsync(async () => {
+        while (true) {
+            await waitHold(() => !c.mods.has(Vibratey) && isOnScreen(c) && !cutscene.isPlaying, 60 * 5);
+            c.mods.add(Vibratey);
+        }
+    });
+
     sparkly(c);
 
-    c.withCutscene(async () => {
-       await show(`It's a statue...?`);
+    async function normalConversation() {
+        await show(`It's a statue...?`);
+    }
+
+    async function strugglingConversation() {
+        const move = player.walkTo(c.x + 48 * c.scale.x).then(() => player.scale.x = -c.scale.x);
+        await show(`It's a statue...!`);
+        await sleep(500);
+        c.mods.remove(Vibratey);
+        c.canBlink = true;
+        c.isClosingEyes = true;
+        c.isDucking = !c.isDucking;
+        c.vspeed = -1.5;
+        CheckerLooksGood.play();
+        await sleep(500);
+        await showAll(`Ah, and I was doing so well!`,
+            `I'm Statua.`,
+            `I used to run the inn, but when we moved to self-service I had to come up with something to do with my time.`,
+            `I'm not an adventurer or oracle so I thought this would work.`);
+        await sleep(250);
+        c.isDucking = !c.isDucking;
+        c.canBlink = false;
+        c.isClosingEyes = false;
+        await sleep(500);
+        await show(`Anyway, thanks for checking in. Good luck on your task! I'm going to get back to mine.`);
+        await move;
+    }
+
+    let followUp = 0;
+
+    async function hadStrugglingConversation() {
+        if (followUp === 0 || followUp >= 2) {
+            await show('...');
+            followUp += 1;
+        }
+        else if (followUp === 1) {
+            await show(`...`);
+            await show(`My task is to be a statue, remember?`);
+            followUp = 2;
+        }
+    }
+
+    c.withCutscene(() => {
+        if (progress.flags.capital.spokeWithStatua)
+            return hadStrugglingConversation();
+        else if (!c.mods.has(Vibratey))
+           return normalConversation();
+        else {
+            progress.flags.capital.spokeWithStatua = true;
+            return strugglingConversation();
+        }
     });
 
     c.canBlink = false;
