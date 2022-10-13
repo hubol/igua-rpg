@@ -8,7 +8,7 @@ import {now} from "../utils/now";
 import {advanceTempleMovingWall} from "./jungleTemple";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {CracksA, GroundSpeckles, JungleLever} from "../textures";
-import {lever} from "../gameObjects/lever";
+import {lever, leverOpinionated} from "../gameObjects/lever";
 import {Sprite} from "pixi.js";
 import {progress} from "../igua/data/progress";
 import {ActivateLever} from "../sounds";
@@ -65,23 +65,12 @@ export function JungleTown() {
 
 function jungleTempleLever() {
     const { templeLever } = progress.flags.jungle;
-    const offAngle = 45;
 
-    const getTargetAngle = () => templeLever.on ? -offAngle : offAngle;
-
-    const t = subimageTextures(JungleLever, 3);
-    const l = lever(t[2], t[1], getTargetAngle())
-        .withStep(() => {
-            l.angle = approachLinear(l.angle, getTargetAngle(), 5);
-        })
+    return leverOpinionated(JungleLever, () => templeLever.on)
         .withInteraction(() => {
             ActivateLever.play();
             templeLever.on = !templeLever.on;
         });
-    const s = Sprite.from(t[0]);
-    s.anchor.set(0.5, 1);
-    l.addChildAt(s, 0);
-    return l;
 }
 
 async function jungleOracleCutscene() {
