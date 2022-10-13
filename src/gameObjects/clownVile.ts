@@ -116,7 +116,10 @@ export function clownVile() {
     }
 
     function freeSpaceOn(unit: Vector) {
-        return rayIntersectsWallDistance(cv.at(c).add(0, -96), unit);
+        return Math.min(
+            rayIntersectsWallDistance(cv.at(c).add(0, -96), unit),
+            rayIntersectsWallDistance(cv.at(c).add(0, -40), unit),
+            rayIntersectsWallDistance(cv.at(c), unit));
     }
 
     function freeSpaceOnLeft() {
