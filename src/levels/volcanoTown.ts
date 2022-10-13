@@ -16,7 +16,7 @@ import {heatWaves} from "../gameObjects/heatWaves";
 import {mirror} from "../gameObjects/mirror";
 import {decalsOf} from "../gameObjects/decal";
 import {CrackSmall, GroundSpeckles} from "../textures";
-import {showAll} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {progress} from "../igua/data/progress";
 
 export function VolcanoTown() {
@@ -39,8 +39,10 @@ export function VolcanoTown() {
     level.Iguard.cutscene = async () => {
         await showAll('I am Iguard, the knight of the volcano clan.',
             `It's my job to keep the invaders out of the town.`);
-        if (!progress.flags.volcano.defeatedVileAngel)
-            await showAll(`There is a particularly vile invader contained in the western lava pit.`,
-                `The lava will give you problems for now, since you don't have the calloused feet of the volcano clan.`);
+        if (!progress.flags.volcano.defeatedVileAngel) {
+            await show(`There is a particularly vile invader contained in the western lava pit.`);
+            if (!progress.flags.volcano.bigKey.reward)
+                await show(`The lava will give you problems for now, since you don't have the calloused feet of the volcano clan.`);
+        }
     };
 }
