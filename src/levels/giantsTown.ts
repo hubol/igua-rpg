@@ -5,16 +5,26 @@ import {Sprite} from "pixi.js";
 import {GlowingEdge} from "../textures";
 import {Rectangle} from "../utils/math/rectangle";
 import {jukebox} from "../igua/jukebox";
-import {Country, DesertTown, GiantsHouseMusic, GiantsNimbusMusic, JungleMusic} from "../musics";
+import {
+    CapitalMusicPlease,
+    Country,
+    DesertTown,
+    GiantsHouseMusic,
+    GiantsNimbusMusic,
+    JungleMusic,
+    VolcanoSomething
+} from "../musics";
 import {show} from "../cutscene/dialog";
 
 export function GiantsTown() {
     scene.backgroundColor = 0x98C0E0;
     scene.terrainColor = 0xF8E8E8;
-    jukebox.play(GiantsNimbusMusic).warm(GiantsHouseMusic, DesertTown, JungleMusic, Country);
+    jukebox.play(GiantsNimbusMusic).warm(GiantsHouseMusic, DesertTown, JungleMusic, Country, VolcanoSomething, CapitalMusicPlease);
     const level = applyOgmoLevel(GiantsTownArgs);
     edge(level.DesertGate).tinted(0xF0F0B0);
     edge(level.JungleGate).tinted(0x97D8D8);
+    edge(level.VolcanoGate).tinted(0x912235);
+    edge(level.CapitalGate).tinted(0xF0B020);
     level.GreeterBigua.withCutscene(async () => {
         await show("Oh, you must be from down below.");
         await show("Welcome to the nimbus of the giants.");

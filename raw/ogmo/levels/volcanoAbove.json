@@ -290,6 +290,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "Book", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 25,
+          "_eid": "55940370",
+          "x": 192,
+          "y": 16,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromGiants", "faceRight": false, "depth": 0}
         }
       ]
     },
@@ -713,6 +723,18 @@
           "values": {"name": ""}
         }
       ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 96,
+      "gridCellsY": 40,
+      "decals": [],
       "folder": "../../src/images"
     },
     {

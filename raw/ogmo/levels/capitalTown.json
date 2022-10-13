@@ -273,6 +273,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 25,
+          "_eid": "55940370",
+          "x": 112,
+          "y": 16,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromGiants", "faceRight": true, "depth": 0}
         }
       ]
     },
