@@ -1,7 +1,7 @@
 import {Extract, RenderTexture, Texture} from "pixi.js";
 
 const canvas = document.createElement('canvas');
-const context = canvas.getContext('2d')!;
+const context = canvas.getContext('2d', { willReadFrequently: true })!;
 
 let extract: Extract;
 
