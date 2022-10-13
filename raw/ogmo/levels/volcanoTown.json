@@ -699,6 +699,17 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromOracle", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 63,
+          "_eid": "26367058",
+          "x": 330,
+          "y": 267,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "Iguard", "style": 21, "depth": 0}
         }
       ]
     },
@@ -869,6 +880,18 @@
           "values": {"name": ""}
         }
       ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 107,
+      "gridCellsY": 40,
+      "decals": [],
       "folder": "../../src/images"
     },
     {

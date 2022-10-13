@@ -1,4 +1,5 @@
 // This file is generated. Do not touch.
+import { resolveNpc } from "./gameObjects/npc";
 import { resolveSlopeLeft } from "./gameObjects/walls";
 import { resolvePipeHorizontal } from "./gameObjects/walls";
 import { resolveBlock } from "./gameObjects/walls";
@@ -23,7 +24,6 @@ import { VolcanoMineralDebris } from "./textures";
 import { resolveValuableBlue } from "./gameObjects/valuable";
 import { KeyRed } from "./textures";
 import { GlowingCircle } from "./textures";
-import { resolveNpc } from "./gameObjects/npc";
 import { RoseVase } from "./textures";
 import { BookCollection } from "./textures";
 import { JungleShelfSmall } from "./textures";
@@ -9760,7 +9760,9 @@ Block_17: resolveBlock({"type":"Block","x":573,"y":280,"width":77,"height":16,"f
 PipeHorizontal_8: resolvePipeHorizontal({"type":"PipeHorizontal","x":573.4697670912739,"y":237.20527954834742,"width":76,"flippedX":false,"flippedY":false,"uid":"55841307_60","visible":false,"name":"","depth":0}),
 // @ts-ignore
 SlopeLeft_6: resolveSlopeLeft({"type":"SlopeLeft","x":649,"y":280,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55845599_61","name":"","depth":0}),
-FromOracle: {"type":"Checkpoint","x":644,"y":280,"flippedX":false,"flippedY":false,"uid":"55940370_62","name":"FromOracle","faceRight":true,"depth":0}
+FromOracle: {"type":"Checkpoint","x":644,"y":280,"flippedX":false,"flippedY":false,"uid":"55940370_62","name":"FromOracle","faceRight":true,"depth":0},
+// @ts-ignore
+Iguard: resolveNpc({"type":"NpcIguana","x":330,"y":267,"flippedX":true,"flippedY":false,"uid":"26367058_63","name":"Iguard","style":21,"depth":0})
 };
 }
 };
