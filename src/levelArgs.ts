@@ -8262,12 +8262,12 @@ FromGiants: {"type":"Checkpoint","x":192,"y":16,"flippedX":false,"flippedY":fals
 };
 
 export const VolcanoBossArenaArgs = {
-    width: 848,
+    width: 896,
 height: 256,
 gameObjectsSupplier: () => {
   return {
     GroundSpeckles: resolveDecalGameObject({
-    x: 717.5930595662703,
+    x: 765.5930595662703,
 y: 220.51552327733887,
 originX: 0.5,
 originY: 0.5,
@@ -8278,7 +8278,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 GroundSpeckles_1: resolveDecalGameObject({
-    x: 717.114275467532,
+    x: 765.114275467532,
 y: 147.2615561703749,
 originX: 0.5,
 originY: 0.5,
@@ -8289,7 +8289,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 GroundSpeckles_2: resolveDecalGameObject({
-    x: 96,
+    x: 144,
 y: 40,
 originX: 0.5,
 originY: 0.5,
@@ -8300,7 +8300,7 @@ layerName: "TerrainDecals",
 texture: GroundSpeckles
 }),
 VolcanoMineralDebris: resolveDecalGameObject({
-    x: 110.66864533342431,
+    x: 158.6686453334243,
 y: 203.89731196455642,
 originX: 0.5,
 originY: 0.5,
@@ -8311,7 +8311,7 @@ layerName: "TerrainDecals",
 texture: VolcanoMineralDebris
 }),
 VolcanoMineralDebris_1: resolveDecalGameObject({
-    x: 52.17641350412977,
+    x: 100.17641350412977,
 y: 198.1480755027027,
 originX: 0.5,
 originY: 0.5,
@@ -8322,7 +8322,7 @@ layerName: "TerrainDecals",
 texture: VolcanoMineralDebris
 }),
 VolcanoMineralDebris_2: resolveDecalGameObject({
-    x: 72.92365812734107,
+    x: 120.92365812734107,
 y: 189.39923740857745,
 originX: 0.5,
 originY: 0.5,
@@ -8333,7 +8333,7 @@ layerName: "TerrainDecals",
 texture: VolcanoMineralDebris
 }),
 VolcanoChain: resolveDecalGameObject({
-    x: 200,
+    x: 248,
 y: 24,
 originX: 0.5,
 originY: 0.5,
@@ -8344,7 +8344,7 @@ layerName: "BackgroundDecals",
 texture: VolcanoChain
 }),
 VolcanoChain_1: resolveDecalGameObject({
-    x: 200,
+    x: 248,
 y: 72,
 originX: 0.5,
 originY: 0.5,
@@ -8355,7 +8355,7 @@ layerName: "BackgroundDecals",
 texture: VolcanoChain
 }),
 VolcanoChain_2: resolveDecalGameObject({
-    x: 200,
+    x: 248,
 y: 120,
 originX: 0.5,
 originY: 0.5,
@@ -8366,7 +8366,7 @@ layerName: "BackgroundDecals",
 texture: VolcanoChain
 }),
 Key: resolveDecalGameObject({
-    x: 199.21693226349737,
+    x: 247.21693226349737,
 y: 151.95385182388233,
 originX: 0.5,
 originY: 0.5,
@@ -8377,7 +8377,7 @@ layerName: "BackgroundDecals",
 texture: KeyGreen
 }),
 VolcanoCrystal: resolveDecalGameObject({
-    x: 87.42173268332006,
+    x: 135.42173268332004,
 y: 129.65717156583645,
 originX: 0.5,
 originY: 0.5,
@@ -8388,7 +8388,7 @@ layerName: "BackgroundDecals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_1: resolveDecalGameObject({
-    x: 360,
+    x: 408,
 y: 200,
 originX: 0.5,
 originY: 0.5,
@@ -8399,7 +8399,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_2: resolveDecalGameObject({
-    x: 428.34110086626936,
+    x: 476.34110086626936,
 y: 196.40688958366852,
 originX: 0.5,
 originY: 0.5,
@@ -8410,7 +8410,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_3: resolveDecalGameObject({
-    x: 518.9575238187166,
+    x: 566.9575238187166,
 y: 201.97376880941613,
 originX: 0.5,
 originY: 0.5,
@@ -8421,7 +8421,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_4: resolveDecalGameObject({
-    x: 591.9454958896297,
+    x: 639.9454958896297,
 y: 197.33470278795977,
 originX: 0.5,
 originY: 0.5,
@@ -8432,7 +8432,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_5: resolveDecalGameObject({
-    x: 615.7593681331055,
+    x: 663.7593681331055,
 y: 192.69563676650344,
 originX: 0.5,
 originY: 0.5,
@@ -8443,7 +8443,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_6: resolveDecalGameObject({
-    x: 274.7593681331055,
+    x: 322.7593681331055,
 y: 196.69563676650344,
 originX: 0.5,
 originY: 0.5,
@@ -8454,7 +8454,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_7: resolveDecalGameObject({
-    x: 250.94549588962963,
+    x: 298.9454958896296,
 y: 201.33470278795977,
 originX: 0.5,
 originY: 0.5,
@@ -8465,7 +8465,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_8: resolveDecalGameObject({
-    x: 177.9575238187166,
+    x: 225.9575238187166,
 y: 205.97376880941613,
 originX: 0.5,
 originY: 0.5,
@@ -8476,7 +8476,7 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 VolcanoCrystal_9: resolveDecalGameObject({
-    x: 87.34110086626936,
+    x: 135.34110086626936,
 y: 200.40688958366852,
 originX: 0.5,
 originY: 0.5,
@@ -8487,32 +8487,34 @@ layerName: "Parallax1Decals",
 texture: VolcanoCrystal
 }),
 // @ts-ignore
-Block: resolveBlock({"type":"Block","x":688,"y":208,"width":160,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
+Block: resolveBlock({"type":"Block","x":736,"y":208,"width":160,"height":48,"flippedX":false,"flippedY":false,"uid":"55823268_0","name":"","depth":0}),
 // @ts-ignore
-Block_1: resolveBlock({"type":"Block","x":688,"y":0,"width":160,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
-Player: {"type":"Player","x":760,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
+Block_1: resolveBlock({"type":"Block","x":736,"y":0,"width":160,"height":160,"flippedX":false,"flippedY":false,"uid":"55823268_1","name":"","depth":0}),
+Player: {"type":"Player","x":808,"y":208,"flippedX":false,"flippedY":false,"uid":"55988047_2","faceRight":false,"name":"","depth":0},
 // @ts-ignore
-Gate: resolveGate({"type":"Gate","x":816,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_3","levelName":"VolcanoTown","checkpointName":"FromBossArena","name":"","depth":0}),
+Gate: resolveGate({"type":"Gate","x":864,"y":176,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_3","levelName":"VolcanoTown","checkpointName":"FromBossArena","name":"","depth":0}),
 // @ts-ignore
-Lava: resolveLava({"type":"Lava","x":-160,"y":208,"width":848,"height":48,"flippedX":false,"flippedY":false,"uid":"98209396_4","name":"","depth":0}),
-Boss: {"type":"Anchor","x":436,"y":188,"flippedX":false,"flippedY":false,"uid":"25979726_6","name":"Boss","depth":0},
+Lava: resolveLava({"type":"Lava","x":-112,"y":208,"width":848,"height":48,"flippedX":false,"flippedY":false,"uid":"98209396_4","name":"","depth":0}),
+Boss: {"type":"Anchor","x":484,"y":188,"flippedX":false,"flippedY":false,"uid":"25979726_6","name":"Boss","depth":0},
 // @ts-ignore
-Block_2: resolveBlock({"type":"Block","x":0,"y":144,"width":128,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_15","name":"","depth":0}),
+Block_2: resolveBlock({"type":"Block","x":-32,"y":144,"width":208,"height":112,"flippedX":false,"flippedY":false,"uid":"55823268_15","name":"","depth":0}),
 // @ts-ignore
-BossExit: resolveBlock({"type":"Block","x":112,"y":56,"width":16,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"BossExit","depth":0}),
+BossExit: resolveBlock({"type":"Block","x":160,"y":56,"width":16,"height":88,"flippedX":false,"flippedY":false,"uid":"55823268_16","name":"BossExit","depth":0}),
 // @ts-ignore
-ValuableSpawnX: resolveRegion({"type":"Region","x":160,"y":0,"width":496,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607_17","name":"ValuableSpawnX","depth":0}),
+ValuableSpawnX: resolveRegion({"type":"Region","x":208,"y":0,"width":496,"height":8,"flippedX":false,"flippedY":false,"uid":"25971607_17","name":"ValuableSpawnX","depth":0}),
 // @ts-ignore
-Block_3: resolveBlock({"type":"Block","x":-64,"y":0,"width":192,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_18","name":"","depth":0}),
+Block_3: resolveBlock({"type":"Block","x":-16,"y":0,"width":192,"height":56,"flippedX":false,"flippedY":false,"uid":"55823268_18","name":"","depth":0}),
 // @ts-ignore
-Block_4: resolveBlock({"type":"Block","x":688,"y":160,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_19","name":"","depth":0}),
+Block_4: resolveBlock({"type":"Block","x":736,"y":160,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_19","name":"","depth":0}),
 // @ts-ignore
-Block_5: resolveBlock({"type":"Block","x":688,"y":200,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
-Debug: {"type":"Checkpoint","x":512,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370_21","name":"Debug","faceRight":false,"depth":0},
-DefeatedBoss: {"type":"Checkpoint","x":104,"y":144,"flippedX":false,"flippedY":false,"uid":"55940370_22","name":"DefeatedBoss","faceRight":true,"depth":0},
+Block_5: resolveBlock({"type":"Block","x":736,"y":200,"width":16,"height":16,"flippedX":false,"flippedY":false,"uid":"55823268_20","name":"","depth":0}),
+Debug: {"type":"Checkpoint","x":560,"y":208,"flippedX":false,"flippedY":false,"uid":"55940370_21","name":"Debug","faceRight":false,"depth":0},
+DefeatedBoss: {"type":"Checkpoint","x":152,"y":144,"flippedX":false,"flippedY":false,"uid":"55940370_22","name":"DefeatedBoss","faceRight":true,"depth":0},
 // @ts-ignore
 Gate_1: resolveGate({"type":"Gate","x":0,"y":112,"width":32,"height":32,"flippedX":false,"flippedY":false,"uid":"55920197_23","levelName":"CapitalEntry","checkpointName":"FromVolcano","name":"","depth":0}),
-FromCapital: {"type":"Checkpoint","x":72,"y":144,"flippedX":false,"flippedY":false,"uid":"55940370_24","name":"FromCapital","faceRight":true,"depth":0}
+FromCapital: {"type":"Checkpoint","x":56,"y":144,"flippedX":false,"flippedY":false,"uid":"55940370_24","name":"FromCapital","faceRight":true,"depth":0},
+Lever: {"type":"Anchor","x":104,"y":144,"flippedX":false,"flippedY":false,"uid":"25979726_25","name":"Lever","depth":0},
+SpawnLeverPuller: {"type":"Anchor","x":-24,"y":144,"flippedX":false,"flippedY":false,"uid":"25979726_26","name":"SpawnLeverPuller","depth":0}
 };
 }
 };

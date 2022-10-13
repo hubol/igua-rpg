@@ -6,7 +6,7 @@ import {jukebox} from "../igua/jukebox";
 import {AmbientLava, CapitalMusicPlease, Hemaboss1, VolcanoSomething} from "../musics";
 import {heatWaves} from "../gameObjects/heatWaves";
 import {decalsOf} from "../gameObjects/decal";
-import {GroundSpeckles} from "../textures";
+import {GroundSpeckles, VolcanoLever} from "../textures";
 import {container} from "../utils/pixi/container";
 import {lerp} from "../utils/math/number";
 import {now} from "../utils/now";
@@ -22,6 +22,9 @@ import {freezeSceneAndShowMessage} from "../cutscene/freezeSceneAndShowMessage";
 import {spikeVile} from "../gameObjects/spikeVile";
 import {smallPop} from "../gameObjects/smallPop";
 import {player} from "../gameObjects/player";
+import {leverOpinionated} from "../gameObjects/lever";
+import {ActivateLever} from "../sounds";
+import {npc} from "../gameObjects/npc";
 
 export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -48,18 +51,51 @@ export function VolcanoBossArena() {
         enrichBoss(level);
 
     enrichBossDoor(level);
+    enrichLever(level);
+}
+
+function enrichLever(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
+    const { volcano } = progress.flags;
+    const playerCameFromVolcano = player.x > 200;
+    const canSpawnLeverPuller = playerCameFromVolcano || !volcano.defeatedVileAngel;
+
+    function useLever() {
+        ActivateLever.play();
+        volcano.openedPathToCapital = !volcano.openedPathToCapital;
+    }
+
+    leverOpinionated(VolcanoLever, () => volcano.openedPathToCapital).at(level.Lever)
+        .withInteraction(useLever)
+        .show();
+
+    scene.gameObjectStage.withAsync(async () => {
+        await wait(() => canSpawnLeverPuller
+            && volcano.defeatedVileAngel
+            && !volcano.openedPathToCapital);
+        await sleep(100);
+        const guy = npc(level.SpawnLeverPuller.x, level.SpawnLeverPuller.y, 2).show();
+        guy.engine.keepOnScreen = false;
+        await guy.walkTo(level.Lever.x - 20);
+        await sleep(300);
+        useLever();
+        await sleep(400);
+        await guy.walkTo(level.SpawnLeverPuller.x);
+        guy.destroy();
+    });
+
 }
 
 function enrichBossDoor(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
     const door = slidingDoor(level.BossExit.tinted(0x6D1913), false);
     const { volcano } = progress.flags;
-    if (volcano.defeatedVileAngel || player.x < 192)
+    if (volcano.openedPathToCapital)
         door.openInstantly();
-    else
-        door.withAsync(async () => {
-            await wait(() => volcano.defeatedVileAngel);
+    door.withStep(() => {
+        if (volcano.openedPathToCapital)
             door.startOpening(0.3);
-        })
+        else
+            door.startClosing(0.3);
+    })
 }
 
 function enrichBoss(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {

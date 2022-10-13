@@ -87,6 +87,7 @@ export function getInitialFlags()
                 reward: false,
             },
             defeatedVileAngel: false,
+            openedPathToCapital: false,
         },
         capital: {
             key: {

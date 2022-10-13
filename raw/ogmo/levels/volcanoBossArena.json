@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 848,
+  "width": 896,
   "height": 256,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,14 +12,14 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 106,
+      "gridCellsX": 112,
       "gridCellsY": 32,
       "entities": [
         {
           "name": "Block",
           "id": 0,
           "_eid": "55823268",
-          "x": 688,
+          "x": 736,
           "y": 208,
           "width": 160,
           "height": 48,
@@ -31,7 +31,7 @@
           "name": "Block",
           "id": 1,
           "_eid": "55823268",
-          "x": 688,
+          "x": 736,
           "y": 0,
           "width": 160,
           "height": 160,
@@ -43,7 +43,7 @@
           "name": "Player",
           "id": 2,
           "_eid": "55988047",
-          "x": 760,
+          "x": 808,
           "y": 208,
           "originX": 11,
           "originY": 27,
@@ -53,7 +53,7 @@
           "name": "Gate",
           "id": 3,
           "_eid": "55920197",
-          "x": 816,
+          "x": 864,
           "y": 176,
           "width": 32,
           "height": 32,
@@ -65,7 +65,7 @@
           "name": "Lava",
           "id": 4,
           "_eid": "98209396",
-          "x": -160,
+          "x": -112,
           "y": 208,
           "width": 848,
           "height": 48,
@@ -77,7 +77,7 @@
           "name": "Anchor",
           "id": 6,
           "_eid": "25979726",
-          "x": 436,
+          "x": 484,
           "y": 188,
           "originX": 0,
           "originY": 0,
@@ -87,9 +87,9 @@
           "name": "Block",
           "id": 15,
           "_eid": "55823268",
-          "x": 0,
+          "x": -32,
           "y": 144,
-          "width": 128,
+          "width": 208,
           "height": 112,
           "originX": 0,
           "originY": 0,
@@ -99,7 +99,7 @@
           "name": "Block",
           "id": 16,
           "_eid": "55823268",
-          "x": 112,
+          "x": 160,
           "y": 56,
           "width": 16,
           "height": 88,
@@ -111,7 +111,7 @@
           "name": "Region",
           "id": 17,
           "_eid": "25971607",
-          "x": 160,
+          "x": 208,
           "y": 0,
           "width": 496,
           "height": 8,
@@ -123,7 +123,7 @@
           "name": "Block",
           "id": 18,
           "_eid": "55823268",
-          "x": -64,
+          "x": -16,
           "y": 0,
           "width": 192,
           "height": 56,
@@ -135,7 +135,7 @@
           "name": "Block",
           "id": 19,
           "_eid": "55823268",
-          "x": 688,
+          "x": 736,
           "y": 160,
           "width": 16,
           "height": 16,
@@ -147,7 +147,7 @@
           "name": "Block",
           "id": 20,
           "_eid": "55823268",
-          "x": 688,
+          "x": 736,
           "y": 200,
           "width": 16,
           "height": 16,
@@ -159,7 +159,7 @@
           "name": "Checkpoint",
           "id": 21,
           "_eid": "55940370",
-          "x": 512,
+          "x": 560,
           "y": 208,
           "originX": 6,
           "originY": 12,
@@ -169,7 +169,7 @@
           "name": "Checkpoint",
           "id": 22,
           "_eid": "55940370",
-          "x": 104,
+          "x": 152,
           "y": 144,
           "originX": 6,
           "originY": 12,
@@ -191,11 +191,31 @@
           "name": "Checkpoint",
           "id": 24,
           "_eid": "55940370",
-          "x": 72,
+          "x": 56,
           "y": 144,
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromCapital", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 25,
+          "_eid": "25979726",
+          "x": 104,
+          "y": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Lever", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 26,
+          "_eid": "25979726",
+          "x": -24,
+          "y": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "SpawnLeverPuller", "depth": 0}
         }
       ]
     },
@@ -206,7 +226,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 106,
+      "gridCellsX": 112,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"
@@ -218,11 +238,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 106,
+      "gridCellsX": 112,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 717.5930595662703,
+          "x": 765.5930595662703,
           "y": 220.51552327733887,
           "scaleX": 1,
           "scaleY": 1,
@@ -233,7 +253,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 717.114275467532,
+          "x": 765.114275467532,
           "y": 147.2615561703749,
           "scaleX": -1,
           "scaleY": -1,
@@ -244,7 +264,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 96,
+          "x": 144,
           "y": 40,
           "scaleX": 1,
           "scaleY": 1,
@@ -255,7 +275,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 110.66864533342431,
+          "x": 158.6686453334243,
           "y": 203.89731196455642,
           "scaleX": 1,
           "scaleY": 1,
@@ -266,7 +286,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 52.17641350412977,
+          "x": 100.17641350412977,
           "y": 198.1480755027027,
           "scaleX": -1,
           "scaleY": 1,
@@ -277,7 +297,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 72.92365812734107,
+          "x": 120.92365812734107,
           "y": 189.39923740857745,
           "scaleX": 1,
           "scaleY": -1,
@@ -291,17 +311,29 @@
       "folder": "../../src/images"
     },
     {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 112,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
       "name": "BackgroundDecals",
       "_eid": "03531763",
       "offsetX": 0,
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 106,
+      "gridCellsX": 112,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 200,
+          "x": 248,
           "y": 24,
           "scaleX": 1,
           "scaleY": 1,
@@ -312,7 +344,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 200,
+          "x": 248,
           "y": 72,
           "scaleX": 1,
           "scaleY": 1,
@@ -323,7 +355,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 200,
+          "x": 248,
           "y": 120,
           "scaleX": 1,
           "scaleY": 1,
@@ -334,7 +366,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 199.21693226349737,
+          "x": 247.21693226349737,
           "y": 151.95385182388233,
           "scaleX": 1,
           "scaleY": 1,
@@ -345,7 +377,7 @@
           "values": {"name": "Key"}
         },
         {
-          "x": 87.42173268332006,
+          "x": 135.42173268332004,
           "y": 129.65717156583645,
           "scaleX": 1,
           "scaleY": -1,
@@ -365,11 +397,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 106,
+      "gridCellsX": 112,
       "gridCellsY": 32,
       "decals": [
         {
-          "x": 360,
+          "x": 408,
           "y": 200,
           "scaleX": 1,
           "scaleY": -1,
@@ -380,7 +412,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 428.34110086626936,
+          "x": 476.34110086626936,
           "y": 196.40688958366852,
           "scaleX": 1,
           "scaleY": -1,
@@ -391,7 +423,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 518.9575238187166,
+          "x": 566.9575238187166,
           "y": 201.97376880941613,
           "scaleX": -1,
           "scaleY": -1,
@@ -402,7 +434,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 591.9454958896297,
+          "x": 639.9454958896297,
           "y": 197.33470278795977,
           "scaleX": 1,
           "scaleY": -1,
@@ -413,7 +445,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 615.7593681331055,
+          "x": 663.7593681331055,
           "y": 192.69563676650344,
           "scaleX": -1,
           "scaleY": -1,
@@ -424,7 +456,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 274.7593681331055,
+          "x": 322.7593681331055,
           "y": 196.69563676650344,
           "scaleX": -1,
           "scaleY": -1,
@@ -435,7 +467,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 250.94549588962963,
+          "x": 298.9454958896296,
           "y": 201.33470278795977,
           "scaleX": 1,
           "scaleY": -1,
@@ -446,7 +478,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 177.9575238187166,
+          "x": 225.9575238187166,
           "y": 205.97376880941613,
           "scaleX": -1,
           "scaleY": -1,
@@ -457,7 +489,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 87.34110086626936,
+          "x": 135.34110086626936,
           "y": 200.40688958366852,
           "scaleX": 1,
           "scaleY": -1,

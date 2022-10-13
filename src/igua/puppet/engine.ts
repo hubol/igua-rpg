@@ -47,6 +47,7 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
             x: 0,
             y: 0,
         },
+        keepOnScreen: true,
         walkTo(x: number)
         {
             return new Promise<void>((resolve, reject) =>
@@ -117,30 +118,32 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
                 puppet.x += Math.min(maxMotion, Math.abs(hsp)) * Math.sign(hsp);
                 puppet.y += Math.min(maxMotion, Math.abs(vsp)) * Math.sign(vsp);
 
-                if (puppet.x < 20)
-                {
-                    puppet.x = 20;
-                    hsp = 0;
-                    puppet.hspeed = 0;
-                }
-                else if (puppet.x > scene.width - 20)
-                {
-                    puppet.x = scene.width - 20;
-                    hsp = 0;
-                    puppet.hspeed = 0;
-                }
+                if (engine.keepOnScreen) {
+                    if (puppet.x < 20)
+                    {
+                        puppet.x = 20;
+                        hsp = 0;
+                        puppet.hspeed = 0;
+                    }
+                    else if (puppet.x > scene.width - 20)
+                    {
+                        puppet.x = scene.width - 20;
+                        hsp = 0;
+                        puppet.hspeed = 0;
+                    }
 
-                if (puppet.y < 0)
-                {
-                    puppet.y = 0;
-                    vsp = Math.abs(vsp);
-                    puppet.vspeed = Math.abs(puppet.vspeed);
-                }
-                else if (puppet.y > scene.height)
-                {
-                    puppet.y = scene.height;
-                    vsp = -Math.abs(vsp);
-                    puppet.vspeed = -Math.abs(puppet.vspeed);
+                    if (puppet.y < 0)
+                    {
+                        puppet.y = 0;
+                        vsp = Math.abs(vsp);
+                        puppet.vspeed = Math.abs(puppet.vspeed);
+                    }
+                    else if (puppet.y > scene.height)
+                    {
+                        puppet.y = scene.height;
+                        vsp = -Math.abs(vsp);
+                        puppet.vspeed = -Math.abs(puppet.vspeed);
+                    }
                 }
 
                 hsp = Math.abs(hsp) < maxMotion ? 0 : ((Math.abs(hsp) - maxMotion) * Math.sign(hsp));
