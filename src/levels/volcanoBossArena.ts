@@ -25,6 +25,8 @@ import {player} from "../gameObjects/player";
 import {leverOpinionated} from "../gameObjects/lever";
 import {ActivateLever} from "../sounds";
 import {npc} from "../gameObjects/npc";
+import {cutscene} from "../cutscene/cutscene";
+import {show} from "../cutscene/dialog";
 
 export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -60,8 +62,14 @@ function enrichLever(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
     const canSpawnLeverPuller = playerCameFromVolcano || !volcano.defeatedVileAngel;
 
     function useLever() {
-        ActivateLever.play();
-        volcano.openedPathToCapital = !volcano.openedPathToCapital;
+        if (volcano.openedPathToCapital) {
+            cutscene.play(async () =>
+                show(`The lever was already activated to open the path between the capital and volcano.`));
+        }
+        else {
+            ActivateLever.play();
+            volcano.openedPathToCapital = true;
+        }
     }
 
     leverOpinionated(VolcanoLever, () => volcano.openedPathToCapital).at(level.Lever)
