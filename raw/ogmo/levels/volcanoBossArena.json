@@ -216,6 +216,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "SpawnLeverPuller", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 27,
+          "_eid": "55823268",
+          "x": 896,
+          "y": 144,
+          "width": 40,
+          "height": 80,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },

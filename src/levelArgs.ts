@@ -1783,6 +1783,7 @@ export const VolcanoBossArenaArgs = {
       FromCapital: { type: "Checkpoint", x: 56, y: 144, flippedX: false, flippedY: false, uid: "55940370_24", name: "FromCapital", faceRight: true, depth: 0 },
       Lever: { type: "Anchor", x: 104, y: 144, flippedX: false, flippedY: false, uid: "25979726_25", name: "Lever", depth: 0 },
       SpawnLeverPuller: { type: "Anchor", x: -24, y: 144, flippedX: false, flippedY: false, uid: "25979726_26", name: "SpawnLeverPuller", depth: 0 },
+      Block_6: resolveBlock({ type: "Block", x: 896, y: 144, width: 40, height: 80, flippedX: false, flippedY: false, uid: "55823268_27", name: "", depth: 0 }),
     };
   },
 };
