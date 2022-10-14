@@ -95,7 +95,7 @@ function getGameObjectValue(gameObjectResolvers: GameObjectResolver[])
         const matchedResolver = first(gameObjectResolvers.filter(x => x.resolvableEntityType === gameObjectArgs.type));
 
         return matchedResolver
-            ? new Invocation(new ImportedConst(matchedResolver.exportedName, matchedResolver.path), gameObjectArgs).tsIgnore()
+            ? new Invocation(new ImportedConst(matchedResolver.exportedName, matchedResolver.path), gameObjectArgs)
             : gameObjectArgs;
     }
 }
