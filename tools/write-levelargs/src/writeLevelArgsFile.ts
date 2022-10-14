@@ -4,6 +4,7 @@ import {generateLevelArgsExport} from "../../gen-levelargs/generateLevelArgsExpo
 import {writeModule} from "../../gen-module/writeModule";
 import {Module} from "../../gen-module/components/module";
 import {readOgmoLevelFile} from "./readOgmoLevelFile";
+import {format} from "prettier";
 
 function getRelativePath(src, dst) {
     return _getRelativePath(src, dst).replace(/\\/g, "/");
@@ -24,8 +25,23 @@ export async function writeLevelArgsFile(
             .map(generateLevelArgsExport(gameObjectResolvers));
     const module = new Module(getDirectory(levelArgsFilePath), exports);
 
-    const moduleText = `// This file is generated. Do not touch.
+    const rawModuleText = `// This file is generated. Do not touch.
 ${writeModule(module, getRelativePath)}`;
+    const moduleText = cleanUpModuleText(rawModuleText);
     console.log(moduleText);
     createOrUpdateFile(levelArgsFilePath, moduleText);
+}
+
+function cleanUpModuleText(text: string) {
+    const moduleTextWithBadImports = format(text, { parser: 'typescript', printWidth: 300 });
+    return cleanUpImports(moduleTextWithBadImports);
+}
+
+function cleanUpImports(text: string) {
+    const formatted = format(text, { parser: 'typescript', printWidth: 5000 });
+    const imports = formatted.substring(0, formatted.indexOf('export')).trimEnd();
+    const exports = text.substring(text.indexOf('export')).trimStart();
+    return `${imports}
+
+${exports}`;
 }

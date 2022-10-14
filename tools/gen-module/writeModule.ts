@@ -48,9 +48,7 @@ ${writeSuppressingTypeScriptErrorsIfNecessary(value)(`  return ${writeLiteral(va
         return `${x.invokable.exportedName}(${x.args.length === 0 ? "" : writeLiteral(x.args.length === 1 ? x.args[0] : x.args)})`;
     }
     if (typeof x === "object" && !isPojo(x))
-        return `{
-    ${Object.keys(x).map(writeKvPair(x)).join(",\n")}
-}`;
+        return `{ ${Object.keys(x).map(writeKvPair(x)).join(", ")} }`;
     return JSON.stringify(x);
 }
 
