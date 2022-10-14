@@ -34,6 +34,7 @@ export function CapitalTown() {
         .show(scene.terrainStage);
 
     building(level.CapitalBuilding1, 0xA2D6CE, 0xE24F56);
+    building(level.ShopBuilding, 0xF07070, 0x5888F0);
     enrichTiming(level);
     enrichStatue(level);
 }

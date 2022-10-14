@@ -19,6 +19,7 @@ export function capitalBricks(width: number, height: number, p: Pseudo) {
     const c = container();
     if (height < th || width < tw)
         return c;
+    Sprite.from(CapitalBricks).hide().show(c);
     height = Math.min(Math.ceil(nlerp(35, 64, p.unit())), height);
     const at = vnew();
     while (c.height < height) {
@@ -28,6 +29,9 @@ export function capitalBricks(width: number, height: number, p: Pseudo) {
         row(rw, p).at(at).show(c);
         at.y += bh * 2;
     }
+
+    while (c.height > height)
+        c.removeChildAt(c.children.length - 1);
 
     return c;
 }

@@ -283,6 +283,105 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromGiants", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 26,
+          "_eid": "55823268",
+          "x": 248,
+          "y": 320,
+          "width": 88,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 27,
+          "_eid": "55823268",
+          "x": 128,
+          "y": 320,
+          "width": 88,
+          "height": 120,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 28,
+          "_eid": "55823268",
+          "x": 216,
+          "y": 392,
+          "width": 120,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 29,
+          "_eid": "55913988",
+          "x": 280,
+          "y": 360,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 30,
+          "_eid": "55823268",
+          "x": 320,
+          "y": 352,
+          "width": 16,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 31,
+          "_eid": "55841307",
+          "x": 216,
+          "y": 320,
+          "width": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 32,
+          "_eid": "55913988",
+          "x": 264,
+          "y": 288,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 33,
+          "_eid": "55940370",
+          "x": 320,
+          "y": 320,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromShop", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 34,
+          "_eid": "55940370",
+          "x": 256,
+          "y": 392,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromStorage", "faceRight": false, "depth": 0}
         }
       ]
     },
@@ -385,6 +484,28 @@
           "originX": 0.5,
           "originY": 1,
           "values": {"name": ""}
+        },
+        {
+          "x": 256,
+          "y": 320,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/building1.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": "ShopBuilding"}
+        },
+        {
+          "x": 241.19148596315182,
+          "y": 297.35620476595886,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/shop sign.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "../../src/images"
@@ -398,7 +519,19 @@
       "gridCellHeight": 8,
       "gridCellsX": 112,
       "gridCellsY": 55,
-      "decals": [],
+      "decals": [
+        {
+          "x": 216,
+          "y": 320,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/underground backdrop.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "..\\..\\src\\images"
     },
     {
