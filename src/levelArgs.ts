@@ -122,6 +122,7 @@ export const CapitalInnArgs = {
       Player: { type: "Player", x: 88, y: 192, flippedX: false, flippedY: false, uid: "55988047_7", faceRight: true, name: "", depth: 0 },
       Sign: resolveSign({ type: "Sign", x: 128, y: 192, flippedX: false, flippedY: false, uid: "86706091_8", title: "", message: "", name: "", depth: 0 }),
       SleepHere: { type: "Anchor", x: 184, y: 192, flippedX: false, flippedY: false, uid: "25979726_9", name: "SleepHere", depth: 0 },
+      FromInnSave: { type: "Checkpoint", x: 184, y: 192, flippedX: false, flippedY: false, uid: "55940370_10", name: "FromInnSave", faceRight: false, depth: 0 },
     };
   },
 };

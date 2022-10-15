@@ -13,6 +13,7 @@ import {sleep} from "../cutscene/sleep";
 import {lerp} from "../cutscene/lerp";
 import {restAtInn} from "../igua/logic/restAtInn";
 import {merge} from "../utils/object/merge";
+import {progress} from "../igua/data/progress";
 
 export function CapitalInn() {
     scene.backgroundColor = 0xF0B020;
@@ -51,6 +52,7 @@ export function CapitalInn() {
             await lerp(moodLighting, 'unit').to(1).over(1000);
         });
         await player.walkTo(level.SleepHere.x);
+        progress.checkpointName = "FromInnSave";
         await restAtInn();
         scene.gameObjectStage.withAsync(() => lerp(moodLighting, 'unit').to(0).over(400));
     };

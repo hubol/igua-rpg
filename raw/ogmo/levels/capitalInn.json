@@ -128,6 +128,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "SleepHere", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 10,
+          "_eid": "55940370",
+          "x": 184,
+          "y": 192,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromInnSave", "faceRight": false, "depth": 0}
         }
       ]
     },
