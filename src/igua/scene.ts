@@ -32,11 +32,16 @@ function createScene(source: SceneSource, args: Readonly<SceneMeta>)
     let ticks = 0;
     gameObjectStage.withStep(() => ticks += 1);
 
+    let backgroundColor = 0;
+
     return merge(args, {
         source,
+        get backgroundColor() {
+            return backgroundColor;
+        },
         set backgroundColor(value: number) {
             backgroundGraphics.clear();
-            backgroundGraphics.beginFill(value);
+            backgroundGraphics.beginFill(backgroundColor = value);
             backgroundGraphics.drawRect(0, 0, 256, 256);
         },
         backgroundGraphics,

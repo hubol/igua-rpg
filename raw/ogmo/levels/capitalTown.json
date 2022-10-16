@@ -361,7 +361,7 @@
           "y": 288,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "CapitalShop", "checkpointName": "", "name": "", "depth": 0}
         },
         {
           "name": "Checkpoint",

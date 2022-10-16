@@ -1,0 +1,328 @@
+{
+  "ogmoVersion": "3.4.0-hubol",
+  "width": 256,
+  "height": 256,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 0,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 1,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 192,
+          "width": 256,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 2,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 64,
+          "width": 32,
+          "height": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 3,
+          "_eid": "55823268",
+          "x": 224,
+          "y": 64,
+          "width": 32,
+          "height": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 6,
+          "_eid": "55913988",
+          "x": 40,
+          "y": 160,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "CapitalTown", "checkpointName": "FromShop", "name": "", "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 7,
+          "_eid": "55988047",
+          "x": 88,
+          "y": 192,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "Sign",
+          "id": 8,
+          "_eid": "86706091",
+          "x": 128,
+          "y": 192,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "", "message": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 11,
+          "_eid": "55823268",
+          "x": 32,
+          "y": 64,
+          "width": 32,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 12,
+          "_eid": "55823268",
+          "x": 192,
+          "y": 64,
+          "width": 32,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 13,
+          "_eid": "55824435",
+          "x": 160,
+          "y": 64,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 14,
+          "_eid": "55824435",
+          "x": 208,
+          "y": 120,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 15,
+          "_eid": "55845599",
+          "x": 64,
+          "y": 64,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 16,
+          "_eid": "55845599",
+          "x": 32,
+          "y": 120,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 17,
+          "_eid": "26367058",
+          "x": 192,
+          "y": 192,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "Shopkeeper", "style": 22, "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 18,
+          "_eid": "25971607",
+          "x": 104,
+          "y": 80,
+          "width": 48,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window", "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [
+        {
+          "x": 64,
+          "y": 64,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/arc.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 192,
+          "y": 64,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/arc.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 32,
+          "y": 120,
+          "scaleX": 0.57,
+          "scaleY": 0.57,
+          "rotation": 0,
+          "texture": "capital/arc.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"x": 224, "y": 120, "scaleX": -0.57, "scaleY": 0.57, "rotation": 0, "texture": "capital/arc.png", "originX": 0, "originY": 0},
+        {
+          "x": 73.35582389778706,
+          "y": 205.5565030463706,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 197.29891817865925,
+          "y": 205.96022648051024,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [
+        {
+          "x": 88,
+          "y": 197,
+          "scaleX": 1,
+          "scaleY": 2.25,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {"x": 168, "y": 197, "scaleX": 1, "scaleY": 2.25, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 1}
+      ],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    }
+  ]
+}

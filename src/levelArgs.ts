@@ -127,6 +127,38 @@ export const CapitalInnArgs = {
   },
 };
 
+export const CapitalShopArgs = {
+  width: 256,
+  height: 256,
+  gameObjectsSupplier: () => {
+    return {
+      CapitalArc: resolveDecalGameObject({ x: 64, y: 64, originX: 0, originY: 0, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      CapitalArc_1: resolveDecalGameObject({ x: 192, y: 64, originX: 0, originY: 0, scaleX: -1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      CapitalArc_2: resolveDecalGameObject({ x: 32, y: 120, originX: 0, originY: 0, scaleX: 0.57, scaleY: 0.57, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      CapitalArc_3: resolveDecalGameObject({ x: 224, y: 120, originX: 0, originY: 0, scaleX: -0.57, scaleY: 0.57, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      GroundSpeckles: resolveDecalGameObject({ x: 73.35582389778706, y: 205.5565030463706, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: GroundSpeckles }),
+      GroundSpeckles_1: resolveDecalGameObject({ x: 197.29891817865925, y: 205.96022648051024, originX: 0.5, originY: 0.5, scaleX: -1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: GroundSpeckles }),
+      Column: resolveDecalGameObject({ x: 88, y: 197, originX: 0.5, originY: 1, scaleX: 1, scaleY: 2.25, rotation: 0, layerName: "BackgroundDecals", texture: Column }),
+      Column_1: resolveDecalGameObject({ x: 168, y: 197, originX: 0.5, originY: 1, scaleX: 1, scaleY: 2.25, rotation: 0, layerName: "BackgroundDecals", texture: Column }),
+      Block: resolveBlock({ type: "Block", x: 0, y: 0, width: 256, height: 64, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
+      Block_1: resolveBlock({ type: "Block", x: 0, y: 192, width: 256, height: 64, flippedX: false, flippedY: false, uid: "55823268_1", name: "", depth: 0 }),
+      Block_2: resolveBlock({ type: "Block", x: 0, y: 64, width: 32, height: 128, flippedX: false, flippedY: false, uid: "55823268_2", name: "", depth: 0 }),
+      Block_3: resolveBlock({ type: "Block", x: 224, y: 64, width: 32, height: 128, flippedX: false, flippedY: false, uid: "55823268_3", name: "", depth: 0 }),
+      Door: resolveDoor({ type: "Door", x: 40, y: 160, flippedX: false, flippedY: false, uid: "55913988_6", levelName: "CapitalTown", checkpointName: "FromShop", name: "", depth: 0 }),
+      Player: { type: "Player", x: 88, y: 192, flippedX: false, flippedY: false, uid: "55988047_7", faceRight: true, name: "", depth: 0 },
+      Sign: resolveSign({ type: "Sign", x: 128, y: 192, flippedX: false, flippedY: false, uid: "86706091_8", title: "", message: "", name: "", depth: 0 }),
+      Block_4: resolveBlock({ type: "Block", x: 32, y: 64, width: 32, height: 56, flippedX: false, flippedY: false, uid: "55823268_11", name: "", depth: 0 }),
+      Block_5: resolveBlock({ type: "Block", x: 192, y: 64, width: 32, height: 56, flippedX: false, flippedY: false, uid: "55823268_12", name: "", depth: 0 }),
+      SlopeRight: resolveSlopeRight({ type: "SlopeRight", x: 160, y: 64, width: 32, height: 32, flippedX: false, flippedY: true, uid: "55824435_13", name: "", depth: 0 }),
+      SlopeRight_1: resolveSlopeRight({ type: "SlopeRight", x: 208, y: 120, width: 16, height: 16, flippedX: false, flippedY: true, uid: "55824435_14", name: "", depth: 0 }),
+      SlopeLeft: resolveSlopeLeft({ type: "SlopeLeft", x: 64, y: 64, width: 32, height: 32, flippedX: false, flippedY: true, uid: "55845599_15", name: "", depth: 0 }),
+      SlopeLeft_1: resolveSlopeLeft({ type: "SlopeLeft", x: 32, y: 120, width: 16, height: 16, flippedX: false, flippedY: true, uid: "55845599_16", name: "", depth: 0 }),
+      Shopkeeper: resolveNpc({ type: "NpcIguana", x: 192, y: 192, flippedX: true, flippedY: false, uid: "26367058_17", name: "Shopkeeper", style: 22, depth: 0 }),
+      Window: resolveRegion({ type: "Region", x: 104, y: 80, width: 48, height: 48, flippedX: false, flippedY: false, uid: "25971607_18", name: "Window", depth: 0 }),
+    };
+  },
+};
+
 export const CapitalTownArgs = {
   width: 896,
   height: 440,
@@ -176,7 +208,7 @@ export const CapitalTownArgs = {
       Door_1: resolveDoor({ type: "Door", x: 280, y: 360, flippedX: false, flippedY: false, uid: "55913988_29", levelName: "", checkpointName: "", name: "", depth: 0 }),
       Block_15: resolveBlock({ type: "Block", x: 320, y: 352, width: 16, height: 40, flippedX: false, flippedY: false, uid: "55823268_30", name: "", depth: 0 }),
       PipeHorizontal_1: resolvePipeHorizontal({ type: "PipeHorizontal", x: 216, y: 320, width: 32, flippedX: false, flippedY: false, uid: "55841307_31", visible: true, name: "", depth: 0 }),
-      Door_2: resolveDoor({ type: "Door", x: 264, y: 288, flippedX: false, flippedY: false, uid: "55913988_32", levelName: "", checkpointName: "", name: "", depth: 0 }),
+      Door_2: resolveDoor({ type: "Door", x: 264, y: 288, flippedX: false, flippedY: false, uid: "55913988_32", levelName: "CapitalShop", checkpointName: "", name: "", depth: 0 }),
       FromShop: { type: "Checkpoint", x: 320, y: 320, flippedX: false, flippedY: false, uid: "55940370_33", name: "FromShop", faceRight: true, depth: 0 },
       FromStorage: { type: "Checkpoint", x: 256, y: 392, flippedX: false, flippedY: false, uid: "55940370_34", name: "FromStorage", faceRight: false, depth: 0 },
     };
