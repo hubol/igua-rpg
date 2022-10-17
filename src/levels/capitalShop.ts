@@ -12,6 +12,9 @@ import {progress} from "../igua/data/progress";
 import {sleep} from "../cutscene/sleep";
 import {CheckerLooksGood} from "../sounds";
 import {player} from "../gameObjects/player";
+import {getCost} from "../igua/inventory/potions";
+
+const lowestCostInTheNation: typeof getCost = x => getCost(x) - 1;
 
 export function CapitalShop() {
     scene.backgroundColor = 0x90A8D8;
@@ -26,9 +29,9 @@ export function CapitalShop() {
     level.Sign.cutscene = async () => {
         await showAll(
             'Welcome to the self-service shop at the capital.',
-            'We believe in access to high-quality potions for all.',
+            'We believe in access to high-quality potions for all, at the lowest price throughout the nation.',
             'If you require assistance, please seek the nearest attendant.');
-        await shop();
+        await shop({ getCost: lowestCostInTheNation });
         await show("Thank you for your patronage!");
     }
 

@@ -15,9 +15,15 @@ import {Input} from "../io/input";
 
 type Purchases = PotionType[];
 
-export function shop(potions: PotionType[] = ['ClawPowder', 'SpicedNectar', 'SweetBerry', 'WonderBallon', 'CommonPoison', 'BitterMedicine']) {
+type GetCost = typeof getCost;
+
+const getCostFn = getCost;
+
+export function shop({
+        potions = <PotionType[]>['ClawPowder', 'SpicedNectar', 'SweetBerry', 'WonderBallon', 'CommonPoison', 'BitterMedicine'],
+        getCost = getCostFn, } = {}) {
     return new Promise<Purchases>(r => {
-        shopImpl(r, potions);
+        shopImpl(r, potions, getCost);
     });
 }
 
@@ -29,53 +35,53 @@ function box() {
     return graphics;
 }
 
-function makeButton(box: Container, type?: PotionType) {
-    const container = merge(new Container(), { box, type });
-    container.at(box).add(3, (box.height - 20) / 2);
+function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], getCost: GetCost) {
+    function makeButton(box: Container, type?: PotionType) {
+        const container = merge(new Container(), { box, type });
+        container.at(box).add(3, (box.height - 20) / 2);
 
-    if (type) {
-        const potion = potions[type];
-        const potionSprite = Sprite.from(potion.texture);
-        const name = IguaText.Large(potion.name).at(23, -2);
-        const valuableIcon = Sprite.from(ValuableIcon).at(23, 12);
-        const price = IguaText.Large().at(34, 9)
-            .withStep(() => {
-                const cost = getCost(type);
-                price.text = cost.toString();
-                price.tint = progress.valuables < cost ? 0xff0000 : 0xffffff;
-            });
-        const backpackIcon = Sprite.from(BackpackIcon).at(64, 12);
-        const held = IguaText.Large().at(backpackIcon.x + 11, 9)
-            .withStep(() => {
-                const count = inventory.count(type);
-                backpackIcon.visible = count > 0;
-                held.visible = backpackIcon.visible;
+        if (type) {
+            const potion = potions[type];
+            const potionSprite = Sprite.from(potion.texture);
+            const name = IguaText.Large(potion.name).at(23, -2);
+            const valuableIcon = Sprite.from(ValuableIcon).at(23, 12);
+            const price = IguaText.Large().at(34, 9)
+                .withStep(() => {
+                    const cost = getCost(type);
+                    price.text = cost.toString();
+                    price.tint = progress.valuables < cost ? 0xff0000 : 0xffffff;
+                });
+            const backpackIcon = Sprite.from(BackpackIcon).at(64, 12);
+            const held = IguaText.Large().at(backpackIcon.x + 11, 9)
+                .withStep(() => {
+                    const count = inventory.count(type);
+                    backpackIcon.visible = count > 0;
+                    held.visible = backpackIcon.visible;
 
-                held.text = count.toString();
-                held.tint = inventory.isFull ? 0xff0000 : 0xffffff;
-            });
-        container.addChild(potionSprite, name, valuableIcon, price, backpackIcon, held);
+                    held.text = count.toString();
+                    held.tint = inventory.isFull ? 0xff0000 : 0xffffff;
+                });
+            container.addChild(potionSprite, name, valuableIcon, price, backpackIcon, held);
+        }
+        else {
+            const done = IguaText.Large('Done').at(77, -1);
+            container.addChild(done);
+        }
+
+        return container;
     }
-    else {
-        const done = IguaText.Large('Done').at(77, -1);
-        container.addChild(done);
+
+    function makeButtons(types: PotionType[]) {
+        let y = 1;
+
+        return [...types, undefined].map(x => {
+            const o = box();
+            o.y = y;
+            y += o.height + 2;
+            return makeButton(o, x);
+        })
     }
 
-    return container;
-}
-
-function makeButtons(types: PotionType[]) {
-    let y = 1;
-
-    return [...types, undefined].map(x => {
-        const o = box();
-        o.y = y;
-        y += o.height + 2;
-        return makeButton(o, x);
-    })
-}
-
-function shopImpl(resolve: (p: Purchases) => void, types: PotionType[]) {
     const purchases: Purchases = [];
     const c = new Container();
     game.hudStage.addChild(c);
