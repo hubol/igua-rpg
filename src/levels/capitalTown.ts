@@ -37,10 +37,16 @@ export function CapitalTown() {
     building(level.ShopBuilding, 0xF07070, 0x5888F0);
     enrichTiming(level);
     enrichStatue(level);
+    enrichStorehouse(level);
 }
 
 function building(d: DisplayObject, walls: number, roof: number) {
     d.filter(mapRgb(new filters.ColorMatrixFilter(), walls, roof));
+}
+
+function enrichStorehouse(level: GameObjectsType<typeof CapitalTownArgs>) {
+    if (progress.flags.capital.openedStorage)
+        level.StorehousePipe.destroy();
 }
 
 function enrichStatue(level: GameObjectsType<typeof CapitalTownArgs>) {

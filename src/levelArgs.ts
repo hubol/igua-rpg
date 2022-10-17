@@ -207,7 +207,7 @@ export const CapitalTownArgs = {
       Block_14: resolveBlock({ type: "Block", x: 216, y: 392, width: 120, height: 48, flippedX: false, flippedY: false, uid: "55823268_28", name: "", depth: 0 }),
       Door_1: resolveDoor({ type: "Door", x: 280, y: 360, flippedX: false, flippedY: false, uid: "55913988_29", levelName: "", checkpointName: "", name: "", depth: 0 }),
       Block_15: resolveBlock({ type: "Block", x: 320, y: 352, width: 16, height: 40, flippedX: false, flippedY: false, uid: "55823268_30", name: "", depth: 0 }),
-      PipeHorizontal_1: resolvePipeHorizontal({ type: "PipeHorizontal", x: 216, y: 320, width: 32, flippedX: false, flippedY: false, uid: "55841307_31", visible: true, name: "", depth: 0 }),
+      StorehousePipe: resolvePipeHorizontal({ type: "PipeHorizontal", x: 216, y: 320, width: 32, flippedX: false, flippedY: false, uid: "55841307_31", visible: true, name: "StorehousePipe", depth: 0 }),
       Door_2: resolveDoor({ type: "Door", x: 264, y: 288, flippedX: false, flippedY: false, uid: "55913988_32", levelName: "CapitalShop", checkpointName: "", name: "", depth: 0 }),
       FromShop: { type: "Checkpoint", x: 320, y: 320, flippedX: false, flippedY: false, uid: "55940370_33", name: "FromShop", faceRight: true, depth: 0 },
       FromStorage: { type: "Checkpoint", x: 256, y: 392, flippedX: false, flippedY: false, uid: "55940370_34", name: "FromStorage", faceRight: false, depth: 0 },

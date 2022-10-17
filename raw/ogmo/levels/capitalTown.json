@@ -351,7 +351,7 @@
           "width": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"visible": true, "name": "", "depth": 0}
+          "values": {"visible": true, "name": "StorehousePipe", "depth": 0}
         },
         {
           "name": "Door",

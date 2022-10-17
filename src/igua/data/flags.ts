@@ -92,6 +92,8 @@ export function getInitialFlags()
         capital: {
             key: {
                 fromClown: false,
+                fromTiming: false,
+                fromStorage: false,
             },
             bigKey: {
                 piece1: false,
@@ -100,6 +102,7 @@ export function getInitialFlags()
                 reward: false,
             },
             spokeWithStatua: false,
+            openedStorage: false,
         }
     };
 }
