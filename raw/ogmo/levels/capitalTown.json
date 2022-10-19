@@ -328,7 +328,7 @@
           "y": 360,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "CapitalStorehouse", "checkpointName": "", "name": "", "depth": 0}
         },
         {
           "name": "Block",
@@ -381,7 +381,7 @@
           "y": 392,
           "originX": 6,
           "originY": 12,
-          "values": {"name": "FromStorage", "faceRight": false, "depth": 0}
+          "values": {"name": "FromStorehouse", "faceRight": false, "depth": 0}
         }
       ]
     },

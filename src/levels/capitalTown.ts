@@ -1,6 +1,6 @@
 import {scene} from "../igua/scene";
 import {jukebox} from "../igua/jukebox";
-import {BlindHouse, CapitalMusicPlease} from "../musics";
+import {BlindHouse, CapitalMusicPlease, MysteryNighttimeHouse, UnusualOminousMusic} from "../musics";
 import {manyCapitalBricks} from "../gameObjects/capitalBricks";
 import {makePseudo} from "../utils/math/makePseudo";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
@@ -25,7 +25,7 @@ export function CapitalTown() {
     scene.pipeStage.style = 2;
     scene.backgroundColor = 0xF0C8D0;
     scene.terrainColor = 0xF0B020;
-    jukebox.play(CapitalMusicPlease).warm(BlindHouse);
+    jukebox.play(CapitalMusicPlease).warm(BlindHouse, MysteryNighttimeHouse, UnusualOminousMusic);
     const level = applyOgmoLevel(CapitalTownArgs);
 
     manyCapitalBricks(

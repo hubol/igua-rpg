@@ -159,6 +159,22 @@ export const CapitalShopArgs = {
   },
 };
 
+export const CapitalStorehouseArgs = {
+  width: 256,
+  height: 256,
+  gameObjectsSupplier: () => {
+    return {
+      Block: resolveBlock({ type: "Block", x: 0, y: 224, width: 256, height: 32, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
+      Block_1: resolveBlock({ type: "Block", x: 0, y: 0, width: 256, height: 32, flippedX: false, flippedY: false, uid: "55823268_1", name: "", depth: 0 }),
+      Block_2: resolveBlock({ type: "Block", x: 0, y: 32, width: 32, height: 192, flippedX: false, flippedY: false, uid: "55823268_2", name: "", depth: 0 }),
+      Block_3: resolveBlock({ type: "Block", x: 224, y: 32, width: 32, height: 192, flippedX: false, flippedY: false, uid: "55823268_3", name: "", depth: 0 }),
+      Block_4: resolveBlock({ type: "Block", x: 32, y: 120, width: 192, height: 16, flippedX: false, flippedY: false, uid: "55823268_4", name: "", depth: 0 }),
+      Door: resolveDoor({ type: "Door", x: 40, y: 88, flippedX: false, flippedY: false, uid: "55913988_5", levelName: "CapitalTown", checkpointName: "FromStorehouse", name: "", depth: 0 }),
+      Player: { type: "Player", x: 96, y: 120, flippedX: false, flippedY: false, uid: "55988047_6", faceRight: true, name: "", depth: 0 },
+    };
+  },
+};
+
 export const CapitalTownArgs = {
   width: 896,
   height: 440,
@@ -205,12 +221,12 @@ export const CapitalTownArgs = {
       Block_12: resolveBlock({ type: "Block", x: 248, y: 320, width: 88, height: 32, flippedX: false, flippedY: false, uid: "55823268_26", name: "", depth: 0 }),
       Block_13: resolveBlock({ type: "Block", x: 128, y: 320, width: 88, height: 120, flippedX: false, flippedY: false, uid: "55823268_27", name: "", depth: 0 }),
       Block_14: resolveBlock({ type: "Block", x: 216, y: 392, width: 120, height: 48, flippedX: false, flippedY: false, uid: "55823268_28", name: "", depth: 0 }),
-      Door_1: resolveDoor({ type: "Door", x: 280, y: 360, flippedX: false, flippedY: false, uid: "55913988_29", levelName: "", checkpointName: "", name: "", depth: 0 }),
+      Door_1: resolveDoor({ type: "Door", x: 280, y: 360, flippedX: false, flippedY: false, uid: "55913988_29", levelName: "CapitalStorehouse", checkpointName: "", name: "", depth: 0 }),
       Block_15: resolveBlock({ type: "Block", x: 320, y: 352, width: 16, height: 40, flippedX: false, flippedY: false, uid: "55823268_30", name: "", depth: 0 }),
       StorehousePipe: resolvePipeHorizontal({ type: "PipeHorizontal", x: 216, y: 320, width: 32, flippedX: false, flippedY: false, uid: "55841307_31", visible: true, name: "StorehousePipe", depth: 0 }),
       Door_2: resolveDoor({ type: "Door", x: 264, y: 288, flippedX: false, flippedY: false, uid: "55913988_32", levelName: "CapitalShop", checkpointName: "", name: "", depth: 0 }),
       FromShop: { type: "Checkpoint", x: 320, y: 320, flippedX: false, flippedY: false, uid: "55940370_33", name: "FromShop", faceRight: true, depth: 0 },
-      FromStorage: { type: "Checkpoint", x: 256, y: 392, flippedX: false, flippedY: false, uid: "55940370_34", name: "FromStorage", faceRight: false, depth: 0 },
+      FromStorehouse: { type: "Checkpoint", x: 256, y: 392, flippedX: false, flippedY: false, uid: "55940370_34", name: "FromStorehouse", faceRight: false, depth: 0 },
     };
   },
 };

@@ -162,6 +162,11 @@ export const UnrealT9Music = new Howl({
     preload: false
 });
 
+export const UnusualOminousMusic = new Howl({
+    src: [require("./music/unusual-ominous-music.ogg"), require("./music/unusual-ominous-music.mp3")],
+    preload: false
+});
+
 export const VolcanoCaveMusic = new Howl({
     src: [require("./music/volcano-cave-music.ogg"), require("./music/volcano-cave-music.mp3")],
     preload: false
