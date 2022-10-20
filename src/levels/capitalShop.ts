@@ -4,17 +4,19 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {mirror} from "../gameObjects/mirror";
 import {roundWindow} from "../gameObjects/roundWindow";
 import {decalsOf} from "../gameObjects/decal";
-import {CapitalArc, GroundSpeckles} from "../textures";
+import {CapitalArc, CapitalSecuritySwitch, GroundSpeckles} from "../textures";
 import {shop} from "../igua/inventory/shop";
 import {show, showAll} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
 import {progress} from "../igua/data/progress";
 import {sleep} from "../cutscene/sleep";
-import {CheckerLooksGood} from "../sounds";
+import {CheckerLooksGood, PurchaseFail} from "../sounds";
 import {player} from "../gameObjects/player";
 import {getCost} from "../igua/inventory/potions";
 import {jukebox} from "../igua/jukebox";
 import {CapitalMusicPlease, MysteryNighttimeHouse} from "../musics";
+import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
+import {Sprite} from "pixi.js";
 
 const lowestCostInTheNation: typeof getCost = x => getCost(x) - 1;
 
@@ -55,8 +57,10 @@ export function CapitalShop() {
             await player.walkTo(level.Shopkeeper.x - 50);
             player.scale.x = 1;
         });
-        if (await ask(`Hello. Do you want to shop here?`))
+        if (await ask(`Hello. Do you want to shop here?`)) {
+            PurchaseFail.play();
             return await show('Please use the self-service sign to shop.');
+        }
         if (capital.openedStorage) {
             if (await ask('Would you like me to close the storehouse?')) {
                 await toggleStorage();
@@ -81,6 +85,13 @@ export function CapitalShop() {
         return await show('Okay. Please use the self-service sign to shop.');
     }
 
+    const switchObj = Sprite.from(switchTxs[0])
+        .at(210, 172)
+        .withStep(() => switchObj.texture = switchTxs[capital.openedStorage ? 1 : 0])
+        .behind();
+
     decalsOf(CapitalArc).forEach(x => x.tinted(scene.terrainColor));
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0xF0B020));
 }
+
+const switchTxs = subimageTextures(CapitalSecuritySwitch, 2);
