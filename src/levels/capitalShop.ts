@@ -14,7 +14,7 @@ import {CheckerLooksGood, PurchaseFail} from "../sounds";
 import {player} from "../gameObjects/player";
 import {getCost} from "../igua/inventory/potions";
 import {jukebox} from "../igua/jukebox";
-import {CapitalMusicPlease, MysteryNighttimeHouse} from "../musics";
+import {BlindHouse, CapitalMusicPlease} from "../musics";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {Sprite} from "pixi.js";
 
@@ -23,7 +23,7 @@ const lowestCostInTheNation: typeof getCost = x => getCost(x) - 1;
 export function CapitalShop() {
     scene.backgroundColor = 0x90A8D8;
     scene.terrainColor = 0xC84010;
-    jukebox.play(MysteryNighttimeHouse).warm(CapitalMusicPlease);
+    jukebox.play(BlindHouse).warm(CapitalMusicPlease);
     const level = applyOgmoLevel(CapitalShopArgs);
 
     const { Window } = level;
