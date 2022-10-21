@@ -35,7 +35,7 @@ export function flattenFunctionLeaves(object: any)
 
 function flattenFunctionLeavesImpl(current: any, result: any, next: any[])
 {
-    if (typeof current !== "object" || Array.isArray(current))
+    if (Object.getPrototypeOf(current) !== Object.prototype)
         return;
 
     const keys = Object.keys(current);

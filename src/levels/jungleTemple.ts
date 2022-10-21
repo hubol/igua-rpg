@@ -1,4 +1,4 @@
-import { BigKey2 } from "../textures";
+import {BigKey2, KeyYellow} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {progress} from "../igua/data/progress";
 import {makeTempleLevelUtil} from "../igua/gameplay/templeLevelUtil";
@@ -9,6 +9,7 @@ import {JungleTempleArgs} from "../levelArgs";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
 import {approachLinear} from "../utils/math/number";
 import {DragRockLow} from "../sounds";
+import {RegionKeys} from "../igua/gameplay/regionKeys";
 
 export function JungleTemple() {
     scene.backgroundColor = 0x755E9B;
@@ -18,12 +19,12 @@ export function JungleTemple() {
 
     const level = applyOgmoLevel(JungleTempleArgs);
 
-    const { key, bigKey, templeLever } = progress.flags.jungle;
+    const { bigKey, templeLever } = progress.flags.jungle;
 
     const util = makeTempleLevelUtil(
-        [key.fromSickIguana, bigKey.piece1, [level.Key1, level.Door1]],
-        [key.fromBiguaRepair, bigKey.piece2, [level.Key2, level.Door2]],
-        [key.fromSpider, bigKey.piece3, [level.Key3, level.Door3]]);
+        [jungleKeys.key1, bigKey.piece1, [level.Key1, level.Door1]],
+        [jungleKeys.key2, bigKey.piece2, [level.Key2, level.Door2]],
+        [jungleKeys.key3, bigKey.piece3, [level.Key3, level.Door3]]);
 
     util.playMusic().warm(ClownDodgerMusic, RoyalChamberMusic, JungleMusic, JungleUnreal3);
 
@@ -37,6 +38,13 @@ export function JungleTemple() {
 
     advanceTempleMovingWall();
 }
+
+export const jungleKeys = new RegionKeys(
+    KeyYellow,
+    () => progress.flags.jungle.key.fromSickIguana,
+    () => progress.flags.jungle.key.fromBiguaRepair,
+    () => progress.flags.jungle.key.fromSpider,
+    () => progress.flags.jungle.bigKey.reward);
 
 export function advanceTempleMovingWall(silent = false, distant = false) {
     const { templeLever } = progress.flags.jungle;

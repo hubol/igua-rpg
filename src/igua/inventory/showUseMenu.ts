@@ -13,6 +13,11 @@ import {IguaText} from "../text";
 import {progress} from "../data/progress";
 import {container} from "../../utils/pixi/container";
 import { Input } from "../io/input";
+import {desertKeys} from "../../levels/desertTemple";
+import {jungleKeys} from "../../levels/jungleTemple";
+import {volcanoKeys} from "../../levels/volcanoTemple";
+import {capitalKeys} from "../../levels/capitalTemple";
+import {vnew} from "../../utils/math/vector";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
@@ -140,8 +145,32 @@ function useImpl() {
         .at(255, 256);
     clawLevel.anchor.set(1, 1);
 
-    c.addChild(gui(c), clawLevel, newExcessItems().at(207, 117));
+    c.addChild(gui(c), clawLevel, newExcessItems().at(207, 117), keyItems().at(2, 254));
 
     game.hudStage.addChild(c);
     game.hudStage.ticker.update();
+}
+
+const regionKeys = [ desertKeys, jungleKeys, volcanoKeys, capitalKeys ];
+
+function keyItems() {
+    const c = container();
+    const pen = vnew();
+    for (const region of regionKeys) {
+        pen.x = 0;
+        if (region.doneSearching)
+            continue;
+
+        const prevChildren = c.children.length;
+        for (const key of region.keys) {
+            if (key) {
+                const s = Sprite.from(region.texture).at(pen).show(c);
+                s.anchor.y = 1;
+            }
+            pen.x += region.texture.width;
+        }
+        if (c.children.length !== prevChildren)
+            pen.y -= region.texture.height;
+    }
+    return c;
 }

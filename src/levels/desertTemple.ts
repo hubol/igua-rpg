@@ -4,8 +4,9 @@ import {scene} from "../igua/scene";
 import {progress} from "../igua/data/progress";
 import {DesertTown, Fly, Mimic} from "../musics";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {BigKey1} from "../textures";
+import {BigKey1, KeyRed} from "../textures";
 import {makeTempleLevelUtil} from "../igua/gameplay/templeLevelUtil";
+import {RegionKeys} from "../igua/gameplay/regionKeys";
 
 export function DesertTemple()
 {
@@ -16,12 +17,12 @@ export function DesertTemple()
     [level.CracksA, level.CracksA_1].forEach(x => x.tint = 0xA66B6B);
     level.GlowingCircle.tint = 0xF0F0B0;
 
-    const { key, bigKey } = progress.flags.desert;
+    const { bigKey } = progress.flags.desert;
 
     const util = makeTempleLevelUtil(
-        [key.fromTopOfCrateStack, bigKey.piece1, [level.Key1, level.Door1]],
-        [key.fromInn, bigKey.piece2, [level.Key2, level.Door2]],
-        [key.fromDiggingInTown, bigKey.piece3, [level.Key3, level.Door3]]);
+        [desertKeys.key1, bigKey.piece1, [level.Key1, level.Door1]],
+        [desertKeys.key2, bigKey.piece2, [level.Key2, level.Door2]],
+        [desertKeys.key3, bigKey.piece3, [level.Key3, level.Door3]]);
 
     util.playMusic().warm(Fly, Mimic, DesertTown);
 
@@ -32,3 +33,9 @@ export function DesertTemple()
 }
 
 export const desertBigKeyTextures = subimageTextures(BigKey1, 3);
+export const desertKeys = new RegionKeys(
+    KeyRed,
+    () => progress.flags.desert.key.fromTopOfCrateStack,
+    () => progress.flags.desert.key.fromInn,
+    () => progress.flags.desert.key.fromDiggingInTown,
+    () => progress.flags.desert.bigKey.reward);

@@ -10,6 +10,7 @@ import {progress} from "../igua/data/progress";
 import {makeTempleLevelUtil} from "../igua/gameplay/templeLevelUtil";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
 import {decalsOf} from "../gameObjects/decal";
+import {RegionKeys} from "../igua/gameplay/regionKeys";
 
 export function VolcanoTemple() {
     scene.backgroundColor = 0x651913;
@@ -17,14 +18,14 @@ export function VolcanoTemple() {
     const level = applyOgmoLevel(VolcanoTempleArgs);
     portalFluidConfig.gotoLevelName = 'VolcanoTemple';
 
-    const { key, bigKey } = progress.flags.volcano;
+    const { bigKey } = progress.flags.volcano;
 
     [level.Key1, level.Key2, level.Key3].forEach(x => x.texture = KeyGreen);
 
     const util = makeTempleLevelUtil(
-        [key.hiddenInCave, bigKey.piece1, [level.Key1, level.Door1]],
-        [key.fromPrankster, bigKey.piece2, [level.Key2, level.Door2]],
-        [key.fromLava, bigKey.piece3, [level.Key3, level.Door3]]);
+        [volcanoKeys.key1, bigKey.piece1, [level.Key1, level.Door1]],
+        [volcanoKeys.key2, bigKey.piece2, [level.Key2, level.Door2]],
+        [volcanoKeys.key3, bigKey.piece3, [level.Key3, level.Door3]]);
 
     util.playMusic().warm(VolcanoSomething, UnrealCrusher, UnrealT9Music, UnrealDrawingMusic);
 
@@ -40,3 +41,9 @@ export function VolcanoTemple() {
 }
 
 export const volcanoBigKeyTextures = subimageTextures(BigKey3, 3);
+export const volcanoKeys = new RegionKeys(
+    KeyGreen,
+    () => progress.flags.volcano.key.hiddenInCave,
+    () => progress.flags.volcano.key.fromPrankster,
+    () => progress.flags.volcano.key.fromLava,
+    () => progress.flags.volcano.bigKey.reward);
