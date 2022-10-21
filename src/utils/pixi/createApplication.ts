@@ -1,22 +1,25 @@
-import {Application, InteractionManager} from "pixi.js";
+import {autoDetectRenderer, Container, InteractionManager} from "pixi.js";
+import {Animator} from "./animator";
 
-type ApplicationOptions = ConstructorParameters<typeof Application>[0] & { maxFps: number, showCursor?: boolean };
+type ApplicationOptions = Parameters<typeof autoDetectRenderer>[0] & { maxFps: number, showCursor?: boolean };
 
 export type AsshatApplication = ReturnType<typeof createApplication>;
 
 export function createApplication(options: ApplicationOptions)
 {
-    const app = new Application(options);
-    app.ticker.maxFPS = options.maxFps;
+    const stage = new Container();
+    const renderer = autoDetectRenderer(options);
+    const animator = new Animator(options.maxFps);
+    animator.add(() => renderer.render(stage));
 
     if (options.showCursor === false)
-        (app.renderer.plugins.interaction as InteractionManager).cursorStyles.default = "none";
+        (renderer.plugins.interaction as InteractionManager).cursorStyles.default = "none";
 
     return {
-        canvasElement: app.view,
-        renderer: app.renderer,
-        stage: app.stage,
-        ticker: app.ticker,
+        canvasElement: renderer.view,
+        renderer: renderer,
+        stage: stage,
+        ticker: animator,
         maxFps: options.maxFps
     };
 }
