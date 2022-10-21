@@ -5,7 +5,7 @@ import {manyCapitalBricks} from "../gameObjects/capitalBricks";
 import {makePseudo} from "../utils/math/makePseudo";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {CapitalTownArgs} from "../levelArgs";
-import {DisplayObject, filters} from "pixi.js";
+import {DisplayObject, filters, Sprite} from "pixi.js";
 import {mapRgb} from "../utils/pixi/mapRgb";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {measureCounter} from "../gameObjects/measureCounter";
@@ -24,7 +24,7 @@ import {capitalBubble} from "../gameObjects/capitalBubble";
 import {container} from "../utils/pixi/container";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {animatedSprite} from "../igua/animatedSprite";
-import {CapitalAdviceSign} from "../textures";
+import {CapitalAdviceSign, KeyBlue} from "../textures";
 
 export function CapitalTown() {
     scene.pipeStage.style = 2;
@@ -169,6 +169,8 @@ function enrichTiming(level: GameObjectsType<typeof CapitalTownArgs>) {
     const flashStart = period - 2;
     const inactiveStart = period - 1;
     const flashes = 2;
+
+    Sprite.from(KeyBlue).at(level.TimingKeyAnchor).asCollectible(progress.flags.capital.key, 'fromTiming').show();
 
     const pipe = level.TimingPipe;
     const counter = measureCounter(CapitalMusicPlease, 119).show();
