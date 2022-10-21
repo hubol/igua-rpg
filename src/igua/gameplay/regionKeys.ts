@@ -21,7 +21,7 @@ export class RegionKeys<TFlags> {
     }
 
     get doneSearching() {
-        return this._doneSearching();
+        return this._doneSearching() && this.key1 && this.key2 && this.key3;
     }
 
     get keys() {
