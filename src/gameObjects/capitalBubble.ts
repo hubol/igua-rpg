@@ -1,4 +1,4 @@
-import {Sprite} from "pixi.js";
+import {DisplayObject, Sprite} from "pixi.js";
 import {CapitalBubble} from "../textures";
 import {resolveBlock} from "./walls";
 import {progress} from "../igua/data/progress";
@@ -7,12 +7,15 @@ import {nlerp} from "../utils/math/number";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {rng} from "../utils/math/rng";
 import {now} from "../utils/now";
+import {track} from "../igua/track";
+import {Undefined} from "../utils/types/undefined";
 
 export const resolveCapitalBubble = resolveGameObject('CapitalBubble', a => capitalBubble(a.obscurity).at(a));
 
-function capitalBubble(obscurity: number) {
+function capitalBubbleImpl(obscurity: number, createBlock = true) {
     const x = rng() * 4;
     const dx = (0.35 + rng() * 0.2) * 6;
+    let dependent = Undefined<DisplayObject>();
 
     const s = Sprite.from(CapitalBubble)
         .centerAnchor()
@@ -22,7 +25,12 @@ function capitalBubble(obscurity: number) {
         })
         .withAsync(async () => {
             s.add(14, 14);
-            resolveBlock({x: s.x - 14, y: s.y + 10 - 14, width: 28, height: 7, visible: false} as any);
+            if (createBlock)
+                dependent = resolveBlock({x: s.x - 14, y: s.y + 10 - 14, width: 28, height: 7, visible: false} as any);
+        })
+        .on('removed', () => {
+            if (!dependent?.destroyed)
+                dependent?.destroy();
         });
 
     if (obscurity > 0)
@@ -34,6 +42,8 @@ function capitalBubble(obscurity: number) {
 
     return s;
 }
+
+export const capitalBubble = track(capitalBubbleImpl);
 
 function alphaBase(obscurity: number) {
     return obscurity > progress.levels.intelligence ? 0 : ((progress.levels.intelligence + 1) - obscurity) / 10;

@@ -20,6 +20,11 @@ import {CheckerLooksGood} from "../sounds";
 import {progress} from "../igua/data/progress";
 import {player} from "../gameObjects/player";
 import {cutscene} from "../cutscene/cutscene";
+import {capitalBubble} from "../gameObjects/capitalBubble";
+import {container} from "../utils/pixi/container";
+import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
+import {animatedSprite} from "../igua/animatedSprite";
+import {CapitalAdviceSign} from "../textures";
 
 export function CapitalTown() {
     scene.pipeStage.style = 2;
@@ -35,9 +40,11 @@ export function CapitalTown() {
 
     building(level.CapitalBuilding1, 0xA2D6CE, 0xE24F56);
     building(level.ShopBuilding, 0xF07070, 0x5888F0);
+    building(level.OracleBuilding, 0xA088F0, 0xF0E840);
     enrichTiming(level);
     enrichStatue(level);
     enrichStorehouse(level);
+    enrichOracle(level);
 }
 
 function building(d: DisplayObject, walls: number, roof: number) {
@@ -48,6 +55,20 @@ function enrichStorehouse(level: GameObjectsType<typeof CapitalTownArgs>) {
     if (progress.flags.capital.openedStorage)
         level.StorehousePipe.destroy();
 }
+
+function enrichOracle(level: GameObjectsType<typeof CapitalTownArgs>) {
+    animatedSprite(adviceSignTxs, 0.067).at(level.AdviceSign).show();
+    const c = container().at([2, -level.CapitalChimney.height - 5].add(level.CapitalChimney));
+    capitalBubble(0, false).show(c);
+    c.pivot.set(7, 0);
+    c.scale.set(0.25, 0.25);
+    c.show();
+    capitalBubble.instances.forEach(x => x.tinted(0xf0f0f8));
+    if (!progress.flags.capital.turnedFireplaceOn)
+        capitalBubble.destroyAll();
+}
+
+const adviceSignTxs = subimageTextures(CapitalAdviceSign, 2);
 
 function enrichStatue(level: GameObjectsType<typeof CapitalTownArgs>) {
     const c = level.StatueGuy;

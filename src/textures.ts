@@ -28,11 +28,14 @@ export let Boulder: PIXI.Texture;
 export let Burst: PIXI.Texture;
 export let Burst2: PIXI.Texture;
 export let CandleSmallRed: PIXI.Texture;
+export let CapitalAdviceSign: PIXI.Texture;
 export let CapitalArc: PIXI.Texture;
 export let CapitalBricks: PIXI.Texture;
 export let CapitalBubble: PIXI.Texture;
 export let CapitalBuilding1: PIXI.Texture;
 export let CapitalBuilding2: PIXI.Texture;
+export let CapitalChain: PIXI.Texture;
+export let CapitalChimney: PIXI.Texture;
 export let CapitalInnSign: PIXI.Texture;
 export let CapitalPlantedTree: PIXI.Texture;
 export let CapitalPlatform: PIXI.Texture;
@@ -340,6 +343,9 @@ export function loadTexturesAsync()
     const CandleSmallRedPath = require("./images/candle small red.png");
     loader.add(CandleSmallRedPath); 
 
+    const CapitalAdviceSignPath = require("./images/capital/advice sign.png");
+    loader.add(CapitalAdviceSignPath); 
+
     const CapitalArcPath = require("./images/capital/arc.png");
     loader.add(CapitalArcPath); 
 
@@ -354,6 +360,12 @@ export function loadTexturesAsync()
 
     const CapitalBuilding2Path = require("./images/capital/building2.png");
     loader.add(CapitalBuilding2Path); 
+
+    const CapitalChainPath = require("./images/capital/chain.png");
+    loader.add(CapitalChainPath); 
+
+    const CapitalChimneyPath = require("./images/capital/chimney.png");
+    loader.add(CapitalChimneyPath); 
 
     const CapitalInnSignPath = require("./images/capital/inn sign.png");
     loader.add(CapitalInnSignPath); 
@@ -1054,11 +1066,14 @@ export function loadTexturesAsync()
             Burst = resources[BurstPath]?.texture as PIXI.Texture;
             Burst2 = resources[Burst2Path]?.texture as PIXI.Texture;
             CandleSmallRed = resources[CandleSmallRedPath]?.texture as PIXI.Texture;
+            CapitalAdviceSign = resources[CapitalAdviceSignPath]?.texture as PIXI.Texture;
             CapitalArc = resources[CapitalArcPath]?.texture as PIXI.Texture;
             CapitalBricks = resources[CapitalBricksPath]?.texture as PIXI.Texture;
             CapitalBubble = resources[CapitalBubblePath]?.texture as PIXI.Texture;
             CapitalBuilding1 = resources[CapitalBuilding1Path]?.texture as PIXI.Texture;
             CapitalBuilding2 = resources[CapitalBuilding2Path]?.texture as PIXI.Texture;
+            CapitalChain = resources[CapitalChainPath]?.texture as PIXI.Texture;
+            CapitalChimney = resources[CapitalChimneyPath]?.texture as PIXI.Texture;
             CapitalInnSign = resources[CapitalInnSignPath]?.texture as PIXI.Texture;
             CapitalPlantedTree = resources[CapitalPlantedTreePath]?.texture as PIXI.Texture;
             CapitalPlatform = resources[CapitalPlatformPath]?.texture as PIXI.Texture;
