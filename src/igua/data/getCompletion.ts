@@ -1,4 +1,11 @@
 import {Progress} from "./progress";
+import {RegionKeys} from "../gameplay/regionKeys";
+import {desertKeys} from "../../levels/desertTemple";
+import {jungleKeys} from "../../levels/jungleTemple";
+import {volcanoKeys} from "../../levels/volcanoTemple";
+import {capitalKeys} from "../../levels/capitalTemple";
+
+type ProgressBigKey = { reward: boolean; piece1: boolean; piece2: boolean; piece3: boolean; };
 
 export function getCompletion(progress: Progress) {
     let numbers = 0;
@@ -7,23 +14,34 @@ export function getCompletion(progress: Progress) {
         return b ? 1 : 0;
     }
 
+    function k(srcKeys: RegionKeys) {
+        const keys = srcKeys.clone(progress);
+        return n(keys.key1) + n(keys.key2) + n(keys.key3);
+    }
+
+    function b(big: ProgressBigKey) {
+        return n(big.piece1) + n(big.piece2) + n(big.piece3) + n(big.reward);
+    }
+
     const { desert, jungle, volcano } = progress.flags;
-    const { key: dk, bigKey: dbk, costumeMirror } = desert;
-    const { key: jk, bigKey: jbk } = jungle;
-    const { key: vk, bigKey: vbk } = volcano;
+    const { bigKey: desertBigKey, costumeMirror } = desert;
+    const { bigKey: jungleBigKey } = jungle;
+    const { bigKey: volcanoBigKey } = volcano;
     return (
-        n(dk.fromDiggingInTown) + n(dk.fromInn) + n(dk.fromTopOfCrateStack) +
-        n(dbk.piece1) + n(dbk.piece2) + n(dbk.piece3) + n(dbk.reward) +
+        k(desertKeys) +
+        b(desertBigKey) +
         n(desert.unlockedTemple) +
         n(desert.defeatedOversizedAngel) + n(costumeMirror.shardCollected) + n(costumeMirror.repaired) +
 
-        n(jk.fromBiguaRepair) + n(jk.fromSpider) + n(jk.fromSickIguana) +
-        n(jbk.piece1) + n(jbk.piece2) + n(jbk.piece3) + n(jbk.reward) +
+        k(jungleKeys) +
+        b(jungleBigKey) +
         n(jungle.defeatedUnorthodoxAngel) +
 
-        n(vk.hiddenInCave) + n(vk.fromPrankster) + n(vk.fromLava) +
-        n(vbk.piece1) + n(vbk.piece2) + n(vbk.piece3) + n(vbk.reward) +
-        n(volcano.defeatedVileAngel)) / numbers;
+        k(volcanoKeys) +
+        b(volcanoBigKey) +
+        n(volcano.defeatedVileAngel) +
+
+        k(capitalKeys)) / numbers;
 }
 
 /*

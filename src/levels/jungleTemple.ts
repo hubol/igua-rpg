@@ -41,10 +41,10 @@ export function JungleTemple() {
 
 export const jungleKeys = new RegionKeys(
     KeyYellow,
-    () => progress.flags.jungle.key.fromSickIguana,
-    () => progress.flags.jungle.key.fromBiguaRepair,
-    () => progress.flags.jungle.key.fromSpider,
-    () => progress.flags.jungle.bigKey.reward);
+    p => p.flags.jungle.key.fromSickIguana,
+    p => p.flags.jungle.key.fromBiguaRepair,
+    p => p.flags.jungle.key.fromSpider,
+    p => p.flags.jungle.bigKey.reward);
 
 export function advanceTempleMovingWall(silent = false, distant = false) {
     const { templeLever } = progress.flags.jungle;

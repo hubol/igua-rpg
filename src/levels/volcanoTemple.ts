@@ -43,7 +43,7 @@ export function VolcanoTemple() {
 export const volcanoBigKeyTextures = subimageTextures(BigKey3, 3);
 export const volcanoKeys = new RegionKeys(
     KeyGreen,
-    () => progress.flags.volcano.key.hiddenInCave,
-    () => progress.flags.volcano.key.fromPrankster,
-    () => progress.flags.volcano.key.fromLava,
-    () => progress.flags.volcano.bigKey.reward);
+    p => p.flags.volcano.key.hiddenInCave,
+    p => p.flags.volcano.key.fromPrankster,
+    p => p.flags.volcano.key.fromLava,
+    p => p.flags.volcano.bigKey.reward);

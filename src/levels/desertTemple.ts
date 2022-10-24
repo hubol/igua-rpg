@@ -35,7 +35,7 @@ export function DesertTemple()
 export const desertBigKeyTextures = subimageTextures(BigKey1, 3);
 export const desertKeys = new RegionKeys(
     KeyRed,
-    () => progress.flags.desert.key.fromTopOfCrateStack,
-    () => progress.flags.desert.key.fromInn,
-    () => progress.flags.desert.key.fromDiggingInTown,
-    () => progress.flags.desert.bigKey.reward);
+    p => p.flags.desert.key.fromTopOfCrateStack,
+    p => p.flags.desert.key.fromInn,
+    p => p.flags.desert.key.fromDiggingInTown,
+    p => p.flags.desert.bigKey.reward);
