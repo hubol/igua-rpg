@@ -403,7 +403,7 @@
           "y": 320,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "CapitalOracle", "checkpointName": "", "name": "", "depth": 0}
         },
         {
           "name": "CapitalBubble",
@@ -446,6 +446,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "AdviceSign", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 42,
+          "_eid": "55940370",
+          "x": 264,
+          "y": 352,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromOracle", "faceRight": true, "depth": 0}
         }
       ]
     },

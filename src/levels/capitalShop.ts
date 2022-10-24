@@ -17,6 +17,7 @@ import {jukebox} from "../igua/jukebox";
 import {BlindHouse, CapitalMusicPlease} from "../musics";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {Sprite} from "pixi.js";
+import {Rectangle} from "../utils/math/rectangle";
 
 const lowestCostInTheNation: typeof getCost = x => getCost(x) - 1;
 
@@ -26,9 +27,7 @@ export function CapitalShop() {
     jukebox.play(BlindHouse).warm(CapitalMusicPlease);
     const level = applyOgmoLevel(CapitalShopArgs);
 
-    const { Window } = level;
-    mirror(Window.width, Window.height).at(Window).behind();
-    roundWindow(Window.width, Window.height, 2).at(Window).tinted(scene.backgroundColor).behind();
+    makeCapitalWindow(level.Window);
 
     level.Sign.title = 'Self-\nserve';
     level.Sign.cutscene = async () => {
@@ -92,6 +91,11 @@ export function CapitalShop() {
 
     decalsOf(CapitalArc).forEach(x => x.tinted(scene.terrainColor));
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0xF0B020));
+}
+
+export function makeCapitalWindow(rect: Rectangle) {
+    mirror(rect.width, rect.height).at(rect).behind();
+    roundWindow(rect.width, rect.height, 2).at(rect).tinted(scene.backgroundColor).behind();
 }
 
 const switchTxs = subimageTextures(CapitalSecuritySwitch, 2);

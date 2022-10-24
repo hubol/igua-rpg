@@ -127,6 +127,38 @@ export const CapitalInnArgs = {
   },
 };
 
+export const CapitalOracleArgs = {
+  width: 256,
+  height: 256,
+  gameObjectsSupplier: () => {
+    return {
+      CapitalArc: resolveDecalGameObject({ x: 32, y: 120, originX: 0, originY: 0, scaleX: 0.57, scaleY: 0.57, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      CapitalArc_1: resolveDecalGameObject({ x: 64, y: 88, originX: 0, originY: 0, scaleX: 0.57, scaleY: 0.57, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      CapitalArc_2: resolveDecalGameObject({ x: 96, y: 56, originX: 0, originY: 0, scaleX: 0.57, scaleY: 0.57, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      CapitalArc_3: resolveDecalGameObject({ x: 160, y: 56, originX: 0, originY: 0, scaleX: -0.57, scaleY: 0.57, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      CapitalArc_4: resolveDecalGameObject({ x: 224, y: 120, originX: 0, originY: 0, scaleX: -0.57, scaleY: 0.57, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      GroundSpeckles: resolveDecalGameObject({ x: 107, y: 205, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: GroundSpeckles }),
+      GroundSpeckles_1: resolveDecalGameObject({ x: 144, y: 205, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: GroundSpeckles }),
+      Block: resolveBlock({ type: "Block", x: 0, y: -8, width: 256, height: 64, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
+      Block_1: resolveBlock({ type: "Block", x: 0, y: 192, width: 256, height: 64, flippedX: false, flippedY: false, uid: "55823268_1", name: "", depth: 0 }),
+      Block_2: resolveBlock({ type: "Block", x: 0, y: 64, width: 32, height: 128, flippedX: false, flippedY: false, uid: "55823268_2", name: "", depth: 0 }),
+      Block_3: resolveBlock({ type: "Block", x: 224, y: 64, width: 32, height: 128, flippedX: false, flippedY: false, uid: "55823268_3", name: "", depth: 0 }),
+      Door: resolveDoor({ type: "Door", x: 40, y: 160, flippedX: false, flippedY: false, uid: "55913988_6", levelName: "CapitalTown", checkpointName: "FromOracle", name: "", depth: 0 }),
+      Player: { type: "Player", x: 88, y: 192, flippedX: false, flippedY: false, uid: "55988047_7", faceRight: true, name: "", depth: 0 },
+      SlopeLeft: resolveSlopeLeft({ type: "SlopeLeft", x: 32, y: 120, width: 16, height: 16, flippedX: false, flippedY: true, uid: "55845599_16", name: "", depth: 0 }),
+      Oracle: resolveNpc({ type: "NpcIguana", x: 196, y: 192, flippedX: true, flippedY: false, uid: "26367058_17", name: "Oracle", style: 2, depth: 0 }),
+      Block_4: resolveBlock({ type: "Block", x: 160, y: 56, width: 96, height: 64, flippedX: false, flippedY: false, uid: "55823268_19", name: "", depth: 0 }),
+      Block_5: resolveBlock({ type: "Block", x: 0, y: 56, width: 96, height: 32, flippedX: false, flippedY: false, uid: "55823268_20", name: "", depth: 0 }),
+      Block_6: resolveBlock({ type: "Block", x: 32, y: 88, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55823268_21", name: "", depth: 0 }),
+      SlopeLeft_1: resolveSlopeLeft({ type: "SlopeLeft", x: 64, y: 88, width: 16, height: 16, flippedX: false, flippedY: true, uid: "55845599_22", name: "", depth: 0 }),
+      SlopeLeft_2: resolveSlopeLeft({ type: "SlopeLeft", x: 96, y: 56, width: 16, height: 16, flippedX: false, flippedY: true, uid: "55845599_23", name: "", depth: 0 }),
+      SlopeRight: resolveSlopeRight({ type: "SlopeRight", x: 144, y: 56, width: 16, height: 16, flippedX: false, flippedY: true, uid: "55824435_24", name: "", depth: 0 }),
+      SlopeRight_1: resolveSlopeRight({ type: "SlopeRight", x: 208, y: 120, width: 16, height: 16, flippedX: false, flippedY: true, uid: "55824435_25", name: "", depth: 0 }),
+      Window: resolveRegion({ type: "Region", x: 80, y: 104, width: 32, height: 32, flippedX: false, flippedY: false, uid: "25971607_26", name: "Window", depth: 0 }),
+    };
+  },
+};
+
 export const CapitalShopArgs = {
   width: 256,
   height: 256,
@@ -237,12 +269,13 @@ export const CapitalTownArgs = {
       FromShop: { type: "Checkpoint", x: 496, y: 320, flippedX: false, flippedY: false, uid: "55940370_33", name: "FromShop", faceRight: true, depth: 0 },
       FromStorehouse: { type: "Checkpoint", x: 432, y: 392, flippedX: false, flippedY: false, uid: "55940370_34", name: "FromStorehouse", faceRight: false, depth: 0 },
       Block_16: resolveBlock({ type: "Block", x: 144, y: 352, width: 160, height: 88, flippedX: false, flippedY: false, uid: "55823268_35", name: "", depth: 0 }),
-      Door_3: resolveDoor({ type: "Door", x: 208, y: 320, flippedX: false, flippedY: false, uid: "55913988_36", levelName: "", checkpointName: "", name: "", depth: 0 }),
+      Door_3: resolveDoor({ type: "Door", x: 208, y: 320, flippedX: false, flippedY: false, uid: "55913988_36", levelName: "CapitalOracle", checkpointName: "", name: "", depth: 0 }),
       ExhaustBubble1: resolveCapitalBubble({ type: "CapitalBubble", x: 144, y: 264, flippedX: false, flippedY: false, uid: "37271132_37", obscurity: 0, name: "ExhaustBubble1", depth: 0 }),
       ExhaustBubble2: resolveCapitalBubble({ type: "CapitalBubble", x: 176, y: 216, flippedX: false, flippedY: false, uid: "37271132_38", obscurity: 0, name: "ExhaustBubble2", depth: 0 }),
       ExhaustBubble3: resolveCapitalBubble({ type: "CapitalBubble", x: 152, y: 160, flippedX: false, flippedY: false, uid: "37271132_39", obscurity: 0, name: "ExhaustBubble3", depth: 0 }),
       CapitalBubble: resolveCapitalBubble({ type: "CapitalBubble", x: 112, y: 232, flippedX: false, flippedY: false, uid: "37271132_40", obscurity: 0, name: "", depth: 0 }),
       AdviceSign: { type: "Anchor", x: 168, y: 318, flippedX: false, flippedY: false, uid: "25979726_41", name: "AdviceSign", depth: 0 },
+      FromOracle: { type: "Checkpoint", x: 264, y: 352, flippedX: false, flippedY: false, uid: "55940370_42", name: "FromOracle", faceRight: true, depth: 0 },
     };
   },
 };

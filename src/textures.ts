@@ -36,6 +36,8 @@ export let CapitalBuilding1: PIXI.Texture;
 export let CapitalBuilding2: PIXI.Texture;
 export let CapitalChain: PIXI.Texture;
 export let CapitalChimney: PIXI.Texture;
+export let CapitalFireplaceFlame: PIXI.Texture;
+export let CapitalFireplace: PIXI.Texture;
 export let CapitalInnSign: PIXI.Texture;
 export let CapitalPlantedTree: PIXI.Texture;
 export let CapitalPlatform: PIXI.Texture;
@@ -366,6 +368,12 @@ export function loadTexturesAsync()
 
     const CapitalChimneyPath = require("./images/capital/chimney.png");
     loader.add(CapitalChimneyPath); 
+
+    const CapitalFireplaceFlamePath = require("./images/capital/fireplace flame.png");
+    loader.add(CapitalFireplaceFlamePath); 
+
+    const CapitalFireplacePath = require("./images/capital/fireplace.png");
+    loader.add(CapitalFireplacePath); 
 
     const CapitalInnSignPath = require("./images/capital/inn sign.png");
     loader.add(CapitalInnSignPath); 
@@ -1074,6 +1082,8 @@ export function loadTexturesAsync()
             CapitalBuilding2 = resources[CapitalBuilding2Path]?.texture as PIXI.Texture;
             CapitalChain = resources[CapitalChainPath]?.texture as PIXI.Texture;
             CapitalChimney = resources[CapitalChimneyPath]?.texture as PIXI.Texture;
+            CapitalFireplaceFlame = resources[CapitalFireplaceFlamePath]?.texture as PIXI.Texture;
+            CapitalFireplace = resources[CapitalFireplacePath]?.texture as PIXI.Texture;
             CapitalInnSign = resources[CapitalInnSignPath]?.texture as PIXI.Texture;
             CapitalPlantedTree = resources[CapitalPlantedTreePath]?.texture as PIXI.Texture;
             CapitalPlatform = resources[CapitalPlatformPath]?.texture as PIXI.Texture;
