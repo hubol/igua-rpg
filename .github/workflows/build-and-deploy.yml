@@ -37,7 +37,7 @@ jobs:
           dst-artifact: build-win
           platform: win
   build-and-deploy-mac:
-    runs-on: macos-10.15
+    runs-on: macos-11
     needs: build
     env:
       BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
