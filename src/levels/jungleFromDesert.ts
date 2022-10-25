@@ -14,6 +14,9 @@ import {player} from "../gameObjects/player";
 import {approachLinear} from "../utils/math/number";
 import {wallpaper} from "../gameObjects/wallpaper";
 import {progress} from "../igua/data/progress";
+import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
+import {environment} from "../igua/environment";
+import {Dithered} from "../pixins/dithered";
 
 export function JungleFromDesert() {
     jukebox.play(JungleMusic).warm(TickingTime, ForestDeepMusic);
@@ -35,6 +38,20 @@ export function JungleFromDesert() {
     b.scale.x = -1;
     decalsOf(CloudLong).forEach(secretCloud);
     level.DeepGlow.tint = 0x29444E;
+
+    enrichDemo(level);
+}
+
+function enrichDemo(level: GameObjectsType<typeof JungleFromDesertArgs>) {
+    const walls = [level.DemoWall1, level.DemoWall2].map(x => {
+        x.index = 0;
+        return x.tinted(0x395808).withPixin(Dithered({ dither: 0.5 }));
+    });
+
+    if (environment.isDemo)
+        return;
+
+    [...walls, level.DemoSign].forEach(x => x.destroy());
 }
 
 function secretCloud(d: Sprite) {

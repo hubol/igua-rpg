@@ -1145,6 +1145,9 @@ export const JungleFromDesertArgs = {
       Block_6: resolveBlock({ type: "Block", x: 1536, y: 448, width: 184, height: 64, flippedX: false, flippedY: false, uid: "55823268_57", name: "", depth: 0 }),
       Gate_2: resolveGate({ type: "Gate", x: 1536, y: 376, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_60", levelName: "JungleDeep", checkpointName: "", name: "", depth: 0 }),
       FromDeep: { type: "Checkpoint", x: 1488, y: 408, flippedX: false, flippedY: false, uid: "55940370_61", name: "FromDeep", faceRight: false, depth: 0 },
+      DemoWall2: resolveBlock({ type: "Block", x: 360, y: 416, width: 16, height: 56, flippedX: false, flippedY: false, uid: "55823268_62", name: "DemoWall2", depth: 0 }),
+      DemoWall1: resolveBlock({ type: "Block", x: 360, y: 416, width: 152, height: 16, flippedX: false, flippedY: false, uid: "55823268_63", name: "DemoWall1", depth: 0 }),
+      DemoSign: resolveSign({ type: "Sign", x: 400, y: 472, flippedX: false, flippedY: false, uid: "86706091_64", title: "Demo", message: "This is the end of the IguaRPG Demo. Thanks for playing!", name: "DemoSign", depth: 0 }),
     };
   },
 };

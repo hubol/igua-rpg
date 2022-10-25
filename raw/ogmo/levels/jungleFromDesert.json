@@ -531,6 +531,40 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromDeep", "faceRight": false, "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 62,
+          "_eid": "55823268",
+          "x": 360,
+          "y": 416,
+          "width": 16,
+          "height": 56,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "DemoWall2", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 63,
+          "_eid": "55823268",
+          "x": 360,
+          "y": 416,
+          "width": 152,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "DemoWall1", "depth": 0}
+        },
+        {
+          "name": "Sign",
+          "id": 64,
+          "_eid": "86706091",
+          "x": 400,
+          "y": 472,
+          "originX": 14,
+          "originY": 18,
+          "values": {"title": "Demo", "message": "This is the end of the IguaRPG Demo. Thanks for playing!", "name": "DemoSign", "depth": 0}
         }
       ]
     },
@@ -778,6 +812,18 @@
           "values": {"name": ""}
         }
       ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 196,
+      "gridCellsY": 64,
+      "decals": [],
       "folder": "../../src/images"
     },
     {

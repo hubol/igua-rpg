@@ -221,8 +221,14 @@ function title() {
     return c;
 }
 
+function getVersionText() {
+    if (environment.isDemo)
+        return 'Demo Ver.'
+    return `Dev Ver. ${environment.version}`;
+}
+
 function showDemoText() {
-    const demo = IguaText.Large(`Dev Ver. ${environment.version}`, {tint: 0x005870}).at(254, 255).show();
+    const demo = IguaText.Large(getVersionText(), {tint: 0x005870}).at(254, 255).show();
     // @ts-ignore
     demo.anchor.set(1);
 }

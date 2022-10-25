@@ -17,5 +17,8 @@ export const environment = {
     },
     get version() {
         return packageJson.version;
+    },
+    get isDemo() {
+        return window.location.href.includes('hwcdn');
     }
 };
