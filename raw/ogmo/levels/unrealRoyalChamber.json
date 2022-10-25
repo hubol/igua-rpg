@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 1248,
   "height": 256,
   "offsetX": 0,
@@ -58,7 +58,7 @@
           "originX": 11,
           "originY": 27,
           "flippedX": false,
-          "values": {"name": "SecretWorshipper1", "style": 9, "depth": 0}
+          "values": {"name": "SecretWorshipper1", "style": 0, "depth": 0}
         },
         {
           "name": "NpcIguana",
@@ -69,7 +69,7 @@
           "originX": 11,
           "originY": 27,
           "flippedX": false,
-          "values": {"name": "SecretWorshipper2", "style": 10, "depth": 0}
+          "values": {"name": "SecretWorshipper2", "style": 13, "depth": 0}
         },
         {
           "name": "NpcIguana",
@@ -80,7 +80,7 @@
           "originX": 11,
           "originY": 27,
           "flippedX": false,
-          "values": {"name": "SecretWorshipper3", "style": 8, "depth": 0}
+          "values": {"name": "SecretWorshipper3", "style": 10, "depth": 0}
         },
         {
           "name": "NpcIguana",
@@ -348,13 +348,35 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 240, "y": 96, "scaleX": 1, "scaleY": 2.05, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 0}
+        {
+          "x": 240,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 2.05,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },
     {
       "name": "TerrainDecals",
       "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 156,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
       "offsetX": 0,
       "offsetY": 0,
       "gridCellWidth": 8,
@@ -418,7 +440,17 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 104, "y": 96, "scaleX": 1, "scaleY": 2, "rotation": 0, "texture": "column.png", "originX": 0.5, "originY": 0}
+        {
+          "x": 104,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 2,
+          "rotation": 0,
+          "texture": "column.png",
+          "originX": 0.5,
+          "originY": 0,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },
@@ -553,8 +585,28 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 0, "y": 72, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "glowing circle.png", "originX": 0.5, "originY": 0.5},
-        {"x": -216, "y": 8, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "glowing circle.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 0,
+          "y": 72,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "glowing circle.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": -216,
+          "y": 8,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "glowing circle.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     }
