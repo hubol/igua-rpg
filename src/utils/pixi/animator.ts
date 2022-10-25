@@ -34,6 +34,10 @@ export class Animator {
     }
 
     start() {
+        if (this._then) {
+            console.trace(`Attempted to start Animator more than once!`);
+            return;
+        }
         this._then = performance.now();
         this._maybeUpdate();
     }

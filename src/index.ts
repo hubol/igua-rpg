@@ -30,6 +30,7 @@ async function initialize()
 {
     try {
         upscaleGameCanvas(addGameCanvasToDocument(application.canvasElement));
+        application.ticker.start();
 
         const [ready, loadingScreenPromise] = showLoadingScreen(application);
         const howls = Object.values(require("./sounds")) as Howl[];

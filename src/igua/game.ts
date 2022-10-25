@@ -16,8 +16,6 @@ import {advanceInput, startInput} from "./io/input";
 export let game: ReturnType<typeof createGame>;
 function createGame(application: AsshatApplication)
 {
-    application.ticker.start();
-
     const ticker = new AsshatTicker();
 
     startKeyListener();
