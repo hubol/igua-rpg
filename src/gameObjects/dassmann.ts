@@ -1,5 +1,5 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {DassmannHead} from "../textures";
+import {DassmannArm, DassmannHead, DassmannTorso} from "../textures";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {Blinking} from "../pixins/blinking";
@@ -7,19 +7,81 @@ import {Graphics, Sprite} from "pixi.js";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {approachLinear, nlerp} from "../utils/math/number";
 import {now} from "../utils/now";
+import {lerp} from "../cutscene/lerp";
+import {sleep} from "../cutscene/sleep";
 
 export function dassmann() {
-    const head = mkHead()
+    const head = mkHead();
+    const body = mkBody().at(9, 19);
+
+    const c = container(head, body)
         .withStep(() => {
             head.look = Math.sin(now.s * Math.PI);
             head.face = Math.sin(now.s * Math.PI + 1);
+            body.face = head.face;
 
             head.antennal = Math.sin(now.s * Math.PI * 1.5) * 0.3;
             head.antennar = Math.sin(now.s * Math.PI * 1.5 + 2) * 0.3;
 
             head.agape = now.s % 4 < 2 ? 1 : 0;
         });
-    return head;
+
+    [body.arml, body.armr].forEach((x, i) => x.withAsync(async () => {
+        const speed = 1.25;
+        await sleep(i * 100 / speed);
+        while (true) {
+            await x.raise().over(500 / speed);
+            await sleep(250 / speed);
+            await x.down().over(500 / speed);
+            await sleep(250 / speed);
+        }
+    }))
+
+    return c;
+}
+
+enum ArmTx {
+    Down,
+    Rest,
+    Tpose,
+    Raise
+}
+
+function mkBody() {
+    const arml = mkArm().at(3, -13);
+    arml.scale.x = -1;
+    const armr = mkArm().at(4, -13);
+
+    const c = merge(container(), { arml, armr, face: 0 });
+    Sprite.from(DassmannTorso).show(c);
+    Sprite.from(headTxs[HeadTx.Shield]).at(-9, -19).show(c);
+    c.addChild(arml, armr);
+
+    c.withStep(() => {
+        arml.pivot.x = c.face < -0.5 ? 1 : 0;
+        armr.pivot.x = c.face > 0.5 ? 1 : 0;
+    });
+
+    return c;
+}
+
+function mkArm() {
+    function raise() {
+        return lerp(s, 'pose').to(ArmTx.Raise);
+    }
+
+    function rest() {
+        return lerp(s, 'pose').to(ArmTx.Rest);
+    }
+
+    function down() {
+        return lerp(s, 'pose').to(ArmTx.Down);
+    }
+
+    const s = merge(Sprite.from(armTxs[ArmTx.Rest]), { pose: ArmTx.Rest, raise, rest, down })
+        .withStep(() => s.texture = armTxs[Math.min(ArmTx.Raise, Math.max(ArmTx.Down, Math.round(s.pose)))]);
+
+    return s;
 }
 
 function mkHead() {
@@ -48,8 +110,6 @@ function mkHead() {
     const antennar = mkAntenna().at(17, 4).show(face);
     const antennal = mkAntenna().at(9, 4).show(face);
     antennal.scale.x = -1;
-
-    Sprite.from(headTxs[HeadTx.Shield]).show(c);
 
     c.withStep(() => {
         pupils.x = approachLinear(pupils.x, Math.sign(c.look), 0.1);
@@ -80,6 +140,7 @@ function mkAntenna() {
     });
 }
 
+const armTxs = subimageTextures(DassmannArm, { width: 16 });
 const headTxs = subimageTextures(DassmannHead, { width: 26 });
 
 enum HeadTx {
