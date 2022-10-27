@@ -5,7 +5,7 @@ import {merge} from "../utils/object/merge";
 import {Blinking} from "../pixins/blinking";
 import {Graphics, Sprite} from "pixi.js";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
-import {approachLinear} from "../utils/math/number";
+import {approachLinear, nlerp} from "../utils/math/number";
 import {now} from "../utils/now";
 
 export function dassmann() {
@@ -13,11 +13,18 @@ export function dassmann() {
         .withStep(() => {
             head.look = Math.sin(now.s * Math.PI);
             head.face = Math.sin(now.s * Math.PI + 1);
+
+            head.antennal = Math.sin(now.s * Math.PI * 1.5) * 0.3;
+            head.antennar = Math.sin(now.s * Math.PI * 1.5 + 2) * 0.3;
+
+            head.agape = now.s % 4 < 2 ? 1 : 0;
         });
     return head;
 }
 
 function mkHead() {
+    let agapeReal = 0;
+
     const c = merge(container(), {
             look: 0,
             face: 0,
@@ -38,18 +45,39 @@ function mkHead() {
     const pupils = Sprite.from(headTxs[HeadTx.Pupils]).show(eyes);
     const eyelids = new Graphics().beginFill(0xF0B020).drawRect(6, 7 - 8, 13, 8).show(eyes);
 
+    const antennar = mkAntenna().at(17, 4).show(face);
+    const antennal = mkAntenna().at(9, 4).show(face);
+    antennal.scale.x = -1;
+
     Sprite.from(headTxs[HeadTx.Shield]).show(c);
 
     c.withStep(() => {
         pupils.x = approachLinear(pupils.x, Math.sign(c.look), 0.1);
-        const len = HeadTx.MouthOpen2 - HeadTx.Mouth;
-        const index = Math.floor(HeadTx.Mouth + len * Math.max(0, Math.min(1, c.agape)));
+        agapeReal = approachLinear(agapeReal, c.agape, 0.25);
+        const index = Math.round(nlerp(HeadTx.Mouth, HeadTx.MouthOpen2, agapeReal));
         mouth.texture =  headTxs[index];
         face.x = approachLinear(face.x, Math.sign(c.face), 0.1);
         eyelids.y = c.blink * 8;
+
+        antennal.factor = c.antennal;
+        antennar.factor = c.antennar;
     })
 
     return c;
+}
+
+function mkAntenna() {
+    const len = 11;
+    const g = merge(new Graphics(), { factor: -0.2 });
+    return g.withStep(() => {
+        g.clear().lineStyle(1, 0x0D1C7C);
+        const root = Math.round((1 - Math.abs(g.factor)) * len);
+        let angled = len - root;
+        g.lineTo(0, -root);
+        if (angled > 0) {
+            g.lineTo(angled, -root + angled * Math.sign(g.factor));
+        }
+    });
 }
 
 const headTxs = subimageTextures(DassmannHead, { width: 26 });
