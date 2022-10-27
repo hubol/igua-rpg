@@ -37,6 +37,7 @@ import {waitHold} from "../cutscene/waitHold";
 import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
+import {Blinking} from "../pixins/blinking";
 
 const consts = {
     gravity: 0.2,
@@ -563,16 +564,8 @@ function newLegs() {
 }
 
 function newHead() {
-    const c = merge(container(), { face: vnew(), facing: 1, looking: 0, breeze: 0, angry: false, shouting: false, blinkUnit: 0 } )
-        .withAsync(async () => {
-            await sleep(500 + rng.int(500));
-            while (true) {
-                await lerp(c, 'blinkUnit').to(1).over(100);
-                await sleep(60);
-                await lerp(c, 'blinkUnit').to(0).over(100);
-                await sleep(300 + rng.int(3000));
-            }
-        });
+    const c = merge(container(), { face: vnew(), facing: 1, looking: 0, breeze: 0, angry: false, shouting: false } )
+        .withPixin(Blinking());
 
     const mullet = Sprite.from(headTxs[HeadFrame.Mullet]);
     const head = Sprite.from(headTxs[HeadFrame.Head]);
@@ -609,7 +602,7 @@ function newHead() {
         else
             eyes.texture = headTxs[HeadFrame.EyeDefault + Math.sign(c.looking) + 1];
         mouth.texture = headTxs[HeadFrame.Mouth + (c.shouting ? 1 : 0)];
-        eyelids.texture = headTxs[Math.floor(nlerp(HeadFrame.EyelidsOpen, HeadFrame.EyelidsClosed, c.blinkUnit))];
+        eyelids.texture = headTxs[Math.floor(nlerp(HeadFrame.EyelidsOpen, HeadFrame.EyelidsClosed, c.blink))];
         face.forEach(x => x.at(c.face));
         mouthnose.x = mouthnose.pivot.x + c.face.x;
         mouthnose.y = c.face.y;
