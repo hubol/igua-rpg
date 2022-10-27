@@ -94,6 +94,16 @@
           "originX": 11,
           "originY": 27,
           "values": {"faceRight": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 7,
+          "_eid": "25979726",
+          "x": 120,
+          "y": 184,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Dassmann", "depth": 0}
         }
       ]
     },

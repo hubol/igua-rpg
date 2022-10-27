@@ -74,6 +74,7 @@ export let CrateWooden: PIXI.Texture;
 export let CrudeHouseB: PIXI.Texture;
 export let CrudeHouseC: PIXI.Texture;
 export let CrudeHouse: PIXI.Texture;
+export let DassmannHead: PIXI.Texture;
 export let DesertTempleLever: PIXI.Texture;
 export let DesertTemple: PIXI.Texture;
 export let DinerTable: PIXI.Texture;
@@ -482,6 +483,9 @@ export function loadTexturesAsync()
 
     const CrudeHousePath = require("./images/crude house.png");
     loader.add(CrudeHousePath); 
+
+    const DassmannHeadPath = require("./images/dassmann/head.png");
+    loader.add(DassmannHeadPath); 
 
     const DesertTempleLeverPath = require("./images/desert temple lever.png");
     loader.add(DesertTempleLeverPath); 
@@ -1120,6 +1124,7 @@ export function loadTexturesAsync()
             CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;
             CrudeHouseC = resources[CrudeHouseCPath]?.texture as PIXI.Texture;
             CrudeHouse = resources[CrudeHousePath]?.texture as PIXI.Texture;
+            DassmannHead = resources[DassmannHeadPath]?.texture as PIXI.Texture;
             DesertTempleLever = resources[DesertTempleLeverPath]?.texture as PIXI.Texture;
             DesertTemple = resources[DesertTemplePath]?.texture as PIXI.Texture;
             DinerTable = resources[DinerTablePath]?.texture as PIXI.Texture;
