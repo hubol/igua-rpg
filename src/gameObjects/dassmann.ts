@@ -73,6 +73,8 @@ function mkBody() {
     const bootl = mkBoot(-1).at(0, 9);
     const bootr = mkBoot().at(4, 9);
 
+    let face = 0;
+
     const c = merge(container(), { arml, armr, face: 0, pedometer: 0, feetFace: Undefined<number>() });
     Sprite.from(DassmannTorso).show(c);
     c.addChild(bootl, bootr);
@@ -80,8 +82,17 @@ function mkBody() {
     c.addChild(arml, armr);
 
     c.withStep(() => {
-        arml.pivot.x = c.face < -0.5 ? 1 : 0;
-        armr.pivot.x = c.face > 0.5 ? 1 : 0;
+        face = approachLinear(face, c.face, 0.1);
+
+        if (face < -0.5)
+            arml.pivot.x = 1;
+        if (face >= 0)
+            arml.pivot.x = 0;
+
+        if (face > 0.5)
+            armr.pivot.x = 1;
+        if (face <= 0)
+            armr.pivot.x = 0;
 
         bootl.face = c.feetFace === 1 ? 1 : -1;
         bootr.face = c.feetFace === -1 ? -1 : 1;
