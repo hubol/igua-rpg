@@ -6,10 +6,18 @@ import {Blinking} from "../pixins/blinking";
 import {Graphics, Sprite} from "pixi.js";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {approachLinear, nlerp} from "../utils/math/number";
-import {now} from "../utils/now";
 import {lerp} from "../cutscene/lerp";
-import {sleep} from "../cutscene/sleep";
 import {Undefined} from "../utils/types/undefined";
+import {scene} from "../igua/scene";
+import {getWorldPos} from "../igua/gameplay/getCenter";
+import {player} from "./player";
+import {trackPosition} from "../igua/trackPosition";
+
+type AntennaExpression = 'idle' | 'shock' | 'off';
+type FacingExpression = 'auto' | 'off';
+type WalkingExpression = 'auto' | 'off';
+
+const Walk = 0.0625;
 
 export function dassmann() {
     const head = mkHead();
@@ -17,43 +25,62 @@ export function dassmann() {
     const puppet = container(head, body);
     puppet.at(-12, -33);
 
-    const c = container(puppet)
-        .withStep(() => {
-            // head.look = Math.sin(now.s * Math.PI);
-            // head.face = Math.sin(now.s * Math.PI * 0.5 + 1);
+    const antennaExpressions: Record<AntennaExpression, () => void> = {
+        idle: () => {
+            head.antennal = Math.sin(scene.s * Math.PI * 1.5) * 0.3;
+            head.antennar = Math.sin(scene.s * Math.PI * 1.5 + 2) * 0.3;
+        },
+        shock: () => {
+            head.antennal = (((Math.sin(Math.round(scene.s * Math.PI * 6)) + 1) * 8) % 2 - 1) * 0.6;
+            head.antennar = -head.antennal;
+        },
+        off: () => {},
+    }
 
-            // body.feetFace = -1;
+    const facingExpressions: Record<FacingExpression, () => void> = {
+        auto: () => {
+            const off = player.x - getWorldPos(c).x;
+            const sign = Math.sign(off);
+            const len = Math.abs(off);
+            body.face = len < 40 ? 0 : sign;
+            head.face = len > 80 ? sign : 0;
+            head.look = len > 16 ? sign : 0;
 
-            head.antennal = Math.sin(now.s * Math.PI * 1.5) * 0.3;
-            head.antennar = Math.sin(now.s * Math.PI * 1.5 + 2) * 0.3;
-
-            head.agape = now.s % 4 < 2 ? 1 : 0;
-            // body.pedometer += 1;
-        })
-        .withAsync(async () => {
-            while (true) {
-                head.look = -1;
-                head.face = -1;
-                body.face = head.face;
-                await sleep(2000);
-                head.look = 1;
-                head.face = 1;
-                body.face = head.face;
-                await sleep(2000);
+            if (Math.abs(diff.x) > 0.3) {
+                body.face = Math.sign(diff.x);
+                head.face = body.face;
             }
+        },
+        off: () => {},
+    }
+
+    const walkingExpressions: Record<WalkingExpression, () => void> = {
+        auto: () => {
+            if (Math.abs(diff.x) > 0.3) {
+                body.pedometer += nlerp(1, 2, (Math.abs(diff.x) - 1) / 6);
+                puppet.pivot.y = (body.bootl.pivot.y > 1.625 || body.bootr.pivot.y > 1.625) ? 1 : 0;
+            }
+            else {
+                body.pedometer = 0;
+                puppet.pivot.y = 0;
+            }
+        },
+        off: () => {}
+    }
+
+    const c = merge(container(puppet), { head, arml: body.arml, armr: body.armr, body, expression: {
+            antenna: <AntennaExpression>'idle',
+            facing: <FacingExpression>'auto',
+            walking: <WalkingExpression>'auto',
+        } })
+        .withGravityAndWallResist([0, -8], 8, 0.3)
+        .withStep(() => {
+            antennaExpressions[c.expression.antenna]();
+            facingExpressions[c.expression.facing]();
+            walkingExpressions[c.expression.walking]();
         });
 
-    [body.arml, body.armr].forEach((x, i) => x.withAsync(async () => {
-        x.pose = ArmTx.Rest;
-        // const speed = 1.25;
-        // await sleep(i * 100 / speed);
-        // while (true) {
-        //     await x.raise().over(500 / speed);
-        //     await sleep(250 / speed);
-        //     await x.down().over(500 / speed);
-        //     await sleep(250 / speed);
-        // }
-    }))
+    const { diff } = trackPosition(c);
 
     return c;
 }
@@ -75,7 +102,7 @@ function mkBody() {
 
     let face = 0;
 
-    const c = merge(container(), { arml, armr, face: 0, pedometer: 0, feetFace: Undefined<number>() });
+    const c = merge(container(), { arml, armr, bootl, bootr, face: 0, pedometer: 0, feetFace: Undefined<number>() });
     Sprite.from(DassmannTorso).show(c);
     c.addChild(bootl, bootr);
     Sprite.from(headTxs[HeadTx.Shield]).at(-9, -19).show(c);
@@ -98,10 +125,10 @@ function mkBody() {
         bootr.face = c.feetFace === -1 ? -1 : 1;
 
         const f = c.pedometer > 0 ? 1 : 0;
-        bootl.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * 0.1) - 1);
-        bootr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * 0.1 + Math.PI * 0.5) - 1);
-        arml.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * 0.1 + Math.PI * 1) - 1) / 2;
-        armr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * 0.1 + Math.PI * 1.5) - 1) / 2;
+        bootl.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk) - 1);
+        bootr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk + Math.PI * 0.5) - 1);
+        arml.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk + Math.PI * 1) - 1) / 2;
+        armr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk + Math.PI * 1.5) - 1) / 2;
     });
 
     return c;
@@ -151,6 +178,7 @@ function mkHead() {
             agape: 0,
             antennar: 0,
             antennal: 0,
+            wiggle: 0,
         })
         .withPixin(Blinking());
 
@@ -176,6 +204,8 @@ function mkHead() {
         mouth.texture =  headTxs[index];
         face.x = approachLinear(face.x, Math.sign(c.face), 0.1);
         eyelids.y = c.blink * 8;
+
+        c.pivot.x = Math.sin(scene.s * Math.PI * 10) * c.wiggle;
 
         antennal.factor = c.antennal;
         antennar.factor = c.antennar;

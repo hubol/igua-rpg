@@ -3,7 +3,7 @@ import {CapitalStorehouseArgs} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {jukebox} from "../igua/jukebox";
 import {CapitalMusicPlease, UnusualOminousMusic} from "../musics";
-import {dassmann} from "../gameObjects/dassmann";
+import {dassmannBoss} from "../gameObjects/dassmannBoss";
 
 export function CapitalStorehouse() {
     scene.backgroundColor = 0x60B0E0;
@@ -12,5 +12,5 @@ export function CapitalStorehouse() {
 
     jukebox.play(UnusualOminousMusic).warm(CapitalMusicPlease);
 
-    dassmann().at(level.Dassmann).show();
+    dassmannBoss().at(level.Dassmann).show();
 }
