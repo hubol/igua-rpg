@@ -20,10 +20,19 @@ export class Animator {
     // https://codepen.io/rishabhp/pen/XKpBQX
     private _maybeUpdate() {
         const now = performance.now();
+        // If the previous time falls too far back, pretend it was approximately two frames ago
+        // On a 60Hz display, this could happen when you switch browser tabs
+        if (this._then < now - 2 * this._targetInterval)
+            this._then = now - 2 * this._targetInterval;
         const delta = this._then ? (now - this._then) : Number.MAX_VALUE;
         if (delta > this._targetInterval) {
-            this._then = now - (delta % this._targetInterval);
+            // Setting then to now and adding the targetInterval could result in non-determinism!
+            // So instead, do this
+            this._then += this._targetInterval;
             this._update();
+        }
+        else {
+            console.log('Skipped');
         }
         requestAnimationFrame(this._animationFrameCallback);
     }
