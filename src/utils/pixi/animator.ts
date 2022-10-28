@@ -20,11 +20,9 @@ export class Animator {
     // https://codepen.io/rishabhp/pen/XKpBQX
     private _maybeUpdate() {
         const now = performance.now();
-        console.debug('Entered Animator._maybeUpdate callback', now);
         // If the previous time falls too far back, pretend it was approximately two frames ago
         // On a 60Hz display, this could happen when you switch browser tabs
         if (this._then < now - 2 * this._targetInterval) {
-            console.log('Brought previous frame time forward');
             this._then = now - 2 * this._targetInterval;
         }
         const delta = this._then ? (now - this._then) : Number.MAX_VALUE;
@@ -33,9 +31,6 @@ export class Animator {
             // So instead, do this
             this._then += this._targetInterval;
             this._update();
-        }
-        else {
-            console.log('Skipped frame');
         }
         requestAnimationFrame(this._animationFrameCallback);
     }

@@ -24,6 +24,7 @@ import {showLoadingScreen} from "./igua/showLoadingScreen";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+PIXI.settings.PREFER_ENV = 1;
 const application = createApplication({width: 256, height: 256, maxFps: 60, showCursor: false});
 
 async function initialize()
