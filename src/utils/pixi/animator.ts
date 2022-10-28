@@ -20,10 +20,13 @@ export class Animator {
     // https://codepen.io/rishabhp/pen/XKpBQX
     private _maybeUpdate() {
         const now = performance.now();
+        console.debug('Entered Animator._maybeUpdate callback', now);
         // If the previous time falls too far back, pretend it was approximately two frames ago
         // On a 60Hz display, this could happen when you switch browser tabs
-        if (this._then < now - 2 * this._targetInterval)
+        if (this._then < now - 2 * this._targetInterval) {
+            console.log('Brought previous frame time forward');
             this._then = now - 2 * this._targetInterval;
+        }
         const delta = this._then ? (now - this._then) : Number.MAX_VALUE;
         if (delta > this._targetInterval) {
             // Setting then to now and adding the targetInterval could result in non-determinism!
@@ -32,7 +35,7 @@ export class Animator {
             this._update();
         }
         else {
-            console.log('Skipped');
+            console.log('Skipped frame');
         }
         requestAnimationFrame(this._animationFrameCallback);
     }
@@ -47,6 +50,7 @@ export class Animator {
             console.trace(`Attempted to start Animator more than once!`);
             return;
         }
+        console.log('Animator started', this);
         this._then = performance.now();
         this._maybeUpdate();
     }
