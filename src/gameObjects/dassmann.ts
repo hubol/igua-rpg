@@ -1,5 +1,5 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {DassmannArm, DassmannHead, DassmannTorso} from "../textures";
+import {DassmannArm, DassmannBoot, DassmannHead, DassmannTorso} from "../textures";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {Blinking} from "../pixins/blinking";
@@ -9,32 +9,50 @@ import {approachLinear, nlerp} from "../utils/math/number";
 import {now} from "../utils/now";
 import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
+import {Undefined} from "../utils/types/undefined";
 
 export function dassmann() {
     const head = mkHead();
     const body = mkBody().at(9, 19);
+    const puppet = container(head, body);
+    puppet.at(-12, -33);
 
-    const c = container(head, body)
+    const c = container(puppet)
         .withStep(() => {
-            head.look = Math.sin(now.s * Math.PI);
-            head.face = Math.sin(now.s * Math.PI + 1);
-            body.face = head.face;
+            // head.look = Math.sin(now.s * Math.PI);
+            // head.face = Math.sin(now.s * Math.PI * 0.5 + 1);
+
+            // body.feetFace = -1;
 
             head.antennal = Math.sin(now.s * Math.PI * 1.5) * 0.3;
             head.antennar = Math.sin(now.s * Math.PI * 1.5 + 2) * 0.3;
 
             head.agape = now.s % 4 < 2 ? 1 : 0;
+            // body.pedometer += 1;
+        })
+        .withAsync(async () => {
+            while (true) {
+                head.look = -1;
+                head.face = -1;
+                body.face = head.face;
+                await sleep(2000);
+                head.look = 1;
+                head.face = 1;
+                body.face = head.face;
+                await sleep(2000);
+            }
         });
 
     [body.arml, body.armr].forEach((x, i) => x.withAsync(async () => {
-        const speed = 1.25;
-        await sleep(i * 100 / speed);
-        while (true) {
-            await x.raise().over(500 / speed);
-            await sleep(250 / speed);
-            await x.down().over(500 / speed);
-            await sleep(250 / speed);
-        }
+        x.pose = ArmTx.Rest;
+        // const speed = 1.25;
+        // await sleep(i * 100 / speed);
+        // while (true) {
+        //     await x.raise().over(500 / speed);
+        //     await sleep(250 / speed);
+        //     await x.down().over(500 / speed);
+        //     await sleep(250 / speed);
+        // }
     }))
 
     return c;
@@ -48,18 +66,31 @@ enum ArmTx {
 }
 
 function mkBody() {
-    const arml = mkArm().at(3, -13);
+    const arml = mkArm().at(3, -12);
     arml.scale.x = -1;
-    const armr = mkArm().at(4, -13);
+    const armr = mkArm().at(4, -12);
 
-    const c = merge(container(), { arml, armr, face: 0 });
+    const bootl = mkBoot(-1).at(0, 9);
+    const bootr = mkBoot().at(4, 9);
+
+    const c = merge(container(), { arml, armr, face: 0, pedometer: 0, feetFace: Undefined<number>() });
     Sprite.from(DassmannTorso).show(c);
+    c.addChild(bootl, bootr);
     Sprite.from(headTxs[HeadTx.Shield]).at(-9, -19).show(c);
     c.addChild(arml, armr);
 
     c.withStep(() => {
         arml.pivot.x = c.face < -0.5 ? 1 : 0;
         armr.pivot.x = c.face > 0.5 ? 1 : 0;
+
+        bootl.face = c.feetFace === 1 ? 1 : -1;
+        bootr.face = c.feetFace === -1 ? -1 : 1;
+
+        const f = c.pedometer > 0 ? 1 : 0;
+        bootl.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * 0.1) - 1);
+        bootr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * 0.1 + Math.PI * 0.5) - 1);
+        arml.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * 0.1 + Math.PI * 1) - 1) / 2;
+        armr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * 0.1 + Math.PI * 1.5) - 1) / 2;
     });
 
     return c;
@@ -80,6 +111,22 @@ function mkArm() {
 
     const s = merge(Sprite.from(armTxs[ArmTx.Rest]), { pose: ArmTx.Rest, raise, rest, down })
         .withStep(() => s.texture = armTxs[Math.min(ArmTx.Raise, Math.max(ArmTx.Down, Math.round(s.pose)))]);
+
+    return s;
+}
+
+function mkBoot(face = 1) {
+    const s = merge(Sprite.from(DassmannBoot), { face })
+        .withStep(() => {
+            if (s.face > 0) {
+                s.pivot.x = 0;
+                s.scale.x = 1;
+            }
+            else if (s.face < 0) {
+                s.pivot.x = 3;
+                s.scale.x = -1;
+            }
+        });
 
     return s;
 }

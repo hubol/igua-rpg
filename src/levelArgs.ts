@@ -203,7 +203,7 @@ export const CapitalStorehouseArgs = {
       Block_4: resolveBlock({ type: "Block", x: 32, y: 120, width: 192, height: 16, flippedX: false, flippedY: false, uid: "55823268_4", name: "", depth: 0 }),
       Door: resolveDoor({ type: "Door", x: 40, y: 88, flippedX: false, flippedY: false, uid: "55913988_5", levelName: "CapitalTown", checkpointName: "FromStorehouse", name: "", depth: 0 }),
       Player: { type: "Player", x: 96, y: 120, flippedX: false, flippedY: false, uid: "55988047_6", faceRight: true, name: "", depth: 0 },
-      Dassmann: { type: "Anchor", x: 120, y: 184, flippedX: false, flippedY: false, uid: "25979726_7", name: "Dassmann", depth: 0 },
+      Dassmann: { type: "Anchor", x: 96, y: 224, flippedX: false, flippedY: false, uid: "25979726_7", name: "Dassmann", depth: 0 },
     };
   },
 };
