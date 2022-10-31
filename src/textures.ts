@@ -75,9 +75,11 @@ export let CrudeHouseB: PIXI.Texture;
 export let CrudeHouseC: PIXI.Texture;
 export let CrudeHouse: PIXI.Texture;
 export let DassmannArm: PIXI.Texture;
+export let DassmannArrow: PIXI.Texture;
 export let DassmannBoot: PIXI.Texture;
 export let DassmannHead: PIXI.Texture;
 export let DassmannTorso: PIXI.Texture;
+export let DassmannTower: PIXI.Texture;
 export let DesertTempleLever: PIXI.Texture;
 export let DesertTemple: PIXI.Texture;
 export let DinerTable: PIXI.Texture;
@@ -490,6 +492,9 @@ export function loadTexturesAsync()
     const DassmannArmPath = require("./images/dassmann/arm.png");
     loader.add(DassmannArmPath); 
 
+    const DassmannArrowPath = require("./images/dassmann/arrow.png");
+    loader.add(DassmannArrowPath); 
+
     const DassmannBootPath = require("./images/dassmann/boot.png");
     loader.add(DassmannBootPath); 
 
@@ -498,6 +503,9 @@ export function loadTexturesAsync()
 
     const DassmannTorsoPath = require("./images/dassmann/torso.png");
     loader.add(DassmannTorsoPath); 
+
+    const DassmannTowerPath = require("./images/dassmann/tower.png");
+    loader.add(DassmannTowerPath); 
 
     const DesertTempleLeverPath = require("./images/desert temple lever.png");
     loader.add(DesertTempleLeverPath); 
@@ -1137,9 +1145,11 @@ export function loadTexturesAsync()
             CrudeHouseC = resources[CrudeHouseCPath]?.texture as PIXI.Texture;
             CrudeHouse = resources[CrudeHousePath]?.texture as PIXI.Texture;
             DassmannArm = resources[DassmannArmPath]?.texture as PIXI.Texture;
+            DassmannArrow = resources[DassmannArrowPath]?.texture as PIXI.Texture;
             DassmannBoot = resources[DassmannBootPath]?.texture as PIXI.Texture;
             DassmannHead = resources[DassmannHeadPath]?.texture as PIXI.Texture;
             DassmannTorso = resources[DassmannTorsoPath]?.texture as PIXI.Texture;
+            DassmannTower = resources[DassmannTowerPath]?.texture as PIXI.Texture;
             DesertTempleLever = resources[DesertTempleLeverPath]?.texture as PIXI.Texture;
             DesertTemple = resources[DesertTemplePath]?.texture as PIXI.Texture;
             DinerTable = resources[DinerTablePath]?.texture as PIXI.Texture;
