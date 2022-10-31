@@ -61,7 +61,10 @@ export function dassmannTower() {
         const r = getWorldBounds(mask);
         const block = resolveBlock(r as any);
         block.visible = false;
-        c.on('removed', () => block.destroy());
+        c.on('removed', () => {
+            if (!block.destroyed)
+                block.destroy();
+        });
     })
 
     return c;
