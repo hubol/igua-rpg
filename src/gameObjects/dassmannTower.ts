@@ -9,7 +9,6 @@ import {wait} from "../cutscene/wait";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
 import {resolveBlock} from "./walls";
 import {player} from "./player";
-import {bouncePlayer} from "../igua/bouncePlayer";
 import {vnew} from "../utils/math/vector";
 import {ClownExplode, ClownHurt} from "../sounds";
 import {confetti} from "./confetti";
@@ -17,7 +16,7 @@ import {confetti} from "./confetti";
 const v = vnew();
 
 export function dassmannTower() {
-    const health = clownHealth(160);
+    const health = clownHealth(200);
 
     const c = container()
         .withPixin(Invulnerable());
@@ -42,7 +41,10 @@ export function dassmannTower() {
         v.at(player);
         v.y -= 8;
         v.x = c.x;
-        bouncePlayer(v);
+        player.hspeed = 0;
+        player.engine.knockback.y = 0;
+        player.engine.knockback.x = (player.x < c.x ? -1 : 1) * 3;
+
         if (health.isDead)
             explode(c);
         else

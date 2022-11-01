@@ -85,7 +85,7 @@ export function dassmann() {
     return c;
 }
 
-enum ArmTx {
+export enum ArmTx {
     Down,
     Rest,
     Tpose,

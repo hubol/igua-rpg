@@ -10,6 +10,7 @@ import {Undefined} from "../../utils/types/undefined";
 import {rng} from "../../utils/math/rng";
 import {Vector, vnew} from "../../utils/math/vector";
 import {progress} from "../../igua/data/progress";
+import {wait} from "../../cutscene/wait";
 
 const v = vnew();
 
@@ -51,6 +52,10 @@ export function clownHealth(maxHealth: number) {
             this.health = Math.max(0, this.health - factor);
             clownHealthUi.value.clownHealth = this;
             return this.isDead;
+        },
+        tookDamage() {
+            const prev = this.health;
+            return wait(() => this.health < prev);
         }
     };
 }

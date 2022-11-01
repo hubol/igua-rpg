@@ -201,8 +201,8 @@ export const CapitalStorehouseArgs = {
       Block_2: resolveBlock({ type: "Block", x: 0, y: 32, width: 32, height: 192, flippedX: false, flippedY: false, uid: "55823268_2", name: "", depth: 0 }),
       Block_3: resolveBlock({ type: "Block", x: 368, y: 32, width: 32, height: 192, flippedX: false, flippedY: false, uid: "55823268_3", name: "", depth: 0 }),
       Door: resolveDoor({ type: "Door", x: 40, y: 192, flippedX: false, flippedY: false, uid: "55913988_5", levelName: "CapitalTown", checkpointName: "FromStorehouse", name: "", depth: 0 }),
-      Player: { type: "Player", x: 184, y: 224, flippedX: false, flippedY: false, uid: "55988047_6", faceRight: true, name: "", depth: 0 },
-      Dassmann: { type: "Anchor", x: 96, y: 224, flippedX: false, flippedY: false, uid: "25979726_7", name: "Dassmann", depth: 0 },
+      Player: { type: "Player", x: 88, y: 224, flippedX: false, flippedY: false, uid: "55988047_6", faceRight: true, name: "", depth: 0 },
+      Dassmann: { type: "Anchor", x: 312, y: 224, flippedX: false, flippedY: false, uid: "25979726_7", name: "Dassmann", depth: 0 },
     };
   },
 };
