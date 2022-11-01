@@ -12,13 +12,14 @@ import {wait} from "../cutscene/wait";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {scene} from "../igua/scene";
 
+const distance = 50;
+
 export function dassmannPoker(damage: number) {
     const speed = 4;
     const launchAfterMs = 250;
-    const distance = 50;
 
     function p(angle: number) {
-        const p = poker(angle, damage).at(playerPos(angle, distance))
+        const p = poker(angle, damage)
             .withAsync(async () => {
                 await wait(() => p.hostile);
                 await sleep(launchAfterMs);
@@ -48,7 +49,6 @@ function poker(angle: number, damage: number) {
 
     const unit = vdeg(angle);
     const c = merge(container(), { hostile: false, speed: 0 });
-    c.pivot.set(9, 9);
     c.angle = angle;
     const s = Sprite.from(DassmannArrow).show(c);
     s.anchor.set(0.5, 0.5);
@@ -58,7 +58,11 @@ function poker(angle: number, damage: number) {
     w.factor = 1;
     s.scale.set(0, 0);
 
+    c.at(playerPos(angle, distance));
+
     c.withStep(() => {
+        if (!c.hostile)
+            c.moveTowards(playerPos(angle, distance), 2);
         const speed = c.speed * (ready ? 1 : 0);
         if (c.speed > 0 && c.hostile) {
             if (ready) {
