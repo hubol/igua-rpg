@@ -11,6 +11,7 @@ import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {scene} from "../igua/scene";
+import {DassPokeAppear, DassPokeLaunch, DassPokeReady} from "../sounds";
 
 const distance = 50;
 
@@ -21,8 +22,10 @@ export function dassmannPoker(damage: number) {
     function p(angle: number) {
         const p = poker(angle, damage)
             .withAsync(async () => {
+                DassPokeAppear.play();
                 await wait(() => p.hostile);
                 await sleep(launchAfterMs);
+                DassPokeReady.play();
                 p.speed = speed;
             });
 
@@ -71,6 +74,8 @@ function poker(angle: number, damage: number) {
             else {
                 s.scale.x += 0.02;
                 ready = s.scale.x >= 1.2;
+                if (ready)
+                    DassPokeLaunch.play();
             }
         }
 
