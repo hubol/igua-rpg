@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 256,
+  "width": 400,
   "height": 256,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,7 +12,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 32,
       "entities": [
         {
@@ -21,7 +21,7 @@
           "_eid": "55823268",
           "x": 0,
           "y": 224,
-          "width": 256,
+          "width": 400,
           "height": 32,
           "originX": 0,
           "originY": 0,
@@ -33,7 +33,7 @@
           "_eid": "55823268",
           "x": 0,
           "y": 0,
-          "width": 256,
+          "width": 400,
           "height": 32,
           "originX": 0,
           "originY": 0,
@@ -55,22 +55,10 @@
           "name": "Block",
           "id": 3,
           "_eid": "55823268",
-          "x": 224,
+          "x": 368,
           "y": 32,
           "width": 32,
           "height": 192,
-          "originX": 0,
-          "originY": 0,
-          "values": {"name": "", "depth": 0}
-        },
-        {
-          "name": "Block",
-          "id": 4,
-          "_eid": "55823268",
-          "x": 32,
-          "y": 120,
-          "width": 192,
-          "height": 16,
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
@@ -80,7 +68,7 @@
           "id": 5,
           "_eid": "55913988",
           "x": 40,
-          "y": 88,
+          "y": 192,
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "CapitalTown", "checkpointName": "FromStorehouse", "name": "", "depth": 0}
@@ -89,8 +77,8 @@
           "name": "Player",
           "id": 6,
           "_eid": "55988047",
-          "x": 96,
-          "y": 120,
+          "x": 184,
+          "y": 224,
           "originX": 11,
           "originY": 27,
           "values": {"faceRight": true, "name": "", "depth": 0}
@@ -114,7 +102,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"
@@ -126,7 +114,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"
@@ -138,7 +126,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"
@@ -150,7 +138,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 32,
       "decals": [],
       "folder": "..\\..\\src\\images"
@@ -162,7 +150,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 32,
       "decals": [],
       "folder": "../../src/images"

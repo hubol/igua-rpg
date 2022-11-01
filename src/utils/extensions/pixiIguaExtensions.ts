@@ -59,7 +59,7 @@ PIXI.DisplayObject.prototype.damageSource = function (d) {
     return this;
 }
 
-function findDamageSource(self: DisplayObject) {
+export function findDamageSource(self: DisplayObject) {
     const initial = self;
 
     while (self && !self.ext.damageSource) {
