@@ -10,14 +10,17 @@ import {Undefined} from "../utils/types/undefined";
 import {DisplayObject} from "pixi.js";
 import {waitHold} from "../cutscene/waitHold";
 import {hDistFromPlayer} from "../igua/logic/getOffsetFromPlayer";
-import {DassBuildTower} from "../sounds";
+import {ClownHurt, DassBuildTower} from "../sounds";
+import {Invulnerable} from "../pixins/invulnerable";
+import {bouncePlayer} from "../igua/bouncePlayer";
 
 const damage = {
     poker: 40,
 }
 
 export function dassmannBoss() {
-    const d = dassmann();
+    const d = dassmann()
+        .withPixin(Invulnerable());
     const { body, head, arml, armr } = d;
 
     const health = clownHealth(1000);
@@ -70,11 +73,39 @@ export function dassmannBoss() {
         await sleep(1000);
         while (true) {
             await attacks.run(buildTower());
-            await sleep(30);
+            await sleep(2000);
         }
     }
 
-    d.withAsync(doAs);
+    function takeDamage() {
+        if (d.invulnerable > 0) {
+            d.expression.antenna = 'shock';
+            head.wiggle = 1;
+            head.agape = 1;
+            if (d.invulnerable === 1)
+                head.agape = 0;
+            return;
+        }
+
+        d.expression.antenna = 'idle';
+        head.wiggle = 0;
+
+        if (!health.isDead && player.collides(d.hurtboxes)) {
+            d.invulnerable = 15;
+            bouncePlayer(d);
+            ClownHurt.play();
+            if (health.damage()) {
+                onDeath();
+            }
+        }
+    }
+
+    function onDeath() {
+        // TODO Impl
+    }
+
+       d.withAsync(doAs)
+        .withStep(takeDamage);
 
     // d.withAsync(async () => {
     //     while (true) {

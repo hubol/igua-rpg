@@ -68,7 +68,12 @@ export function dassmann() {
         off: () => {}
     }
 
-    const c = merge(container(puppet), { head, arml: body.arml, armr: body.armr, body, expression: {
+    const hurtboxes = [
+        new Graphics().beginFill(0).drawRect(-7, -28, 15, 12).hide(),
+        new Graphics().beginFill(0).drawRect(-2, -16, 5, 16).hide()
+    ];
+
+    const c = merge(container(puppet), { head, arml: body.arml, armr: body.armr, body, hurtboxes, expression: {
             antenna: <AntennaExpression>'idle',
             facing: <FacingExpression>'auto',
             walking: <WalkingExpression>'auto',
@@ -79,6 +84,8 @@ export function dassmann() {
             facingExpressions[c.expression.facing]();
             walkingExpressions[c.expression.walking]();
         });
+
+    c.addChild(...hurtboxes);
 
     const { diff } = trackPosition(c);
 
