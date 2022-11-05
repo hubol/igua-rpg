@@ -34,6 +34,7 @@ export function dassmannPoker(damage: number) {
 
     const c = container()
         .withAsync(async () => {
+            await sleep(1000);
             while (true) {
                 p(0)
                 await sleep(500);
