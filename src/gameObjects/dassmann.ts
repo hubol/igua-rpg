@@ -77,12 +77,15 @@ export function dassmann() {
             antenna: <AntennaExpression>'idle',
             facing: <FacingExpression>'auto',
             walking: <WalkingExpression>'auto',
-        } })
+        },
+        friction: 0, })
         .withGravityAndWallResist([0, -8], 8, 0.3)
         .withStep(() => {
             antennaExpressions[c.expression.antenna]();
             facingExpressions[c.expression.facing]();
             walkingExpressions[c.expression.walking]();
+            if (c.isOnGround)
+                c.speed.x = approachLinear(c.speed.x, 0, c.friction);
         });
 
     c.addChild(...hurtboxes);

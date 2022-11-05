@@ -12,6 +12,7 @@ import {player} from "./player";
 import {vnew} from "../utils/math/vector";
 import {ClownExplode, ClownHurt} from "../sounds";
 import {confetti} from "./confetti";
+import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 
 const v = vnew();
 
@@ -22,7 +23,7 @@ export function dassmannTower() {
         .withPixin(Invulnerable());
 
     c.pivot.set(10, 225);
-    const s = Sprite.from(DassmannTower).show(c);
+    const s = Sprite.from(towerTxs[0]).show(c);
     const mask = new Graphics().beginFill(0xff0000).drawRect(2, 2, 16, 224).hide().show(c);
     const stencil = new Graphics().beginFill(0xffffff).drawRect(0, 0, s.width, s.height).show(c);
     stencil.y = s.height;
@@ -38,6 +39,11 @@ export function dassmannTower() {
 
         c.invulnerable = 20;
         health.damage();
+        if (health.unit < 0.34)
+            s.texture = towerTxs[2];
+        else if (health.unit < 0.68)
+            s.texture = towerTxs[1];
+
         v.at(player);
         v.y -= 8;
         v.x = c.x;
@@ -71,6 +77,8 @@ export function dassmannTower() {
 
     return c;
 }
+
+const towerTxs = subimageTextures(DassmannTower, 3);
 
 function explode(d: DisplayObject) {
     const b = getWorldBounds(d);

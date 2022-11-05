@@ -12,15 +12,19 @@ import {waitHold} from "../cutscene/waitHold";
 import {hDistFromPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {ClownHurt, DassBuildTower} from "../sounds";
 import {Invulnerable} from "../pixins/invulnerable";
-import {bouncePlayer} from "../igua/bouncePlayer";
+import {bouncePlayer, bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 
-const damage = {
-    poker: 40,
+const consts = {
+    damage: {
+        poker: 40,
+    },
+    friction: 0.3,
 }
 
 export function dassmannBoss() {
     const d = dassmann()
         .withPixin(Invulnerable());
+    d.friction = consts.friction;
     const { body, head, arml, armr } = d;
 
     const health = clownHealth(1000);
@@ -56,7 +60,7 @@ export function dassmannBoss() {
         .withAsyncOnce(async self => {
             self.tower = await buildOneTower();
 
-            const poker = dassmannPoker(damage.poker).damageSource(d).show();
+            const poker = dassmannPoker(consts.damage.poker).damageSource(d).show();
             self.on('removed', () => !poker.destroyed && poker.destroy());
 
             await health.tookDamage();
@@ -92,7 +96,8 @@ export function dassmannBoss() {
 
         if (!health.isDead && player.collides(d.hurtboxes)) {
             d.invulnerable = 15;
-            bouncePlayer(d);
+            bouncePlayerOffDisplayObject(d);
+            d.speed.x -= player.engine.knockback.x;
             ClownHurt.play();
             if (health.damage()) {
                 onDeath();
