@@ -10,6 +10,7 @@ import {Undefined} from "../utils/types/undefined";
 import {DisplayObject} from "pixi.js";
 import {waitHold} from "../cutscene/waitHold";
 import {hDistFromPlayer} from "../igua/logic/getOffsetFromPlayer";
+import {DassBuildTower} from "../sounds";
 
 const damage = {
     poker: 40,
@@ -31,14 +32,26 @@ export function dassmannBoss() {
         return dassmannTower().at(Math.round((d.x + player.x) / 2), d.y).show();
     }
 
+    async function buildOneTower() {
+        const [ armf, armr ] = getPlayerFacingArms();
+
+        armf.pose = ArmTx.Rest;
+        armr.pose = ArmTx.Tpose;
+        DassBuildTower.play();
+        armf.raise().over(250);
+        armr.raise().over(250).then(() => armr.down().over(250));
+        await sleep(125);
+        await wait(() => d.isOnGround);
+        const tower = spawnTowerBetweenDassmannAndPlayer();
+        d.speed.y = -1.75;
+        head.agape = 1;
+        sleep(500).then(() => head.agape = 0);
+        return tower;
+    }
+
     const buildTower = attack({ tower: Undefined<DisplayObject>() })
         .withAsyncOnce(async self => {
-            const [ armf, armr ] = getPlayerFacingArms();
-            armf.raise().over(250);
-            armr.down().over(250);
-
-            await wait(() => d.isOnGround);
-            self.tower = spawnTowerBetweenDassmannAndPlayer();
+            self.tower = await buildOneTower();
 
             const poker = dassmannPoker(damage.poker).damageSource(d).show();
             self.on('removed', () => !poker.destroyed && poker.destroy());
@@ -49,11 +62,7 @@ export function dassmannBoss() {
             while (true) {
                 await waitHold(() => !!self.tower && self.tower.destroyed, 60);
                 await wait(() => d.isOnGround && hDistFromPlayer(d) > 64);
-                const [ armf, armr ] = getPlayerFacingArms();
-                armf.pose = ArmTx.Rest;
-                armf.raise().over(250);
-                armr.down().over(250);
-                self.tower = spawnTowerBetweenDassmannAndPlayer();
+                self.tower = await buildOneTower();
             }
         });
 
