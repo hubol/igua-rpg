@@ -35,7 +35,7 @@ export function dassmannPoker(damage: number) {
 
     const c = container()
         .withAsync(async () => {
-            const ring = warningRing().behind();
+            const ring = warningRing().ahead(0);
             c.on('removed', () => ring.die());
 
             await sleep(1000);
@@ -63,7 +63,7 @@ function warningRing() {
     const g = merge(new Graphics(), { die })
         .withStep(() => {
             g.clear();
-            g.lineStyle(1, 0xF0B020);
+            g.lineStyle(2, 0xF0B020);
             for (let i = 0; i < 360; i += 8) {
                 const len = nlerp(
                     distance * Math.max(0, Math.min(1, scale * (Math.sin(i * ToRad * 8) + 1))),
