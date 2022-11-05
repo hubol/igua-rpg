@@ -2,7 +2,7 @@ import {Graphics, Sprite} from "pixi.js";
 import {DassmannArrow} from "../textures";
 import {container} from "../utils/pixi/container";
 import {player} from "./player";
-import {vdeg} from "../utils/math/angles";
+import {ToRad, vdeg} from "../utils/math/angles";
 import {merge} from "../utils/object/merge";
 import {distFromPlayer} from "../igua/logic/getOffsetFromPlayer";
 import {sleep} from "../cutscene/sleep";
@@ -12,6 +12,7 @@ import {wait} from "../cutscene/wait";
 import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {scene} from "../igua/scene";
 import {DassPokeAppear, DassPokeLaunch, DassPokeReady} from "../sounds";
+import {approachLinear, nlerp} from "../utils/math/number";
 
 const distance = 50;
 
@@ -34,6 +35,9 @@ export function dassmannPoker(damage: number) {
 
     const c = container()
         .withAsync(async () => {
+            const ring = warningRing().behind();
+            c.on('removed', () => ring.die());
+
             await sleep(1000);
             while (true) {
                 p(0)
@@ -46,6 +50,39 @@ export function dassmannPoker(damage: number) {
         });
 
     return c;
+}
+
+function warningRing() {
+    let dying = false;
+    let scale = 0;
+
+    function die() {
+        dying = true;
+    }
+
+    const g = merge(new Graphics(), { die })
+        .withStep(() => {
+            g.clear();
+            g.lineStyle(1, 0xF0B020);
+            for (let i = 0; i < 360; i += 8) {
+                const len = nlerp(
+                    distance * Math.max(0, Math.min(1, scale * (Math.sin(i * ToRad * 8) + 1))),
+                    distance,
+                    scale);
+                let v = vdeg(i);
+                g.moveTo(v.x * len, v.y * len);
+                v = vdeg(i + 2);
+                g.lineTo(v.x * len, v.y * len);
+            }
+
+            g.angle = scene.s * 8;
+            g.at(getPlayerCenterWorld());
+            scale = approachLinear(scale, dying ? 0 : 1, 1 / 30);
+            if (dying && scale < 0.05)
+                g.destroy();
+        });
+    ;
+    return g;
 }
 
 function poker(angle: number, damage: number) {
