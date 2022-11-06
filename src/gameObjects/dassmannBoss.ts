@@ -133,18 +133,18 @@ export function dassmannBoss() {
         }
     }
 
+    let framesSinceInvulnerable = 1000;
+
     function takeDamage() {
         if (d.invulnerable > 0) {
-            d.expression.antenna = 'shock';
-            head.wiggle = 1;
+            framesSinceInvulnerable = 0;
             head.agape = 1;
             if (d.invulnerable === 1)
                 head.agape = 0;
             return;
         }
 
-        d.expression.antenna = 'idle';
-        head.wiggle = 0;
+        framesSinceInvulnerable++;
 
         if (!health.isDead && player.collides(d.hurtboxes)) {
             d.invulnerable = 15;
@@ -158,23 +158,24 @@ export function dassmannBoss() {
         }
     }
 
+    function doDamageAnimation() {
+        if (framesSinceInvulnerable < 25) {
+            d.expression.antenna = 'shock';
+            head.wiggle = 1;
+            return;
+        }
+
+        d.expression.antenna = 'idle';
+        head.wiggle = 0;
+    }
+
     function onDeath() {
         // TODO Impl
     }
 
-       d.withAsync(doAs)
-        .withStep(takeDamage);
-
-    // d.withAsync(async () => {
-    //     while (true) {
-    //         d.speed.x = 1;
-    //         await waitHold(() => d.speed.x === 0, 30);
-    //         // dassmannTower().at(rng() * 256, d.y).show();
-    //         d.speed.x = -1;
-    //         await waitHold(() => d.speed.x === 0, 30);
-    //         // dassmannTower().at(rng() * 256, d.y).show();
-    //     }
-    // });
+    d.withAsync(doAs)
+     .withStep(takeDamage)
+     .withStep(doDamageAnimation);
 
     return d;
 }
