@@ -18,7 +18,7 @@ import {approachLinear} from "../utils/math/number";
 
 const consts = {
     damage: {
-        poker: 40,
+        poker: 50,
     },
     friction: 0.3,
 }
