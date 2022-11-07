@@ -29,6 +29,7 @@ export function dassmannBoss() {
         .withPixin(FreeSpace({ offsets: [[0, -8]] }));
     d.friction = consts.friction;
     const { body, head, arml, armr } = d;
+    body.playFootsteps = true;
 
     const health = clownHealth(1000);
 

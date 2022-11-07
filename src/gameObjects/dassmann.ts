@@ -12,6 +12,8 @@ import {scene} from "../igua/scene";
 import {getWorldPos} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {trackPosition} from "../igua/trackPosition";
+import {Force} from "../utils/types/force";
+import { DassStep } from "../sounds";
 
 type AntennaExpression = 'idle' | 'shock' | 'off';
 type FacingExpression = 'auto' | 'off';
@@ -112,11 +114,14 @@ function mkBody() {
 
     let face = 0;
 
-    const c = merge(container(), { arml, armr, bootl, bootr, face: 0, pedometer: 0, feetFace: Undefined<number>() });
+    const c = merge(container(), { arml, armr, bootl, bootr, face: 0, pedometer: 0, feetFace: Undefined<number>(), playFootsteps: false });
     Sprite.from(DassmannTorso).show(c);
     c.addChild(bootl, bootr);
     Sprite.from(headTxs[HeadTx.Shield]).at(-9, -19).show(c);
     c.addChild(arml, armr);
+
+    let bootlpy = Force<number>();
+    let bootrpy = Force<number>();
 
     c.withStep(() => {
         face = approachLinear(face, c.face, 0.1);
@@ -139,6 +144,14 @@ function mkBody() {
         bootr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk + Math.PI * 0.5) - 1);
         arml.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk + Math.PI * 1) - 1) / 2;
         armr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk + Math.PI * 1.5) - 1) / 2;
+
+        if (bootlpy !== undefined && c.playFootsteps && (c.parent.parent as any).isOnGround) {
+            if ((bootlpy > .5 && bootl.pivot.y <= .5) || (bootrpy > .5 && bootr.pivot.y <= .5))
+                DassStep.play();
+        }
+
+        bootlpy = bootl.pivot.y;
+        bootrpy = bootr.pivot.y;
     });
 
     return c;

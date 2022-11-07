@@ -232,6 +232,11 @@ export const DassPokeReady = new Howl({
     
 });
 
+export const DassStep = new Howl({
+    src: [require("./sound/dass step.ogg"), require("./sound/dass step.mp3")],
+    
+});
+
 export const Dig = new Howl({
     src: [require("./sound/dig.ogg"), require("./sound/dig.mp3")],
     
