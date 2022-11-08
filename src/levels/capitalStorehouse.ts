@@ -51,6 +51,7 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
 
     const d = dassmann().at(level.Dassmann).show();
     d.body.playFootsteps = true;
+    key.index = d.index;
 
     async function dassmannIntroScene() {
         scene.camera.followPlayer = false;
