@@ -104,6 +104,7 @@ export function getInitialFlags()
             turnedFireplaceOn: false,
             spokeWithStatua: false,
             openedStorage: false,
+            defeatedDassmann: false,
         }
     };
 }

@@ -10,6 +10,7 @@ const volumes: Partial<Record<Title, number>> = {
     AmbientLava: 0.8,
     CapitalMusicPlease: 0.65,
     BlindHouse: 0.5,
+    UnusualOminousMusic: 0.7,
 }
 
 export function getMusicVolume(howl: Howl) {

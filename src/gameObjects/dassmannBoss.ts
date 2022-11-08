@@ -126,7 +126,7 @@ export function dassmannBoss() {
         });
 
     async function doAs() {
-        await sleep(1000);
+        await sleep(250);
         while (true) {
             await attacks.run(buildTower());
             await sleep(1000);
