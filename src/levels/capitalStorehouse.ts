@@ -18,7 +18,10 @@ import {sleep} from "../cutscene/sleep";
 import {show, showAll} from "../cutscene/dialog";
 import {moveCameraToPlayerTarget} from "../igua/camera";
 import {move} from "../cutscene/move";
-import {OracleUnlockDoor} from "../sounds";
+import {ArrowKnock, OracleUnlockDoor, PageFlip} from "../sounds";
+import {smallPop} from "../gameObjects/smallPop";
+import {rng} from "../utils/math/rng";
+import {colord} from "colord";
 
 export function CapitalStorehouse() {
     scene.backgroundColor = 0xD0C8C0;
@@ -115,7 +118,10 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
         makeStorageKey(key2).show();
 
         await Promise.all([
-            sleep(250).then(() => move(key2).off(player.x - key2.x, -40).over(750)),
+            sleep(250).then(() => {
+                ArrowKnock.play();
+                return move(key2).off(player.x - key2.x, -40).over(750);
+            }),
             show(`You can have this. I'll find a better souvenir.`)
         ]);
 
@@ -131,6 +137,14 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
         dass.expression.antenna = 'flight';
         dass.withStep(() => {
             dass.pivot.y += 3;
+        });
+        dass.withAsync(async () => {
+            while (dass.pivot.y < 256) {
+                (PageFlip.rate(0.3 + rng() * 0.9) as any).play();
+                smallPop(12, scene.playerStage).at(dass.pivot.vcpy().scale(-1).add(dass))
+                    .tinted(colord({ h: rng() * 360, s: 50, v: 100 }).toPixi());
+                await sleep(100);
+            }
         });
 
         jukebox.play(UnusualOminousMusic);
