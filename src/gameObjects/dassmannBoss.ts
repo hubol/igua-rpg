@@ -15,6 +15,8 @@ import {Invulnerable} from "../pixins/invulnerable";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {FreeSpace} from "../pixins/freeSpace";
 import {approachLinear} from "../utils/math/number";
+import {merge} from "../utils/object/merge";
+import {container} from "../utils/pixi/container";
 
 const consts = {
     damage: {
@@ -24,7 +26,7 @@ const consts = {
 }
 
 export function dassmannBoss() {
-    const d = dassmann()
+    const d = merge(dassmann(), { isDead: false })
         .withPixin(Invulnerable())
         .withPixin(FreeSpace({ offsets: [[0, -8]] }));
     d.friction = consts.friction;
@@ -33,7 +35,8 @@ export function dassmannBoss() {
 
     const health = clownHealth(1000);
 
-    const attacks = attackRunner().show(d);
+    const attackRunnerContainer = container().withAsync(doAs).show(d);
+    const attacks = attackRunner().show(attackRunnerContainer);
 
     function getPlayerFacingArms() {
         return [player.x < d.x ? arml : armr, player.x < d.x ? armr : arml];
@@ -171,10 +174,12 @@ export function dassmannBoss() {
     }
 
     function onDeath() {
+        d.isDead = true;
+        attackRunnerContainer.destroy();
         // TODO Impl
     }
 
-    d.withAsync(doAs)
+    d
      .withStep(takeDamage)
      .withStep(doDamageAnimation);
 

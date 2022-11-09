@@ -18,6 +18,7 @@ import {sleep} from "../cutscene/sleep";
 import {show} from "../cutscene/dialog";
 import {moveCameraToPlayerTarget} from "../igua/camera";
 import {move} from "../cutscene/move";
+import {OracleUnlockDoor} from "../sounds";
 
 export function CapitalStorehouse() {
     scene.backgroundColor = 0xD0C8C0;
@@ -83,12 +84,18 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
     }
 
     async function beginBoss() {
+        level.Door.ext.showClosedMessage = false;
+        level.Door.locked = true;
         jukebox.play(Hemaboss1);
         const p = d.vcpy();
         d.destroy();
-        dassmannBoss().at(p).show();
+        const boss = dassmannBoss().at(p).show();
         await moveCameraToPlayerTarget(5);
         scene.camera.followPlayer = true;
+        await wait(() => boss.isDead);
+        jukebox.currentSong?.fade(1, 0, 1000);
+        level.Door.locked = false;
+        OracleUnlockDoor.play();
     }
 
     scene.gameObjectStage.withAsync(async () => {
