@@ -15,7 +15,7 @@ import {trackPosition} from "../igua/trackPosition";
 import {Force} from "../utils/types/force";
 import { DassStep } from "../sounds";
 
-type AntennaExpression = 'idle' | 'shock' | 'off';
+type AntennaExpression = 'idle' | 'shock' | 'flight' | 'off';
 type FacingExpression = 'auto' | 'off';
 type WalkingExpression = 'auto' | 'off';
 
@@ -35,6 +35,10 @@ export function dassmann() {
         shock: () => {
             head.antennal = (((Math.sin(Math.round(scene.s * Math.PI * 6)) + 1) * 8) % 2 - 1) * 0.6;
             head.antennar = -head.antennal;
+        },
+        flight: () => {
+            head.antennal = approachLinear(head.antennal, 0.4, 0.1);
+            head.antennar = approachLinear(head.antennar, 0.4, 0.1);
         },
         off: () => {},
     }

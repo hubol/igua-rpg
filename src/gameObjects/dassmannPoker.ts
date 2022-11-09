@@ -13,6 +13,7 @@ import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {scene} from "../igua/scene";
 import {DassPokeAppear, DassPokeLaunch, DassPokeReady} from "../sounds";
 import {approachLinear, nlerp} from "../utils/math/number";
+import {findDamageSource} from "../utils/extensions/pixiIguaExtensions";
 
 const distance = 50;
 
@@ -22,6 +23,10 @@ export function dassmannPoker(damage: number) {
 
     function p(angle: number) {
         const p = poker(angle, damage)
+            .withStep(() => {
+                if (findDamageSource(c)?.destroyed)
+                    p.destroy();
+            })
             .withAsync(async () => {
                 DassPokeAppear.play();
                 await wait(() => p.hostile);
@@ -34,6 +39,10 @@ export function dassmannPoker(damage: number) {
     }
 
     const c = container()
+        .withStep(() => {
+            if (findDamageSource(c)?.destroyed)
+                c.destroy();
+        })
         .withAsync(async () => {
             const ring = warningRing().ahead(0);
             c.on('removed', () => ring.die());

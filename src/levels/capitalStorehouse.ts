@@ -5,7 +5,7 @@ import {jukebox} from "../igua/jukebox";
 import {CapitalMusicPlease, Hemaboss1, UnusualOminousMusic} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
 import {Column, GroundSpeckles, KeyBlue} from "../textures";
-import {filters, Sprite} from "pixi.js";
+import {DisplayObject, filters, Sprite} from "pixi.js";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {dassmannBoss} from "../gameObjects/dassmannBoss";
 import {progress} from "../igua/data/progress";
@@ -15,7 +15,7 @@ import {wait} from "../cutscene/wait";
 import {player} from "../gameObjects/player";
 import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {moveCameraToPlayerTarget} from "../igua/camera";
 import {move} from "../cutscene/move";
 import {OracleUnlockDoor} from "../sounds";
@@ -37,6 +37,11 @@ export function CapitalStorehouse() {
     enrichDassmannBoss(level);
 }
 
+function makeStorageKey(d: DisplayObject) {
+    d.asCollectible(progress.flags.capital.key, 'fromStorage');
+    return d;
+}
+
 function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>) {
     const { capital } = progress.flags;
 
@@ -45,10 +50,8 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
 
     const key = Sprite.from(KeyBlue).at([32, -24].add(level.Dassmann)).show();
 
-    if (capital.defeatedDassmann) {
-        key.asCollectible(capital.key, 'fromStorage');
-        return;
-    }
+    if (capital.defeatedDassmann)
+        return makeStorageKey(key);
 
     const d = dassmann().at(level.Dassmann).show();
     d.body.playFootsteps = true;
@@ -87,13 +90,52 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
         level.Door.ext.showClosedMessage = false;
         level.Door.locked = true;
         jukebox.play(Hemaboss1);
-        const p = d.vcpy();
+        const boss = dassmannBoss().at(d).show();
         d.destroy();
-        const boss = dassmannBoss().at(p).show();
         await moveCameraToPlayerTarget(5);
         scene.camera.followPlayer = true;
         await wait(() => boss.isDead);
+
+        const dass = dassmann().at(boss).show();
+        boss.destroy();
+
+        progress.flags.capital.defeatedDassmann = true;
+
         jukebox.currentSong?.fade(1, 0, 1000);
+        cutscene.play(() => dassmannOutroScene(dass));
+    }
+
+    async function dassmannOutroScene(dass: ReturnType<typeof dassmann>) {
+        await sleep(500);
+        await showAll(`I'm not like the others.`,
+            `They're here for something else.`);
+
+        const key2 = Sprite.from(KeyBlue).at(dass.x, player.y - 8);
+        key2.ext.collectible = false;
+        makeStorageKey(key2).show();
+
+        await Promise.all([
+            sleep(250).then(() => move(key2).off(player.x - key2.x, -40).over(750)),
+            show(`You can have this. I'll find a better souvenir.`)
+        ]);
+
+        dass.withAsync(async () => {
+            await Promise.all([
+                dass.arml.raise().over(200),
+                dass.armr.raise().over(200),
+            ])
+        });
+
+        await show(`Next time, let's not fight.`);
+
+        dass.expression.antenna = 'flight';
+        dass.withStep(() => {
+            dass.pivot.y += 3;
+        });
+
+        jukebox.play(UnusualOminousMusic);
+
+        key2.ext.collectible = true;
         level.Door.locked = false;
         OracleUnlockDoor.play();
     }
