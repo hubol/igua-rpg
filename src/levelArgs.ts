@@ -178,6 +178,7 @@ export const CapitalOutskirtsArgs = {
       Door: resolveDoor({ type: "Door", x: 184, y: 208, flippedX: false, flippedY: false, uid: "55913988_3", levelName: "CapitalTemple", checkpointName: "", name: "", depth: 0 }),
       Window2: resolveRegion({ type: "Region", x: 224, y: 172, width: 32, height: 32, flippedX: false, flippedY: false, uid: "25971607_4", name: "Window2", depth: 0 }),
       Window1: resolveRegion({ type: "Region", x: 144, y: 172, width: 32, height: 32, flippedX: false, flippedY: false, uid: "25971607_5", name: "Window1", depth: 0 }),
+      FromTemple: { type: "Checkpoint", x: 240, y: 240, flippedX: false, flippedY: false, uid: "55940370_6", name: "FromTemple", faceRight: true, depth: 0 },
     };
   },
 };
@@ -252,6 +253,35 @@ export const CapitalStorehouseArgs = {
       Door: resolveDoor({ type: "Door", x: 40, y: 192, flippedX: false, flippedY: false, uid: "55913988_5", levelName: "CapitalTown", checkpointName: "FromStorehouse", name: "", depth: 0 }),
       Player: { type: "Player", x: 88, y: 224, flippedX: false, flippedY: false, uid: "55988047_6", faceRight: true, name: "", depth: 0 },
       Dassmann: { type: "Anchor", x: 312, y: 224, flippedX: false, flippedY: false, uid: "25979726_7", name: "Dassmann", depth: 0 },
+    };
+  },
+};
+
+export const CapitalTempleArgs = {
+  width: 424,
+  height: 256,
+  gameObjectsSupplier: () => {
+    return {
+      CapitalArc: resolveDecalGameObject({ x: 16, y: 56, originX: 0, originY: 0, scaleX: 1, scaleY: 2, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      CapitalArc_1: resolveDecalGameObject({ x: 408, y: 56, originX: 0, originY: 0, scaleX: -1, scaleY: 2, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      GlowingCircle: resolveDecalGameObject({ x: 280, y: -152, originX: 0.5, originY: 0.5, scaleX: 40, scaleY: 2, rotation: 0, layerName: "BackgroundDecals", texture: GlowingCircle }),
+      Key1: resolveDecalGameObject({ x: 216, y: 176, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: KeyRed }),
+      Key2: resolveDecalGameObject({ x: 296, y: 176, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: KeyRed }),
+      Key3: resolveDecalGameObject({ x: 376, y: 176, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: KeyRed }),
+      Block: resolveBlock({ type: "Block", x: 0, y: 224, width: 552, height: 32, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
+      Door: resolveDoor({ type: "Door", x: 32, y: 192, flippedX: false, flippedY: false, uid: "55913988_1", levelName: "CapitalOutskirts", checkpointName: "FromTemple", name: "", depth: 0 }),
+      Door1: resolveDoor({ type: "Door", x: 200, y: 192, flippedX: false, flippedY: false, uid: "55913988_2", levelName: "UnrealBlind", checkpointName: "", name: "Door1", depth: 0 }),
+      Door2: resolveDoor({ type: "Door", x: 280, y: 192, flippedX: false, flippedY: false, uid: "55913988_3", levelName: "UnrealT9", checkpointName: "", name: "Door2", depth: 0 }),
+      Door3: resolveDoor({ type: "Door", x: 360, y: 192, flippedX: false, flippedY: false, uid: "55913988_4", levelName: "UnrealDrawing", checkpointName: "", name: "Door3", depth: 0 }),
+      Player: { type: "Player", x: 80, y: 224, flippedX: false, flippedY: false, uid: "55988047_11", faceRight: true, name: "", depth: 0 },
+      Sign: resolveSign({ type: "Sign", x: 144, y: 224, flippedX: false, flippedY: false, uid: "86706091_12", title: "Big Key", message: "", name: "", depth: 0 }),
+      BigKey: { type: "Anchor", x: 266, y: 120, flippedX: false, flippedY: false, uid: "25979726_16", name: "BigKey", depth: 0 },
+      Block_1: resolveBlock({ type: "Block", x: 0, y: 0, width: 16, height: 224, flippedX: false, flippedY: false, uid: "55823268_21", name: "", depth: 0 }),
+      Block_2: resolveBlock({ type: "Block", x: 408, y: 0, width: 16, height: 224, flippedX: false, flippedY: false, uid: "55823268_22", name: "", depth: 0 }),
+      SlopeRight: resolveSlopeRight({ type: "SlopeRight", x: 212, y: 0, width: 188, height: 112, flippedX: false, flippedY: true, uid: "55824435_23", name: "", depth: 0 }),
+      SlopeLeft: resolveSlopeLeft({ type: "SlopeLeft", x: 24, y: 0, width: 188, height: 112, flippedX: false, flippedY: true, uid: "55845599_24", name: "", depth: 0 }),
+      Block_3: resolveBlock({ type: "Block", x: 16, y: 0, width: 16, height: 56, flippedX: false, flippedY: false, uid: "55823268_25", name: "", depth: 0 }),
+      Block_4: resolveBlock({ type: "Block", x: 400, y: 0, width: 16, height: 56, flippedX: false, flippedY: false, uid: "55823268_26", name: "", depth: 0 }),
     };
   },
 };

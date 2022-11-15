@@ -162,10 +162,9 @@ export async function oracleAdviceCapital() {
     }
     else if (allKeys) {
         await sayNeedBigKeyPieces();
-        // if (!bigKey.piece1) {
-        //     await show(`One piece requires you to quickly and cleverly duck on tree stumps.`);
-        //     return await show(`If your speed feels insufficient, you might want to visit the bar.`);
-        // }
+        if (!bigKey.piece1) {
+            return await show(`One piece requires you to carefeully watch falling spikes.`);
+        }
         // if (!bigKey.piece2) {
         //     return await show(`One piece requires you to utilize ancient technology.`);
         // }
@@ -175,11 +174,11 @@ export async function oracleAdviceCapital() {
     }
     else {
         await sayNeedKeys();
-        if (!key.fromTiming) {
-            return await show(`One is above the capital square.`);
-        }
         if (!key.fromClown) {
             return await show(`One has been stolen by an invader in the capital outskirts.`);
+        }
+        if (!key.fromTiming) {
+            return await show(`One is above the capital square.`);
         }
         if (!key.fromStorage) {
             return await show(`One is in the capital shop's storehouse.`);
