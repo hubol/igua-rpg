@@ -150,6 +150,45 @@ export async function oracleAdviceVolcano() {
     await sayNoAdvice();
 }
 
+export async function oracleAdviceVCapital() {
+    const { key, bigKey  } = progress.flags.capital;
+    const allKeys = key.fromTiming && key.fromStorage && key.fromClown;
+
+    if (bigKey.reward) {
+        // if (!defeatedVileAngel) {
+        //     await show(`You repaired the big key and received the blessing of flame!`);
+        //     return await show(`Vanquish the vile invader in the lava pools to continue your mission.`);
+        // }
+    }
+    else if (allKeys) {
+        await sayNeedBigKeyPieces();
+        // if (!bigKey.piece1) {
+        //     await show(`One piece requires you to quickly and cleverly duck on tree stumps.`);
+        //     return await show(`If your speed feels insufficient, you might want to visit the bar.`);
+        // }
+        // if (!bigKey.piece2) {
+        //     return await show(`One piece requires you to utilize ancient technology.`);
+        // }
+        // if (!bigKey.piece3) {
+        //     return await show(`One piece requires you to draw.`);
+        // }
+    }
+    else {
+        await sayNeedKeys();
+        if (!key.fromTiming) {
+            return await show(`One is above the capital square.`);
+        }
+        if (!key.fromClown) {
+            return await show(`One has been stolen by an invader in the capital outskirts.`);
+        }
+        if (!key.fromStorage) {
+            return await show(`One is in the capital shop's storehouse.`);
+        }
+    }
+
+    await sayNoAdvice();
+}
+
 function sayNeedBigKeyPieces() {
     return show(`You need to find the big key pieces by entering the unreal worlds.`);
 }

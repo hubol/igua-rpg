@@ -159,6 +159,18 @@ export const CapitalOracleArgs = {
   },
 };
 
+export const CapitalOutskirtsArgs = {
+  width: 256,
+  height: 320,
+  gameObjectsSupplier: () => {
+    return {
+      Block: resolveBlock({ type: "Block", x: 0, y: 240, width: 256, height: 80, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
+      Gate: resolveGate({ type: "Gate", x: 224, y: 208, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_1", levelName: "CapitalTown", checkpointName: "FromOutskirts", name: "", depth: 0 }),
+      Player: { type: "Player", x: 184, y: 240, flippedX: false, flippedY: false, uid: "55988047_2", faceRight: false, name: "", depth: 0 },
+    };
+  },
+};
+
 export const CapitalShopArgs = {
   width: 256,
   height: 256,
@@ -251,6 +263,7 @@ export const CapitalTownArgs = {
       CapitalPlantedTree_3: resolveDecalGameObject({ x: 328, y: 321, originX: 0.5, originY: 1, scaleX: -1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalPlantedTree }),
       CapitalChain: resolveDecalGameObject({ x: 272, y: 184, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalChain }),
       CapitalChain_1: resolveDecalGameObject({ x: 272, y: 232, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalChain }),
+      CapitalPlantedTree_4: resolveDecalGameObject({ x: 72, y: 369, originX: 0.5, originY: 1, scaleX: -1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalPlantedTree }),
       CapitalUndergroundBackdrop: resolveDecalGameObject({ x: 392, y: 320, originX: 0, originY: 0, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CapitalUndergroundBackdrop }),
       CloudLong: resolveDecalGameObject({ x: 576, y: 272, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
       CloudLong_1: resolveDecalGameObject({ x: 616, y: 288, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
@@ -302,6 +315,9 @@ export const CapitalTownArgs = {
       CapitalBubble: resolveCapitalBubble({ type: "CapitalBubble", x: 112, y: 232, flippedX: false, flippedY: false, uid: "37271132_40", obscurity: 0, name: "", depth: 0 }),
       AdviceSign: { type: "Anchor", x: 168, y: 318, flippedX: false, flippedY: false, uid: "25979726_41", name: "AdviceSign", depth: 0 },
       FromOracle: { type: "Checkpoint", x: 264, y: 352, flippedX: false, flippedY: false, uid: "55940370_42", name: "FromOracle", faceRight: true, depth: 0 },
+      Block_17: resolveBlock({ type: "Block", x: 0, y: 368, width: 144, height: 72, flippedX: false, flippedY: false, uid: "55823268_43", name: "", depth: 0 }),
+      Gate_1: resolveGate({ type: "Gate", x: 0, y: 336, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_44", levelName: "CapitalOutskirts", checkpointName: "FromTown", name: "", depth: 0 }),
+      FromOutskirts: { type: "Checkpoint", x: 72, y: 368, flippedX: false, flippedY: false, uid: "55940370_45", name: "FromOutskirts", faceRight: true, depth: 0 },
     };
   },
 };
