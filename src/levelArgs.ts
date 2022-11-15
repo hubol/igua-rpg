@@ -23,7 +23,7 @@ import { resolveTreeStump } from "./gameObjects/treeStump";
 import { resolveTreeStumpDestructive } from "./gameObjects/treeStumpDestructive";
 import { resolveValuableBlue, resolveValuableOrange } from "./gameObjects/valuable";
 import { resolveBlock, resolvePipeHorizontal, resolvePipeLeft, resolvePipeLeftEnd, resolvePipeRight, resolvePipeRightEnd, resolveSlopeLeft, resolveSlopeRight } from "./gameObjects/walls";
-import { Anchor, BallColorful, BookCollection, Bottle1, Bottle2, CandleSmallRed, CapitalArc, CapitalBuilding1, CapitalChain, CapitalChimney, CapitalInnSign, CapitalPlantedTree, CapitalPlatform, CapitalShopSign, CapitalUndergroundBackdrop, CapitalVolcanoBackdrop, CloudLong, Cobweb, CocktailGlass, ColorfulBricks, Column, CracksA, CrackSmall, CrateWooden, CrudeHouse, CrudeHouseB, CrudeHouseC, DesertTemple, DinerTable, DontPoster, FlyCage, FlyCageBroken, GiantsDinerTable, GiantsExterior, GiantsFoodStash, GlowingCircle, GlowingDiamond, GlowingEdge, GreenCable, GroundSpeckles, HintArrow, JungleBrushHeavy, JungleHiddenHouseWalls, JungleHouse1, JunglePlank, JunglePlankDecoration, JungleShelfLarge, JungleShelfSmall, JungleTempleExterior, JungleTent, JungleTreeRoot, KeyGreen, KeyRed, KeyYellow, KeyYellowShrunken, LightShelf, Obelisk, OrnateCarpet, OverheadLamp, PaSpeaker, Pipe, PoppingRocksBox, PotteryOrange, PotteryOrangeDamaged, Rainbow1, Rainbow2, Rope, RoseVase, SignInn, SignNeonBar, SignNeonInn, SignTavern, SmallDecorativeRock, SpikyBrushA, SpikyBrushB, VineSmall, VolcanoBrickWall, VolcanoChain, VolcanoCrystal, VolcanoCrystalBuilding, VolcanoCrystalStoop, VolcanoCrystalTile, VolcanoDeadBush, VolcanoFloralWallpaper, VolcanoInnShopBuilding, VolcanoMineralDebris, VolcanoOracleHouseReflection, VolcanoPillarBroken, VolcanoTempleExterior, WhiskeyGlass, WoodenStool } from "./textures";
+import { Anchor, BallColorful, BookCollection, Bottle1, Bottle2, CandleSmallRed, CapitalArc, CapitalBuilding1, CapitalChain, CapitalChimney, CapitalInnSign, CapitalPlantedBush, CapitalPlantedTree, CapitalPlatform, CapitalShopSign, CapitalTemple, CapitalUndergroundBackdrop, CapitalVolcanoBackdrop, CloudLong, Cobweb, CocktailGlass, ColorfulBricks, Column, CracksA, CrackSmall, CrateWooden, CrudeHouse, CrudeHouseB, CrudeHouseC, DesertTemple, DinerTable, DontPoster, FlyCage, FlyCageBroken, GiantsDinerTable, GiantsExterior, GiantsFoodStash, GlowingCircle, GlowingDiamond, GlowingEdge, GreenCable, GroundSpeckles, HintArrow, JungleBrushHeavy, JungleHiddenHouseWalls, JungleHouse1, JunglePlank, JunglePlankDecoration, JungleShelfLarge, JungleShelfSmall, JungleTempleExterior, JungleTent, JungleTreeRoot, KeyGreen, KeyRed, KeyYellow, KeyYellowShrunken, LightShelf, Obelisk, OrnateCarpet, OverheadLamp, PaSpeaker, Pipe, PoppingRocksBox, PotteryOrange, PotteryOrangeDamaged, Rainbow1, Rainbow2, Rope, RoseVase, SignInn, SignNeonBar, SignNeonInn, SignTavern, SmallDecorativeRock, SpikyBrushA, SpikyBrushB, VineSmall, VolcanoBrickWall, VolcanoChain, VolcanoCrystal, VolcanoCrystalBuilding, VolcanoCrystalStoop, VolcanoCrystalTile, VolcanoDeadBush, VolcanoFloralWallpaper, VolcanoInnShopBuilding, VolcanoMineralDebris, VolcanoOracleHouseReflection, VolcanoPillarBroken, VolcanoTempleExterior, WhiskeyGlass, WoodenStool } from "./textures";
 
 export const CapitalEntryArgs = {
   width: 912,
@@ -160,13 +160,24 @@ export const CapitalOracleArgs = {
 };
 
 export const CapitalOutskirtsArgs = {
-  width: 256,
+  width: 400,
   height: 320,
   gameObjectsSupplier: () => {
     return {
-      Block: resolveBlock({ type: "Block", x: 0, y: 240, width: 256, height: 80, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
-      Gate: resolveGate({ type: "Gate", x: 224, y: 208, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_1", levelName: "CapitalTown", checkpointName: "FromOutskirts", name: "", depth: 0 }),
-      Player: { type: "Player", x: 184, y: 240, flippedX: false, flippedY: false, uid: "55988047_2", faceRight: false, name: "", depth: 0 },
+      CapitalPlantedBush: resolveDecalGameObject({ x: 96, y: 241, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: CapitalPlantedBush }),
+      CapitalPlantedBush_1: resolveDecalGameObject({ x: 120, y: 241, originX: 0.5, originY: 1, scaleX: -1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: CapitalPlantedBush }),
+      CapitalPlantedBush_2: resolveDecalGameObject({ x: 144, y: 241, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: CapitalPlantedBush }),
+      CapitalPlantedTree: resolveDecalGameObject({ x: 288, y: 241, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: CapitalPlantedTree }),
+      CapitalTemple: resolveDecalGameObject({ x: 200, y: 240, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CapitalTemple }),
+      CloudLong: resolveDecalGameObject({ x: 56, y: 144, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
+      CloudLong_1: resolveDecalGameObject({ x: 112, y: 168, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
+      CloudLong_2: resolveDecalGameObject({ x: 312, y: 104, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
+      Block: resolveBlock({ type: "Block", x: 0, y: 240, width: 400, height: 80, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
+      Gate: resolveGate({ type: "Gate", x: 368, y: 208, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_1", levelName: "CapitalTown", checkpointName: "FromOutskirts", name: "", depth: 0 }),
+      Player: { type: "Player", x: 328, y: 240, flippedX: false, flippedY: false, uid: "55988047_2", faceRight: false, name: "", depth: 0 },
+      Door: resolveDoor({ type: "Door", x: 184, y: 208, flippedX: false, flippedY: false, uid: "55913988_3", levelName: "CapitalTemple", checkpointName: "", name: "", depth: 0 }),
+      Window2: resolveRegion({ type: "Region", x: 224, y: 172, width: 32, height: 32, flippedX: false, flippedY: false, uid: "25971607_4", name: "Window2", depth: 0 }),
+      Window1: resolveRegion({ type: "Region", x: 144, y: 172, width: 32, height: 32, flippedX: false, flippedY: false, uid: "25971607_5", name: "Window1", depth: 0 }),
     };
   },
 };

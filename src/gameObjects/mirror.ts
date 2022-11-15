@@ -2,17 +2,17 @@ import {Graphics, Matrix, RenderTexture, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {player} from "./player";
 import {game} from "../igua/game";
+import {Undefined} from "../utils/types/undefined";
 
 export function mirror(width, height, color = 0xC0D6E5, lineColor = 0xD5E6F2) {
+    let myPlayer = Undefined<typeof player>();
     const m = new Matrix();
     const c = container().withStep(() => {
         m.tx = -c.x + 4;
         m.ty = -c.y;
-        // @ts-ignore
-        if (!player.__mirror) {
+        if (!myPlayer || myPlayer !== player) {
+            myPlayer = player;
             player.withStep(() => game.renderer.render(player, texture, true, m));
-            // @ts-ignore
-            player.__mirror = true;
         }
     });
     function rect() {

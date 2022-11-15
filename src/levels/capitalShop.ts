@@ -93,9 +93,9 @@ export function CapitalShop() {
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0xF0B020));
 }
 
-export function makeCapitalWindow(rect: Rectangle) {
+export function makeCapitalWindow(rect: Rectangle, color = scene.backgroundColor) {
     mirror(rect.width, rect.height).at(rect).behind();
-    roundWindow(rect.width, rect.height, 2).at(rect).tinted(scene.backgroundColor).behind();
+    roundWindow(rect.width, rect.height, 2).at(rect).tinted(color).behind();
 }
 
 const switchTxs = subimageTextures(CapitalSecuritySwitch, 2);

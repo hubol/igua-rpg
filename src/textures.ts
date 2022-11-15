@@ -39,10 +39,12 @@ export let CapitalChimney: PIXI.Texture;
 export let CapitalFireplaceFlame: PIXI.Texture;
 export let CapitalFireplace: PIXI.Texture;
 export let CapitalInnSign: PIXI.Texture;
+export let CapitalPlantedBush: PIXI.Texture;
 export let CapitalPlantedTree: PIXI.Texture;
 export let CapitalPlatform: PIXI.Texture;
 export let CapitalSecuritySwitch: PIXI.Texture;
 export let CapitalShopSign: PIXI.Texture;
+export let CapitalTemple: PIXI.Texture;
 export let CapitalUndergroundBackdrop: PIXI.Texture;
 export let CapitalUpblock: PIXI.Texture;
 export let CapitalVolcanoBackdrop: PIXI.Texture;
@@ -384,6 +386,9 @@ export function loadTexturesAsync()
     const CapitalInnSignPath = require("./images/capital/inn sign.png");
     loader.add(CapitalInnSignPath); 
 
+    const CapitalPlantedBushPath = require("./images/capital/planted bush.png");
+    loader.add(CapitalPlantedBushPath); 
+
     const CapitalPlantedTreePath = require("./images/capital/planted tree.png");
     loader.add(CapitalPlantedTreePath); 
 
@@ -395,6 +400,9 @@ export function loadTexturesAsync()
 
     const CapitalShopSignPath = require("./images/capital/shop sign.png");
     loader.add(CapitalShopSignPath); 
+
+    const CapitalTemplePath = require("./images/capital/temple.png");
+    loader.add(CapitalTemplePath); 
 
     const CapitalUndergroundBackdropPath = require("./images/capital/underground backdrop.png");
     loader.add(CapitalUndergroundBackdropPath); 
@@ -1109,10 +1117,12 @@ export function loadTexturesAsync()
             CapitalFireplaceFlame = resources[CapitalFireplaceFlamePath]?.texture as PIXI.Texture;
             CapitalFireplace = resources[CapitalFireplacePath]?.texture as PIXI.Texture;
             CapitalInnSign = resources[CapitalInnSignPath]?.texture as PIXI.Texture;
+            CapitalPlantedBush = resources[CapitalPlantedBushPath]?.texture as PIXI.Texture;
             CapitalPlantedTree = resources[CapitalPlantedTreePath]?.texture as PIXI.Texture;
             CapitalPlatform = resources[CapitalPlatformPath]?.texture as PIXI.Texture;
             CapitalSecuritySwitch = resources[CapitalSecuritySwitchPath]?.texture as PIXI.Texture;
             CapitalShopSign = resources[CapitalShopSignPath]?.texture as PIXI.Texture;
+            CapitalTemple = resources[CapitalTemplePath]?.texture as PIXI.Texture;
             CapitalUndergroundBackdrop = resources[CapitalUndergroundBackdropPath]?.texture as PIXI.Texture;
             CapitalUpblock = resources[CapitalUpblockPath]?.texture as PIXI.Texture;
             CapitalVolcanoBackdrop = resources[CapitalVolcanoBackdropPath]?.texture as PIXI.Texture;

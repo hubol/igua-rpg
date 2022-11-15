@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 256,
+  "width": 400,
   "height": 320,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,7 +12,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 40,
       "entities": [
         {
@@ -21,7 +21,7 @@
           "_eid": "55823268",
           "x": 0,
           "y": 240,
-          "width": 256,
+          "width": 400,
           "height": 80,
           "originX": 0,
           "originY": 0,
@@ -31,7 +31,7 @@
           "name": "Gate",
           "id": 1,
           "_eid": "55920197",
-          "x": 224,
+          "x": 368,
           "y": 208,
           "width": 32,
           "height": 32,
@@ -43,11 +43,45 @@
           "name": "Player",
           "id": 2,
           "_eid": "55988047",
-          "x": 184,
+          "x": 328,
           "y": 240,
           "originX": 11,
           "originY": 27,
           "values": {"faceRight": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 3,
+          "_eid": "55913988",
+          "x": 184,
+          "y": 208,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "CapitalTemple", "checkpointName": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 4,
+          "_eid": "25971607",
+          "x": 224,
+          "y": 172,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window2", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 5,
+          "_eid": "25971607",
+          "x": 144,
+          "y": 172,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window1", "depth": 0}
         }
       ]
     },
@@ -58,7 +92,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 40,
       "decals": [],
       "folder": "../../src/images"
@@ -70,9 +104,34 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 40,
-      "decals": [],
+      "decals": [
+        {
+          "x": 96,
+          "y": 241,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/planted bush.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        },
+        {"x": 120, "y": 241, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "capital/planted bush.png", "originX": 0.5, "originY": 1},
+        {"x": 144, "y": 241, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/planted bush.png", "originX": 0.5, "originY": 1},
+        {
+          "x": 288,
+          "y": 241,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/planted tree.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {
@@ -82,7 +141,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 40,
       "decals": [],
       "folder": "../../src/images"
@@ -94,9 +153,21 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 40,
-      "decals": [],
+      "decals": [
+        {
+          "x": 200,
+          "y": 240,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/temple.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "..\\..\\src\\images"
     },
     {
@@ -106,9 +177,43 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 32,
+      "gridCellsX": 50,
       "gridCellsY": 40,
-      "decals": [],
+      "decals": [
+        {
+          "x": 56,
+          "y": 144,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 112,
+          "y": 168,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 312,
+          "y": 104,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     }
   ]
