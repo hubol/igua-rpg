@@ -217,6 +217,11 @@ export const DassBuildTower = new Howl({
     
 });
 
+export const DassPain = new Howl({
+    src: [require("./sound/dass pain.ogg"), require("./sound/dass pain.mp3")],
+    
+});
+
 export const DassPokeAppear = new Howl({
     src: [require("./sound/dass poke appear.ogg"), require("./sound/dass poke appear.mp3")],
     

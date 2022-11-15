@@ -18,7 +18,7 @@ import {sleep} from "../cutscene/sleep";
 import {show, showAll} from "../cutscene/dialog";
 import {moveCameraToPlayerTarget} from "../igua/camera";
 import {move} from "../cutscene/move";
-import {ArrowKnock, OracleUnlockDoor, PageFlip} from "../sounds";
+import {ArrowKnock, DassPain, OracleUnlockDoor, PageFlip} from "../sounds";
 import {smallPop} from "../gameObjects/smallPop";
 import {rng} from "../utils/math/rng";
 import {colord} from "colord";
@@ -99,7 +99,11 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
         scene.camera.followPlayer = true;
         await wait(() => boss.isDead);
 
+        DassPain.play();
         const dass = dassmann().at(boss).show();
+        dass.head.agape = 1;
+        dass.expression.antenna = 'shock';
+        dass.head.wiggle = 1;
         boss.destroy();
 
         progress.flags.capital.defeatedDassmann = true;
@@ -110,17 +114,20 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
 
     async function dassmannOutroScene(dass: ReturnType<typeof dassmann>) {
         await sleep(500);
+        dass.head.agape = 0;
+        dass.expression.antenna = 'idle';
+        dass.head.wiggle = 0;
         await showAll(`I'm not like the others.`,
             `They're here for something else.`);
 
-        const key2 = Sprite.from(KeyBlue).at(dass.x, player.y - 8);
+        const key2 = Sprite.from(KeyBlue).at(dass.x + 7, player.y - 4).centerAnchor();
         key2.ext.collectible = false;
         makeStorageKey(key2).show();
 
         await Promise.all([
             sleep(250).then(() => {
                 ArrowKnock.play();
-                return move(key2).off(player.x - key2.x, -40).over(750);
+                return move(key2).off(player.x - key2.x, -32).over(750);
             }),
             show(`You can have this. I'll find a better souvenir.`)
         ]);
