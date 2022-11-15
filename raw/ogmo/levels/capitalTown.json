@@ -44,7 +44,7 @@
           "id": 2,
           "_eid": "55913988",
           "x": 788,
-          "y": 322,
+          "y": 320,
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "CapitalInn", "checkpointName": "", "name": "", "depth": 0}
@@ -529,7 +529,7 @@
       "decals": [
         {
           "x": 824,
-          "y": 354,
+          "y": 352,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": 0,
@@ -584,7 +584,7 @@
         },
         {
           "x": 840,
-          "y": 327,
+          "y": 325,
           "scaleX": 1,
           "scaleY": 1,
           "rotation": 0,
@@ -670,7 +670,17 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 72, "y": 369, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "capital/planted tree.png", "originX": 0.5, "originY": 1}
+        {
+          "x": 72,
+          "y": 369,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/planted tree.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },

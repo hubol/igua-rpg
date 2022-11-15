@@ -291,12 +291,12 @@ export const CapitalTownArgs = {
   height: 440,
   gameObjectsSupplier: () => {
     return {
-      CapitalBuilding1: resolveDecalGameObject({ x: 824, y: 354, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalBuilding1 }),
+      CapitalBuilding1: resolveDecalGameObject({ x: 824, y: 352, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalBuilding1 }),
       CapitalChimney: resolveDecalGameObject({ x: 161, y: 352, originX: 0, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalChimney }),
       CapitalPlantedTree: resolveDecalGameObject({ x: 944, y: 321, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalPlantedTree }),
       CapitalPlantedTree_1: resolveDecalGameObject({ x: 712, y: 329, originX: 0.5, originY: 1, scaleX: -1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalPlantedTree }),
       CapitalPlantedTree_2: resolveDecalGameObject({ x: 544, y: 337, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalPlantedTree }),
-      CapitalInnSign: resolveDecalGameObject({ x: 840, y: 327, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalInnSign }),
+      CapitalInnSign: resolveDecalGameObject({ x: 840, y: 325, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalInnSign }),
       CapitalPlatform: resolveDecalGameObject({ x: 669.5, y: 329, originX: 0.5, originY: 1, scaleX: 1.033333333333333, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalPlatform }),
       ShopBuilding: resolveDecalGameObject({ x: 432, y: 320, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalBuilding1 }),
       CapitalShopSign: resolveDecalGameObject({ x: 417.1914859631518, y: 297.35620476595886, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalShopSign }),
@@ -317,7 +317,7 @@ export const CapitalTownArgs = {
       CloudLong_8: resolveDecalGameObject({ x: 56, y: 216, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
       Block: resolveBlock({ type: "Block", x: 912, y: 320, width: 160, height: 120, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
       Block_1: resolveBlock({ type: "Block", x: 736, y: 352, width: 176, height: 88, flippedX: false, flippedY: false, uid: "55823268_1", name: "", depth: 0 }),
-      Door: resolveDoor({ type: "Door", x: 788, y: 322, flippedX: false, flippedY: false, uid: "55913988_2", levelName: "CapitalInn", checkpointName: "", name: "", depth: 0 }),
+      Door: resolveDoor({ type: "Door", x: 788, y: 320, flippedX: false, flippedY: false, uid: "55913988_2", levelName: "CapitalInn", checkpointName: "", name: "", depth: 0 }),
       FromInn: { type: "Checkpoint", x: 764, y: 352, flippedX: false, flippedY: false, uid: "55940370_3", name: "FromInn", faceRight: false, depth: 0 },
       Gate: resolveGate({ type: "Gate", x: 1040, y: 288, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_5", levelName: "CapitalEntry", checkpointName: "FromTown", name: "", depth: 0 }),
       Block_2: resolveBlock({ type: "Block", x: 640, y: 328, width: 96, height: 112, flippedX: false, flippedY: false, uid: "55823268_6", name: "", depth: 0 }),
