@@ -10,8 +10,10 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {animatedSprite} from "../igua/animatedSprite";
 import {progress} from "../igua/data/progress";
 import {FlameOff, FlameOn} from "../sounds";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {makeCapitalWindow} from "./capitalShop";
+import {ask} from "../cutscene/ask";
+import {oracleAdviceCapital} from "../igua/oracleAdvice";
 
 export function CapitalOracle() {
     scene.backgroundColor = 0x4E2FB5;
@@ -24,6 +26,23 @@ export function CapitalOracle() {
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x9FAAF9));
     jukebox.play(UnbelievableChaos).warm(CapitalMusicPlease);
     enrichFireplace();
+    level.Oracle.cutscene = oracleCutscene;
+}
+
+async function oracleCutscene() {
+    const { capital } = progress.flags;
+
+    if (!capital.spokeWithOracle) {
+        await showAll(`Long time no see.`,
+        `Your task has taken you far, but you are near the end.`,
+        `Legend has it that the great weapon will be unlocked with the four big keys.`);
+        capital.spokeWithOracle = true;
+    }
+
+    if (await ask('Do you need my advice?'))
+        await oracleAdviceCapital();
+    else
+        await show('Make haste, then!');
 }
 
 function enrichFireplace() {

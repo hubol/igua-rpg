@@ -105,6 +105,7 @@ export function getInitialFlags()
             spokeWithStatua: false,
             openedStorage: false,
             defeatedDassmann: false,
+            spokeWithOracle: false,
         }
     };
 }

@@ -150,7 +150,7 @@ export async function oracleAdviceVolcano() {
     await sayNoAdvice();
 }
 
-export async function oracleAdviceVCapital() {
+export async function oracleAdviceCapital() {
     const { key, bigKey  } = progress.flags.capital;
     const allKeys = key.fromTiming && key.fromStorage && key.fromClown;
 
