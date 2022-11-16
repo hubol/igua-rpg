@@ -36,6 +36,18 @@ export function capitalBricks(width: number, height: number, p: Pseudo) {
     return c;
 }
 
+export function capitalBricksWall(width: number, height: number, p: Pseudo) {
+    const c = container();
+    const d = 128;
+    for (let x = 0; x < width; x += d) {
+        for (let y = 0; y < height; y += d) {
+            capitalBricks(Math.min(128, width - x), Math.min(128, height - y), p).at(x, y).show(c);
+        }
+    }
+    console.log(c);
+    return c;
+}
+
 export function manyCapitalBricks(ds: DisplayObject[], p: Pseudo) {
     const c = container();
     for (const d of ds) {

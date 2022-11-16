@@ -126,9 +126,9 @@
           "id": 23,
           "_eid": "55824435",
           "x": 212,
-          "y": 0,
+          "y": 16,
           "width": 188,
-          "height": 112,
+          "height": 104,
           "originX": 0,
           "originY": 0,
           "flippedY": true,
@@ -139,9 +139,9 @@
           "id": 24,
           "_eid": "55845599",
           "x": 24,
-          "y": 0,
+          "y": 16,
           "width": 188,
-          "height": 112,
+          "height": 104,
           "originX": 0,
           "originY": 0,
           "flippedY": true,
@@ -154,7 +154,7 @@
           "x": 16,
           "y": 0,
           "width": 16,
-          "height": 56,
+          "height": 96,
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
@@ -166,10 +166,46 @@
           "x": 400,
           "y": 0,
           "width": 16,
-          "height": 56,
+          "height": 96,
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 27,
+          "_eid": "55823268",
+          "x": 32,
+          "y": 0,
+          "width": 368,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 28,
+          "_eid": "25971607",
+          "x": 72,
+          "y": 120,
+          "width": 48,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window1", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 29,
+          "_eid": "25971607",
+          "x": 144,
+          "y": 120,
+          "width": 48,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Window2", "depth": 0}
         }
       ]
     },
@@ -209,16 +245,26 @@
       "decals": [
         {
           "x": 16,
-          "y": 56,
-          "scaleX": 1,
-          "scaleY": 2,
+          "y": 96,
+          "scaleX": 0.9,
+          "scaleY": 1,
           "rotation": 0,
           "texture": "capital/arc.png",
           "originX": 0,
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 408, "y": 56, "scaleX": -1, "scaleY": 2, "rotation": 0, "texture": "capital/arc.png", "originX": 0, "originY": 0}
+        {
+          "x": 408,
+          "y": 96,
+          "scaleX": -0.9,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/arc.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },

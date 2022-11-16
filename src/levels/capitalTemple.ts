@@ -1,5 +1,5 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {BigKey4, CapitalArc, KeyBlue} from "../textures";
+import {BigKey4, CapitalArc, CapitalDitherEdge, KeyBlue} from "../textures";
 import {RegionKeys} from "../igua/gameplay/regionKeys";
 import {scene} from "../igua/scene";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
@@ -9,10 +9,14 @@ import {progress} from "../igua/data/progress";
 import {makeTempleLevelUtil} from "../igua/gameplay/templeLevelUtil";
 import {CapitalMusicPlease, UnrealBlindMusic} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
+import {BLEND_MODES, Graphics, TilingSprite} from "pixi.js";
+import {makeCapitalWindow} from "./capitalShop";
+import {capitalBricksWall} from "../gameObjects/capitalBricks";
+import {makePseudo} from "../utils/math/makePseudo";
 
 export function CapitalTemple() {
-    scene.backgroundColor = 0x651913;
-    scene.terrainColor = 0;
+    scene.backgroundColor = 0xE87880;
+    scene.terrainColor = 0x103840;
     const level = applyOgmoLevel(CapitalTempleArgs);
     portalFluidConfig.gotoLevelName = 'CapitalTemple';
 
@@ -33,6 +37,21 @@ export function CapitalTemple() {
 
     decalsOf(CapitalArc).forEach(x => x.tinted(scene.terrainColor));
     // util.tryGiveReward(bigKey, 'reward', level.BigKey, 'Blessing of Flame');
+
+    const wall = capitalBricksWall(scene.width, scene.height, makePseudo(31111.69)).behind(0);
+    wall.opaqueTint = 0xD86080;
+    const dither = new TilingSprite(CapitalDitherEdge).at(0, level.Door.y + level.Door.height - 12).behind();
+    dither.width = scene.width;
+
+    [level.Window1, level.Window2].forEach(x => makeCapitalWindow(x, 0xE87880));
+
+    new Graphics()
+        .beginFill(0x779988)
+        .drawRect(0, 87 - 2, scene.width, 2)
+        .drawRect(0, 97, scene.width, 5)
+        .drawRect(0, 114, scene.width, 23)
+        .at(0, -38)
+        .behind(0);
 }
 
 export const capitalBigKeyTextures = subimageTextures(BigKey4, 3);

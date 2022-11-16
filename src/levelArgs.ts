@@ -262,8 +262,8 @@ export const CapitalTempleArgs = {
   height: 256,
   gameObjectsSupplier: () => {
     return {
-      CapitalArc: resolveDecalGameObject({ x: 16, y: 56, originX: 0, originY: 0, scaleX: 1, scaleY: 2, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
-      CapitalArc_1: resolveDecalGameObject({ x: 408, y: 56, originX: 0, originY: 0, scaleX: -1, scaleY: 2, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      CapitalArc: resolveDecalGameObject({ x: 16, y: 96, originX: 0, originY: 0, scaleX: 0.9, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
+      CapitalArc_1: resolveDecalGameObject({ x: 408, y: 96, originX: 0, originY: 0, scaleX: -0.9, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CapitalArc }),
       GlowingCircle: resolveDecalGameObject({ x: 280, y: -152, originX: 0.5, originY: 0.5, scaleX: 40, scaleY: 2, rotation: 0, layerName: "BackgroundDecals", texture: GlowingCircle }),
       Key1: resolveDecalGameObject({ x: 216, y: 176, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: KeyRed }),
       Key2: resolveDecalGameObject({ x: 296, y: 176, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: KeyRed }),
@@ -278,10 +278,13 @@ export const CapitalTempleArgs = {
       BigKey: { type: "Anchor", x: 266, y: 120, flippedX: false, flippedY: false, uid: "25979726_16", name: "BigKey", depth: 0 },
       Block_1: resolveBlock({ type: "Block", x: 0, y: 0, width: 16, height: 224, flippedX: false, flippedY: false, uid: "55823268_21", name: "", depth: 0 }),
       Block_2: resolveBlock({ type: "Block", x: 408, y: 0, width: 16, height: 224, flippedX: false, flippedY: false, uid: "55823268_22", name: "", depth: 0 }),
-      SlopeRight: resolveSlopeRight({ type: "SlopeRight", x: 212, y: 0, width: 188, height: 112, flippedX: false, flippedY: true, uid: "55824435_23", name: "", depth: 0 }),
-      SlopeLeft: resolveSlopeLeft({ type: "SlopeLeft", x: 24, y: 0, width: 188, height: 112, flippedX: false, flippedY: true, uid: "55845599_24", name: "", depth: 0 }),
-      Block_3: resolveBlock({ type: "Block", x: 16, y: 0, width: 16, height: 56, flippedX: false, flippedY: false, uid: "55823268_25", name: "", depth: 0 }),
-      Block_4: resolveBlock({ type: "Block", x: 400, y: 0, width: 16, height: 56, flippedX: false, flippedY: false, uid: "55823268_26", name: "", depth: 0 }),
+      SlopeRight: resolveSlopeRight({ type: "SlopeRight", x: 212, y: 16, width: 188, height: 104, flippedX: false, flippedY: true, uid: "55824435_23", name: "", depth: 0 }),
+      SlopeLeft: resolveSlopeLeft({ type: "SlopeLeft", x: 24, y: 16, width: 188, height: 104, flippedX: false, flippedY: true, uid: "55845599_24", name: "", depth: 0 }),
+      Block_3: resolveBlock({ type: "Block", x: 16, y: 0, width: 16, height: 96, flippedX: false, flippedY: false, uid: "55823268_25", name: "", depth: 0 }),
+      Block_4: resolveBlock({ type: "Block", x: 400, y: 0, width: 16, height: 96, flippedX: false, flippedY: false, uid: "55823268_26", name: "", depth: 0 }),
+      Block_5: resolveBlock({ type: "Block", x: 32, y: 0, width: 368, height: 16, flippedX: false, flippedY: false, uid: "55823268_27", name: "", depth: 0 }),
+      Window1: resolveRegion({ type: "Region", x: 72, y: 120, width: 48, height: 48, flippedX: false, flippedY: false, uid: "25971607_28", name: "Window1", depth: 0 }),
+      Window2: resolveRegion({ type: "Region", x: 144, y: 120, width: 48, height: 48, flippedX: false, flippedY: false, uid: "25971607_29", name: "Window2", depth: 0 }),
     };
   },
 };
