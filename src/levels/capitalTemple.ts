@@ -1,5 +1,5 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {BigKey4, CapitalArc, CapitalDitherEdge, KeyBlue} from "../textures";
+import {BigKey4, CapitalArc, CapitalDitherEdge, CapitalLightRay, KeyBlue} from "../textures";
 import {RegionKeys} from "../igua/gameplay/regionKeys";
 import {scene} from "../igua/scene";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
@@ -9,7 +9,7 @@ import {progress} from "../igua/data/progress";
 import {makeTempleLevelUtil} from "../igua/gameplay/templeLevelUtil";
 import {CapitalMusicPlease, UnrealBlindMusic} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
-import {BLEND_MODES, Graphics, TilingSprite} from "pixi.js";
+import {BLEND_MODES, Graphics, Sprite, TilingSprite} from "pixi.js";
 import {makeCapitalWindow} from "./capitalShop";
 import {capitalBricksWall} from "../gameObjects/capitalBricks";
 import {makePseudo} from "../utils/math/makePseudo";
@@ -43,7 +43,11 @@ export function CapitalTemple() {
     const dither = new TilingSprite(CapitalDitherEdge).at(0, level.Door.y + level.Door.height - 12).behind();
     dither.width = scene.width;
 
-    [level.Window1, level.Window2].forEach(x => makeCapitalWindow(x, 0xE87880));
+    [level.Window1, level.Window2].forEach(x => {
+        makeCapitalWindow(x, 0xE87880);
+        const light = Sprite.from(CapitalLightRay).at(x).ahead();
+        light.alpha = 0.3;
+    });
 
     new Graphics()
         .beginFill(0x779988)
