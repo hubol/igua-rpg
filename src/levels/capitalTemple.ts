@@ -9,10 +9,11 @@ import {progress} from "../igua/data/progress";
 import {makeTempleLevelUtil} from "../igua/gameplay/templeLevelUtil";
 import {CapitalMusicPlease, UnrealBlindMusic} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
-import {BLEND_MODES, Graphics, Sprite, TilingSprite} from "pixi.js";
+import {Graphics, TilingSprite} from "pixi.js";
 import {makeCapitalWindow} from "./capitalShop";
 import {capitalBricksWall} from "../gameObjects/capitalBricks";
 import {makePseudo} from "../utils/math/makePseudo";
+import {lightRayCrude} from "../gameObjects/lightRayCrude";
 
 export function CapitalTemple() {
     scene.backgroundColor = 0xE87880;
@@ -45,8 +46,7 @@ export function CapitalTemple() {
 
     [level.Window1, level.Window2].forEach(x => {
         makeCapitalWindow(x, 0xE87880);
-        const light = Sprite.from(CapitalLightRay).at(x).ahead();
-        light.alpha = 0.3;
+        lightRayCrude().at(x).ahead();
     });
 
     new Graphics()

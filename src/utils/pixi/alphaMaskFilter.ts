@@ -6,6 +6,12 @@ export function alphaMaskFilter(s: Sprite) {
     return f;
 }
 
+export function alphaObscureFilter(s: Sprite) {
+    const f = new SpriteMaskFilter(s);
+    f.program = new Program(vertexSrc, fragObscureSrc);
+    return f;
+}
+
 const vertexSrc = `
 attribute vec2 aVertexPosition;
 attribute vec2 aTextureCoord;
@@ -25,7 +31,7 @@ void main(void)
 }
 `
 
-const fragSrc = `
+const fragBaseSrc = original => `
 varying vec2 vMaskCoord;
 varying vec2 vTextureCoord;
 
@@ -47,8 +53,12 @@ void main(void)
     vec4 masky = texture2D(mask, vMaskCoord);
     float alphaMul = 1.0 - npmAlpha * (1.0 - masky.a);
 
-    original *= (alphaMul * masky.a * alpha * clip);
+    original *= ${original};
 
     gl_FragColor = original;
 }
 `
+
+const fragSrc = fragBaseSrc(`(alphaMul * masky.a * alpha * clip)`);
+
+const fragObscureSrc = fragBaseSrc(`(alphaMul * (1.0 - masky.a) * alpha * clip)`);
