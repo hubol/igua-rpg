@@ -307,6 +307,16 @@ export const IguanaBlink = new Howl({
     
 });
 
+export const ImpossiblePuzzleNotch = new Howl({
+    src: [require("./sound/impossible puzzle notch.ogg"), require("./sound/impossible puzzle notch.mp3")],
+    
+});
+
+export const ImpossiblePuzzleSolve = new Howl({
+    src: [require("./sound/impossible puzzle solve.ogg"), require("./sound/impossible puzzle solve.mp3")],
+    
+});
+
 export const InnRefresh = new Howl({
     src: [require("./sound/inn refresh.ogg"), require("./sound/inn refresh.mp3")],
     
