@@ -4,11 +4,58 @@ import {CapitalImpossiblePuzzle} from "../textures";
 import {Vector} from "../utils/math/vector";
 import {merge} from "../utils/object/merge";
 import {move} from "../cutscene/move";
-import {sleep} from "../cutscene/sleep";
 import {ImpossiblePuzzleNotch, ImpossiblePuzzleSolve} from "../sounds";
 import {rng} from "../utils/math/rng";
+import {PropertiesOf} from "../utils/types/propertiesOf";
+import {progress} from "../igua/data/progress";
+import {show} from "../cutscene/dialog";
+import {player} from "./player";
+import {sleep} from "../cutscene/sleep";
+import {Vibratey} from "../igua/puppet/mods/vibratey";
+import {jukebox} from "../igua/jukebox";
 
-export function impossiblePuzzle() {
+export function impossiblePuzzle<T>(flags: T, key: keyof PropertiesOf<T, boolean>) {
+    const p = impossiblePuzzlePuppet();
+
+    if (flags[key])
+        p.solveInstantly();
+
+    p.withCutscene(async () => {
+        if (!progress.flags.capital.bigKey.reward) {
+            return await show(`It's a puzzle, but it looks too chaotic to be solved.`);
+        }
+        if (flags[key]) {
+            return await show(`The puzzle was already solved using the Blessing of Order.`);
+        }
+
+        jukebox.fadeOut(0.3, 500);
+        const duck = container().withStep(() => player.isDucking = true).show(player);
+        await sleep(500);
+        const closeEyes = container().withStep(() => {
+            player.canBlink = false;
+            player.isClosingEyes = true;
+        }).show(player);
+        await sleep(500);
+        player.mods.add(Vibratey);
+        await sleep(500);
+        await p.solve();
+        jukebox.fadeIn(0.3, 500);
+        duck.destroy();
+        closeEyes.destroy();
+        player.mods.remove(Vibratey);
+        player.vspeed = -2;
+        player.canBlink = true;
+        await sleep(500);
+        await show(`The puzzle was solved using the Blessing of Order.`);
+
+        // @ts-ignore
+        flags[key] = true;
+    });
+
+    return p;
+}
+
+function impossiblePuzzlePuppet() {
     const c = container();
     const notches: ReturnType<typeof notch>[] = [];
 
@@ -42,14 +89,18 @@ export function impossiblePuzzle() {
     for (let i = 0; i < 5; i++)
         green(i, 1).at(20, 3 + i * 3);
 
-    c.withAsync(async () => {
-        await sleep(125);
+    async function solve() {
         for (const notch of notches)
             await notch.animate();
         ImpossiblePuzzleSolve.play();
-    });
+    }
 
-    return c;
+    function solveInstantly() {
+        for (const notch of notches)
+            notch.jumpToEndPosition();
+    }
+
+    return merge(c, { solve, solveInstantly });
 }
 
 function notch(start: Vector, ...path: Vector[]) {

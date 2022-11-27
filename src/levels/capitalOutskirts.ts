@@ -6,6 +6,8 @@ import { CapitalOutskirtsArgs } from "../levelArgs";
 import {manyCapitalBricks} from "../gameObjects/capitalBricks";
 import {makePseudo} from "../utils/math/makePseudo";
 import {makeCapitalWindow} from "./capitalShop";
+import {impossiblePuzzle} from "../gameObjects/impossiblePuzzle";
+import {progress} from "../igua/data/progress";
 
 export function CapitalOutskirts() {
     scene.pipeStage.style = 2;
@@ -20,4 +22,5 @@ export function CapitalOutskirts() {
         .show(scene.terrainStage);
 
     [level.Window1, level.Window2].forEach(x => makeCapitalWindow(x, 0xE87880));
+    impossiblePuzzle(progress.flags.capital, 'solvedImpossiblePuzzle').at(level.Puzzle).show();
 }

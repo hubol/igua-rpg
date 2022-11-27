@@ -106,6 +106,7 @@ export function getInitialFlags()
             openedStorage: false,
             defeatedDassmann: false,
             spokeWithOracle: false,
+            solvedImpossiblePuzzle: false,
         }
     };
 }

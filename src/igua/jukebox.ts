@@ -26,6 +26,20 @@ class Jukebox
         return this;
     }
 
+    fadeOut(target: number, ms: number) {
+        if (!this.currentSong)
+            return;
+
+        this.currentSong.fade(getMusicVolume(this.currentSong), target, ms);
+    }
+
+    fadeIn(from: number, ms: number) {
+        if (!this.currentSong)
+            return;
+
+        this.currentSong.fade(from, getMusicVolume(this.currentSong), ms);
+    }
+
     get currentSong()
     {
         return this._currentHowl;
