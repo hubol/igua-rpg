@@ -45,6 +45,7 @@ export let CapitalLightRay: PIXI.Texture;
 export let CapitalPlantedBush: PIXI.Texture;
 export let CapitalPlantedTree: PIXI.Texture;
 export let CapitalPlatform: PIXI.Texture;
+export let CapitalQuizChoice: PIXI.Texture;
 export let CapitalSecuritySwitch: PIXI.Texture;
 export let CapitalShopSign: PIXI.Texture;
 export let CapitalTemple: PIXI.Texture;
@@ -406,6 +407,9 @@ export function loadTexturesAsync()
 
     const CapitalPlatformPath = require("./images/capital/platform.png");
     loader.add(CapitalPlatformPath); 
+
+    const CapitalQuizChoicePath = require("./images/capital/quiz choice.png");
+    loader.add(CapitalQuizChoicePath); 
 
     const CapitalSecuritySwitchPath = require("./images/capital/security switch.png");
     loader.add(CapitalSecuritySwitchPath); 
@@ -1135,6 +1139,7 @@ export function loadTexturesAsync()
             CapitalPlantedBush = resources[CapitalPlantedBushPath]?.texture as PIXI.Texture;
             CapitalPlantedTree = resources[CapitalPlantedTreePath]?.texture as PIXI.Texture;
             CapitalPlatform = resources[CapitalPlatformPath]?.texture as PIXI.Texture;
+            CapitalQuizChoice = resources[CapitalQuizChoicePath]?.texture as PIXI.Texture;
             CapitalSecuritySwitch = resources[CapitalSecuritySwitchPath]?.texture as PIXI.Texture;
             CapitalShopSign = resources[CapitalShopSignPath]?.texture as PIXI.Texture;
             CapitalTemple = resources[CapitalTemplePath]?.texture as PIXI.Texture;

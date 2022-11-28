@@ -387,6 +387,11 @@ export const Purchase = new Howl({
     
 });
 
+export const QuizChoice = new Howl({
+    src: [require("./sound/quiz choice.ogg"), require("./sound/quiz choice.mp3")],
+    
+});
+
 export const SelectOption = new Howl({
     src: [require("./sound/select option.ogg"), require("./sound/select option.mp3")],
     
