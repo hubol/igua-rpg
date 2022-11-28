@@ -276,7 +276,7 @@ export const CapitalTempleArgs = {
       Door: resolveDoor({ type: "Door", x: 32, y: 192, flippedX: false, flippedY: false, uid: "55913988_1", levelName: "CapitalOutskirts", checkpointName: "FromTemple", name: "", depth: 0 }),
       Door1: resolveDoor({ type: "Door", x: 200, y: 192, flippedX: false, flippedY: false, uid: "55913988_2", levelName: "UnrealBlind", checkpointName: "", name: "Door1", depth: 0 }),
       Door2: resolveDoor({ type: "Door", x: 280, y: 192, flippedX: false, flippedY: false, uid: "55913988_3", levelName: "UnrealT9", checkpointName: "", name: "Door2", depth: 0 }),
-      Door3: resolveDoor({ type: "Door", x: 360, y: 192, flippedX: false, flippedY: false, uid: "55913988_4", levelName: "UnrealDrawing", checkpointName: "", name: "Door3", depth: 0 }),
+      Door3: resolveDoor({ type: "Door", x: 360, y: 192, flippedX: false, flippedY: false, uid: "55913988_4", levelName: "UnrealQuiz", checkpointName: "", name: "Door3", depth: 0 }),
       Player: { type: "Player", x: 80, y: 224, flippedX: false, flippedY: false, uid: "55988047_11", faceRight: true, name: "", depth: 0 },
       Sign: resolveSign({ type: "Sign", x: 144, y: 224, flippedX: false, flippedY: false, uid: "86706091_12", title: "Big Key", message: "", name: "", depth: 0 }),
       BigKey: { type: "Anchor", x: 266, y: 120, flippedX: false, flippedY: false, uid: "25979726_16", name: "BigKey", depth: 0 },

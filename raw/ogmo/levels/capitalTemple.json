@@ -65,7 +65,7 @@
           "y": 192,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "UnrealDrawing", "checkpointName": "", "name": "Door3", "depth": 0}
+          "values": {"levelName": "UnrealQuiz", "checkpointName": "", "name": "Door3", "depth": 0}
         },
         {
           "name": "Player",
