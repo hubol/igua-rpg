@@ -119,7 +119,30 @@
       "gridCellHeight": 8,
       "gridCellsX": 32,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 40,
+          "y": 48,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/unreal question.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 16, "y": 88, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5},
+        {"x": 64, "y": 104, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5},
+        {"x": 24, "y": 152, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5},
+        {"x": 104, "y": 144, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5},
+        {"x": 96, "y": 72, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5},
+        {"x": 144, "y": 24, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5},
+        {"x": 192, "y": 80, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5},
+        {"x": 160, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5},
+        {"x": 224, "y": 32, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5},
+        {"x": 240, "y": 128, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5},
+        {"x": 208, "y": 168, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "capital/unreal question.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "..\\..\\src\\images"
     },
     {

@@ -2,7 +2,7 @@ import {scene} from "../igua/scene";
 import {UnrealQuizArgs} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {Graphics} from "pixi.js";
-import {getWorldBounds, getWorldCenter} from "../igua/gameplay/getCenter";
+import {getWorldBounds} from "../igua/gameplay/getCenter";
 import {cutscene} from "../cutscene/cutscene";
 import {quiz} from "../cutscene/quiz";
 import {sleep} from "../cutscene/sleep";
@@ -22,6 +22,9 @@ import {player} from "../gameObjects/player";
 import {confetti} from "../gameObjects/confetti";
 import {smallPop} from "../gameObjects/smallPop";
 import {move} from "../cutscene/move";
+import {decalsOf} from "../gameObjects/decal";
+import {CapitalUnrealQuestion} from "../textures";
+import {now} from "../utils/now";
 
 export function UnrealQuiz() {
     scene.backgroundColor = 0xE0C8D8;
@@ -39,6 +42,11 @@ export function UnrealQuiz() {
         else
             await win(level);
     });
+
+    decalsOf(CapitalUnrealQuestion).forEach((x, i) => {
+        x.alpha = 1 - (x.y / 256);
+        x.withStep(() => x.pivot.y = Math.abs(Math.sin(now.s * Math.PI * 0.5 + i)))
+    })
 }
 
 function hideProctor(level: GameObjectsType<typeof UnrealQuizArgs>) {
