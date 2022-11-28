@@ -2,7 +2,7 @@ import {scene} from "../igua/scene";
 import {UnrealQuizArgs} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {Graphics} from "pixi.js";
-import {getWorldBounds} from "../igua/gameplay/getCenter";
+import {getWorldBounds, getWorldCenter} from "../igua/gameplay/getCenter";
 import {cutscene} from "../cutscene/cutscene";
 import {quiz} from "../cutscene/quiz";
 import {sleep} from "../cutscene/sleep";
@@ -15,7 +15,13 @@ import {spikeBounce} from "../gameObjects/spikeBounce";
 import {bigKeyPiece} from "../gameObjects/bigKey";
 import {progress} from "../igua/data/progress";
 import {capitalBigKeyTextures} from "./capitalTemple";
-import {BallonPop} from "../sounds";
+import {BallonPop, ClownExplode, SharpStep, VileStepR} from "../sounds";
+import {container} from "../utils/pixi/container";
+import {rng} from "../utils/math/rng";
+import {player} from "../gameObjects/player";
+import {confetti} from "../gameObjects/confetti";
+import {smallPop} from "../gameObjects/smallPop";
+import {move} from "../cutscene/move";
 
 export function UnrealQuiz() {
     scene.backgroundColor = 0xE0C8D8;
@@ -38,6 +44,7 @@ export function UnrealQuiz() {
 function hideProctor(level: GameObjectsType<typeof UnrealQuizArgs>) {
     BallonPop.play();
     const w = whiten(level.NpcIguana);
+    level.NpcIguana.canBlink = false;
     level.NpcIguana.withStep(() => {
         w.factor = approachLinear(w.factor, 1, 0.03);
         level.NpcIguana.scale.y = approachLinear(level.NpcIguana.scale.y, 0, 0.03);
@@ -47,24 +54,49 @@ function hideProctor(level: GameObjectsType<typeof UnrealQuizArgs>) {
 
 async function win(level: GameObjectsType<typeof UnrealQuizArgs>) {
     hideProctor(level);
-    bigKeyPiece(progress.flags.capital.bigKey, capitalBigKeyTextures[2], 'piece3').at(128, 128).show();
+
+    const spirit = container().at(level.NpcIguana)
+        .withAsync(async () => {
+            while (true) {
+                await sleep(66);
+                smallPop().at(rng.unitVector.scale(6).add(spirit));
+            }
+        })
+        .withAsync(async () => {
+            let rate = 1.2;
+            while (true) {
+                // @ts-ignore
+                SharpStep.rate(rate).play();
+                rate += 0.1;
+                await sleep(127);
+            }
+        })
+        .show();
+
+    await move(spirit).to(127, 119).over(500);
+    ClownExplode.play();
+    confetti().at(spirit).show();
+    spirit.destroy();
+    await sleep(66);
+    bigKeyPiece(progress.flags.capital.bigKey, capitalBigKeyTextures[2], 'piece3').at(80, 100).show(scene.gameObjectStage, 0);
 }
 
 async function lose(level: GameObjectsType<typeof UnrealQuizArgs>) {
+    const playerX = player.x;
     hideProctor(level);
+    const c = container().at(level.NpcIguana.x, 0).show();
 
     scene.gameObjectStage.withAsync(async () => {
         while (true) {
-            for (let x = 256; x > 0; x -= 16) {
-                spikeBounce().at(x, 0).show();
-                await sleep(125);
-            }
-            for (let x = 0; x < 256; x += 16) {
-                spikeBounce().at(x, 0).show();
-                await sleep(125);
-            }
+            VileStepR.play();
+            spikeBounce().at([rng.polar * 12, 0].add(c)).show();
+            await sleep(66);
         }
     })
+    .withAsync(async () => {
+        await sleep(500);
+        await lerp(c, 'x').to(playerX).over(1500);
+    });
 }
 
 async function doQuiz() {
