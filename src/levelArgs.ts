@@ -1783,7 +1783,7 @@ export const UnrealQuizArgs = {
       Block_1: resolveBlock({ type: "Block", x: 160, y: 192, width: 48, height: 64, flippedX: false, flippedY: false, uid: "55823268_1", name: "", depth: 0 }),
       Player: { type: "Player", x: 64, y: 32, flippedX: false, flippedY: false, uid: "55988047_2", faceRight: true, name: "", depth: 0 },
       PortalFluid: resolvePortalFluid({ type: "PortalFluid", x: -8, y: 240, width: 272, height: 24, flippedX: false, flippedY: false, uid: "24775263_3", name: "", depth: 0 }),
-      NpcIguana: resolveNpc({ type: "NpcIguana", x: 184, y: 192, flippedX: true, flippedY: false, uid: "26367058_4", name: "", style: 0, depth: 0 }),
+      NpcIguana: resolveNpc({ type: "NpcIguana", x: 184, y: 192, flippedX: true, flippedY: false, uid: "26367058_4", name: "", style: 23, depth: 0 }),
     };
   },
 };

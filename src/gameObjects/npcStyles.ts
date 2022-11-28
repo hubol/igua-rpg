@@ -43,7 +43,7 @@ import {
     CutieMarkGuyLooks,
     StatueGuyLooks,
     IguardLooks,
-    CapitalShopkeeperLooks
+    CapitalShopkeeperLooks, BigKeyPiece4Looks
 } from "./npcLooks";
 
 export type NpcStyle = ReturnType<typeof npcStyle>;
@@ -67,6 +67,7 @@ npcStyles[19] = fromLooks(CutieMarkGuyLooks);
 npcStyles[20] = fromLooks(StatueGuyLooks);
 npcStyles[21] = fromLooks(IguardLooks);
 npcStyles[22] = fromLooks(CapitalShopkeeperLooks);
+npcStyles[23] = fromLooks(BigKeyPiece4Looks);
 
 npcStyles[0] = npcStyle(args => {
     args.body = Sprite.from(NpcWeirdBody);

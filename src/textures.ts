@@ -50,6 +50,7 @@ export let CapitalSecuritySwitch: PIXI.Texture;
 export let CapitalShopSign: PIXI.Texture;
 export let CapitalTemple: PIXI.Texture;
 export let CapitalUndergroundBackdrop: PIXI.Texture;
+export let CapitalUnrealQuestion: PIXI.Texture;
 export let CapitalUpblock: PIXI.Texture;
 export let CapitalVolcanoBackdrop: PIXI.Texture;
 export let CharacterBody: PIXI.Texture;
@@ -422,6 +423,9 @@ export function loadTexturesAsync()
 
     const CapitalUndergroundBackdropPath = require("./images/capital/underground backdrop.png");
     loader.add(CapitalUndergroundBackdropPath); 
+
+    const CapitalUnrealQuestionPath = require("./images/capital/unreal question.png");
+    loader.add(CapitalUnrealQuestionPath); 
 
     const CapitalUpblockPath = require("./images/capital/upblock.png");
     loader.add(CapitalUpblockPath); 
@@ -1144,6 +1148,7 @@ export function loadTexturesAsync()
             CapitalShopSign = resources[CapitalShopSignPath]?.texture as PIXI.Texture;
             CapitalTemple = resources[CapitalTemplePath]?.texture as PIXI.Texture;
             CapitalUndergroundBackdrop = resources[CapitalUndergroundBackdropPath]?.texture as PIXI.Texture;
+            CapitalUnrealQuestion = resources[CapitalUnrealQuestionPath]?.texture as PIXI.Texture;
             CapitalUpblock = resources[CapitalUpblockPath]?.texture as PIXI.Texture;
             CapitalVolcanoBackdrop = resources[CapitalVolcanoBackdropPath]?.texture as PIXI.Texture;
             CharacterBody = resources[CharacterBodyPath]?.texture as PIXI.Texture;
