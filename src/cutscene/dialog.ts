@@ -7,10 +7,17 @@ import {container} from "../utils/pixi/container";
 import {progress} from "../igua/data/progress";
 
 export function messageBox(message: string) {
-    return container(
+    const c = container(
         Sprite.from(MessageBox),
         IguaText.Large(message, { maxWidth: 196 }).at(6, 6))
-    .at(24, progress.status.poison > 0 ? 38 : 27);
+            .at(24, getMessageBoxY())
+            .withTicker(game.hudStage.ticker)
+            .withStep(() => c.y = getMessageBoxY());
+    return c;
+}
+
+function getMessageBoxY() {
+    return progress.status.poison > 0 ? 38 : 27;
 }
 
 export async function show(message: string)
