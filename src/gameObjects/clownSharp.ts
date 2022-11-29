@@ -428,7 +428,8 @@ export function clownSharp() {
             while (true) {
                 await wait(() => c.isOnGround);
                 await wait(() => c.speed.y < 0);
-                SharpStep.play();
+                // @ts-ignore
+                SharpStep.rate(1).play();
                 await sleep(40);
                 await wait(() => !c.isOnGround);
             }
