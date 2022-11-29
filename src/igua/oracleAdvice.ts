@@ -165,12 +165,13 @@ export async function oracleAdviceCapital() {
         if (!bigKey.piece1) {
             return await show(`One piece requires you to carefeully watch falling spikes.`);
         }
-        // if (!bigKey.piece2) {
-        //     return await show(`One piece requires you to utilize ancient technology.`);
-        // }
-        // if (!bigKey.piece3) {
-        //     return await show(`One piece requires you to draw.`);
-        // }
+        if (!bigKey.piece2) {
+            await show(`One piece requires you to quickly and cleverly navigate portals.`);
+            return await show(`If your speed feels insufficient, you might want to visit the shop.`);
+        }
+        if (!bigKey.piece3) {
+            return await show(`One piece requires you to answer questions regarding the four big key pieces and the great weapon.`);
+        }
     }
     else {
         await sayNeedKeys();

@@ -37,7 +37,7 @@ export function CapitalTemple() {
     level.GlowingCircle.tinted(0xFFE451).alpha = 0.625;
 
     decalsOf(CapitalArc).forEach(x => x.tinted(scene.terrainColor));
-    // util.tryGiveReward(bigKey, 'reward', level.BigKey, 'Blessing of Flame');
+    util.tryGiveReward(bigKey, 'reward', level.BigKey, 'Blessing of Order');
 
     const wall = capitalBricksWall(scene.width, scene.height, makePseudo(31111.69)).behind(0);
     wall.opaqueTint = 0xD86080;
