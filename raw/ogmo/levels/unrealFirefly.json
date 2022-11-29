@@ -432,7 +432,41 @@
       "gridCellHeight": 8,
       "gridCellsX": 128,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 48.333067890226076,
+          "y": 227.50623490448712,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 483.1969015200259,
+          "y": 214.09481513348808,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 915.4836741817268,
+          "y": 231.30520041054987,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {
@@ -456,7 +490,25 @@
       "gridCellHeight": 8,
       "gridCellsX": 128,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 40,
+          "y": 64,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 88, "y": 88, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 200, "y": 56, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 352, "y": 104, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 392, "y": 88, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 856, "y": 104, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 808, "y": 80, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "../../src/images"
     }
   ]

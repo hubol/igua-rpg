@@ -1684,6 +1684,16 @@ export const UnrealFireflyArgs = {
   height: 256,
   gameObjectsSupplier: () => {
     return {
+      GroundSpeckles: resolveDecalGameObject({ x: 48.333067890226076, y: 227.50623490448712, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: GroundSpeckles }),
+      GroundSpeckles_1: resolveDecalGameObject({ x: 483.1969015200259, y: 214.09481513348808, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: GroundSpeckles }),
+      GroundSpeckles_2: resolveDecalGameObject({ x: 915.4836741817268, y: 231.30520041054987, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: GroundSpeckles }),
+      CloudLong: resolveDecalGameObject({ x: 40, y: 64, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
+      CloudLong_1: resolveDecalGameObject({ x: 88, y: 88, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
+      CloudLong_2: resolveDecalGameObject({ x: 200, y: 56, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
+      CloudLong_3: resolveDecalGameObject({ x: 352, y: 104, originX: 0.5, originY: 0.5, scaleX: -1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
+      CloudLong_4: resolveDecalGameObject({ x: 392, y: 88, originX: 0.5, originY: 0.5, scaleX: -1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
+      CloudLong_5: resolveDecalGameObject({ x: 856, y: 104, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
+      CloudLong_6: resolveDecalGameObject({ x: 808, y: 80, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
       Block: resolveBlock({ type: "Block", x: 0, y: 216, width: 1024, height: 40, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
       Player: { type: "Player", x: 40, y: 216, flippedX: false, flippedY: false, uid: "55988047_1", faceRight: false, name: "", depth: 0 },
       Anchor: { type: "Anchor", x: 96, y: 200, flippedX: false, flippedY: false, uid: "25979726_2", name: "", depth: 0 },
