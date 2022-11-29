@@ -7,6 +7,8 @@ import {progress} from "../igua/data/progress";
 import {capitalBigKeyTextures} from "./capitalTemple";
 import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles} from "../textures";
+import {cracks} from "../gameObjects/cracks";
+import {forceRenderable} from "../igua/forceRenderable";
 
 export function UnrealFirefly() {
     scene.backgroundColor = 0xEDDC44;
@@ -19,6 +21,10 @@ export function UnrealFirefly() {
         if (key.includes('Anchor'))
             firefly().at(level[key]).show();
     }
+
+    const c = cracks(3245.1269, 0x000663).show(scene.terrainDecalsStage, 0);
+    c.mask = scene.terrainStage;
+    forceRenderable(scene.terrainStage);
 
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0xC92C42));
 
