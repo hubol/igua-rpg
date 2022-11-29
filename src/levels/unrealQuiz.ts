@@ -25,11 +25,14 @@ import {move} from "../cutscene/move";
 import {decalsOf} from "../gameObjects/decal";
 import {CapitalUnrealQuestion} from "../textures";
 import {now} from "../utils/now";
+import {jukebox} from "../igua/jukebox";
+import {UnrealQuizMusic} from "../musics";
 
 export function UnrealQuiz() {
     scene.backgroundColor = 0xE0C8D8;
     scene.terrainColor = 0x8058D0;
     const level = applyOgmoLevel(UnrealQuizArgs);
+    jukebox.play(UnrealQuizMusic);
 
     [level.Block, level.Block_1].forEach(x =>
         new Graphics().beginFill(0xE0E020).drawEllipse(x.width / 2, 0, x.width / 2, 6).at(getWorldBounds(x)).show(scene.terrainDecalsStage));
