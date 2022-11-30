@@ -1695,7 +1695,7 @@ export const UnrealFireflyArgs = {
       CloudLong_5: resolveDecalGameObject({ x: 856, y: 104, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
       CloudLong_6: resolveDecalGameObject({ x: 808, y: 80, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
       Block: resolveBlock({ type: "Block", x: 0, y: 216, width: 1024, height: 40, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
-      Player: { type: "Player", x: 40, y: 216, flippedX: false, flippedY: false, uid: "55988047_1", faceRight: false, name: "", depth: 0 },
+      Player: { type: "Player", x: 40, y: 216, flippedX: false, flippedY: false, uid: "55988047_1", faceRight: true, name: "", depth: 0 },
       Anchor: { type: "Anchor", x: 96, y: 200, flippedX: false, flippedY: false, uid: "25979726_2", name: "", depth: 0 },
       PortalFluid: resolvePortalFluid({ type: "PortalFluid", x: 144, y: 0, width: 40, height: 216, flippedX: false, flippedY: false, uid: "24775263_3", name: "", depth: 0 }),
       Block_1: resolveBlock({ type: "Block", x: 256, y: 144, width: 320, height: 16, flippedX: false, flippedY: false, uid: "55823268_4", name: "", depth: 0 }),

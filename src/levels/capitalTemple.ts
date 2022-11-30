@@ -7,7 +7,7 @@ import {CapitalTempleArgs} from "../levelArgs";
 import {portalFluidConfig} from "../gameObjects/portalFluid";
 import {progress} from "../igua/data/progress";
 import {makeTempleLevelUtil} from "../igua/gameplay/templeLevelUtil";
-import {CapitalMusicPlease, UnrealBlindMusic, UnrealQuizMusic} from "../musics";
+import {CapitalMusicPlease, UnrealBlindMusic, UnrealFirefly, UnrealQuizMusic} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
 import {Graphics, TilingSprite} from "pixi.js";
 import {makeCapitalWindow} from "./capitalShop";
@@ -30,7 +30,7 @@ export function CapitalTemple() {
         [capitalKeys.key2, bigKey.piece2, [level.Key2, level.Door2]],
         [capitalKeys.key3, bigKey.piece3, [level.Key3, level.Door3]]);
 
-    util.playMusic().warm(CapitalMusicPlease, UnrealBlindMusic, UnrealQuizMusic);
+    util.playMusic().warm(CapitalMusicPlease, UnrealBlindMusic, UnrealQuizMusic, UnrealFirefly);
 
     util.makeBigKeyMeter(capitalBigKeyTextures).at(level.BigKey).behind();
     level.Sign.cutscene = util.signCutscene;

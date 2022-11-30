@@ -9,6 +9,9 @@ import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles} from "../textures";
 import {cracks} from "../gameObjects/cracks";
 import {forceRenderable} from "../igua/forceRenderable";
+import {jukebox} from "../igua/jukebox";
+import {UnrealFirefly as UnrealFireflyMusic} from "../musics";
+import {game} from "../igua/game";
 
 export function UnrealFirefly() {
     scene.backgroundColor = 0xEDDC44;
@@ -16,6 +19,7 @@ export function UnrealFirefly() {
     scene.camera.mode = 'ahead';
 
     const level = applyOgmoLevel(UnrealFireflyArgs);
+    jukebox.play(UnrealFireflyMusic);
 
     for (const key in level) {
         if (key.includes('Anchor'))
@@ -29,4 +33,5 @@ export function UnrealFirefly() {
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0xC92C42));
 
     bigKeyPiece(progress.flags.capital.bigKey, capitalBigKeyTextures[1], 'piece2').at(level.Piece).show();
+    game.hudStage.ticker.update();
 }

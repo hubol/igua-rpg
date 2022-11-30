@@ -157,6 +157,11 @@ export const UnrealDrawingMusic = new Howl({
     preload: false
 });
 
+export const UnrealFirefly = new Howl({
+    src: [require("./music/unreal-firefly.ogg"), require("./music/unreal-firefly.mp3")],
+    preload: false
+});
+
 export const UnrealQuizMusic = new Howl({
     src: [require("./music/unreal-quiz-music.ogg"), require("./music/unreal-quiz-music.mp3")],
     preload: false
