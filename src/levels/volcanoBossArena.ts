@@ -17,18 +17,16 @@ import {wait} from "../cutscene/wait";
 import {keepSavingValuables, trove140} from "../gameObjects/valuableTrove";
 import {sleep} from "../cutscene/sleep";
 import {persistence} from "../igua/data/persistence";
-import {slidingDoor} from "../gameObjects/slidingDoor";
 import {freezeSceneAndShowMessage} from "../cutscene/freezeSceneAndShowMessage";
 import {spikeVile} from "../gameObjects/spikeVile";
 import {smallPop} from "../gameObjects/smallPop";
 import {player} from "../gameObjects/player";
 import {leverOpinionated} from "../gameObjects/lever";
-import {ActivateLever, DragRockLow} from "../sounds";
+import {ActivateLever} from "../sounds";
 import {npc} from "../gameObjects/npc";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
-import {LoopingSounds} from "../pixins/loopingSounds";
-import {getOffsetFromPlayer} from "../igua/logic/getOffsetFromPlayer";
+import {automaticDoorWithSfx} from "../gameObjects/automaticDoorWithSfx";
 
 export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -96,29 +94,7 @@ function enrichLever(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
 }
 
 function enrichBossDoor(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
-    const door = slidingDoor(level.BossExit.tinted(0x6D1913), false)
-        .withPixin(LoopingSounds({ DragRockLow }));
-
-    const { volcano } = progress.flags;
-    if (volcano.openedPathToCapital)
-        door.openInstantly();
-
-    let yprev = door.y;
-
-    door.withStep(() => {
-        if (volcano.openedPathToCapital)
-            door.startOpening(0.3);
-        else
-            door.startClosing(0.3);
-
-        if (yprev !== door.y) {
-            door.DragRockLow.play();
-            door.DragRockLow.volume = 0.3 + Math.max(0, 1 - Math.abs(getOffsetFromPlayer(door).x) / 256);
-        }
-        else
-            door.DragRockLow.fade(0, 200);
-        yprev = door.y;
-    })
+    automaticDoorWithSfx(level.BossExit.tinted(0x6D1913), false, () => progress.flags.volcano.openedPathToCapital);
 }
 
 function enrichBoss(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {

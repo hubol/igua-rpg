@@ -45,11 +45,12 @@ export function impossiblePuzzle<T>(flags: T, key: keyof PropertiesOf<T, boolean
         player.mods.remove(Vibratey);
         player.vspeed = -2;
         player.canBlink = true;
-        await sleep(500);
-        await show(`The puzzle was solved using the Blessing of Order.`);
-
+        await sleep(250);
         // @ts-ignore
         flags[key] = true;
+        await sleep(250);
+
+        await show(`The puzzle was solved using the Blessing of Order.`);
     });
 
     return p;

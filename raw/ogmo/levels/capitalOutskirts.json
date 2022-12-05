@@ -1,6 +1,6 @@
 {
   "ogmoVersion": "3.4.0-hubol",
-  "width": 488,
+  "width": 520,
   "height": 320,
   "offsetX": 0,
   "offsetY": 0,
@@ -12,14 +12,14 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 65,
       "gridCellsY": 40,
       "entities": [
         {
           "name": "Block",
           "id": 0,
           "_eid": "55823268",
-          "x": 88,
+          "x": 120,
           "y": 240,
           "width": 400,
           "height": 80,
@@ -31,7 +31,7 @@
           "name": "Gate",
           "id": 1,
           "_eid": "55920197",
-          "x": 456,
+          "x": 488,
           "y": 208,
           "width": 32,
           "height": 32,
@@ -43,7 +43,7 @@
           "name": "Player",
           "id": 2,
           "_eid": "55988047",
-          "x": 416,
+          "x": 448,
           "y": 240,
           "originX": 11,
           "originY": 27,
@@ -53,7 +53,7 @@
           "name": "Door",
           "id": 3,
           "_eid": "55913988",
-          "x": 272,
+          "x": 304,
           "y": 208,
           "originX": 0,
           "originY": 0,
@@ -63,7 +63,7 @@
           "name": "Region",
           "id": 4,
           "_eid": "25971607",
-          "x": 312,
+          "x": 344,
           "y": 172,
           "width": 32,
           "height": 32,
@@ -75,7 +75,7 @@
           "name": "Region",
           "id": 5,
           "_eid": "25971607",
-          "x": 232,
+          "x": 264,
           "y": 172,
           "width": 32,
           "height": 32,
@@ -87,7 +87,7 @@
           "name": "Checkpoint",
           "id": 6,
           "_eid": "55940370",
-          "x": 328,
+          "x": 360,
           "y": 240,
           "originX": 6,
           "originY": 12,
@@ -99,7 +99,7 @@
           "_eid": "55823268",
           "x": 0,
           "y": 240,
-          "width": 88,
+          "width": 120,
           "height": 80,
           "originX": 0,
           "originY": 0,
@@ -109,13 +109,13 @@
           "name": "Block",
           "id": 8,
           "_eid": "55823268",
-          "x": 72,
+          "x": 104,
           "y": 144,
           "width": 16,
           "height": 96,
           "originX": 0,
           "originY": 0,
-          "values": {"name": "", "depth": 0}
+          "values": {"name": "BlockadeWall", "depth": 0}
         },
         {
           "name": "Block",
@@ -123,7 +123,7 @@
           "_eid": "55823268",
           "x": 0,
           "y": 0,
-          "width": 88,
+          "width": 120,
           "height": 144,
           "originX": 0,
           "originY": 0,
@@ -133,11 +133,33 @@
           "name": "Anchor",
           "id": 10,
           "_eid": "25979726",
-          "x": 96,
+          "x": 128,
           "y": 216,
           "originX": 0,
           "originY": 0,
           "values": {"name": "Puzzle", "depth": 0}
+        },
+        {
+          "name": "Gate",
+          "id": 11,
+          "_eid": "55920197",
+          "x": 0,
+          "y": 208,
+          "width": 32,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "FinalArena", "checkpointName": "FromCapital", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 12,
+          "_eid": "55940370",
+          "x": 76,
+          "y": 240,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromFinal", "faceRight": true, "depth": 0}
         }
       ]
     },
@@ -148,7 +170,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 65,
       "gridCellsY": 40,
       "decals": [],
       "folder": "../../src/images"
@@ -160,11 +182,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 65,
       "gridCellsY": 40,
       "decals": [
         {
-          "x": 184,
+          "x": 216,
           "y": 241,
           "scaleX": 1,
           "scaleY": 1,
@@ -175,7 +197,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 208,
+          "x": 240,
           "y": 241,
           "scaleX": -1,
           "scaleY": 1,
@@ -186,7 +208,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 232,
+          "x": 264,
           "y": 241,
           "scaleX": 1,
           "scaleY": 1,
@@ -197,7 +219,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 376,
+          "x": 408,
           "y": 241,
           "scaleX": 1,
           "scaleY": 1,
@@ -217,7 +239,7 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 65,
       "gridCellsY": 40,
       "decals": [],
       "folder": "../../src/images"
@@ -229,11 +251,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 65,
       "gridCellsY": 40,
       "decals": [
         {
-          "x": 288,
+          "x": 320,
           "y": 240,
           "scaleX": 1,
           "scaleY": 1,
@@ -253,11 +275,11 @@
       "offsetY": 0,
       "gridCellWidth": 8,
       "gridCellHeight": 8,
-      "gridCellsX": 61,
+      "gridCellsX": 65,
       "gridCellsY": 40,
       "decals": [
         {
-          "x": 144,
+          "x": 176,
           "y": 144,
           "scaleX": 1,
           "scaleY": 1,
@@ -268,7 +290,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 200,
+          "x": 232,
           "y": 168,
           "scaleX": 1,
           "scaleY": 1,
@@ -279,7 +301,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 400,
+          "x": 432,
           "y": 104,
           "scaleX": 1,
           "scaleY": 1,
