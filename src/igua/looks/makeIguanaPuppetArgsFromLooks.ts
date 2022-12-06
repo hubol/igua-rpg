@@ -97,6 +97,7 @@ function makeBody(body: Body) {
     torso.ext.precise = true;
 
     const c = container(tail, torso);
+    c.ext.tail = tail;
 
     const clubShape = clubShapes[body.tail.club.shape];
     if (clubShape) {

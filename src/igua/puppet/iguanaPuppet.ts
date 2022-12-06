@@ -7,6 +7,8 @@ import {merge} from "../../utils/object/merge";
 import {makeIguanaPuppetEngine} from "./engine";
 import {makeIguanaMods} from "./mods";
 import {rng} from "../../utils/math/rng";
+import {container} from "../../utils/pixi/container";
+import {Force} from "../../utils/types/force";
 
 export interface IguanaPuppetArgs
 {
@@ -82,7 +84,9 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
     const body = new Container();
     body.addChild(args.body, head);
 
-    const player = merge(new Container(), {
+    const innerContainer = container();
+
+    const player = merge(container(innerContainer), {
         head,
         isDucking: false,
         duckUnit: 0,
@@ -103,7 +107,7 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
             player.closedEyesUnit = 1;
         }
     });
-    player.addChild(args.backLeftFoot, args.frontLeftFoot, body, args.backRightFoot, args.frontRightFoot);
+    innerContainer.addChild(args.backLeftFoot, args.frontLeftFoot, body, args.backRightFoot, args.frontRightFoot);
     if (!args.fromLooks)
         player.pivot.set(11, 17);
     else
@@ -139,6 +143,9 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
     }
 
     let trip = 0;
+    let lastXscale = Force<number>();
+    let facingSteps = 0;
+    let faceXscale = Force<number>();
 
     const puppetStep = () => {
         const barelyWalking = Math.abs(player.hspeed) < 0.1;
@@ -181,12 +188,46 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
         //     args.crest.y = Math.round(roundedDuckUnit * -1);
         // }
 
-        head.y = Math.round(roundedDuckUnit * 2);
+        head.position.y = Math.round(roundedDuckUnit * 2);
 
         if (player.hspeed < 0)
             player.scale.x = -Math.abs(player.scale.x);
         else if (player.hspeed > 0)
             player.scale.x = Math.abs(player.scale.x);
+
+        const tail = args.body.ext.tail;
+        // Only support facing animations for Iguanas made with the character creator
+        if (!tail)
+            return;
+
+        if (lastXscale !== undefined && lastXscale !== player.scale.x) {
+            facingSteps = 10;
+        }
+
+        if (faceXscale === undefined)
+            faceXscale = player.scale.x;
+
+        lastXscale = player.scale.x;
+        faceXscale = approachLinear(faceXscale, lastXscale, 0.2 + Math.max(0, Math.abs(player.hspeed) - 1) / 10);
+
+        if (facingSteps > 0) {
+            head.position.x = -4;
+            if (tail) {
+                tail.x = 3;
+            }
+            facingSteps--;
+
+            const xscale = Math.sign(faceXscale * player.scale.x);
+            if (xscale !== 0)
+                innerContainer.scale.x = xscale;
+        }
+        else {
+            innerContainer.scale.x = 1;
+            head.position.x = 0;
+            if (tail) {
+                tail.x = 0;
+            }
+        }
     };
 
     player.withStep(puppetStep);

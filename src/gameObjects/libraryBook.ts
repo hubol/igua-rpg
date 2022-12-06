@@ -32,13 +32,14 @@ export function libraryBook() {
 
     let lastImage = -1;
     let lastImageSound = 0;
+    let controlPlayerHeadPosition = false;
 
     const s = Sprite.from(bookTxs[0])
         .withStep(() => {
             s.texture = bookTxs[Math.floor(state.image) % bookTxs.length];
             const brain = Math.min(state.brain, 1);
             getPlayerHead().scale.set(1 + brain);
-            if (!player.isDucking)
+            if (controlPlayerHeadPosition)
                 getPlayerHead().position.set(brain * -8, brain * 9);
 
             const thisImage = Math.floor(state.image);
@@ -62,6 +63,7 @@ export function libraryBook() {
                 return;
             }
             await walkTo;
+            controlPlayerHeadPosition = true;
             await lerp(state, 'image').to(6 * 20).over(3_000);
             await sleep(1_000);
             await wait(() => information.instances.length <= 0);
@@ -71,6 +73,7 @@ export function libraryBook() {
             await sleep(500);
             progress.levels.intelligence += 1;
             await show(`You feel a lot smarter.`);
+            controlPlayerHeadPosition = false;
         });
 
     s.anchor.set(9 / 20, 1);
