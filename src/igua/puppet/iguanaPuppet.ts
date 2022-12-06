@@ -83,6 +83,7 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
     body.addChild(args.body, head);
 
     const player = merge(new Container(), {
+        head,
         isDucking: false,
         duckUnit: 0,
         hspeed: 0,

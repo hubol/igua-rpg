@@ -1,6 +1,6 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {LibraryBook, ParticleInformation} from "../textures";
-import {Container, Sprite} from "pixi.js";
+import {Sprite} from "pixi.js";
 import {player} from "./player";
 import {show} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
@@ -21,7 +21,7 @@ const bookTxs = subimageTextures(LibraryBook, 12);
 const informationTxs = subimageTextures(ParticleInformation, 2);
 
 function getPlayerHead() {
-    return (player.children[2] as any).children[1] as Container;
+    return player.head;
 }
 
 export function libraryBook() {
