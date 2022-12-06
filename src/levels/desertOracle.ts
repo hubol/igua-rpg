@@ -45,6 +45,8 @@ export function DesertOracle()
             await sleep(3_000);
             await level.Oracle.walkTo(92);
             await sleep(3_000);
+            level.Oracle.scale.x = -1;
+            await sleep(200);
             await level.Oracle.walkTo(50);
             await sleep(3_000);
             level.Oracle.scale.x = 1;

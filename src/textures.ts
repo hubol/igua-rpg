@@ -168,11 +168,8 @@ export let NpcPupilsAngry: PIXI.Texture;
 export let NpcPupilsCartoonishGapped: PIXI.Texture;
 export let NpcPupilsCartoonish: PIXI.Texture;
 export let NpcPupilsWeird: PIXI.Texture;
-export let NpcRedFootRear: PIXI.Texture;
-export let NpcRedFoot: PIXI.Texture;
 export let NpcShortTailBody: PIXI.Texture;
 export let NpcStrangeBody: PIXI.Texture;
-export let NpcWeirdBody: PIXI.Texture;
 export let NpcYellowFootRear: PIXI.Texture;
 export let NpcYellowFoot: PIXI.Texture;
 export let Obelisk: PIXI.Texture;
@@ -779,20 +776,11 @@ export function loadTexturesAsync()
     const NpcPupilsWeirdPath = require("./images/npc/pupils weird.png");
     loader.add(NpcPupilsWeirdPath); 
 
-    const NpcRedFootRearPath = require("./images/npc/red foot rear.png");
-    loader.add(NpcRedFootRearPath); 
-
-    const NpcRedFootPath = require("./images/npc/red foot.png");
-    loader.add(NpcRedFootPath); 
-
     const NpcShortTailBodyPath = require("./images/npc/short tail body.png");
     loader.add(NpcShortTailBodyPath); 
 
     const NpcStrangeBodyPath = require("./images/npc/strange body.png");
     loader.add(NpcStrangeBodyPath); 
-
-    const NpcWeirdBodyPath = require("./images/npc/weird body.png");
-    loader.add(NpcWeirdBodyPath); 
 
     const NpcYellowFootRearPath = require("./images/npc/yellow foot rear.png");
     loader.add(NpcYellowFootRearPath); 
@@ -1270,11 +1258,8 @@ export function loadTexturesAsync()
             NpcPupilsCartoonishGapped = resources[NpcPupilsCartoonishGappedPath]?.texture as PIXI.Texture;
             NpcPupilsCartoonish = resources[NpcPupilsCartoonishPath]?.texture as PIXI.Texture;
             NpcPupilsWeird = resources[NpcPupilsWeirdPath]?.texture as PIXI.Texture;
-            NpcRedFootRear = resources[NpcRedFootRearPath]?.texture as PIXI.Texture;
-            NpcRedFoot = resources[NpcRedFootPath]?.texture as PIXI.Texture;
             NpcShortTailBody = resources[NpcShortTailBodyPath]?.texture as PIXI.Texture;
             NpcStrangeBody = resources[NpcStrangeBodyPath]?.texture as PIXI.Texture;
-            NpcWeirdBody = resources[NpcWeirdBodyPath]?.texture as PIXI.Texture;
             NpcYellowFootRear = resources[NpcYellowFootRearPath]?.texture as PIXI.Texture;
             NpcYellowFoot = resources[NpcYellowFootPath]?.texture as PIXI.Texture;
             Obelisk = resources[ObeliskPath]?.texture as PIXI.Texture;

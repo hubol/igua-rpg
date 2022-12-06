@@ -8,9 +8,6 @@ import {
     NpcBlueFootRear,
     NpcCurvedCrest, NpcCurvedCrest2,
     NpcGreenPolkaBody, NpcPupilsAngry,
-    NpcRedFoot,
-    NpcRedFootRear,
-    NpcWeirdBody,
     NpcStrangeBody,
     NpcPinkFoot,
     NpcPinkFootRear,
@@ -43,12 +40,13 @@ import {
     CutieMarkGuyLooks,
     StatueGuyLooks,
     IguardLooks,
-    CapitalShopkeeperLooks, BigKeyPiece4Looks
+    CapitalShopkeeperLooks, BigKeyPiece4Looks, DesertOracleLooks
 } from "./npcLooks";
 
 export type NpcStyle = ReturnType<typeof npcStyle>;
 const npcStyles: NpcStyle[] = [];
 
+npcStyles[0] = fromLooks(DesertOracleLooks);
 npcStyles[5] = fromLooks(DesertBarkeeperLooks);
 npcStyles[6] = fromLooks(DesertBarGayLooks);
 npcStyles[7] = fromLooks(DesertCostumerLooks);
@@ -68,27 +66,6 @@ npcStyles[20] = fromLooks(StatueGuyLooks);
 npcStyles[21] = fromLooks(IguardLooks);
 npcStyles[22] = fromLooks(CapitalShopkeeperLooks);
 npcStyles[23] = fromLooks(BigKeyPiece4Looks);
-
-npcStyles[0] = npcStyle(args => {
-    args.body = Sprite.from(NpcWeirdBody);
-    args.body.pivot.y += 4;
-    args.body.tint = 0xFF8A7C;
-
-    args.frontRightFoot = Sprite.from(NpcRedFoot);
-
-    args.backRightFoot = Sprite.from(NpcRedFootRear);
-    args.backRightFoot.pivot.y = 1;
-
-    args.crest = Sprite.from(NpcCurvedCrest);
-    args.crest.pivot.set(-2, 2);
-    args.crest.tint = 0x75CAFF;
-
-    args.headSprite.tint = 0x73C88C;
-    args.mouthSprite.tint = 0xA83F2F;
-
-    args.pupils.tint = 0xA83F2F;
-    args.eyelidColor = 0x5AA86E;
-});
 
 npcStyles[1] = npcStyle(args => {
     args.body = Sprite.from(NpcGreenPolkaBody);
