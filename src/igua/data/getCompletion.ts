@@ -23,10 +23,11 @@ export function getCompletion(progress: Progress) {
         return n(big.piece1) + n(big.piece2) + n(big.piece3) + n(big.reward);
     }
 
-    const { desert, jungle, volcano } = progress.flags;
+    const { desert, jungle, volcano, capital } = progress.flags;
     const { bigKey: desertBigKey, costumeMirror } = desert;
     const { bigKey: jungleBigKey } = jungle;
     const { bigKey: volcanoBigKey } = volcano;
+    const { bigKey: capitalBigKey } = capital;
     return (
         k(desertKeys) +
         b(desertBigKey) +
@@ -41,7 +42,10 @@ export function getCompletion(progress: Progress) {
         b(volcanoBigKey) +
         n(volcano.defeatedVileAngel) +
 
-        k(capitalKeys)) / numbers;
+        k(capitalKeys) +
+        b(capitalBigKey) +
+        n(capital.defeatedDassmann) +
+        n(capital.solvedImpossiblePuzzle)) / numbers;
 }
 
 /*
