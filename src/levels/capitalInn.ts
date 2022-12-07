@@ -14,6 +14,7 @@ import {lerp} from "../cutscene/lerp";
 import {restAtInn} from "../igua/logic/restAtInn";
 import {merge} from "../utils/object/merge";
 import {progress} from "../igua/data/progress";
+import {makePseudo} from "../utils/math/makePseudo";
 
 export function CapitalInn() {
     scene.backgroundColor = 0xF0B020;
@@ -29,10 +30,13 @@ export function CapitalInn() {
         .drawRect(31, 114, 196, 23)
         .behind();
 
+    const stars = makeStars().show();
+
     const moodLighting = merge(new Graphics(), { unit: 0 })
         .withStep(() => {
             moodLighting.alpha = Math.floor(moodLighting.unit * 5) / 5;
             moodLighting.alpha = moodLighting.alpha <= 0 ? 0 : moodLighting.alpha * 1.2;
+            stars.alpha = Math.pow(Math.max(0, moodLighting.alpha - 0.3), 2);
         });
     moodLighting
         .beginFill(0x4040c0)
@@ -56,4 +60,15 @@ export function CapitalInn() {
         await restAtInn();
         scene.gameObjectStage.withAsync(() => lerp(moodLighting, 'unit').to(0).over(400));
     };
+}
+
+function makeStars() {
+    const p = makePseudo(232.457);
+    const g = new Graphics();
+    for (let i = 0; i < 256; i++) {
+        const x = p.int() % 256;
+        const y = p.int() % 256;
+        g.lineStyle(1, 0xf0f0f0, 0.33 + 0.67 * p.unit()).moveTo(x, y).lineTo(x + 1, y);
+    }
+    return g;
 }
