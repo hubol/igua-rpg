@@ -165,26 +165,6 @@
         },
         {
           "name": "ValuableOrange",
-          "id": 14,
-          "_eid": "56004563",
-          "x": 403,
-          "y": 136,
-          "originX": 8,
-          "originY": 14,
-          "values": {"name": "", "depth": 0}
-        },
-        {
-          "name": "ValuableOrange",
-          "id": 15,
-          "_eid": "56004563",
-          "x": 403,
-          "y": 120,
-          "originX": 8,
-          "originY": 14,
-          "values": {"name": "", "depth": 0}
-        },
-        {
-          "name": "ValuableOrange",
           "id": 16,
           "_eid": "56004563",
           "x": 403,
@@ -209,16 +189,6 @@
           "_eid": "56004563",
           "x": 403,
           "y": 72,
-          "originX": 8,
-          "originY": 14,
-          "values": {"name": "", "depth": 0}
-        },
-        {
-          "name": "ValuableOrange",
-          "id": 19,
-          "_eid": "56004563",
-          "x": 403,
-          "y": 56,
           "originX": 8,
           "originY": 14,
           "values": {"name": "", "depth": 0}
@@ -396,6 +366,36 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 1499,
+          "_eid": "56004563",
+          "x": 403,
+          "y": 136,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 1599,
+          "_eid": "56004563",
+          "x": 403,
+          "y": 120,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 1999,
+          "_eid": "56004563",
+          "x": 403,
+          "y": 56,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -502,12 +502,72 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 88, "y": 88, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 200, "y": 56, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 352, "y": 104, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 392, "y": 88, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 856, "y": 104, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 808, "y": 80, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 88,
+          "y": 88,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 200,
+          "y": 56,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 352,
+          "y": 104,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 392,
+          "y": 88,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 856,
+          "y": 104,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 808,
+          "y": 80,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     }
