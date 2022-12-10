@@ -64,7 +64,7 @@ export function clownDrop(initialRate: number, deltaRate: number, minRate: numbe
     return (count: number) => rng() <= Math.max(minRate, initialRate - Math.abs(deltaRate) * count);
 }
 
-type ClownHealth = ReturnType<typeof clownHealth>;
+export type ClownHealth = ReturnType<typeof clownHealth>;
 
 export const clownHealthUi = new SceneLocal(() => {
     let clownHealth = Undefined<ClownHealth>();

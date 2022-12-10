@@ -14,6 +14,7 @@ export const defaultKeyboardControls: KeyboardControls = {
     Interact: "ArrowUp",
     InventoryMenuToggle: "KeyU",
     Jump: "Space",
+    CastSpell: "KeyQ",
     MenuEscape: "Escape",
     MoveLeft: "ArrowLeft",
     MoveRight: "ArrowRight",
@@ -44,9 +45,10 @@ type GamepadControl = ButtonControl | AxisControl | AxisUnitControl;
 type GamepadControls = ControlsBase<GamepadControl[]>;
 
 const defaultGamepadControls: GamepadControls = {
+    CastSpell: [ button(StandardMapping.Button.BUTTON_TOP) ],
     Confirm: [ button(StandardMapping.Button.BUTTON_BOTTOM) ],
     Duck: [ button(StandardMapping.Button.D_PAD_BOTTOM), button(StandardMapping.Button.BUMPER_LEFT), button(StandardMapping.Button.BUMPER_RIGHT) ],
-    Interact: [ button(StandardMapping.Button.BUTTON_TOP), button(StandardMapping.Button.D_PAD_UP) ],
+    Interact: [ button(StandardMapping.Button.D_PAD_UP) ],
     InventoryMenuToggle: [ button(StandardMapping.Button.BUTTON_CONTROL_RIGHT) ],
     Jump: [ button(StandardMapping.Button.BUTTON_BOTTOM) ],
     MenuEscape: [ button(StandardMapping.Button.BUTTON_RIGHT) ],

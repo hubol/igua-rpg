@@ -135,6 +135,7 @@ export let KeyRed: PIXI.Texture;
 export let KeyYellowShrunken: PIXI.Texture;
 export let KeyYellow: PIXI.Texture;
 export let KeyboardT9: PIXI.Texture;
+export let LaughSpell: PIXI.Texture;
 export let LeftPipeEnd: PIXI.Texture;
 export let LibraryBook: PIXI.Texture;
 export let LightShelf: PIXI.Texture;
@@ -676,6 +677,9 @@ export function loadTexturesAsync()
 
     const KeyboardT9Path = require("./images/keyboard t9.png");
     loader.add(KeyboardT9Path); 
+
+    const LaughSpellPath = require("./images/laugh spell.png");
+    loader.add(LaughSpellPath); 
 
     const LeftPipeEndPath = require("./images/left pipe end.png");
     loader.add(LeftPipeEndPath); 
@@ -1225,6 +1229,7 @@ export function loadTexturesAsync()
             KeyYellowShrunken = resources[KeyYellowShrunkenPath]?.texture as PIXI.Texture;
             KeyYellow = resources[KeyYellowPath]?.texture as PIXI.Texture;
             KeyboardT9 = resources[KeyboardT9Path]?.texture as PIXI.Texture;
+            LaughSpell = resources[LaughSpellPath]?.texture as PIXI.Texture;
             LeftPipeEnd = resources[LeftPipeEndPath]?.texture as PIXI.Texture;
             LibraryBook = resources[LibraryBookPath]?.texture as PIXI.Texture;
             LightShelf = resources[LightShelfPath]?.texture as PIXI.Texture;

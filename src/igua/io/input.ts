@@ -8,7 +8,7 @@ import {distance, vnew} from "../../utils/math/vector";
 
 const actions = ['MoveLeft', 'MoveRight', 'Duck', 'Jump', 'Interact',
     'InventoryMenuToggle', 'PauseMenuToggle', 'MenuEscape',
-    'SelectRight', 'SelectDown', 'SelectLeft', 'SelectUp', 'Confirm'] as const;
+    'SelectRight', 'SelectDown', 'SelectLeft', 'SelectUp', 'Confirm', 'CastSpell'] as const;
 
 export type Action = typeof actions[number];
 

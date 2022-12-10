@@ -21,6 +21,7 @@ import {derivedStats} from "../igua/gameplay/derivedStats";
 import {lava} from "./lava";
 import {damageStatusConsts} from "../igua/gameplay/damageStatusConsts";
 import {PlayerBurningEffect} from "./playerBurningEffect";
+import {castPlayerSpell} from "./playerSpell";
 
 export function playerPuppetArgs() {
     return makeIguanaPuppetArgsFromLooks(progress.looks);
@@ -208,6 +209,10 @@ function createPlayer(behavior = true)
             player.drain(damageStatusConsts.burnStatusDrain);
             progress.status.burn = 0;
         }
+
+        // TODO need a charging animation probably!
+        if (playerKey.justWentDown('CastSpell'))
+            castPlayerSpell();
 
         if (scene.source === UnrealFlight)
         {

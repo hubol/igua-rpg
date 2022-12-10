@@ -16,6 +16,7 @@ import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {hat} from "./hat";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
+import {WeakToSpells} from "../pixins/weakToSpells";
 
 const clownTxs = subimageTextures(CommonClown, 2);
 export const resolveCommonClown = resolveGameObject("CommonClown", (e) => commonClown().at(e));
@@ -40,6 +41,8 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
 
     const health = clownHealth(50);
     const drop = clownDrop(0.67, 0.4, 0.1);
+
+    container.withPixin(WeakToSpells({ spellsHurtbox: [ mask ], clownHealth: health }));
 
     container.withStep(() => {
         if (container.portal && !container.hasFilter)

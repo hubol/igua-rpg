@@ -18,6 +18,7 @@ export function getInitialProgress()
             strength: 1,
             intelligence: 0,
             vigor: 0,
+            humor: 0,
         },
         inventory: [] as (PotionType | undefined)[],
         shopPurchases: {} as Record<PotionType, number | undefined>,
