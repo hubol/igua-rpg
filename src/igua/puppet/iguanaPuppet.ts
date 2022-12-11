@@ -95,6 +95,7 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
         canBlink: true,
         isClosingEyes: false,
         closedEyesUnit: 0,
+        headLiftUnit: 0,
         get agapeUnit() {
             return (args.head as any).agapeUnit;
         },
@@ -195,7 +196,7 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
         //     args.crest.y = Math.round(roundedDuckUnit * -1);
         // }
 
-        head.position.y = Math.round(roundedDuckUnit * 2);
+        head.position.y = Math.round(roundedDuckUnit * 2) - Math.floor(player.headLiftUnit);
 
         if (player.hspeed < 0)
             player.scale.x = -Math.abs(player.scale.x);

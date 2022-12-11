@@ -71,10 +71,25 @@ function conditionallyGotoDeathScreen() {
         gotoDeathScreen();
 }
 
+const consts = {
+    castTimeFrames: 50,
+    rechargeCastTimeFrames: 100,
+    castingPlayerMaxSpeedFactor: 0.33,
+}
+
 function createPlayer(behavior = true)
 {
     const player = merge(playerPuppet(),
         {
+            remainingCastTimeFrames: 0,
+            get isCastingSpell() {
+                return player.remainingCastTimeFrames > 0;
+            },
+            get hasSufficientChargeForSpell() {
+                return player.castCharge >= player.castChargeMax;
+            },
+            castCharge: consts.rechargeCastTimeFrames,
+            castChargeMax: consts.rechargeCastTimeFrames,
             follower: behavior && createFollower(),
             invulnerableFrameCount: 0,
             isDead: false,
@@ -140,6 +155,7 @@ function createPlayer(behavior = true)
     const engine = player.engine;
 
     let bufferedJump = 0;
+    let bufferedCast = 0;
     let ballonLifeTick = 0;
 
     const step = () => {
@@ -177,6 +193,8 @@ function createPlayer(behavior = true)
 
         const baseSpeed = !progress.status.poison ? 2.5 : 3.25;
         player.engine.walkSpeed = baseSpeed + Math.max(0, 0.5 * (progress.status.poison - 1));
+        if (player.isCastingSpell)
+            player.engine.walkSpeed *= consts.castingPlayerMaxSpeedFactor;
         player.engine.gravity = Math.max(0.02, 0.15 - Math.min(1, progress.status.ballons.length) * 0.01 - Math.max(0, progress.status.ballons.length - 1) * 0.00625);
 
         player.isDucking = (playerKey.isDown("Duck") && engine.coyote > 0) || player.mods.has(Sleepy);
@@ -211,8 +229,23 @@ function createPlayer(behavior = true)
         }
 
         // TODO need a charging animation probably!
-        if (playerKey.justWentDown('CastSpell'))
+        if (derivedStats.canCastSpell && playerKey.justWentDown('CastSpell'))
+            bufferedCast = 5;
+
+        if (bufferedCast && !player.isCastingSpell && player.hasSufficientChargeForSpell) {
             castPlayerSpell();
+            player.remainingCastTimeFrames = consts.castTimeFrames;
+            player.castCharge = 0;
+        }
+
+        if (bufferedCast > 0)
+            bufferedCast--;
+
+        if (player.remainingCastTimeFrames > 0)
+            player.remainingCastTimeFrames--;
+
+        if (player.castCharge < player.castChargeMax)
+            player.castCharge++;
 
         if (scene.source === UnrealFlight)
         {

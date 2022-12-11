@@ -18,18 +18,35 @@ import {isOnScreen} from "../igua/logic/isOnScreen";
 import {CastSpellCast, CastSpellCharge, CastSpellHit} from "../sounds";
 import {sleep} from "../cutscene/sleep";
 import {approachLinear} from "../utils/math/number";
+import {IguanaPuppet} from "../igua/puppet/iguanaPuppet";
 
 const txs = subimageTextures(LaughSpell, 2);
 
 export function castPlayerSpell() {
-    // TODO sfx
-    // @ts-ignore
-    const mouth = player.head.children[1].children[1];
-    const xscale = player.scale.x * player.children[0].scale.x;
-    playerSpell().at(getWorldCenter(mouth).add(xscale * 8, 0)).ahead();
+
+    const c = container()
+        .withAsync(async () => {
+            for (let i = 0; i < 3; i++) {
+                // TODO sfx
+                // @ts-ignore
+                const mouth = player.head.children[1].children[1];
+                const xscale = player.scale.x * player.children[0].scale.x;
+                playerSpell().at(getWorldCenter(mouth).add(xscale * 8, 0)).ahead();
+                await sleep(300);
+            }
+            c.destroy();
+        })
+        .show();
 }
 
-function playerSpell() {
+const consts = {
+    speedStart: 2.5,
+    speedDelta: 0.05,
+    speedEnd: 1.25,
+    maximumTravelTimeFrames: 3 * 60,
+}
+
+function playerSpell(subject: IguanaPuppet = player) {
     CastSpellCharge.play();
     const hitbox = new Graphics().beginFill().drawRect(1, 1, 11, 8).hide();
     const sprite = animatedSprite(txs, 0.025 + rng() * 0.025);
@@ -40,7 +57,7 @@ function playerSpell() {
     let activeSteps = 0;
     let target = Undefined<WeakToSpellsInstance>();
     let targetHurtbox = Undefined<DisplayObject>();
-    let moveTowardsTargetSpeed = 2;
+    let moveTowardsTargetSpeed = consts.speedStart;
 
     const s = scene.s;
 
@@ -58,26 +75,32 @@ function playerSpell() {
                 }
                 if (target && targetHurtbox) {
                     spell.moveTowards(getWorldCenter(targetHurtbox), moveTowardsTargetSpeed);
-                    moveTowardsTargetSpeed = approachLinear(moveTowardsTargetSpeed, 1, 0.05);
+                    moveTowardsTargetSpeed = approachLinear(moveTowardsTargetSpeed, consts.speedEnd, consts.speedDelta);
                 }
                 else {
                     spell.x += Math.sin((scene.s - s) * Math.PI * 2);
                     spell.y -= 0.3;
                 }
-                if (doSpellCollisionEvents(spell)) {
+                if (doSpellCollisionEvents(hitbox)) {
                     // TODO sfx
                     // smallPop(12, spell.parent).at(spell);
                     // spell.destroy();
                     active = false;
                 }
             }
-            if (activeSteps >= 60 * 5)
+            if (activeSteps >= consts.maximumTravelTimeFrames)
                 active = false;
         })
         .withAsync(async () => {
-                await lerp(player, 'agapeUnit').to(1).over(100);
-                await sleep(50);
-                await lerp(player, 'agapeUnit').to(0).over(100);
+            await sleep(100)
+            await lerp(subject, 'agapeUnit').to(1).over(100);
+            await sleep(50);
+            await lerp(subject, 'agapeUnit').to(0).over(100);
+        })
+        .withAsync(async () => {
+            await lerp(subject, 'headLiftUnit').to(1).over(100);
+            await sleep(300);
+            await lerp(subject, 'headLiftUnit').to(0).over(100);
         })
         .withAsync(async () => {
             slowRise = true;
@@ -101,13 +124,13 @@ function doOneSpellCollision(instance: WeakToSpellsInstance) {
     instance.clownHealth.damage(Math.min(derivedStats.spellPower, min));
 }
 
-function doSpellCollisionEvents(spell :DisplayObject) {
+function doSpellCollisionEvents(spellHitbox :DisplayObject) {
     const instances = WeakToSpellsInstances.value;
     let didCollide = false;
 
     for (const instance of instances) {
         for (const hurtbox of instance.spellsHurtbox) {
-            if (hurtbox.collides(spell)) {
+            if (hurtbox.collides(spellHitbox)) {
                 doOneSpellCollision(instance);
                 didCollide = true;
                 break;
