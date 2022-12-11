@@ -38,6 +38,7 @@ import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {Blinking} from "../pixins/blinking";
+import {WeakToSpells} from "../pixins/weakToSpells";
 
 const consts = {
     gravity: 0.2,
@@ -137,11 +138,11 @@ export function clownSharp() {
         dieClown(c, drop5, [0, dropBoth ? -17 : -10]);
     }
 
-    let tookDamageVolatile = false;
+    let tookPhysicalDamage = false;
 
-    function handleDamage() {
+    function handlePhysicalDamage() {
         if (player.collides(hitboxes) && c.invulnerable <= 0) {
-            tookDamageVolatile = true;
+            tookPhysicalDamage = true;
             timeSinceLastDamage = 0;
             ClownHurt.play();
 
@@ -167,8 +168,9 @@ export function clownSharp() {
     const c = merge(container(body), {})
         .withPixin(Invulnerable())
         .withPixin(Stamina())
+        .withPixin(WeakToSpells({ clownHealth: health, spellsHurtbox: hitboxes }))
         .withStep(doAnimation)
-        .withStep(handleDamage)
+        .withStep(handlePhysicalDamage)
         .withStep(doPrePhysics)
         .withGravityAndWallResist([0, -8], 7, consts.gravity)
         .withAsync(doFacePlayerAnimation);
@@ -205,9 +207,9 @@ export function clownSharp() {
                 arm.fork.glow(1).over(500)
             ]);
             self.fire = true;
-            tookDamageVolatile = false;
+            tookPhysicalDamage = false;
             await Promise.race([
-                wait(() => tookDamageVolatile).then(() => sleep(100)),
+                wait(() => tookPhysicalDamage).then(() => sleep(100)),
                 sleep(2000),
                 waitHold(() => distFromPlayer(arm.fork.prongs) > consts.bullet.travel, 60 * 2)
             ]);
