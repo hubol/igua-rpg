@@ -95,6 +95,12 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
         canBlink: true,
         isClosingEyes: false,
         closedEyesUnit: 0,
+        get agapeUnit() {
+            return (args.head as any).agapeUnit;
+        },
+        set agapeUnit(value) {
+            (args.head as any).agapeUnit = value;
+        },
         feet: [ args.backLeftFoot, args.backRightFoot, args.frontLeftFoot, args.frontRightFoot ],
         duckImmediately()
         {
@@ -107,6 +113,7 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
             player.closedEyesUnit = 1;
         }
     });
+
     innerContainer.addChild(args.backLeftFoot, args.frontLeftFoot, body, args.backRightFoot, args.frontRightFoot);
     if (!args.fromLooks)
         player.pivot.set(11, 17);

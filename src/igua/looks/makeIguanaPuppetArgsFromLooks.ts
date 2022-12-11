@@ -22,6 +22,7 @@ import {iguanaEyelids, IguanaEyes} from "../puppet/eyes";
 import {merge} from "../../utils/object/merge";
 import {textureToGraphics} from "../../utils/pixi/textureToGraphics";
 import {flipH, flipV} from "../../utils/pixi/flip";
+import {range} from "../../utils/range";
 
 export function makeIguanaPuppetArgsFromLooks(looks: Looks): IguanaPuppetArgs {
     const backLeftFoot = makeFoot(looks.feet, "hind", true);
@@ -114,15 +115,21 @@ function makeBody(body: Body) {
 
 type Head = Looks['head'];
 
+const mouthAgapeAnimationIndices = [ 1, 0, 2 ];
+
 function makeHead(body: Body, head: Head) {
     const face = Sprite.from(faceShapes[0]);
     face.tint = head.color;
-    const mouth = Sprite.from(mouthShapes[head.mouth.shape]);
-    mouth.tint = head.mouth.color;
-    mouth.pivot.set(-13, 1).add(head.mouth.placement, -1);
-    if (head.mouth.flipV)
-        flipV(mouth);
-    face.addChild(mouth);
+    const mouths = range(3).map(x => {
+        const sprite = Sprite.from(mouthShapes[head.mouth.shape]);
+        sprite.pivot.y = x - 1;
+        sprite.tint = head.mouth.color;
+        sprite.pivot.add(-13, 1).add(head.mouth.placement, -1);
+        if (head.mouth.flipV)
+            flipV(sprite);
+        face.addChild(sprite);
+        return sprite;
+    });
 
     const crest = makeCrest(head.crest);
 
@@ -130,7 +137,20 @@ function makeHead(body: Body, head: Head) {
 
     face.ext.precise = true;
 
-    const h = container(crest, face, eyes);
+    let agapeUnit = 0;
+    const h = merge(container(crest, face, eyes), {
+        get agapeUnit() {
+            return agapeUnit;
+        },
+        set agapeUnit(value: number) {
+            agapeUnit = value;
+            const index = Math.floor(Math.max(0, Math.min(2, value * 3)));
+            for (let i = 0; i < mouths.length; i++) {
+                mouths[mouthAgapeAnimationIndices[i]].visible = index >= i;
+            }
+        }
+    });
+    h.agapeUnit = 0;
 
     const hornShape = hornShapes[head.horn.shape];
 

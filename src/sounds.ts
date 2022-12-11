@@ -67,6 +67,21 @@ export const BurnedPlayer = new Howl({
     
 });
 
+export const CastSpellCast = new Howl({
+    src: [require("./sound/cast spell cast.ogg"), require("./sound/cast spell cast.mp3")],
+    
+});
+
+export const CastSpellCharge = new Howl({
+    src: [require("./sound/cast spell charge.ogg"), require("./sound/cast spell charge.mp3")],
+    
+});
+
+export const CastSpellHit = new Howl({
+    src: [require("./sound/cast spell hit.ogg"), require("./sound/cast spell hit.mp3")],
+    
+});
+
 export const ChangeLooks = new Howl({
     src: [require("./sound/change looks.ogg"), require("./sound/change looks.mp3")],
     

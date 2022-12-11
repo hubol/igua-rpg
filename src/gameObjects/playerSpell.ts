@@ -11,21 +11,26 @@ import {WeakToSpellsInstance, WeakToSpellsInstances} from "../pixins/weakToSpell
 import {vnew} from "../utils/math/vector";
 import {getWorldBounds, getWorldCenter} from "../igua/gameplay/getCenter";
 import {derivedStats} from "../igua/gameplay/derivedStats";
-import {smallPop} from "./smallPop";
 import {rng} from "../utils/math/rng";
 import {player} from "./player";
 import {scene} from "../igua/scene";
 import {isOnScreen} from "../igua/logic/isOnScreen";
+import {CastSpellCast, CastSpellCharge, CastSpellHit} from "../sounds";
+import {sleep} from "../cutscene/sleep";
+import {approachLinear} from "../utils/math/number";
 
 const txs = subimageTextures(LaughSpell, 2);
 
 export function castPlayerSpell() {
     // TODO sfx
     // @ts-ignore
-    playerSpell().at(getWorldCenter(player.head.children[1])).ahead();
+    const mouth = player.head.children[1].children[1];
+    const xscale = player.scale.x * player.children[0].scale.x;
+    playerSpell().at(getWorldCenter(mouth).add(xscale * 8, 0)).ahead();
 }
 
 function playerSpell() {
+    CastSpellCharge.play();
     const hitbox = new Graphics().beginFill().drawRect(1, 1, 11, 8).hide();
     const sprite = animatedSprite(txs, 0.025 + rng() * 0.025);
     sprite.imageIndex = rng() * 2;
@@ -35,6 +40,7 @@ function playerSpell() {
     let activeSteps = 0;
     let target = Undefined<WeakToSpellsInstance>();
     let targetHurtbox = Undefined<DisplayObject>();
+    let moveTowardsTargetSpeed = 2;
 
     const s = scene.s;
 
@@ -51,7 +57,8 @@ function playerSpell() {
                     targetHurtbox = result[1];
                 }
                 if (target && targetHurtbox) {
-                    spell.moveTowards(getWorldCenter(targetHurtbox), 1);
+                    spell.moveTowards(getWorldCenter(targetHurtbox), moveTowardsTargetSpeed);
+                    moveTowardsTargetSpeed = approachLinear(moveTowardsTargetSpeed, 1, 0.05);
                 }
                 else {
                     spell.x += Math.sin((scene.s - s) * Math.PI * 2);
@@ -68,11 +75,18 @@ function playerSpell() {
                 active = false;
         })
         .withAsync(async () => {
+                await lerp(player, 'agapeUnit').to(1).over(100);
+                await sleep(50);
+                await lerp(player, 'agapeUnit').to(0).over(100);
+        })
+        .withAsync(async () => {
             slowRise = true;
             await lerp(spell, 'dither').to(1).over(250);
+            CastSpellCast.play();
             slowRise = false;
             active = true;
             await wait(() => !active);
+            CastSpellHit.play();
             await lerp(spell, 'dither').to(0).over(250);
             spell.destroy();
         });
