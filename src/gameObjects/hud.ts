@@ -18,6 +18,8 @@ enum Color {
     Heal = 0x00ff00,
     Life = 0x0000ff,
     Vulnerable = 0x180098,
+    ChargeEmpty = 0x208050,
+    ChargeFill = 0x60C850,
 }
 
 const AnimatedStats = new SceneLocal(() => ({ maxHealth: derivedStats.maxHealth }), `HudMaxHealth`);
@@ -43,6 +45,23 @@ export function hud()
             healthbarGfx.drawRect(0, 0, Math.max(Math.sign(life), life * f), 16);
         });
 
+    const spellChargeGfx = new Graphics()
+        .withStep(() => {
+            spellChargeGfx.visible = !player || player.destroyed || !player.hasSufficientChargeForSpell;
+            if (!spellChargeGfx.visible)
+                return;
+
+            const width = 16;
+
+            spellChargeGfx.at(player.getBounds().center.x - width / 2, player.worldTransform.ty + 2);
+            spellChargeGfx
+                .clear()
+                .beginFill(Color.ChargeEmpty)
+                .drawRect(0, 0, width, 2)
+                .beginFill(Color.ChargeFill)
+                .drawRect(0, 0, width * (player.castCharge / player.castChargeMax), 2);
+        })
+
     const valuables = IguaText.Large("", { tint: 0x00ff00 })
         .withStep(() => {
             if (progress.valuables === 1)
@@ -66,7 +85,7 @@ export function hud()
     const container = new Container()
         .withStep(() => container.visible = scene.isLevel && !player.isDead);
 
-    container.addChild(healthbarGfx, valuables, poisoned, clownHealthBar());
+    container.addChild(spellChargeGfx, healthbarGfx, valuables, poisoned, clownHealthBar());
 
     return container;
 }
