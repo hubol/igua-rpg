@@ -20,6 +20,11 @@ import {sleep} from "../cutscene/sleep";
 import {approachLinear} from "../utils/math/number";
 import {IguanaPuppet} from "../igua/puppet/iguanaPuppet";
 
+export enum PlayerSpellColor {
+    Dark = 0x208050,
+    Light = 0x60C850,
+}
+
 const txs = subimageTextures(LaughSpell, 2);
 
 export function castPlayerSpell() {
@@ -122,6 +127,7 @@ function playerSpell(subject: IguanaPuppet = player) {
 function doOneSpellCollision(instance: WeakToSpellsInstance) {
     const min = Math.max(0, instance.clownHealth.health - 1);
     instance.clownHealth.damage(Math.min(derivedStats.spellPower, min));
+    instance.showSpellEffectTimeFrames = 3;
 }
 
 function doSpellCollisionEvents(spellHitbox :DisplayObject) {

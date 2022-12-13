@@ -44,11 +44,16 @@ function commonClownImpl({ hspeed = 0.75, limitedRangeEnabled = true, dangerous 
 
     container.withPixin(WeakToSpells({ spellsHurtbox: [ mask ], clownHealth: health }));
 
+    let appliedOpaqueTint = false;
     container.withStep(() => {
-        if (container.portal && !container.hasFilter)
+        if (container.portal && !appliedOpaqueTint) {
             container.opaqueTint = 0x20A090;
-        else if (!container.portal && container.hasFilter)
+            appliedOpaqueTint = true;
+        }
+        else if (!container.portal && appliedOpaqueTint) {
             container.filters = [];
+            appliedOpaqueTint = false;
+        }
 
         const xPrevious = container.x;
         unit = lerp(unit, container.vspeed < 0 ? 1 : 0, 0.0875);

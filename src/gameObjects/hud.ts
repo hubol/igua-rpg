@@ -11,6 +11,7 @@ import {dither} from "./dither";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {SceneLocal} from "../igua/sceneLocal";
 import {approachLinear, nlerp} from "../utils/math/number";
+import {PlayerSpellColor} from "./playerSpell";
 
 enum Color {
     Empty = 0xff0000,
@@ -18,8 +19,8 @@ enum Color {
     Heal = 0x00ff00,
     Life = 0x0000ff,
     Vulnerable = 0x180098,
-    ChargeEmpty = 0x208050,
-    ChargeFill = 0x60C850,
+    ChargeEmpty = PlayerSpellColor.Dark,
+    ChargeFill = PlayerSpellColor.Light,
 }
 
 const AnimatedStats = new SceneLocal(() => ({ maxHealth: derivedStats.maxHealth }), `HudMaxHealth`);
