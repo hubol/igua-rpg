@@ -23,6 +23,7 @@ import {rayToPlayer, rayToPlayerIntersectsWall} from "../igua/logic/rayIntersect
 import {rng} from "../utils/math/rng";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {trimFrame} from "../utils/pixi/trimFrame";
+import {WeakToSpells} from "../pixins/weakToSpells";
 
 const textures = subimageTextures(ClownWonderful, { width: 30 });
 const hatTexture = trimFrame(textures[9]);
@@ -391,6 +392,8 @@ export function clownWonderful() {
         s.blendMode = BLEND_MODES.ADD;
         return s;
     }
+
+    c.withPixin(WeakToSpells({ spellsHurtbox: [head], clownHealth: health }))
 
     return c;
 }

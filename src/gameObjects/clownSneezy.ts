@@ -21,6 +21,7 @@ import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 import {trackPosition} from "../igua/trackPosition";
 import {hat} from "./hat";
+import {WeakToSpells} from "../pixins/weakToSpells";
 
 const textures = subimageTextures(ClownSneezy, { width: 24 });
 const propellerProjectileTextures = subimageTextures(ClownPropellerProjectile, { width: 8 });
@@ -193,6 +194,8 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
             }
         })
         .on('removed', () => SneezyPropellerWindUp.stop(windUp));
+
+    c.withPixin(WeakToSpells({ spellsHurtbox: [g], clownHealth: health }));
 
     c.ext.isHatParent = true;
 

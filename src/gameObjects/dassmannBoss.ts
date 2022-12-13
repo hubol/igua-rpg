@@ -17,6 +17,7 @@ import {FreeSpace} from "../pixins/freeSpace";
 import {approachLinear} from "../utils/math/number";
 import {merge} from "../utils/object/merge";
 import {container} from "../utils/pixi/container";
+import {WeakToSpells} from "../pixins/weakToSpells";
 
 const consts = {
     damage: {
@@ -34,6 +35,8 @@ export function dassmannBoss() {
     body.playFootsteps = true;
 
     const health = clownHealth(1000);
+
+    d.withPixin(WeakToSpells({ spellsHurtbox: d.hurtboxes, clownHealth: health }));
 
     const attackRunnerContainer = container().withAsync(doAs).show(d);
     const attacks = attackRunner().show(attackRunnerContainer);

@@ -44,6 +44,7 @@ import {attack, attackRunner} from "./attacks";
 import {Undefined} from "../utils/types/undefined";
 import {rayIntersectsWallDistance} from "../igua/logic/rayIntersectsWall";
 import {spikeVile, spikeVilePreview} from "./spikeVile";
+import {WeakToSpells} from "../pixins/weakToSpells";
 
 const unitv = {
     left: [-1, 0],
@@ -381,9 +382,14 @@ export function clownVile() {
     }
 
     const c = merge(container(head), { hostile: false })
+        .withPixin(WeakToSpells({ spellsHurtbox: [hurtbox], clownHealth: health }))
         .withStep(doHeadPhysics)
         .withStep(takeDamage)
-        .withAsync(doAs);
+        .withAsync(doAs)
+        .withAsync(async () => {
+            await health.tookDamage();
+            c.hostile = true;
+        });
 
     c.transform.onPositionChanged(onSpawnedWithPosition);
 

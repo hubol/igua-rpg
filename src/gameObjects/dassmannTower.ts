@@ -13,6 +13,7 @@ import {vnew} from "../utils/math/vector";
 import {ClownExplode, ClownHurt} from "../sounds";
 import {confetti} from "./confetti";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
+import {WeakToSpells} from "../pixins/weakToSpells";
 
 const v = vnew();
 
@@ -30,6 +31,8 @@ export function dassmannTower() {
     const w = whiten(s);
     w.factor = 1;
     s.mask = stencil;
+
+    c.withPixin(WeakToSpells({ spellsHurtbox: [mask], clownHealth: health }));
 
     mask.withStep(() => {
         if (c.invulnerable > 0)

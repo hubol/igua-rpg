@@ -50,6 +50,7 @@ import {scene} from "../igua/scene";
 import {confetti} from "./confetti";
 import {trove100} from "./valuableTrove";
 import {sparkleTell} from "./sparkleTell";
+import {WeakToSpells} from "../pixins/weakToSpells";
 
 const hairTextures = subimageTextures(UnorthodoxClownHair, 3);
 const mouthTxs = subimageTextures(UnorthodoxClownMouth, 4);
@@ -719,6 +720,8 @@ export function clownUnorthodox() {
             tc.new(80, 60).at(-60 - 80, -100).tinted(0x0000ff)],
         pounce: tc.new(96, 180).at(-48, -210 + 5).tinted(0x00ff00),
     }
+
+    head.withPixin(WeakToSpells({ spellsHurtbox: [ head.hit ], clownHealth: health }));
 
     return head;
 }
