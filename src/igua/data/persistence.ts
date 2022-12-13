@@ -11,6 +11,7 @@ import {truncate} from "../../utils/string/truncate";
 import {readAndConvertProgressFile} from "./readAndConvertProgressFile";
 import {ChooseYourLooksBeginning} from "../../levels/chooseYourLooks";
 import {sceneStack} from "../scene";
+import {player} from "../../gameObjects/player";
 
 export enum SaveFile {
     Slot1 = "file1",
@@ -52,6 +53,8 @@ ${truncate(stringify(e), 60)}`);
     },
     async save() {
         try {
+            if (player?.isDead)
+                return console.log('Player is dead. Preventing save.');
             showFloppy();
             localStorageEntry(currentSaveFile).write(progress);
             localStorageEntry(currentSaveFile).read();
