@@ -23,6 +23,7 @@ import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {clownHealth} from "./utils/clownUtils";
 import {newGravity} from "./utils/newGravity";
 import {trove65} from "./valuableTrove";
+import {WeakToSpells} from "../pixins/weakToSpells";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture, sleepyFaceTexture] =
     subimageTextures(OversizedAngel, { width: 66 });
@@ -43,7 +44,7 @@ function mace(angleOffset: number, damage: number) {
 }
 
 function oversizedClownImpl() {
-    const faceState = { anger: 0, excited: 0 };
+    const faceState = { anger: 0, excited: 0, awake: false };
 
     const consts = {
         damage: {
@@ -60,7 +61,9 @@ function oversizedClownImpl() {
     head.hitbox = [0.2, 0.2, 0.8, 1];
     const hair = Sprite.from(hairTexture);
     const electricContainer = container();
-    const c = merge(container(head, hair, face(faceState), electricContainer), { aggressive: false });
+    const physicalFormContainer = container(head, hair, face(faceState))
+        .withPixin(WeakToSpells({ spellsHurtbox: [head], clownHealth: health }));
+    const c = merge(container(physicalFormContainer, electricContainer), { aggressive: false });
     const speed = [0, 0];
 
     const ballonsState = range(5).map(() => 1);
@@ -229,6 +232,8 @@ function oversizedClownImpl() {
     c.withStep(showExcitement());
 
     c.withStep(() => {
+        faceState.awake = c.aggressive;
+
         if (health.isDead) {
             abortElectricBolts();
             ClownExplode.play();
@@ -269,7 +274,12 @@ function oversizedClownImpl() {
             await wait(() => Math.abs(player.x - (c.x + 33)) < 100);
             shootElectricBolt();
         }
-    })
+    });
+
+    c.withAsync(async () => {
+        await health.tookDamage();
+        c.aggressive = true;
+    });
 
     ballons({ target: c, state: ballonsState, string: 32, offset: [33, 11] });
     let electricBoltContainer: Container;
@@ -277,7 +287,7 @@ function oversizedClownImpl() {
     return c;
 }
 
-function face(state: { anger: number, excited: number }) {
+function face(state: { anger: number, excited: number, awake: boolean }) {
     const f = Sprite.from(faceTexture);
     const ll = Sprite.from(leftBrowTexture);
     ll.anchor.set(32/66, 14/51);
@@ -306,7 +316,7 @@ function face(state: { anger: number, excited: number }) {
     let facing = 0;
     let once = false;
     const c2 = container(c).withStep(() => {
-        const aggressive = (c2.parent as any).aggressive as boolean;
+        const aggressive = state.awake;
         f.texture = aggressive ? faceTexture : sleepyFaceTexture;
         // @ts-ignore
         if (once && !aggressive)
