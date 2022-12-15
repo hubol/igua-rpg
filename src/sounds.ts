@@ -77,6 +77,11 @@ export const CastSpellCharge = new Howl({
     
 });
 
+export const CastSpellDamage = new Howl({
+    src: [require("./sound/cast spell damage.ogg"), require("./sound/cast spell damage.mp3")],
+    
+});
+
 export const CastSpellHit = new Howl({
     src: [require("./sound/cast spell hit.ogg"), require("./sound/cast spell hit.mp3")],
     

@@ -15,7 +15,7 @@ import {rng} from "../utils/math/rng";
 import {player} from "./player";
 import {scene} from "../igua/scene";
 import {isOnScreen} from "../igua/logic/isOnScreen";
-import {CastSpellCast, CastSpellCharge, CastSpellHit} from "../sounds";
+import {CastSpellCast, CastSpellCharge, CastSpellDamage, CastSpellHit} from "../sounds";
 import {sleep} from "../cutscene/sleep";
 import {approachLinear} from "../utils/math/number";
 import {IguanaPuppet} from "../igua/puppet/iguanaPuppet";
@@ -32,7 +32,6 @@ export function castPlayerSpell() {
     const c = container()
         .withAsync(async () => {
             for (let i = 0; i < 3; i++) {
-                // TODO sfx
                 // @ts-ignore
                 const mouth = player.head.children[1].children[1];
                 const xscale = player.scale.x * player.children[0].scale.x;
@@ -87,9 +86,6 @@ function playerSpell(subject: IguanaPuppet = player) {
                     spell.y -= 0.3;
                 }
                 if (doSpellCollisionEvents(hitbox)) {
-                    // TODO sfx
-                    // smallPop(12, spell.parent).at(spell);
-                    // spell.destroy();
                     active = false;
                 }
             }
@@ -125,6 +121,7 @@ function playerSpell(subject: IguanaPuppet = player) {
 }
 
 function doOneSpellCollision(instance: WeakToSpellsInstance) {
+    CastSpellDamage.play();
     const min = Math.max(0, instance.clownHealth.health - 1);
     instance.clownHealth.damage(Math.min(derivedStats.spellPower, min));
     instance.showSpellEffectTimeFrames = 3;
