@@ -133,6 +133,17 @@ function newExcessItems() {
     return c;
 }
 
+function levelText(text: () => string, visible = () => true) {
+    const level = IguaText.Large("", { tint: 0x00ff00 })
+        .withStep(() => {
+            level.visible = visible();
+            level.text = text();
+        });
+    level.anchor.at(1, 1);
+
+    return level;
+}
+
 function useImpl() {
     const row = 6;
     const slots = inventory.slotsCount;
@@ -140,12 +151,23 @@ function useImpl() {
 
     InventoryOpen.play();
 
+    c.addChild(gui(c), newExcessItems().at(207, 117), keyItems().at(2, 254));
+
+    const { levels } = progress;
+
+    const showAbbreviated = () => !!(levels.intelligence || levels.vigor || levels.humor);
+
+    c.addChild(
+        levelText(() => `Claw ${showAbbreviated() ? '' : 'Level '}${levels.strength}`).at(255, 256),
+        levelText(() => `Heart ${levels.vigor}`, () => !!levels.vigor || !!levels.intelligence || !!levels.humor).at(255, 247),
+        levelText(() => `Mind ${levels.intelligence}`, () => !!levels.intelligence || !!levels.humor).at(255, 238),
+        levelText(() => `Lung ${levels.humor}`, () => !!levels.humor).at(255, 228),
+    )
+
     const clawLevel = IguaText.Large("", { tint: 0x00ff00 })
         .withStep(() => clawLevel.text = `Claw Level ${progress.levels.strength}`)
         .at(255, 256);
     clawLevel.anchor.set(1, 1);
-
-    c.addChild(gui(c), clawLevel, newExcessItems().at(207, 117), keyItems().at(2, 254));
 
     game.hudStage.addChild(c);
     game.hudStage.ticker.update();
