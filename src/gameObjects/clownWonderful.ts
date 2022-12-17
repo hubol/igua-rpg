@@ -239,8 +239,21 @@ export function clownWonderful() {
         behaviors.throwFacePlayer = true;
         controls.throw.start1();
         const withinRange = wait(() => computeTargetHeight() < 40 && computeTargetHeight() > -10);
+        const abort = container().withAsync(async () => {
+                await sleep(4000);
+                moves.length = 0;
+                moves.push(dash);
+                abort.destroy();
+            })
+            .show(c);
         await sleep(500);
-        await withinRange;
+        await Promise.race([ wait(() => abort.destroyed), withinRange ]);
+        if (abort.destroyed) {
+            controls.throw.finish6();
+            return;
+        }
+        else
+            abort.destroy();
         behaviors.facePlayer = false;
         behaviors.throwFacePlayer = false;
         controls.throw.lift2();
