@@ -102,6 +102,7 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
     }
 
     let movesHistory = 0;
+    let previousHealth = health.health;
 
     const c = container(propeller, head, g)
         .withStep(() => {
@@ -170,27 +171,34 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
         })
         .withAsync(async () => {
             while (true) {
-                if (rectangleDistance(player, c) > 128 || rayToPlayerIntersectsWall(c)) {
+                const tookDamage = health.health !== previousHealth;
+                if (!tookDamage && (rectangleDistance(player, c) > 128 || rayToPlayerIntersectsWall(c))) {
                     await sleep(100 + rng.int(200));
                     continue;
                 }
                 const doSneeze = rng() < (player.y < c.y - 32 ? 0.8 : 0.3);
                 if ((doSneeze || movesHistory === -1) && movesHistory !== 2) {
-                    await wait(() => rectangleDistance(player, c) < 64);
-                    await wait(() => !rayToPlayerIntersectsWall(c));
+                    await Promise.race([
+                        wait(() => rectangleDistance(player, c) < 64).then(() => wait(() => !rayToPlayerIntersectsWall(c))),
+                        health.tookDamage()
+                    ]);
                     idle = false;
                     await sneeze();
                     await sleep(200 + rng.int(200));
                     movesHistory = Math.max(1, movesHistory + 1);
                 }
                 else {
-                    await wait(() => rectangleDistance(player, c) < 32);
+                    await Promise.race([
+                        wait(() => rectangleDistance(player, c) < 32),
+                        health.tookDamage()
+                    ]);
                     idle = false;
                     await charge();
                     movesHistory = Math.min(-1, movesHistory - 1);
                 }
                 start.at(c);
                 startIdle();
+                previousHealth = health.health;
             }
         })
         .on('removed', () => SneezyPropellerWindUp.stop(windUp));
