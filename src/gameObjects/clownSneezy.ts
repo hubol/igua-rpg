@@ -180,7 +180,7 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
                 if ((doSneeze || movesHistory === -1) && movesHistory !== 2) {
                     await Promise.race([
                         wait(() => rectangleDistance(player, c) < 64).then(() => wait(() => !rayToPlayerIntersectsWall(c))),
-                        health.tookDamage()
+                        health.tookDamage().then(() => sleep(200))
                     ]);
                     idle = false;
                     await sneeze();
@@ -190,7 +190,7 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
                 else {
                     await Promise.race([
                         wait(() => rectangleDistance(player, c) < 32),
-                        health.tookDamage()
+                        health.tookDamage().then(() => sleep(200))
                     ]);
                     idle = false;
                     await charge();

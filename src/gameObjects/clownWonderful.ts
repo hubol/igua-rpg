@@ -15,7 +15,7 @@ import {getPlayerCenterWorld} from "../igua/gameplay/getCenter";
 import {wait} from "../cutscene/wait";
 import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
-import {ClownHurt, WonderfulDash} from "../sounds";
+import {ClownHurt, SharpStep, WonderfulDash} from "../sounds";
 import {newGravity} from "./utils/newGravity";
 import {sparkleTell} from "./sparkleTell";
 import {isOnScreen} from "../igua/logic/isOnScreen";
@@ -241,14 +241,15 @@ export function clownWonderful() {
         const withinRange = wait(() => computeTargetHeight() < 40 && computeTargetHeight() > -10);
         const abort = container().withAsync(async () => {
                 await sleep(4000);
-                moves.length = 0;
-                moves.push(dash);
                 abort.destroy();
             })
             .show(c);
         await sleep(500);
         await Promise.race([ wait(() => abort.destroyed), withinRange ]);
         if (abort.destroyed) {
+            SharpStep.play();
+            moves.length = 0;
+            moves.push(dash);
             controls.throw.finish6();
             return;
         }
