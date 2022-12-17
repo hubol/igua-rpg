@@ -27,17 +27,18 @@ export enum PlayerSpellColor {
 
 const txs = subimageTextures(LaughSpell, 2);
 
-export function castPlayerSpell() {
-
+export function castPlayerSpell(subject: IguanaPuppet = player) {
     const c = container()
         .withAsync(async () => {
+            subject.headLiftUnit = 1;
             for (let i = 0; i < 3; i++) {
                 // @ts-ignore
                 const mouth = player.head.children[1].children[1];
                 const xscale = player.scale.x * player.children[0].scale.x;
-                playerSpell().at(getWorldCenter(mouth).add(xscale * 8, 0)).ahead();
+                playerSpell(subject).at(getWorldCenter(mouth).add(xscale * 8, 0)).ahead();
                 await sleep(300);
             }
+            subject.headLiftUnit = 0;
             c.destroy();
         })
         .show();
@@ -50,7 +51,7 @@ const consts = {
     maximumTravelTimeFrames: 3 * 60,
 }
 
-function playerSpell(subject: IguanaPuppet = player) {
+function playerSpell(subject: IguanaPuppet) {
     CastSpellCharge.play();
     const hitbox = new Graphics().beginFill().drawRect(1, 1, 11, 8).hide();
     const sprite = animatedSprite(txs, 0.025 + rng() * 0.025);
@@ -97,11 +98,6 @@ function playerSpell(subject: IguanaPuppet = player) {
             await lerp(subject, 'agapeUnit').to(1).over(100);
             await sleep(50);
             await lerp(subject, 'agapeUnit').to(0).over(100);
-        })
-        .withAsync(async () => {
-            await lerp(subject, 'headLiftUnit').to(1).over(100);
-            await sleep(300);
-            await lerp(subject, 'headLiftUnit').to(0).over(100);
         })
         .withAsync(async () => {
             slowRise = true;
