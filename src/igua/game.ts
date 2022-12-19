@@ -33,6 +33,8 @@ function createGame(application: AsshatApplication)
     const sceneStage = new Container();
     const hudStage = new Container().withTicker(ticker);
 
+    application.stage.accessibleChildren = false;
+    application.stage.interactiveChildren = false;
     application.stage.addChild(sceneStage, hudStage);
 
     return {
