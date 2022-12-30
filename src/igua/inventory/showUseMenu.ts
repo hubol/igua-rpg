@@ -160,7 +160,7 @@ function useImpl() {
     c.addChild(
         levelText(() => `Claw ${showAbbreviated() ? '' : 'Level '}${levels.strength}`).at(255, 256),
         levelText(() => `Heart ${levels.vigor}`, () => !!levels.vigor || !!levels.intelligence || !!levels.humor).at(255, 247),
-        levelText(() => `Mind ${levels.intelligence}`, () => !!levels.intelligence || !!levels.humor).at(255, 238),
+        levelText(() => `Brain ${levels.intelligence}`, () => !!levels.intelligence || !!levels.humor).at(255, 238),
         levelText(() => `Lung ${levels.humor}`, () => !!levels.humor).at(255, 228),
     )
 
