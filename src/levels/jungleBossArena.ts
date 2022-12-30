@@ -17,6 +17,8 @@ import {keepSavingValuables} from "../gameObjects/valuableTrove";
 import {persistence} from "../igua/data/persistence";
 import {valuable} from "../gameObjects/valuable";
 import {cracks} from "../gameObjects/cracks";
+import {Undefined} from "../utils/types/undefined";
+import {Container} from "pixi.js";
 
 export function JungleBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -43,9 +45,12 @@ export function JungleBossArena() {
                 jukebox.play(Hemaboss1);
             });
         h.show();
+
+        let limit = Undefined<Container>();
+
         scene.gameObjectStage.withAsync(async () => {
             await wait(() => player.collides(level.ActivateBossRegion));
-            const limit = container()
+            limit = container()
                 .withStep(() => player.x = Math.max(Math.min(player.x, bossMaxX), bossMinX))
                 .show(player);
             doors.forEach(x => x.startClosing(3));
@@ -55,6 +60,8 @@ export function JungleBossArena() {
                 h.aggressive = true;
             })
             await lerp(scene.camera, 'x').to(bossMinX).over(750);
+        });
+        scene.gameObjectStage.withAsync(async () => {
             await wait(() => h.destroyed);
             player.invulnerableFrameCount += 120;
             player.withStep(() => player.visible = true);
@@ -65,7 +72,7 @@ export function JungleBossArena() {
             scene.gameObjectStage.withAsync(keepValuableTroveInOkSpot);
             scene.gameObjectStage.withAsync(keepSavingValuables);
             jukebox.currentSong?.fade(1, 0, 1000);
-            limit.destroy();
+            limit?.destroy();
             scene.gameObjectStage.withAsync(async () => {
 
             });

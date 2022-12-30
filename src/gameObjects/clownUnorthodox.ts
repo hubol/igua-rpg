@@ -686,6 +686,10 @@ export function clownUnorthodox() {
 
     head.withAsync(headAs);
     legs.withAsync(legsAs);
+    legs.withAsync(async () => {
+        await health.tookDamage();
+        head.aggressive = true;
+    });
 
     const aoe = new AoeHitboxes();
     aoe.visible = debug.aoe;
