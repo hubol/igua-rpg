@@ -12,7 +12,7 @@ import {derivedStats} from "../gameplay/derivedStats";
 
 export async function restAtInn() {
     player.mods.add(Sleepy);
-    const fasterRest = !!progress.shopPurchases.SpicedNectar;
+    const fasterRest = progress.levels.vigor > 1;
     const rate = fasterRest ? 0.75 : 0.25;
     const minMs = fasterRest ? 3_000 : 4_000;
     await Promise.all([
