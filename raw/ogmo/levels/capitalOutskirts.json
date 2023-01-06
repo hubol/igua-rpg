@@ -149,7 +149,7 @@
           "height": 32,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "FinalArena", "checkpointName": "FromCapital", "name": "", "depth": 0}
+          "values": {"levelName": "FinalBossArena", "checkpointName": "FromCapital", "name": "", "depth": 0}
         },
         {
           "name": "Checkpoint",
