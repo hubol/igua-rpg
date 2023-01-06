@@ -160,6 +160,54 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromFinal", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 13,
+          "_eid": "25971607",
+          "x": -16,
+          "y": -16,
+          "width": 48,
+          "height": 352,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 14,
+          "_eid": "25971607",
+          "x": 8,
+          "y": 96,
+          "width": 48,
+          "height": 192,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 15,
+          "_eid": "25971607",
+          "x": 32,
+          "y": 120,
+          "width": 48,
+          "height": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 16,
+          "_eid": "25971607",
+          "x": 56,
+          "y": 128,
+          "width": 48,
+          "height": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -263,6 +311,17 @@
           "texture": "capital/temple.png",
           "originX": 0.5,
           "originY": 1,
+          "values": {"name": ""}
+        },
+        {
+          "x": 72,
+          "y": 192,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "capital/volcano backdrop.png",
+          "originX": 0.5,
+          "originY": 0.5,
           "values": {"name": ""}
         }
       ],

@@ -169,6 +169,7 @@ export const CapitalOutskirtsArgs = {
       CapitalPlantedBush_2: resolveDecalGameObject({ x: 264, y: 241, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: CapitalPlantedBush }),
       CapitalPlantedTree: resolveDecalGameObject({ x: 408, y: 241, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: CapitalPlantedTree }),
       CapitalTemple: resolveDecalGameObject({ x: 320, y: 240, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CapitalTemple }),
+      CapitalVolcanoBackdrop: resolveDecalGameObject({ x: 72, y: 192, originX: 0.5, originY: 0.5, scaleX: -1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CapitalVolcanoBackdrop }),
       CloudLong: resolveDecalGameObject({ x: 176, y: 144, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
       CloudLong_1: resolveDecalGameObject({ x: 232, y: 168, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
       CloudLong_2: resolveDecalGameObject({ x: 432, y: 104, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
@@ -185,6 +186,10 @@ export const CapitalOutskirtsArgs = {
       Puzzle: { type: "Anchor", x: 128, y: 216, flippedX: false, flippedY: false, uid: "25979726_10", name: "Puzzle", depth: 0 },
       Gate_1: resolveGate({ type: "Gate", x: 0, y: 208, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_11", levelName: "FinalBossArena", checkpointName: "FromCapital", name: "", depth: 0 }),
       FromFinal: { type: "Checkpoint", x: 76, y: 240, flippedX: false, flippedY: false, uid: "55940370_12", name: "FromFinal", faceRight: true, depth: 0 },
+      Region: resolveRegion({ type: "Region", x: -16, y: -16, width: 48, height: 352, flippedX: false, flippedY: false, uid: "25971607_13", name: "", depth: 0 }),
+      Region_1: resolveRegion({ type: "Region", x: 8, y: 96, width: 48, height: 192, flippedX: false, flippedY: false, uid: "25971607_14", name: "", depth: 0 }),
+      Region_2: resolveRegion({ type: "Region", x: 32, y: 120, width: 48, height: 144, flippedX: false, flippedY: false, uid: "25971607_15", name: "", depth: 0 }),
+      Region_3: resolveRegion({ type: "Region", x: 56, y: 128, width: 48, height: 128, flippedX: false, flippedY: false, uid: "25971607_16", name: "", depth: 0 }),
     };
   },
 };
