@@ -16,8 +16,7 @@ export function FinalClimb() {
 
 function enrichObstacle(level: GameObjectsType<typeof FinalClimbArgs>) {
     if (!progress.flags.capital.openedStorage) {
-        level.ObstacleWall.destroy();
-        return;
+        level.ObstacleWall.y -= 80;
     }
 
     Sprite.from(CapitalBrickWall).at(getWorldBounds(level.ObstacleWall)).behind();
