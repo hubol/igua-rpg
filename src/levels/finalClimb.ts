@@ -6,12 +6,18 @@ import {progress} from "../igua/data/progress";
 import {Sprite} from "pixi.js";
 import {CapitalBrickWall} from "../textures";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
+import {DropShadowFilter} from "pixi-filters";
 
 export function FinalClimb() {
     scene.backgroundColor = 0x182840;
     scene.terrainColor = 0x4868a0;
     const level = applyOgmoLevel(FinalClimbArgs);
     enrichObstacle(level);
+    applyFinalFilters();
+}
+
+export function applyFinalFilters() {
+    scene.cameraStage.filter(new DropShadowFilter({ quality: 4, color: 0x061035 }));
 }
 
 function enrichObstacle(level: GameObjectsType<typeof FinalClimbArgs>) {
