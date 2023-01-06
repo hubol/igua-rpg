@@ -5,8 +5,8 @@ import {jukebox} from "../igua/jukebox";
 import {CapitalMusicPlease} from "../musics";
 
 export function FinalBossArena() {
-    scene.backgroundColor = 0x60B0E0;
-    scene.terrainColor = 0x40A020;
+    scene.backgroundColor = 0x182840;
+    scene.terrainColor = 0x4868a0;
     const level = applyOgmoLevel(FinalBossArenaArgs);
     jukebox.stop().warm(CapitalMusicPlease);
 }

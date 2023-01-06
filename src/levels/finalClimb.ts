@@ -8,8 +8,8 @@ import {CapitalBrickWall} from "../textures";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
 
 export function FinalClimb() {
-    scene.backgroundColor = 0x60B0E0;
-    scene.terrainColor = 0x40A020;
+    scene.backgroundColor = 0x182840;
+    scene.terrainColor = 0x4868a0;
     const level = applyOgmoLevel(FinalClimbArgs);
     enrichObstacle(level);
 }
