@@ -13,7 +13,9 @@ import {derivedStats} from "../gameplay/derivedStats";
 export async function restAtInn() {
     player.mods.add(Sleepy);
     const fasterRest = progress.levels.vigor > 1;
-    const rate = fasterRest ? 0.75 : 0.25;
+    let rate = fasterRest ? 0.75 : 0.25;
+    if (progress.levels.vigor > 10)
+        rate = derivedStats.maxHealth / 160;
     const minMs = fasterRest ? 3_000 : 4_000;
     await Promise.all([
         wait(() => (progress.health = Math.min(progress.health + rate, derivedStats.maxHealth)) >= derivedStats.maxHealth),
