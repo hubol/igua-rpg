@@ -958,6 +958,7 @@ export const FinalClimbArgs = {
       Gate_1: resolveGate({ type: "Gate", x: 0, y: 88, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_40", levelName: "FinalDeep", checkpointName: "FromClimb", name: "", depth: 0 }),
       FromDeep: { type: "Checkpoint", x: 72, y: 120, flippedX: false, flippedY: false, uid: "55940370_41", name: "FromDeep", faceRight: true, depth: 0 },
       Sign: resolveSign({ type: "Sign", x: 136, y: 120, flippedX: false, flippedY: false, uid: "86706091_42", title: "Notice", message: "This wall is used as a counterweight for the storehouse gate.", name: "", depth: 0 }),
+      ClownSharp: resolveClownSharp({ type: "ClownSharp", x: 400, y: 360, flippedX: false, flippedY: false, uid: "73460416_44", name: "", depth: 0 }),
     };
   },
 };

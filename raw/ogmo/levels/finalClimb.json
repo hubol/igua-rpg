@@ -512,6 +512,16 @@
           "originX": 14,
           "originY": 18,
           "values": {"title": "Notice", "message": "This wall is used as a counterweight for the storehouse gate.", "name": "", "depth": 0}
+        },
+        {
+          "name": "ClownSharp",
+          "id": 44,
+          "_eid": "73460416",
+          "x": 400,
+          "y": 360,
+          "originX": 15,
+          "originY": 30,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
