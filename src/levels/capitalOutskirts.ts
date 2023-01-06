@@ -9,12 +9,14 @@ import {makeCapitalWindow} from "./capitalShop";
 import {impossiblePuzzle} from "../gameObjects/impossiblePuzzle";
 import {progress} from "../igua/data/progress";
 import {Sprite} from "pixi.js";
-import {CapitalBrickWall} from "../textures";
+import {CapitalBrickWall, CapitalVolcanoBackdrop} from "../textures";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
 import {automaticDoorWithSfx} from "../gameObjects/automaticDoorWithSfx";
 import {region} from "../gameObjects/region";
 import {terrainGradient} from "../gameObjects/outerGradient";
+import {decalsOf} from "../gameObjects/decal";
+import {game} from "../igua/game";
 
 export function CapitalOutskirts() {
     scene.pipeStage.style = 2;
@@ -32,6 +34,7 @@ export function CapitalOutskirts() {
     impossiblePuzzle(progress.flags.capital, 'solvedImpossiblePuzzle').at(level.Puzzle).show();
     enrichBlockadeWall(level);
     enrichTransition(level);
+    game.hudStage.ticker.update();
 }
 
 function enrichBlockadeWall(level: GameObjectsType<typeof CapitalOutskirtsArgs>) {
@@ -44,5 +47,5 @@ function enrichTransition(level: GameObjectsType<typeof CapitalOutskirtsArgs>) {
     const transitions = region.instances.filter(x => x.x < 128);
     const colors = [0x4868A0, 0x808078, 0xA09060, 0xC09848].reverse();
     terrainGradient(transitions, colors);
-    level.CapitalVolcanoBackdrop.tinted(0x182840);
+    decalsOf(CapitalVolcanoBackdrop).forEach(x => x.tinted(0x182840));
 }
