@@ -23,7 +23,7 @@ import { resolveTreeStump } from "./gameObjects/treeStump";
 import { resolveTreeStumpDestructive } from "./gameObjects/treeStumpDestructive";
 import { resolveValuableBlue, resolveValuableOrange } from "./gameObjects/valuable";
 import { resolveBlock, resolvePipeHorizontal, resolvePipeLeft, resolvePipeLeftEnd, resolvePipeRight, resolvePipeRightEnd, resolveSlopeLeft, resolveSlopeRight } from "./gameObjects/walls";
-import { Anchor, BallColorful, BookCollection, Bottle1, Bottle2, CandleSmallRed, CapitalArc, CapitalBuilding1, CapitalChain, CapitalChimney, CapitalInnSign, CapitalPlantedBush, CapitalPlantedTree, CapitalPlatform, CapitalShopSign, CapitalTemple, CapitalUndergroundBackdrop, CapitalUnrealQuestion, CapitalVolcanoBackdrop, CloudLong, Cobweb, CocktailGlass, ColorfulBricks, Column, CracksA, CrackSmall, CrateWooden, CrudeHouse, CrudeHouseB, CrudeHouseC, DesertTemple, DinerTable, DontPoster, FlyCage, FlyCageBroken, GiantsDinerTable, GiantsExterior, GiantsFoodStash, GlowingCircle, GlowingDiamond, GlowingEdge, GreenCable, GroundSpeckles, HintArrow, JungleBrushHeavy, JungleHiddenHouseWalls, JungleHouse1, JunglePlank, JunglePlankDecoration, JungleShelfLarge, JungleShelfSmall, JungleTempleExterior, JungleTent, JungleTreeRoot, KeyGreen, KeyRed, KeyYellow, KeyYellowShrunken, LightShelf, Obelisk, OrnateCarpet, OverheadLamp, PaSpeaker, Pipe, PoppingRocksBox, PotteryOrange, PotteryOrangeDamaged, Rainbow1, Rainbow2, Rope, RoseVase, SignInn, SignNeonBar, SignNeonInn, SignTavern, SmallDecorativeRock, SpikyBrushA, SpikyBrushB, VineSmall, VolcanoBrickWall, VolcanoChain, VolcanoCrystal, VolcanoCrystalBuilding, VolcanoCrystalStoop, VolcanoCrystalTile, VolcanoDeadBush, VolcanoFloralWallpaper, VolcanoInnShopBuilding, VolcanoMineralDebris, VolcanoOracleHouseReflection, VolcanoPillarBroken, VolcanoTempleExterior, WhiskeyGlass, WoodenStool } from "./textures";
+import { Anchor, BallColorful, BookCollection, Bottle1, Bottle2, CandleSmallRed, CapitalArc, CapitalBuilding1, CapitalChain, CapitalChimney, CapitalInnSign, CapitalPlantedBush, CapitalPlantedTree, CapitalPlatform, CapitalShopSign, CapitalTemple, CapitalUndergroundBackdrop, CapitalUnrealQuestion, CapitalVolcanoBackdrop, CloudLong, Cobweb, CocktailGlass, ColorfulBricks, Column, CracksA, CrackSmall, CrateWooden, CrudeHouse, CrudeHouseB, CrudeHouseC, DesertTemple, DinerTable, DontPoster, FinalTempleExterior, FlyCage, FlyCageBroken, GiantsDinerTable, GiantsExterior, GiantsFoodStash, GlowingCircle, GlowingDiamond, GlowingEdge, GreenCable, GroundSpeckles, HintArrow, JungleBrushHeavy, JungleHiddenHouseWalls, JungleHouse1, JunglePlank, JunglePlankDecoration, JungleShelfLarge, JungleShelfSmall, JungleTempleExterior, JungleTent, JungleTreeRoot, KeyGreen, KeyRed, KeyYellow, KeyYellowShrunken, LightShelf, Obelisk, OrnateCarpet, OverheadLamp, PaSpeaker, Pipe, PoppingRocksBox, PotteryOrange, PotteryOrangeDamaged, Rainbow1, Rainbow2, Rope, RoseVase, SignInn, SignNeonBar, SignNeonInn, SignTavern, SmallDecorativeRock, SpikyBrushA, SpikyBrushB, VineSmall, VolcanoBrickWall, VolcanoChain, VolcanoCrystal, VolcanoCrystalBuilding, VolcanoCrystalStoop, VolcanoCrystalTile, VolcanoDeadBush, VolcanoFloralWallpaper, VolcanoInnShopBuilding, VolcanoMineralDebris, VolcanoOracleHouseReflection, VolcanoPillarBroken, VolcanoTempleExterior, WhiskeyGlass, WoodenStool } from "./textures";
 
 export const CapitalEntryArgs = {
   width: 912,
@@ -974,6 +974,7 @@ export const FinalDeepArgs = {
   height: 256,
   gameObjectsSupplier: () => {
     return {
+      FinalTempleExterior: resolveDecalGameObject({ x: 128, y: 152, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: FinalTempleExterior }),
       Block: resolveBlock({ type: "Block", x: 0, y: 216, width: 256, height: 40, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
       Block_1: resolveBlock({ type: "Block", x: 224, y: 0, width: 32, height: 128, flippedX: false, flippedY: false, uid: "55823268_2", name: "", depth: 0 }),
       Block_2: resolveBlock({ type: "Block", x: 0, y: 0, width: 32, height: 216, flippedX: false, flippedY: false, uid: "55823268_3", name: "", depth: 0 }),
@@ -982,6 +983,9 @@ export const FinalDeepArgs = {
       Player: { type: "Player", x: 184, y: 216, flippedX: false, flippedY: false, uid: "55988047_6", faceRight: false, name: "", depth: 0 },
       Door: resolveDoor({ type: "Door", x: 64, y: 184, flippedX: false, flippedY: false, uid: "55913988_7", levelName: "FinalTemple", checkpointName: "FromDeep", name: "", depth: 0 }),
       FromTemple: { type: "Checkpoint", x: 128, y: 216, flippedX: false, flippedY: false, uid: "55940370_8", name: "FromTemple", faceRight: true, depth: 0 },
+      PipeHorizontal: resolvePipeHorizontal({ type: "PipeHorizontal", x: 56, y: 160, width: 144, flippedX: false, flippedY: false, uid: "55841307_9", visible: false, name: "", depth: 0 }),
+      PipeHorizontal_1: resolvePipeHorizontal({ type: "PipeHorizontal", x: 72, y: 129, width: 42, flippedX: false, flippedY: false, uid: "55841307_10", visible: false, name: "", depth: 0 }),
+      PipeHorizontal_2: resolvePipeHorizontal({ type: "PipeHorizontal", x: 142, y: 129, width: 42, flippedX: false, flippedY: false, uid: "55841307_11", visible: false, name: "", depth: 0 }),
     };
   },
 };

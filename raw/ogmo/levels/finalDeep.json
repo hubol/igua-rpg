@@ -104,6 +104,39 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromTemple", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 9,
+          "_eid": "55841307",
+          "x": 56,
+          "y": 160,
+          "width": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 10,
+          "_eid": "55841307",
+          "x": 72,
+          "y": 129,
+          "width": 42,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 11,
+          "_eid": "55841307",
+          "x": 142,
+          "y": 129,
+          "width": 42,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
         }
       ]
     },
@@ -128,7 +161,19 @@
       "gridCellHeight": 8,
       "gridCellsX": 32,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 128,
+          "y": 152,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/temple exterior.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {
