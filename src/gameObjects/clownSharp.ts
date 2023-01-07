@@ -9,7 +9,7 @@ import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {approachLinear, cyclic, lerp as nlerp} from "../utils/math/number";
 import {distFromPlayer, getOffsetFromPlayer, hDistFromPlayer, hSignToPlayer} from "../igua/logic/getOffsetFromPlayer";
-import {clownDrop, clownDropSpawn, clownHealth, dieClown} from "./utils/clownUtils";
+import {clownDrop, clownHealth, dieClown} from "./utils/clownUtils";
 import {player} from "./player";
 import {
     ClownHurt,
@@ -130,12 +130,10 @@ export function clownSharp() {
     }
 
     function die() {
-        const drop15 = drop(c.vsPlayerHitCount);
-        const drop5 = drop(c.vsPlayerHitCount);
-        const dropBoth = drop5 && drop15;
+        const drop15 = drop(c.vsPlayerHitCount) ? 15 : 0;
+        const drop5 = drop(c.vsPlayerHitCount) ? 5 : 0;
 
-        clownDropSpawn([0, dropBoth ? -2 : -10].add(c), drop15 && 15);
-        dieClown(c, drop5, [0, dropBoth ? -17 : -10]);
+        dieClown(c, drop15 + drop5, [0, -10]);
     }
 
     let tookPhysicalDamage = false;

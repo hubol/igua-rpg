@@ -111,6 +111,12 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
     let movesHistory = 0;
     let previousHealth = health.health;
 
+    function die() {
+        const drop1 = drop(c.vsPlayerHitCount) ? 5 : 0;
+        const drop2 = drop(c.vsPlayerHitCount) ? 5 : 0;
+        dieClown(c, drop1 + drop2);
+    }
+
     const c = container(propeller, head, g)
         .withStep(() => {
             if (!startIsSet) {
@@ -120,7 +126,7 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
             if (invulnerable <= 0 && g.collides(player)) {
                 bouncePlayer([0, -9].add(c));
                 if (health.damage())
-                    return dieClown(c, drop(c.vsPlayerHitCount));
+                    return die();
                 invulnerable = 30;
                 ClownHurt.play();
                 knockbackSpeed.at(-player.engine.knockback.x, -player.vspeed);
@@ -162,6 +168,7 @@ export function clownSneezy({ fullHealth = 95 } = { }) {
             head.scale.x = idleDirection;
         })
         .withStep(() => {
+            // @ts-ignore
             c.vspeed = position.diff.y;
             push(c, 16);
 

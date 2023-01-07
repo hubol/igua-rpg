@@ -17,17 +17,34 @@ const v = vnew();
 export function dieClown(container: DisplayObject, drop: boolean | number, offset = vnew()) {
     ClownExplode.play();
 
-    clownDropSpawn(v.at(offset).add(container), drop);
+    if (drop)
+        clownDropSpawn(v.at(offset).add(container), drop as number);
 
     confetti().at(offset.add(container)).show();
     container.destroy();
 }
 
-export function clownDropSpawn(vec: Vector, drop: boolean | number) {
-    if (drop)
-        valuable(vec.x, vec.y, undefined, drop === 15 ? "ValuableBlue" : "ValuableOrange")
-            .delayCollectible()
-            .show();
+function clownDropSpawn(vec: Vector, drop: number) {
+    const bottom = drop < 15 ? 5 : 15;
+    const top = drop - bottom;
+    const both = top >= 5;
+
+    if (both)
+        vec.y += 8;
+
+    showValuable(vec, bottom);
+
+    if (!both)
+        return;
+
+    vec.y -= 15;
+    showValuable(vec, top);
+}
+
+function showValuable(vec: Vector, value: number) {
+    return valuable(vec.x, vec.y, undefined, value === 15 ? 'ValuableBlue' : 'ValuableOrange')
+        .delayCollectible()
+        .show();
 }
 
 export function clownHealth(maxHealth: number) {
