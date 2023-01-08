@@ -95,6 +95,7 @@ export let Dither: PIXI.Texture;
 export let DontPoster: PIXI.Texture;
 export let DuckGiant: PIXI.Texture;
 export let ElectricBolt: PIXI.Texture;
+export let FinalStalagSpike: PIXI.Texture;
 export let FinalTempleExterior: PIXI.Texture;
 export let Firefly: PIXI.Texture;
 export let FishProjectile: PIXI.Texture;
@@ -558,6 +559,9 @@ export function loadTexturesAsync()
 
     const ElectricBoltPath = require("./images/electric bolt.png");
     loader.add(ElectricBoltPath); 
+
+    const FinalStalagSpikePath = require("./images/final/stalag spike.png");
+    loader.add(FinalStalagSpikePath); 
 
     const FinalTempleExteriorPath = require("./images/final/temple exterior.png");
     loader.add(FinalTempleExteriorPath); 
@@ -1193,6 +1197,7 @@ export function loadTexturesAsync()
             DontPoster = resources[DontPosterPath]?.texture as PIXI.Texture;
             DuckGiant = resources[DuckGiantPath]?.texture as PIXI.Texture;
             ElectricBolt = resources[ElectricBoltPath]?.texture as PIXI.Texture;
+            FinalStalagSpike = resources[FinalStalagSpikePath]?.texture as PIXI.Texture;
             FinalTempleExterior = resources[FinalTempleExteriorPath]?.texture as PIXI.Texture;
             Firefly = resources[FireflyPath]?.texture as PIXI.Texture;
             FishProjectile = resources[FishProjectilePath]?.texture as PIXI.Texture;
