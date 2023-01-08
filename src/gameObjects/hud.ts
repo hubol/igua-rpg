@@ -25,15 +25,19 @@ enum Color {
 
 const AnimatedStats = new SceneLocal(() => ({ maxHealth: derivedStats.maxHealth }), `HudMaxHealth`);
 
+function getVisualHealthbarWidth(maxHealth: number) {
+    return Math.min(256, maxHealth * 0.54);
+}
+
 export function hud()
 {
     const healthbarGfx = new Graphics()
         .withStep(() => {
             const max = AnimatedStats.value.maxHealth;
-            AnimatedStats.value.maxHealth = approachLinear(nlerp(AnimatedStats.value.maxHealth, derivedStats.maxHealth, 0.5), derivedStats.maxHealth, 1);
+            AnimatedStats.value.maxHealth = approachLinear(nlerp(AnimatedStats.value.maxHealth, derivedStats.maxHealth, 0.125), derivedStats.maxHealth, 1);
             const { life, heal, hurt } = healthbar(progress, progress.health, max, progress.health);
 
-            const f = Math.min(1, 256 / max);
+            const f = getVisualHealthbarWidth(max) / max;
 
             healthbarGfx.clear();
             healthbarGfx.beginFill(Color.Empty);
