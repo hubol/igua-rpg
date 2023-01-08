@@ -47,7 +47,7 @@ export function hud()
             healthbarGfx.beginFill(Color.Heal);
             healthbarGfx.drawRect(0, 0, heal * f, 16);
             healthbarGfx.beginFill(progress.health <= 1 ? Color.Vulnerable : Color.Life);
-            healthbarGfx.drawRect(0, 0, Math.max(Math.sign(life), life * f), 16);
+            healthbarGfx.drawRect(0, 0, Math.max(life > 1 ? 2 : Math.sign(life), life * f), 16);
         });
 
     const spellChargeGfx = new Graphics()
