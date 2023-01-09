@@ -12,7 +12,7 @@ import {derivedStats} from "../gameplay/derivedStats";
 
 export async function restAtInn() {
     player.mods.add(Sleepy);
-    const fasterRest = progress.levels.vigor > 1;
+    const fasterRest = progress.levels.vigor > 0;
     let rate = fasterRest ? 0.75 : 0.25;
     if (progress.levels.vigor > 10)
         rate = derivedStats.maxHealth / 160;
