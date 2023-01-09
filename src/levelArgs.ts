@@ -995,11 +995,31 @@ export const FinalDeepArgs = {
       Block_3: resolveBlock({ type: "Block", x: 32, y: 0, width: 192, height: 88, flippedX: false, flippedY: false, uid: "55823268_4", name: "", depth: 0 }),
       Gate: resolveGate({ type: "Gate", x: 224, y: 184, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_5", levelName: "FinalClimb", checkpointName: "FromDeep", name: "", depth: 0 }),
       Player: { type: "Player", x: 184, y: 216, flippedX: false, flippedY: false, uid: "55988047_6", faceRight: false, name: "", depth: 0 },
-      Door: resolveDoor({ type: "Door", x: 64, y: 184, flippedX: false, flippedY: false, uid: "55913988_7", levelName: "FinalTemple", checkpointName: "FromDeep", name: "", depth: 0 }),
-      FromTemple: { type: "Checkpoint", x: 128, y: 216, flippedX: false, flippedY: false, uid: "55940370_8", name: "FromTemple", faceRight: true, depth: 0 },
+      Door: resolveDoor({ type: "Door", x: 64, y: 184, flippedX: false, flippedY: false, uid: "55913988_7", levelName: "FinalTempleOuter", checkpointName: "FromDeep", name: "", depth: 0 }),
+      FromTemple: { type: "Checkpoint", x: 120, y: 216, flippedX: false, flippedY: false, uid: "55940370_8", name: "FromTemple", faceRight: true, depth: 0 },
       PipeHorizontal: resolvePipeHorizontal({ type: "PipeHorizontal", x: 56, y: 160, width: 144, flippedX: false, flippedY: false, uid: "55841307_9", visible: false, name: "", depth: 0 }),
       PipeHorizontal_1: resolvePipeHorizontal({ type: "PipeHorizontal", x: 72, y: 129, width: 42, flippedX: false, flippedY: false, uid: "55841307_10", visible: false, name: "", depth: 0 }),
       PipeHorizontal_2: resolvePipeHorizontal({ type: "PipeHorizontal", x: 142, y: 129, width: 42, flippedX: false, flippedY: false, uid: "55841307_11", visible: false, name: "", depth: 0 }),
+    };
+  },
+};
+
+export const FinalTempleOuterArgs = {
+  width: 336,
+  height: 256,
+  gameObjectsSupplier: () => {
+    return {
+      Block: resolveBlock({ type: "Block", x: 0, y: 0, width: 336, height: 64, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
+      Block_1: resolveBlock({ type: "Block", x: 0, y: 192, width: 336, height: 64, flippedX: false, flippedY: false, uid: "55823268_1", name: "", depth: 0 }),
+      Block_2: resolveBlock({ type: "Block", x: 0, y: 64, width: 16, height: 128, flippedX: false, flippedY: false, uid: "55823268_2", name: "", depth: 0 }),
+      Block_3: resolveBlock({ type: "Block", x: 320, y: 64, width: 16, height: 128, flippedX: false, flippedY: false, uid: "55823268_3", name: "", depth: 0 }),
+      Door: resolveDoor({ type: "Door", x: 24, y: 160, flippedX: false, flippedY: false, uid: "55913988_4", levelName: "FinalDeep", checkpointName: "FromTemple", name: "", depth: 0 }),
+      Player: { type: "Player", x: 80, y: 192, flippedX: false, flippedY: false, uid: "55988047_5", faceRight: false, name: "", depth: 0 },
+      Door_1: resolveDoor({ type: "Door", x: 192, y: 160, flippedX: false, flippedY: false, uid: "55913988_9", levelName: "", checkpointName: "", name: "", depth: 0 }),
+      BigKey3: resolveRegion({ type: "Region", x: 120, y: 136, width: 40, height: 24, flippedX: false, flippedY: false, uid: "25971607_11", name: "BigKey3", depth: 0 }),
+      BigKey1: resolveRegion({ type: "Region", x: 152, y: 96, width: 40, height: 24, flippedX: false, flippedY: false, uid: "25971607_12", name: "BigKey1", depth: 0 }),
+      BigKey2: resolveRegion({ type: "Region", x: 224, y: 96, width: 40, height: 24, flippedX: false, flippedY: false, uid: "25971607_13", name: "BigKey2", depth: 0 }),
+      BigKey4: resolveRegion({ type: "Region", x: 256, y: 136, width: 40, height: 24, flippedX: false, flippedY: false, uid: "25971607_14", name: "BigKey4", depth: 0 }),
     };
   },
 };

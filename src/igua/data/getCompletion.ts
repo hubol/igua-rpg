@@ -5,7 +5,7 @@ import {jungleKeys} from "../../levels/jungleTemple";
 import {volcanoKeys} from "../../levels/volcanoTemple";
 import {capitalKeys} from "../../levels/capitalTemple";
 
-type ProgressBigKey = { reward: boolean; piece1: boolean; piece2: boolean; piece3: boolean; };
+export type ProgressBigKey = { reward: boolean; piece1: boolean; piece2: boolean; piece3: boolean; };
 
 export function getCompletion(progress: Progress) {
     let numbers = 0;

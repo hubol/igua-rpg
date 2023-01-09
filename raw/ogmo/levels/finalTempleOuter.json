@@ -1,0 +1,207 @@
+{
+  "ogmoVersion": "3.4.0-hubol",
+  "width": 336,
+  "height": 256,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 42,
+      "gridCellsY": 32,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 0,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 0,
+          "width": 336,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 1,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 192,
+          "width": 336,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 2,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 64,
+          "width": 16,
+          "height": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 3,
+          "_eid": "55823268",
+          "x": 320,
+          "y": 64,
+          "width": 16,
+          "height": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 4,
+          "_eid": "55913988",
+          "x": 24,
+          "y": 160,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "FinalDeep", "checkpointName": "FromTemple", "name": "", "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 5,
+          "_eid": "55988047",
+          "x": 80,
+          "y": 192,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 9,
+          "_eid": "55913988",
+          "x": 192,
+          "y": 160,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 11,
+          "_eid": "25971607",
+          "x": 120,
+          "y": 136,
+          "width": 40,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "BigKey3", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 12,
+          "_eid": "25971607",
+          "x": 152,
+          "y": 96,
+          "width": 40,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "BigKey1", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 13,
+          "_eid": "25971607",
+          "x": 224,
+          "y": 96,
+          "width": 40,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "BigKey2", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 14,
+          "_eid": "25971607",
+          "x": 256,
+          "y": 136,
+          "width": 40,
+          "height": 24,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "BigKey4", "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 42,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 42,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 42,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 42,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 42,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    }
+  ]
+}

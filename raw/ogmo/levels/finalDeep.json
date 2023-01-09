@@ -93,13 +93,13 @@
           "y": 184,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "FinalTemple", "checkpointName": "FromDeep", "name": "", "depth": 0}
+          "values": {"levelName": "FinalTempleOuter", "checkpointName": "FromDeep", "name": "", "depth": 0}
         },
         {
           "name": "Checkpoint",
           "id": 8,
           "_eid": "55940370",
-          "x": 128,
+          "x": 120,
           "y": 216,
           "originX": 6,
           "originY": 12,
