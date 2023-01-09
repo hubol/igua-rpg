@@ -194,6 +194,17 @@
       "gridCellsX": 32,
       "gridCellsY": 32,
       "decals": [
+        {
+          "x": 158,
+          "y": 72,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "boulder.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
         {"x": 162.09798295212838, "y": 94.16820073778213, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/stalag spike.png", "originX": 0.5, "originY": 0.5},
         {"x": 156.2094982684317, "y": 93.2544703558292, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/stalag spike.png", "originX": 0.5, "originY": 0.5}
       ],

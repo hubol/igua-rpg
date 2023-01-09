@@ -19,6 +19,8 @@ export function FinalDeep() {
     ShadowCastDirection.value.x = 0;
     container(...[level.Light1, level.Light2].map(lightColumn)).filter(makeShadowCastFilter()).ahead(player.index + 1);
 
+    level.Boulder.opaqueTint = scene.terrainColor;
+
     if (player.y < 160)
         player.vspeed = -2;
 }

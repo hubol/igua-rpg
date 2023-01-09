@@ -364,6 +364,17 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "Outside5", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 37,
+          "_eid": "55841307",
+          "x": 176,
+          "y": 160,
+          "width": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
         }
       ]
     },
