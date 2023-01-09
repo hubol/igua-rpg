@@ -16,6 +16,9 @@ import {Vector} from "../utils/math/vector";
 import {capitalBricksWall} from "../gameObjects/capitalBricks";
 import {makePseudo} from "../utils/math/makePseudo";
 import {sparkly} from "../gameObjects/sparkleSmall";
+import {Rectangle} from "../utils/math/rectangle";
+import {terrainGradient} from "../gameObjects/outerGradient";
+import {game} from "../igua/game";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
@@ -35,16 +38,28 @@ export function FinalTempleOuter() {
 
     enrichOutside(level);
     showLightRays(level);
+
+    game.hudStage.ticker.update();
 }
 
+function draw(g: Graphics, r: Rectangle) {
+    g.drawRect(r.x, r.y, r.width, r.height);
+}
+
+const terrainColors = [0x182840, 0x1D2E48, 0x233755, 0x2A4161];
+
 function enrichOutside(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
-    const g = new Graphics().beginFill(0x404070).drawRect(0, 0, level.OutsideRegion.width, level.OutsideRegion.height).behind();
+    const g = new Graphics().beginFill(0x242635).drawRect(0, 0, level.OutsideRegion.width, level.OutsideRegion.height).behind();
+    const edges = [level.Outside1, level.Outside2, level.Outside3, level.Outside4, level.Outside5];
+    edges.forEach(x => draw(g, x));
     for (let x = 0; x < scene.width; x += 16) {
         g.drawRect(x + 4, level.OutsideRegion.y + level.OutsideRegion.height, 8, 3);
     }
+
+    terrainGradient(edges, terrainColors);
 }
 
-const colors = [0xe0b0b0, 0xc0a0a0];
+const lightRayColors = [0xe0b0b0, 0xc0a0a0];
 
 function simpleLightRay(g: Graphics, v: Vector) {
     const r1 = 15;
@@ -53,13 +68,13 @@ function simpleLightRay(g: Graphics, v: Vector) {
     const o2 = 1.15;
     const y1 = 33;
 
-    for (let i = 0; i < colors.length; i++) {
+    for (let i = 0; i < lightRayColors.length; i++) {
         const oo1 = Math.pow(o1, i + 1);
         const oo2 = Math.pow(o2, i + 1);
-        const dy = (colors.length - i - 1) * -2;
+        const dy = (lightRayColors.length - i - 1) * -2;
 
         g
-            .beginFill(colors[i])
+            .beginFill(lightRayColors[i])
             .moveTo(v.x + r1 * oo1, 0)
             .lineTo(v.x + r2 * oo2, 194 + dy + y1)
             .lineTo(v.x, 194 + dy + 2 + y1)
