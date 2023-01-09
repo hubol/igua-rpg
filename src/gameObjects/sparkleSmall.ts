@@ -18,7 +18,9 @@ const r = new Rectangle();
 export function sparkleOnce(o: Container, dst = o.parent) {
     const { tx: px, ty: py } = dst.worldTransform;
     const { x, y, width, height } = o.getBounds(false, r);
-    dst.addChild(sparkle().at(width * rng() + (x - px), height * rng() + (y - py)));
+    const s = sparkle().at(width * rng() + (x - px), height * rng() + (y - py));
+    s.alpha = o.ext.sparkleAlpha ?? 1;
+    dst.addChild(s);
 }
 
 export function sparkly(o: Container) {
@@ -30,7 +32,8 @@ export function sparkly(o: Container) {
     return o.withAsync(async () => {
         while (true) {
             sparkleOnce(o);
-            await sleep(250 + rng.int(200));
+            const ms = o.ext.sparkleSleep ?? 250;
+            await sleep(ms + rng.int(ms - 50));
         }
     });
 }

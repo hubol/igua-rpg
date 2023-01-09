@@ -1000,6 +1000,8 @@ export const FinalDeepArgs = {
       PipeHorizontal: resolvePipeHorizontal({ type: "PipeHorizontal", x: 56, y: 160, width: 144, flippedX: false, flippedY: false, uid: "55841307_9", visible: false, name: "", depth: 0 }),
       PipeHorizontal_1: resolvePipeHorizontal({ type: "PipeHorizontal", x: 72, y: 129, width: 42, flippedX: false, flippedY: false, uid: "55841307_10", visible: false, name: "", depth: 0 }),
       PipeHorizontal_2: resolvePipeHorizontal({ type: "PipeHorizontal", x: 142, y: 129, width: 42, flippedX: false, flippedY: false, uid: "55841307_11", visible: false, name: "", depth: 0 }),
+      Light1: resolveRegion({ type: "Region", x: 79, y: 88, width: 28, height: 48, flippedX: false, flippedY: false, uid: "25971607_12", name: "Light1", depth: 0 }),
+      Light2: resolveRegion({ type: "Region", x: 149, y: 88, width: 28, height: 48, flippedX: false, flippedY: false, uid: "25971607_13", name: "Light2", depth: 0 }),
     };
   },
 };
@@ -1024,6 +1026,8 @@ export const FinalTempleOuterArgs = {
       Block_5: resolveBlock({ type: "Block", x: 144, y: 0, width: 48, height: 64, flippedX: false, flippedY: false, uid: "55823268_17", name: "", depth: 0 }),
       LightRay1: { type: "Anchor", x: 96, y: 0, flippedX: false, flippedY: false, uid: "25979726_20", name: "LightRay1", depth: 0 },
       LightRay2: { type: "Anchor", x: 240, y: 0, flippedX: false, flippedY: false, uid: "25979726_21", name: "LightRay2", depth: 0 },
+      Sparkles1: resolveRegion({ type: "Region", x: 64, y: -8, width: 64, height: 40, flippedX: false, flippedY: false, uid: "25971607_22", name: "Sparkles1", depth: 0 }),
+      Sparkles2: resolveRegion({ type: "Region", x: 208, y: -8, width: 64, height: 40, flippedX: false, flippedY: false, uid: "25971607_23", name: "Sparkles2", depth: 0 }),
     };
   },
 };

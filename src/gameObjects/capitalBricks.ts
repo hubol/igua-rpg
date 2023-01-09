@@ -44,7 +44,6 @@ export function capitalBricksWall(width: number, height: number, p: Pseudo) {
             capitalBricks(Math.min(128, width - x), Math.min(128, height - y), p).at(x, y).show(c);
         }
     }
-    console.log(c);
     return c;
 }
 

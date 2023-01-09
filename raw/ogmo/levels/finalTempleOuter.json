@@ -184,6 +184,30 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "LightRay2", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 22,
+          "_eid": "25971607",
+          "x": 64,
+          "y": -8,
+          "width": 64,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Sparkles1", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 23,
+          "_eid": "25971607",
+          "x": 208,
+          "y": -8,
+          "width": 64,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "Sparkles2", "depth": 0}
         }
       ]
     },

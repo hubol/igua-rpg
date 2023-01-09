@@ -13,6 +13,9 @@ import {capitalBigKeyTextures} from "./capitalTemple";
 import {makeShadowCastFilter, ShadowCastDirection} from "../gameObjects/lightRayCrude";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {Vector} from "../utils/math/vector";
+import {capitalBricksWall} from "../gameObjects/capitalBricks";
+import {makePseudo} from "../utils/math/makePseudo";
+import {sparkly} from "../gameObjects/sparkleSmall";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
@@ -25,6 +28,10 @@ export function FinalTempleOuter() {
     showBigKeyMeter(jungle.bigKey, jungleBigKeyTextures, level.BigKey2);
     showBigKeyMeter(volcano.bigKey, volcanoBigKeyTextures, level.BigKey3);
     showBigKeyMeter(capital.bigKey, capitalBigKeyTextures, level.BigKey4);
+
+    [level.Sparkles1, level.Sparkles2].map(sparkly);
+
+    capitalBricksWall(scene.width, scene.height, makePseudo(169.452)).behind(0).opaqueTint = 0x405080;
 
     showLightRays(level);
 }
