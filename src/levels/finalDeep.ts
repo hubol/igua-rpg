@@ -6,6 +6,8 @@ import {DisplayObject, Graphics} from "pixi.js";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
 import {sparkly} from "../gameObjects/sparkleSmall";
 import {player} from "../gameObjects/player";
+import {container} from "../utils/pixi/container";
+import {makeShadowCastFilter, ShadowCastDirection} from "../gameObjects/lightRayCrude";
 
 export function FinalDeep() {
     scene.backgroundColor = 0x182840;
@@ -13,7 +15,9 @@ export function FinalDeep() {
     const level = applyOgmoLevel(FinalDeepArgs);
 
     applyFinalFilters();
-    [level.Light1, level.Light2].map(lightColumn);
+
+    ShadowCastDirection.value.x = 0;
+    container(...[level.Light1, level.Light2].map(lightColumn)).filter(makeShadowCastFilter()).ahead(player.index + 1);
 
     if (player.y < 160)
         player.vspeed = -2;
@@ -25,10 +29,10 @@ function lightColumn(d: DisplayObject) {
     const g = new Graphics()
         .beginFill(0xf0f0ff, 0.2)
         .drawRect(r, 0, b.width - r * 2, b.height)
-        .at(b)
-        .behind();
+        .at(b);
     g.ext.sparkleAlpha = 0.25;
     g.ext.sparkleSleep = 375;
 
     sparkly(g);
+    return g;
 }
