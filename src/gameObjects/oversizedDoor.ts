@@ -118,7 +118,13 @@ function stoneColumnsDoor(seed = 0) {
 
     for (let i = 0; i < 8; i++) {
         const cc = container().at(i * 8, 0).show(c)
-        const g = new Graphics().beginFill(0x405080, 0.5).drawRect(-1, -1, 10, 66).show(cc);
+        const g = new Graphics().beginFill(0x405080, 0.1)
+            .drawRect(-1, -5, 10, 74)
+            .drawRect(-1, -4, 10, 72)
+            .drawRect(-1, -3, 10, 70)
+            .drawRect(-1, -2, 10, 68)
+            .drawRect(-1, -1, 10, 66)
+            .show(cc);
         g.blendMode = BLEND_MODES.MULTIPLY;
         Sprite.from(FinalStoneDoorColumn).show(cc);
     }
