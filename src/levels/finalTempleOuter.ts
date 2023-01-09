@@ -2,7 +2,7 @@ import {scene} from "../igua/scene";
 import {FinalTempleOuterArgs} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {ProgressBigKey} from "../igua/data/getCompletion";
-import {BLEND_MODES, DisplayObject, Graphics, Texture} from "pixi.js";
+import {BLEND_MODES, DisplayObject, Graphics, Sprite, Texture} from "pixi.js";
 import {bigKeyMeter} from "../gameObjects/bigKey";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
 import {progress} from "../igua/data/progress";
@@ -20,6 +20,11 @@ import {Rectangle} from "../utils/math/rectangle";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {game} from "../igua/game";
 import {oversizedDoor} from "../gameObjects/oversizedDoor";
+import {decalsOf} from "../gameObjects/decal";
+import {FinalPanicLight, FinalPanicLightGlow, FinalPanicLightLit} from "../textures";
+import {merge} from "../utils/object/merge";
+import {approachLinear} from "../utils/math/number";
+import {container} from "../utils/pixi/container";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
@@ -40,8 +45,56 @@ export function FinalTempleOuter() {
     enrichOutside(level);
     showLightRays(level);
     enrichDoor(level);
+    enrichPanicLights();
 
     game.hudStage.ticker.update();
+}
+
+function enrichPanicLights() {
+    const detail = 6;
+
+    const decals = decalsOf(FinalPanicLight);
+    const lights = decals.map(x => {
+        const light = merge(x, { lit: false });
+        const lit = Sprite.from(FinalPanicLightLit).show(light);
+        lit.alpha = 0;
+        lit.pivot.at(light.pivot);
+        lit.anchor.at(light.anchor);
+        const glow = Sprite.from(FinalPanicLightGlow).at(light).ahead();
+        glow.pivot.set(12, 6);
+        glow.angle = light.angle;
+        glow.alpha = 0;
+        glow.blendMode = BLEND_MODES.ADD;
+
+        let _lalpha = 0;
+        let _galpha = 0;
+
+        light.withStep(() => {
+            _lalpha = approachLinear(_lalpha, light.lit ? 1 : 0, light.lit ? 0.3 : 0.02);
+            _galpha = approachLinear(_galpha, light.lit ? 1 : 0, light.lit ? 0.15 : 0.075);
+
+            lit.alpha = Math.round(_lalpha * detail) / detail;
+            glow.alpha = Math.round(_galpha * detail) / detail;
+        });
+
+        return light;
+    });
+
+    let index = 0;
+    const c = merge(container(), { animate: true })
+        .withStep(() => {
+            for (const light of lights)
+                light.lit = false;
+
+            if (!c.animate)
+                return;
+
+            index += 0.1;
+            lights[Math.floor(index) % lights.length].lit = true;
+        })
+        .show();
+
+    return c;
 }
 
 function enrichDoor(level: GameObjectsType<typeof FinalTempleOuterArgs>) {

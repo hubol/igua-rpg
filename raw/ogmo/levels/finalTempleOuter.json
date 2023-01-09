@@ -388,7 +388,29 @@
       "gridCellHeight": 8,
       "gridCellsX": 42,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 32,
+          "y": 112,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {"x": 152, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
+        {"x": 168, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
+        {"x": 184, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
+        {"x": 304, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
+        {"x": 320, "y": 128, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
+        {"x": 320, "y": 144, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
+        {"x": 320, "y": 160, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
+        {"x": 320, "y": 176, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
+        {"x": 320, "y": 192, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
+        {"x": 320, "y": 208, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25}
+      ],
       "folder": "../../src/images"
     },
     {
@@ -412,7 +434,19 @@
       "gridCellHeight": 8,
       "gridCellsX": 42,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 48,
+          "y": 104,
+          "scaleX": 15,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "green cable.png",
+          "originX": 0,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "..\\..\\src\\images"
     },
     {

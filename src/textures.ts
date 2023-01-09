@@ -97,6 +97,9 @@ export let DuckGiant: PIXI.Texture;
 export let ElectricBolt: PIXI.Texture;
 export let FinalLargeDoorBack: PIXI.Texture;
 export let FinalLargeMetalDoor: PIXI.Texture;
+export let FinalPanicLightGlow: PIXI.Texture;
+export let FinalPanicLightLit: PIXI.Texture;
+export let FinalPanicLight: PIXI.Texture;
 export let FinalStalagSpike: PIXI.Texture;
 export let FinalTempleExterior: PIXI.Texture;
 export let Firefly: PIXI.Texture;
@@ -567,6 +570,15 @@ export function loadTexturesAsync()
 
     const FinalLargeMetalDoorPath = require("./images/final/large metal door.png");
     loader.add(FinalLargeMetalDoorPath); 
+
+    const FinalPanicLightGlowPath = require("./images/final/panic light glow.png");
+    loader.add(FinalPanicLightGlowPath); 
+
+    const FinalPanicLightLitPath = require("./images/final/panic light lit.png");
+    loader.add(FinalPanicLightLitPath); 
+
+    const FinalPanicLightPath = require("./images/final/panic light.png");
+    loader.add(FinalPanicLightPath); 
 
     const FinalStalagSpikePath = require("./images/final/stalag spike.png");
     loader.add(FinalStalagSpikePath); 
@@ -1207,6 +1219,9 @@ export function loadTexturesAsync()
             ElectricBolt = resources[ElectricBoltPath]?.texture as PIXI.Texture;
             FinalLargeDoorBack = resources[FinalLargeDoorBackPath]?.texture as PIXI.Texture;
             FinalLargeMetalDoor = resources[FinalLargeMetalDoorPath]?.texture as PIXI.Texture;
+            FinalPanicLightGlow = resources[FinalPanicLightGlowPath]?.texture as PIXI.Texture;
+            FinalPanicLightLit = resources[FinalPanicLightLitPath]?.texture as PIXI.Texture;
+            FinalPanicLight = resources[FinalPanicLightPath]?.texture as PIXI.Texture;
             FinalStalagSpike = resources[FinalStalagSpikePath]?.texture as PIXI.Texture;
             FinalTempleExterior = resources[FinalTempleExteriorPath]?.texture as PIXI.Texture;
             Firefly = resources[FireflyPath]?.texture as PIXI.Texture;
