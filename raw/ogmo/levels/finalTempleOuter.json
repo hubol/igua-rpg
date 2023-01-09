@@ -91,7 +91,7 @@
           "y": 192,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "", "checkpointName": "", "name": "FinalDoor", "depth": 0}
         },
         {
           "name": "Region",

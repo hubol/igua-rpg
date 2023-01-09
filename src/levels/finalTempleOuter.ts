@@ -19,6 +19,7 @@ import {sparkly} from "../gameObjects/sparkleSmall";
 import {Rectangle} from "../utils/math/rectangle";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {game} from "../igua/game";
+import {oversizedDoor} from "../gameObjects/oversizedDoor";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
@@ -38,8 +39,13 @@ export function FinalTempleOuter() {
 
     enrichOutside(level);
     showLightRays(level);
+    enrichDoor(level);
 
     game.hudStage.ticker.update();
+}
+
+function enrichDoor(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
+    oversizedDoor().at([-16, -32].add(level.FinalDoor)).show();
 }
 
 function draw(g: Graphics, r: Rectangle) {

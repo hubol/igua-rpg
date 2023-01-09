@@ -1019,7 +1019,7 @@ export const FinalTempleOuterArgs = {
       Block_3: resolveBlock({ type: "Block", x: 320, y: 112, width: 16, height: 120, flippedX: false, flippedY: false, uid: "55823268_3", name: "", depth: 0 }),
       Door: resolveDoor({ type: "Door", x: 24, y: 160, flippedX: false, flippedY: false, uid: "55913988_4", levelName: "FinalDeep", checkpointName: "FromTemple", name: "", depth: 0 }),
       Player: { type: "Player", x: 76, y: 192, flippedX: false, flippedY: false, uid: "55988047_5", faceRight: true, name: "", depth: 0 },
-      Door_1: resolveDoor({ type: "Door", x: 192, y: 192, flippedX: false, flippedY: false, uid: "55913988_9", levelName: "", checkpointName: "", name: "", depth: 0 }),
+      FinalDoor: resolveDoor({ type: "Door", x: 192, y: 192, flippedX: false, flippedY: false, uid: "55913988_9", levelName: "", checkpointName: "", name: "FinalDoor", depth: 0 }),
       BigKey3: resolveRegion({ type: "Region", x: 120, y: 168, width: 40, height: 24, flippedX: false, flippedY: false, uid: "25971607_11", name: "BigKey3", depth: 0 }),
       BigKey1: resolveRegion({ type: "Region", x: 152, y: 128, width: 40, height: 24, flippedX: false, flippedY: false, uid: "25971607_12", name: "BigKey1", depth: 0 }),
       BigKey2: resolveRegion({ type: "Region", x: 224, y: 128, width: 40, height: 24, flippedX: false, flippedY: false, uid: "25971607_13", name: "BigKey2", depth: 0 }),
