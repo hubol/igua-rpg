@@ -213,9 +213,9 @@
           "name": "Block",
           "id": 24,
           "_eid": "55823268",
-          "x": 80,
+          "x": 72,
           "y": 224,
-          "width": 256,
+          "width": 264,
           "height": 48,
           "originX": 0,
           "originY": 0,
@@ -375,6 +375,19 @@
           "originX": 0,
           "originY": 0,
           "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 38,
+          "_eid": "55845599",
+          "x": 80,
+          "y": 192,
+          "width": 48,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -387,7 +400,19 @@
       "gridCellHeight": 8,
       "gridCellsX": 42,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 48,
+          "y": 186,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/temple steps rail.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {
@@ -411,16 +436,138 @@
           "originY": 0.25,
           "values": {"name": ""}
         },
-        {"x": 152, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
-        {"x": 168, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
-        {"x": 184, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
-        {"x": 304, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
-        {"x": 320, "y": 128, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
-        {"x": 320, "y": 144, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
-        {"x": 320, "y": 160, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
-        {"x": 320, "y": 176, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
-        {"x": 320, "y": 192, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25},
-        {"x": 320, "y": 208, "scaleX": 1, "scaleY": 1, "rotation": 1.5707963267948966, "texture": "final/panic light.png", "originX": 0.5, "originY": 0.25}
+        {
+          "x": 152,
+          "y": 112,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {
+          "x": 168,
+          "y": 112,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {
+          "x": 184,
+          "y": 112,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {
+          "x": 304,
+          "y": 112,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {
+          "x": 320,
+          "y": 128,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 1.5707963267948966,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {
+          "x": 320,
+          "y": 144,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 1.5707963267948966,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {
+          "x": 320,
+          "y": 160,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 1.5707963267948966,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {
+          "x": 320,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 1.5707963267948966,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {
+          "x": 320,
+          "y": 192,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 1.5707963267948966,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {
+          "x": 320,
+          "y": 208,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 1.5707963267948966,
+          "texture": "final/panic light.png",
+          "originX": 0.5,
+          "originY": 0.25,
+          "values": {"name": ""}
+        },
+        {
+          "x": 88,
+          "y": 186,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/temple steps rail.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 56,
+          "y": 192,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/temple steps.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },

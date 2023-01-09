@@ -102,6 +102,8 @@ export let FinalPanicLightLit: PIXI.Texture;
 export let FinalPanicLight: PIXI.Texture;
 export let FinalStalagSpike: PIXI.Texture;
 export let FinalTempleExterior: PIXI.Texture;
+export let FinalTempleStepsRail: PIXI.Texture;
+export let FinalTempleSteps: PIXI.Texture;
 export let Firefly: PIXI.Texture;
 export let FishProjectile: PIXI.Texture;
 export let FloppyDisk: PIXI.Texture;
@@ -585,6 +587,12 @@ export function loadTexturesAsync()
 
     const FinalTempleExteriorPath = require("./images/final/temple exterior.png");
     loader.add(FinalTempleExteriorPath); 
+
+    const FinalTempleStepsRailPath = require("./images/final/temple steps rail.png");
+    loader.add(FinalTempleStepsRailPath); 
+
+    const FinalTempleStepsPath = require("./images/final/temple steps.png");
+    loader.add(FinalTempleStepsPath); 
 
     const FireflyPath = require("./images/firefly.png");
     loader.add(FireflyPath); 
@@ -1224,6 +1232,8 @@ export function loadTexturesAsync()
             FinalPanicLight = resources[FinalPanicLightPath]?.texture as PIXI.Texture;
             FinalStalagSpike = resources[FinalStalagSpikePath]?.texture as PIXI.Texture;
             FinalTempleExterior = resources[FinalTempleExteriorPath]?.texture as PIXI.Texture;
+            FinalTempleStepsRail = resources[FinalTempleStepsRailPath]?.texture as PIXI.Texture;
+            FinalTempleSteps = resources[FinalTempleStepsPath]?.texture as PIXI.Texture;
             Firefly = resources[FireflyPath]?.texture as PIXI.Texture;
             FishProjectile = resources[FishProjectilePath]?.texture as PIXI.Texture;
             FloppyDisk = resources[FloppyDiskPath]?.texture as PIXI.Texture;
