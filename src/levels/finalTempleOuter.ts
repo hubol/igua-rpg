@@ -173,12 +173,32 @@ function hasAllPieces(bigKey: ProgressBigKey) {
     return bigKey.piece1 && bigKey.piece2 && bigKey.piece3;
 }
 
+const compass = [
+    [1, 0],
+    [1, 1],
+    [0, 1],
+    [-1, 1],
+    [-1, 0],
+    [-1, -1],
+    [0, -1],
+    [1, -1]
+];
+
 function showBigKeyMeter(bigKey: ProgressBigKey, txs: Texture[], at: DisplayObject) {
+    const main = makeBigKeyMeter(bigKey, txs);
+    const bg = compass.map(x => {
+       const key = makeBigKeyMeter(bigKey, txs).at(x);
+       key.opaqueTint = scene.backgroundColor;
+       return key;
+    });
+    return container(...bg, main).at(getWorldCenter(at)).behind();
+}
+
+function makeBigKeyMeter(bigKey: ProgressBigKey, txs: Texture[]) {
     const m = bigKeyMeter(
         [txs[0], bigKey.piece1],
         [txs[1], bigKey.piece2],
         [txs[2], bigKey.piece3],)
-    m.at(getWorldCenter(at)).behind();
     m.pivot.set(m.width / 2, m.height / 2);
     return m;
 }
