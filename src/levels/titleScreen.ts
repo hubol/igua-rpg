@@ -197,9 +197,8 @@ function getNewGamePlusText(ng: number) {
 function newGamePlusMarker() {
     const gfx = new Graphics();
     const text = IguaText.Large('').at(2, -1);
-    const c = merge(container(gfx, text), { set text(value: string) { text.text = value } })
+    const c = merge(container(gfx, text), { set text(value: string) { text.text = value; c.visible = !!value; } })
         .withStep(() => {
-            c.visible = !!text.text;
             gfx.clear()
                 .beginFill(0x005870)
                 .drawRect(0, 1, text.textWidth + 3, 9)
