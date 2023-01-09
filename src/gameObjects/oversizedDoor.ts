@@ -1,6 +1,6 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {FinalLargeDoorBack, FinalLargeMetalDoor} from "../textures";
-import {DisplayObject, Graphics, Sprite} from "pixi.js";
+import {FinalLargeDoorBack, FinalLargeMetalDoor, FinalStoneDoorColumn} from "../textures";
+import {BLEND_MODES, DisplayObject, Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
@@ -22,6 +22,7 @@ export function oversizedDoor() {
     const c = container(mask);
 
     const doors: Door[] = [
+        ...range(4).map(i => stoneColumnsDoor(i)),
         ...range(4).map(i => largeMetalDoor(angle(i))),
         ...range(4).map(i => mirrorDoor(angle(i))),
     ];
@@ -89,4 +90,38 @@ function mirrorDoor(angle = 0) {
         m.complete = true;
         m.destroy();
     });
+}
+
+const stoneColumnOrders = [
+    [0, 7, 1, 6, 2, 5, 3, 4],
+    [7, 6, 5, 4, 3, 2, 1, 0]
+] as const;
+
+function stoneColumnsDoor(seed = 0) {
+    seed = Math.floor(seed);
+    const ypolar = (seed % (stoneColumnOrders.length * 2)) < stoneColumnOrders.length ? 1 : -1;
+    const style = seed % stoneColumnOrders.length;
+
+    const order = stoneColumnOrders[style];
+    let index = -1;
+    const c = merge(container(), { active: false, complete: false })
+        .withStep(() => {
+            for (let i = 0; i < Math.min(index, order.length); i++) {
+                const d = c.children[order[i]];
+                d.y += ypolar + Math.sign(ypolar) * (i / 8);
+                if (i === order.length - 1 && Math.abs(d.y) >= 64)
+                    c.complete = true;
+            }
+            if (c.active)
+                index += 0.1;
+        });
+
+    for (let i = 0; i < 8; i++) {
+        const cc = container().at(i * 8, 0).show(c)
+        const g = new Graphics().beginFill(0x405080, 0.5).drawRect(-1, -1, 10, 66).show(cc);
+        g.blendMode = BLEND_MODES.MULTIPLY;
+        Sprite.from(FinalStoneDoorColumn).show(cc);
+    }
+
+    return c;
 }

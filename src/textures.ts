@@ -101,6 +101,7 @@ export let FinalPanicLightGlow: PIXI.Texture;
 export let FinalPanicLightLit: PIXI.Texture;
 export let FinalPanicLight: PIXI.Texture;
 export let FinalStalagSpike: PIXI.Texture;
+export let FinalStoneDoorColumn: PIXI.Texture;
 export let FinalTempleExterior: PIXI.Texture;
 export let FinalTempleStepsRail: PIXI.Texture;
 export let FinalTempleSteps: PIXI.Texture;
@@ -584,6 +585,9 @@ export function loadTexturesAsync()
 
     const FinalStalagSpikePath = require("./images/final/stalag spike.png");
     loader.add(FinalStalagSpikePath); 
+
+    const FinalStoneDoorColumnPath = require("./images/final/stone door column.png");
+    loader.add(FinalStoneDoorColumnPath); 
 
     const FinalTempleExteriorPath = require("./images/final/temple exterior.png");
     loader.add(FinalTempleExteriorPath); 
@@ -1231,6 +1235,7 @@ export function loadTexturesAsync()
             FinalPanicLightLit = resources[FinalPanicLightLitPath]?.texture as PIXI.Texture;
             FinalPanicLight = resources[FinalPanicLightPath]?.texture as PIXI.Texture;
             FinalStalagSpike = resources[FinalStalagSpikePath]?.texture as PIXI.Texture;
+            FinalStoneDoorColumn = resources[FinalStoneDoorColumnPath]?.texture as PIXI.Texture;
             FinalTempleExterior = resources[FinalTempleExteriorPath]?.texture as PIXI.Texture;
             FinalTempleStepsRail = resources[FinalTempleStepsRailPath]?.texture as PIXI.Texture;
             FinalTempleSteps = resources[FinalTempleStepsPath]?.texture as PIXI.Texture;
