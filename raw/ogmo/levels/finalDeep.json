@@ -161,6 +161,26 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "Light2", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 14,
+          "_eid": "55940370",
+          "x": 92,
+          "y": 129,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromTempleR", "faceRight": false, "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 15,
+          "_eid": "55940370",
+          "x": 164,
+          "y": 129,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromTempleL", "faceRight": true, "depth": 0}
         }
       ]
     },

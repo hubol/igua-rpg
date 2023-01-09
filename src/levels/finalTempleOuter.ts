@@ -33,7 +33,15 @@ export function FinalTempleOuter() {
 
     capitalBricksWall(scene.width, scene.height, makePseudo(169.452)).behind(0).opaqueTint = 0x405080;
 
+    enrichOutside(level);
     showLightRays(level);
+}
+
+function enrichOutside(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
+    const g = new Graphics().beginFill(0x404070).drawRect(0, 0, level.OutsideRegion.width, level.OutsideRegion.height).behind();
+    for (let x = 0; x < scene.width; x += 16) {
+        g.drawRect(x + 4, level.OutsideRegion.y + level.OutsideRegion.height, 8, 3);
+    }
 }
 
 const colors = [0xe0b0b0, 0xc0a0a0];
@@ -43,7 +51,7 @@ function simpleLightRay(g: Graphics, v: Vector) {
     const r2 = 30;
     const o1 = 1.067;
     const o2 = 1.15;
-    const y1 = 1;
+    const y1 = 33;
 
     for (let i = 0; i < colors.length; i++) {
         const oo1 = Math.pow(o1, i + 1);

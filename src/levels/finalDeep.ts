@@ -5,6 +5,7 @@ import {applyFinalFilters} from "./finalClimb";
 import {DisplayObject, Graphics} from "pixi.js";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
 import {sparkly} from "../gameObjects/sparkleSmall";
+import {player} from "../gameObjects/player";
 
 export function FinalDeep() {
     scene.backgroundColor = 0x182840;
@@ -13,6 +14,9 @@ export function FinalDeep() {
 
     applyFinalFilters();
     [level.Light1, level.Light2].map(lightColumn);
+
+    if (player.y < 160)
+        player.vspeed = -2;
 }
 
 function lightColumn(d: DisplayObject) {
