@@ -24,7 +24,7 @@ export function oversizedDoor() {
 
     c.on('added', () => {
         Sprite.from(FinalLargeDoorBack)
-            .at([-1, -1].add(c))
+            .at([-3, -3].add(c))
             .show(c.parent, 1);
     })
 
