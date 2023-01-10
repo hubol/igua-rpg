@@ -10,6 +10,7 @@ import {range} from "../utils/range";
 import {mirror} from "./mirror";
 import {ToRad} from "../utils/math/angles";
 import {move} from "../cutscene/move";
+import {FinalDoorFinish, FinalDoorLightOn, FinalDoorMoveLow, FinalDoorMoveSlow} from "../sounds";
 
 function angle(i: number) {
     return (i * 90) % 360;
@@ -33,6 +34,8 @@ export function oversizedDoor() {
             door.active = true;
             await wait(() => door.complete);
         }
+
+        FinalDoorFinish.play();
     });
 
     c.on('added', () => {
@@ -60,10 +63,18 @@ function largeMetalDoor(angle: number) {
     return s0
         .withAsync(async () => {
             await wait(() => s0.active);
+            // @ts-ignore
+            FinalDoorMoveSlow.rate(1).play();
             await lerp(c1.pivot, 'y').to(16).over(500);
             await sleep(100);
+            // @ts-ignore
+            FinalDoorLightOn.rate(0.3).play();
             await lerp(s2.pivot, 'y').to(3).over(300);
             await sleep(200);
+            // @ts-ignore
+            FinalDoorMoveLow.rate(1).play();
+            // @ts-ignore
+            FinalDoorMoveLow.rate(0.3).play();
             await lerp(s0.pivot, 'y').to(48).over(1000);
             s0.complete = true;
             s0.destroy();
@@ -81,6 +92,11 @@ function mirrorDoor(angle = 0) {
 
     return m.withAsync(async () => {
         await wait(() => m.active);
+
+        // @ts-ignore
+        FinalDoorMoveSlow.rate(0.67).play();
+        // @ts-ignore
+        FinalDoorMoveLow.rate(0.5).play();
 
         const dx = Math.sin(angle * ToRad) * 64;
         const dy = Math.cos(angle * ToRad) * 64;
@@ -108,6 +124,10 @@ function stoneColumnsDoor(seed = 0) {
         .withStep(() => {
             for (let i = 0; i < Math.min(index, order.length); i++) {
                 const d = c.children[order[i]];
+                if (d.y === 0) {
+                    // @ts-ignore
+                    FinalDoorMoveLow.rate(1.1 - i / 16).play();
+                }
                 d.y += ypolar + Math.sign(ypolar) * (i / 8);
                 if (i === order.length - 1 && Math.abs(d.y) >= 64)
                     c.complete = true;

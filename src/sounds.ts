@@ -302,6 +302,36 @@ export const EmpPulse = new Howl({
     
 });
 
+export const FinalDoorAlert = new Howl({
+    src: [require("./sound/final door alert.ogg"), require("./sound/final door alert.mp3")],
+    
+});
+
+export const FinalDoorFinish = new Howl({
+    src: [require("./sound/final door finish.ogg"), require("./sound/final door finish.mp3")],
+    
+});
+
+export const FinalDoorLightOn = new Howl({
+    src: [require("./sound/final door light on.ogg"), require("./sound/final door light on.mp3")],
+    
+});
+
+export const FinalDoorMoveLow = new Howl({
+    src: [require("./sound/final door move low.ogg"), require("./sound/final door move low.mp3")],
+    
+});
+
+export const FinalDoorMoveMedium = new Howl({
+    src: [require("./sound/final door move medium.ogg"), require("./sound/final door move medium.mp3")],
+    
+});
+
+export const FinalDoorMoveSlow = new Howl({
+    src: [require("./sound/final door move slow.ogg"), require("./sound/final door move slow.mp3")],
+    
+});
+
 export const FireElectricBolt = new Howl({
     src: [require("./sound/fire electric bolt.ogg"), require("./sound/fire electric bolt.mp3")],
     
