@@ -1,6 +1,6 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {FinalLargeDoorBack, FinalLargeMetalDoor, FinalStoneDoorColumn} from "../textures";
-import {BLEND_MODES, DisplayObject, Graphics, Sprite} from "pixi.js";
+import {BLEND_MODES, DisplayObject, filters, Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
@@ -144,6 +144,14 @@ function stoneColumnsDoor(seed = 0) {
             // @ts-ignore
             FinalDoorMoveMedium.rate(0.3).play();
         });
+
+    if (seed % 2 === 1) {
+        const filter = new filters.ColorMatrixFilter();
+        filter.brightness(1.6, false);
+        filter.hue(15, true);
+        filter.saturate(-0.2, true);
+        c.filters = [filter];
+    }
 
     for (let i = 0; i < 8; i++) {
         const cc = container().at(i * 8, 0).show(c)
