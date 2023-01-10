@@ -21,22 +21,21 @@ import {terrainGradient} from "../gameObjects/outerGradient";
 import {game} from "../igua/game";
 import {oversizedDoor} from "../gameObjects/oversizedDoor";
 import {decalsOf} from "../gameObjects/decal";
-import {FinalPanicLight, FinalPanicLightGlow, FinalPanicLightLit} from "../textures";
+import {FinalPanicLight, FinalPanicLightGlow, FinalPanicLightLit, OpenDoor} from "../textures";
 import {merge} from "../utils/object/merge";
 import {approachLinear} from "../utils/math/number";
 import {container} from "../utils/pixi/container";
+import {show} from "../cutscene/dialog";
+import {wait} from "../cutscene/wait";
+import {player} from "../gameObjects/player";
+import {sleep} from "../cutscene/sleep";
+import {BigKeyCollected} from "../sounds";
+import {sparkles} from "../gameObjects/sparkle";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
     scene.terrainColor = 0x182840;
     const level = applyOgmoLevel(FinalTempleOuterArgs);
-
-    const { desert, jungle, volcano, capital } = progress.flags;
-
-    showBigKeyMeter(desert.bigKey, desertBigKeyTextures, level.BigKey1);
-    showBigKeyMeter(jungle.bigKey, jungleBigKeyTextures, level.BigKey2);
-    showBigKeyMeter(volcano.bigKey, volcanoBigKeyTextures, level.BigKey3);
-    showBigKeyMeter(capital.bigKey, capitalBigKeyTextures, level.BigKey4);
 
     [level.Sparkles1, level.Sparkles2].map(sparkly);
 
@@ -45,7 +44,6 @@ export function FinalTempleOuter() {
     enrichOutside(level);
     showLightRays(level);
     enrichDoor(level);
-    enrichPanicLights();
 
     game.hudStage.ticker.update();
 }
@@ -81,7 +79,7 @@ function enrichPanicLights() {
     });
 
     let index = 0;
-    const c = merge(container(), { animate: true })
+    const c = merge(container(), { animate: false })
         .withStep(() => {
             for (const light of lights)
                 light.lit = false;
@@ -98,7 +96,52 @@ function enrichPanicLights() {
 }
 
 function enrichDoor(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
-    oversizedDoor().at([-16, -32].add(level.FinalDoor)).show();
+    const { desert, jungle, volcano, capital } = progress.flags;
+
+    const desertKey = showBigKeyMeter(desert.bigKey, desertBigKeyTextures, level.BigKey1);
+    const jungleKey = showBigKeyMeter(jungle.bigKey, jungleBigKeyTextures, level.BigKey2);
+    const volcanoKey = showBigKeyMeter(volcano.bigKey, volcanoBigKeyTextures, level.BigKey3);
+    const capitalKey = showBigKeyMeter(capital.bigKey, capitalBigKeyTextures, level.BigKey4);
+
+    const lights = enrichPanicLights();
+
+    const d = oversizedDoor().at([-16, -32].add(level.FinalDoor)).show();
+
+    if (progress.flags.final.doorOpened) {
+        d.destroy();
+        return;
+    }
+
+    level.FinalDoor.ext.showClosedMessage = false;
+    level.FinalDoor.locked = true;
+    level.FinalDoor.withStep(() => level.FinalDoor.texture = OpenDoor);
+
+    if (!allBigKeyPiecesCollected()) {
+        d.withCutscene(async () => {
+            await show(`It doesn't budge.`);
+        });
+        return;
+    }
+
+    d.withAsync(async () => {
+        await wait(() => d.collides(player));
+
+        for (const key of [desertKey, jungleKey, volcanoKey, capitalKey]) {
+            BigKeyCollected.play();
+            const p = getWorldCenter(key);
+            sparkles(p.x, p.y, 10, 32, 100);
+            await sleep(500);
+        }
+
+        lights.animate = true;
+        await sleep(2000);
+
+        d.active = true;
+        await wait(() => d.complete);
+        lights.animate = false;
+        level.FinalDoor.locked = false;
+        progress.flags.final.doorOpened = true;
+    });
 }
 
 function draw(g: Graphics, r: Rectangle) {
@@ -169,7 +212,14 @@ function showLightRays(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
     g.filters[0].blendMode = BLEND_MODES.ADD;
 }
 
-function hasAllPieces(bigKey: ProgressBigKey) {
+function allBigKeyPiecesCollected() {
+    return allPiecesCollected(progress.flags.desert.bigKey)
+        && allPiecesCollected(progress.flags.jungle.bigKey)
+        && allPiecesCollected(progress.flags.volcano.bigKey)
+        && allPiecesCollected(progress.flags.capital.bigKey);
+}
+
+function allPiecesCollected(bigKey: ProgressBigKey) {
     return bigKey.piece1 && bigKey.piece2 && bigKey.piece3;
 }
 

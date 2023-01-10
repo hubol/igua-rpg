@@ -20,7 +20,7 @@ type Door = DisplayObject & { active: boolean; complete: boolean; }
 
 export function oversizedDoor() {
     const mask = new Graphics().beginFill(0).drawRect(0, 0, 64, 64);
-    const c = container(mask);
+    const c = merge(container(mask), { active: false, complete: false });
 
     const doors: Door[] = [
         ...range(4).map(i => stoneColumnsDoor(i)),
@@ -30,11 +30,13 @@ export function oversizedDoor() {
     c.addChild(...[...doors].reverse());
 
     c.withAsync(async () => {
+        await wait(() => c.active);
         for (const door of doors) {
             door.active = true;
             await wait(() => door.complete);
         }
 
+        c.complete = true;
         FinalDoorFinish.play();
     });
 

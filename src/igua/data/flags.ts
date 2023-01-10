@@ -107,6 +107,9 @@ export function getInitialFlags()
             defeatedDassmann: false,
             spokeWithOracle: false,
             solvedImpossiblePuzzle: false,
+        },
+        final: {
+            doorOpened: false,
         }
     };
 }
