@@ -10,7 +10,7 @@ import {range} from "../utils/range";
 import {mirror} from "./mirror";
 import {ToRad} from "../utils/math/angles";
 import {move} from "../cutscene/move";
-import {FinalDoorFinish, FinalDoorLightOn, FinalDoorMoveLow, FinalDoorMoveSlow} from "../sounds";
+import {FinalDoorFinish, FinalDoorLightOn, FinalDoorMoveLow, FinalDoorMoveMedium, FinalDoorMoveSlow} from "../sounds";
 
 function angle(i: number) {
     return (i * 90) % 360;
@@ -129,11 +129,18 @@ function stoneColumnsDoor(seed = 0) {
                     FinalDoorMoveLow.rate(1.1 - i / 16).play();
                 }
                 d.y += ypolar + Math.sign(ypolar) * (i / 8);
-                if (i === order.length - 1 && Math.abs(d.y) >= 64)
+                if (i === order.length - 1 && Math.abs(d.y) >= 64) {
                     c.complete = true;
+                    return c.destroy();
+                }
             }
             if (c.active)
                 index += 0.1;
+        })
+        .withAsync(async () => {
+            await wait(() => c.active);
+            // @ts-ignore
+            FinalDoorMoveMedium.rate(0.3).play();
         });
 
     for (let i = 0; i < 8; i++) {
