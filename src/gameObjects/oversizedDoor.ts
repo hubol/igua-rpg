@@ -11,6 +11,7 @@ import {mirror} from "./mirror";
 import {ToRad} from "../utils/math/angles";
 import {move} from "../cutscene/move";
 import {FinalDoorFinish, FinalDoorLightOn, FinalDoorMoveLow, FinalDoorMoveMedium, FinalDoorMoveSlow} from "../sounds";
+import {Screenshake} from "./earthquake";
 
 function angle(i: number) {
     return (i * 90) % 360;
@@ -36,6 +37,8 @@ export function oversizedDoor() {
             await wait(() => door.complete);
         }
 
+        Screenshake.value.pivot.x = -1;
+        Screenshake.value.duration = 400;
         c.complete = true;
         FinalDoorFinish.play();
     });

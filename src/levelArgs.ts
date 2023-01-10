@@ -1030,7 +1030,7 @@ export const FinalTempleOuterArgs = {
       FinalTempleSteps: resolveDecalGameObject({ x: 56, y: 192, originX: 0, originY: 0, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: FinalTempleSteps }),
       GreenCable: resolveDecalGameObject({ x: 48, y: 104, originX: 0, originY: 0.5, scaleX: 15, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: GreenCable }),
       Block: resolveBlock({ type: "Block", x: 32, y: 48, width: 16, height: 64, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
-      Block_1: resolveBlock({ type: "Block", x: 0, y: 192, width: 80, height: 64, flippedX: false, flippedY: false, uid: "55823268_1", name: "", depth: 0 }),
+      Block_1: resolveBlock({ type: "Block", x: -8, y: 192, width: 88, height: 64, flippedX: false, flippedY: false, uid: "55823268_1", name: "", depth: 0 }),
       Block_2: resolveBlock({ type: "Block", x: 0, y: 112, width: 16, height: 80, flippedX: false, flippedY: false, uid: "55823268_2", name: "", depth: 0 }),
       Block_3: resolveBlock({ type: "Block", x: 320, y: 112, width: 16, height: 120, flippedX: false, flippedY: false, uid: "55823268_3", name: "", depth: 0 }),
       Door: resolveDoor({ type: "Door", x: 24, y: 160, flippedX: false, flippedY: false, uid: "55913988_4", levelName: "FinalDeep", checkpointName: "FromTemple", name: "", depth: 0 }),
