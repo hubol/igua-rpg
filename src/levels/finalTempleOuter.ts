@@ -31,11 +31,15 @@ import {player} from "../gameObjects/player";
 import {sleep} from "../cutscene/sleep";
 import {BigKeyCollected} from "../sounds";
 import {sparkles} from "../gameObjects/sparkle";
+import {jukebox} from "../igua/jukebox";
+import {FinalTempleMusic} from "../musics";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
     scene.terrainColor = 0x182840;
     const level = applyOgmoLevel(FinalTempleOuterArgs);
+
+    jukebox.play(FinalTempleMusic);
 
     [level.Sparkles1, level.Sparkles2].map(sparkly);
 

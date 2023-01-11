@@ -13,6 +13,7 @@ const volumes: Partial<Record<Title, number>> = {
     UnusualOminousMusic: 0.7,
     UnrealQuizMusic: 0.7,
     UnrealFirefly: 0.8,
+    FinalTempleMusic: 0.92,
 }
 
 export function getMusicVolume(howl: Howl) {

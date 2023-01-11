@@ -47,6 +47,11 @@ export const DesertTown = new Howl({
     preload: false
 });
 
+export const FinalTempleMusic = new Howl({
+    src: [require("./music/final-temple-music.ogg"), require("./music/final-temple-music.mp3")],
+    preload: false
+});
+
 export const Fly = new Howl({
     src: [require("./music/fly.ogg"), require("./music/fly.mp3")],
     preload: false

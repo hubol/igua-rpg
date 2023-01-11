@@ -8,11 +8,15 @@ import {sparkly} from "../gameObjects/sparkleSmall";
 import {player} from "../gameObjects/player";
 import {container} from "../utils/pixi/container";
 import {makeShadowCastFilter, ShadowCastDirection} from "../gameObjects/lightRayCrude";
+import {jukebox} from "../igua/jukebox";
+import {FinalTempleMusic} from "../musics";
 
 export function FinalDeep() {
     scene.backgroundColor = 0x182840;
     scene.terrainColor = 0x4868a0;
     const level = applyOgmoLevel(FinalDeepArgs);
+
+    jukebox.stop().warm(FinalTempleMusic);
 
     applyFinalFilters();
 
