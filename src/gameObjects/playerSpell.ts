@@ -8,7 +8,7 @@ import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {Undefined} from "../utils/types/undefined";
 import {WeakToSpellsInstance, WeakToSpellsInstances} from "../pixins/weakToSpells";
-import {vnew} from "../utils/math/vector";
+import {distance, vnew} from "../utils/math/vector";
 import {getWorldBounds, getWorldCenter} from "../igua/gameplay/getCenter";
 import {derivedStats} from "../igua/gameplay/derivedStats";
 import {rng} from "../utils/math/rng";
@@ -62,6 +62,7 @@ function playerSpell(subject: IguanaPuppet) {
     let activeSteps = 0;
     let target = Undefined<WeakToSpellsInstance>();
     let targetHurtbox = Undefined<DisplayObject>();
+    let targetOffset = vnew();
     let moveTowardsTargetSpeed = consts.speedStart;
 
     const s = scene.s;
@@ -75,12 +76,17 @@ function playerSpell(subject: IguanaPuppet) {
                 activeSteps += 1;
                 if (!target || target.destroyed) {
                     const result = findClosestWeakToSpellsInstance(spell);
-                    target = result[0];
-                    targetHurtbox = result[1];
+                    target = result.instance;
+                    targetHurtbox = result.hurtbox;
+                    targetOffset.at(result.targetOffset);
                 }
                 if (target && targetHurtbox) {
-                    spell.moveTowards(getWorldCenter(targetHurtbox), moveTowardsTargetSpeed);
+                    const box = getWorldBounds(targetHurtbox);
+                    const dst = v1.at(box.add(targetOffset));
+                    spell.moveTowards(dst, moveTowardsTargetSpeed);
                     moveTowardsTargetSpeed = approachLinear(moveTowardsTargetSpeed, consts.speedEnd, consts.speedDelta);
+                    targetOffset.x = approachLinear(targetOffset.x, box.width / 2, 0.25);
+                    targetOffset.y = approachLinear(targetOffset.y, box.height / 2, 0.25);
                 }
                 else {
                     spell.x += Math.sin((scene.s - s) * Math.PI * 2);
@@ -140,35 +146,71 @@ function doSpellCollisionEvents(spellHitbox :DisplayObject) {
     return didCollide;
 }
 
-const v = vnew();
+const v1 = vnew();
+const v2 = vnew();
+const v3 = vnew();
 
-const closest: [WeakToSpellsInstance | undefined, DisplayObject | undefined] = [] as any;
+const result = {
+    instance: Undefined<WeakToSpellsInstance>(),
+    hurtbox: Undefined<DisplayObject>(),
+    targetOffset: vnew(),
+}
 
-function findClosestWeakToSpellsInstance(source: DisplayObject) {
-    const instances = WeakToSpellsInstances.value;
+export function findClosestWeakToSpellsInstance(source: DisplayObject) {
+    const vector = v2.at(getWorldCenter(source));
+
     let closestInstance = Undefined<WeakToSpellsInstance>();
     let closestHurtbox = Undefined<DisplayObject>();
-    let closestDistance = Number.MAX_VALUE;
+    let closestTarget = v3.at(vector);
+    let shortestDistance = Number.MAX_VALUE;
 
-    const sourcepos = v.at(getWorldCenter(source));
+    const instances = WeakToSpellsInstances.value;
 
     for (const instance of instances) {
         if (!isOnScreen(instance))
             continue;
         for (const hurtbox of instance.spellsHurtbox) {
-            const bounds = getWorldBounds(hurtbox);
-            const radius = (bounds.width + bounds.height) / 2;
-            const distance = getWorldCenter(hurtbox).add(sourcepos, -1).vlength - radius;
-            if (distance < closestDistance) {
-                closestHurtbox = hurtbox;
+            const rectangle = getWorldBounds(hurtbox);
+
+            const vx = Math.max(rectangle.x, Math.min(vector.x, rectangle.x + rectangle.width));
+            const vy = Math.max(rectangle.y, Math.min(vector.y, rectangle.y + rectangle.height));
+
+            const topDistance = distance(vector, v1.at(vx, rectangle.y));
+            if (topDistance < shortestDistance) {
+                shortestDistance = topDistance;
+                closestTarget.at(v1);
                 closestInstance = instance;
-                closestDistance = distance;
+                closestHurtbox = hurtbox;
+            }
+            const bottomDistance = distance(vector, v1.at(vx, rectangle.y + rectangle.height));
+            if (bottomDistance < shortestDistance) {
+                shortestDistance = bottomDistance;
+                closestTarget.at(v1);
+                closestInstance = instance;
+                closestHurtbox = hurtbox;
+            }
+            const leftDistance = distance(vector, v1.at(rectangle.x, vy));
+            if (leftDistance < shortestDistance) {
+                shortestDistance = leftDistance;
+                closestTarget.at(v1);
+                closestInstance = instance;
+                closestHurtbox = hurtbox;
+            }
+            const rightDistance = distance(vector, v1.at(rectangle.x + rectangle.width, vy));
+            if (rightDistance < shortestDistance) {
+                shortestDistance = rightDistance;
+                closestTarget.at(v1);
+                closestInstance = instance;
+                closestHurtbox = hurtbox;
             }
         }
     }
 
-    closest[0] = closestInstance;
-    closest[1] = closestHurtbox;
+    result.instance = closestInstance;
+    result.hurtbox = closestHurtbox;
+    if (closestHurtbox) {
+        result.targetOffset.at(closestTarget).add(getWorldBounds(closestHurtbox), -1);
+    }
 
-    return closest;
+    return result;
 }
