@@ -66,8 +66,8 @@ export function clownHealth(maxHealth: number) {
             return this.health <= 0;
         },
         damage(factor = player.strength) {
-            this.health = Math.max(0, this.health - factor);
             clownHealthUi.value.clownHealth = this;
+            this.health = Math.max(0, this.health - factor);
             return this.isDead;
         },
         tookDamage() {
@@ -86,12 +86,18 @@ export type ClownHealth = ReturnType<typeof clownHealth>;
 export const clownHealthUi = new SceneLocal(() => {
     let clownHealth = Undefined<ClownHealth>();
     let show = 0;
+    let initialHealth = -1;
 
     return merge(container(), {
+            get damageTaken() {
+                return initialHealth === -1 || !this.clownHealth ? 0 : initialHealth - this.clownHealth.health;
+            },
             get clownHealth() {
                 return clownHealth;
             },
             set clownHealth(c) {
+                if (c && clownHealth !== c)
+                    initialHealth = c.health;
                 if (c && (!c.isDead || clownHealth === c))
                     show = 60;
                 clownHealth = c;

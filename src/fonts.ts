@@ -4,6 +4,7 @@ import {loadBitmapFontAsync} from "./utils/resources/loadBitmapFont";
 
 export let AcrobatixFont: BitmapFont;
 export let AtomixFont: BitmapFont;
+export let DiggitFont: BitmapFont;
 
 export async function loadFontsAsync()
 {
@@ -14,5 +15,9 @@ export async function loadFontsAsync()
     AtomixFont = await loadBitmapFontAsync(
         require("./fonts/Atomix.fnt"),
         await loadTextureAsync(require("./fonts/Atomix_0.png")));
+
+    DiggitFont = await loadBitmapFontAsync(
+        require("./fonts/Diggit.fnt"),
+        await loadTextureAsync(require("./fonts/Diggit.png")));
 }
 

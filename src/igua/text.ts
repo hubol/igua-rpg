@@ -1,5 +1,5 @@
 import {BitmapText} from "pixi.js";
-import {AcrobatixFont, AtomixFont} from "../fonts";
+import {AcrobatixFont, AtomixFont, DiggitFont} from "../fonts";
 
 type Style = Omit<ConstructorParameters<typeof BitmapText>[1], "fontName">;
 
@@ -9,5 +9,8 @@ export const IguaText = {
     },
     Large(text = '', style: Style = {}) {
         return new BitmapText(text, { fontName: AcrobatixFont.font, ...style });
-    }
+    },
+    MediumDigits(text = '', style: Style = {}) {
+        return new BitmapText(text, { fontName: DiggitFont.font, ...style });
+    },
 }

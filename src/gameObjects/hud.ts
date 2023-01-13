@@ -105,11 +105,13 @@ function clownHealthBar() {
 
     const g = new Graphics()
         .withStep(() => {
-            const { clownHealth } = clownHealthUi.value;
+            const { clownHealth, damageTaken } = clownHealthUi.value;
             display = clownHealth ? 9 : display - 1;
             mask.unit = display / 9;
             if (!clownHealth)
                 return;
+
+            t.text = damageTaken <= 0 ? '' : '' + damageTaken;
 
             g.clear();
 
@@ -126,8 +128,14 @@ function clownHealthBar() {
             if (w > 0)
                 g.drawRect(0, 0, Math.ceil(w), height);
         })
-        .filter(alphaMaskFilter(mask))
         .at((256 - width) / 2, 240);
 
-    return container(mask, g);
+    const t = IguaText.MediumDigits('')
+        .at(240 - 47, 240);
+
+    // @ts-ignore
+    t.anchor.set(1, 1);
+
+    return container(mask, g, t)
+        .filter(alphaMaskFilter(mask));
 }
