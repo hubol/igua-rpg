@@ -26,7 +26,7 @@ export function VolcanoShopInn() {
         const window = mirror(level.Window1.width, level.Window1.height, 0x9F4F5D, 0xC38792).at(level.Window1).behind();
         const windowWaves = heatWaves(scene.width + 256, 80, -0.33).at(-128, 300 - 30 - level.Window1.y - 40);
         windowWaves.scale.y = 0.5;
-        windowWaves.mask = window.children[0] as any;
+        windowWaves.mask = window.mask;
         window.addChildAt(windowWaves, 2);
     }
 
