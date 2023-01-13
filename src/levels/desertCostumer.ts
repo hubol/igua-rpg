@@ -9,7 +9,7 @@ import {CracksA, MirrorBroken} from "../textures";
 import {mirror} from "../gameObjects/mirror";
 import {show} from "../cutscene/dialog";
 import {Lazy} from "../igua/puppet/mods/lazy";
-import {Sprite} from "pixi.js";
+import {DisplayObject, Sprite} from "pixi.js";
 import {progress} from "../igua/data/progress";
 import {sparkly} from "../gameObjects/sparkleSmall";
 import {ChooseYourLooksFromMirror} from "./chooseYourLooks";
@@ -47,7 +47,9 @@ export function DesertCostumer()
 
     cutOutWindow(0xF0F0B0, level.Window1, level.Window2, level.Window3);
 
-    const m = mirror(level.MirrorRegion.width, level.MirrorRegion.height).at(level.MirrorRegion).behind()
+    const m = mirror(level.MirrorRegion.width, level.MirrorRegion.height).at(level.MirrorRegion).behind();
+    const mask = m.mask as DisplayObject;
+    mask
         .withCutscene(async () => {
             if (flags.repaired) {
                 progress.checkpointName = 'MirrorCheckpoint';
@@ -63,7 +65,8 @@ export function DesertCostumer()
         })
         .withStep(() => {
             if (flags.repaired)
-                sparkly(m);
+                sparkly(mask);
         });
+    mask.ext.sparkleDestination = scene.backgroundGameObjectStage;
     const broken = Sprite.from(MirrorBroken).at(m).behind().withStep(() => broken.visible = !flags.repaired);
 }

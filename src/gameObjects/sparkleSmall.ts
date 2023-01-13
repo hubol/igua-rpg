@@ -1,7 +1,7 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {SparkleSmallLight} from "../textures";
 import {animatedSprite} from "../igua/animatedSprite";
-import {Container, Rectangle} from "pixi.js";
+import {DisplayObject, Rectangle} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 
@@ -15,7 +15,7 @@ function sparkle() {
 
 const r = new Rectangle();
 
-export function sparkleOnce(o: Container, dst = o.parent) {
+export function sparkleOnce(o: DisplayObject, dst = o.ext.sparkleDestination ?? o.parent) {
     const { tx: px, ty: py } = dst.worldTransform;
     const { x, y, width, height } = o.getBounds(false, r);
     const s = sparkle().at(width * rng() + (x - px), height * rng() + (y - py));
@@ -23,7 +23,7 @@ export function sparkleOnce(o: Container, dst = o.parent) {
     dst.addChild(s);
 }
 
-export function sparkly(o: Container) {
+export function sparkly(o: DisplayObject) {
     // @ts-ignore
     if (o.__sparkly)
         return;

@@ -18,8 +18,9 @@ export function GiantsRestaurant() {
     shrunkenSalad().at(level.Salad).show();
     const w = level.MirrorRegion.width;
     const h = level.MirrorRegion.height;
-    const m = mirror(w, h, 0x98C0E0).at(level.MirrorRegion).behind();
-    m.mask = new Graphics().beginFill(0).drawEllipse(w / 2, h / 2, w / 2, h / 2).show(m);
+    const m = mirror(w, h, 0x98C0E0);
+    const c = container(m).at(level.MirrorRegion).behind();
+    c.mask = new Graphics().beginFill(0).drawEllipse(w / 2, h / 2, w / 2, h / 2).show(c);
     decalsOf(CloudLong).forEach(x => x.tint = 0xF7CACA);
     level.OrnateCarpet.hueShift = 105;
     // m.mask = new Graphics().beginFill(0xffffff).drawRect(0, 0, w, h).show(m);
