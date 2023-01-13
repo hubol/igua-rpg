@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 256,
   "height": 648,
   "offsetX": 0,
@@ -438,17 +438,6 @@
           "values": {"name": ""}
         },
         {
-          "x": 64,
-          "y": 482,
-          "scaleX": 1,
-          "scaleY": 1,
-          "rotation": 0,
-          "texture": "pottery orange damaged.png",
-          "originX": 0.5,
-          "originY": 1,
-          "values": {"name": ""}
-        },
-        {
           "x": 32,
           "y": 617,
           "scaleX": 1,
@@ -513,8 +502,31 @@
           "originX": 0.5,
           "originY": 1,
           "values": {"name": ""}
+        },
+        {
+          "x": 80,
+          "y": 472,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ng/blessing earth.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 81,
+      "decals": [],
       "folder": "../../src/images"
     },
     {

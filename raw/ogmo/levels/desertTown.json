@@ -709,6 +709,18 @@
       "folder": "../../src/images"
     },
     {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 255,
+      "gridCellsY": 71,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
       "name": "BackgroundDecals",
       "_eid": "03531763",
       "offsetX": 0,

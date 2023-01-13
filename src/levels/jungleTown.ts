@@ -24,6 +24,7 @@ import {npc} from "../gameObjects/npc";
 import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {player} from "../gameObjects/player";
 import {wait} from "../cutscene/wait";
+import {blessingStone} from "../gameObjects/blessingStone";
 
 function jungleTownLevel() {
     return applyOgmoLevel(JungleTownArgs);
@@ -44,6 +45,8 @@ export function JungleTown() {
     scene.backgroundGameObjectStage.addChildAt(wallpaper(level.BehindPillar, 0x4B5B1D), 0);
     level.KeyYellowShrunken.asCollectible(progress.flags.jungle.key, 'shrunkenKey', () =>
         cutscene.play(() => show('Found shrunken temple key.')));
+
+    blessingStone(level.NgBlessingJungle, 2, progress.flags.jungle.bigKey, 'Blessing of Jungle');
 
     jungleTempleLever().at(level.TempleLever).show();
 
