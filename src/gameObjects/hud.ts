@@ -12,6 +12,8 @@ import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {SceneLocal} from "../igua/sceneLocal";
 import {approachLinear, nlerp} from "../utils/math/number";
 import {PlayerSpellColor} from "./playerSpell";
+import {game} from "../igua/game";
+import {merge} from "../utils/object/merge";
 
 enum Color {
     Empty = 0xff0000,
@@ -29,8 +31,33 @@ function getVisualHealthbarWidth(maxHealth: number) {
     return Math.min(256, maxHealth * 0.54);
 }
 
+export const DamageTakenHud = new SceneLocal(() => {
+    let previousHealth = progress.health;
+    let newHealth = progress.health;
+    let shownNewHealthFrames = 0;
+    return merge(container(), {
+            get damage() { return shownNewHealthFrames < 60 ? Math.max(0, Math.round(previousHealth - newHealth)) : 0; },
+            refresh() {
+                newHealth = progress.health;
+                shownNewHealthFrames = 0;
+            }
+        })
+        .withStep(() => {
+            if (shownNewHealthFrames >= 60)
+                previousHealth = progress.health;
+            else
+                shownNewHealthFrames += 1;
+        })
+        .withTicker(game.hudStage.ticker)
+        .show();
+}, `DamageTakenHud`);
+
 export function hud()
 {
+    const damageText = IguaText.MediumDigits('');
+    // @ts-ignore
+    damageText.anchor.set(1, 1);
+
     const healthbarGfx = new Graphics()
         .withStep(() => {
             const max = AnimatedStats.value.maxHealth;
@@ -48,6 +75,11 @@ export function hud()
             healthbarGfx.drawRect(0, 0, heal * f, 16);
             healthbarGfx.beginFill(progress.health <= 1 ? Color.Vulnerable : Color.Life);
             healthbarGfx.drawRect(0, 0, Math.max(life > 1 ? 2 : Math.sign(life), life * f), 16);
+
+            const damageValue = DamageTakenHud.value.damage;
+            damageText.visible = damageValue > 0;
+            damageText.at(healthbarGfx.width, healthbarGfx.height);
+            damageText.text = '' + damageValue;
         });
 
     const spellChargeGfx = new Graphics()
@@ -90,7 +122,7 @@ export function hud()
     const container = new Container()
         .withStep(() => container.visible = scene.isLevel && !player.isDead);
 
-    container.addChild(spellChargeGfx, healthbarGfx, valuables, poisoned, clownHealthBar());
+    container.addChild(spellChargeGfx, healthbarGfx, damageText, valuables, poisoned, clownHealthBar());
 
     return container;
 }

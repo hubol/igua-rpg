@@ -22,6 +22,7 @@ import {lava} from "./lava";
 import {damageStatusConsts} from "../igua/gameplay/damageStatusConsts";
 import {PlayerBurningEffect} from "./playerBurningEffect";
 import {castPlayerSpell} from "./playerSpell";
+import {DamageTakenHud} from "./hud";
 
 export function playerPuppetArgs() {
     return makeIguanaPuppetArgsFromLooks(progress.looks);
@@ -142,6 +143,9 @@ function createPlayer(behavior = true)
 
                 if (player.isDead)
                     return;
+
+                DamageTakenHud.value.refresh();
+
                 return true;
             },
             get strength() {
@@ -225,6 +229,7 @@ function createPlayer(behavior = true)
             player.invulnerableFrameCount = 20;
             BurnedPlayer.play();
             player.drain(damageStatusConsts.burnStatusDrain);
+            DamageTakenHud.value.refresh();
             progress.status.burn = 0;
         }
 
