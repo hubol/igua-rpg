@@ -21,6 +21,7 @@ export let BiguaTorso: PIXI.Texture;
 export let BitterMedicinePotion: PIXI.Texture;
 export let BlueGradient: PIXI.Texture;
 export let BlueValuable: PIXI.Texture;
+export let BombSparks: PIXI.Texture;
 export let BookCollection: PIXI.Texture;
 export let Bottle1: PIXI.Texture;
 export let Bottle2: PIXI.Texture;
@@ -197,6 +198,7 @@ export let ParticleInformation: PIXI.Texture;
 export let Pipe: PIXI.Texture;
 export let PlayerBallonPop: PIXI.Texture;
 export let PlayerBalloon: PIXI.Texture;
+export let PoisonBomb: PIXI.Texture;
 export let PoppingRock: PIXI.Texture;
 export let PoppingRocksBox: PIXI.Texture;
 export let PotteryOrangeDamaged: PIXI.Texture;
@@ -347,6 +349,9 @@ export function loadTexturesAsync()
 
     const BlueValuablePath = require("./images/blue valuable.png");
     loader.add(BlueValuablePath); 
+
+    const BombSparksPath = require("./images/bomb sparks.png");
+    loader.add(BombSparksPath); 
 
     const BookCollectionPath = require("./images/book collection.png");
     loader.add(BookCollectionPath); 
@@ -876,6 +881,9 @@ export function loadTexturesAsync()
     const PlayerBalloonPath = require("./images/player balloon.png");
     loader.add(PlayerBalloonPath); 
 
+    const PoisonBombPath = require("./images/poison bomb.png");
+    loader.add(PoisonBombPath); 
+
     const PoppingRockPath = require("./images/popping rock.png");
     loader.add(PoppingRockPath); 
 
@@ -1163,6 +1171,7 @@ export function loadTexturesAsync()
             BitterMedicinePotion = resources[BitterMedicinePotionPath]?.texture as PIXI.Texture;
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
             BlueValuable = resources[BlueValuablePath]?.texture as PIXI.Texture;
+            BombSparks = resources[BombSparksPath]?.texture as PIXI.Texture;
             BookCollection = resources[BookCollectionPath]?.texture as PIXI.Texture;
             Bottle1 = resources[Bottle1Path]?.texture as PIXI.Texture;
             Bottle2 = resources[Bottle2Path]?.texture as PIXI.Texture;
@@ -1339,6 +1348,7 @@ export function loadTexturesAsync()
             Pipe = resources[PipePath]?.texture as PIXI.Texture;
             PlayerBallonPop = resources[PlayerBallonPopPath]?.texture as PIXI.Texture;
             PlayerBalloon = resources[PlayerBalloonPath]?.texture as PIXI.Texture;
+            PoisonBomb = resources[PoisonBombPath]?.texture as PIXI.Texture;
             PoppingRock = resources[PoppingRockPath]?.texture as PIXI.Texture;
             PoppingRocksBox = resources[PoppingRocksBoxPath]?.texture as PIXI.Texture;
             PotteryOrangeDamaged = resources[PotteryOrangeDamagedPath]?.texture as PIXI.Texture;

@@ -39,7 +39,7 @@ export function playerPuppet() {
         return defaultCollides.apply(puppet, args) && precise.some(x => x.collides(...args));
     };
 
-    return puppet;
+    return merge(puppet, { hurtboxes: precise });
 }
 
 export type Player = ReturnType<typeof createPlayer>;

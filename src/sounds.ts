@@ -422,6 +422,16 @@ export const PenDraw = new Howl({
     
 });
 
+export const PoisonBombBurn = new Howl({
+    src: [require("./sound/poison bomb burn.ogg"), require("./sound/poison bomb burn.mp3")],
+    
+});
+
+export const PoisonBombExplode = new Howl({
+    src: [require("./sound/poison bomb explode.ogg"), require("./sound/poison bomb explode.mp3")],
+    
+});
+
 export const PoppingRockPop = new Howl({
     src: [require("./sound/popping rock pop.ogg"), require("./sound/popping rock pop.mp3")],
     
