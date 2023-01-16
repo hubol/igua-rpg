@@ -45,6 +45,10 @@ function makeStorageKey(d: DisplayObject) {
     return d;
 }
 
+export function getDassmannParticleColor() {
+    return colord({h: rng() * 360, s: 50, v: 100}).toPixi();
+}
+
 function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>) {
     const { capital } = progress.flags;
 
@@ -149,7 +153,7 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
             while (dass.pivot.y < 256) {
                 (PageFlip.rate(0.3 + rng() * 0.9) as any).play();
                 smallPop(12, scene.playerStage).at(dass.pivot.vcpy().scale(-1).add(dass))
-                    .tinted(colord({ h: rng() * 360, s: 50, v: 100 }).toPixi());
+                    .tinted(getDassmannParticleColor());
                 await sleep(100);
             }
         });

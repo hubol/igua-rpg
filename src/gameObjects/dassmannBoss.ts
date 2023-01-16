@@ -10,7 +10,14 @@ import {Undefined} from "../utils/types/undefined";
 import {DisplayObject} from "pixi.js";
 import {waitHold} from "../cutscene/waitHold";
 import {hDistFromPlayer} from "../igua/logic/getOffsetFromPlayer";
-import {ClownHurt, DassBuildTower, SpiderUp} from "../sounds";
+import {
+    BookInformationHalt,
+    ClownHurt,
+    DassBombLand,
+    DassBuildTower,
+    DassMoveUp,
+    SpiderUp
+} from "../sounds";
 import {Invulnerable} from "../pixins/invulnerable";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {FreeSpace} from "../pixins/freeSpace";
@@ -24,6 +31,7 @@ import {move} from "../cutscene/move";
 import {sparkleTell} from "./sparkleTell";
 import {poisonBomb} from "./poisonBomb";
 import {rng} from "../utils/math/rng";
+import {getDassmannParticleColor} from "../levels/capitalStorehouse";
 
 const consts = {
     damage: {
@@ -97,6 +105,8 @@ export function dassmannBoss() {
 
     async function throwPoisonBomb(arm: Arm) {
         let thrown = false;
+        // @ts-ignore
+        BookInformationHalt.rate(1).play();
         const b = poisonBomb()
             .withStep(() => {
                 if (health.isDead)
@@ -106,6 +116,7 @@ export function dassmannBoss() {
             })
             .withAsync(async () => {
                 await wait(() => b.isOnGround);
+                DassBombLand.play();
                 b.lit = true;
             });
         b.show();
@@ -126,11 +137,21 @@ export function dassmannBoss() {
             arml.raise().over(500);
             await armr.raise().over(500);
 
-            const target = getWorldCenter(arenaRegion.instances[0]).add(0, 4);
+            await sleep(200);
+
+            SpiderUp.play();
+            d.speed.y = -4;
+
+            armr.rest().over(200);
+            arml.rest().over(200);
+            await wait(() => d.speed.y > -0.5);
+
+            DassMoveUp.play();
 
             self.gravityOn = false;
             self.moving = true;
-            await move(d).to(target).over(1000);
+            const target = getWorldCenter(arenaRegion.instances[0]).add(0, 4);
+            await move(d).to(target).over(750);
             self.moving = false;
 
             await sleep(300);
@@ -145,7 +166,7 @@ export function dassmannBoss() {
         .withAsync(async (self) => {
             while (true) {
                 await wait(() => self.moving);
-                sparkleTell(false).at(d).show();
+                sparkleTell(false).tinted(getDassmannParticleColor()).at(d).show();
                 await sleep(100);
             }
         })

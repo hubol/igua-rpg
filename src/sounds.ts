@@ -232,8 +232,18 @@ export const CratePlace = new Howl({
     
 });
 
+export const DassBombLand = new Howl({
+    src: [require("./sound/dass bomb land.ogg"), require("./sound/dass bomb land.mp3")],
+    
+});
+
 export const DassBuildTower = new Howl({
     src: [require("./sound/dass build tower.ogg"), require("./sound/dass build tower.mp3")],
+    
+});
+
+export const DassMoveUp = new Howl({
+    src: [require("./sound/dass move up.ogg"), require("./sound/dass move up.mp3")],
     
 });
 
