@@ -18,7 +18,7 @@ const bombTxs = subimageTextures(PoisonBomb, 8);
 const sparkTxs = subimageTextures(BombSparks, 5);
 
 export function poisonBomb() {
-    const c = merge(container(), { lit: false, life: 1 });
+    const c = merge(container(), { lit: false, life: 1 }).withGravityAndWallResist([0, -9], 7, 0.3);
 
     const bomb = animatedSprite(bombTxs, 0)
         .show(c);
@@ -53,6 +53,9 @@ export function poisonBomb() {
             else
                 sound++;
         }
+
+        if (c.isOnGround)
+            c.speed.x = 0;
     });
 
     return c;
