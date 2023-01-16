@@ -15,7 +15,7 @@ import { resolveLava } from "./gameObjects/lava";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolvePool } from "./gameObjects/pool";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
-import { resolveRegion } from "./gameObjects/region";
+import { resolveArenaRegion, resolveRegion } from "./gameObjects/region";
 import { resolvePath } from "./gameObjects/resolvePath";
 import { resolveSign } from "./gameObjects/sign";
 import { resolveSpike } from "./gameObjects/spike";
@@ -265,6 +265,7 @@ export const CapitalStorehouseArgs = {
       Door: resolveDoor({ type: "Door", x: 40, y: 192, flippedX: false, flippedY: false, uid: "55913988_5", levelName: "CapitalTown", checkpointName: "FromStorehouse", name: "", depth: 0 }),
       Player: { type: "Player", x: 88, y: 224, flippedX: false, flippedY: false, uid: "55988047_6", faceRight: true, name: "", depth: 0 },
       Dassmann: { type: "Anchor", x: 312, y: 224, flippedX: false, flippedY: false, uid: "25979726_7", name: "Dassmann", depth: 0 },
+      ArenaRegion: resolveArenaRegion({ type: "ArenaRegion", x: 32, y: 32, width: 336, height: 192, flippedX: false, flippedY: false, uid: "90554643_8", name: "", depth: 0 }),
     };
   },
 };

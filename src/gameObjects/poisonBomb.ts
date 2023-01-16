@@ -44,7 +44,7 @@ export function poisonBomb() {
             poisonBombExplosion().at(c).show(c.parent);
             c.destroy();
         }
-        else {
+        else if (c.lit) {
             if (sound >= 4) {
                 sound = 0;
                 // @ts-ignore

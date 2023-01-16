@@ -15,4 +15,8 @@ function regionImpl(args: GameObjectArgs) {
 
 export const region = track(regionImpl);
 
+export const arenaRegion = track(regionImpl);
+
 export const resolveRegion = resolveGameObject("Region", region);
+
+export const resolveArenaRegion = resolveGameObject("ArenaRegion", arenaRegion);

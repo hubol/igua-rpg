@@ -18,6 +18,12 @@ import {approachLinear} from "../utils/math/number";
 import {merge} from "../utils/object/merge";
 import {container} from "../utils/pixi/container";
 import {WeakToSpells} from "../pixins/weakToSpells";
+import {arenaRegion} from "./region";
+import {getWorldCenter} from "../igua/gameplay/getCenter";
+import {move} from "../cutscene/move";
+import {sparkleTell} from "./sparkleTell";
+import {poisonBomb} from "./poisonBomb";
+import {rng} from "../utils/math/rng";
 
 const consts = {
     damage: {
@@ -30,8 +36,12 @@ export function dassmannBoss() {
     const d = merge(dassmann(), { isDead: false })
         .withPixin(Invulnerable())
         .withPixin(FreeSpace({ offsets: [[0, -8]] }));
+
+    const gravity = d.gravity;
+
     d.friction = consts.friction;
     const { body, head, arml, armr } = d;
+    type Arm = typeof arml;
     body.playFootsteps = true;
 
     const health = clownHealth(1000);
@@ -82,6 +92,68 @@ export function dassmannBoss() {
                 await waitHold(() => !!self.tower && self.tower.destroyed, 60);
                 await wait(() => d.isOnGround && hDistFromPlayer(d) > 64);
                 self.tower = await buildOneTower();
+            }
+        });
+
+    async function throwPoisonBomb(arm: Arm) {
+        let thrown = false;
+        const b = poisonBomb()
+            .withStep(() => {
+                if (health.isDead)
+                    return b.destroy();
+                if (!thrown)
+                    b.at(arm.fistWorldPos);
+            })
+            .withAsync(async () => {
+                await wait(() => b.isOnGround);
+                b.lit = true;
+            });
+        b.show();
+        b.gravity = 0;
+        arm.pose = ArmTx.Rest;
+        await arm.raise().over(200);
+        thrown = true;
+        const offset = (player.x - d.x) + player.hspeed + rng.polar * 8;
+        const hspeed = offset * 0.05;
+        b.gravity = 0.2;
+        b.speed.at(hspeed, -2);
+    }
+
+    const teleportAndThrowPoisonBombs = attack({ moving: false, gravityOn: true })
+        .withAsyncOnce(async (self) => {
+            arml.pose = ArmTx.Rest;
+            armr.pose = ArmTx.Rest;
+            arml.raise().over(500);
+            await armr.raise().over(500);
+
+            const target = getWorldCenter(arenaRegion.instances[0]).add(0, 4);
+
+            self.gravityOn = false;
+            self.moving = true;
+            await move(d).to(target).over(1000);
+            self.moving = false;
+
+            await sleep(300);
+            await throwPoisonBomb(armr);
+            await throwPoisonBomb(arml);
+            await throwPoisonBomb(armr);
+            await throwPoisonBomb(armr);
+            await sleep(1500);
+            self.gravityOn = true;
+            await sleep(500);
+        })
+        .withAsync(async (self) => {
+            while (true) {
+                await wait(() => self.moving);
+                sparkleTell(false).at(d).show();
+                await sleep(100);
+            }
+        })
+        .withStep((self) => {
+            d.gravity = self.gravityOn ? gravity : 0;
+            if (!self.gravityOn) {
+                d.speed.x = approachLinear(d.speed.x, 0, 0.2);
+                d.speed.y = approachLinear(d.speed.y, 0, 0.2);
             }
         });
 
@@ -136,6 +208,9 @@ export function dassmannBoss() {
         while (true) {
             await attacks.run(buildTower());
             await sleep(1000);
+            await attacks.run(flee());
+            await attacks.run(buildTower());
+            await attacks.run(teleportAndThrowPoisonBombs());
             await attacks.run(flee());
         }
     }

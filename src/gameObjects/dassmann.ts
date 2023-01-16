@@ -9,7 +9,7 @@ import {approachLinear, nlerp} from "../utils/math/number";
 import {lerp} from "../cutscene/lerp";
 import {Undefined} from "../utils/types/undefined";
 import {scene} from "../igua/scene";
-import {getWorldPos} from "../igua/gameplay/getCenter";
+import {getWorldCenter, getWorldPos} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {trackPosition} from "../igua/trackPosition";
 import {Force} from "../utils/types/force";
@@ -161,6 +161,13 @@ function mkBody() {
     return c;
 }
 
+const fistPositions = [
+    [2, 21],
+    [7, 19],
+    [10, 12],
+    [9, 3],
+];
+
 function mkArm() {
     function raise() {
         return lerp(s, 'pose').to(ArmTx.Raise);
@@ -174,8 +181,16 @@ function mkArm() {
         return lerp(s, 'pose').to(ArmTx.Down);
     }
 
-    const s = merge(Sprite.from(armTxs[ArmTx.Rest]), { pose: ArmTx.Rest, raise, rest, down })
-        .withStep(() => s.texture = armTxs[Math.min(ArmTx.Raise, Math.max(ArmTx.Down, Math.round(s.pose)))]);
+    const g = new Graphics().beginFill(0).drawRect(0, 0, 5, 5).hide();
+
+    const s = merge(Sprite.from(armTxs[ArmTx.Rest]), { pose: ArmTx.Rest, raise, rest, down, get fistWorldPos() { return getWorldCenter(g); } })
+        .withStep(() => {
+            const index = Math.min(ArmTx.Raise, Math.max(ArmTx.Down, Math.round(s.pose)));
+            s.texture = armTxs[index];
+            g.at(fistPositions[index]);
+        });
+
+    g.show(s);
 
     return s;
 }
