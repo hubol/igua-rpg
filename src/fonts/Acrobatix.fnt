@@ -202,3 +202,8 @@ char id=252  x=28    y=33    width=3     height=5     xoffset=0     yoffset=4   
 char id=253  x=32    y=32    width=3     height=5     xoffset=0     yoffset=4     xadvance=4     page=0  chnl=15
 char id=254  x=36    y=32    width=3     height=5     xoffset=0     yoffset=4     xadvance=4     page=0  chnl=15
 char id=255  x=40    y=32    width=3     height=5     xoffset=0     yoffset=4     xadvance=4     page=0  chnl=15
+
+kerning first=89 second=111 amount=-1
+kerning first=102 second=111 amount=-1
+kerning first=102 second=45 amount=-1
+kerning first=84 second=117 amount=-1
