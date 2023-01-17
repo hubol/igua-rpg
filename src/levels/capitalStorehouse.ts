@@ -65,30 +65,30 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
     key.index = d.index;
 
     async function dassmannIntroScene() {
-        // scene.camera.followPlayer = false;
-        // const camera = lerp(scene.camera, 'x').to(scene.width - 256).over(1000);
-        // await sleep(250);
-        // await show('I came here looking for the dark haired guy.');
-        // await sleep(500);
-        // await show("Do you even know what I'm talking about?");
-        //
-        // d.expression.facing = 'off';
-        // await Promise.all([
-        //     lerp(d.head, 'face').to(1).over(125),
-        //     lerp(d, 'x').to(key.x - 8).over(500)
-        // ]);
-        // await Promise.all([
-        //     d.armr.raise().over(250),
-        //     move(key).off(0, -8).over(250),
-        // ]);
-        //
-        // await sleep(250);
-        // d.expression.facing = 'auto';
-        // await show("I'm taking this as a souvenir.");
-        //
-        // key.destroy();
-        //
-        // await camera;
+        scene.camera.followPlayer = false;
+        const camera = lerp(scene.camera, 'x').to(scene.width - 256).over(1000);
+        await sleep(250);
+        await show('I came here looking for the dark haired guy.');
+        await sleep(500);
+        await show("Do you even know what I'm talking about?");
+
+        d.expression.facing = 'off';
+        await Promise.all([
+            lerp(d.head, 'face').to(1).over(125),
+            lerp(d, 'x').to(key.x - 8).over(500)
+        ]);
+        await Promise.all([
+            d.armr.raise().over(250),
+            move(key).off(0, -8).over(250),
+        ]);
+
+        await sleep(250);
+        d.expression.facing = 'auto';
+        await show("I'm taking this as a souvenir.");
+
+        key.destroy();
+
+        await camera;
 
         scene.gameObjectStage.withAsync(beginBoss);
     }

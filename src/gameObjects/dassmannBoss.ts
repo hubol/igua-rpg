@@ -97,7 +97,7 @@ export function dassmannBoss() {
         })
         .withAsync(async self => {
             while (true) {
-                await waitHold(() => !!self.tower && self.tower.destroyed, 60);
+                await waitHold(() => !!self.tower && self.tower.destroyed, health.unit > 0.7 ? 70 : 60);
                 await wait(() => d.isOnGround && hDistFromPlayer(d) > 64);
                 self.tower = await buildOneTower();
             }
