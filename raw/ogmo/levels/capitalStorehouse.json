@@ -104,6 +104,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 9,
+          "_eid": "55940370",
+          "x": 200,
+          "y": 224,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "DefeatedBoss", "faceRight": false, "depth": 0}
         }
       ]
     },

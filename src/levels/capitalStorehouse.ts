@@ -22,6 +22,9 @@ import {ArrowKnock, DassPain, OracleUnlockDoor, PageFlip} from "../sounds";
 import {smallPop} from "../gameObjects/smallPop";
 import {rng} from "../utils/math/rng";
 import {colord} from "colord";
+import {persistence} from "../igua/data/persistence";
+import {keepSavingValuables, trove120} from "../gameObjects/valuableTrove";
+import {arenaRegion} from "../gameObjects/region";
 
 export function CapitalStorehouse() {
     scene.backgroundColor = 0xD0C8C0;
@@ -163,6 +166,20 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
         key2.ext.collectible = true;
         level.Door.locked = false;
         OracleUnlockDoor.play();
+
+        spawnValuables(dass.x);
+        scene.gameObjectStage.withAsync(saveGame);
+    }
+
+    function spawnValuables(dassX: number) {
+        const arena = arenaRegion.instances[0];
+        trove120().at(Math.max(arena.x + 48, Math.min(dassX, arena.x + arena.width - 48)), 160).show(scene.gameObjectStage, 0);
+    }
+
+    async function saveGame() {
+        progress.checkpointName = 'DefeatedBoss';
+        await persistence.save();
+        await keepSavingValuables();
     }
 
     scene.gameObjectStage.withAsync(async () => {

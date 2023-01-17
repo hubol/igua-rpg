@@ -266,6 +266,7 @@ export const CapitalStorehouseArgs = {
       Player: { type: "Player", x: 88, y: 224, flippedX: false, flippedY: false, uid: "55988047_6", faceRight: true, name: "", depth: 0 },
       Dassmann: { type: "Anchor", x: 312, y: 224, flippedX: false, flippedY: false, uid: "25979726_7", name: "Dassmann", depth: 0 },
       ArenaRegion: resolveArenaRegion({ type: "ArenaRegion", x: 32, y: 32, width: 336, height: 192, flippedX: false, flippedY: false, uid: "90554643_8", name: "", depth: 0 }),
+      DefeatedBoss: { type: "Checkpoint", x: 200, y: 224, flippedX: false, flippedY: false, uid: "55940370_9", name: "DefeatedBoss", faceRight: false, depth: 0 },
     };
   },
 };
