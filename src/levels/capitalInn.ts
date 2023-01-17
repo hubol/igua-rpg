@@ -6,12 +6,11 @@ import {CapitalMusicPlease, MysteryNighttimeHouse} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
 import {CapitalArc} from "../textures";
 import {BLEND_MODES, Graphics} from "pixi.js";
-import {show, showAll} from "../cutscene/dialog";
-import {ask} from "../cutscene/ask";
+import {showAll} from "../cutscene/dialog";
 import {player} from "../gameObjects/player";
 import {sleep} from "../cutscene/sleep";
 import {lerp} from "../cutscene/lerp";
-import {restAtInn} from "../igua/logic/restAtInn";
+import {chargeToRestAtInn} from "../igua/logic/restAtInn";
 import {merge} from "../utils/object/merge";
 import {progress} from "../igua/data/progress";
 import {makePseudo} from "../utils/math/makePseudo";
@@ -48,16 +47,17 @@ export function CapitalInn() {
     level.Sign.cutscene = async () => {
         await showAll(
             'Welcome to the self-service inn at the capital.',
-            'We believe in access to free, high-quality sleep for all.');
-        if (!await ask('Would you like to rest here?'))
-            return await show('Come back later!');
-        scene.gameObjectStage.withAsync(async () => {
-            await sleep(100)
-            await lerp(moodLighting, 'unit').to(1).over(1000);
-        });
-        await player.walkTo(level.SleepHere.x);
-        progress.checkpointName = "FromInnSave";
-        await restAtInn();
+            'We believe in universal access to low-cost, high-quality sleep for all.');
+
+        await chargeToRestAtInn(async () => {
+            scene.gameObjectStage.withAsync(async () => {
+                await sleep(100)
+                await lerp(moodLighting, 'unit').to(1).over(1000);
+            });
+            await player.walkTo(level.SleepHere.x);
+            progress.checkpointName = "FromInnSave";
+        }, 9);
+
         scene.gameObjectStage.withAsync(() => lerp(moodLighting, 'unit').to(0).over(400));
     };
 }
