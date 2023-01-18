@@ -101,6 +101,12 @@ export function dassmannBoss() {
                 await wait(() => d.isOnGround && hDistFromPlayer(d) > 64);
                 self.tower = await buildOneTower();
             }
+        })
+        .withAsync(async () => {
+            while (true) {
+                await waitHold(() => !d.isOnGround, 120);
+                d.speed.x = d.freeSpaceOnLeft() > d.freeSpaceOnRight() ? -1.5 : 1.5;
+            }
         });
 
     async function throwPoisonBomb(arm: Arm) {
