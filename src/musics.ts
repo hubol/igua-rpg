@@ -107,6 +107,11 @@ export const MysteryNighttimeHouse = new Howl({
     preload: false
 });
 
+export const NewDesertOracle = new Howl({
+    src: [require("./music/new-desert-oracle.ogg"), require("./music/new-desert-oracle.mp3")],
+    preload: false
+});
+
 export const Oracle = new Howl({
     src: [require("./music/oracle.ogg"), require("./music/oracle.mp3")],
     preload: false

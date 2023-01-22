@@ -1,5 +1,5 @@
 import {jukebox} from "../igua/jukebox";
-import {Oracle} from "../musics";
+import {NewDesertOracle} from "../musics";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {DesertOracleArgs} from "../levelArgs";
 import {scene} from "../igua/scene";
@@ -16,7 +16,7 @@ export function DesertOracle()
     scene.backgroundColor = 0x609090;
     scene.terrainColor = 0x204040;
 
-    jukebox.play(Oracle);
+    jukebox.play(NewDesertOracle);
     const level = applyOgmoLevel(DesertOracleArgs);
 
     level.GlowingCircle.tint = 0xF0F0B0;
