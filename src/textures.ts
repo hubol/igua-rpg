@@ -19,6 +19,7 @@ export let BiguaPupils: PIXI.Texture;
 export let BiguaTails: PIXI.Texture;
 export let BiguaTorso: PIXI.Texture;
 export let BitterMedicinePotion: PIXI.Texture;
+export let BlessingsTracker: PIXI.Texture;
 export let BlueGradient: PIXI.Texture;
 export let BlueValuable: PIXI.Texture;
 export let BombSparks: PIXI.Texture;
@@ -143,6 +144,7 @@ export let KeyBlueMini: PIXI.Texture;
 export let KeyBlue: PIXI.Texture;
 export let KeyGreen: PIXI.Texture;
 export let KeyRed: PIXI.Texture;
+export let KeyUsed: PIXI.Texture;
 export let KeyYellowShrunken: PIXI.Texture;
 export let KeyYellow: PIXI.Texture;
 export let KeyboardT9: PIXI.Texture;
@@ -343,6 +345,9 @@ export function loadTexturesAsync()
 
     const BitterMedicinePotionPath = require("./images/bitter medicine potion.png");
     loader.add(BitterMedicinePotionPath); 
+
+    const BlessingsTrackerPath = require("./images/blessings tracker.png");
+    loader.add(BlessingsTrackerPath); 
 
     const BlueGradientPath = require("./images/blue gradient.png");
     loader.add(BlueGradientPath); 
@@ -715,6 +720,9 @@ export function loadTexturesAsync()
 
     const KeyRedPath = require("./images/key red.png");
     loader.add(KeyRedPath); 
+
+    const KeyUsedPath = require("./images/key used.png");
+    loader.add(KeyUsedPath); 
 
     const KeyYellowShrunkenPath = require("./images/key yellow shrunken.png");
     loader.add(KeyYellowShrunkenPath); 
@@ -1169,6 +1177,7 @@ export function loadTexturesAsync()
             BiguaTails = resources[BiguaTailsPath]?.texture as PIXI.Texture;
             BiguaTorso = resources[BiguaTorsoPath]?.texture as PIXI.Texture;
             BitterMedicinePotion = resources[BitterMedicinePotionPath]?.texture as PIXI.Texture;
+            BlessingsTracker = resources[BlessingsTrackerPath]?.texture as PIXI.Texture;
             BlueGradient = resources[BlueGradientPath]?.texture as PIXI.Texture;
             BlueValuable = resources[BlueValuablePath]?.texture as PIXI.Texture;
             BombSparks = resources[BombSparksPath]?.texture as PIXI.Texture;
@@ -1293,6 +1302,7 @@ export function loadTexturesAsync()
             KeyBlue = resources[KeyBluePath]?.texture as PIXI.Texture;
             KeyGreen = resources[KeyGreenPath]?.texture as PIXI.Texture;
             KeyRed = resources[KeyRedPath]?.texture as PIXI.Texture;
+            KeyUsed = resources[KeyUsedPath]?.texture as PIXI.Texture;
             KeyYellowShrunken = resources[KeyYellowShrunkenPath]?.texture as PIXI.Texture;
             KeyYellow = resources[KeyYellowPath]?.texture as PIXI.Texture;
             KeyboardT9 = resources[KeyboardT9Path]?.texture as PIXI.Texture;

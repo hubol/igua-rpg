@@ -38,4 +38,4 @@ export const desertKeys = new RegionKeys(
     p => p.flags.desert.key.fromTopOfCrateStack,
     p => p.flags.desert.key.fromInn,
     p => p.flags.desert.key.fromDiggingInTown,
-    p => p.flags.desert.bigKey.reward);
+    p => p.flags.desert.bigKey);

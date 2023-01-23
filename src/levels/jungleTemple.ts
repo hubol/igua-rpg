@@ -44,7 +44,7 @@ export const jungleKeys = new RegionKeys(
     p => p.flags.jungle.key.fromSickIguana,
     p => p.flags.jungle.key.fromBiguaRepair,
     p => p.flags.jungle.key.fromSpider,
-    p => p.flags.jungle.bigKey.reward);
+    p => p.flags.jungle.bigKey);
 
 export function advanceTempleMovingWall(silent = false, distant = false) {
     const { templeLever } = progress.flags.jungle;

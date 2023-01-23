@@ -64,4 +64,4 @@ export const capitalKeys = new RegionKeys(
     p => p.flags.capital.key.fromClown,
     p => p.flags.capital.key.fromTiming,
     p => p.flags.capital.key.fromStorage,
-    p => p.flags.capital.bigKey.reward);
+    p => p.flags.capital.bigKey);

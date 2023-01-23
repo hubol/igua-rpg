@@ -46,4 +46,4 @@ export const volcanoKeys = new RegionKeys(
     p => p.flags.volcano.key.hiddenInCave,
     p => p.flags.volcano.key.fromPrankster,
     p => p.flags.volcano.key.fromLava,
-    p => p.flags.volcano.bigKey.reward);
+    p => p.flags.volcano.bigKey);

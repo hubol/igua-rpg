@@ -1,7 +1,7 @@
 import {EscapeTickerAndExecute} from "../../utils/asshatTicker";
 import {scene} from "../scene";
 import {game} from "../game";
-import {Container, Graphics, Sprite} from "pixi.js";
+import {Container, Graphics, Sprite, Texture} from "pixi.js";
 import {merge} from "../../utils/object/merge";
 import {cyclic} from "../../utils/math/number";
 import {inventory} from "./inventory";
@@ -18,6 +18,8 @@ import {jungleKeys} from "../../levels/jungleTemple";
 import {volcanoKeys} from "../../levels/volcanoTemple";
 import {capitalKeys} from "../../levels/capitalTemple";
 import {vnew} from "../../utils/math/vector";
+import {subimageTextures} from "../../utils/pixi/simpleSpritesheet";
+import {BlessingsTracker, KeyUsed} from "../../textures";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
@@ -178,21 +180,39 @@ const regionKeys = [ desertKeys, jungleKeys, volcanoKeys, capitalKeys ];
 function keyItems() {
     const c = container();
     const pen = vnew();
-    for (const region of regionKeys) {
+
+    const sprite = (t: Texture) => {
+        const s = Sprite.from(t).at(pen).show(c);
+        s.anchor.y = 1;
+        return s;
+    };
+
+    for (let i = 0; i < regionKeys.length; i++) {
+        const region = regionKeys[i];
         pen.x = 0;
-        if (region.doneSearching)
-            continue;
 
         const prevChildren = c.children.length;
-        for (const key of region.keys) {
-            if (key) {
-                const s = Sprite.from(region.texture).at(pen).show(c);
-                s.anchor.y = 1;
+        const keys = region.keys;
+
+        if (!region.doneSearching) {
+            for (let j = 0; j < keys.length; j++) {
+                const key = keys[j];
+                const piece = region.bigKey[`piece${j + 1}`];
+                if (key)
+                    sprite(region.texture);
+                if (piece)
+                    sprite(KeyUsed);
+                pen.x += region.texture.width;
             }
-            pen.x += region.texture.width;
         }
+
+        if (region.reward)
+            sprite(blessingTextures[i]);
+
         if (c.children.length !== prevChildren)
             pen.y -= region.texture.height;
     }
     return c;
 }
+
+const blessingTextures = subimageTextures(BlessingsTracker, 4);
