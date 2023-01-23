@@ -7,6 +7,7 @@ export let ArrowPoison: PIXI.Texture;
 export let BackpackIcon: PIXI.Texture;
 export let BallColorful: PIXI.Texture;
 export let BigKey4: PIXI.Texture;
+export let BigKeyTracker: PIXI.Texture;
 export let BigKey1: PIXI.Texture;
 export let BigKey2: PIXI.Texture;
 export let BigKey3: PIXI.Texture;
@@ -145,7 +146,6 @@ export let KeyBlueMini: PIXI.Texture;
 export let KeyBlue: PIXI.Texture;
 export let KeyGreen: PIXI.Texture;
 export let KeyRed: PIXI.Texture;
-export let KeyUsed: PIXI.Texture;
 export let KeyYellowShrunken: PIXI.Texture;
 export let KeyYellow: PIXI.Texture;
 export let KeyboardT9: PIXI.Texture;
@@ -310,6 +310,9 @@ export function loadTexturesAsync()
 
     const BigKey4Path = require("./images/big key 4.png");
     loader.add(BigKey4Path); 
+
+    const BigKeyTrackerPath = require("./images/big key tracker.png");
+    loader.add(BigKeyTrackerPath); 
 
     const BigKey1Path = require("./images/big key1.png");
     loader.add(BigKey1Path); 
@@ -724,9 +727,6 @@ export function loadTexturesAsync()
 
     const KeyRedPath = require("./images/key red.png");
     loader.add(KeyRedPath); 
-
-    const KeyUsedPath = require("./images/key used.png");
-    loader.add(KeyUsedPath); 
 
     const KeyYellowShrunkenPath = require("./images/key yellow shrunken.png");
     loader.add(KeyYellowShrunkenPath); 
@@ -1169,6 +1169,7 @@ export function loadTexturesAsync()
             BackpackIcon = resources[BackpackIconPath]?.texture as PIXI.Texture;
             BallColorful = resources[BallColorfulPath]?.texture as PIXI.Texture;
             BigKey4 = resources[BigKey4Path]?.texture as PIXI.Texture;
+            BigKeyTracker = resources[BigKeyTrackerPath]?.texture as PIXI.Texture;
             BigKey1 = resources[BigKey1Path]?.texture as PIXI.Texture;
             BigKey2 = resources[BigKey2Path]?.texture as PIXI.Texture;
             BigKey3 = resources[BigKey3Path]?.texture as PIXI.Texture;
@@ -1307,7 +1308,6 @@ export function loadTexturesAsync()
             KeyBlue = resources[KeyBluePath]?.texture as PIXI.Texture;
             KeyGreen = resources[KeyGreenPath]?.texture as PIXI.Texture;
             KeyRed = resources[KeyRedPath]?.texture as PIXI.Texture;
-            KeyUsed = resources[KeyUsedPath]?.texture as PIXI.Texture;
             KeyYellowShrunken = resources[KeyYellowShrunkenPath]?.texture as PIXI.Texture;
             KeyYellow = resources[KeyYellowPath]?.texture as PIXI.Texture;
             KeyboardT9 = resources[KeyboardT9Path]?.texture as PIXI.Texture;

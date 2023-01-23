@@ -19,7 +19,7 @@ import {volcanoKeys} from "../../levels/volcanoTemple";
 import {capitalKeys} from "../../levels/capitalTemple";
 import {vnew} from "../../utils/math/vector";
 import {subimageTextures} from "../../utils/pixi/simpleSpritesheet";
-import {BlessingsTracker, KeyUsed} from "../../textures";
+import {BigKeyTracker, BlessingsTracker} from "../../textures";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
@@ -198,10 +198,10 @@ function keyItems() {
             for (let j = 0; j < keys.length; j++) {
                 const key = keys[j];
                 const piece = region.bigKey[`piece${j + 1}`];
-                if (key)
-                    sprite(region.texture);
                 if (piece)
-                    sprite(KeyUsed);
+                    sprite(bigKeyTrackerTextures[j]).tinted(bigKeyColors[i]);
+                else if (key)
+                    sprite(region.texture);
                 pen.x += region.texture.width;
             }
         }
@@ -215,4 +215,7 @@ function keyItems() {
     return c;
 }
 
+const bigKeyColors = [0xD03020, 0xE2CE36, 0x38B038, 0x3028E0];
+
+const bigKeyTrackerTextures = subimageTextures(BigKeyTracker, 3);
 const blessingTextures = subimageTextures(BlessingsTracker, 4);
