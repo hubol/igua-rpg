@@ -34,21 +34,20 @@ enum Emotion {
 function face() {
     const c = merge(container(), { emotion: Emotion.Angry })
         .withAsync(async () => {
+            const d = dither();
+            d.unit = 0.5;
+            const filter1 = alphaMaskFilter(d);
+            const filter2 = alphaMaskFilter(d);
+            filter2.maskMatrix.tx = 1;
+
             let prev = Undefined<Emotion>();
             while (true) {
                 await wait(() => prev !== c.emotion);
                 prev = c.emotion;
                 const current: DisplayObject | undefined = c.children.last;
                 const next = emotions[c.emotion]().show(c);
-                const d = dither();
-                d.unit = 0.5;
-                const f = alphaMaskFilter(d);
-                next.filter(f);
-                if (current) {
-                    const f2 = alphaMaskFilter(d);
-                    f2.maskMatrix.tx = 1;
-                    current.filter(f2);
-                }
+                next.filter(filter1);
+                current?.filter(filter2);
                 await sleep(125);
                 current?.destroy();
                 next.filters = [];
