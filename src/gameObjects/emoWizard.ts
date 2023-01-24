@@ -1,6 +1,6 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {FinalEmoWizardBody, FinalEmoWizardFace} from "../textures";
-import {Container, DisplayObject, Sprite, Texture, TilingSprite} from "pixi.js";
+import {DisplayObject, Sprite, Texture, TilingSprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {scene} from "../igua/scene";
 import {animatedSprite} from "../igua/animatedSprite";
@@ -10,6 +10,9 @@ import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {merge} from "../utils/object/merge";
+import {Undefined} from "../utils/types/undefined";
+import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
+import {dither} from "./dither";
 
 const bodyTxs = subimageTextures(FinalEmoWizardBody, 6);
 
@@ -30,14 +33,27 @@ enum Emotion {
 
 function face() {
     const c = merge(container(), { emotion: Emotion.Angry })
-        .withStep(() => {
-            for (let i = 0; i < c.children.length; i++) {
-                c.children[i].visible = i === c.emotion;
+        .withAsync(async () => {
+            let prev = Undefined<Emotion>();
+            while (true) {
+                await wait(() => prev !== c.emotion);
+                prev = c.emotion;
+                const current: DisplayObject | undefined = c.children.last;
+                const next = emotions[c.emotion]().show(c);
+                const d = dither();
+                d.unit = 0.5;
+                const f = alphaMaskFilter(d);
+                next.filter(f);
+                if (current) {
+                    const f2 = alphaMaskFilter(d);
+                    f2.maskMatrix.tx = 1;
+                    current.filter(f2);
+                }
+                await sleep(125);
+                current?.destroy();
+                next.filters = [];
             }
         });
-    for (const emotion of Object.values(emotions)) {
-        emotion().show(c);
-    }
     return c;
 }
 
