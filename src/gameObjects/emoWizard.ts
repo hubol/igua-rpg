@@ -38,6 +38,15 @@ export function emoWizard() {
 
     c.withAsync(async () => {
         while (true) {
+            await sleep(5000);
+            c.head.away = true;
+            await sleep(1000);
+            c.head.away = false;
+        }
+    });
+
+    c.withAsync(async () => {
+        while (true) {
             await sleep(500 + rng.int(3500));
             c.head.face.emotion = rng.int(Emotion.Happy + 1);
         }
@@ -149,11 +158,25 @@ function head() {
     const earring = Sprite.from(bodyTxs[5]);
     const frontHair = hair(bodyTxs[3]);
 
-    const c = merge(container(backHair, noggin, myFace, earring, frontHair), { facing: 0, face: myFace });
+    const c = merge(container(backHair, noggin, myFace, earring, frontHair), { facing: 0, face: myFace, away: false });
 
     c.withStep(() => {
-        earring.pivot.x = approachLinear(earring.pivot.x, Math.abs(c.facing) * -2, 0.25);
-        earring.index = c.facing < 0 && earring.pivot.x < -1 ? 1 : 3;
+        backHair.index = c.away ? 4 : 0;
+        noggin.index = c.away ? 3 : 1;
+        myFace.index = 2;
+        myFace.visible = !c.away;
+        frontHair.index = c.away ? 0 : 4;
+
+        if (c.away) {
+            earring.index = 3;
+            earring.x = 20;
+            earring.pivot.x = 0;
+        }
+        else {
+            earring.index = c.facing < 0 && earring.pivot.x < -1 ? 1 : 3;
+            earring.x = 0;
+            earring.pivot.x = approachLinear(earring.pivot.x, Math.abs(c.facing) * -2, 0.25);
+        }
     });
 
     return c;
