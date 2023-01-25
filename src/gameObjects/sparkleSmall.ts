@@ -7,9 +7,9 @@ import {rng} from "../utils/math/rng";
 
 const textures = subimageTextures(SparkleSmallLight, 3);
 
-function sparkle() {
-    return animatedSprite(textures, 1 / 11)
-        .liveFor(60)
+export function sparkle(speed = 1 / 11, liveForFrames = 60) {
+    return animatedSprite(textures, speed)
+        .liveFor(liveForFrames)
         .centerAnchor();
 }
 
