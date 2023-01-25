@@ -4,7 +4,8 @@ import {progress} from "../igua/data/progress";
 import {show} from "../cutscene/dialog";
 import {sparkly} from "./sparkleSmall";
 import {wait} from "../cutscene/wait";
-import {CollectGeneric} from "../sounds";
+import {showBlessingEffect} from "../igua/gameplay/templeLevelUtil";
+import {getWorldCenter} from "../igua/gameplay/getCenter";
 
 export function blessingStone(s: Sprite, minNewGamePlus: number, bigKey: ProgressBigKey, rewardName: string) {
     s.withCutscene(async () => {
@@ -16,8 +17,8 @@ export function blessingStone(s: Sprite, minNewGamePlus: number, bigKey: Progres
             return await show(`You already received ${rewardName}.`);
 
         bigKey.reward = true;
-        CollectGeneric.play();
-        await show(`Received ${rewardName}.`);
+        const v = getWorldCenter(s);
+        await showBlessingEffect(v.x, v.y, rewardName);
     })
     .withAsync(async () => {
         await wait(() => progress.newGamePlus >= minNewGamePlus && !bigKey.reward);

@@ -35,14 +35,8 @@ export function makeTempleLevelUtil(
                     await wait(() => player.x >= bigKey.x - 25 && !cutscene.isPlaying);
                     cutscene.play(async () => {
                         progress[progressRewardKey] = true as any;
-                        BigKeyCollected.play();
                         jukebox.currentSong?.pause();
-                        sparkles(bigKey.x + 25, bigKey.y + 14, 10, 32, 100);
-                        await sleep(1000);
-                        await show("You gathered all the pieces of the big key.");
-                        CollectGeneric.play();
-                        await show(`Received ${rewardTitle}.`);
-                        await persistence.save();
+                        await showBlessingEffect(bigKey.x + 25, bigKey.y + 14, rewardTitle, true);
                         jukebox.currentSong?.play();
                     });
                 });
@@ -50,6 +44,17 @@ export function makeTempleLevelUtil(
     }
 
     return util;
+}
+
+export async function showBlessingEffect(x: number, y: number, reward: string, showPiecesMessage = false) {
+    BigKeyCollected.play();
+    sparkles(x, y, 10, 32, 100);
+    await sleep(1000);
+    if (showPiecesMessage)
+        await show("You gathered all the pieces of the big key.");
+    CollectGeneric.play();
+    await show(`Received ${reward}.`);
+    await persistence.save();
 }
 
 function playMusic() {
