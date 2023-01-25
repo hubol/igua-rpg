@@ -14,6 +14,7 @@ import {terrainGradient} from "../gameObjects/outerGradient";
 import {region} from "../gameObjects/region";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {showAll} from "../cutscene/dialog";
+import {game} from "../igua/game";
 
 export function JungleDeep() {
     jukebox.play(ForestDeepMusic).warm(JungleMusic);
@@ -30,6 +31,7 @@ export function JungleDeep() {
     cameraLock({ maxX: level.CameraLock.x }, () => player.x > level.CameraLock.x);
     terrainGradient(region.instances, [0x406820, 0x406020, 0x384820]);
     enrichOutcast(level);
+    game.hudStage.ticker.update();
 }
 
 function enrichOutcast(level: GameObjectsType<typeof JungleDeepArgs>) {
