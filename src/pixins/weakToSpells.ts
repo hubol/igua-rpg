@@ -1,6 +1,6 @@
 import {Pixin} from "../utils/pixi/pixin";
 import {SceneLocal} from "../igua/sceneLocal";
-import {DisplayObject} from "pixi.js";
+import {DisplayObject, Sprite} from "pixi.js";
 import {ClownHealth} from "../gameObjects/utils/clownUtils";
 import {merge} from "../utils/object/merge";
 import {OutlineFilter} from "pixi-filters";
@@ -13,9 +13,13 @@ import {getWorldBounds, getWorldCenter} from "../igua/gameplay/getCenter";
 import {sparkle} from "../gameObjects/sparkleSmall";
 import {rng} from "../utils/math/rng";
 import {sleep} from "../cutscene/sleep";
-import {vnew} from "../utils/math/vector";
+import {Vector, vnew} from "../utils/math/vector";
 import {approachLinear} from "../utils/math/number";
 import {findStage} from "../igua/findStage";
+import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
+import {FinalEnemySoul} from "../textures";
+import {animatedSprite} from "../igua/animatedSprite";
+import { DefeatPermanent } from "../sounds";
 
 const filter = new OutlineFilter(1, PlayerSpellColor.Dark);
 
@@ -74,39 +78,31 @@ export const WeakToSpells = Pixin<WeakToSpellsArgs>()
         });
     });
 
-const sparkleColors = [0x70C050, 0x208050];
+const sparkleColors = [PlayerSpellColor.Light, PlayerSpellColor.Dark];
 let sparkleColorIndex = 0;
 
 function getSparkleColor() {
     return sparkleColors[(sparkleColorIndex++) % 2];
 }
 
+const soulTxs = subimageTextures(FinalEnemySoul, 4);
+
 function readyToBePermanentlyDefeated(instance: WeakToSpellsInstance) {
     let center = vnew();
-    let speed = 1;
+    const centerSource = instance.spellsHurtbox.length === 1 ? instance.spellsHurtbox[0] : instance;
 
     const c = container()
         .withAsync(async () => {
             while (true) {
+                if (!instance.destroyed)
+                    center.at(getWorldCenter(centerSource));
+
                 for (const box of instance.spellsHurtbox) {
-                    if (instance.destroyed)
-                        return c
-                            .withAsync(async () => {
-                                while (true) {
-                                    sparkle(1 / 8, 23)
-                                        .at(center.x + Math.sin(scene.s * Math.PI * 4) * 9 + rng.polar * speed, center.y + Math.cos(scene.s * Math.PI * 5 + 2) * 9 + rng.polar * speed)
-                                        .tinted(getSparkleColor())
-                                        .show(c);
-                                    await sleep(20 + rng.int(30));
-                                }
-                            })
-                            .withStep(() => {
-                                center.y -= speed;
-                                speed = approachLinear(speed, 6, 0.1);
-                                if (center.y <= -16)
-                                    c.destroy();
-                            });
-                    center.at(getWorldCenter(instance));
+                    if (instance.destroyed) {
+                        soulRelease(center).show(c.parent);
+                        c.destroy();
+                        return;
+                    }
                     const r = getWorldBounds(box);
                     sparkle(1 / 4, 11).at(r.x + rng.int(r.width), r.y + rng.int(r.height)).tinted(getSparkleColor()).show(c);
                     await sleep(50 + rng.int(50));
@@ -115,4 +111,54 @@ function readyToBePermanentlyDefeated(instance: WeakToSpellsInstance) {
         });
 
     c.show(findStage(instance));
+}
+
+function soulRelease(v: Vector) {
+    DefeatPermanent.play();
+
+    let speed = 4;
+    let amplitude = 0.5;
+    let counter = 0;
+
+    const c1 = container();
+    const c2 = container();
+
+    const c = container(c1, c2)
+        .withStep(() => {
+            if (v.y <= -16) {
+                if (c1.children.length === 0 && c2.children.length === 0)
+                    c.destroy();
+                return;
+            }
+
+            for (let i = 0; i < 4; i += 1) {
+                v.y -= (speed - Math.max(amplitude - 5, 0) * 0.1) * 0.25;
+                const s = animatedSprite(soulTxs, i === 3 ? 1 / 6 : 1 / 3, true)
+                    .liveFor(i === 3 ? 25 : 13)
+                    .centerAnchor()
+                    .at(v.x + Math.sin(v.y / 10) * amplitude, v.y)
+                    .show(c1);
+                if (rng.bool)
+                    s.scale.x = -1;
+            }
+
+            if (++counter === 2) {
+                const s = c1.children[rng.int(c1.children.length)];
+                sparkle(1 / 4, 11).at(s.x + rng.polar * 5, s.y + rng.polar * 5).tinted(PlayerSpellColor.Light).show(c2);
+                counter = 0;
+            }
+
+            speed = approachLinear(speed, 6, 0.05);
+            amplitude = approachLinear(amplitude, 7, 0.1);
+        })
+        .withStep(() => {
+            for (let i = 0; i < c1.children.length; i++) {
+                const s = c1.children[i] as Sprite;
+                s.tint = i === c1.children.length - 1 ? PlayerSpellColor.Light : PlayerSpellColor.Dark;
+                if (i !== c1.children.length - 1)
+                    (s as any).imageIndex = Math.max((s as any).imageIndex, 1);
+            }
+        });
+
+    return c;
 }

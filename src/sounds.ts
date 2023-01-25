@@ -272,6 +272,11 @@ export const DassStep = new Howl({
     
 });
 
+export const DefeatPermanent = new Howl({
+    src: [require("./sound/defeat permanent.ogg"), require("./sound/defeat permanent.mp3")],
+    
+});
+
 export const Dig = new Howl({
     src: [require("./sound/dig.ogg"), require("./sound/dig.mp3")],
     
