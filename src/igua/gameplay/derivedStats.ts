@@ -8,7 +8,7 @@ export const derivedStats = {
         return 10 + (progress.levels.strength - 1) * 5;
     },
     get spellPower() {
-        return 20 + Math.max(progress.levels.humor - 1, 0) * 30;
+        return 20 + Math.max(progress.levels.humor - 1, 0) * 15;
     },
     get canCastSpell() {
         return progress.levels.humor > 0;
