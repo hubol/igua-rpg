@@ -13,11 +13,35 @@ import {merge} from "../utils/object/merge";
 import {Undefined} from "../utils/types/undefined";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {dither} from "./dither";
+import {approachLinear} from "../utils/math/number";
 
 const bodyTxs = subimageTextures(FinalEmoWizardBody, 6);
 
 export function emoWizard() {
-    const c = container(dress(), head());
+    const c = merge(container(), { dress: dress(), head: head() });
+    c.addChild(c.dress, c.head);
+
+    c.withAsync(async () => {
+        while (true) {
+            await sleep(3000);
+            c.dress.facing = 0;
+            c.head.face.facing = 0;
+            await sleep(3000);
+            c.dress.facing = 1;
+            c.head.face.facing = 1;
+            await sleep(3000);
+            c.dress.facing = -1;
+            c.head.face.facing = -1;
+        }
+    });
+
+    c.withAsync(async () => {
+        while (true) {
+            await sleep(500 + rng.int(3500));
+            c.head.face.emotion = rng.int(Emotion.Happy + 1);
+        }
+    });
+
     c.pivot.set(16, 36);
     return c;
 }
@@ -32,7 +56,10 @@ enum Emotion {
 }
 
 function face() {
-    const c = merge(container(), { emotion: Emotion.Angry })
+    const c = merge(container(), { emotion: Emotion.Angry, facing: 0 })
+        .withStep(() => {
+            c.pivot.x = approachLinear(c.pivot.x, -c.facing * 2, 0.25);
+        })
         .withAsync(async () => {
             const d = dither();
             d.unit = 0.5;
@@ -103,11 +130,12 @@ async function randomizedPingPongAnimation(c: ReturnType<typeof animatedSprite>,
 }
 
 function dress() {
-    const c = container();
+    const c = merge(container(), { facing: 0 });
     const s = Sprite.from(bodyTxs[2]).show(c).at(16, 36);
     s.anchor.set(0.5, 1);
     const arms = Sprite.from(bodyTxs[4]).show(c);
     c.withStep(() => {
+        arms.pivot.x = approachLinear(arms.pivot.x, c.facing, 0.25);
         arms.y = Math.sign(Math.round((Math.sin(scene.s * Math.PI * 1 + 1) + 1) / 2));
     });
     return c;
@@ -118,15 +146,9 @@ function head() {
     hair(bodyTxs[0], 12, 22).show(c);
     Sprite.from(bodyTxs[1]).show(c);
     const f = face().at(6, 4).show(c);
-    f.withAsync(async () => {
-        while (true) {
-            await sleep(500 + rng.int(3500));
-            f.emotion = rng.int(Emotion.Happy + 1);
-        }
-    });
     Sprite.from(bodyTxs[5]).show(c);
     hair(bodyTxs[3]).show(c);
-    return c;
+    return merge(c, { face: f });
 }
 
 function hair(tx: Texture, ystart = 6, yend = 16) {
