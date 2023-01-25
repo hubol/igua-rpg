@@ -18,20 +18,21 @@ import {approachLinear} from "../utils/math/number";
 const bodyTxs = subimageTextures(FinalEmoWizardBody, 6);
 
 export function emoWizard() {
-    const c = merge(container(), { dress: dress(), head: head() });
+    const c = merge(container(), { dress: dress(), head: head(), set facing(value: number) {
+        c.dress.facing = value;
+        c.head.facing = value;
+        c.head.face.facing = value;
+    } });
     c.addChild(c.dress, c.head);
 
     c.withAsync(async () => {
         while (true) {
             await sleep(3000);
-            c.dress.facing = 0;
-            c.head.face.facing = 0;
+            c.facing = 0;
             await sleep(3000);
-            c.dress.facing = 1;
-            c.head.face.facing = 1;
+            c.facing = 1;
             await sleep(3000);
-            c.dress.facing = -1;
-            c.head.face.facing = -1;
+            c.facing = -1;
         }
     });
 
@@ -142,13 +143,20 @@ function dress() {
 }
 
 function head() {
-    const c = container();
-    hair(bodyTxs[0], 12, 22).show(c);
-    Sprite.from(bodyTxs[1]).show(c);
-    const f = face().at(6, 4).show(c);
-    Sprite.from(bodyTxs[5]).show(c);
-    hair(bodyTxs[3]).show(c);
-    return merge(c, { face: f });
+    const backHair = hair(bodyTxs[0], 12, 22);
+    const noggin = Sprite.from(bodyTxs[1]);
+    const myFace = face().at(6, 4);
+    const earring = Sprite.from(bodyTxs[5]);
+    const frontHair = hair(bodyTxs[3]);
+
+    const c = merge(container(backHair, noggin, myFace, earring, frontHair), { facing: 0, face: myFace });
+
+    c.withStep(() => {
+        earring.pivot.x = approachLinear(earring.pivot.x, Math.abs(c.facing) * -2, 0.25);
+        earring.index = c.facing < 0 && earring.pivot.x < -1 ? 1 : 3;
+    });
+
+    return c;
 }
 
 function hair(tx: Texture, ystart = 6, yend = 16) {
