@@ -4,6 +4,7 @@ export function getInitialFlags()
         objects: {
             gotLevelValuable: new Set<string>(),
             clearedBoulder: new Set<string>(),
+            permanentlyDefeatedEnemies: new Set<string>(),
         },
         jungle: {
             bigua: {
@@ -110,6 +111,7 @@ export function getInitialFlags()
         },
         final: {
             doorOpened: false,
+            enemiesCanBePermanentlyDefeated: false,
         }
     };
 }

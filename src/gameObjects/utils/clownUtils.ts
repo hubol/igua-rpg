@@ -11,6 +11,7 @@ import {rng} from "../../utils/math/rng";
 import {Vector, vnew} from "../../utils/math/vector";
 import {progress} from "../../igua/data/progress";
 import {wait} from "../../cutscene/wait";
+import {derivedStats} from "../../igua/gameplay/derivedStats";
 
 const v = vnew();
 
@@ -53,6 +54,10 @@ export function clownHealth(maxHealth: number) {
     return {
         maxHealth,
         health: maxHealth,
+        spellDamageTaken: 0,
+        get hasTakenEnoughSpellDamageToBePermanentlyDefeated() {
+            return this.spellDamageTaken >= (derivedStats.spellPower - 1) * 3;
+        },
         get unit() {
             return this.health / maxHealth;
         },

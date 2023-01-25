@@ -126,6 +126,7 @@ function doOneSpellCollision(instance: WeakToSpellsInstance) {
     CastSpellDamage.play();
     const min = Math.max(0, instance.clownHealth.health - 1);
     instance.clownHealth.damage(Math.min(derivedStats.spellPower, min));
+    instance.clownHealth.spellDamageTaken += derivedStats.spellPower;
     instance.showSpellEffectTimeFrames = 3;
 }
 
