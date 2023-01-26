@@ -9,6 +9,7 @@ import {DisplayObject} from "pixi.js";
 import {Vector, vnew} from "../math/vector";
 import {merge} from "../object/merge";
 import {applyGravity} from "../../gameObjects/utils/newGravity";
+import {derivedStats} from "../../igua/gameplay/derivedStats";
 
 declare global {
     namespace PIXI {
@@ -77,7 +78,7 @@ function incrementVsPlayerHitCount(self: DisplayObject) {
 
 PIXI.DisplayObject.prototype.damagePlayer = function (damage) {
     const result = player.damage(damage);
-    if (result)
+    if (result && (!player.isDucking || derivedStats.badge.duckedDamageCountsTowardsHitCount))
         incrementVsPlayerHitCount(this);
 
     return result;

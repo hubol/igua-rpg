@@ -36,7 +36,7 @@ export function castPlayerSpell(subject: IguanaPuppet = player) {
                 const mouth = player.head.children[1].children[1];
                 const xscale = player.scale.x * player.children[0].scale.x;
                 playerSpell(subject).at(getWorldCenter(mouth).add(xscale * 8, 0)).ahead();
-                await sleep(300);
+                await sleep(300 * derivedStats.badge.lungCastTimeScale);
             }
             subject.headLiftUnit = 0;
             c.destroy();
@@ -96,7 +96,7 @@ function playerSpell(subject: IguanaPuppet) {
                     active = false;
                 }
             }
-            if (activeSteps >= consts.maximumTravelTimeFrames)
+            if (activeSteps >= consts.maximumTravelTimeFrames * derivedStats.badge.lungCastDistanceScale)
                 active = false;
         })
         .withAsync(async () => {

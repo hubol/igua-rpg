@@ -90,8 +90,8 @@ function createPlayer(behavior = true)
             get hasSufficientChargeForSpell() {
                 return player.castCharge >= player.castChargeMax;
             },
-            castCharge: consts.rechargeCastTimeFrames,
-            castChargeMax: consts.rechargeCastTimeFrames,
+            get castChargeMax() { return consts.rechargeCastTimeFrames  * derivedStats.badge.lungCastTimeScale },
+            castCharge: 1000000000,
             follower: behavior && createFollower(),
             invulnerableFrameCount: 0,
             isDead: false,
@@ -128,10 +128,11 @@ function createPlayer(behavior = true)
                 {
                     CharacterHurtDefense.play();
                     const preventDeath = progress.health > 1;
-                    progress.health -= Math.max(1, Math.floor(health * 0.8));
+                    progress.health -= Math.max(1, Math.floor(health * (1 - derivedStats.badge.duckEffectivenessPercentage)));
                     if (preventDeath)
                         progress.health = Math.max(progress.health, 1);
-                    player.invulnerableFrameCount = 90;
+                    player.invulnerableFrameCount = derivedStats.badge.duckInvulnerableFrameCount;
+                    progress.status.successfulDuckTimer = player.invulnerableFrameCount;
                 }
                 else
                 {
@@ -149,8 +150,11 @@ function createPlayer(behavior = true)
 
                 return true;
             },
-            get strength() {
-                return derivedStats.attackPower;
+            doClawAttack() {
+                const power = derivedStats.attackPower;
+                progress.status.combo += 1;
+                progress.status.comboTimer = 75;
+                return power;
             }
         });
 
@@ -164,6 +168,11 @@ function createPlayer(behavior = true)
     let ballonLifeTick = 0;
 
     const step = () => {
+        progress.status.comboTimer = Math.max(progress.status.comboTimer - 1, 0);
+        progress.status.successfulDuckTimer = Math.max(progress.status.successfulDuckTimer - 1, 0);
+        if (progress.status.comboTimer === 0)
+            progress.status.combo = 0;
+
         if (progress.flags.final.enemiesCanBePermanentlyDefeated)
             PermanentDefeatTracker.value;
         if (player.invulnerableFrameCount <= 0)
@@ -198,8 +207,7 @@ function createPlayer(behavior = true)
             }
         }
 
-        const baseSpeed = !progress.status.poison ? 2.5 : 3.25;
-        player.engine.walkSpeed = baseSpeed + Math.max(0, 0.5 * (progress.status.poison - 1));
+        player.engine.walkSpeed = derivedStats.movementSpeed;
         if (player.isCastingSpell)
             player.engine.walkSpeed *= consts.castingPlayerMaxSpeedFactor;
         player.engine.gravity = Math.max(0.02, 0.15 - Math.min(1, progress.status.ballons.length) * 0.01 - Math.max(0, progress.status.ballons.length - 1) * 0.00625);
@@ -242,7 +250,7 @@ function createPlayer(behavior = true)
 
         if (bufferedCast && !player.isCastingSpell && player.hasSufficientChargeForSpell) {
             castPlayerSpell();
-            player.remainingCastTimeFrames = consts.castTimeFrames;
+            player.remainingCastTimeFrames = consts.castTimeFrames * derivedStats.badge.lungCastTimeScale;
             player.castCharge = 0;
         }
 

@@ -65,12 +65,12 @@ export function clownHealth(maxHealth: number) {
             return this.unit < 1;
         },
         get nearDeath() {
-            return this.health < maxHealth && this.health <= player.strength;
+            return this.health < maxHealth && this.health <= derivedStats.attackPower;
         },
         get isDead() {
             return this.health <= 0;
         },
-        damage(factor = player.strength) {
+        damage(factor = player.doClawAttack()) {
             clownHealthUi.value.clownHealth = this;
             this.health = Math.max(0, this.health - factor);
             return this.isDead;

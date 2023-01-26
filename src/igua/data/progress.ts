@@ -1,6 +1,7 @@
 import {getInitialFlags} from "./flags";
 import {PotionType} from "../inventory/potions";
 import {getDefaultLooks} from "../looks/getDefaultLooks";
+import {BadgeId} from "../gameplay/badges";
 
 export function getInitialProgress()
 {
@@ -9,10 +10,16 @@ export function getInitialProgress()
         health: 100,
         valuables: 100,
         looks: getDefaultLooks(),
+        equipment: {
+            badge: 'None' as BadgeId,
+        },
         status: {
             poison: 0,
             ballons: [] as number[],
             burn: 0,
+            combo: 0,
+            comboTimer: 0,
+            successfulDuckTimer: 0,
         },
         levels: {
             strength: 1,
