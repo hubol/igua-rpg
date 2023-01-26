@@ -15,7 +15,7 @@ const badgeTemplate = {
     maxHeartPointsScale: 1,
 
     poisonAffectsMovementSpeed: true,
-    poisonAffectsAttackPower: false,
+    poisonAffectsClawAttackPower: false,
 
     lungAttackPowerScale: 1,
     lungCastDistanceScale: 1,
@@ -31,9 +31,9 @@ function mk(args: Partial<Badge>): Badge {
 export const Badges = {
     None: mk({}),
     Shield: mk({ duckedDamageCountsTowardsHitCount: false, duckEffectivenessPercentage: 0.8, duckTemporaryClawAttackPowerScale: 2, duckInvulnerableFrameCount: 100, maxHeartPointsScale: 0.2 }),
-    Redirect: mk({ poisonAffectsAttackPower: true, poisonAffectsMovementSpeed: false }),
+    Redirect: mk({ poisonAffectsClawAttackPower: true, poisonAffectsMovementSpeed: false }),
     Dexterous: mk({ baseClawAttackPowerScale: 0.9, maxComboClawAttackPowerScale: 1.8 }),
-    Cigarette: mk({ lungCastDistanceScale: 0.2, lungCastTimeScale: 0.925, lungAttackPowerScale: 1.33 }),
+    Cigarette: mk({ lungCastDistanceScale: 36 / 90, lungCastTimeScale: 0.925, lungAttackPowerScale: 1.33 }),
 
     // TODO These are pretty boring...
     Heavy: mk({ movementSpeedScale: 0.625, baseAttackPowerScale: 1.5 }),

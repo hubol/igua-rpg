@@ -48,7 +48,7 @@ const consts = {
     speedStart: 2.5,
     speedDelta: 0.05,
     speedEnd: 1.25,
-    maximumTravelTimeFrames: 3 * 60,
+    maximumTravelTimeFrames: 90,
 }
 
 function playerSpell(subject: IguanaPuppet) {
