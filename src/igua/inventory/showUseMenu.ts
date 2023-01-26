@@ -20,6 +20,7 @@ import {capitalKeys} from "../../levels/capitalTemple";
 import {vnew} from "../../utils/math/vector";
 import {subimageTextures} from "../../utils/pixi/simpleSpritesheet";
 import {BigKeyTracker, BlessingsTracker} from "../../textures";
+import {SceneLocal} from "../sceneLocal";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
@@ -27,11 +28,15 @@ export function showUseMenu() {
 
 let defaultSelection = 0;
 
+export const UseMenuState = new SceneLocal(() => ({ open: false }), `UseMenuState`);
+
 function controller(row: number, slots: number) {
+    UseMenuState.value.open = true;
     scene.ticker.doNextUpdate = false;
     let destroyOnNextStep = false;
     const c = merge(new Container(), { selection: defaultSelection, row, slots, type: undefined as PotionType | undefined }).withStep(() => {
         if (destroyOnNextStep) {
+            UseMenuState.value.open = false;
             scene.ticker.doNextUpdate = true;
             InventoryClose.play();
             return c.destroy();

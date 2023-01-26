@@ -14,3 +14,7 @@ export const derivedStats = {
         return progress.levels.humor > 0;
     }
 }
+
+export const questConstants = {
+    requiredEnemiesToPermanentlyDefeat: 19,
+}

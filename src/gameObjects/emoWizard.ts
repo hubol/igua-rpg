@@ -14,6 +14,7 @@ import {Undefined} from "../utils/types/undefined";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {dither} from "./dither";
 import {approachLinear} from "../utils/math/number";
+import {now} from "../utils/now";
 
 const bodyTxs = subimageTextures(FinalEmoWizardBody, 6);
 
@@ -55,6 +56,8 @@ export function emoWizard() {
     c.pivot.set(16, 36);
     return c;
 }
+
+export const emoWizardHead = head;
 
 enum Emotion {
     Angry,
@@ -100,7 +103,7 @@ const emotions: Record<Emotion, () => DisplayObject> = {
     [Emotion.Shocked]: () => {
         const c = animatedSprite([faceTxs[3], faceTxs[2], faceTxs[4], faceTxs[2]], 0.125)
             .withStep(() => {
-                c.x = Math.sin(scene.s * Math.PI * 4);
+                c.x = Math.sin(now.s * Math.PI * 4);
             });
         return c;
     },
@@ -196,11 +199,11 @@ function hair(tx: Texture, ystart = 6, yend = 16) {
     }
 
     c.withStep(() => {
-        const f = Math.sin(scene.s * Math.PI * 0.25 + ystart * 19 + yend * 3);
+        const f = Math.sin(now.s * Math.PI * 0.25 + ystart * 19 + yend * 3);
         let seed = ystart * 1.2 - yend * 4;
         for (let i = 1; i < c.children.length; i++) {
             c.children[i].x = c.children[i - 1].x;
-            c.children[i].x += Math.sin(scene.s * Math.PI + seed) * f;
+            c.children[i].x += Math.sin(now.s * Math.PI + seed) * f;
             seed += Math.pow(i, 2) * 0.05 + i * 2.2;
         }
     })

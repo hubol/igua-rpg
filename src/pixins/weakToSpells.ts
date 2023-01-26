@@ -20,6 +20,7 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {FinalEnemySoul} from "../textures";
 import {animatedSprite} from "../igua/animatedSprite";
 import { DefeatPermanent } from "../sounds";
+import {PermanentDefeatTracker} from "../gameObjects/permanentDefeatTracker";
 
 const filter = new OutlineFilter(1, PlayerSpellColor.Dark);
 
@@ -44,6 +45,7 @@ export const WeakToSpells = Pixin<WeakToSpellsArgs>()
                     await wait(() => src.clownHealth.hasTakenEnoughSpellDamageToBePermanentlyDefeated);
                     readyToBePermanentlyDefeated(src);
                     await wait(() => src.clownHealth.isDead);
+                    PermanentDefeatTracker.value.showFrames = 120;
                     progress.flags.objects.permanentlyDefeatedEnemies.add(id);
                 });
             }

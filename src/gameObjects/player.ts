@@ -23,6 +23,7 @@ import {damageStatusConsts} from "../igua/gameplay/damageStatusConsts";
 import {PlayerBurningEffect} from "./playerBurningEffect";
 import {castPlayerSpell} from "./playerSpell";
 import {DamageTakenHud} from "./hud";
+import {PermanentDefeatTracker} from "./permanentDefeatTracker";
 
 export function playerPuppetArgs() {
     return makeIguanaPuppetArgsFromLooks(progress.looks);
@@ -163,6 +164,8 @@ function createPlayer(behavior = true)
     let ballonLifeTick = 0;
 
     const step = () => {
+        if (progress.flags.final.enemiesCanBePermanentlyDefeated)
+            PermanentDefeatTracker.value;
         if (player.invulnerableFrameCount <= 0)
             player.visible = true;
         else
