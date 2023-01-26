@@ -45,9 +45,9 @@ type GamepadControl = ButtonControl | AxisControl | AxisUnitControl;
 type GamepadControls = ControlsBase<GamepadControl[]>;
 
 const defaultGamepadControls: GamepadControls = {
-    CastSpell: [ button(StandardMapping.Button.BUTTON_TOP) ],
+    CastSpell: [ button(StandardMapping.Button.BUTTON_TOP), button(StandardMapping.Button.BUMPER_RIGHT) ],
     Confirm: [ button(StandardMapping.Button.BUTTON_BOTTOM) ],
-    Duck: [ button(StandardMapping.Button.D_PAD_BOTTOM), button(StandardMapping.Button.BUMPER_LEFT), button(StandardMapping.Button.BUMPER_RIGHT) ],
+    Duck: [ button(StandardMapping.Button.D_PAD_BOTTOM), button(StandardMapping.Button.BUMPER_LEFT) ],
     Interact: [ button(StandardMapping.Button.D_PAD_UP) ],
     InventoryMenuToggle: [ button(StandardMapping.Button.BUTTON_CONTROL_RIGHT) ],
     Jump: [ button(StandardMapping.Button.BUTTON_BOTTOM) ],
