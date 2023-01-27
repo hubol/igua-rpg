@@ -172,6 +172,7 @@ export let MirrorBroken: PIXI.Texture;
 export let MirrorShard: PIXI.Texture;
 export let NgBlessingEarth: PIXI.Texture;
 export let NgBlessingJungle: PIXI.Texture;
+export let NgPlayerAttackBuffParticle: PIXI.Texture;
 export let NpcBlueFoot2: PIXI.Texture;
 export let NpcBlueFootRear2: PIXI.Texture;
 export let NpcBlueFootRear: PIXI.Texture;
@@ -808,6 +809,9 @@ export function loadTexturesAsync()
     const NgBlessingJunglePath = require("./images/ng/blessing jungle.png");
     loader.add(NgBlessingJunglePath); 
 
+    const NgPlayerAttackBuffParticlePath = require("./images/ng/player attack buff particle.png");
+    loader.add(NgPlayerAttackBuffParticlePath); 
+
     const NpcBlueFoot2Path = require("./images/npc/blue foot 2.png");
     loader.add(NpcBlueFoot2Path); 
 
@@ -1342,6 +1346,7 @@ export function loadTexturesAsync()
             MirrorShard = resources[MirrorShardPath]?.texture as PIXI.Texture;
             NgBlessingEarth = resources[NgBlessingEarthPath]?.texture as PIXI.Texture;
             NgBlessingJungle = resources[NgBlessingJunglePath]?.texture as PIXI.Texture;
+            NgPlayerAttackBuffParticle = resources[NgPlayerAttackBuffParticlePath]?.texture as PIXI.Texture;
             NpcBlueFoot2 = resources[NpcBlueFoot2Path]?.texture as PIXI.Texture;
             NpcBlueFootRear2 = resources[NpcBlueFootRear2Path]?.texture as PIXI.Texture;
             NpcBlueFootRear = resources[NpcBlueFootRearPath]?.texture as PIXI.Texture;

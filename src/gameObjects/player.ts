@@ -24,6 +24,7 @@ import {PlayerBurningEffect} from "./playerBurningEffect";
 import {castPlayerSpell} from "./playerSpell";
 import {DamageTakenHud} from "./hud";
 import {PermanentDefeatTracker} from "./permanentDefeatTracker";
+import {showPlayerAttackBuffParticleStep} from "./playerAttackBuffParticle";
 
 export function playerPuppetArgs() {
     return makeIguanaPuppetArgsFromLooks(progress.looks);
@@ -168,6 +169,8 @@ function createPlayer(behavior = true)
     let ballonLifeTick = 0;
 
     const step = () => {
+        showPlayerAttackBuffParticleStep();
+
         progress.status.comboTimer = Math.max(progress.status.comboTimer - 1, 0);
         progress.status.successfulDuckTimer = Math.max(progress.status.successfulDuckTimer - 1, 0);
         if (progress.status.comboTimer === 0)
