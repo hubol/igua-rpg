@@ -64,6 +64,7 @@ function oversizedClownImpl() {
     const physicalFormContainer = container(head, hair, face(faceState))
         .withPixin(WeakToSpells({ spellsHurtbox: [head], clownHealth: health }));
     const c = merge(container(physicalFormContainer, electricContainer), { aggressive: false });
+    physicalFormContainer.on('removed', () => !c.destroyed && c.destroy());
     const speed = [0, 0];
 
     const ballonsState = range(5).map(() => 1);
