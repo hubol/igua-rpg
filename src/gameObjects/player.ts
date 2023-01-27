@@ -1,8 +1,5 @@
 import {iguanaPuppet} from "../igua/puppet/iguanaPuppet";
-import {
-    BurnedPlayer,
-    CharacterHurt, CharacterHurtDefense, EffectPoison
-} from "../sounds";
+import {BurnedPlayer, CharacterHurt, CharacterHurtDefense, EffectPoison} from "../sounds";
 import {playerCharacterHasControl, PlayerCharacterInput as playerKey} from "../igua/logic/playerCharacterInput";
 import {merge} from "../utils/object/merge";
 import {progress} from "../igua/data/progress";
@@ -25,6 +22,7 @@ import {castPlayerSpell} from "./playerSpell";
 import {DamageTakenHud} from "./hud";
 import {PermanentDefeatTracker} from "./permanentDefeatTracker";
 import {showPlayerAttackBuffParticleStep} from "./playerAttackBuffParticle";
+import {Rectangle} from "pixi.js";
 
 export function playerPuppetArgs() {
     return makeIguanaPuppetArgsFromLooks(progress.looks);
@@ -325,4 +323,13 @@ export function createFollower()
             scene.playerStage.addChild(npcGameObject);
             return npcGameObject;
         }
+}
+
+export function disablePlayerCollision() {
+    merge(player, {
+        rectangle: new Rectangle(-100000, -100000, 1, 1),
+        collides() {
+            return false;
+        }
+    });
 }

@@ -1,11 +1,8 @@
 import {jukebox} from "./jukebox";
-import {scene} from "./scene";
-import {player} from "../gameObjects/player";
+import {disablePlayerCollision, player} from "../gameObjects/player";
 import {persistence} from "./data/persistence";
 import {environment} from "./environment";
 import {loadDevProgress} from "./game";
-import {merge} from "../utils/object/merge";
-import {Rectangle} from "pixi.js";
 
 export function gotoDeathScreen()
 {
@@ -20,15 +17,6 @@ export function gotoDeathScreen()
     player.vspeed = 0;
 
     setTimeout(revive, 4_000)
-}
-
-function disablePlayerCollision() {
-    merge(player, {
-            rectangle: new Rectangle(-100000, -100000, 1, 1),
-            collides() {
-                return false;
-            }
-        });
 }
 
 async function revive() {
