@@ -20,6 +20,7 @@ import {ballons} from "./ballons";
 import {distance} from "../utils/math/vector";
 import {valuable} from "./valuable";
 import {getPlayerCenter} from "../igua/gameplay/getCenter";
+import {derivedStats} from "../igua/gameplay/derivedStats";
 
 const [tailTexture, neutralTexture, agapeTexture] = subimageTextures(DuckGiant, 3);
 
@@ -176,7 +177,7 @@ function reticle(source: DisplayObject) {
         if (tprog < 1 && introprog >= 1)
             tprog += 0.05;
         const text = `Guard:
-${player.isDucking ? 20 : 0}%`;
+${player.isDucking ? Math.round(derivedStats.badge.duckEffectivenessPercentage * 100) : 0}%`;
         const newLength = Math.floor(text.length * tprog);
         if (newLength !== lastTextLength) {
             ChangeLooks.play();
