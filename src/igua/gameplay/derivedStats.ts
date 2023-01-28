@@ -6,7 +6,9 @@ import {player} from "../../gameObjects/player";
 export const derivedStats = {
     computeDamage(ng0Damage: number) {
         const currentNgDamage = ng0Damage * (1 + progress.newGamePlus);
-        return Math.max(1, Math.floor(currentNgDamage * this.damageTakenScale));
+        const canPreventDeathIfDucked = progress.health > 1;
+        const maximumDamage = player.isDucking && canPreventDeathIfDucked ? progress.health - 1 : Number.MAX_SAFE_INTEGER;
+        return Math.max(1, Math.min(Math.floor(currentNgDamage * this.damageTakenScale), maximumDamage));
     },
     get damageTakenScale() {
         return player.isDucking ? derivedStats.badge.duckDamageTakenScale : derivedStats.badge.damageTakenScale;

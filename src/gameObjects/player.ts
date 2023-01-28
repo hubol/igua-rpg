@@ -121,15 +121,11 @@ function createPlayer(behavior = true)
                 if (player.invulnerableFrameCount > 0)
                     return false;
 
-                const canPreventDeathIfDucked = progress.health > 1;
-                const damage = derivedStats.computeDamage(ng0Damage);
-                progress.health -= damage;
+                progress.health -= derivedStats.computeDamage(ng0Damage);
 
                 if (player.isDucking)
                 {
                     CharacterHurtDefense.play();
-                    if (canPreventDeathIfDucked)
-                        progress.health = Math.max(progress.health, 1);
                     player.invulnerableFrameCount = derivedStats.badge.duckInvulnerableFrameCount;
                     progress.status.successfulDuckTimer = derivedStats.badge.duckTemporaryClawAttackPowerFrameCount;
                 }
