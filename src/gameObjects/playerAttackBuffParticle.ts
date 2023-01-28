@@ -5,12 +5,13 @@ import {derivedStats} from "../igua/gameplay/derivedStats";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {rng} from "../utils/math/rng";
+import {scene} from "../igua/scene";
 
 let i = 0;
 
 export function showPlayerAttackBuffParticleStep() {
     i = (i + 1) % 2;
-    if (i !== 0 || derivedStats.attackPower <= derivedStats.rawAttackPower)
+    if (i !== 0 || derivedStats.attackPower <= derivedStats.rawAttackPower || (!player.visible && player.invulnerableFrameCount <= 0) || scene.ticks < 2)
         return;
     particle().ahead();
 }
