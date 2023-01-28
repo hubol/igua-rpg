@@ -50,7 +50,7 @@ export function setPlayer(newPlayer: Player) {
 }
 
 export function createStagedPlayer() {
-    setPlayer(createPlayer()).ahead();
+    setPlayer(createPlayer()).ahead(0);
 }
 
 export function createStagedFakePlayer() {
@@ -131,7 +131,7 @@ function createPlayer(behavior = true)
                     if (preventDeath)
                         progress.health = Math.max(progress.health, 1);
                     player.invulnerableFrameCount = derivedStats.badge.duckInvulnerableFrameCount;
-                    progress.status.successfulDuckTimer = player.invulnerableFrameCount;
+                    progress.status.successfulDuckTimer = 120;
                 }
                 else
                 {

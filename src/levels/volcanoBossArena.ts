@@ -27,6 +27,7 @@ import {npc} from "../gameObjects/npc";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
 import {automaticDoorWithSfx} from "../gameObjects/automaticDoorWithSfx";
+import {waitHold} from "../cutscene/waitHold";
 
 export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -80,7 +81,7 @@ function enrichLever(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
         await wait(() => canSpawnLeverPuller
             && volcano.defeatedVileAngel
             && !volcano.openedPathToCapital);
-        await sleep(100);
+        await waitHold(() => !cutscene.isPlaying, 7);
         const guy = npc(level.SpawnLeverPuller.x, level.SpawnLeverPuller.y, 2).show();
         guy.engine.keepOnScreen = false;
         await guy.walkTo(level.Lever.x - 20);

@@ -68,8 +68,6 @@ function playerMaskedOverlay() {
             const b = player.vcpy().add(scene.camera, -1);
 
             inner.at(b.x - 30, b.y);
-
-            c.index = player.index + 1;
         })
         .filter(alphaMaskFilter(sprite))
         .show(scene.playerStage);
