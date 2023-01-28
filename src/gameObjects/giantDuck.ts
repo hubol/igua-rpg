@@ -177,7 +177,7 @@ function reticle(source: DisplayObject) {
         if (tprog < 1 && introprog >= 1)
             tprog += 0.05;
         const text = `Guard:
-${player.isDucking ? Math.round(derivedStats.badge.duckEffectivenessPercentage * 100) : 0}%`;
+${Math.round((1 - derivedStats.damageTakenScale) * 100)}%`;
         const newLength = Math.floor(text.length * tprog);
         if (newLength !== lastTextLength) {
             ChangeLooks.play();

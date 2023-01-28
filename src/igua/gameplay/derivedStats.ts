@@ -1,8 +1,16 @@
 import {progress} from "../data/progress";
 import {Badges} from "./badges";
 import {nlerp} from "../../utils/math/number";
+import {player} from "../../gameObjects/player";
 
 export const derivedStats = {
+    computeDamage(ng0Damage: number) {
+        const currentNgDamage = ng0Damage * (1 + progress.newGamePlus);
+        return Math.max(1, Math.floor(currentNgDamage * this.damageTakenScale));
+    },
+    get damageTakenScale() {
+        return player.isDucking ? derivedStats.badge.duckDamageTakenScale : derivedStats.badge.damageTakenScale;
+    },
     get badge() {
         return Badges[progress.equipment.badge] ?? Badges.None;
     },

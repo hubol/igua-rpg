@@ -114,21 +114,21 @@ function createPlayer(behavior = true)
                 player.invulnerableFrameCount = 60;
                 return true;
             },
-            damage(health: number)
+            damage(ng0Damage: number)
             {
-                health *= 1 + progress.newGamePlus;
-
                 if (player.isDead)
                     return;
                 if (player.invulnerableFrameCount > 0)
                     return false;
 
+                const canPreventDeathIfDucked = progress.health > 1;
+                const damage = derivedStats.computeDamage(ng0Damage);
+                progress.health -= damage;
+
                 if (player.isDucking)
                 {
                     CharacterHurtDefense.play();
-                    const preventDeath = progress.health > 1;
-                    progress.health -= Math.max(1, Math.floor(health * (1 - derivedStats.badge.duckEffectivenessPercentage)));
-                    if (preventDeath)
+                    if (canPreventDeathIfDucked)
                         progress.health = Math.max(progress.health, 1);
                     player.invulnerableFrameCount = derivedStats.badge.duckInvulnerableFrameCount;
                     progress.status.successfulDuckTimer = 120;
@@ -136,7 +136,6 @@ function createPlayer(behavior = true)
                 else
                 {
                     CharacterHurt.play();
-                    progress.health -= health;
                     player.invulnerableFrameCount = 60;
                 }
 
