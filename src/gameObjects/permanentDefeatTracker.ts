@@ -10,10 +10,12 @@ import {Graphics} from "pixi.js";
 import {PlayerSpellColor} from "./playerSpell";
 import {questConstants} from "../igua/gameplay/derivedStats";
 import {emoWizardHead} from "./emoWizard";
-import {sleep} from "../cutscene/sleep";
 import {rng} from "../utils/math/rng";
 import {UseMenuState} from "../igua/inventory/showUseMenu";
 import {IguaText} from "../igua/text";
+import {waitHold} from "../cutscene/waitHold";
+
+const light = 0x00ff00;
 
 export const PermanentDefeatTracker = new SceneLocal(() => {
     let value = progress.flags.objects.permanentlyDefeatedEnemies.size;
@@ -25,7 +27,10 @@ export const PermanentDefeatTracker = new SceneLocal(() => {
         .withStep(() => {
             if (!UseMenuState.value.open) {
                 c.showFrames -= 1;
+                const prevDither = c.dither;
                 c.dither = approachLinear(c.dither, c.showFrames > 0 ? 1 : 0, 0.075);
+                if (prevDither > 0 && c.dither <= 0)
+                    chooseHead();
             }
             else {
                 c.showFrames = 0;
@@ -34,8 +39,9 @@ export const PermanentDefeatTracker = new SceneLocal(() => {
 
             const n = Math.round(value);
             numerator.text = n.toString().padStart(2, '0');
-            numerator.tint = n > 0 ? PlayerSpellColor.Light : PlayerSpellColor.Dark;
-            denominator.tint = n >= questConstants.requiredEnemiesToPermanentlyDefeat ? PlayerSpellColor.Light : PlayerSpellColor.Dark;
+            numerator.tint = n > 0 ? light : PlayerSpellColor.Dark;
+            denominator.tint = n >= questConstants.requiredEnemiesToPermanentlyDefeat ? light : PlayerSpellColor.Dark;
+            bar.tint = denominator.tint;
 
             if (c.dither >= 1) {
                 maxDitheredFrames += 1;
@@ -51,25 +57,31 @@ export const PermanentDefeatTracker = new SceneLocal(() => {
         .withStep(() => {
             g.clear()
                 .beginFill(PlayerSpellColor.Dark).drawRect(-0.5, 0, 1, 1)
-                .beginFill(PlayerSpellColor.Light).drawRect(-0.5, 0, 1, Math.min(1, value / questConstants.requiredEnemiesToPermanentlyDefeat));
+                .beginFill(light).drawRect(-0.5, 0, 1, Math.min(1, value / questConstants.requiredEnemiesToPermanentlyDefeat));
         })
         .show(c);
+
+    function chooseHead() {
+        head.face.emotion = rng.int(6);
+    }
 
     const head = emoWizardHead()
         .withAsync(async () => {
             while (true) {
-                await sleep(500 + rng.int(3500));
-                head.face.emotion = rng.int(6);
+                const steps = 30 + rng.int(210);
+                await waitHold(() => UseMenuState.value.open, steps);
+                chooseHead();
             }
         })
         .at(-17, -22)
         .show(c);
 
-    const denominator = IguaText.Large('/' + questConstants.requiredEnemiesToPermanentlyDefeat);
-    const numerator = IguaText.MediumDigits('03').at(1, 1);
+    const denominator = IguaText.Large('' + questConstants.requiredEnemiesToPermanentlyDefeat).at(5, 1);
+    const bar = IguaText.Large('/');
+    const numerator = IguaText.Large('03').at(0, -2);
     // @ts-ignore
     numerator.anchor.set(1, 0);
-    container(numerator, denominator).at(-2, 129).show(c);
+    container(numerator, bar, denominator).at(-2, 128).show(c);
 
     g.scale.set(7, -128);
     g.y = -g.scale.y;
