@@ -158,7 +158,7 @@ function clownHealthBar() {
             g.beginFill(clownHealth.nearDeath ? Color.Vulnerable : Color.Life);
             const w = life * width;
             if (w > 0)
-                g.drawRect(0, 0, Math.ceil(w), height);
+                g.drawRect(0, 0, Math.max(1, Math.floor(w)), height);
         })
         .at((256 - width) / 2, 240);
 
