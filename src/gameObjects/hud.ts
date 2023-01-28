@@ -78,7 +78,7 @@ export function hud()
 
             const damageValue = DamageTakenHud.value.damage;
             damageText.visible = damageValue > 0;
-            damageText.at(healthbarGfx.width, healthbarGfx.height);
+            damageText.at(healthbarGfx.width - 1, healthbarGfx.height);
             damageText.text = '' + damageValue;
         });
 
