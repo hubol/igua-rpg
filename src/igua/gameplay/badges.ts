@@ -9,6 +9,7 @@ const badgeTemplate = {
 
     duckInvulnerableFrameCount: 90,
     duckTemporaryClawAttackPowerScale: 1,
+    duckTemporaryClawAttackPowerFrameCount: 0,
     duckedDamageCountsTowardsHitCount: true,
 
     maxHeartPointsScale: 1,
@@ -32,7 +33,7 @@ function mk(args: Partial<Badge>): Badge {
 
 export const Badges = {
     None: mk({}),
-    Shield: mk({ damageTakenScale: 0.5, duckDamageTakenScale: 0.2, duckedDamageCountsTowardsHitCount: false, duckTemporaryClawAttackPowerScale: 2, duckInvulnerableFrameCount: 100, maxHeartPointsScale: 0.2 }),
+    Shield: mk({ damageTakenScale: 0.5, duckDamageTakenScale: 0.2, duckedDamageCountsTowardsHitCount: false, duckTemporaryClawAttackPowerScale: 1.33, duckTemporaryClawAttackPowerFrameCount: 240, duckInvulnerableFrameCount: 100, maxHeartPointsScale: 0.2 }),
     Redirect: mk({ poisonAffectsClawAttackPower: true, poisonAffectsMovementSpeed: false }),
     Dexterous: mk({ baseClawAttackPowerScale: 0.9, maxComboClawAttackPowerScale: 1.8 }),
     Cigarette: mk({ lungCastDistanceScale: 36 / 90, lungCastTimeScale: 0.925, lungAttackPowerScale: 1.33 }),

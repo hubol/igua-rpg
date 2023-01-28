@@ -131,7 +131,7 @@ function createPlayer(behavior = true)
                     if (canPreventDeathIfDucked)
                         progress.health = Math.max(progress.health, 1);
                     player.invulnerableFrameCount = derivedStats.badge.duckInvulnerableFrameCount;
-                    progress.status.successfulDuckTimer = 120;
+                    progress.status.successfulDuckTimer = derivedStats.badge.duckTemporaryClawAttackPowerFrameCount;
                 }
                 else
                 {
