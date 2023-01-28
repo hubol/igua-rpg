@@ -5,7 +5,9 @@ const badgeTemplate = {
 
     baseAttackPowerScale: 1,
     baseClawAttackPowerScale: 1,
+    minComboClawAttackPowerScale: 1,
     maxComboClawAttackPowerScale: 1,
+    comboMaxCount: 4,
 
     duckInvulnerableFrameCount: 90,
     duckTemporaryClawAttackPowerScale: 1,
@@ -35,7 +37,7 @@ export const Badges = {
     None: mk({}),
     Shield: mk({ damageTakenScale: 0.5, duckDamageTakenScale: 0.2, duckedDamageCountsTowardsHitCount: false, duckTemporaryClawAttackPowerScale: 1.33, duckTemporaryClawAttackPowerFrameCount: 240, duckInvulnerableFrameCount: 100, maxHeartPointsScale: 0.2 }),
     Redirect: mk({ poisonAffectsClawAttackPower: true, poisonAffectsMovementSpeed: false }),
-    Dexterous: mk({ baseClawAttackPowerScale: 0.9, maxComboClawAttackPowerScale: 1.8 }),
+    Dexterous: mk({ baseClawAttackPowerScale: 0.7, minComboClawAttackPowerScale: 1.4, maxComboClawAttackPowerScale: 1.8 }),
     Cigarette: mk({ lungCastDistanceScale: 36 / 90, lungCastTimeScale: 0.925, lungAttackPowerScale: 1.33 }),
 
     // TODO These are pretty boring...

@@ -34,7 +34,8 @@ export const derivedStats = {
     get attackPower() {
         let power = this.rawAttackPower;
         power *= this.badge.baseAttackPowerScale;
-        power *= nlerp(this.badge.baseClawAttackPowerScale, this.badge.maxComboClawAttackPowerScale, Math.min(1, progress.status.combo / 4));
+        power *= progress.status.combo === 0 ? this.badge.baseClawAttackPowerScale
+            : nlerp(this.badge.minComboClawAttackPowerScale, this.badge.maxComboClawAttackPowerScale, Math.min(1, progress.status.combo / this.badge.comboMaxCount));
         if (progress.status.successfulDuckTimer > 0)
             power *= this.badge.duckTemporaryClawAttackPowerScale;
         if (this.badge.poisonAffectsClawAttackPower) {
