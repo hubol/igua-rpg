@@ -14,7 +14,7 @@ import {merge} from "../utils/object/merge";
 import {approachLinear} from "../utils/math/number";
 import {sleep} from "../cutscene/sleep";
 import {cutscene} from "../cutscene/cutscene";
-import {show, showAll} from "../cutscene/dialog";
+import {DialogSpeaker, show, showAll} from "../cutscene/dialog";
 import {player} from "../gameObjects/player";
 import {CheckerLooksGood, DassMoveUp, Gate} from "../sounds";
 import {move} from "../cutscene/move";
@@ -107,6 +107,7 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         Gate.play();
         await sleep(60);
         const d = dassmann().at([20, 32].add(level.Door)).show();
+        DialogSpeaker.value.speaker = d;
         await sleep(1000);
         await show(`I have been looking all over for you!`);
 

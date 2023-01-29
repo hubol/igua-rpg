@@ -84,7 +84,8 @@ export function dassmann() {
             facing: <FacingExpression>'auto',
             walking: <WalkingExpression>'auto',
         },
-        friction: 0, })
+        friction: 0,
+        speakerbox: new Graphics().beginFill(0xff0000).drawRect(-3, -33, 8, 16).hide()})
         .withGravityAndWallResist([0, -8], 8, 0.3)
         .withStep(() => {
             antennaExpressions[c.expression.antenna]();
@@ -94,7 +95,7 @@ export function dassmann() {
                 c.speed.x = approachLinear(c.speed.x, 0, c.friction);
         });
 
-    c.addChild(...hurtboxes);
+    c.addChild(...hurtboxes, c.speakerbox);
 
     const { diff } = trackPosition(c);
 

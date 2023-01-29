@@ -1,6 +1,6 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {FinalEmoWizardBody, FinalEmoWizardDress, FinalEmoWizardDressFringe, FinalEmoWizardFace} from "../textures";
-import {DisplayObject, Sprite, Texture, TilingSprite} from "pixi.js";
+import {DisplayObject, Graphics, Sprite, Texture, TilingSprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {scene} from "../igua/scene";
 import {animatedSprite} from "../igua/animatedSprite";
@@ -38,7 +38,8 @@ export function emoWizard() {
         say(message: string, emotion: Emotion) {
             c.head.face.emotion = emotion;
             return show(message);
-        }})
+        },
+        speakerbox: new Graphics().beginFill(0xff0000).drawRect(12, 0, 8, 16).hide()})
         .withStep(() => {
             c.head.y = c.dress.neckY;
             c.dress.walking = Math.abs(diff.x) > 0.3;
@@ -60,7 +61,7 @@ export function emoWizard() {
 
     const { diff } = trackPosition(c);
 
-    c.addChild(c.dress, c.head);
+    c.addChild(c.dress, c.head, c.speakerbox);
 
     c.withAsync(async () => {
         while (true) {
