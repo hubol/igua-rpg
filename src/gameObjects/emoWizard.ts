@@ -175,8 +175,10 @@ function dress() {
         while (true) {
             await wait(() => c.neckY > 1);
             fringe.scale.x = 0.9;
-            if (c.walking)
-                EmoWizardStep.play();
+            if (c.walking) {
+                // @ts-ignore
+                EmoWizardStep.volume(0.4).play();
+            }
             await sleep(125);
             await wait(() => c.neckY < 1);
             fringe.scale.x = 1;

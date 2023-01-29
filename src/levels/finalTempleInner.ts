@@ -14,12 +14,13 @@ import {merge} from "../utils/object/merge";
 import {approachLinear} from "../utils/math/number";
 import {sleep} from "../cutscene/sleep";
 import {cutscene} from "../cutscene/cutscene";
-import {showAll} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {player} from "../gameObjects/player";
-import {CheckerLooksGood, Gate} from "../sounds";
+import {CheckerLooksGood, DassMoveUp, Gate} from "../sounds";
 import {move} from "../cutscene/move";
 import {jukebox} from "../igua/jukebox";
 import {simpleWallSwitch} from "../gameObjects/simpleWallSwitch";
+import {dassmann} from "../gameObjects/dassmann";
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
@@ -91,11 +92,30 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         e.autoEmote = false;
         await e.say(`I am the wizard of emotion.`, Emotion.Cool);
         await e.say(`I appreciate your coming here. I became trapped in this vault some time ago.`, Emotion.Happy);
-        await e.say(`Everyone is asking you to find a weapon?`, Emotion.Shocked);
+        await e.say(`Everyone is expecting you to find a weapon?`, Emotion.Shocked);
         await e.say(`Well, it's not here. That thing broke a long time ago. And no one alive can repair it.`, Emotion.Sad);
-        await e.say(`My strongest abilities are establishing interstellar trade deals and producing refreshing drinks.`, Emotion.Cool);
-        await e.say(`Whereas great weapons were the specialty of one of my colleagues.`, Emotion.Dead);
+        await e.say(`Indeed, repairing weapons is way outside of my wheelhouse.`, Emotion.Dead);
+        await e.say(`Instead, my strongest abilities are establishing interstellar trade deals and producing refreshing drinks.`, Emotion.Cool);
         e.autoEmote = true;
+
+        await sleep(250);
+        DassMoveUp.play();
+        await sleep(125);
+        await show(`Did someone say refreshing drinks?!`);
+
+        await sleep(250);
+        Gate.play();
+        await sleep(60);
+        const d = dassmann().at([20, 32].add(level.Door)).show();
+        await sleep(1000);
+        await show(`I have been looking all over for you!`);
+
+        /*
+        D: Did someone say refreshing drinks?!
+D: I have been looking all over for you!
+D: I've come to pick up the newest batch.
+
+         */
     });
 }
 
