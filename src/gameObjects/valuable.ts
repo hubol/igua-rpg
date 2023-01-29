@@ -39,7 +39,7 @@ function valuableImpl(x, y, uid, type: ValuableType)
 
             if (uid)
                 progress.flags.objects.gotLevelValuable.add(uid);
-            progress.valuables += valuableStyle.value + 5 * progress.newGamePlus;
+            progress.valuables += valuableStyle.value + valuableStyle.ngPlusValue * progress.newGamePlus;
             const sound = valuableStyle.sound;
             sound.volume(0.5);
             sound.play();
@@ -66,11 +66,13 @@ const valuableStyles = {
     ValuableBlue: {
         sound: CollectValuable,
         texture: BlueValuable,
-        value: 15
+        value: 15,
+        ngPlusValue: 6,
     },
     ValuableOrange: {
         sound: CollectValuableSmall,
         texture: OrangeValuable,
-        value: 5
+        value: 5,
+        ngPlusValue: 2,
     },
 };
