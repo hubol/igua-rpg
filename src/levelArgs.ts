@@ -1022,7 +1022,7 @@ export const FinalTempleInnerArgs = {
       Block_3: resolveBlock({ type: "Block", x: 32, y: 176, width: 192, height: 80, flippedX: false, flippedY: false, uid: "55823268_3", name: "", depth: 0 }),
       Door: resolveDoor({ type: "Door", x: 40, y: 144, flippedX: false, flippedY: false, uid: "55913988_4", levelName: "FinalTempleOuter", checkpointName: "FromInner", name: "", depth: 0 }),
       Player: { type: "Player", x: 88, y: 176, flippedX: false, flippedY: false, uid: "55988047_5", faceRight: true, name: "", depth: 0 },
-      EmoWizardInitial: { type: "Anchor", x: 184, y: 176, flippedX: false, flippedY: false, uid: "25979726_6", name: "EmoWizardInitial", depth: 0 },
+      EmoWizardInitial: { type: "Anchor", x: 200, y: 176, flippedX: false, flippedY: false, uid: "25979726_6", name: "EmoWizardInitial", depth: 0 },
       Shadow: resolveRegion({ type: "Region", x: 16, y: 64, width: 224, height: 144, flippedX: false, flippedY: false, uid: "25971607_7", name: "Shadow", depth: 0 }),
     };
   },

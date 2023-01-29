@@ -302,6 +302,11 @@ export const EffectPoison = new Howl({
     
 });
 
+export const EmoWizardStep = new Howl({
+    src: [require("./sound/emo wizard step.ogg"), require("./sound/emo wizard step.mp3")],
+    
+});
+
 export const EmpPulseFinal = new Howl({
     src: [require("./sound/emp pulse final.ogg"), require("./sound/emp pulse final.mp3")],
     

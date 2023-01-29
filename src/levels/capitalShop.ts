@@ -4,7 +4,7 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {mirror} from "../gameObjects/mirror";
 import {roundWindow} from "../gameObjects/roundWindow";
 import {decalsOf} from "../gameObjects/decal";
-import {CapitalArc, CapitalSecuritySwitch, GroundSpeckles} from "../textures";
+import {CapitalArc, GroundSpeckles} from "../textures";
 import {shop} from "../igua/inventory/shop";
 import {show, showAll} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
@@ -15,9 +15,8 @@ import {player} from "../gameObjects/player";
 import {getCost} from "../igua/inventory/potions";
 import {jukebox} from "../igua/jukebox";
 import {BlindHouse, CapitalMusicPlease} from "../musics";
-import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {Sprite} from "pixi.js";
 import {Rectangle} from "../utils/math/rectangle";
+import {simpleWallSwitch} from "../gameObjects/simpleWallSwitch";
 
 const lowestCostInTheNation: typeof getCost = x => getCost(x) - 1;
 
@@ -84,9 +83,8 @@ export function CapitalShop() {
         return await show('Okay. Please use the self-service sign to shop.');
     }
 
-    const switchObj = Sprite.from(switchTxs[0])
+    simpleWallSwitch(() => capital.openedStorage)
         .at(210, 172)
-        .withStep(() => switchObj.texture = switchTxs[capital.openedStorage ? 1 : 0])
         .behind();
 
     decalsOf(CapitalArc).forEach(x => x.tinted(scene.terrainColor));
@@ -97,5 +95,3 @@ export function makeCapitalWindow(rect: Rectangle, color = scene.backgroundColor
     mirror(rect.width, rect.height).at(rect).behind();
     roundWindow(rect.width, rect.height, 2).at(rect).tinted(color).behind();
 }
-
-const switchTxs = subimageTextures(CapitalSecuritySwitch, 2);

@@ -99,6 +99,8 @@ export let DontPoster: PIXI.Texture;
 export let DuckGiant: PIXI.Texture;
 export let ElectricBolt: PIXI.Texture;
 export let FinalEmoWizardBody: PIXI.Texture;
+export let FinalEmoWizardDressFringe: PIXI.Texture;
+export let FinalEmoWizardDress: PIXI.Texture;
 export let FinalEmoWizardFace: PIXI.Texture;
 export let FinalEnemySoul: PIXI.Texture;
 export let FinalLargeDoorBack: PIXI.Texture;
@@ -589,6 +591,12 @@ export function loadTexturesAsync()
 
     const FinalEmoWizardBodyPath = require("./images/final/emo wizard body.png");
     loader.add(FinalEmoWizardBodyPath); 
+
+    const FinalEmoWizardDressFringePath = require("./images/final/emo wizard dress fringe.png");
+    loader.add(FinalEmoWizardDressFringePath); 
+
+    const FinalEmoWizardDressPath = require("./images/final/emo wizard dress.png");
+    loader.add(FinalEmoWizardDressPath); 
 
     const FinalEmoWizardFacePath = require("./images/final/emo wizard face.png");
     loader.add(FinalEmoWizardFacePath); 
@@ -1273,6 +1281,8 @@ export function loadTexturesAsync()
             DuckGiant = resources[DuckGiantPath]?.texture as PIXI.Texture;
             ElectricBolt = resources[ElectricBoltPath]?.texture as PIXI.Texture;
             FinalEmoWizardBody = resources[FinalEmoWizardBodyPath]?.texture as PIXI.Texture;
+            FinalEmoWizardDressFringe = resources[FinalEmoWizardDressFringePath]?.texture as PIXI.Texture;
+            FinalEmoWizardDress = resources[FinalEmoWizardDressPath]?.texture as PIXI.Texture;
             FinalEmoWizardFace = resources[FinalEmoWizardFacePath]?.texture as PIXI.Texture;
             FinalEnemySoul = resources[FinalEnemySoulPath]?.texture as PIXI.Texture;
             FinalLargeDoorBack = resources[FinalLargeDoorBackPath]?.texture as PIXI.Texture;

@@ -1,5 +1,5 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {FinalEmoWizardBody, FinalEmoWizardFace} from "../textures";
+import {FinalEmoWizardBody, FinalEmoWizardDress, FinalEmoWizardDressFringe, FinalEmoWizardFace} from "../textures";
 import {DisplayObject, Sprite, Texture, TilingSprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {scene} from "../igua/scene";
@@ -13,42 +13,58 @@ import {merge} from "../utils/object/merge";
 import {Undefined} from "../utils/types/undefined";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {dither} from "./dither";
-import {approachLinear} from "../utils/math/number";
+import {approachLinear, nlerp} from "../utils/math/number";
 import {now} from "../utils/now";
+import {trackPosition} from "../igua/trackPosition";
+import {waitHold} from "../cutscene/waitHold";
+import {show} from "../cutscene/dialog";
+import { EmoWizardStep } from "../sounds";
 
 const bodyTxs = subimageTextures(FinalEmoWizardBody, 6);
+const dressTxs = subimageTextures(FinalEmoWizardDress, 6);
 
 export function emoWizard() {
+    let pedometer = 0;
+    let crouch = 0;
+
     const c = merge(container(), { dress: dress(), head: head(), set facing(value: number) {
-        c.dress.facing = value;
-        c.head.facing = value;
-        c.head.face.facing = value;
-    } });
+            c.dress.facing = value;
+            c.head.facing = value;
+            c.head.face.facing = value;
+        },
+        isCrouching: false,
+        autoFacing: true,
+        autoEmote: false,
+        say(message: string, emotion: Emotion) {
+            c.head.face.emotion = emotion;
+            return show(message);
+        }})
+        .withStep(() => {
+            c.head.y = c.dress.neckY;
+            c.dress.walking = Math.abs(diff.x) > 0.3;
+
+            if (c.dress.walking) {
+                pedometer += nlerp(1, 2, (Math.abs(diff.x) - 1) / 6);
+                const f = (Math.sin((pedometer / 10) * Math.PI) + 1) / 2;
+                c.dress.crouchUnit = f * 0.4;
+                if (c.autoFacing)
+                    c.facing = Math.sign(diff.x);
+            }
+            else {
+                pedometer = 0;
+                c.dress.crouchUnit = approachLinear(c.dress.crouchUnit, crouch, 0.1);
+            }
+
+            crouch = approachLinear(crouch, c.isCrouching ? 1 : 0, 0.033);
+        });
+
+    const { diff } = trackPosition(c);
+
     c.addChild(c.dress, c.head);
 
     c.withAsync(async () => {
         while (true) {
-            await sleep(3000);
-            c.facing = 0;
-            await sleep(3000);
-            c.facing = 1;
-            await sleep(3000);
-            c.facing = -1;
-        }
-    });
-
-    c.withAsync(async () => {
-        while (true) {
-            await sleep(5000);
-            c.head.away = true;
-            await sleep(1000);
-            c.head.away = false;
-        }
-    });
-
-    c.withAsync(async () => {
-        while (true) {
-            await sleep(500 + rng.int(3500));
+            await waitHold(() => c.autoEmote, 50 + rng.int(70));
             c.head.face.emotion = rng.int(Emotion.Happy + 1);
         }
     });
@@ -59,7 +75,7 @@ export function emoWizard() {
 
 export const emoWizardHead = head;
 
-enum Emotion {
+export enum Emotion {
     Angry,
     Shocked,
     Sad,
@@ -143,13 +159,28 @@ async function randomizedPingPongAnimation(c: ReturnType<typeof animatedSprite>,
 }
 
 function dress() {
-    const c = merge(container(), { facing: 0 });
-    const s = Sprite.from(bodyTxs[2]).show(c).at(16, 36);
-    s.anchor.set(0.5, 1);
+    const s = animatedSprite(dressTxs, 0).at(10, 20);
+    const c = merge(container(), { facing: 0, get neckY() { return Math.floor(s.imageIndex); }, crouchUnit: 0, walking: false, });
+    s.show(c);
+    const fringe = Sprite.from(FinalEmoWizardDressFringe).at(16, 36).show(c);
+    fringe.anchor.set(10 / 22, 0);
     const arms = Sprite.from(bodyTxs[4]).show(c);
     c.withStep(() => {
         arms.pivot.x = approachLinear(arms.pivot.x, c.facing, 0.25);
         arms.y = Math.sign(Math.round((Math.sin(scene.s * Math.PI * 1 + 1) + 1) / 2));
+        s.imageIndex = Math.max(0, Math.min(dressTxs.length - 1, c.crouchUnit * dressTxs.length));
+        arms.y += Math.floor(c.neckY / 2);
+    })
+    .withAsync(async () => {
+        while (true) {
+            await wait(() => c.neckY > 1);
+            fringe.scale.x = 0.9;
+            if (c.walking)
+                EmoWizardStep.play();
+            await sleep(125);
+            await wait(() => c.neckY < 1);
+            fringe.scale.x = 1;
+        }
     });
     return c;
 }
