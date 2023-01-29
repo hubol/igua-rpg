@@ -21,9 +21,10 @@ import {ask} from "../cutscene/ask";
 import {oracleAdviceVolcano} from "../igua/oracleAdvice";
 import {decalsOf} from "../gameObjects/decal";
 import {CrackSmall} from "../textures";
+import {waitHold} from "../cutscene/waitHold";
 
 export function VolcanoOracle() {
-    scene.backgroundColor = 0x60B0E0;
+    scene.backgroundColor = 0x6D1913;
     scene.terrainColor = 0x6D1913;
     const level = applyOgmoLevel(VolcanoOracleArgs);
 
@@ -89,7 +90,7 @@ function enrichRescueOracle(level: GameObjectsType<typeof VolcanoOracleArgs>) {
 
         scene.gameObjectStage.withAsync(async () => {
             await wait(() => clown.destroyed);
-            await sleep(500);
+            await waitHold(() => !cutscene.isPlaying, 30);
             cutscene.play(async () => {
                 level.Oracle.mods.remove(Vibratey);
                 level.Oracle.isDucking = false;
