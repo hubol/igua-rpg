@@ -7,6 +7,7 @@ import {makePseudo} from "../utils/math/makePseudo";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {game} from "../igua/game";
+import {cracks} from "../gameObjects/cracks";
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
@@ -15,8 +16,15 @@ export function FinalTempleInner() {
 
     capitalBricksWall(level.Shadow.width, level.Shadow.height, makePseudo(2369.1452))
         .at(level.Shadow.x, level.Shadow.y + 20)
-        .behind(0)
+        .behind()
         .opaqueTint = 0x405080;
+
+    capitalBricksWall(level.Shadow.width, level.Shadow.height, makePseudo(69.1452))
+        .at(level.Shadow.x - 61, level.Shadow.y + 69)
+        .behind()
+        .opaqueTint = 0x405080;
+
+    cracks(38425.74, 0x405080).behind();
 
     emoWizard().at(level.EmoWizardInitial).show();
     enrichShadowBox(level);
