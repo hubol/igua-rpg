@@ -10,12 +10,14 @@ import {range} from "../utils/range";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {scene} from "../igua/scene";
 import {cyclic} from "../utils/math/number";
+import {animatedSprite} from "../igua/animatedSprite";
+import {lerp} from "../cutscene/lerp";
 
 const slotMachineTxs = subimageTextures(GiantsSlotMachine, { width: 50 });
 const symbolTxs = subimageTextures(GiantsSlotMachineSymbols, { width: 14 });
 
 const txs = {
-    arm: [slotMachineTxs[0], slotMachineTxs[1], slotMachineTxs[2]],
+    arm: [slotMachineTxs[0], slotMachineTxs[1], slotMachineTxs[2]].reverse(),
     slotMachine: slotMachineTxs[3],
     overheadDisplay: slotMachineTxs[4],
     symbolDisplay: slotMachineTxs[5],
@@ -31,6 +33,10 @@ export function slotMachine() {
     const c = container(p)
         .withAsync(async () => {
             while (true) {
+                await lerp(p, 'armPull').to(1).over(250);
+                await sleep(225);
+                await lerp(p, 'armPull').to(0).over(175);
+
                 const prize = getPrize(prng);
                 const reels: Reels = rng.choose(prize.reels);
                 const makesSenseToTeaseSymbol = prize.prize > 5 || reels[0] === reels[1];
@@ -45,7 +51,12 @@ export function slotMachine() {
 function puppet() {
     const reels = symbolDisplay();
     const c = merge(container(), { armPull: 0, winMessage: false, damaged: false, playReels: reels.playReels });
-    c.addChild(Sprite.from(txs.slotMachine), reels);
+    const arm = animatedSprite(txs.arm, 0);
+    c.addChild(Sprite.from(txs.slotMachine), arm, reels);
+
+    c.withStep(() => {
+        arm.imageIndex = Math.max(0, Math.min(2, Math.floor(c.armPull * 2)));
+    });
 
     return c;
 }
