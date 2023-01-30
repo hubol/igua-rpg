@@ -12,6 +12,9 @@ import {scene} from "../igua/scene";
 import {cyclic} from "../utils/math/number";
 import {animatedSprite} from "../igua/animatedSprite";
 import {lerp} from "../cutscene/lerp";
+import {spendValuables} from "../igua/logic/spendValuables";
+import {progress} from "../igua/data/progress";
+import {playValuableCollectSounds} from "../cutscene/giftValuables";
 
 const slotMachineTxs = subimageTextures(GiantsSlotMachine, { width: 50 });
 const symbolTxs = subimageTextures(GiantsSlotMachineSymbols, { width: 14 });
@@ -31,17 +34,30 @@ export function slotMachine() {
     const p = puppet();
 
     const c = container(p)
-        .withAsync(async () => {
-            while (true) {
-                await lerp(p, 'armPull').to(1).over(250);
-                await sleep(225);
-                await lerp(p, 'armPull').to(0).over(175);
+        .withCutscene(async () => {
+            if (!spendValuables(5))
+                return;
 
-                const prize = getPrize(prng);
-                const reels: Reels = rng.choose(prize.reels);
-                const makesSenseToTeaseSymbol = prize.prize > 5 || reels[0] === reels[1];
-                await p.playReels(reels, makesSenseToTeaseSymbol && rng() > 0.33);
-                await sleep(1000);
+            await lerp(p, 'armPull').to(1).over(250);
+            await sleep(225);
+            await lerp(p, 'armPull').to(0).over(175);
+
+            p.overhead.screen = OverheadScreen.Playing;
+
+            const prize = getPrize(prng);
+            const reels: Reels = rng.choose(prize.reels);
+            const makesSenseToTeaseSymbol = prize.prize > 5 || reels[0] === reels[1];
+            await p.playReels(reels, makesSenseToTeaseSymbol && rng() > 0.33);
+
+            const payout = Math.ceil(prize.prize * 5);
+
+            if (payout) {
+                await playValuableCollectSounds(payout);
+                progress.valuables += payout;
+                p.overhead.screen = OverheadScreen.Win;
+            }
+            else {
+                p.overhead.screen = OverheadScreen.Play;
             }
         });
 
@@ -50,9 +66,10 @@ export function slotMachine() {
 
 function puppet() {
     const reels = symbolDisplay();
-    const c = merge(container(), { armPull: 0, winMessage: false, damaged: false, playReels: reels.playReels });
+    const overhead = overheadDisplay();
+    const c = merge(container(), { armPull: 0, overhead, damaged: false, playReels: reels.playReels });
     const arm = animatedSprite(txs.arm, 0);
-    c.addChild(Sprite.from(txs.slotMachine), arm, reels);
+    c.addChild(Sprite.from(txs.slotMachine), arm, reels, overhead);
 
     c.withStep(() => {
         arm.imageIndex = Math.max(0, Math.min(2, Math.floor(c.armPull * 2)));
@@ -83,6 +100,59 @@ function symbolDisplay() {
     return c;
 }
 
+enum OverheadScreen {
+    Play,
+    Playing,
+    Win,
+    Damaged
+}
+
+function overheadDisplay() {
+    const c = merge(container(), { screen: OverheadScreen.Play });
+    c.filter(alphaMaskFilter(Sprite.from(txs.overheadDisplay).show(c)));
+    const play = playScreen();
+    const win = winScreen();
+
+    const screens = [ play, play, win, play ];
+    for (const screen of screens) {
+        if (!screen.parent)
+            screen.show(c);
+    }
+
+    return c.withStep(() => {
+        screens[c.screen].index = c.children.length - 1;
+    });
+}
+
+function playScreen() {
+    const bg = Sprite.from(txs.overheadDisplay).tinted(0xE0CD00);
+    const fg = Sprite.from(txs.play).tinted(0xC64913);
+
+    const c = container(bg, fg)
+        .withAsync(async () => {
+            while (true) {
+                fg.visible = !fg.visible;
+                await sleep(250);
+            }
+        });
+
+    return c;
+}
+
+function winScreen() {
+    const bg = Sprite.from(txs.overheadDisplay).tinted(0x44A755);
+    const fg = Sprite.from(txs.win);
+
+    const c = container(bg, fg)
+        .withStep(() => {
+            fg.x += 1;
+            if (fg.x >= 32)
+                fg.x = -32;
+        });
+
+    return c;
+}
+
 function reel() {
     let _spin = false;
     let _stopped = true;
@@ -105,20 +175,22 @@ function reel() {
 
     async function stop(at: Symbol, fast = true) {
         _stopAt = at;
-        const tpy = getTargetPivotY();
-
-        if (fast) {
-            await wait(() => c.pivot.y > tpy && c.pivot.y < tpy + 4);
-            _spin = false;
-        }
-        else {
-            await wait(() => c.pivot.y > tpy);
-            await wait(() => c.pivot.y < tpy);
-            await sleep(rng.int(500));
-            _spin = false;
-        }
+        await waitToStopSpin(fast);
+        _spin = false;
         await wait(() => _stopped);
     }
+
+    async function waitToStopSpin(fast: boolean) {
+        const tpy = getTargetPivotY();
+
+        if (fast)
+            return await wait(() => c.pivot.y > tpy && c.pivot.y < tpy + 4);
+
+        await wait(() => c.pivot.y > tpy);
+        await wait(() => c.pivot.y < tpy + 4);
+        await sleep(rng.int(500));
+    }
+
 
     return c.withStep(() => {
         const tpy = getTargetPivotY();

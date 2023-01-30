@@ -9,7 +9,7 @@ export async function giftValuables(amount: number) {
     await show(`Received ${amount} valuables.`);
 }
 
-async function playValuableCollectSounds(amount: number) {
+export async function playValuableCollectSounds(amount: number) {
     while (amount >= 15) {
         CollectValuable.play();
         await sleep(67);
