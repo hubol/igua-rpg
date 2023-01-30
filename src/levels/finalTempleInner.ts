@@ -107,9 +107,20 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         Gate.play();
         await sleep(60);
         const d = dassmann().at([20, 32].add(level.Door)).show();
+        d.expression.facing = 'off';
+        d.head.face = 1;
+        d.body.face = 1;
+
         DialogSpeaker.value.speaker = d;
         await sleep(1000);
         await show(`I have been looking all over for you!`);
+
+        e.autoFacing = false;
+        await Promise.all([
+            move(d).off(83, 0).over(750),
+            sleep(400).then(x => move(e).off(20, 0).over(350))
+        ]);
+        e.autoFacing = true;
 
         /*
         D: Did someone say refreshing drinks?!
