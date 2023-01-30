@@ -3,6 +3,7 @@ import {GiantsCasinoArgs} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {decalsOf} from "../gameObjects/decal";
 import {CapitalArc, CloudLong, GroundSpeckles} from "../textures";
+import {slotMachine} from "../gameObjects/slotMachine";
 
 export function GiantsCasino() {
     scene.backgroundColor = 0x60B0E0;
@@ -13,4 +14,6 @@ export function GiantsCasino() {
     decalsOf(CapitalArc).forEach(x => x.tinted(scene.terrainColor));
     decalsOf(CloudLong).forEach(x => x.tinted(0x3060E0));
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x7FC41F));
+
+    slotMachine().at(127, 138).show();
 }

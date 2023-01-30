@@ -121,6 +121,9 @@ export let FlyCage: PIXI.Texture;
 export let GiantsDinerTable: PIXI.Texture;
 export let GiantsExterior: PIXI.Texture;
 export let GiantsFoodStash: PIXI.Texture;
+export let GiantsSlotMachineNoise: PIXI.Texture;
+export let GiantsSlotMachineSymbols: PIXI.Texture;
+export let GiantsSlotMachine: PIXI.Texture;
 export let GiantsUpblock: PIXI.Texture;
 export let GlowingCircle: PIXI.Texture;
 export let GlowingDiamond: PIXI.Texture;
@@ -658,6 +661,15 @@ export function loadTexturesAsync()
 
     const GiantsFoodStashPath = require("./images/giants/food stash.png");
     loader.add(GiantsFoodStashPath); 
+
+    const GiantsSlotMachineNoisePath = require("./images/giants/slot machine noise.png");
+    loader.add(GiantsSlotMachineNoisePath); 
+
+    const GiantsSlotMachineSymbolsPath = require("./images/giants/slot machine symbols.png");
+    loader.add(GiantsSlotMachineSymbolsPath); 
+
+    const GiantsSlotMachinePath = require("./images/giants/slot machine.png");
+    loader.add(GiantsSlotMachinePath); 
 
     const GiantsUpblockPath = require("./images/giants/upblock.png");
     loader.add(GiantsUpblockPath); 
@@ -1307,6 +1319,9 @@ export function loadTexturesAsync()
             GiantsDinerTable = resources[GiantsDinerTablePath]?.texture as PIXI.Texture;
             GiantsExterior = resources[GiantsExteriorPath]?.texture as PIXI.Texture;
             GiantsFoodStash = resources[GiantsFoodStashPath]?.texture as PIXI.Texture;
+            GiantsSlotMachineNoise = resources[GiantsSlotMachineNoisePath]?.texture as PIXI.Texture;
+            GiantsSlotMachineSymbols = resources[GiantsSlotMachineSymbolsPath]?.texture as PIXI.Texture;
+            GiantsSlotMachine = resources[GiantsSlotMachinePath]?.texture as PIXI.Texture;
             GiantsUpblock = resources[GiantsUpblockPath]?.texture as PIXI.Texture;
             GlowingCircle = resources[GlowingCirclePath]?.texture as PIXI.Texture;
             GlowingDiamond = resources[GlowingDiamondPath]?.texture as PIXI.Texture;
