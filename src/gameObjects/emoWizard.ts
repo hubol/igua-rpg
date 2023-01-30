@@ -40,6 +40,7 @@ export function emoWizard() {
             return show(message);
         },
         speakerbox: new Graphics().beginFill(0xff0000).drawRect(12, 0, 8, 16).hide()})
+        .withGravityAndWallResist([0, -8], 8, 0.1)
         .withStep(() => {
             c.head.y = c.dress.neckY;
             c.dress.walking = Math.abs(diff.x) > 0.3;
