@@ -1086,6 +1086,38 @@ export const FinalTempleOuterArgs = {
   },
 };
 
+export const GiantsCasinoArgs = {
+  width: 256,
+  height: 256,
+  gameObjectsSupplier: () => {
+    return {
+      CapitalArc: resolveDecalGameObject({ x: 16, y: 64, originX: 0, originY: 0, scaleX: 0.5, scaleY: 0.5, rotation: 0, layerName: "TerrainDecals", texture: CapitalArc }),
+      CapitalArc_1: resolveDecalGameObject({ x: 16, y: 192, originX: 0, originY: 0, scaleX: 0.5, scaleY: -0.5, rotation: 0, layerName: "TerrainDecals", texture: CapitalArc }),
+      CapitalArc_2: resolveDecalGameObject({ x: 240, y: 192, originX: 0, originY: 0, scaleX: -0.5, scaleY: -0.5, rotation: 0, layerName: "TerrainDecals", texture: CapitalArc }),
+      CapitalArc_3: resolveDecalGameObject({ x: 240, y: 64, originX: 0, originY: 0, scaleX: -0.5, scaleY: 0.5, rotation: 0, layerName: "TerrainDecals", texture: CapitalArc }),
+      GroundSpeckles: resolveDecalGameObject({ x: 64.1911134916981, y: 205.3073476259404, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: GroundSpeckles }),
+      GroundSpeckles_1: resolveDecalGameObject({ x: 201.2437265415574, y: 48.6757898546726, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: GroundSpeckles }),
+      CloudLong: resolveDecalGameObject({ x: 32, y: 88, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CloudLong }),
+      CloudLong_1: resolveDecalGameObject({ x: 112, y: 120, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CloudLong }),
+      CloudLong_2: resolveDecalGameObject({ x: 48, y: 160, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CloudLong }),
+      CloudLong_3: resolveDecalGameObject({ x: 152, y: 176, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CloudLong }),
+      CloudLong_4: resolveDecalGameObject({ x: 232, y: 144, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CloudLong }),
+      CloudLong_5: resolveDecalGameObject({ x: 184, y: 80, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CloudLong }),
+      Block: resolveBlock({ type: "Block", x: 0, y: 0, width: 256, height: 64, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
+      Block_1: resolveBlock({ type: "Block", x: 0, y: 192, width: 256, height: 64, flippedX: false, flippedY: false, uid: "55823268_1", name: "", depth: 0 }),
+      Block_2: resolveBlock({ type: "Block", x: 0, y: 64, width: 16, height: 128, flippedX: false, flippedY: false, uid: "55823268_2", name: "", depth: 0 }),
+      Block_3: resolveBlock({ type: "Block", x: 240, y: 64, width: 16, height: 128, flippedX: false, flippedY: false, uid: "55823268_3", name: "", depth: 0 }),
+      SlopeLeft: resolveSlopeLeft({ type: "SlopeLeft", x: 16, y: 176, width: 16, height: 16, flippedX: false, flippedY: false, uid: "55845599_4", name: "", depth: 0 }),
+      SlopeLeft_1: resolveSlopeLeft({ type: "SlopeLeft", x: 16, y: 64, width: 16, height: 16, flippedX: false, flippedY: true, uid: "55845599_5", name: "", depth: 0 }),
+      SlopeRight: resolveSlopeRight({ type: "SlopeRight", x: 224, y: 176, width: 16, height: 16, flippedX: false, flippedY: false, uid: "55824435_7", name: "", depth: 0 }),
+      SlopeRight_1: resolveSlopeRight({ type: "SlopeRight", x: 224, y: 64, width: 16, height: 16, flippedX: false, flippedY: true, uid: "55824435_8", name: "", depth: 0 }),
+      PipeHorizontal: resolvePipeHorizontal({ type: "PipeHorizontal", x: 16, y: 128, width: 72, flippedX: false, flippedY: false, uid: "55841307_9", visible: true, name: "", depth: 0 }),
+      Door: resolveDoor({ type: "Door", x: 24, y: 96, flippedX: false, flippedY: false, uid: "55913988_10", levelName: "GiantsTown", checkpointName: "FromCasino", name: "", depth: 0 }),
+      Player: { type: "Player", x: 72, y: 128, flippedX: false, flippedY: false, uid: "55988047_11", faceRight: true, name: "", depth: 0 },
+    };
+  },
+};
+
 export const GiantsRestaurantArgs = {
   width: 256,
   height: 256,

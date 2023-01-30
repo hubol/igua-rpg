@@ -1,12 +1,14 @@
 import {Graphics, SCALE_MODES, SimpleMesh, Sprite, WRAP_MODES} from "pixi.js";
 import {distance, dot, normalize, perpendicular, Vector, vnew} from "../utils/math/vector";
-import {CapitalUpblock, JunglePlank, JunglePlankEnd, LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
+import {CapitalUpblock, GiantsUpblock, JunglePlank, JunglePlankEnd, LeftPipeEnd, Pipe, RightPipeEnd} from "../textures";
 import {scene} from "../igua/scene";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
 import {merge} from "../utils/object/merge";
 
 
 const walls: Wall[] = [];
+
+[CapitalUpblock, GiantsUpblock].forEach(x => x.baseTexture.wrapMode = WRAP_MODES.REPEAT);
 
 const pipeTextures = {
     get main() {
@@ -15,6 +17,8 @@ const pipeTextures = {
                 return JunglePlank;
             case 2:
                 return CapitalUpblock;
+            case 3:
+                return GiantsUpblock;
         }
         return Pipe;
     },
@@ -257,16 +261,18 @@ export function pipe(x0: number, y0: number, x1: number, y1: number)
     const { forward, length, normal } = getSlopeWallProperties(x0, y0, x1, y1, true);
     const texture = pipeTextures.main;
     const height = texture === Pipe ? 16 : texture.height;
-    const uvx = texture === CapitalUpblock ? length / 18 : 0;
+    const uvx = texture.baseTexture.wrapMode === WRAP_MODES.REPEAT ? length / texture.width : 0;
 
-    if (uvx !== 0)
-        texture.baseTexture.wrapMode = WRAP_MODES.REPEAT;
-    else
+    if (uvx === 0)
         texture.baseTexture.scaleMode = SCALE_MODES.LINEAR;
+
+    let dy = 0;
+    if (texture === GiantsUpblock)
+        dy = -2;
 
     const simpleMesh = new SimpleMesh(
         texture,
-        new Float32Array([ x0, y0, x1, y1, x1, y1 + height, x0, y0 + height]),
+        new Float32Array([ x0, y0 + dy, x1, y1 + dy, x1, y1 + height + dy, x0, y0 + height + dy]),
         new Float32Array([ 0, 0, uvx, 0, uvx, 1, 0, 1]),
         new Uint16Array([ 0, 1, 3, 1, 2, 3 ]));
 

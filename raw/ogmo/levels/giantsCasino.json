@@ -1,0 +1,266 @@
+{
+  "ogmoVersion": "3.4.0-hubol",
+  "width": 256,
+  "height": 256,
+  "offsetX": 0,
+  "offsetY": 0,
+  "layers": [
+    {
+      "name": "Entities",
+      "_eid": "55827504",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "entities": [
+        {
+          "name": "Block",
+          "id": 0,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 1,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 192,
+          "width": 256,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 2,
+          "_eid": "55823268",
+          "x": 0,
+          "y": 64,
+          "width": 16,
+          "height": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 3,
+          "_eid": "55823268",
+          "x": 240,
+          "y": 64,
+          "width": 16,
+          "height": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 4,
+          "_eid": "55845599",
+          "x": 16,
+          "y": 176,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 5,
+          "_eid": "55845599",
+          "x": 16,
+          "y": 64,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 7,
+          "_eid": "55824435",
+          "x": 224,
+          "y": 176,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 8,
+          "_eid": "55824435",
+          "x": 224,
+          "y": 64,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 9,
+          "_eid": "55841307",
+          "x": 16,
+          "y": 128,
+          "width": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": true, "name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 10,
+          "_eid": "55913988",
+          "x": 24,
+          "y": 96,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "GiantsTown", "checkpointName": "FromCasino", "name": "", "depth": 0}
+        },
+        {
+          "name": "Player",
+          "id": 11,
+          "_eid": "55988047",
+          "x": 72,
+          "y": 128,
+          "originX": 11,
+          "originY": 27,
+          "values": {"faceRight": true, "name": "", "depth": 0}
+        }
+      ]
+    },
+    {
+      "name": "FrontDecals",
+      "_eid": "23130474",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "TerrainDecals",
+      "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [
+        {
+          "x": 16,
+          "y": 64,
+          "scaleX": 0.5,
+          "scaleY": 0.5,
+          "rotation": 0,
+          "texture": "capital/arc.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {"x": 16, "y": 192, "scaleX": 0.5, "scaleY": -0.5, "rotation": 0, "texture": "capital/arc.png", "originX": 0, "originY": 0},
+        {"x": 240, "y": 192, "scaleX": -0.5, "scaleY": -0.5, "rotation": 0, "texture": "capital/arc.png", "originX": 0, "originY": 0},
+        {"x": 240, "y": 64, "scaleX": -0.5, "scaleY": 0.5, "rotation": 0, "texture": "capital/arc.png", "originX": 0, "originY": 0},
+        {
+          "x": 64.1911134916981,
+          "y": 205.3073476259404,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 201.2437265415574,
+          "y": 48.6757898546726,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "BackgroundDecals",
+      "_eid": "03531763",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [
+        {
+          "x": 32,
+          "y": 88,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 112, "y": 120, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 48, "y": 160, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 152, "y": 176, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 232, "y": 144, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
+        {"x": 184, "y": 80, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5}
+      ],
+      "folder": "..\\..\\src\\images"
+    },
+    {
+      "name": "Parallax1Decals",
+      "_eid": "86920620",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
+      "folder": "../../src/images"
+    }
+  ]
+}
