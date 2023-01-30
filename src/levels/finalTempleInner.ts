@@ -68,15 +68,15 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
             `Oh!`,
             `Is someone there?`,
             `I thought I would be trapped forever...`);
-        await sleep(500);
+        await sleep(1000);
         await showAll(
             `Can you do me a favor?`,
             `There should be a light switch on the wall...`,
             `It should just be a few steps in front of you...`);
         await sleep(250);
-        await player.walkTo(player.x + 36);
-        await sleep(250);
-        player.vspeed = -1;
+        await player.walkTo(player.x + 38);
+        await sleep(500);
+        player.vspeed = -1.4;
         await sleep(200);
         CheckerLooksGood.play();
         light.lit = true;
