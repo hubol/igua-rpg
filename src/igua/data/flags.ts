@@ -5,6 +5,7 @@ export function getInitialFlags()
             gotLevelValuable: new Set<string>(),
             clearedBoulder: new Set<string>(),
             permanentlyDefeatedEnemies: new Set<string>(),
+            readLibraryBooks: new Set<string>(),
         },
         jungle: {
             bigua: {

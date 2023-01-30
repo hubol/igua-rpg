@@ -12,6 +12,7 @@ import { resolveFakeWall } from "./gameObjects/fakeWall";
 import { resolveGate } from "./gameObjects/gate";
 import { resolveJungleTree } from "./gameObjects/jungleTree";
 import { resolveLava } from "./gameObjects/lava";
+import { resolveLibraryBook } from "./gameObjects/libraryBook";
 import { resolveNpc } from "./gameObjects/npc";
 import { resolvePool } from "./gameObjects/pool";
 import { resolvePortalFluid } from "./gameObjects/portalFluid";
@@ -2207,8 +2208,8 @@ export const VolcanoAboveArgs = {
       PipeHorizontal_5: resolvePipeHorizontal({ type: "PipeHorizontal", x: 536, y: 152, width: 32, flippedX: false, flippedY: false, uid: "55841307_21", visible: false, name: "", depth: 0 }),
       PipeHorizontal_6: resolvePipeHorizontal({ type: "PipeHorizontal", x: 568, y: 160, width: 28, flippedX: false, flippedY: false, uid: "55841307_22", visible: false, name: "", depth: 0 }),
       PipeHorizontal_7: resolvePipeHorizontal({ type: "PipeHorizontal", x: 596, y: 168, width: 18, flippedX: false, flippedY: false, uid: "55841307_23", visible: false, name: "", depth: 0 }),
-      Book: { type: "Anchor", x: 664, y: 160, flippedX: false, flippedY: false, uid: "25979726_24", name: "Book", depth: 0 },
       FromGiants: { type: "Checkpoint", x: 192, y: 16, flippedX: false, flippedY: false, uid: "55940370_25", name: "FromGiants", faceRight: false, depth: 0 },
+      LibraryBook: resolveLibraryBook({ type: "LibraryBook", x: 663, y: 161, flippedX: false, flippedY: false, uid: "09731745_26", name: "", depth: 0 }),
     };
   },
 };

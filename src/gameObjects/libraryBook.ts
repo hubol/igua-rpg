@@ -16,6 +16,8 @@ import {wait} from "../cutscene/wait";
 import {smallPop} from "./smallPop";
 import {colord} from "colord";
 import {BookInformationHalt, PageFlip} from "../sounds";
+import {waitHold} from "../cutscene/waitHold";
+import {resolveGameObject} from "../igua/level/resolveGameObject";
 
 const bookTxs = subimageTextures(LibraryBook, 12);
 const informationTxs = subimageTextures(ParticleInformation, 2);
@@ -24,7 +26,11 @@ function getPlayerHead() {
     return player.head;
 }
 
-export function libraryBook() {
+export const libraryBook = track(libraryBookImpl);
+
+export const resolveLibraryBook = resolveGameObject('LibraryBook', e => libraryBook().at(e.x, e.y + 3));
+
+function libraryBookImpl() {
     const state = {
         image: 0,
         brain: 0
@@ -33,6 +39,8 @@ export function libraryBook() {
     let lastImage = -1;
     let lastImageSound = 0;
     let controlPlayerHeadPosition = false;
+
+    const uid = `${progress.levelName}_${libraryBook.instances.length}`;
 
     const s = Sprite.from(bookTxs[0])
         .withStep(() => {
@@ -55,8 +63,16 @@ export function libraryBook() {
             }
         })
         .withCutscene(async () => {
+            if (progress.flags.objects.readLibraryBooks.has(uid))
+                return await show(`You already read the old book.`);
+
             const sign = player.scale.x;
-            const walkTo = Promise.race([player.walkTo(s.x + 40 * sign).then(() => player.scale.x = -sign), sleep(5000)]);
+            const walkTo = Promise.race([
+                player.walkTo(s.x + 40 * sign),
+                sleep(5000),
+                waitHold(() => Math.abs(player.hspeed) < 1, 15)])
+            .then(() => player.scale.x = -sign);
+
             await show(`It is an old book.`);
             if (!await ask('Read the book?')) {
                 await walkTo;
@@ -71,6 +87,7 @@ export function libraryBook() {
             await sleep(250);
             await lerp(state, 'brain').to(0).over(200);
             await sleep(500);
+            progress.flags.objects.readLibraryBooks.add(uid);
             progress.levels.intelligence += 1;
             await show(`You feel a lot smarter.`);
             controlPlayerHeadPosition = false;

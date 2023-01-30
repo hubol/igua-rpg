@@ -282,16 +282,6 @@
           "values": {"visible": false, "name": "", "depth": 0}
         },
         {
-          "name": "Anchor",
-          "id": 24,
-          "_eid": "25979726",
-          "x": 664,
-          "y": 160,
-          "originX": 0,
-          "originY": 0,
-          "values": {"name": "Book", "depth": 0}
-        },
-        {
           "name": "Checkpoint",
           "id": 25,
           "_eid": "55940370",
@@ -300,6 +290,16 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromGiants", "faceRight": false, "depth": 0}
+        },
+        {
+          "name": "LibraryBook",
+          "id": 26,
+          "_eid": "09731745",
+          "x": 663,
+          "y": 161,
+          "originX": 9,
+          "originY": 11,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
