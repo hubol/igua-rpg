@@ -610,6 +610,222 @@
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "CapitalTown", "checkpointName": "FromGiants", "name": "CapitalGate", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 56,
+          "_eid": "55823268",
+          "x": 672,
+          "y": 264,
+          "width": 64,
+          "height": 32,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 57,
+          "_eid": "55823268",
+          "x": 736,
+          "y": 272,
+          "width": 40,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Block",
+          "id": 58,
+          "_eid": "55823268",
+          "x": 624,
+          "y": 272,
+          "width": 48,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 59,
+          "_eid": "55845599",
+          "x": 736,
+          "y": 264,
+          "width": 40,
+          "height": 8,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 60,
+          "_eid": "55845599",
+          "x": 776,
+          "y": 272,
+          "width": 48,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 61,
+          "_eid": "55845599",
+          "x": 736,
+          "y": 288,
+          "width": 24,
+          "height": 8,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 62,
+          "_eid": "55824435",
+          "x": 640,
+          "y": 288,
+          "width": 32,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeLeft",
+          "id": 63,
+          "_eid": "55845599",
+          "x": 672,
+          "y": 296,
+          "width": 32,
+          "height": 8,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 65,
+          "_eid": "55824435",
+          "x": 576,
+          "y": 272,
+          "width": 48,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": true,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SlopeRight",
+          "id": 66,
+          "_eid": "55824435",
+          "x": 608,
+          "y": 264,
+          "width": 64,
+          "height": 8,
+          "originX": 0,
+          "originY": 0,
+          "flippedY": false,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Door",
+          "id": 67,
+          "_eid": "55913988",
+          "x": 681,
+          "y": 232,
+          "originX": 0,
+          "originY": 0,
+          "values": {"levelName": "GiantsCasino", "checkpointName": "", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 68,
+          "_eid": "55940370",
+          "x": 732,
+          "y": 264,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromCasino", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 69,
+          "_eid": "55841307",
+          "x": 676,
+          "y": 227,
+          "width": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 70,
+          "_eid": "55841307",
+          "x": 685,
+          "y": 190,
+          "width": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 71,
+          "_eid": "55841307",
+          "x": 680,
+          "y": 153,
+          "width": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 72,
+          "_eid": "25971607",
+          "x": 1328,
+          "y": 104,
+          "width": 216,
+          "height": 72,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 73,
+          "_eid": "25971607",
+          "x": 848,
+          "y": 320,
+          "width": 552,
+          "height": 48,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Region",
+          "id": 74,
+          "_eid": "25971607",
+          "x": 568,
+          "y": 276,
+          "width": 256,
+          "height": 40,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -692,7 +908,8 @@
           "originX": 0.5,
           "originY": 1,
           "values": {"name": ""}
-        }
+        },
+        {"x": 701, "y": 264, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "giants/exterior.png", "originX": 0.5, "originY": 1}
       ],
       "folder": "..\\..\\src\\images"
     },
@@ -794,14 +1011,94 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 694.0103046648869, "y": 289.85991227164675, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 390.0103046648869, "y": 41.85991227164678, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 582.0103046648869, "y": 121.85991227164678, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 11.043068069673723, "y": 293.73380685317545, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": -56, "y": 256, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 184, "y": 160, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 216, "y": 152, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 488, "y": 240, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 694.0103046648869,
+          "y": 289.85991227164675,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 390.0103046648869,
+          "y": 41.85991227164678,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 582.0103046648869,
+          "y": 121.85991227164678,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 11.043068069673723,
+          "y": 293.73380685317545,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": -56,
+          "y": 256,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 184,
+          "y": 160,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 216,
+          "y": 152,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 488,
+          "y": 240,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     }

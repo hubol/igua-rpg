@@ -15,6 +15,8 @@ import {
     VolcanoSomething
 } from "../musics";
 import {show} from "../cutscene/dialog";
+import {region} from "../gameObjects/region";
+import {terrainGradient} from "../gameObjects/outerGradient";
 
 export function GiantsTown() {
     scene.backgroundColor = 0x98C0E0;
@@ -36,7 +38,11 @@ export function GiantsTown() {
         await show("We sent our associate to the jungle from here.");
         await show("He might appreciate some of our cuisine, if you feel like making a delivery.");
         await show("If you wait at the jungle sign, a path to our associate will be revealed.");
-    })
+    });
+
+    const transitions = region.instances;
+    const colors = [0xEDDBE7, 0xDEC9E6, 0xD0B6E5, 0xC2A6E5];
+    terrainGradient(transitions, colors);
 }
 
 function edge(r: Rectangle) {
