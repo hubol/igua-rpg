@@ -32,6 +32,7 @@ import {Input} from "../igua/io/input";
 import {player} from "./player";
 import {poisonBombExplosion} from "./poisonBomb";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
+import {confetti} from "./confetti";
 
 const slotMachineTxs = subimageTextures(GiantsSlotMachine, { width: 50 });
 const symbolTxs = subimageTextures(GiantsSlotMachineSymbols, { width: 14 });
@@ -157,6 +158,9 @@ function breaker(prng: Prng) {
             life -= player.doClawAttack();
             inside.visible = life <= 0 && attacks >= 2;
             (inside.visible ? ClownExplode : ClownHurt).play();
+            if (inside.visible) {
+                confetti().at(getWorldCenter(inside)).ahead();
+            }
             vibrate = 1;
         });
     new Graphics().beginFill(0x7A2703).drawRect(59, 21, 10, 24).show(inside);
