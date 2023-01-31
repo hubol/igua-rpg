@@ -1,5 +1,5 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {GiantsSlotMachine, GiantsSlotMachineSymbols} from "../textures";
+import {GiantsSlotMachine, GiantsSlotMachineSymbols, OrangeValuable} from "../textures";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
@@ -42,6 +42,8 @@ export function slotMachine() {
             return;
 
         wait(() => p.armPull > 0.3).then(() => SlotMachineArm.play());
+        p.playDepositBet();
+        await sleep(100);
         await lerp(p, 'armPull').to(1).over(250);
         await sleep(225);
         lerp(p, 'armPull').to(0).over(175);
@@ -97,13 +99,32 @@ export function slotMachine() {
 function puppet() {
     const reels = symbolDisplay();
     const overhead = overheadDisplay();
-    const c = merge(container(), { armPull: 0, overhead, damaged: false, playReels: reels.playReels });
+    const c = merge(container(), { armPull: 0, overhead, damaged: false, playReels: reels.playReels, playDepositBet });
     const arm = animatedSprite(txs.arm, 0);
     c.addChild(Sprite.from(txs.slotMachine), arm, reels, overhead);
 
     c.withStep(() => {
         arm.imageIndex = Math.max(0, Math.min(2, Math.floor(c.armPull * 2)));
     });
+
+    function playDepositBet() {
+        depositBet().show(c);
+    }
+
+    return c;
+}
+
+function depositBet() {
+    const s = Sprite.from(OrangeValuable).at(39, 28).centerAnchor();
+    s.scale.set(0.8);
+    const mask = new Graphics().beginFill(0).drawRect(8, 24, 41, 16);
+
+    const c = container(s, mask)
+        .withAsync(async () => {
+            await lerp(s.pivot, 'y').to(-19).over(200);
+            c.destroy();
+        });
+    c.mask = mask;
 
     return c;
 }
