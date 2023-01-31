@@ -1,5 +1,5 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {GiantsSlotMachine, GiantsSlotMachineSymbols, OrangeValuable} from "../textures";
+import {GiantsSlotMachine, GiantsSlotMachineNoise, GiantsSlotMachineSymbols, OrangeValuable} from "../textures";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
@@ -18,6 +18,8 @@ import {playValuableCollectSounds} from "../cutscene/giftValuables";
 import {CTuning} from "./cTuning";
 import {MirrorShardUse, SlotMachineArm, SlotMachineReelStop, SlotMachineTone} from "../sounds";
 import {Undefined} from "../utils/types/undefined";
+import {cutscene} from "../cutscene/cutscene";
+import {show} from "../cutscene/dialog";
 
 const slotMachineTxs = subimageTextures(GiantsSlotMachine, { width: 50 });
 const symbolTxs = subimageTextures(GiantsSlotMachineSymbols, { width: 14 });
@@ -38,6 +40,11 @@ export function slotMachine() {
     const p = puppet();
 
     async function startGameSession() {
+        if (p.damaged) {
+            cutscene.play(() => show(`It is irreparably broken.`));
+            return;
+        }
+
         if (!spendValuables(5))
             return;
 
@@ -91,7 +98,8 @@ export function slotMachine() {
             gameSession = newGameSession;
         });
 
-    const c = container(p, hitbox);
+    const c = container(p, hitbox)
+        .withStep(() => p.damaged = progress.flags.giants.slotMachineDamaged);
 
     return c;
 }
@@ -101,10 +109,15 @@ function puppet() {
     const overhead = overheadDisplay();
     const c = merge(container(), { armPull: 0, overhead, damaged: false, playReels: reels.playReels, playDepositBet });
     const arm = animatedSprite(txs.arm, 0);
-    c.addChild(Sprite.from(txs.slotMachine), arm, reels, overhead);
+    const damage = Sprite.from(txs.damage);
+    c.addChild(Sprite.from(txs.slotMachine), arm, reels, overhead, damage);
 
     c.withStep(() => {
         arm.imageIndex = Math.max(0, Math.min(2, Math.floor(c.armPull * 2)));
+        damage.visible = c.damaged;
+        reels.damaged = c.damaged;
+        if (c.damaged)
+            overhead.screen = OverheadScreen.Damaged;
     });
 
     function playDepositBet() {
@@ -130,13 +143,18 @@ function depositBet() {
 }
 
 function symbolDisplay() {
-    const c = merge(container(), { playReels });
+    const c = merge(container(), { playReels, damaged: false });
 
-    const bg = Sprite.from(txs.symbolDisplay).tinted(0xE8E8F8).show(c);
+    Sprite.from(txs.symbolDisplay).tinted(0xE8E8F8).show(c);
 
     c.filter(alphaMaskFilter(Sprite.from(txs.symbolDisplay).show(c)));
 
     const reels = range(3).map(i => reel().at(8 + i * 14, 18).show(c));
+
+    const damaged = damagedScreen()
+        .at(8, 18)
+        .withStep(() => damaged.visible = c.damaged)
+        .show(c);
 
     async function playReels(reelsTarget: Reels, teaseLastSymbol: boolean) {
         const arp = startArpeggio();
@@ -168,8 +186,9 @@ function overheadDisplay() {
     const play = playScreen();
     const playing = playingScreen();
     const win = winScreen();
+    const damaged = damagedScreen().at(10, 2);
 
-    const screens = [ play, playing, win, play ];
+    const screens = [ play, playing, win, damaged ];
     for (const screen of screens) {
         if (!screen.parent)
             screen.show(c);
@@ -225,6 +244,22 @@ function winScreen() {
         });
 
     return c;
+}
+
+function damagedScreen() {
+    const s = Sprite.from(GiantsSlotMachineNoise)
+        .withAsync(async () => {
+             while (true) {
+                 if (rng.bool) {
+                     s.scale.y *= -1;
+                     s.pivot.y = s.scale.y === -1 ? 12 : 0;
+                 }
+                 s.pivot.x = rng.int(80);
+                 await sleep(66);
+             }
+        });
+
+    return s;
 }
 
 function reel() {

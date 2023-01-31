@@ -110,6 +110,10 @@ export function getInitialFlags()
             spokeWithOracle: false,
             solvedImpossiblePuzzle: false,
         },
+        giants: {
+            casinoProfit: 0,
+            slotMachineDamaged: false,
+        },
         final: {
             doorOpened: false,
             enemiesCanBePermanentlyDefeated: false,
