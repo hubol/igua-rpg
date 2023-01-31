@@ -2,7 +2,7 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {GiantsSlotMachine, GiantsSlotMachineSymbols} from "../textures";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
-import {Graphics, Sprite} from "pixi.js";
+import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {rng} from "../utils/math/rng";
 import {wait} from "../cutscene/wait";
 import {sleep} from "../cutscene/sleep";
@@ -17,6 +17,7 @@ import {progress} from "../igua/data/progress";
 import {playValuableCollectSounds} from "../cutscene/giftValuables";
 import {CTuning} from "./cTuning";
 import {MirrorShardUse, SlotMachineArm, SlotMachineReelStop, SlotMachineTone} from "../sounds";
+import {Undefined} from "../utils/types/undefined";
 
 const slotMachineTxs = subimageTextures(GiantsSlotMachine, { width: 50 });
 const symbolTxs = subimageTextures(GiantsSlotMachineSymbols, { width: 14 });
@@ -36,40 +37,59 @@ export function slotMachine() {
     const prng = new Prng();
     const p = puppet();
 
-    const c = container(p)
-        .withCutscene(async () => {
-            if (!spendValuables(5))
+    async function startGameSession() {
+        if (!spendValuables(5))
+            return;
+
+        wait(() => p.armPull > 0.3).then(() => SlotMachineArm.play());
+        await lerp(p, 'armPull').to(1).over(250);
+        await sleep(225);
+        lerp(p, 'armPull').to(0).over(175);
+
+        await sleep(60);
+
+        p.overhead.screen = OverheadScreen.Playing;
+
+        const prize = getPrize(prng);
+        const reels: Reels = rng.choose(prize.reels);
+        const makesSenseToTeaseSymbol = prize.prize > 5 || reels[0] === reels[1];
+        await p.playReels(reels, makesSenseToTeaseSymbol && rng() > 0.33);
+
+        const payout = Math.ceil(prize.prize * 5);
+
+        if (payout) {
+            p.overhead.screen = OverheadScreen.Win;
+
+            MirrorShardUse.play();
+            await sleep(250);
+
+            await playValuableCollectSounds(payout);
+            progress.valuables += payout;
+        }
+        else {
+            p.overhead.screen = OverheadScreen.Play;
+        }
+    }
+
+    let gameSession = Undefined<DisplayObject>();
+
+    const hitbox = new Graphics().beginFill(0xff0000).drawRect(8, 31, 41, 25).hide()
+        .withInteraction(() => {
+            if (gameSession)
                 return;
 
-            wait(() => p.armPull > 0.3).then(() => SlotMachineArm.play());
-            await lerp(p, 'armPull').to(1).over(250);
-            await sleep(225);
-            lerp(p, 'armPull').to(0).over(175);
+            const newGameSession = container()
+                .withAsync(async () => {
+                    await startGameSession();
+                    newGameSession.destroy();
+                    gameSession = undefined;
+                })
+                .show(c);
 
-            await sleep(60);
-
-            p.overhead.screen = OverheadScreen.Playing;
-
-            const prize = getPrize(prng);
-            const reels: Reels = rng.choose(prize.reels);
-            const makesSenseToTeaseSymbol = prize.prize > 5 || reels[0] === reels[1];
-            await p.playReels(reels, makesSenseToTeaseSymbol && rng() > 0.33);
-
-            const payout = Math.ceil(prize.prize * 5);
-
-            if (payout) {
-                p.overhead.screen = OverheadScreen.Win;
-
-                MirrorShardUse.play();
-                await sleep(250);
-
-                await playValuableCollectSounds(payout);
-                progress.valuables += payout;
-            }
-            else {
-                p.overhead.screen = OverheadScreen.Play;
-            }
+            gameSession = newGameSession;
         });
+
+    const c = container(p, hitbox);
 
     return c;
 }
