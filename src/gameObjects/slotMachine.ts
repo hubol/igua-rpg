@@ -2,7 +2,7 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {GiantsSlotMachine, GiantsSlotMachineSymbols} from "../textures";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
-import {Sprite} from "pixi.js";
+import {Graphics, Sprite} from "pixi.js";
 import {rng} from "../utils/math/rng";
 import {wait} from "../cutscene/wait";
 import {sleep} from "../cutscene/sleep";
@@ -27,6 +27,7 @@ const txs = {
     play: slotMachineTxs[6],
     win: slotMachineTxs[7],
     damage: slotMachineTxs[8],
+    goodLuck: slotMachineTxs[9],
 }
 
 export function slotMachine() {
@@ -111,9 +112,10 @@ function overheadDisplay() {
     const c = merge(container(), { screen: OverheadScreen.Play });
     c.filter(alphaMaskFilter(Sprite.from(txs.overheadDisplay).show(c)));
     const play = playScreen();
+    const playing = playingScreen();
     const win = winScreen();
 
-    const screens = [ play, play, win, play ];
+    const screens = [ play, playing, win, play ];
     for (const screen of screens) {
         if (!screen.parent)
             screen.show(c);
@@ -122,6 +124,24 @@ function overheadDisplay() {
     return c.withStep(() => {
         screens[c.screen].index = c.children.length - 1;
     });
+}
+
+function playingScreen() {
+    const bg = Sprite.from(txs.overheadDisplay).tinted(0xB0CDB0);
+    const g1 = new Graphics().beginFill(0xf00000).drawCircle(16, 4, 5);
+    const g2 = new Graphics().beginFill(0xe0d000).drawRect(23, 4, 8, 8);
+    const g3 = new Graphics().beginFill(0x0000f0).drawPolygon([40, 2, 46, 9, 34, 9] );
+    const goodLuck = Sprite.from(txs.goodLuck).tinted(0);
+
+    return container(bg, g1, g2, g3, goodLuck)
+        .withStep(() => {
+            g1.pivot.at(Math.sin(scene.s * Math.PI * 2) * 2, Math.cos(scene.s * Math.PI * 1.9 - 1) * 2);
+            g2.pivot.at(Math.sin(scene.s * Math.PI * 2.2 + 2) * 2, Math.cos(scene.s * Math.PI * 2 + 1) * 2);
+            g3.pivot.at(Math.sin(scene.s * Math.PI * 1.8 - 1) * 2, Math.cos(scene.s * Math.PI * 2.3 - 2) * 2);
+            goodLuck.x += 1;
+            if (goodLuck.x > 47)
+                goodLuck.x = -47;
+        });
 }
 
 function playScreen() {
