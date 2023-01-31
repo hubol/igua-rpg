@@ -12,6 +12,8 @@ import {isOnScreen} from "../logic/isOnScreen";
 import {rejection} from "../../utils/rejection";
 import {scene} from "../scene";
 import {approachLinear} from "../../utils/math/number";
+import {player} from "../../gameObjects/player";
+import {cutscene} from "../../cutscene/cutscene";
 
 CharacterStep.volume(.4);
 CharacterStep2.volume(.4);
@@ -64,7 +66,9 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
                 {
                     const difference = puppet.x - current.x;
                     const distance = Math.abs(difference);
-                    if (distance < 0.1 || (distance < 5 && Math.sign(difference) === Math.sign(puppet.hspeed)))
+                    const isPlayerAndShouldHaveControl = puppet === player && !cutscene.isPlaying;
+
+                    if (distance < 0.1 || (distance < 5 && Math.sign(difference) === Math.sign(puppet.hspeed)) || isPlayerAndShouldHaveControl)
                     {
                         puppet.hspeed = 0;
                         current.resolve();
