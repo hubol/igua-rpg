@@ -15,5 +15,5 @@ export function GiantsCasino() {
     decalsOf(CloudLong).forEach(x => x.tinted(0x3060E0));
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x7FC41F));
 
-    slotMachine().at(127, 138).show();
+    slotMachine().at(103, 138).show();
 }

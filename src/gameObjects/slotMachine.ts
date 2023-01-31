@@ -1,5 +1,5 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {GiantsSlotMachine, GiantsSlotMachineNoise, GiantsSlotMachineSymbols, OrangeValuable} from "../textures";
+import {GiantsSlotMachine, GiantsSlotMachineCable, GiantsSlotMachineNoise, GiantsSlotMachineSymbols, OrangeValuable} from "../textures";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
@@ -16,10 +16,12 @@ import {spendValuables} from "../igua/logic/spendValuables";
 import {progress} from "../igua/data/progress";
 import {playValuableCollectSounds} from "../cutscene/giftValuables";
 import {CTuning} from "./cTuning";
-import {MirrorShardUse, SlotMachineArm, SlotMachineReelStop, SlotMachineTone} from "../sounds";
+import {ClownExplode, ClownHurt, MirrorShardUse, SlotMachineArm, SlotMachineReelStop, SlotMachineTone} from "../sounds";
 import {Undefined} from "../utils/types/undefined";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
+import {Input} from "../igua/io/input";
+import {player} from "./player";
 
 const slotMachineTxs = subimageTextures(GiantsSlotMachine, { width: 50 });
 const symbolTxs = subimageTextures(GiantsSlotMachineSymbols, { width: 14 });
@@ -48,6 +50,8 @@ export function slotMachine() {
         if (!spendValuables(5))
             return;
 
+        const prize = getPrize(prng);
+
         wait(() => p.armPull > 0.3).then(() => SlotMachineArm.play());
         p.playDepositBet();
         await sleep(100);
@@ -59,7 +63,6 @@ export function slotMachine() {
 
         p.overhead.screen = OverheadScreen.Playing;
 
-        const prize = getPrize(prng);
         const reels: Reels = rng.choose(prize.reels);
         const makesSenseToTeaseSymbol = prize.prize > 5 || reels[0] === reels[1];
         await p.playReels(reels, makesSenseToTeaseSymbol && rng() > 0.33);
@@ -98,8 +101,56 @@ export function slotMachine() {
             gameSession = newGameSession;
         });
 
-    const c = container(p, hitbox)
-        .withStep(() => p.damaged = progress.flags.giants.slotMachineDamaged);
+    const c = container(breaker(prng), p, hitbox)
+        .withStep(() => p.damaged = progress.flags.giants.slotMachineDamaged)
+        .withStep(() => {
+            if (Input.justWentDown('MoveLeft') || Input.justWentDown('MoveRight'))
+                prng.int(1);
+        });
+
+    return c;
+}
+
+function breaker(prng: Prng) {
+    let life = 200;
+    let attacks = 0;
+    let vibrate = 0;
+    const inside = container().hide()
+        .withStep(() => {
+            if (vibrate > 0) {
+                vibrate -= 0.04;
+                c.pivot.x = (vibrate * 4) % 1 < 0.5 ? 1 : 0;
+            }
+            else
+                c.pivot.set(0);
+        })
+        .withInteraction(() => {
+            if (inside.visible)
+                return;
+
+            attacks += 1;
+            life -= player.doClawAttack();
+            inside.visible = life <= 0 && attacks >= 2;
+            (inside.visible ? ClownExplode : ClownHurt).play();
+            vibrate = 1;
+        });
+    new Graphics().beginFill(0x7A2703).drawRect(59, 21, 10, 24).show(inside);
+    const c2 = container(Sprite.from(GiantsSlotMachineCable), inside)
+    c2.pivot.set(-49, 76);
+    const c = container(c2);
+
+    const simulatedPrng = new Prng();
+
+    const rngReadout = new Graphics()
+        .withStep(() => {
+            rngReadout.clear();
+            simulatedPrng.seed = prng.seed;
+            for (let i = 0; i < 6; i++) {
+                const prize = getPrize(simulatedPrng);
+                rngReadout.beginFill(prize.prize > 0 ? 0x1080b0 : 0xb01000).drawRect(63, 42 - i * 4, 2, 2);
+            }
+        })
+        .show(inside);
 
     return c;
 }
