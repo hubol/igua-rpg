@@ -61,7 +61,7 @@ export function poisonBomb() {
     return c;
 }
 
-function poisonBombExplosion(radius = 64) {
+export function poisonBombExplosion(radius = 64) {
     const c = container()
     const back = manyCircles(radius).withPixin(Dithered()).tinted(0xA6B76C).show(c);
     back.scale.set(0.2);

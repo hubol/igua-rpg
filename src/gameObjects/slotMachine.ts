@@ -16,12 +16,22 @@ import {spendValuables} from "../igua/logic/spendValuables";
 import {progress} from "../igua/data/progress";
 import {playValuableCollectSounds} from "../cutscene/giftValuables";
 import {CTuning} from "./cTuning";
-import {ClownExplode, ClownHurt, MirrorShardUse, SlotMachineArm, SlotMachineReelStop, SlotMachineTone} from "../sounds";
+import {
+    ClownExplode,
+    ClownHurt,
+    MirrorShardUse,
+    SlotMachineArm,
+    SlotMachineReelStop,
+    SlotMachineTone,
+    UnorthodoxSparkBegin
+} from "../sounds";
 import {Undefined} from "../utils/types/undefined";
 import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
 import {Input} from "../igua/io/input";
 import {player} from "./player";
+import {poisonBombExplosion} from "./poisonBomb";
+import {getWorldCenter} from "../igua/gameplay/getCenter";
 
 const slotMachineTxs = subimageTextures(GiantsSlotMachine, { width: 50 });
 const symbolTxs = subimageTextures(GiantsSlotMachineSymbols, { width: 14 });
@@ -50,6 +60,7 @@ export function slotMachine() {
         if (!spendValuables(5))
             return;
 
+        progress.flags.giants.casinoProfit -= 5;
         const prize = getPrize(prng);
 
         wait(() => p.armPull > 0.3).then(() => SlotMachineArm.play());
@@ -77,10 +88,24 @@ export function slotMachine() {
 
             await playValuableCollectSounds(payout);
             progress.valuables += payout;
+            progress.flags.giants.casinoProfit += payout;
         }
         else {
             p.overhead.screen = OverheadScreen.Play;
         }
+
+        if (progress.flags.giants.casinoProfit >= 150)
+            await die();
+    }
+
+    async function die() {
+        await sleep(125);
+        p.overhead.screen = OverheadScreen.Damaged;
+        await sleep(125);
+        UnorthodoxSparkBegin.play();
+        await sleep(500);
+        poisonBombExplosion().at(getWorldCenter(hitbox)).show();
+        progress.flags.giants.slotMachineDamaged = true;
     }
 
     let gameSession = Undefined<DisplayObject>();
