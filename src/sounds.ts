@@ -512,6 +512,21 @@ export const SharpSwipe = new Howl({
     
 });
 
+export const SlotMachineArm = new Howl({
+    src: [require("./sound/slot machine arm.ogg"), require("./sound/slot machine arm.mp3")],
+    
+});
+
+export const SlotMachineReelStop = new Howl({
+    src: [require("./sound/slot machine reel stop.ogg"), require("./sound/slot machine reel stop.mp3")],
+    
+});
+
+export const SlotMachineTone = new Howl({
+    src: [require("./sound/slot machine tone.ogg"), require("./sound/slot machine tone.mp3")],
+    
+});
+
 export const SneezyPropellerBlast = new Howl({
     src: [require("./sound/sneezy propeller blast.ogg"), require("./sound/sneezy propeller blast.mp3")],
     

@@ -15,6 +15,8 @@ import {lerp} from "../cutscene/lerp";
 import {spendValuables} from "../igua/logic/spendValuables";
 import {progress} from "../igua/data/progress";
 import {playValuableCollectSounds} from "../cutscene/giftValuables";
+import {CTuning} from "./cTuning";
+import {MirrorShardUse, SlotMachineArm, SlotMachineReelStop, SlotMachineTone} from "../sounds";
 
 const slotMachineTxs = subimageTextures(GiantsSlotMachine, { width: 50 });
 const symbolTxs = subimageTextures(GiantsSlotMachineSymbols, { width: 14 });
@@ -39,9 +41,12 @@ export function slotMachine() {
             if (!spendValuables(5))
                 return;
 
+            wait(() => p.armPull > 0.3).then(() => SlotMachineArm.play());
             await lerp(p, 'armPull').to(1).over(250);
             await sleep(225);
-            await lerp(p, 'armPull').to(0).over(175);
+            lerp(p, 'armPull').to(0).over(175);
+
+            await sleep(60);
 
             p.overhead.screen = OverheadScreen.Playing;
 
@@ -53,9 +58,13 @@ export function slotMachine() {
             const payout = Math.ceil(prize.prize * 5);
 
             if (payout) {
+                p.overhead.screen = OverheadScreen.Win;
+
+                MirrorShardUse.play();
+                await sleep(250);
+
                 await playValuableCollectSounds(payout);
                 progress.valuables += payout;
-                p.overhead.screen = OverheadScreen.Win;
             }
             else {
                 p.overhead.screen = OverheadScreen.Play;
@@ -89,6 +98,8 @@ function symbolDisplay() {
     const reels = range(3).map(i => reel().at(8 + i * 14, 18).show(c));
 
     async function playReels(reelsTarget: Reels, teaseLastSymbol: boolean) {
+        const arp = startArpeggio();
+
         for (const reel of reels)
             reel.spin();
         await reels[0].stop(reelsTarget[0]);
@@ -96,6 +107,8 @@ function symbolDisplay() {
         await reels[1].stop(reelsTarget[1]);
         await sleep(500);
         await reels[2].stop(reelsTarget[2], !teaseLastSymbol);
+
+        arp.destroy();
     }
 
     return c;
@@ -145,7 +158,7 @@ function playingScreen() {
 }
 
 function playScreen() {
-    const bg = Sprite.from(txs.overheadDisplay).tinted(0xE0CD00);
+    const bg = Sprite.from(txs.overheadDisplay).tinted(0xD0D020);
     const fg = Sprite.from(txs.play).tinted(0xC64913);
 
     const c = container(bg, fg)
@@ -221,7 +234,8 @@ function reel() {
             if (scene.ticks % 2 === 0)
                 c.pivot.y -= 1;
         }
-        else {
+        else if (!_stopped) {
+            SlotMachineReelStop.play();
             _stopped = true;
         }
 
@@ -230,6 +244,27 @@ function reel() {
         while (c.pivot.y < wrapDisplayObject.y)
             c.pivot.y = (c.pivot.y - wrapDisplayObject.y) + c.children.firstOrDefault()!.y;
     });
+}
+
+function startArpeggio() {
+    const arp = [ CTuning.C, CTuning.E, CTuning.F, CTuning.G, CTuning.C * 2, CTuning.E * 2, CTuning.G * 2, CTuning.F * 2 ]
+        .map(x => x * 2);
+
+    let index = 0;
+
+    function play() {
+        const id = SlotMachineTone.play();
+        SlotMachineTone.rate(arp[(index++) % arp.length], id);
+    }
+
+    return container()
+        .withAsync(async () => {
+            while (true) {
+                play();
+                await sleep(125);
+            }
+        })
+        .show();
 }
 
 function getPrize(prng: Prng) {
