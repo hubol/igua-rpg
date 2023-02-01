@@ -21,6 +21,8 @@ import {move} from "../cutscene/move";
 import {jukebox} from "../igua/jukebox";
 import {simpleWallSwitch} from "../gameObjects/simpleWallSwitch";
 import {dassmann} from "../gameObjects/dassmann";
+import {emoWizardBall} from "./emoWizardBall";
+import {vnew} from "../utils/math/vector";
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
@@ -51,6 +53,13 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
     jukebox.stop();
     player.x -= 24;
     const hide = container().withStep(() => player.visible = false).show();
+
+    const ball = emoWizardBall().at(e.x - 64, e.y)
+        .withStep(() => ball.alpha = Math.round(light.lightUnit * 4) / 4)
+        .ahead();
+
+    ball.register(player, vnew());
+    ball.register(e, vnew());
 
     cutscene.play(async () => {
         e.isCrouching = true;
@@ -116,6 +125,8 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         d.head.face = 1;
         d.body.face = 1;
 
+        ball.register(d, vnew());
+
         DialogSpeaker.value.speaker = d;
         await sleep(1000);
         await show(`I have been looking all over for you!`);
@@ -162,7 +173,7 @@ function enrichLight(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
 
     let light = 0;
 
-    const q = merge(container(), { lit: false })
+    const q = merge(container(), { lit: false, get lightUnit() { return light; } })
         .withStep(() => {
             light = approachLinear(light, q.lit ? 1 : 0, 0.03);
             steps.forEach(x => x.visible = false);
