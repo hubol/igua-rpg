@@ -826,6 +826,56 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 76,
+          "_eid": "55991906",
+          "x": 1304,
+          "y": 368,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 77,
+          "_eid": "55991906",
+          "x": 1240,
+          "y": 368,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 78,
+          "_eid": "56004563",
+          "x": 1272,
+          "y": 368,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 79,
+          "_eid": "56004563",
+          "x": 1256,
+          "y": 376,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableOrange",
+          "id": 80,
+          "_eid": "56004563",
+          "x": 1288,
+          "y": 376,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -909,7 +959,17 @@
           "originY": 1,
           "values": {"name": ""}
         },
-        {"x": 701, "y": 264, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "giants/exterior.png", "originX": 0.5, "originY": 1}
+        {
+          "x": 701,
+          "y": 264,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "giants/exterior.png",
+          "originX": 0.5,
+          "originY": 1,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },

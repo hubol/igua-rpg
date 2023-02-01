@@ -1242,6 +1242,11 @@ export const GiantsTownArgs = {
       Region: resolveRegion({ type: "Region", x: 1328, y: 104, width: 216, height: 72, flippedX: false, flippedY: false, uid: "25971607_72", name: "", depth: 0 }),
       Region_1: resolveRegion({ type: "Region", x: 848, y: 320, width: 552, height: 48, flippedX: false, flippedY: false, uid: "25971607_73", name: "", depth: 0 }),
       Region_2: resolveRegion({ type: "Region", x: 568, y: 276, width: 256, height: 40, flippedX: false, flippedY: false, uid: "25971607_74", name: "", depth: 0 }),
+      ValuableBlue: resolveValuableBlue({ type: "ValuableBlue", x: 1304, y: 368, flippedX: false, flippedY: false, uid: "55991906_76", name: "", depth: 0 }),
+      ValuableBlue_1: resolveValuableBlue({ type: "ValuableBlue", x: 1240, y: 368, flippedX: false, flippedY: false, uid: "55991906_77", name: "", depth: 0 }),
+      ValuableOrange: resolveValuableOrange({ type: "ValuableOrange", x: 1272, y: 368, flippedX: false, flippedY: false, uid: "56004563_78", name: "", depth: 0 }),
+      ValuableOrange_1: resolveValuableOrange({ type: "ValuableOrange", x: 1256, y: 376, flippedX: false, flippedY: false, uid: "56004563_79", name: "", depth: 0 }),
+      ValuableOrange_2: resolveValuableOrange({ type: "ValuableOrange", x: 1288, y: 376, flippedX: false, flippedY: false, uid: "56004563_80", name: "", depth: 0 }),
     };
   },
 };

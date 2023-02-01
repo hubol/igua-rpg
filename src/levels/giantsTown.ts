@@ -8,7 +8,7 @@ import {jukebox} from "../igua/jukebox";
 import {
     CapitalMusicPlease,
     Country,
-    DesertTown,
+    DesertTown, GiantsCasinoMusic,
     GiantsHouseMusic,
     GiantsNimbusMusic,
     JungleMusic,
@@ -21,7 +21,7 @@ import {terrainGradient} from "../gameObjects/outerGradient";
 export function GiantsTown() {
     scene.backgroundColor = 0x98C0E0;
     scene.terrainColor = 0xF8E8E8;
-    jukebox.play(GiantsNimbusMusic).warm(GiantsHouseMusic, DesertTown, JungleMusic, Country, VolcanoSomething, CapitalMusicPlease);
+    jukebox.play(GiantsNimbusMusic).warm(GiantsHouseMusic, GiantsCasinoMusic, DesertTown, JungleMusic, Country, VolcanoSomething, CapitalMusicPlease);
     const level = applyOgmoLevel(GiantsTownArgs);
     edge(level.DesertGate).tinted(0xF0F0B0);
     edge(level.JungleGate).tinted(0x97D8D8);
