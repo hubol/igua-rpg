@@ -17,6 +17,7 @@ import {region} from "../gameObjects/region";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {decalsOf} from "../gameObjects/decal";
 import {game} from "../igua/game";
+import {player} from "../gameObjects/player";
 
 export function CapitalOutskirts() {
     scene.pipeStage.style = 2;
@@ -38,6 +39,8 @@ export function CapitalOutskirts() {
 }
 
 function enrichBlockadeWall(level: GameObjectsType<typeof CapitalOutskirtsArgs>) {
+    if (player.x > 64)
+        return level.BlockadeWall.destroy();
     level.BlockadeWall.hide();
     const bricks = Sprite.from(CapitalBrickWall).withStep(() => bricks.at(getWorldBounds(level.BlockadeWall))).behind();
     automaticDoorWithSfx(level.BlockadeWall, false, () => progress.flags.capital.solvedImpossiblePuzzle);

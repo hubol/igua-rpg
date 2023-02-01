@@ -96,6 +96,7 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
         isClosingEyes: false,
         closedEyesUnit: 0,
         headLiftUnit: 0,
+        _forceWalkAnimation: 0,
         get agapeUnit() {
             return (args.head as any).agapeUnit;
         },
@@ -158,7 +159,7 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
     const puppetStep = () => {
         const barelyWalking = Math.abs(player.hspeed) < 0.1;
 
-        trip += player.hspeed;
+        trip += player.hspeed + player._forceWalkAnimation;
 
         if (player.vspeed !== 0 && barelyWalking)
             trip += 0.5;
@@ -169,7 +170,7 @@ export function iguanaPuppetNoEngine(args: IguanaPuppetArgs)
         args.frontLeftFoot.position.set(0, 0);
         args.frontRightFoot.position.set(0, 0);
 
-        if (!barelyWalking || player.vspeed !== 0) {
+        if (!barelyWalking || player.vspeed !== 0 || player._forceWalkAnimation > 0) {
             const t =trip * 0.1;
             if (player.vspeed === 0)
                 body.position.y = Math.round(Math.sin(t + 2));

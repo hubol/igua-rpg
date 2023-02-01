@@ -20,14 +20,17 @@ import {waitHold} from "../cutscene/waitHold";
 import {show} from "../cutscene/dialog";
 import { EmoWizardStep } from "../sounds";
 
-const bodyTxs = subimageTextures(FinalEmoWizardBody, 6);
+const bodyTxs = subimageTextures(FinalEmoWizardBody,{ width: 32 });
 const dressTxs = subimageTextures(FinalEmoWizardDress, 6);
+const armTxs = [ bodyTxs[4], bodyTxs[6], bodyTxs[7] ];
 
 export function emoWizard() {
     let pedometer = 0;
     let crouch = 0;
 
-    const c = merge(container(), { dress: dress(), head: head(), set facing(value: number) {
+    const [myDress, arms] = dress();
+
+    const c = merge(container(), { dress: myDress, arms, head: head(), set facing(value: number) {
             c.dress.facing = value;
             c.head.facing = value;
             c.head.face.facing = value;
@@ -58,11 +61,12 @@ export function emoWizard() {
             }
 
             crouch = approachLinear(crouch, c.isCrouching ? 1 : 0, 0.033);
+            arms.index = crouch > 0.5 ? 0 : 2;
         });
 
     const { diff } = trackPosition(c);
 
-    c.addChild(c.dress, c.head, c.speakerbox);
+    c.addChild(c.dress, c.head, arms, c.speakerbox);
 
     c.withAsync(async () => {
         while (true) {
@@ -162,13 +166,23 @@ async function randomizedPingPongAnimation(c: ReturnType<typeof animatedSprite>,
 
 function dress() {
     const s = animatedSprite(dressTxs, 0).at(10, 20);
-    const c = merge(container(), { facing: 0, get neckY() { return Math.floor(s.imageIndex); }, crouchUnit: 0, walking: false, });
+    const c = merge(container(), { facing: 0, get neckY() { return Math.floor(s.imageIndex); }, crouchUnit: 0, walking: false });
     s.show(c);
     const fringe = Sprite.from(FinalEmoWizardDressFringe).at(16, 36).show(c);
     fringe.anchor.set(10 / 22, 0);
-    const arms = Sprite.from(bodyTxs[4]).show(c);
+    const arms = merge(Sprite.from(bodyTxs[4]), { liftUnit: 0, raise, lower });
+
+    function raise() {
+        return lerp(arms, 'liftUnit').to(1);
+    }
+
+    function lower() {
+        return lerp(arms, 'liftUnit').to(0);
+    }
+
     c.withStep(() => {
         arms.pivot.x = approachLinear(arms.pivot.x, c.facing, 0.25);
+        arms.texture = armTxs[Math.max(0, Math.min(armTxs.length - 1, Math.floor(arms.liftUnit * (armTxs.length - 1))))];
         arms.y = Math.sign(Math.round((Math.sin(scene.s * Math.PI * 1 + 1) + 1) / 2));
         s.imageIndex = Math.max(0, Math.min(dressTxs.length - 1, c.crouchUnit * dressTxs.length));
         arms.y += Math.floor(c.neckY / 2);
@@ -186,7 +200,7 @@ function dress() {
             fringe.scale.x = 1;
         }
     });
-    return c;
+    return [c, arms] as const;
 }
 
 function head() {

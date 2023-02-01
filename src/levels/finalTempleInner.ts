@@ -23,6 +23,10 @@ import {simpleWallSwitch} from "../gameObjects/simpleWallSwitch";
 import {dassmann} from "../gameObjects/dassmann";
 import {emoWizardBall} from "./emoWizardBall";
 import {vnew} from "../utils/math/vector";
+import {showBlessingEffect} from "../igua/gameplay/templeLevelUtil";
+import {getWorldCenter} from "../igua/gameplay/getCenter";
+import {progress} from "../igua/data/progress";
+import {PermanentDefeatTracker} from "../gameObjects/permanentDefeatTracker";
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
@@ -59,7 +63,6 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         .ahead();
 
     ball.register(player, vnew());
-    ball.register(e, vnew());
 
     cutscene.play(async () => {
         e.isCrouching = true;
@@ -104,7 +107,9 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         await move(e).off(-48, 0).over(750);
 
         e.autoEmote = false;
+        e.arms.raise().over(170);
         await e.say(`Uh, but I am the wizard of emotion.`, Emotion.Cool);
+        e.arms.lower().over(250);
         await e.say(`I really appreciate your coming here. I know it was not easy.`, Emotion.Happy);
         await e.say(`Everyone is expecting you to find a weapon?`, Emotion.Shocked);
         await e.say(`Well, it's not here. That thing broke a long time ago. And no one alive can repair it.`, Emotion.Sad);
@@ -121,6 +126,7 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         Gate.play();
         await sleep(60);
         const d = dassmann().at([20, 32].add(level.Door)).show();
+        d.body.playFootsteps = true;
         d.expression.facing = 'off';
         d.head.face = 1;
         d.body.face = 1;
@@ -138,12 +144,66 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         ]);
         e.autoFacing = true;
 
-        /*
-        D: Did someone say refreshing drinks?!
-D: I have been looking all over for you!
-D: I've come to pick up the newest batch.
+        await sleep(250);
+        await show(`I've come to pick up the newest batch.`);
 
-         */
+        DialogSpeaker.value.speaker = e;
+        await showAll(`Eh? Oh. I completely forgot about all of my arrangements.`,
+            `I've been stuck in the vault for so long...`,
+            `Um... I can get you what you need. Just give me a little time to sort things out.`,
+            `I have a feeling I've neglected some other deals, too...`);
+
+        DialogSpeaker.value.speaker = d;
+        d.armr.raise().over(170);
+        await show(`The other guys are here, too, you know.`);
+        d.armr.rest().over(130);
+
+        DialogSpeaker.value.speaker = e;
+        await show(`Oh... then that explains why I'm being asked for a weapon.`);
+
+        e.index = d.index;
+        await Promise.all([
+            move(e).off(-60, 0).over(900),
+            sleep(400)
+                .then(() => player._forceWalkAnimation = 2)
+                .then(() => d.expression.facing = 'auto')
+                .then(() => move(player).off(-28, 0).over(350))
+                .then(() => player._forceWalkAnimation = 0),
+        ]);
+
+        await sleep(250);
+        e.isCrouching = true;
+
+        await showAll(`Listen. The reason you can't defeat them is you need to give them what they were promised.`);
+
+        e.isCrouching = false;
+        await sleep(250);
+        await showAll(`They are just stupid receptacles. I will give you the power to fill them. Once they are satisfied, you just give them a little push and they will be on their way.`);
+
+        await e.arms.raise().over(250);
+        await sleep(500);
+
+        const v = getWorldCenter(e);
+        DialogSpeaker.value.speaker = undefined;
+
+        progress.flags.final.enemiesCanBePermanentlyDefeated = true;
+        progress.levels.humor += 1;
+        await showBlessingEffect(v.x, v.y, 'Blessing of Emotion');
+
+        e.arms.lower().over(250);
+        await sleep(250);
+
+        DialogSpeaker.value.speaker = e;
+        await show(`Thank you for doing this errand for me. Please return when the terms of the deal are upheld and we can discuss a reward for you.`);
+
+        if (progress.levels.humor === 1) {
+            await sleep(1000);
+
+            DialogSpeaker.value.speaker = undefined;
+            await show(`You can now press Q to cast a spell.`)
+        }
+
+        PermanentDefeatTracker.value.showFrames = 120;
     });
 }
 
