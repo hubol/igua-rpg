@@ -1,14 +1,14 @@
 import {scene} from "../igua/scene";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {GiantsTownArgs} from "../levelArgs";
-import {Sprite} from "pixi.js";
+import {Graphics, Sprite} from "pixi.js";
 import {GlowingEdge} from "../textures";
-import {Rectangle} from "../utils/math/rectangle";
 import {jukebox} from "../igua/jukebox";
 import {
     CapitalMusicPlease,
     Country,
-    DesertTown, GiantsCasinoMusic,
+    DesertTown,
+    GiantsCasinoMusic,
     GiantsHouseMusic,
     GiantsNimbusMusic,
     JungleMusic,
@@ -17,6 +17,8 @@ import {
 import {show} from "../cutscene/dialog";
 import {region} from "../gameObjects/region";
 import {terrainGradient} from "../gameObjects/outerGradient";
+import {gate} from "../gameObjects/gate";
+import {getWorldBounds} from "../igua/gameplay/getCenter";
 
 export function GiantsTown() {
     scene.backgroundColor = 0x98C0E0;
@@ -45,11 +47,17 @@ export function GiantsTown() {
     terrainGradient(transitions, colors);
 }
 
-function edge(r: Rectangle) {
-    const s = Sprite.from(GlowingEdge).at(r);
+type Gate = ReturnType<typeof gate>;
+
+function edge(r: Gate) {
+    const s = Sprite.from(GlowingEdge).at(r).behind();
     s.angle = 90;
     s.anchor.set(0, 1);
     s.width = r.height;
     s.height = r.width;
-    return s.behind();
+
+    const b = getWorldBounds(s);
+    r.collisionBox = new Graphics().beginFill().drawRect(b.x + 8, b.y + 16, b.width - 16, b.height).hide().show();
+
+    return s;
 }
