@@ -969,6 +969,28 @@
           "originX": 0.5,
           "originY": 1,
           "values": {"name": ""}
+        },
+        {
+          "x": 1156,
+          "y": 239,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "giants/restaurant sign.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 706,
+          "y": 191,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "giants/casino sign.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "..\\..\\src\\images"

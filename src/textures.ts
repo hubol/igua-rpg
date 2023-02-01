@@ -119,9 +119,11 @@ export let FishProjectile: PIXI.Texture;
 export let FloppyDisk: PIXI.Texture;
 export let FlyCageBroken: PIXI.Texture;
 export let FlyCage: PIXI.Texture;
+export let GiantsCasinoSign: PIXI.Texture;
 export let GiantsDinerTable: PIXI.Texture;
 export let GiantsExterior: PIXI.Texture;
 export let GiantsFoodStash: PIXI.Texture;
+export let GiantsRestaurantSign: PIXI.Texture;
 export let GiantsSlotMachineCable: PIXI.Texture;
 export let GiantsSlotMachineNoise: PIXI.Texture;
 export let GiantsSlotMachineSymbols: PIXI.Texture;
@@ -660,6 +662,9 @@ export function loadTexturesAsync()
     const FlyCagePath = require("./images/fly cage.png");
     loader.add(FlyCagePath); 
 
+    const GiantsCasinoSignPath = require("./images/giants/casino sign.png");
+    loader.add(GiantsCasinoSignPath); 
+
     const GiantsDinerTablePath = require("./images/giants/diner table.png");
     loader.add(GiantsDinerTablePath); 
 
@@ -668,6 +673,9 @@ export function loadTexturesAsync()
 
     const GiantsFoodStashPath = require("./images/giants/food stash.png");
     loader.add(GiantsFoodStashPath); 
+
+    const GiantsRestaurantSignPath = require("./images/giants/restaurant sign.png");
+    loader.add(GiantsRestaurantSignPath); 
 
     const GiantsSlotMachineCablePath = require("./images/giants/slot machine cable.png");
     loader.add(GiantsSlotMachineCablePath); 
@@ -1333,9 +1341,11 @@ export function loadTexturesAsync()
             FloppyDisk = resources[FloppyDiskPath]?.texture as PIXI.Texture;
             FlyCageBroken = resources[FlyCageBrokenPath]?.texture as PIXI.Texture;
             FlyCage = resources[FlyCagePath]?.texture as PIXI.Texture;
+            GiantsCasinoSign = resources[GiantsCasinoSignPath]?.texture as PIXI.Texture;
             GiantsDinerTable = resources[GiantsDinerTablePath]?.texture as PIXI.Texture;
             GiantsExterior = resources[GiantsExteriorPath]?.texture as PIXI.Texture;
             GiantsFoodStash = resources[GiantsFoodStashPath]?.texture as PIXI.Texture;
+            GiantsRestaurantSign = resources[GiantsRestaurantSignPath]?.texture as PIXI.Texture;
             GiantsSlotMachineCable = resources[GiantsSlotMachineCablePath]?.texture as PIXI.Texture;
             GiantsSlotMachineNoise = resources[GiantsSlotMachineNoisePath]?.texture as PIXI.Texture;
             GiantsSlotMachineSymbols = resources[GiantsSlotMachineSymbolsPath]?.texture as PIXI.Texture;
