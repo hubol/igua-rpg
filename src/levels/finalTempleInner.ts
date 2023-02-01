@@ -86,12 +86,17 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         e.head.away = false;
         await sleep(200);
         e.facing = -1;
-        await sleep(500);
+        await sleep(1000);
+
+        await showAll(`Thank you.`,
+            `At some point, I got bored and started bouncing a ball.`,
+            `It hit the light switch and I had just been in the dark ever since.`);
+
         await move(e).off(-48, 0).over(750);
 
         e.autoEmote = false;
-        await e.say(`I am the wizard of emotion.`, Emotion.Cool);
-        await e.say(`I appreciate your coming here. I became trapped in this vault some time ago.`, Emotion.Happy);
+        await e.say(`Uh, but I am the wizard of emotion.`, Emotion.Cool);
+        await e.say(`I really appreciate your coming here. I know it was not easy.`, Emotion.Happy);
         await e.say(`Everyone is expecting you to find a weapon?`, Emotion.Shocked);
         await e.say(`Well, it's not here. That thing broke a long time ago. And no one alive can repair it.`, Emotion.Sad);
         await e.say(`Indeed, repairing weapons is way outside of my wheelhouse.`, Emotion.Dead);
