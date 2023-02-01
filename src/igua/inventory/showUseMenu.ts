@@ -19,12 +19,11 @@ import {volcanoKeys} from "../../levels/volcanoTemple";
 import {capitalKeys} from "../../levels/capitalTemple";
 import {vnew} from "../../utils/math/vector";
 import {subimageTextures} from "../../utils/pixi/simpleSpritesheet";
-import {BigKeyTracker, BlessingsTracker, CommonPoisonPotion, UiBadgeLabel} from "../../textures";
+import {BigKeyTracker, BlessingsTracker, UiBadgeLabel} from "../../textures";
 import {SceneLocal} from "../sceneLocal";
 import {getBadgeTexture} from "../gameplay/badgeTextures";
 import {derivedStats} from "../gameplay/derivedStats";
 import {Badges} from "../gameplay/badges";
-import {getMessageBoxY} from "../../cutscene/dialog";
 
 export function showUseMenu() {
     throw new EscapeTickerAndExecute(useImpl);
@@ -236,25 +235,16 @@ const blessingTextures = subimageTextures(BlessingsTracker, 4);
 function equippedBadge() {
     const c = container()
         .withStep(() => {
-            c.y = getMessageBoxY() + 10;
+            c.y = progress.status.poison > 0 ? 46 : 37;
             c.visible = derivedStats.badge !== Badges.None;
             if (!c.visible)
                 return;
 
             s.texture = getBadgeTexture(progress.equipment.badge);
-            // s2.texture = s.texture;
         });
 
-    // new Graphics().lineStyle(1, 0x005870).drawRect(-3, -3 - 7, 27, 26 + 7).show(c);
-    // const s = Sprite.from(getBadgeTexture('None')).show(c);
-
-    new Graphics().lineStyle(1, 0x00ff00).drawRect(-3, -3 - 7, 27, 26 + 7 - 4).show(c);
-    // new Graphics().lineStyle(1, 0x005870).drawRect(-3, -3 - 7, 27, 26 + 7 - 4).show(c);
-    const s = Sprite.from(getBadgeTexture('None')).at(0, -2).show(c);
-
-    // new Graphics().beginFill().drawRect(s.x, s.y, s.width, s.height).show(c);
-    // const s2 = Sprite.from(s.texture).at(1, 1).show(c, s.index);
-    // s2.opaqueTint = 0x005870;
+    new Graphics().lineStyle(1, 0x00ff00).drawRect(-3, -3 - 7, 23, 26 + 7 - 4).show(c);
+    const s = Sprite.from(getBadgeTexture('None')).at(-2, -2).show(c);
     Sprite.from(UiBadgeLabel).at(-2, -8).show(c);
 
     c.at(6, 0);

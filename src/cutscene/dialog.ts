@@ -57,7 +57,7 @@ export const DialogSpeaker = new SceneLocal(() => ({
     speaker: Undefined<DisplayObject>()
 }), `DialogSpeaker`);
 
-export function getMessageBoxY() {
+function getMessageBoxY() {
     return progress.status.poison > 0 ? 38 : 27;
 }
 
