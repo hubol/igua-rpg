@@ -48,7 +48,7 @@ export function messageBox(message: string) {
                 g.closePath();
 
                 const b2 = c.children[0].getBounds(false, r);
-                g.lineStyle(0).beginFill(0x005870).drawRect(b2.x + 3, b2.y + 3, b2.width - 6, b2.height - 6);
+                g.lineStyle(0).beginFill(0x005870).drawRect(b2.x + 3, b2.y + 3, b2.width - 6, b2.height - 7);
             });
     return c;
 }
