@@ -250,6 +250,8 @@ export let SpikyBrushB: PIXI.Texture;
 export let SweetBerryPotion: PIXI.Texture;
 export let Torch: PIXI.Texture;
 export let Tumbleweed: PIXI.Texture;
+export let UiBadgeLabel: PIXI.Texture;
+export let UiBadges: PIXI.Texture;
 export let UiCheckbox: PIXI.Texture;
 export let UiChooseYourLooksIcons: PIXI.Texture;
 export let UiNoneChoice: PIXI.Texture;
@@ -1051,6 +1053,12 @@ export function loadTexturesAsync()
     const TumbleweedPath = require("./images/tumbleweed.png");
     loader.add(TumbleweedPath); 
 
+    const UiBadgeLabelPath = require("./images/ui/badge label.png");
+    loader.add(UiBadgeLabelPath); 
+
+    const UiBadgesPath = require("./images/ui/badges.png");
+    loader.add(UiBadgesPath); 
+
     const UiCheckboxPath = require("./images/ui/checkbox.png");
     loader.add(UiCheckboxPath); 
 
@@ -1456,6 +1464,8 @@ export function loadTexturesAsync()
             SweetBerryPotion = resources[SweetBerryPotionPath]?.texture as PIXI.Texture;
             Torch = resources[TorchPath]?.texture as PIXI.Texture;
             Tumbleweed = resources[TumbleweedPath]?.texture as PIXI.Texture;
+            UiBadgeLabel = resources[UiBadgeLabelPath]?.texture as PIXI.Texture;
+            UiBadges = resources[UiBadgesPath]?.texture as PIXI.Texture;
             UiCheckbox = resources[UiCheckboxPath]?.texture as PIXI.Texture;
             UiChooseYourLooksIcons = resources[UiChooseYourLooksIconsPath]?.texture as PIXI.Texture;
             UiNoneChoice = resources[UiNoneChoicePath]?.texture as PIXI.Texture;
