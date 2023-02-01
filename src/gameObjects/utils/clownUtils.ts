@@ -49,7 +49,7 @@ function showValuable(vec: Vector, value: number) {
 }
 
 export function clownHealth(maxHealth: number) {
-    maxHealth *= 1 + progress.newGamePlus;
+    maxHealth = Math.round(maxHealth * (1 + progress.newGamePlus * 1.33));
 
     return {
         maxHealth,

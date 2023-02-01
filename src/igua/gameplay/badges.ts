@@ -32,9 +32,9 @@ function mk(args: Partial<Badge>): Badge {
 
 export const Badges = {
     None: mk({}),
-    Shield: mk({ damageTakenScale: 1.2, duckDamageTakenScale: 0.5, duckedDamageCountsTowardsHitCount: false, duckTemporaryClawAttackPowerScale: 1.1, duckTemporaryClawAttackPowerFrameCount: 10 * 60, duckInvulnerableFrameCount: 100 }),
+    Shield: mk({ damageTakenScale: 1.2, duckDamageTakenScale: 0.5, duckedDamageCountsTowardsHitCount: false, duckTemporaryClawAttackPowerScale: 1.33, duckTemporaryClawAttackPowerFrameCount: 10 * 60, duckInvulnerableFrameCount: 100 }),
     Redirect: mk({ poisonAffectsClawAttackPower: true, poisonAffectsMovementSpeed: false }),
-    Dexterous: mk({ comboClawAttackPowerScale: [0.7, 0.9, 1.5, 1.15, 1.15, 1.15, 1.15, 1.2] }),
+    Dexterous: mk({ comboClawAttackPowerScale: [0.7, 0.9, 1.5, 1.2, 1.75, 1.4, 1.4, 1.4, 1.4, 2.25, 1.4] }),
     Cigarette: mk({ lungCastDistanceScale: 36 / 90, lungCastTimeScale: 0.925, lungAttackPowerScale: 1.33 }),
 
     // TODO These are pretty boring...
