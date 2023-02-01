@@ -39,7 +39,7 @@ export function CapitalOutskirts() {
 }
 
 function enrichBlockadeWall(level: GameObjectsType<typeof CapitalOutskirtsArgs>) {
-    if (player.x > 64)
+    if (player.x < 170)
         return level.BlockadeWall.destroy();
     level.BlockadeWall.hide();
     const bricks = Sprite.from(CapitalBrickWall).withStep(() => bricks.at(getWorldBounds(level.BlockadeWall))).behind();
