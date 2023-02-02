@@ -20,7 +20,7 @@ export function gotoDeathScreen()
 
     scene.gameObjectStage.withAsync(async () => {
         await sleep(4000);
-        await revive();
+        setTimeout(revive);
     });
 }
 
