@@ -1,5 +1,5 @@
 import {SceneLocal} from "../igua/sceneLocal";
-import {Matrix, RenderTexture, Sprite} from "pixi.js";
+import {DisplayObject, Matrix, RenderTexture, Sprite} from "pixi.js";
 import {player} from "./player";
 import {game} from "../igua/game";
 import {scene} from "../igua/scene";
@@ -27,6 +27,7 @@ export function makeShadowCastFilter() {
 }
 
 export const ShadowCastDirection = new SceneLocal(() => vnew().at(1, 1), 'ShadowCastDirection');
+export const ShadowCastAdditionalCasters = new SceneLocal(() => [] as DisplayObject[], 'ShadowCastAdditionalCasters');
 
 const RenderPlayerAndShadow = new SceneLocal(renderPlayerAndShadow, 'RenderPlayerAndShadow');
 
@@ -47,6 +48,9 @@ function renderPlayerAndShadow() {
             matrix.ty = -scene.camera.y;
 
             game.renderer.render(player, playerTexture, true, matrix);
+            for (const d of ShadowCastAdditionalCasters.value)
+                game.renderer.render(d, playerTexture, false, matrix);
+
             scene.camera.at(p1);
             player.at(p2);
 
