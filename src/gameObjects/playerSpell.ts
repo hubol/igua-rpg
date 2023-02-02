@@ -25,7 +25,9 @@ export enum PlayerSpellColor {
     Light = 0x60C850,
 }
 
-const txs = subimageTextures(LaughSpell, 2);
+const rawSpellTxs = subimageTextures(LaughSpell, 3);
+const txs = [rawSpellTxs[0], rawSpellTxs[1]];
+const consumedTx = rawSpellTxs[2];
 
 export function castPlayerSpell(subject: IguanaPuppet = player) {
     const c = container()
@@ -64,14 +66,16 @@ function playerSpell(subject: IguanaPuppet) {
     let targetHurtbox = Undefined<DisplayObject>();
     let targetOffset = vnew();
     let moveTowardsTargetSpeed = consts.speedStart;
+    let consumed = false;
 
     const s = scene.s;
 
     const spell = container(sprite, hitbox)
         .withPixin(Dithered({ dither: 0 }))
         .withStep(() => {
-            if (slowRise)
+            if (slowRise) {
                 spell.y -= 1;
+            }
             if (active) {
                 activeSteps += 1;
                 if (!target || target.destroyed) {
@@ -90,14 +94,17 @@ function playerSpell(subject: IguanaPuppet) {
                 }
                 else {
                     spell.x += Math.sin((scene.s - s) * Math.PI * 2);
-                    spell.y -= 0.3;
+                    spell.y -= 0.5;
                 }
                 if (doSpellCollisionEvents(hitbox)) {
+                    consumed = true;
                     active = false;
                 }
             }
             if (activeSteps >= consts.maximumTravelTimeFrames * derivedStats.badge.lungCastDistanceScale)
                 active = false;
+            if (consumed)
+                sprite.texture = consumedTx;
         })
         .withAsync(async () => {
             await sleep(100)
