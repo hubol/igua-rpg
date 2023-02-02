@@ -88,7 +88,7 @@ function enrichAmbush(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
             await sleep(66);
             frown(npc, npc !== npc2);
         }
-        jukebox.fadeOut(0, 250);
+        jukebox.fadeOut(0, 100);
         await sleep(4000);
         await leave(npc3);
         await sleep(500);
