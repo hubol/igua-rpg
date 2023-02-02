@@ -28,7 +28,7 @@ enum Color {
 const AnimatedStats = new SceneLocal(() => ({ maxHealth: derivedStats.maxHealth }), `HudMaxHealth`);
 
 function getVisualHealthbarWidth(maxHealth: number) {
-    return Math.min(256, maxHealth * 0.54);
+    return Math.min(256, Math.floor(maxHealth * 0.54));
 }
 
 export const DamageTakenHud = new SceneLocal(() => {
@@ -64,7 +64,8 @@ export function hud()
             AnimatedStats.value.maxHealth = approachLinear(nlerp(AnimatedStats.value.maxHealth, derivedStats.maxHealth, 0.125), derivedStats.maxHealth, 1);
             const { life, heal, hurt } = healthbar(progress, progress.health, max, progress.health);
 
-            const f = getVisualHealthbarWidth(max) / max;
+            const visualHealthbarWidth = getVisualHealthbarWidth(max);
+            const f = visualHealthbarWidth / max;
 
             healthbarGfx.clear();
             healthbarGfx.beginFill(Color.Empty);
@@ -78,7 +79,7 @@ export function hud()
 
             const damageValue = DamageTakenHud.value.damage;
             damageText.visible = damageValue > 0;
-            damageText.at(healthbarGfx.width - 1, healthbarGfx.height);
+            damageText.at(visualHealthbarWidth, 16);
             damageText.text = '' + damageValue;
         });
 
