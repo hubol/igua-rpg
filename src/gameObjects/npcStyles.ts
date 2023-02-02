@@ -181,6 +181,7 @@ function npcStyle(configure: (args: ConfigureNpcStyleArgs) => void)
 
         const mouthSprite = Sprite.from(CharacterMouthV);
         mouthSprite.pivot.set(-10, -11);
+        mouthSprite.ext._isMouth = true;
 
         const args = {headSprite: Sprite.from(CharacterHead), mouthSprite, pupils, eyeShape: Sprite.from(CharacterWhites), headOffset: { x: 0, y: 0 } } as unknown as ConfigureNpcStyleArgs;
         configure(args);

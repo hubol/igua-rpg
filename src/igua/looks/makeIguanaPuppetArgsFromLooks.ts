@@ -125,6 +125,7 @@ function makeHead(body: Body, head: Head) {
         sprite.pivot.y = x - 1;
         sprite.tint = head.mouth.color;
         sprite.pivot.add(-13, 1).add(head.mouth.placement, -1);
+        sprite.ext._isMouth = true;
         if (head.mouth.flipV)
             flipV(sprite);
         face.addChild(sprite);

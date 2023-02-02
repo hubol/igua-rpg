@@ -35,6 +35,10 @@ import {jukebox} from "../igua/jukebox";
 import {FinalTempleMusic} from "../musics";
 import {npc} from "../gameObjects/npc";
 import {cutscene} from "../cutscene/cutscene";
+import {IguanaPuppet} from "../igua/puppet/iguanaPuppet";
+import {flipV} from "../utils/pixi/flip";
+import {waitForInput} from "../cutscene/waitForInput";
+import {castPlayerSpell} from "../gameObjects/playerSpell";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
@@ -58,27 +62,60 @@ export function FinalTempleOuter() {
 
 function enrichAmbush(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
     const ambush = progress.flags.final.playerMetEmoWizard
-        && !progress.flags.final.oraclesLearnedTruth
-        && player.x > 150;
+        && !progress.flags.final.oraclesLearnedTruth;
     if (!ambush)
         return;
 
-    player.x += 32;
+    if (player.x > 150)
+        player.x += 32;
+
+    const targetX = 187;
+
+    async function leave(puppet: IguanaPuppet) {
+        await puppet.walkTo(level.Door.x);
+        puppet.destroy();
+    }
 
     async function ambushScene() {
+        sleep(500).then(() => player.scale.x = -1);
         const [ npc0, npc1, npc2, npc3, ] = await enterOracles(level);
         await showAll(`Great, you opened the final temple.`,
             `Quickly, show us the weapon!`);
+        await waitForInput('CastSpell');
+        castPlayerSpell();
+        npc3.engine.walkSpeed = 1;
+        for (const npc of [npc1, npc3, npc2, npc0]) {
+            await sleep(66);
+            frown(npc, npc !== npc2);
+        }
+        jukebox.fadeOut(0, 250);
+        await sleep(4000);
+        await leave(npc3);
+        await sleep(500);
+        await leave(npc2);
+        await sleep(250);
+        await leave(npc1);
+        await sleep(2000);
+        await showAll(`I refuse to believe this.`,
+            `I'm sure you did something wrong.`);
+        await sleep(250);
+        npc0.scale.x = -1;
+        await sleep(250);
+        await leave(npc0);
+        progress.flags.final.oraclesLearnedTruth = true;
     }
 
     scene.gameObjectStage.withAsync(async () => {
-        const tx = player.x - 13;
-        await Promise.race([
-            wait(() => player.x <= tx),
-            sleep(1000),
-        ]);
+        if (player.x > targetX) {
+            await Promise.race([
+                wait(() => player.x <= targetX),
+                sleep(1000),
+            ]);
+        }
+        else
+            await wait(() => player.x >= targetX);
         player.hspeed *= 0.2;
-        player.x = Math.max(player.x, tx - 7);
+        player.x = Math.max(player.x, targetX - 7);
         cutscene.play(ambushScene);
     })
 }
@@ -128,6 +165,16 @@ function enrichPanicLights() {
         .show();
 
     return c;
+}
+
+function frown(puppet: IguanaPuppet, flip = true) {
+    const mouths = <Sprite[]>puppet.find(x => x.ext._isMouth);
+    if (flip) {
+        mouths.forEach(x => {
+            flipV(x);
+            x.y -= 1;
+        });
+    }
 }
 
 const oracleStyleIds = [ 0, 10, 13, 2 ].reverse();
