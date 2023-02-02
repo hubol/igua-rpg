@@ -5,14 +5,14 @@ import {Graphics, Sprite} from "pixi.js";
 import {GlowingEdge} from "../textures";
 import {jukebox} from "../igua/jukebox";
 import {
+    AboveVolcano,
     CapitalMusicPlease,
     Country,
     DesertTown,
     GiantsCasinoMusic,
     GiantsHouseMusic,
     GiantsNimbusMusic,
-    JungleMusic,
-    VolcanoSomething
+    JungleMusic
 } from "../musics";
 import {show} from "../cutscene/dialog";
 import {region} from "../gameObjects/region";
@@ -23,7 +23,7 @@ import {getWorldBounds} from "../igua/gameplay/getCenter";
 export function GiantsTown() {
     scene.backgroundColor = 0x98C0E0;
     scene.terrainColor = 0xF8E8E8;
-    jukebox.play(GiantsNimbusMusic).warm(GiantsHouseMusic, GiantsCasinoMusic, DesertTown, JungleMusic, Country, VolcanoSomething, CapitalMusicPlease);
+    jukebox.play(GiantsNimbusMusic).warm(GiantsHouseMusic, GiantsCasinoMusic, DesertTown, JungleMusic, Country, AboveVolcano, CapitalMusicPlease);
     const level = applyOgmoLevel(GiantsTownArgs);
     edge(level.DesertGate).tinted(0xF0F0B0);
     edge(level.JungleGate).tinted(0x97D8D8);
