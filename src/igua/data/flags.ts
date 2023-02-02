@@ -115,6 +115,8 @@ export function getInitialFlags()
             slotMachineDamaged: false,
         },
         final: {
+            playerMetEmoWizard: false,
+            oraclesLearnedTruth: false,
             doorOpened: false,
             enemiesCanBePermanentlyDefeated: false,
         }

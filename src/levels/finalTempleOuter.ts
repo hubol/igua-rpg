@@ -10,7 +10,7 @@ import {desertBigKeyTextures} from "./desertTemple";
 import {jungleBigKeyTextures} from "./jungleTemple";
 import {volcanoBigKeyTextures} from "./volcanoTemple";
 import {capitalBigKeyTextures} from "./capitalTemple";
-import {makeShadowCastFilter, ShadowCastDirection} from "../gameObjects/lightRayCrude";
+import {makeShadowCastFilter, ShadowCastAdditionalCasters, ShadowCastDirection} from "../gameObjects/lightRayCrude";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {Vector} from "../utils/math/vector";
 import {capitalBricksWall} from "../gameObjects/capitalBricks";
@@ -25,7 +25,7 @@ import {FinalPanicLight, FinalPanicLightGlow, FinalPanicLightLit, OpenDoor} from
 import {merge} from "../utils/object/merge";
 import {approachLinear} from "../utils/math/number";
 import {container} from "../utils/pixi/container";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {wait} from "../cutscene/wait";
 import {player} from "../gameObjects/player";
 import {sleep} from "../cutscene/sleep";
@@ -33,6 +33,8 @@ import {BigKeyCollected} from "../sounds";
 import {sparkles} from "../gameObjects/sparkle";
 import {jukebox} from "../igua/jukebox";
 import {FinalTempleMusic} from "../musics";
+import {npc} from "../gameObjects/npc";
+import {cutscene} from "../cutscene/cutscene";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
@@ -49,7 +51,36 @@ export function FinalTempleOuter() {
     showLightRays(level);
     enrichDoor(level);
 
+    enrichAmbush(level);
+
     game.hudStage.ticker.update();
+}
+
+function enrichAmbush(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
+    const ambush = progress.flags.final.playerMetEmoWizard
+        && !progress.flags.final.oraclesLearnedTruth
+        && player.x > 150;
+    if (!ambush)
+        return;
+
+    player.x += 32;
+
+    async function ambushScene() {
+        const [ npc0, npc1, npc2, npc3, ] = await enterOracles(level);
+        await showAll(`Great, you opened the final temple.`,
+            `Quickly, show us the weapon!`);
+    }
+
+    scene.gameObjectStage.withAsync(async () => {
+        const tx = player.x - 13;
+        await Promise.race([
+            wait(() => player.x <= tx),
+            sleep(1000),
+        ]);
+        player.hspeed *= 0.2;
+        player.x = Math.max(player.x, tx - 7);
+        cutscene.play(ambushScene);
+    })
 }
 
 function enrichPanicLights() {
@@ -97,6 +128,37 @@ function enrichPanicLights() {
         .show();
 
     return c;
+}
+
+const oracleStyleIds = [ 0, 10, 13, 2 ].reverse();
+
+async function enterOracles(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
+    const startx = -20;
+    const dxs = [ 6, 53, 32, 80 ].reverse();
+    const c = container().show();
+    c.sortableChildren = true;
+    const npcs = oracleStyleIds.map(id => npc(level.Door.x + 30 + startx - 4, level.Door.y + 32, id).hide().show(c));
+    c.withStep(() => {
+        for (const child of c.children)
+            child.zIndex = child.y - Math.round(child.x * 0.1);
+    });
+    ShadowCastAdditionalCasters.value.push(c);
+
+    async function show(i: number) {
+        const npc = npcs[i];
+        const dx = dxs[i];
+        npc.visible = true;
+        await sleep(125);
+        npc.walkTo(npc.x + dx - startx);
+    }
+
+    await show(0);
+    await sleep(1000);
+    await show(1);
+    await show(2);
+    await show(3);
+
+    return [npcs[0], npcs[1], npcs[2], npcs[3]] as const;
 }
 
 function enrichDoor(level: GameObjectsType<typeof FinalTempleOuterArgs>) {

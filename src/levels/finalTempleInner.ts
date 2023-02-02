@@ -64,6 +64,7 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
 
     ball.register(player, vnew());
 
+    if (!progress.flags.final.playerMetEmoWizard)
     cutscene.play(async () => {
         e.isCrouching = true;
         e.facing = 1;
@@ -186,6 +187,7 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         const v = getWorldCenter(e);
         DialogSpeaker.value.speaker = undefined;
 
+        progress.flags.final.playerMetEmoWizard = true;
         progress.flags.final.enemiesCanBePermanentlyDefeated = true;
         progress.levels.humor += 1;
         await showBlessingEffect(v.x, v.y, 'Blessing of Emotion');
