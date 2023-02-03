@@ -40,7 +40,7 @@ import {
     CutieMarkGuyLooks,
     StatueGuyLooks,
     IguardLooks,
-    CapitalShopkeeperLooks, BigKeyPiece4Looks, DesertOracleLooks
+    CapitalShopkeeperLooks, BigKeyPiece4Looks, DesertOracleLooks, SylvieLooks, OddwargLooks, HubolLooks
 } from "./npcLooks";
 
 export type NpcStyle = ReturnType<typeof npcStyle>;
@@ -66,6 +66,9 @@ npcStyles[20] = fromLooks(StatueGuyLooks);
 npcStyles[21] = fromLooks(IguardLooks);
 npcStyles[22] = fromLooks(CapitalShopkeeperLooks);
 npcStyles[23] = fromLooks(BigKeyPiece4Looks);
+npcStyles[24] = fromLooks(SylvieLooks);
+npcStyles[25] = fromLooks(OddwargLooks);
+npcStyles[26] = fromLooks(HubolLooks);
 
 npcStyles[1] = npcStyle(args => {
     args.body = Sprite.from(NpcGreenPolkaBody);

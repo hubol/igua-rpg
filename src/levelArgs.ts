@@ -381,6 +381,18 @@ export const CapitalTownArgs = {
   },
 };
 
+export const CreditsArgs = {
+  width: 768,
+  height: 256,
+  gameObjectsSupplier: () => {
+    return {
+      Row0: resolveBlock({ type: "Block", x: 0, y: 48, width: 768, height: 16, flippedX: false, flippedY: false, uid: "55823268_0", name: "Row0", depth: 0 }),
+      Row1: resolveBlock({ type: "Block", x: 0, y: 128, width: 768, height: 16, flippedX: false, flippedY: false, uid: "55823268_1", name: "Row1", depth: 0 }),
+      Row2: resolveBlock({ type: "Block", x: 0, y: 208, width: 768, height: 16, flippedX: false, flippedY: false, uid: "55823268_2", name: "Row2", depth: 0 }),
+    };
+  },
+};
+
 export const DesertCostumerArgs = {
   width: 448,
   height: 256,

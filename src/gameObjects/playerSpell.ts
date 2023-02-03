@@ -35,8 +35,8 @@ export function castPlayerSpell(subject: IguanaPuppet = player) {
             subject.headLiftUnit = 1;
             for (let i = 0; i < 3; i++) {
                 // @ts-ignore
-                const mouth = player.head.children[1].children[1];
-                const xscale = player.scale.x * player.children[0].scale.x;
+                const mouth = subject.head.children[1].children[1];
+                const xscale = subject.scale.x * subject.children[0].scale.x;
                 playerSpell(subject).at(getWorldCenter(mouth).add(xscale * 8, 0)).ahead();
                 await sleep(300 * derivedStats.badge.lungCastTimeScale);
             }
