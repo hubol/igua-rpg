@@ -78,12 +78,15 @@ async function showCredits(level: GameObjectsType<typeof CreditsArgs>) {
     await sleep(1000);
 
     const oddwarg = credit(25, 'Oddwarg', 'Inspiration').from(0, Row2);
-    await oddwarg.walkTo(256 + 64);
+    await oddwarg.walkTo(256 + 47);
 
     await sleep(250);
 
     const sylvie = credit(24, 'Sylvie', 'Playtest').from(1, Row2);
-    await sylvie.walkTo(256 + 192);
+    await sylvie.walkTo(256 + 128);
+
+    const izzy = credit(27, 'Izzy', 'Playtest').from(1, Row2);
+    await izzy.walkTo(512 - 47);
 }
 
 function credit(styleId: number, name: string, ...roles: string[]) {
