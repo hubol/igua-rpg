@@ -4,7 +4,7 @@ import {IguaText} from "../igua/text";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {getWorldBounds, getWorldPos} from "../igua/gameplay/getCenter";
-import {scene} from "../igua/scene";
+import {scene, sceneStack} from "../igua/scene";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import { CreditsArgs } from "../levelArgs";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
@@ -21,13 +21,23 @@ import {playerPuppet} from "../gameObjects/player";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {getCompletionText} from "../igua/data/getCompletion";
 import {waitForInput} from "../cutscene/waitForInput";
+import {wait} from "../cutscene/wait";
 
 export function Credits() {
     scene.backgroundColor = 0x002C38;
     scene.camera.x = 256;
     const level = applyOgmoLevel(CreditsArgs);
     scene.terrainStage.hide();
-    scene.gameObjectStage.withAsync(() => showCredits(level));
+    scene.gameObjectStage.withAsync(async () => {
+        await showCredits(level);
+        scene.gameObjectStage.ext.finishedCredits = true;
+    });
+}
+
+export async function showCreditsSequence() {
+    // Walls will persist to the Credits if you use sceneStack.push...
+    sceneStack.replace(Credits);
+    await wait(() => scene.gameObjectStage.ext.finishedCredits);
 }
 
 function makeLogo() {
@@ -83,7 +93,9 @@ async function showCredits(level: GameObjectsType<typeof CreditsArgs>) {
     const { Row0, Row1, Row2 } = level;
 
     const hubol = credit(26, 'Hubol', 'Audiovisual', 'Design', 'Program', 'Scenario').from(0, Row1);
+    console.log(hubol);
     await hubol.walkTo(256 + 128);
+    console.log(scene);
 
     await sleep(1000);
 
