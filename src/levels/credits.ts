@@ -85,7 +85,7 @@ async function showCredits(level: GameObjectsType<typeof CreditsArgs>) {
     await jukebox.playAsync(CreditsMusic);
     jukebox.currentSong!.loop(false);
 
-    const l = makeLogo().at(scene.camera.x + 20, 20).show();
+    const l = makeLogo().at(scene.camera.x + 20, 20).ahead();
     await l.fadeIn();
 
     await sleep(250);
@@ -93,9 +93,7 @@ async function showCredits(level: GameObjectsType<typeof CreditsArgs>) {
     const { Row0, Row1, Row2 } = level;
 
     const hubol = credit(26, 'Hubol', 'Audiovisual', 'Design', 'Program', 'Scenario').from(0, Row1);
-    console.log(hubol);
     await hubol.walkTo(256 + 128);
-    console.log(scene);
 
     await sleep(1000);
 
@@ -126,8 +124,14 @@ async function showCredits(level: GameObjectsType<typeof CreditsArgs>) {
     await sleep(2000);
     await leave(you);
 
-    await sleep(1000);
-    hubol.destroy();
+    await sleep(2000);
+
+    const d = scene.gameObjectStage.withPixin(Dithered());
+    await lerp(d, 'dither').to(0).over(500);
+    scene.gameObjectStage.removeAllChildren();
+
+    d.dither = 1;
+
     await sleep(1000);
     await showEndingMessages();
     await showFadeOut();
@@ -211,7 +215,7 @@ function credit(styleId: number, name: string, ...roles: string[]) {
             const p = getWorldPos(n);
             text.at(Math.round(p.x), Math.round(p.y));
         })
-        .ahead();
+        .show();
 
     function from(side: 0 | 1, y: number | DisplayObject) {
         if (y instanceof DisplayObject)
