@@ -15,7 +15,7 @@ import {persistence, SaveFile} from "../igua/data/persistence";
 import {PageElement} from "../igua/ui/page";
 import {Progress} from "../igua/data/progress";
 import {PurchaseFail} from "../sounds";
-import {getCompletion} from "../igua/data/getCompletion";
+import {getCompletionText} from "../igua/data/getCompletion";
 import {jukebox} from "../igua/jukebox";
 import {TitleScreen as Music} from "../musics";
 import {Vibratey} from "../igua/puppet/mods/vibratey";
@@ -177,7 +177,7 @@ function saveFileInfo() {
             headContainer.removeAllChildren();
             headContainer.addChild(iguanaHead(makeIguanaPuppetArgsFromLooks(progress.looks)));
             level.text = `Claw Level ${progress.levels.strength}`;
-            completion.text = Math.floor(getCompletion(progress) * 100).toFixed(0) + '%';
+            completion.text = getCompletionText(progress);
             valuables.text = progress.valuables.toString();
             newGamePlus.text = getNewGamePlusText(progress.newGamePlus);
             return c;

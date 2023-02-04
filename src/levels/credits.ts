@@ -16,6 +16,10 @@ import {sleep} from "../cutscene/sleep";
 import {Dithered} from "../pixins/dithered";
 import {jukebox} from "../igua/jukebox";
 import {CreditsMusic} from "../musics";
+import {IguanaPuppet} from "../igua/puppet/iguanaPuppet";
+import {playerPuppet} from "../gameObjects/player";
+import {Sleepy} from "../igua/puppet/mods/sleepy";
+import {getCompletionText} from "../igua/data/getCompletion";
 
 export function Credits() {
     scene.backgroundColor = 0x002C38;
@@ -92,10 +96,48 @@ async function showCredits(level: GameObjectsType<typeof CreditsArgs>) {
 
     const izzy = credit(27, 'Izzy', 'Playtest').from(1, Row2);
     await izzy.walkTo(512 - 47);
+
+    await sleep(4000);
+    hubol.isDucking = true;
+    await sleep(2000);
+    hubol.ext.zColor = 0x005870;
+    hubol.mods.add(Sleepy);
+    await sleep(2000);
+
+    for (const puppet of [ izzy, oddwarg, sylvie ])
+        await leave(puppet);
+
+    const you = credit(-1, `${getCompletionText()} Clear`, `Thank You`).from(1, Row2);
+    await you.walkTo(256 + 128);
+
+    await sleep(2000);
+    await leave(you);
+}
+
+async function leave(puppet: IguanaPuppet) {
+    const diff = puppet.x - (scene.camera.x + 128);
+    if (Math.abs(diff) > 16) {
+        puppet.scale.x = Math.sign(diff);
+    }
+
+    await sleep(250);
+    puppet.walkTo(scene.camera.x + 128 + puppet.scale.x * 320);
+    await sleep(250);
+}
+
+function makeIguanaPuppet(styleId: number): IguanaPuppet {
+    if (styleId === -1) {
+        const p = playerPuppet()
+            .withStep(() => p.engine.step());
+        return p;
+    }
+
+    return npc(0, 0, styleId);
 }
 
 function credit(styleId: number, name: string, ...roles: string[]) {
-    const n = merge(npc(0, 0, styleId), { from }).show();
+    const p = makeIguanaPuppet(styleId);
+    const n = merge(p, { from }).show();
     n.engine.walkSpeed = 2;
 
     const role = IguaText.Large(roles.join(', ',).toUpperCase());

@@ -1,4 +1,4 @@
-import {Progress} from "./progress";
+import {progress, Progress} from "./progress";
 import {RegionKeys} from "../gameplay/regionKeys";
 import {desertKeys} from "../../levels/desertTemple";
 import {jungleKeys} from "../../levels/jungleTemple";
@@ -46,6 +46,10 @@ export function getCompletion(progress: Progress) {
         b(capitalBigKey) +
         n(capital.defeatedDassmann) +
         n(capital.solvedImpossiblePuzzle)) / numbers;
+}
+
+export function getCompletionText(p = progress) {
+    return Math.floor(getCompletion(p) * 100).toFixed(0) + '%';
 }
 
 /*

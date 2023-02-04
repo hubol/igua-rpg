@@ -14,7 +14,7 @@ export const Sleepy: IguanaPuppetMod = puppet => {
                 await sleep(1500);
                 const bitmapText = IguaText.Large(
                     rng.bool ? "z" : "Z",
-                    {tint: 0x222288})
+                    {tint: puppet.ext.zColor ?? 0x222288})
                     .at(puppet.x + Math.sign(puppet.scale.x) * 20, puppet.y - 16)
                     .withAsync(async () => {
                         for (let i = 0; i < 10; i++) {
