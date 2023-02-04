@@ -14,6 +14,8 @@ import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
 import {Dithered} from "../pixins/dithered";
+import {jukebox} from "../igua/jukebox";
+import {CreditsMusic} from "../musics";
 
 export function Credits() {
     scene.backgroundColor = 0x002C38;
@@ -65,6 +67,9 @@ function makeLogo() {
 }
 
 async function showCredits(level: GameObjectsType<typeof CreditsArgs>) {
+    await jukebox.playAsync(CreditsMusic);
+    jukebox.currentSong!.loop(false);
+
     const l = makeLogo().at(scene.camera.x + 20, 20).show();
     await l.fadeIn();
 

@@ -42,6 +42,11 @@ export const Country = new Howl({
     preload: false
 });
 
+export const CreditsMusic = new Howl({
+    src: [require("./music/credits-music.ogg"), require("./music/credits-music.mp3")],
+    preload: false
+});
+
 export const DesertTown = new Howl({
     src: [require("./music/desert town.ogg"), require("./music/desert town.mp3")],
     preload: false
