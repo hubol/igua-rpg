@@ -35,7 +35,7 @@ export const Badges = {
     Shield: mk({ damageTakenScale: 1.2, duckDamageTakenScale: 0.5, duckedDamageCountsTowardsHitCount: false, duckTemporaryClawAttackPowerScale: 1.33, duckTemporaryClawAttackPowerFrameCount: 10 * 60, duckInvulnerableFrameCount: 100 }),
     Redirect: mk({ poisonAffectsClawAttackPower: true, poisonAffectsMovementSpeed: false }),
     Dexterous: mk({ comboClawAttackPowerScale: [0.7, 0.9, 1.5, 1.2, 1.8, 1.4, 1.4, 1.4, 1.4, 2.3, 1.4] }),
-    Cigarette: mk({ lungCastDistanceScale: 36 / 90, lungCastTimeScale: 0.925, lungAttackPowerScale: 1.33 }),
+    Cigarette: mk({ lungCastDistanceScale: 36 / 90, lungCastTimeScale: 0.925, lungAttackPowerScale: 1.67 }),
 
     // TODO These are pretty boring...
     Heavy: mk({ movementSpeedScale: 0.625, baseAttackPowerScale: 1.5 }),
