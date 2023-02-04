@@ -11,10 +11,13 @@ import {cracks} from "../gameObjects/cracks";
 import {forceRenderable} from "../igua/forceRenderable";
 import {game} from "../igua/game";
 import {container} from "../utils/pixi/container";
+import {jukebox} from "../igua/jukebox";
+import {EmoWizard} from "../musics";
 
 export function FinalClimb() {
     scene.backgroundColor = 0x182840;
     scene.terrainColor = 0x4868a0;
+    jukebox.play(EmoWizard);
     const level = applyOgmoLevel(FinalClimbArgs);
     enrichObstacle(level);
     applyFinalFilters();
