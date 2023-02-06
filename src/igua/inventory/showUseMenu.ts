@@ -110,9 +110,14 @@ function gui(c: Controller, margin = 2, size = 24) {
         const potion = potions[c.type];
         name.text = potion.name;
         description.text = potion.description;
+
+        const tipGfxHeight = Math.max(48, description.textHeight + 23);
+
+        tip
+            .clear()
+            .beginFill(0x005870)
+            .drawRect(0, 0, width, tipGfxHeight)
     })
-        .beginFill(0x005870)
-        .drawRect(0, 0, width, 48)
         .at(0, height + margin);
 
     const name = IguaText.Large().at(5, 2);
