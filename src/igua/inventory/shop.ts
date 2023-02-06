@@ -138,11 +138,13 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], payment:
         purchases.push(potion);
     }
 
+    const tipGfxHeight = payment.currency === 'valuables' ? 54 : 77;
+
     const tip = new Container();
     const tipGfx = new Graphics()
         .lineStyle(3, 0x00FF00, 1, 0)
         .beginFill(0x005870)
-        .drawRect(0, 0, 122, 54);
+        .drawRect(0, 0, 122, tipGfxHeight);
     const tipText = IguaText.Large('', { maxWidth: tipGfx.width - 10 }).at(5, 2);
 
     tip.addChild(tipGfx, tipText);
@@ -159,6 +161,15 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], payment:
     inventoryFull.withStep(() => inventoryFull.visible = inventory.isFull);
 
     c.addChild(tip, inventoryFull);
+
+    if (payment.currency === 'intelligence') {
+        const intelligenceLevel = IguaText.Large('').at(254, 254)
+            .withStep(() => intelligenceLevel.text = `Brain Level ${progress.levels.intelligence}`)
+            .show(c);
+        intelligenceLevel.tint = 0x00ff00;
+        // @ts-ignore
+        intelligenceLevel.anchor.set(1, 1);
+    }
 
     function complete() {
         resolve(purchases);
