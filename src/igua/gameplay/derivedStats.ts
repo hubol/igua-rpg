@@ -1,9 +1,12 @@
 import {progress} from "../data/progress";
 import {Badges} from "./badges";
 import {player} from "../../gameObjects/player";
+import {cutscene} from "../../cutscene/cutscene";
 
 export const derivedStats = {
     computeDamage(ng0Damage: number) {
+        if (cutscene.isPlaying)
+            return 0;
         const currentNgDamage = ng0Damage * (1 + progress.newGamePlus);
         const canPreventDeathIfDucked = progress.health > 1;
         const maximumDamage = player.isDucking && canPreventDeathIfDucked ? progress.health - 1 : Number.MAX_SAFE_INTEGER;
