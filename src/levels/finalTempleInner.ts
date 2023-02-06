@@ -27,6 +27,10 @@ import {showBlessingEffect} from "../igua/gameplay/templeLevelUtil";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
 import {progress} from "../igua/data/progress";
 import {PermanentDefeatTracker} from "../gameObjects/permanentDefeatTracker";
+import {derivedProgress} from "../igua/gameplay/derivedStats";
+import {showCreditsSequence} from "./credits";
+import {migrateProgressToNewGamePlus} from "../igua/data/migrateProgressToNewGamePlus";
+import {level} from "../igua/level/level";
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
@@ -51,24 +55,46 @@ export function FinalTempleInner() {
 }
 
 function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
-    const e = emoWizard().at(level.EmoWizardInitial).show();
-    const light = enrichLight(level).show();
+    const deps = makeCutsceneDeps(level);
 
+    if (!progress.flags.final.playerMetEmoWizard)
+        return enrichFirstMeeting(deps);
+
+    const deps2 = makeAfterFirstMeetingCutsceneDeps(deps);
+    if (derivedProgress.permanentlyDefeatedRequiredEnemies)
+        enrichCompleteFinalQuest(deps2);
+    else
+        enrichIncompleteFinalQuest(deps2);
+}
+
+function enrichIncompleteFinalQuest({ dassmann: d, wizard: e }: AfterFirstMeetingCutsceneDeps) {
+    d.withCutscene(() => showAll(
+        `He says he needs you to finish your task before I can get my soda.`,
+        `I don't know. He works in mysterious ways.`));
+
+    e.withCutscene(() => showAll(
+        `It looks like my clients are still waiting on the delivery of some units.`,
+        `The quicker you fill the receptacles, the quicker you get your reward!!!`));
+}
+
+function enrichCompleteFinalQuest({}: AfterFirstMeetingCutsceneDeps) {
+    cutscene.play(async () => {
+        await sleep(500);
+        await showCreditsSequence();
+        migrateProgressToNewGamePlus();
+        level.goto(progress.levelName);
+    });
+}
+
+function enrichFirstMeeting({ light, level, wizard: e, ball }: CutsceneDeps) {
     jukebox.stop();
     player.x -= 24;
     const hide = container().withStep(() => player.visible = false).show();
 
-    const ball = emoWizardBall().at(e.x - 64, e.y)
-        .withStep(() => ball.alpha = Math.round(light.lightUnit * 4) / 4)
-        .ahead();
-
-    ball.register(player, vnew());
-
-    if (!progress.flags.final.playerMetEmoWizard)
     cutscene.play(async () => {
         e.isCrouching = true;
         e.facing = 1;
-        e.autoFacing = false;
+        e.autoFacing = 'off';
         e.head.away = true;
         e.autoEmote = true;
 
@@ -138,12 +164,12 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         await sleep(1000);
         await show(`I have been looking all over for you!`);
 
-        e.autoFacing = false;
+        e.autoFacing = 'off';
         await Promise.all([
             move(d).off(83, 0).over(750),
             sleep(400).then(x => move(e).off(20, 0).over(350))
         ]);
-        e.autoFacing = true;
+        e.autoFacing = 'direction';
 
         await sleep(250);
         await show(`I've come to pick up the newest batch.`);
@@ -209,6 +235,42 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
     });
 }
 
+function makeCutsceneDeps(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
+    const wizard = emoWizard().at(level.EmoWizardInitial).show();
+    const light = enrichLight(level).show();
+
+    const ball = emoWizardBall().at(wizard.x - 64, wizard.y)
+        .withStep(() => ball.alpha = Math.round(light.lightUnit * 4) / 4)
+        .ahead();
+
+    ball.register(player, vnew());
+
+    return {
+        level,
+        wizard,
+        light,
+        ball
+    };
+}
+
+type CutsceneDeps = ReturnType<typeof makeCutsceneDeps>;
+
+function makeAfterFirstMeetingCutsceneDeps(deps: CutsceneDeps) {
+    deps.light.lit = true;
+    deps.light.lightUnit = 0.3;
+    deps.wizard.x = 128;
+    deps.wizard.autoEmote = true;
+    deps.wizard.autoFacing = 'player';
+    const myDassmann = dassmann().at([160, 32].add(deps.level.Door)).show();
+
+    return {
+        ...deps,
+        dassmann: myDassmann,
+    }
+}
+
+type AfterFirstMeetingCutsceneDeps = ReturnType<typeof makeAfterFirstMeetingCutsceneDeps>;
+
 const terrainColors = [0x182840, 0x102038, 0x081830, 0x001028].reverse();
 
 function enrichLight(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
@@ -235,7 +297,7 @@ function enrichLight(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
 
     let light = 0;
 
-    const q = merge(container(), { lit: false, get lightUnit() { return light; } })
+    const q = merge(container(), { lit: false, get lightUnit() { return light; }, set lightUnit(value) { light = value; } })
         .withStep(() => {
             light = approachLinear(light, q.lit ? 1 : 0, 0.03);
             steps.forEach(x => x.visible = false);

@@ -19,6 +19,7 @@ import {trackPosition} from "../igua/trackPosition";
 import {waitHold} from "../cutscene/waitHold";
 import {show} from "../cutscene/dialog";
 import { EmoWizardStep } from "../sounds";
+import {player} from "./player";
 
 const bodyTxs = subimageTextures(FinalEmoWizardBody,{ width: 32 });
 const dressTxs = subimageTextures(FinalEmoWizardDress, 6);
@@ -36,7 +37,7 @@ export function emoWizard() {
             c.head.face.facing = value;
         },
         isCrouching: false,
-        autoFacing: true,
+        autoFacing: <'direction' | 'player' | 'off'>'direction',
         autoEmote: false,
         say(message: string, emotion: Emotion) {
             c.head.face.emotion = emotion;
@@ -52,13 +53,16 @@ export function emoWizard() {
                 pedometer += nlerp(1, 2, (Math.abs(diff.x) - 1) / 6);
                 const f = (Math.sin((pedometer / 10) * Math.PI) + 1) / 2;
                 c.dress.crouchUnit = f * 0.4;
-                if (c.autoFacing)
+                if (c.autoFacing === 'direction')
                     c.facing = Math.sign(diff.x);
             }
             else {
                 pedometer = 0;
                 c.dress.crouchUnit = approachLinear(c.dress.crouchUnit, crouch, 0.1);
             }
+
+            if (c.autoFacing === 'player')
+                c.facing = (Math.abs(c.x - player.x) > 16 ? 1 : 0) * Math.sign(player.x - c.x);
 
             crouch = approachLinear(crouch, c.isCrouching ? 1 : 0, 0.033);
             arms.index = crouch > 0.5 ? 0 : 2;
