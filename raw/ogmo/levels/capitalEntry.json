@@ -516,7 +516,7 @@
           "_eid": "37271132",
           "x": 208,
           "y": 96,
-          "values": {"obscurity": 2, "name": "", "depth": 0}
+          "values": {"obscurity": 3, "name": "", "depth": 0}
         },
         {
           "name": "CapitalBubble",
@@ -524,7 +524,7 @@
           "_eid": "37271132",
           "x": 184,
           "y": 96,
-          "values": {"obscurity": 2, "name": "", "depth": 0}
+          "values": {"obscurity": 3, "name": "", "depth": 0}
         },
         {
           "name": "CapitalBubble",
@@ -532,7 +532,7 @@
           "_eid": "37271132",
           "x": 160,
           "y": 96,
-          "values": {"obscurity": 2, "name": "", "depth": 0}
+          "values": {"obscurity": 3, "name": "", "depth": 0}
         },
         {
           "name": "CapitalBubble",
@@ -540,7 +540,7 @@
           "_eid": "37271132",
           "x": 136,
           "y": 96,
-          "values": {"obscurity": 2, "name": "", "depth": 0}
+          "values": {"obscurity": 3, "name": "", "depth": 0}
         },
         {
           "name": "CapitalBubble",
@@ -548,7 +548,7 @@
           "_eid": "37271132",
           "x": 112,
           "y": 96,
-          "values": {"obscurity": 2, "name": "", "depth": 0}
+          "values": {"obscurity": 3, "name": "", "depth": 0}
         },
         {
           "name": "CapitalBubble",
@@ -556,7 +556,7 @@
           "_eid": "37271132",
           "x": 88,
           "y": 96,
-          "values": {"obscurity": 2, "name": "", "depth": 0}
+          "values": {"obscurity": 3, "name": "", "depth": 0}
         },
         {
           "name": "LibraryBook",
