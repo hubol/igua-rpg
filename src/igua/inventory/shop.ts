@@ -2,16 +2,16 @@ import {getCost, potions, PotionType} from "./potions";
 import {Container, Graphics, Sprite} from "pixi.js";
 import {game} from "../game";
 import {merge} from "../../utils/object/merge";
-import {BackpackIcon, ValuableIcon} from "../../textures";
+import {BackpackIcon} from "../../textures";
 import {iguanaHead} from "../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../gameObjects/player";
 import {Purchase, PurchaseFail, SelectOption} from "../../sounds";
 import {cyclic} from "../../utils/math/number";
-import {progress} from "../data/progress";
 import {inventory} from "./inventory";
-import {spendValuables} from "../logic/spendValuables";
 import {IguaText} from "../text";
 import {Input} from "../io/input";
+import {currencies, CurrencyType} from "./currencies";
+import {progress} from "../data/progress";
 
 type Purchases = PotionType[];
 
@@ -19,11 +19,21 @@ type GetCost = typeof getCost;
 
 const getCostFn = getCost;
 
+interface Payment {
+    currency: CurrencyType;
+    getCost: GetCost;
+}
+
+const defaultPayment: Payment = {
+    currency: 'valuables',
+    getCost: getCostFn,
+}
+
 export function shop({
         potions = <PotionType[]>['ClawPowder', 'SpicedNectar', 'SweetBerry', 'WonderBallon', 'CommonPoison', 'BitterMedicine'],
-        getCost = getCostFn, } = {}) {
+        payment = defaultPayment } = {}) {
     return new Promise<Purchases>(r => {
-        shopImpl(r, potions, getCost);
+        shopImpl(r, potions, payment);
     });
 }
 
@@ -35,7 +45,9 @@ function box() {
     return graphics;
 }
 
-function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], getCost: GetCost) {
+function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], payment: Payment) {
+    const currency = currencies[payment.currency];
+
     function makeButton(box: Container, type?: PotionType) {
         const container = merge(new Container(), { box, type });
         container.at(box).add(3, (box.height - 20) / 2);
@@ -44,12 +56,12 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], getCost:
             const potion = potions[type];
             const potionSprite = Sprite.from(potion.texture);
             const name = IguaText.Large(potion.name).at(23, -2);
-            const valuableIcon = Sprite.from(ValuableIcon).at(23, 12);
+            const valuableIcon = Sprite.from(currency.iconTexture).at(23, 12);
             const price = IguaText.Large().at(34, 9)
                 .withStep(() => {
-                    const cost = getCost(type);
+                    const cost = payment.getCost(type);
                     price.text = cost.toString();
-                    price.tint = progress.valuables < cost ? 0xff0000 : 0xffffff;
+                    price.tint = !currency.canAfford(cost) ? 0xff0000 : 0xffffff;
                 });
             const backpackIcon = Sprite.from(BackpackIcon).at(64, 12);
             const held = IguaText.Large().at(backpackIcon.x + 11, 9)
@@ -115,9 +127,9 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], getCost:
     function buyPotion() {
         const potion = types[selectedIndex];
         if (!potion) return;
-        const cost = getCost(potion);
+        const cost = payment.getCost(potion);
 
-        if (inventory.isFull || !spendValuables(cost))
+        if (inventory.isFull || !currency.spend(cost))
             return doPurchaseFail();
 
         Purchase.play();

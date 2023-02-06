@@ -82,6 +82,7 @@ export let ConfettiPiece: PIXI.Texture;
 export let CrackSmall: PIXI.Texture;
 export let CracksA: PIXI.Texture;
 export let CrateWooden: PIXI.Texture;
+export let CrowbarPotion: PIXI.Texture;
 export let CrudeHouseB: PIXI.Texture;
 export let CrudeHouseC: PIXI.Texture;
 export let CrudeHouse: PIXI.Texture;
@@ -136,6 +137,7 @@ export let GreenCable: PIXI.Texture;
 export let GroundSpeckles: PIXI.Texture;
 export let HintArrow: PIXI.Texture;
 export let HotTerrain: PIXI.Texture;
+export let IconBrain: PIXI.Texture;
 export let IguaRpgTitle: PIXI.Texture;
 export let JungleBrushHeavy: PIXI.Texture;
 export let JungleHiddenHouseWalls: PIXI.Texture;
@@ -551,6 +553,9 @@ export function loadTexturesAsync()
     const CrateWoodenPath = require("./images/crate wooden.png");
     loader.add(CrateWoodenPath); 
 
+    const CrowbarPotionPath = require("./images/crowbar potion.png");
+    loader.add(CrowbarPotionPath); 
+
     const CrudeHouseBPath = require("./images/crude house b.png");
     loader.add(CrudeHouseBPath); 
 
@@ -712,6 +717,9 @@ export function loadTexturesAsync()
 
     const HotTerrainPath = require("./images/hot terrain.png");
     loader.add(HotTerrainPath); 
+
+    const IconBrainPath = require("./images/icon brain.png");
+    loader.add(IconBrainPath); 
 
     const IguaRpgTitlePath = require("./images/igua rpg title.png");
     loader.add(IguaRpgTitlePath); 
@@ -1304,6 +1312,7 @@ export function loadTexturesAsync()
             CrackSmall = resources[CrackSmallPath]?.texture as PIXI.Texture;
             CracksA = resources[CracksAPath]?.texture as PIXI.Texture;
             CrateWooden = resources[CrateWoodenPath]?.texture as PIXI.Texture;
+            CrowbarPotion = resources[CrowbarPotionPath]?.texture as PIXI.Texture;
             CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;
             CrudeHouseC = resources[CrudeHouseCPath]?.texture as PIXI.Texture;
             CrudeHouse = resources[CrudeHousePath]?.texture as PIXI.Texture;
@@ -1358,6 +1367,7 @@ export function loadTexturesAsync()
             GroundSpeckles = resources[GroundSpecklesPath]?.texture as PIXI.Texture;
             HintArrow = resources[HintArrowPath]?.texture as PIXI.Texture;
             HotTerrain = resources[HotTerrainPath]?.texture as PIXI.Texture;
+            IconBrain = resources[IconBrainPath]?.texture as PIXI.Texture;
             IguaRpgTitle = resources[IguaRpgTitlePath]?.texture as PIXI.Texture;
             JungleBrushHeavy = resources[JungleBrushHeavyPath]?.texture as PIXI.Texture;
             JungleHiddenHouseWalls = resources[JungleHiddenHouseWallsPath]?.texture as PIXI.Texture;

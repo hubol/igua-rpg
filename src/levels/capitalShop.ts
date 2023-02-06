@@ -34,7 +34,7 @@ export function CapitalShop() {
             'Welcome to the self-service shop at the capital.',
             'We believe in access to high-quality potions for all, at the lowest price throughout the nation.',
             'If you require assistance, please seek the nearest attendant.');
-        await shop({ getCost: lowestCostInTheNation });
+        await shop({ payment: { getCost: lowestCostInTheNation, currency: 'valuables' } });
         await show("Thank you for your patronage!");
     }
 
