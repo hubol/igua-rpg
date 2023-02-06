@@ -4,6 +4,7 @@ import {desertKeys} from "../../levels/desertTemple";
 import {jungleKeys} from "../../levels/jungleTemple";
 import {volcanoKeys} from "../../levels/volcanoTemple";
 import {capitalKeys} from "../../levels/capitalTemple";
+import {questConstants} from "../gameplay/derivedStats";
 
 export type ProgressBigKey = { reward: boolean; piece1: boolean; piece2: boolean; piece3: boolean; };
 
@@ -23,7 +24,7 @@ export function getCompletion(progress: Progress) {
         return n(big.piece1) + n(big.piece2) + n(big.piece3) + n(big.reward);
     }
 
-    const { desert, jungle, volcano, capital } = progress.flags;
+    const { desert, jungle, volcano, capital, final } = progress.flags;
     const { bigKey: desertBigKey, costumeMirror } = desert;
     const { bigKey: jungleBigKey } = jungle;
     const { bigKey: volcanoBigKey } = volcano;
@@ -45,7 +46,11 @@ export function getCompletion(progress: Progress) {
         k(capitalKeys) +
         b(capitalBigKey) +
         n(capital.defeatedDassmann) +
-        n(capital.solvedImpossiblePuzzle)) / numbers;
+        n(capital.solvedImpossiblePuzzle) +
+
+        n(final.playerMetEmoWizard) +
+        n(progress.flags.objects.permanentlyDefeatedEnemies.size > questConstants.requiredEnemiesToPermanentlyDefeat / 2) +
+        n(progress.flags.objects.permanentlyDefeatedEnemies.size >= questConstants.requiredEnemiesToPermanentlyDefeat)) / numbers;
 }
 
 export function getCompletionText(p = progress) {

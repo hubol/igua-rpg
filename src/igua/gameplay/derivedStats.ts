@@ -1,6 +1,5 @@
 import {progress} from "../data/progress";
 import {Badges} from "./badges";
-import {nlerp} from "../../utils/math/number";
 import {player} from "../../gameObjects/player";
 
 export const derivedStats = {
