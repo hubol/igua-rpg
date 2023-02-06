@@ -15,6 +15,8 @@ import {region} from "../gameObjects/region";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {showAll} from "../cutscene/dialog";
 import {game} from "../igua/game";
+import {teachPlayer} from "../gameObjects/libraryBook";
+import {sleep} from "../cutscene/sleep";
 
 export function JungleDeep() {
     jukebox.play(ForestDeepMusic).warm(JungleMusic);
@@ -35,13 +37,23 @@ export function JungleDeep() {
 }
 
 function enrichOutcast(level: GameObjectsType<typeof JungleDeepArgs>) {
-    level.Outcast.cutscene = () => showAll(
-        "Welcome to my home.",
-        "I moved here when I got annoyed with the oracles. They said my interpretations of ancient texts were blasphemous.",
-        "Did you know that the protectors were all slain by the claws of an Igua? Or that the guardian of flame nourished that Igua?",
-        "The oracles act like the protectors were perfect and just mysteriously vanished, when their failures and demise are clearly documented.",
-        "Honestly, I don't even think the great weapon exists. It's just an idea that the oracles cling to."
-    );
+    level.Outcast.cutscene = async () => {
+        await player.walkTo(level.Outcast.x - 48);
+        await sleep(66);
+        player.scale.x = 1;
+        await showAll(
+            "Welcome to my home.",
+            "I moved here when I got annoyed with the oracles. They said my interpretations of ancient texts were blasphemous.",
+            "Did you know that the protectors were all slain by the claws of an Igua? Or that the guardian of flame nourished that Igua?",
+            "The oracles act like the protectors were perfect and just mysteriously vanished, when their failures and demise are clearly documented.",
+            "Honestly, I don't even think the great weapon exists. It's just an idea that the oracles cling to."
+        );
+        if (progress.flags.jungle.spokeWithOutcast)
+            return;
 
-    level.HintArrow.tinted(0xA0AD58).alpha = progress.levels.intelligence * 0.2;
+        await teachPlayer(level.Outcast.head);
+        progress.flags.jungle.spokeWithOutcast = true;
+    };
+
+    level.HintArrow.tinted(0xA0AD58).withStep(() => level.HintArrow.alpha = progress.levels.intelligence * 0.2);
 }

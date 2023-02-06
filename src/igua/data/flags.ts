@@ -36,6 +36,7 @@ export function getInitialFlags()
                 on: false,
                 position: 0
             },
+            spokeWithOutcast: false,
             usedBlessing: false,
             defeatedUnorthodoxAngel: false,
         },

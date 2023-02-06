@@ -1,6 +1,6 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {LibraryBook, ParticleInformation} from "../textures";
-import {Sprite} from "pixi.js";
+import {DisplayObject, Sprite} from "pixi.js";
 import {player} from "./player";
 import {show} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
@@ -18,6 +18,9 @@ import {colord} from "colord";
 import {BookInformationHalt, PageFlip} from "../sounds";
 import {waitHold} from "../cutscene/waitHold";
 import {resolveGameObject} from "../igua/level/resolveGameObject";
+import {SceneLocal} from "../igua/sceneLocal";
+import {container} from "../utils/pixi/container";
+import {merge} from "../utils/object/merge";
 
 const bookTxs = subimageTextures(LibraryBook, 12);
 const informationTxs = subimageTextures(ParticleInformation, 2);
@@ -30,29 +33,37 @@ export const libraryBook = track(libraryBookImpl);
 
 export const resolveLibraryBook = resolveGameObject('LibraryBook', e => libraryBook().at(e.x, e.y + 3));
 
+const PlayerHeadGrowth = new SceneLocal(() => {
+    const c = merge(container(), { unit: 0, manipulatePosition: false })
+        .withStep(() => {
+            const brain = Math.min(c.unit, 1);
+
+            getPlayerHead().scale.set(1 + brain);
+            if (c.manipulatePosition)
+                getPlayerHead().position.set(brain * -8, brain * 9);
+        })
+        .show();
+
+    return c;
+}, 'PlayerHeadGrowth');
+
 function libraryBookImpl() {
     const state = {
         image: 0,
-        brain: 0
     };
 
     let lastImage = -1;
     let lastImageSound = 0;
-    let controlPlayerHeadPosition = false;
 
     const uid = `${progress.levelName}_${libraryBook.instances.length}`;
 
     const s = Sprite.from(bookTxs[0])
         .withStep(() => {
             s.texture = bookTxs[Math.floor(state.image) % bookTxs.length];
-            const brain = Math.min(state.brain, 1);
-            getPlayerHead().scale.set(1 + brain);
-            if (controlPlayerHeadPosition)
-                getPlayerHead().position.set(brain * -8, brain * 9);
 
             const thisImage = Math.floor(state.image);
             if (thisImage > lastImage && thisImage > 0 && thisImage % 6 === 0)
-                information().at([0, -8].add(s)).ahead(player.index + 1).on('removed', () => state.brain += 0.052);
+                information().at([0, -8].add(s));
             lastImage = thisImage;
         })
         .withStep(() => {
@@ -79,23 +90,42 @@ function libraryBookImpl() {
                 return;
             }
             await walkTo;
-            controlPlayerHeadPosition = true;
+            PlayerHeadGrowth.value.manipulatePosition = true;
             await lerp(state, 'image').to(6 * 20).over(3_000);
             await sleep(1_000);
             await wait(() => information.instances.length <= 0);
             await lerp(state, 'image').to(0).over(1_000);
             await sleep(250);
-            await lerp(state, 'brain').to(0).over(200);
+            await lerp(PlayerHeadGrowth.value, 'unit').to(0).over(200);
             await sleep(500);
             progress.flags.objects.readLibraryBooks.add(uid);
-            progress.levels.intelligence += 1;
-            await show(`You feel a lot smarter.`);
-            controlPlayerHeadPosition = false;
+            await gainIntelligence();
+            PlayerHeadGrowth.value.manipulatePosition = false;
         });
 
     s.anchor.set(9 / 20, 1);
 
     return s;
+}
+
+export async function teachPlayer(teacher: DisplayObject) {
+    PlayerHeadGrowth.value.manipulatePosition = true;
+    for (let i = 0; i < 20; i++) {
+        (PageFlip.rate(1 + rng() * 0.2) as any).play();
+        information().at(getWorldCenter(teacher));
+        await sleep(100);
+    }
+    await wait(() => information.instances.length <= 0);
+    await sleep(500);
+    await lerp(PlayerHeadGrowth.value, 'unit').to(0).over(200);
+    await sleep(500);
+    await gainIntelligence();
+    PlayerHeadGrowth.value.manipulatePosition = false;
+}
+
+async function gainIntelligence() {
+    progress.levels.intelligence += 1;
+    await show(`You feel a lot smarter.`);
 }
 
 let color = 0;
@@ -145,7 +175,7 @@ function informationImpl() {
 
     s.anchor.set(4 / 10, 4 / 10);
 
-    return s;
+    return s.ahead(player.index + 1).on('removed', () => PlayerHeadGrowth.value.unit += 0.052);
 }
 
 const information = track(informationImpl);
