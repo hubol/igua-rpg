@@ -41,6 +41,7 @@ export const CapitalEntryArgs = {
       VolcanoCrystal: resolveDecalGameObject({ x: 832, y: 448, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0.11511347263248761, layerName: "BackgroundDecals", texture: VolcanoCrystal }),
       VolcanoCrystal_1: resolveDecalGameObject({ x: 883, y: 445, originX: 0.5, originY: 0.5, scaleX: -1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: VolcanoCrystal }),
       CapitalVolcanoBackdrop_1: resolveDecalGameObject({ x: 648, y: 520, originX: 0.5, originY: 0.5, scaleX: -1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: CapitalVolcanoBackdrop }),
+      BallColorful: resolveDecalGameObject({ x: 164, y: 96, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: BallColorful }),
       CloudLong: resolveDecalGameObject({ x: 440, y: 352, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
       CloudLong_1: resolveDecalGameObject({ x: 816, y: 288, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
       CloudLong_2: resolveDecalGameObject({ x: 776, y: 280, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "Parallax1Decals", texture: CloudLong }),
@@ -102,6 +103,13 @@ export const CapitalEntryArgs = {
       ValuableBlue_3: resolveValuableBlue({ type: "ValuableBlue", x: 392, y: 136, flippedX: false, flippedY: false, uid: "55991906_61", name: "", depth: 0 }),
       CapitalBubble_19: resolveCapitalBubble({ type: "CapitalBubble", x: 328, y: 96, flippedX: false, flippedY: false, uid: "37271132_62", obscurity: 2, name: "", depth: 0 }),
       CapitalBubble_20: resolveCapitalBubble({ type: "CapitalBubble", x: 304, y: 96, flippedX: false, flippedY: false, uid: "37271132_63", obscurity: 2, name: "", depth: 0 }),
+      CapitalBubble_21: resolveCapitalBubble({ type: "CapitalBubble", x: 208, y: 96, flippedX: false, flippedY: false, uid: "37271132_64", obscurity: 2, name: "", depth: 0 }),
+      CapitalBubble_22: resolveCapitalBubble({ type: "CapitalBubble", x: 184, y: 96, flippedX: false, flippedY: false, uid: "37271132_65", obscurity: 2, name: "", depth: 0 }),
+      CapitalBubble_23: resolveCapitalBubble({ type: "CapitalBubble", x: 160, y: 96, flippedX: false, flippedY: false, uid: "37271132_66", obscurity: 2, name: "", depth: 0 }),
+      CapitalBubble_24: resolveCapitalBubble({ type: "CapitalBubble", x: 136, y: 96, flippedX: false, flippedY: false, uid: "37271132_67", obscurity: 2, name: "", depth: 0 }),
+      CapitalBubble_25: resolveCapitalBubble({ type: "CapitalBubble", x: 112, y: 96, flippedX: false, flippedY: false, uid: "37271132_68", obscurity: 2, name: "", depth: 0 }),
+      CapitalBubble_26: resolveCapitalBubble({ type: "CapitalBubble", x: 88, y: 96, flippedX: false, flippedY: false, uid: "37271132_69", obscurity: 2, name: "", depth: 0 }),
+      LibraryBook: resolveLibraryBook({ type: "LibraryBook", x: 163, y: 89, flippedX: false, flippedY: false, uid: "09731745_71", name: "", depth: 0 }),
     };
   },
 };

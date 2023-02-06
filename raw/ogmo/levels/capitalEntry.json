@@ -509,6 +509,64 @@
           "x": 304,
           "y": 96,
           "values": {"obscurity": 2, "name": "", "depth": 0}
+        },
+        {
+          "name": "CapitalBubble",
+          "id": 64,
+          "_eid": "37271132",
+          "x": 208,
+          "y": 96,
+          "values": {"obscurity": 2, "name": "", "depth": 0}
+        },
+        {
+          "name": "CapitalBubble",
+          "id": 65,
+          "_eid": "37271132",
+          "x": 184,
+          "y": 96,
+          "values": {"obscurity": 2, "name": "", "depth": 0}
+        },
+        {
+          "name": "CapitalBubble",
+          "id": 66,
+          "_eid": "37271132",
+          "x": 160,
+          "y": 96,
+          "values": {"obscurity": 2, "name": "", "depth": 0}
+        },
+        {
+          "name": "CapitalBubble",
+          "id": 67,
+          "_eid": "37271132",
+          "x": 136,
+          "y": 96,
+          "values": {"obscurity": 2, "name": "", "depth": 0}
+        },
+        {
+          "name": "CapitalBubble",
+          "id": 68,
+          "_eid": "37271132",
+          "x": 112,
+          "y": 96,
+          "values": {"obscurity": 2, "name": "", "depth": 0}
+        },
+        {
+          "name": "CapitalBubble",
+          "id": 69,
+          "_eid": "37271132",
+          "x": 88,
+          "y": 96,
+          "values": {"obscurity": 2, "name": "", "depth": 0}
+        },
+        {
+          "name": "LibraryBook",
+          "id": 71,
+          "_eid": "09731745",
+          "x": 163,
+          "y": 89,
+          "originX": 9,
+          "originY": 11,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -601,7 +659,17 @@
           "originY": 1,
           "values": {"name": ""}
         },
-        {"x": 891.2739611362658, "y": 238.39855374111937, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "ground speckles.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 891.2739611362658,
+          "y": 238.39855374111937,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },
@@ -655,6 +723,17 @@
           "scaleY": 1,
           "rotation": 0,
           "texture": "capital/volcano backdrop.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 164,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "ball colorful.png",
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
@@ -760,9 +839,39 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 296, "y": 184, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 256, "y": 176, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5},
-        {"x": 136, "y": 112, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "cloud long.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 296,
+          "y": 184,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 256,
+          "y": 176,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 136,
+          "y": 112,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cloud long.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     }
