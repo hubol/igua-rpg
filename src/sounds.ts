@@ -197,6 +197,11 @@ export const ConsumeElixir = new Howl({
     
 });
 
+export const ConsumeEquip = new Howl({
+    src: [require("./sound/consume equip.ogg"), require("./sound/consume equip.mp3")],
+    
+});
+
 export const ConsumeFirefly = new Howl({
     src: [require("./sound/consume firefly.ogg"), require("./sound/consume firefly.mp3")],
     
@@ -214,6 +219,11 @@ export const ConsumePoison = new Howl({
 
 export const ConsumePowder = new Howl({
     src: [require("./sound/consume powder.ogg"), require("./sound/consume powder.mp3")],
+    
+});
+
+export const ConsumeRemover = new Howl({
+    src: [require("./sound/consume remover.ogg"), require("./sound/consume remover.mp3")],
     
 });
 
@@ -459,6 +469,11 @@ export const PoppingRockPop = new Howl({
 
 export const PurchaseFail = new Howl({
     src: [require("./sound/purchase fail.ogg"), require("./sound/purchase fail.mp3")],
+    
+});
+
+export const PurchaseIntelligence = new Howl({
+    src: [require("./sound/purchase intelligence.ogg"), require("./sound/purchase intelligence.mp3")],
     
 });
 

@@ -7,7 +7,7 @@ function getIntelligenceCost(type: PotionType) {
     return 1;
 }
 
-export function intelligenceShop(potions: PotionType[] = [ 'RemovingDevice', 'Shield', 'Dexterous', 'Redirect', 'Cigarette', 'SpicedNectar', 'ClawPowder' ]) {
+export function intelligenceShop(potions: PotionType[] = [ 'RemovingDevice', 'Shield', 'Dexterous', 'Redirect', 'Cigarette', 'ClawPowder', 'SpicedNectar' ]) {
     return shop({ potions, payment: { currency: 'intelligence', getCost: getIntelligenceCost } });
 }
 

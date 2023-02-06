@@ -5,7 +5,7 @@ import {merge} from "../../utils/object/merge";
 import {BackpackIcon} from "../../textures";
 import {iguanaHead} from "../puppet/iguanaPuppet";
 import {playerPuppetArgs} from "../../gameObjects/player";
-import {Purchase, PurchaseFail, SelectOption} from "../../sounds";
+import {Purchase, PurchaseFail, PurchaseIntelligence, SelectOption} from "../../sounds";
 import {cyclic} from "../../utils/math/number";
 import {inventory} from "./inventory";
 import {IguaText} from "../text";
@@ -132,7 +132,7 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], payment:
         if (inventory.isFull || !currency.spend(cost))
             return doPurchaseFail();
 
-        Purchase.play();
+        (payment.currency === 'intelligence' ? PurchaseIntelligence : Purchase).play();
         progress.shopPurchases[potion] = (progress.shopPurchases[potion] ?? 0) + 1;
         inventory.push(potion);
         purchases.push(potion);

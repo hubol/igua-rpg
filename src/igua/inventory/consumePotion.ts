@@ -1,7 +1,16 @@
 import {inventory} from "./inventory";
 import {PotionType} from "./potions";
 import {progress} from "../data/progress";
-import {ConsumeBallon, ConsumeBerry, ConsumeElixir, ConsumeMedicine, ConsumePoison, ConsumePowder} from "../../sounds";
+import {
+    ConsumeBallon,
+    ConsumeBerry,
+    ConsumeElixir,
+    ConsumeEquip,
+    ConsumeMedicine,
+    ConsumePoison,
+    ConsumePowder,
+    ConsumeRemover
+} from "../../sounds";
 import {derivedStats} from "../gameplay/derivedStats";
 import {Badges} from "../gameplay/badges";
 
@@ -16,7 +25,7 @@ export function consumePotion(index: number) {
 function consumePotionImpl(potion: PotionType) {
     if (potion in Badges) {
         progress.equipment.badge = potion as any;
-        // TODO sfx
+        ConsumeEquip.play();
         return;
     }
 
@@ -47,7 +56,7 @@ function consumePotionImpl(potion: PotionType) {
             break;
         case "RemovingDevice":
             progress.equipment.badge = 'None';
-            // TODO sfx
+            ConsumeRemover.play();
             break;
     }
 }
