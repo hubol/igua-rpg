@@ -138,14 +138,11 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], payment:
         purchases.push(potion);
     }
 
-    const tipGfxHeight = payment.currency === 'valuables' ? 54 : 77;
+    const tipGfxWidth = 122;
 
     const tip = new Container();
-    const tipGfx = new Graphics()
-        .lineStyle(3, 0x00FF00, 1, 0)
-        .beginFill(0x005870)
-        .drawRect(0, 0, 122, tipGfxHeight);
-    const tipText = IguaText.Large('', { maxWidth: tipGfx.width - 10 }).at(5, 2);
+    const tipGfx = new Graphics();
+    const tipText = IguaText.Large('', { maxWidth: tipGfxWidth - 10 }).at(5, 2);
 
     tip.addChild(tipGfx, tipText);
     tip.withStep(() => {
@@ -154,16 +151,26 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], payment:
        if (!tip.visible)
            return;
        tipText.text = potions[type].description;
+
+       const tipGfxHeight = Math.max(54, tipText.textHeight + 5);
+
+       tipGfx.clear()
+           .lineStyle(3, 0x00FF00, 1, 0)
+           .beginFill(0x005870)
+           .drawRect(0, 0, tipGfxWidth, tipGfxHeight);
+
+        inventoryFull.at(2, tip.y + tipGfx.height);
+        tip.y = Math.max(64, Math.min(192, rect1[3] - rect1[1] - tipGfx.height));
     });
-    tip.y = Math.max(64, Math.min(192, rect1[3] - rect1[1] - tipGfx.height));
-    const inventoryFull = IguaText.Large('Your inventory is full.').at(2, tip.y + tipGfx.height);
+
+    const inventoryFull = IguaText.Large('Your inventory is full.')
+        .withStep(() => inventoryFull.visible = inventory.isFull);
     inventoryFull.tint = 0xff0000;
-    inventoryFull.withStep(() => inventoryFull.visible = inventory.isFull);
 
     c.addChild(tip, inventoryFull);
 
     if (payment.currency === 'intelligence') {
-        const intelligenceLevel = IguaText.Large('').at(254, 254)
+        const intelligenceLevel = IguaText.Large('').at(255, 256)
             .withStep(() => intelligenceLevel.text = `Brain Level ${progress.levels.intelligence}`)
             .show(c);
         intelligenceLevel.tint = 0x00ff00;
