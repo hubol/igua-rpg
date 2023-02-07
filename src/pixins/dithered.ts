@@ -8,8 +8,13 @@ import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 export const Dithered = Pixin({ dither: 1 })
     .applies((src) => {
         const f = alphaMaskFilter(getMaskSprite(src.dither));
+        const myScene = scene;
         return src
-            .withStep(() => f.maskSprite = getMaskSprite(src.dither))
+            .withStep(() => {
+                if (myScene !== scene)
+                    return;
+                f.maskSprite = getMaskSprite(src.dither);
+            })
             .filter(f);
     })
 
