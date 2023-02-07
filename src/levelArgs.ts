@@ -571,6 +571,7 @@ export const DesertInnArgs = {
       PipeHorizontal_4: resolvePipeHorizontal({ type: "PipeHorizontal", x: 392, y: 120, width: 32, flippedX: false, flippedY: false, uid: "55841307_20", visible: false, name: "", depth: 0 }),
       Window: resolveRegion({ type: "Region", x: 336, y: 72, width: 80, height: 32, flippedX: false, flippedY: false, uid: "25971607_22", name: "Window", depth: 0 }),
       FromInnSave: { type: "Checkpoint", x: 376, y: 160, flippedX: false, flippedY: false, uid: "55940370_23", name: "FromInnSave", faceRight: false, depth: 0 },
+      Gate: resolveGate({ type: "Gate", x: 360, y: -24, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_24", levelName: "DesertTown", checkpointName: "FromInnTop", name: "", depth: 0 }),
     };
   },
 };
@@ -633,6 +634,7 @@ export const DesertOracleArgs = {
       Window2: resolveRegion({ type: "Region", x: 100, y: 160, width: 24, height: 24, flippedX: false, flippedY: false, uid: "25971607_35", name: "Window2", depth: 0 }),
       Window3: resolveRegion({ type: "Region", x: 72, y: 188, width: 24, height: 24, flippedX: false, flippedY: false, uid: "25971607_36", name: "Window3", depth: 0 }),
       Window4: resolveRegion({ type: "Region", x: 100, y: 188, width: 24, height: 24, flippedX: false, flippedY: false, uid: "25971607_37", name: "Window4", depth: 0 }),
+      Gate: resolveGate({ type: "Gate", x: 176, y: -24, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_38", levelName: "DesertTown", checkpointName: "FromOracleTop", name: "", depth: 0 }),
     };
   },
 };
@@ -922,6 +924,8 @@ export const DesertTownArgs = {
       FromArena: { type: "Checkpoint", x: 56, y: 376, flippedX: false, flippedY: false, uid: "55940370_62", name: "FromArena", faceRight: true, depth: 0 },
       FromCostumer: { type: "Checkpoint", x: 1240, y: 440, flippedX: false, flippedY: false, uid: "55940370_63", name: "FromCostumer", faceRight: false, depth: 0 },
       FromGiants: { type: "Checkpoint", x: 992, y: 32, flippedX: false, flippedY: false, uid: "55940370_64", name: "FromGiants", faceRight: true, depth: 0 },
+      FromInnTop: { type: "Checkpoint", x: 628, y: 288, flippedX: false, flippedY: false, uid: "55940370_65", name: "FromInnTop", faceRight: true, depth: 0 },
+      FromOracleTop: { type: "Checkpoint", x: 796, y: 258, flippedX: false, flippedY: false, uid: "55940370_66", name: "FromOracleTop", faceRight: true, depth: 0 },
     };
   },
 };

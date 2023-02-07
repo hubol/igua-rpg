@@ -55,6 +55,9 @@ export function DesertTown()
     [level.Tumbleweed1, level.Tumbleweed2].forEach(x => rng.bool && tumbleweed().at(x).show());
 
     preventGettingStuckInBoulders();
+
+    if (progress.checkpointName.toLowerCase().includes('top'))
+        player.vspeed = -2;
 }
 
 function preventGettingStuckInBoulders() {
