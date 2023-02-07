@@ -36,7 +36,13 @@ export function DesertCostumer()
     level.Costumer.cutscene = async () => {
         if (flags.repaired) {
             const potions: PotionType[] = [ 'RemovingDevice', 'Shield', 'Dexterous', 'Redirect', ...<PotionType[]>(progress.levels.humor > 0 ? ['Cigarette'] : []), 'ClawPowder', 'SpicedNectar' ];
+            const intelligenceLevelBeforeShop = progress.levels.intelligence;
             await intelligenceShop(potions);
+            if (progress.levels.intelligence < intelligenceLevelBeforeShop)
+                await showAll(`Thanks for trading with me!`,
+                    `The ancient knowledge you give me helps me get a better understanding of the world.`);
+            else
+                await show(`Come back later!`);
             return;
         }
         else if (flags.shardCollected) {
@@ -92,7 +98,7 @@ export function DesertCostumer()
                 await showAll(
                     "Since I am a witch, I have access to special potions that might be useful in your task.",
                     `I will trade you special potions for ancient knowledge.`,
-                    `You can find ancient knowledge throughout the world in old books and from intelligent iguanas.`,
+                    `You can find ancient knowledge throughout the world in old books and by talking with intelligent iguanas.`,
                     `Come talk with me to see my special potions.`);
                 level.Costumer.walkTo(costumerX).then(() => level.Costumer.mods.add(Lazy));
             }
