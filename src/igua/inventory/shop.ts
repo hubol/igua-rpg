@@ -159,12 +159,12 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], payment:
            .beginFill(0x005870)
            .drawRect(0, 0, tipGfxWidth, tipGfxHeight);
 
-        inventoryFull.at(2, tip.y + tipGfx.height);
         tip.y = Math.max(64, Math.min(192, rect1[3] - rect1[1] - tipGfx.height));
     });
 
     const inventoryFull = IguaText.Large('Your inventory is full.')
         .withStep(() => inventoryFull.visible = inventory.isFull);
+    inventoryFull.at(2, rect1[3] - rect1[1]);
     inventoryFull.tint = 0xff0000;
 
     c.addChild(tip, inventoryFull);
