@@ -17,6 +17,7 @@ export function blessingStone(s: Sprite, minNewGamePlus: number, bigKey: Progres
             return await show(`You already received ${rewardName}.`);
 
         bigKey.reward = true;
+        progress.checkpointName = 'FromBlessing';
         const v = getWorldCenter(s);
         await showBlessingEffect(v.x, v.y, rewardName);
     })

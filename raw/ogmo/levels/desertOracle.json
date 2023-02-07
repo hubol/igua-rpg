@@ -413,6 +413,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"levelName": "DesertTown", "checkpointName": "FromOracleTop", "name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 39,
+          "_eid": "55940370",
+          "x": 96,
+          "y": 480,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromBlessing", "faceRight": true, "depth": 0}
         }
       ]
     },

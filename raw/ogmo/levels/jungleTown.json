@@ -787,6 +787,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 92,
+          "_eid": "55940370",
+          "x": 748,
+          "y": 104,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromBlessing", "faceRight": true, "depth": 0}
         }
       ]
     },

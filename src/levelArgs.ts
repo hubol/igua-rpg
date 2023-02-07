@@ -635,6 +635,7 @@ export const DesertOracleArgs = {
       Window3: resolveRegion({ type: "Region", x: 72, y: 188, width: 24, height: 24, flippedX: false, flippedY: false, uid: "25971607_36", name: "Window3", depth: 0 }),
       Window4: resolveRegion({ type: "Region", x: 100, y: 188, width: 24, height: 24, flippedX: false, flippedY: false, uid: "25971607_37", name: "Window4", depth: 0 }),
       Gate: resolveGate({ type: "Gate", x: 176, y: -24, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_38", levelName: "DesertTown", checkpointName: "FromOracleTop", name: "", depth: 0 }),
+      FromBlessing: { type: "Checkpoint", x: 96, y: 480, flippedX: false, flippedY: false, uid: "55940370_39", name: "FromBlessing", faceRight: true, depth: 0 },
     };
   },
 };
@@ -1746,6 +1747,7 @@ export const JungleTownArgs = {
       SpiritSpawn: { type: "Anchor", x: 1148, y: 328, flippedX: false, flippedY: false, uid: "25979726_89", name: "SpiritSpawn", depth: 0 },
       FromGiants: { type: "Checkpoint", x: 1024, y: 24, flippedX: false, flippedY: false, uid: "55940370_90", name: "FromGiants", faceRight: false, depth: 0 },
       Block_13: resolveBlock({ type: "Block", x: 0, y: 0, width: 32, height: 448, flippedX: false, flippedY: false, uid: "55823268_91", name: "", depth: 0 }),
+      FromBlessing: { type: "Checkpoint", x: 748, y: 104, flippedX: false, flippedY: false, uid: "55940370_92", name: "FromBlessing", faceRight: true, depth: 0 },
     };
   },
 };
