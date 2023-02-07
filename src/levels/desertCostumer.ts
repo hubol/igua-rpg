@@ -7,13 +7,18 @@ import {cutOutWindow} from "../igua/cutOutWindow";
 import {decal} from "../gameObjects/decal";
 import {CracksA, MirrorBroken} from "../textures";
 import {mirror} from "../gameObjects/mirror";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {Lazy} from "../igua/puppet/mods/lazy";
 import {DisplayObject, Sprite} from "pixi.js";
 import {progress} from "../igua/data/progress";
 import {sparkly} from "../gameObjects/sparkleSmall";
 import {ChooseYourLooksFromMirror} from "./chooseYourLooks";
 import { MirrorShardUse } from "../sounds";
+import {player} from "../gameObjects/player";
+import {sleep} from "../cutscene/sleep";
+import {intelligenceShop} from "../igua/inventory/intelligenceShop";
+import {wait} from "../cutscene/wait";
+import {PotionType} from "../igua/inventory/potions";
 
 export function DesertCostumer()
 {
@@ -26,9 +31,12 @@ export function DesertCostumer()
     const flags = progress.flags.desert.costumeMirror;
     let spoken = false;
 
+    level.Costumer.engine.walkSpeed = 2;
+
     level.Costumer.cutscene = async () => {
         if (flags.repaired) {
-            await show('Thank you for repairing my mirror. You can use its powers.');
+            const potions: PotionType[] = [ 'RemovingDevice', 'Shield', 'Dexterous', 'Redirect', ...<PotionType[]>(progress.levels.humor > 0 ? ['Cigarette'] : []), 'ClawPowder', 'SpicedNectar' ];
+            await intelligenceShop(potions);
             return;
         }
         else if (flags.shardCollected) {
@@ -58,7 +66,35 @@ export function DesertCostumer()
             else if (flags.shardCollected) {
                 MirrorShardUse.play();
                 flags.repaired = true;
-                await show("Used giant mirror shard.")
+
+                const costumerX = level.Costumer.x;
+                level.Costumer.mods.remove(Lazy);
+                level.Costumer.isDucking = false;
+                level.Costumer.vspeed = -2;
+                const excited = wait(() => level.Costumer.engine.isOnGround && level.Costumer.vspeed === 0)
+                    .then(() => level.Costumer.scale.x = 1)
+                    .then(() => sleep(120))
+                    .then(() => level.Costumer.walkTo(player.x - 46));
+
+                await show("Used giant mirror shard.");
+                player.scale.x = -1;
+
+                await excited;
+                await sleep(750);
+                await show("Thank you for repairing my mirror. You can use its powers.");
+                level.Costumer.scale.x = -1;
+                await sleep(250);
+                await level.Costumer.walkTo(level.Costumer.x - 16);
+                await sleep(250);
+                await show(`Oh.`);
+                level.Costumer.scale.x = 1;
+                await sleep(500);
+                await showAll(
+                    "Since I am a witch, I have access to special potions that might be useful in your task.",
+                    `I will trade you special potions for ancient knowledge.`,
+                    `You can find ancient knowledge throughout the world in old books and from intelligent iguanas.`,
+                    `Come talk with me to see my special potions.`);
+                level.Costumer.walkTo(costumerX).then(() => level.Costumer.mods.add(Lazy));
             }
             else
                 await show("It seems to be broken.");
