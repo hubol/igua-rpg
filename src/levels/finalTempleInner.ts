@@ -31,6 +31,7 @@ import {derivedProgress} from "../igua/gameplay/derivedStats";
 import {showCreditsSequence} from "./credits";
 import {migrateProgressToNewGamePlus} from "../igua/data/migrateProgressToNewGamePlus";
 import {level} from "../igua/level/level";
+import {emoClock} from "../gameObjects/emoClock";
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
@@ -48,6 +49,8 @@ export function FinalTempleInner() {
         .opaqueTint = 0x405080;
 
     cracks(38425.74, 0x405080).behind();
+
+    emoClock().at(128, 114).behind();
 
     enrichCutscene(level);
 

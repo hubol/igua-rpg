@@ -681,6 +681,26 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromGiants", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 65,
+          "_eid": "55940370",
+          "x": 628,
+          "y": 288,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromInnTop", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 66,
+          "_eid": "55940370",
+          "x": 796,
+          "y": 258,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "FromOracleTop", "faceRight": true, "depth": 0}
         }
       ]
     },
