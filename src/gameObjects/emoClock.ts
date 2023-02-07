@@ -20,7 +20,7 @@ export function emoClock() {
                 const mu = (m + s / 60) / 60;
 
                 sprites[1].angle = mu * 360;
-                sprites[1].anchor.set(sprites[1].angle < 180 ? (15 / 32) : (16 / 32))
+                sprites[1].anchor.set(sprites[1].angle < 160 ? (15 / 32) : (16 / 32))
                 sprites[2].angle = hu * 360;
                 await sleep(500);
             }
