@@ -32,6 +32,7 @@ import {showCreditsSequence} from "./credits";
 import {migrateProgressToNewGamePlus} from "../igua/data/migrateProgressToNewGamePlus";
 import {level} from "../igua/level/level";
 import {emoClock} from "../gameObjects/emoClock";
+import {TheOfficialEmoWizardSong} from "../musics";
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
@@ -71,6 +72,8 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
 }
 
 function enrichIncompleteFinalQuest({ dassmann: d, wizard: e }: AfterFirstMeetingCutsceneDeps) {
+    jukebox.play(TheOfficialEmoWizardSong);
+
     d.withCutscene(() => showAll(
         `He says he needs you to finish your task before I can get my soda.`,
         `I don't know. He works in mysterious ways.`));
@@ -90,7 +93,7 @@ function enrichCompleteFinalQuest({}: AfterFirstMeetingCutsceneDeps) {
 }
 
 function enrichFirstMeeting({ light, level, wizard: e, ball }: CutsceneDeps) {
-    jukebox.stop();
+    jukebox.stop().warm(TheOfficialEmoWizardSong);
     player.x -= 24;
     const hide = container().withStep(() => player.visible = false).show();
 
@@ -134,6 +137,7 @@ function enrichFirstMeeting({ light, level, wizard: e, ball }: CutsceneDeps) {
             `At some point, I got bored and started bouncing a ball.`,
             `It hit the light switch and I had just been in the dark ever since.`);
 
+        jukebox.play(TheOfficialEmoWizardSong);
         await move(e).off(-48, 0).over(750);
 
         e.autoEmote = false;
@@ -210,6 +214,7 @@ function enrichFirstMeeting({ light, level, wizard: e, ball }: CutsceneDeps) {
         await sleep(250);
         await showAll(`They are just stupid receptacles. I will give you the power to fill them. Once they are satisfied, you just give them a little push and they will be on their way.`);
 
+        jukebox.fadeOut(0, 500);
         await e.arms.raise().over(250);
         await sleep(500);
 
@@ -221,8 +226,10 @@ function enrichFirstMeeting({ light, level, wizard: e, ball }: CutsceneDeps) {
         progress.levels.humor += 1;
         await showBlessingEffect(v.x, v.y, 'Blessing of Emotion');
 
+        jukebox.fadeIn(0, 1000);
+
         e.arms.lower().over(250);
-        await sleep(250);
+        await sleep(1000);
 
         DialogSpeaker.value.speaker = e;
         await show(`Thank you for doing this errand for me. Please return when the terms of the deal are upheld and we can discuss a reward for you.`);

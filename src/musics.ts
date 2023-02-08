@@ -152,6 +152,11 @@ export const Temple = new Howl({
     preload: false
 });
 
+export const TheOfficialEmoWizardSong = new Howl({
+    src: [require("./music/the official emo wizard song.ogg"), require("./music/the official emo wizard song.mp3")],
+    preload: false
+});
+
 export const TickingTime = new Howl({
     src: [require("./music/ticking time.ogg"), require("./music/ticking time.mp3")],
     preload: false

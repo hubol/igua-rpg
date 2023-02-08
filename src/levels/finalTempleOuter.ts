@@ -32,7 +32,7 @@ import {sleep} from "../cutscene/sleep";
 import {BigKeyCollected} from "../sounds";
 import {sparkles} from "../gameObjects/sparkle";
 import {jukebox} from "../igua/jukebox";
-import {EmoWizard, FinalTempleMusic} from "../musics";
+import {EmoWizard, FinalTempleMusic, TheOfficialEmoWizardSong} from "../musics";
 import {npc} from "../gameObjects/npc";
 import {cutscene} from "../cutscene/cutscene";
 import {IguanaPuppet} from "../igua/puppet/iguanaPuppet";
@@ -45,7 +45,7 @@ export function FinalTempleOuter() {
     scene.terrainColor = 0x182840;
     const level = applyOgmoLevel(FinalTempleOuterArgs);
 
-    jukebox.play(FinalTempleMusic).warm(EmoWizard);
+    jukebox.play(FinalTempleMusic).warm(EmoWizard, TheOfficialEmoWizardSong);
 
     [level.Sparkles1, level.Sparkles2].map(sparkly);
 
