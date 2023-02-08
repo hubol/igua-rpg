@@ -4,6 +4,7 @@ import {distance, Vector, vnew} from "../utils/math/vector";
 import {approachLinear} from "../utils/math/number";
 import {getWorldPos} from "../igua/gameplay/getCenter";
 import {merge} from "../utils/object/merge";
+import { BallBounce } from "../sounds";
 
 export function emoWizardBall() {
     const speedPrev = vnew();
@@ -22,6 +23,8 @@ export function emoWizardBall() {
 
             if (s.isOnGround) {
                 if (speedPrev.y > 1) {
+                    // @ts-ignore
+                    BallBounce.rate(Math.max(0.25, Math.min(1, 1 - speedPrev.y / 4))).play();
                     s.speed.y = -speedPrev.y * 0.7;
                 }
                 else {
@@ -36,8 +39,11 @@ export function emoWizardBall() {
                 const speedx = Math.sign(tracker.speed.x)
                 if (speedx !== 0) {
                     s.speed.x += tracker.speed.x;
-                    if (s.speed.y === 0)
+                    if (s.speed.y === 0) {
                         s.speed.y = -2;
+                        // @ts-ignore
+                        BallBounce.rate(1).play();
+                    }
                 }
                 else
                     s.speed.x = Math.abs(s.speed.x) * Math.sign(s.x - tracker.pos.x);

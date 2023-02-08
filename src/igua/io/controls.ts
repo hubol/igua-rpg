@@ -64,6 +64,6 @@ const defaultGamepadControls: GamepadControls = {
 export const defaultGamepad = {
     controls: defaultGamepadControls,
     config: {
-        stickDeadZone: 0.1
+        stickDeadZone: 0.3
     }
 }

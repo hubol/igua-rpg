@@ -12,6 +12,11 @@ export const ArrowKnock = new Howl({
     
 });
 
+export const BallBounce = new Howl({
+    src: [require("./sound/ball bounce.ogg"), require("./sound/ball bounce.mp3")],
+    
+});
+
 export const BallonPop = new Howl({
     src: [require("./sound/ballon pop.ogg"), require("./sound/ballon pop.mp3")],
     
