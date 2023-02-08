@@ -10,6 +10,8 @@ import {container} from "../utils/pixi/container";
 import {makeShadowCastFilter, ShadowCastDirection} from "../gameObjects/lightRayCrude";
 import {jukebox} from "../igua/jukebox";
 import {EmoWizard, FinalTempleMusic} from "../musics";
+import {decalsOf} from "../gameObjects/decal";
+import {Boulder} from "../textures";
 
 export function FinalDeep() {
     scene.backgroundColor = 0x182840;
@@ -18,12 +20,12 @@ export function FinalDeep() {
 
     jukebox.play(EmoWizard).warm(FinalTempleMusic);
 
-    applyFinalFilters();
+    applyFinalFilters(739.39);
 
     ShadowCastDirection.value.x = 0;
     container(...[level.Light1, level.Light2].map(lightColumn)).filter(makeShadowCastFilter()).ahead(player.index + 1);
 
-    level.Boulder.opaqueTint = scene.terrainColor;
+    decalsOf(Boulder).forEach(x => x.opaqueTint = scene.terrainColor);
 
     if (player.y < 160)
         player.vspeed = -2;

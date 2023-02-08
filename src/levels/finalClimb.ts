@@ -23,10 +23,10 @@ export function FinalClimb() {
     applyFinalFilters();
 }
 
-export function applyFinalFilters() {
+export function applyFinalFilters(seed = 38.1269 * (scene.name?.length ?? 1)) {
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x304888));
 
-    const cc = cracks(38.1269 * (scene.name?.length ?? 1), 0x304888);
+    const cc = cracks(seed, 0x304888);
     // Putting a mask on the cc Graphics object seems to not look correct sometimes
     // Not sure why...
     // So I put the cc inside a Container.
