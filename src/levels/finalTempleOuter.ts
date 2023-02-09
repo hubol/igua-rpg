@@ -39,6 +39,7 @@ import {IguanaPuppet} from "../igua/puppet/iguanaPuppet";
 import {flipV} from "../utils/pixi/flip";
 import {waitForInput} from "../cutscene/waitForInput";
 import {castPlayerSpell} from "../gameObjects/playerSpell";
+import {persistence} from "../igua/data/persistence";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
@@ -103,6 +104,7 @@ function enrichAmbush(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
         await sleep(250);
         await leave(npc0);
         progress.flags.final.oraclesLearnedTruth = true;
+        await persistence.save();
     }
 
     scene.gameObjectStage.withAsync(async () => {
