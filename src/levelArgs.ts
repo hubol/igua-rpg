@@ -1056,6 +1056,7 @@ export const FinalTempleInnerArgs = {
       Player: { type: "Player", x: 88, y: 176, flippedX: false, flippedY: false, uid: "55988047_5", faceRight: true, name: "", depth: 0 },
       EmoWizardInitial: { type: "Anchor", x: 200, y: 176, flippedX: false, flippedY: false, uid: "25979726_6", name: "EmoWizardInitial", depth: 0 },
       Shadow: resolveRegion({ type: "Region", x: 16, y: 64, width: 224, height: 144, flippedX: false, flippedY: false, uid: "25971607_7", name: "Shadow", depth: 0 }),
+      PipeHorizontal: resolvePipeHorizontal({ type: "PipeHorizontal", x: 159, y: 166, width: 49, flippedX: false, flippedY: false, uid: "55841307_8", visible: false, name: "", depth: 0 }),
     };
   },
 };

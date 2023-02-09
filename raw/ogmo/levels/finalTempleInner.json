@@ -104,6 +104,17 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "Shadow", "depth": 0}
+        },
+        {
+          "name": "PipeHorizontal",
+          "id": 8,
+          "_eid": "55841307",
+          "x": 159,
+          "y": 166,
+          "width": 49,
+          "originX": 0,
+          "originY": 0,
+          "values": {"visible": false, "name": "", "depth": 0}
         }
       ]
     },

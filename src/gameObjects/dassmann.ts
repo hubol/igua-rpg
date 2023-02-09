@@ -119,7 +119,7 @@ function mkBody() {
 
     let face = 0;
 
-    const c = merge(container(), { arml, armr, bootl, bootr, face: 0, pedometer: 0, feetFace: Undefined<number>(), playFootsteps: false });
+    const c = merge(container(), { arml, armr, bootl, bootr, face: 0, pedometer: 0, feetFace: Undefined<number>(), playFootsteps: false, bootPivotYOffset: 0 });
     Sprite.from(DassmannTorso).show(c);
     c.addChild(bootl, bootr);
     Sprite.from(headTxs[HeadTx.Shield]).at(-9, -19).show(c);
@@ -145,8 +145,8 @@ function mkBody() {
         bootr.face = c.feetFace === -1 ? -1 : 1;
 
         const f = c.pedometer > 0 ? 1 : 0;
-        bootl.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk) - 1);
-        bootr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk + Math.PI * 0.5) - 1);
+        bootl.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk) - 1) + c.bootPivotYOffset;
+        bootr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk + Math.PI * 0.5) - 1) + c.bootPivotYOffset;
         arml.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk + Math.PI * 1) - 1) / 2;
         armr.pivot.y = -f * (Math.sin(c.pedometer * Math.PI * Walk + Math.PI * 1.5) - 1) / 2;
 

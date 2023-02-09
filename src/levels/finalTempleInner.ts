@@ -20,7 +20,7 @@ import {BallBounce, CheckerLooksGood, DassMoveUp, Gate} from "../sounds";
 import {move} from "../cutscene/move";
 import {jukebox} from "../igua/jukebox";
 import {simpleWallSwitch} from "../gameObjects/simpleWallSwitch";
-import {dassmann} from "../gameObjects/dassmann";
+import {ArmTx, dassmann} from "../gameObjects/dassmann";
 import {emoWizardBall} from "./emoWizardBall";
 import {vnew} from "../utils/math/vector";
 import {showBlessingEffect} from "../igua/gameplay/templeLevelUtil";
@@ -72,8 +72,10 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         enrichIncompleteFinalQuest(deps2);
 }
 
-function enrichIncompleteFinalQuest({ dassmann: d, wizard: e }: AfterFirstMeetingCutsceneDeps) {
+function enrichIncompleteFinalQuest({ dassmann: d, wizard: e, ...deps }: AfterFirstMeetingCutsceneDeps) {
     jukebox.play(TheOfficialEmoWizardSong);
+
+    scene.gameObjectStage.withAsync(() => seatDassmannOnCouch(deps, d, 0));
 
     d.withCutscene(() => showAll(
         `He says he needs you to finish your task before I can get my soda.`,
@@ -168,17 +170,22 @@ function enrichFirstMeeting({ light, level, wizard: e, ball, ...deps }: Cutscene
 
         DialogSpeaker.value.speaker = d;
         await sleep(1000);
+        d.head.agape = 1;
         await show(`I have been looking all over for you!`);
+        d.head.agape = 0;
 
         e.autoFacing = 'off';
+        ball.index = ball.parent.children.length - 1;
         await Promise.all([
-            move(d).off(83, 0).over(750),
-            sleep(400).then(x => move(e).off(20, 0).over(350))
+            move(d).off(83, 0).over(750).then(() => ball.index = level.Door.index + 1),
+            sleep(400).then(() => move(e).off(20, 0).over(350))
         ]);
         e.autoFacing = 'direction';
 
         await sleep(250);
+        d.head.agape = 1;
         await show(`I've come to pick up the newest batch.`);
+        d.head.agape = 0;
 
         DialogSpeaker.value.speaker = e;
         await showAll(`Eh? Oh. I completely forgot about all of my arrangements.`,
@@ -188,7 +195,9 @@ function enrichFirstMeeting({ light, level, wizard: e, ball, ...deps }: Cutscene
 
         DialogSpeaker.value.speaker = d;
         d.armr.raise().over(170);
+        d.head.agape = 1;
         await show(`The other guys are here, too, you know.`);
+        d.head.agape = 0;
         d.armr.rest().over(130);
 
         DialogSpeaker.value.speaker = e;
@@ -206,6 +215,11 @@ function enrichFirstMeeting({ light, level, wizard: e, ball, ...deps }: Cutscene
 
         await sleep(250);
         e.isCrouching = true;
+
+        scene.gameObjectStage.withAsync(async () => {
+            await sleep(250);
+            await seatDassmannOnCouch(deps, d);
+        })
 
         await showAll(`Listen. The reason you can't defeat them is you need to give them what they were promised.`);
 
@@ -244,20 +258,32 @@ function enrichFirstMeeting({ light, level, wizard: e, ball, ...deps }: Cutscene
     });
 }
 
+async function seatDassmannOnCouch(deps: Pick<CutsceneDeps, 'sitOnCouch'>, d: ReturnType<typeof dassmann>, timeScale = 1) {
+    const bootPromise = lerp(d.body, 'bootPivotYOffset').to(2).over(250 * timeScale);
+    await deps.sitOnCouch(d, 1.2 * timeScale);
+    d.body.feetFace = -1;
+    d.armr.pose = ArmTx.Tpose;
+    await bootPromise;
+}
+
 function makeCutsceneDeps(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
     const wizard = emoWizard().at(level.EmoWizardInitial).show();
     const light = enrichLight(level).show();
 
     const ball = emoWizardBall().at(wizard.x - 64, wizard.y)
         .withStep(() => ball.alpha = Math.round(light.lightUnit * 4) / 4)
-        .ahead();
+        .show();
 
     ball.register(player, vnew());
 
     async function sitOnCouch(d: DisplayObject, timeScale = 1) {
-        await lerp(d, 'x').to(level.Couch.x + 14).over(500 * timeScale);
-        await sleep(100 * timeScale);
-        await lerp(d.pivot, 'y').to(8).over(100 * timeScale);
+        const isDassmann = d !== wizard;
+        const couchX = level.Couch.x + (isDassmann ? 16 : 14);
+        const pivotY = isDassmann ? 4 : 6;
+
+        await lerp(d, 'x').to(couchX).over(500 * timeScale);
+        await sleep(200 * timeScale);
+        await lerp(d.pivot, 'y').to(pivotY).over(100 * timeScale);
     }
 
     async function getOffCouch(d: DisplayObject) {
