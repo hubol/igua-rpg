@@ -31,7 +31,9 @@ export function emoWizard() {
 
     const [myDress, arms] = dress();
 
-    const c = merge(container(), { dress: myDress, arms, head: head(), set facing(value: number) {
+    const innerContainer = container();
+
+    const c = merge(container(innerContainer), { dress: myDress, arms, head: head(), set facing(value: number) {
             c.dress.facing = value;
             c.head.facing = value;
             c.head.face.facing = value;
@@ -70,7 +72,7 @@ export function emoWizard() {
 
     const { diff } = trackPosition(c);
 
-    c.addChild(c.dress, c.head, arms, c.speakerbox);
+    innerContainer.addChild(c.dress, c.head, arms, c.speakerbox);
 
     c.withAsync(async () => {
         while (true) {
@@ -79,7 +81,7 @@ export function emoWizard() {
         }
     });
 
-    c.pivot.set(16, 36);
+    innerContainer.pivot.set(16, 36);
     return c;
 }
 

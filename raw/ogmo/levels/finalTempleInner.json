@@ -140,7 +140,19 @@
       "gridCellHeight": 8,
       "gridCellsX": 32,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 183,
+          "y": 165,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/emo couch.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "Couch"}
+        }
+      ],
       "folder": "../../src/images"
     },
     {

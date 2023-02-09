@@ -8,7 +8,7 @@ import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {game} from "../igua/game";
 import {cracks} from "../gameObjects/cracks";
-import {Graphics} from "pixi.js";
+import {DisplayObject, Graphics} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {approachLinear} from "../utils/math/number";
@@ -16,7 +16,7 @@ import {sleep} from "../cutscene/sleep";
 import {cutscene} from "../cutscene/cutscene";
 import {DialogSpeaker, show, showAll} from "../cutscene/dialog";
 import {player} from "../gameObjects/player";
-import {CheckerLooksGood, DassMoveUp, Gate} from "../sounds";
+import {BallBounce, CheckerLooksGood, DassMoveUp, Gate} from "../sounds";
 import {move} from "../cutscene/move";
 import {jukebox} from "../igua/jukebox";
 import {simpleWallSwitch} from "../gameObjects/simpleWallSwitch";
@@ -33,6 +33,7 @@ import {migrateProgressToNewGamePlus} from "../igua/data/migrateProgressToNewGam
 import {level} from "../igua/level/level";
 import {emoClock} from "../gameObjects/emoClock";
 import {TheOfficialEmoWizardSong} from "../musics";
+import {lerp} from "../cutscene/lerp";
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
@@ -92,7 +93,7 @@ function enrichCompleteFinalQuest({}: AfterFirstMeetingCutsceneDeps) {
     });
 }
 
-function enrichFirstMeeting({ light, level, wizard: e, ball }: CutsceneDeps) {
+function enrichFirstMeeting({ light, level, wizard: e, ball, ...deps }: CutsceneDeps) {
     jukebox.stop().warm(TheOfficialEmoWizardSong);
     player.x -= 24;
     const hide = container().withStep(() => player.visible = false).show();
@@ -100,9 +101,10 @@ function enrichFirstMeeting({ light, level, wizard: e, ball }: CutsceneDeps) {
     cutscene.play(async () => {
         e.isCrouching = true;
         e.facing = 1;
-        e.autoFacing = 'off';
-        e.head.away = true;
+        e.autoFacing = 'player';
         e.autoEmote = true;
+
+        await deps.sitOnCouch(e, 0);
 
         await sleep(125);
         Gate.play();
@@ -125,19 +127,16 @@ function enrichFirstMeeting({ light, level, wizard: e, ball }: CutsceneDeps) {
         await sleep(200);
         CheckerLooksGood.play();
         light.lit = true;
-        await sleep(500);
-        e.isCrouching = false;
-        await sleep(200);
-        e.head.away = false;
-        await sleep(200);
-        e.facing = -1;
-        await sleep(1000);
+        await sleep(1333);
 
         await showAll(`Thank you.`,
             `At some point, I got bored and started bouncing a ball.`,
             `It hit the light switch and I had just been in the dark ever since.`);
 
+        e.isCrouching = false;
+        await deps.getOffCouch(e);
         jukebox.play(TheOfficialEmoWizardSong);
+        await sleep(500);
         await move(e).off(-48, 0).over(750);
 
         e.autoEmote = false;
@@ -255,11 +254,25 @@ function makeCutsceneDeps(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
 
     ball.register(player, vnew());
 
+    async function sitOnCouch(d: DisplayObject, timeScale = 1) {
+        await lerp(d, 'x').to(level.Couch.x + 14).over(500 * timeScale);
+        await sleep(100 * timeScale);
+        await lerp(d.pivot, 'y').to(8).over(100 * timeScale);
+    }
+
+    async function getOffCouch(d: DisplayObject) {
+        await lerp(d.pivot, 'y').to(0).over(250);
+        // @ts-ignore
+        BallBounce.rate(0.75).play();
+    }
+
     return {
         level,
         wizard,
         light,
-        ball
+        ball,
+        sitOnCouch,
+        getOffCouch
     };
 }
 
