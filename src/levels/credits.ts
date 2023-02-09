@@ -155,6 +155,7 @@ Thank you.`,
 }
 
 async function showFadeOut() {
+    jukebox.fadeOut(0, 1000);
     const g = new Graphics().beginFill(scene.backgroundColor).drawRect(0, 0, 1000, 1000).ahead();
     for (let i = 0.25; i <= 1; i += 0.25) {
         g.alpha = i;
