@@ -23,6 +23,7 @@ import {inventory} from "../igua/inventory/inventory";
 import {persistence} from "../igua/data/persistence";
 import {tumbleweed} from "../gameObjects/tumbleweed";
 import {moveCameraToPlayerTarget} from "../igua/camera";
+import {DestroyAfterGreatness} from "../pixins/destroyByGreatness";
 
 function getDesertTownLevel()
 {
@@ -154,7 +155,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
 
     let tiredOfWorking = progress.flags.desert.stackedAllCrates;
 
-    level.Stacker.cutscene = async () => {
+    level.Stacker.withPixin(DestroyAfterGreatness).cutscene = async () => {
         level.Stacker.mods.remove(Sleepy);
         if (progress.flags.desert.stackedAllCrates)
         {

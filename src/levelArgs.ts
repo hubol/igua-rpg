@@ -772,6 +772,7 @@ export const DesertShopArgs = {
       Window2: resolveRegion({ type: "Region", x: 74, y: 70, width: 32, height: 32, flippedX: false, flippedY: false, uid: "25971607_39", name: "Window2", depth: 0 }),
       Window3: resolveRegion({ type: "Region", x: 38, y: 106, width: 32, height: 32, flippedX: false, flippedY: false, uid: "25971607_40", name: "Window3", depth: 0 }),
       Window4: resolveRegion({ type: "Region", x: 74, y: 106, width: 32, height: 32, flippedX: false, flippedY: false, uid: "25971607_41", name: "Window4", depth: 0 }),
+      CrateStacker: resolveNpc({ type: "NpcIguana", x: 264, y: 224, flippedX: true, flippedY: false, uid: "26367058_42", name: "CrateStacker", style: 1, depth: 0 }),
     };
   },
 };

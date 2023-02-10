@@ -40,7 +40,7 @@ function enrichLovers(level: DesertFieldLevel) {
     const lovers = [level.LoverFromJungle, level.LoverFromDesert];
     lovers.forEach(x => {
         x.withPixin(DestroyBeforeGreatness);
-        x.engine.walkSpeed = 2;
+        x.engine.walkSpeed = 1.5;
     });
 
     async function speak(...messages: string[]) {
@@ -56,9 +56,9 @@ function enrichLovers(level: DesertFieldLevel) {
             `Thank you for getting rid of the invaders.`));
 
     async function pauseAndFlip() {
-        await sleep(1000);
+        await sleep(2000);
         level.LoverFromDesert.scale.x *= -1;
-        await sleep(100);
+        await sleep(300);
         level.LoverFromJungle.scale.x *= -1;
         await sleep(500);
     }

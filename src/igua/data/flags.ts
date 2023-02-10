@@ -49,6 +49,7 @@ export function getInitialFlags()
             dugInDesertTown: false,
             crateStacker: {
                 receivedBallon: false,
+                receivedFreeRound: false,
             },
             digua: {
                 discussedKey: false,

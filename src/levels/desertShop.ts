@@ -10,12 +10,14 @@ import {rng} from "../utils/math/rng";
 import {resolvePipeHorizontal} from "../gameObjects/walls";
 import {vector} from "../utils/math/vector";
 import {cigarette} from "../gameObjects/cigarette";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {progress} from "../igua/data/progress";
 import {jukebox} from "../igua/jukebox";
 import {Country, Shop} from "../musics";
 import {cutOutWindow} from "../igua/cutOutWindow";
-import {DestroyAfterGreatness} from "../pixins/destroyByGreatness";
+import {DestroyAfterGreatness, DestroyBeforeGreatness} from "../pixins/destroyByGreatness";
+import {giftValuables} from "../cutscene/giftValuables";
+import {getCost} from "../igua/inventory/potions";
 
 export function DesertShop() {
     scene.terrainColor = 0x60669B;
@@ -54,16 +56,40 @@ export function DesertShop() {
     cigarette().at(16, -13).show(level.BarAttendee);
     level.BarAttendee.withPixin(DestroyAfterGreatness).withCutscene(() => show('...'));
 
+    level.CrateStacker.withPixin(DestroyBeforeGreatness).withCutscene(async () => {
+        await showAll(`It's good to see you here!`,
+            `I really appreciate you helping with my task.`);
+        if (!progress.flags.desert.crateStacker.receivedFreeRound) {
+            await show(`Please treat yourself to something from the barkeeper.`);
+            const cost = getCost('SpicedNectar');
+            await giftValuables(cost);
+            progress.flags.desert.crateStacker.receivedFreeRound = true;
+        }
+    });
+
     if (!progress.flags.desert.diguaIsInBar) {
         level.DiguaGlass.destroy();
         return level.Digua.destroy();
     }
 
     let diguaTalked = false;
+    let conversationIndex = 0;
     level.Digua.cutscene = async () => {
         if (!diguaTalked)
             await show("Oh, it's you!");
         diguaTalked = true;
+
+        if (progress.flags.global.somethingGreatHappened) {
+            conversationIndex = (conversationIndex + 1) % 2;
+            if (conversationIndex === 1)
+                await showAll(`You did a great job.`,
+                    `And I'm so glad I got to help with my ability.`,
+                    `Now iguanas are free to run around the desert.`);
+            else
+                await showAll(`The quiet guy who was here before left.`);
+            return;
+        }
+
         if (!progress.flags.desert.key.fromDiggingInTown) {
             await show("Did you make sure to pick up the thing I dug up for you? It could be useful.");
         }
