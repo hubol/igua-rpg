@@ -10,7 +10,7 @@ import {Undefined} from "../utils/types/undefined";
 import {player} from "../gameObjects/player";
 import {Force} from "../utils/types/force";
 import {distance} from "../utils/math/vector";
-import {getWorldCenter} from "../igua/gameplay/getCenter";
+import {getWorldBounds, getWorldCenter} from "../igua/gameplay/getCenter";
 import {merge} from "../utils/object/merge";
 import {IguaText} from "../igua/text";
 import {wait} from "../cutscene/wait";
@@ -28,6 +28,9 @@ import {progress} from "../igua/data/progress";
 import {teleportToTheRoomOfDoors} from "../gameObjects/portalFluid";
 import {volcanoBigKeyTextures} from "./volcanoTemple";
 import {Input} from "../igua/io/input";
+import {spike} from "../gameObjects/spike";
+
+const targetMessages = [ 'iguarpg', 'newgameplus', 'wizard' ];
 
 export function UnrealT9() {
     scene.backgroundColor = 0xEAE179;
@@ -36,7 +39,7 @@ export function UnrealT9() {
     const level = applyOgmoLevel(UnrealT9Args);
     const receiver = letterReceiver().show();
     const kb = keyboard({ push: receiver.push }).at(level.PlaceKeys).show(scene.terrainStage);
-    const c = checker(receiver).show();
+    const c = checker(receiver, targetMessages[progress.newGamePlus % targetMessages.length]).show();
     c.withAsync(async () => {
         await wait(() => c.won);
         await lerp(kb, 'x').to(256).over(500);
@@ -59,6 +62,24 @@ export function UnrealT9() {
     decalsOf(GlowingDiamond).forEach(x => x.tinted(0xF8F8C0));
 
     c.y = 100;
+
+    if (progress.newGamePlus === 0)
+        return;
+
+    const speeds = [0.5, 1];
+    const speed = speeds[progress.newGamePlus - 1] ?? speeds.last;
+
+    const s = spike().at(-100, -100).withStep(() => {
+        if (c.won)
+            return s.destroy();
+        const b = getWorldBounds(kb);
+        b.x += 16;
+        const w = b.width - s.width - 32;
+        s.x = Math.round(b.x + w / 2 + Math.sin(scene.s * Math.PI * speed) * w / 2);
+    })
+    .show();
+
+    s.y = 192;
 }
 
 function hint() {
