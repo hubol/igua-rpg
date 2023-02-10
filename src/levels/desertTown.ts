@@ -59,6 +59,8 @@ export function DesertTown()
 
     if (progress.checkpointName.toLowerCase().includes('top'))
         player.vspeed = -2;
+
+    level.LeftHouseDoor.locked = progress.flags.final.doorOpened;
 }
 
 function preventGettingStuckInBoulders() {

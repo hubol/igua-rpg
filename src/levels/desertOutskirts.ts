@@ -13,13 +13,14 @@ import {ShockwaveFilter} from "pixi-filters";
 import {game} from "../igua/game";
 import {jukebox} from "../igua/jukebox";
 import {DesertTown, GiantsNimbusMusic} from "../musics";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
 import {move} from "../cutscene/move";
 import {DisplayObject} from "pixi.js";
 import {cameraLock} from "../gameObjects/cameraLock";
 import {player} from "../gameObjects/player";
+import {DestroyAfterGreatness, DestroyBeforeGreatness} from "../pixins/destroyByGreatness";
 
 function getDesertOutskirtsLevel()
 {
@@ -38,10 +39,38 @@ export function DesertOutskirts()
 
     enrichUnlockTemple(level);
     enrichGrassyValuable(level);
+    enrichRefugee(level);
 
     if (player.x < 576)
         cameraLock({ maxX: 576 },
             () => player.x >= 576 - 32 && player.y < level.Stump.y);
+}
+
+function enrichRefugee(level: DesertOutskirtsLevel) {
+    [level.Trove1, level.Trove2, level.Trove3, level.Trove4, level.Trove5, level.Boulder1, level.Boulder2]
+        .forEach(x => x?.withPixin(DestroyAfterGreatness));
+
+    level.HiddenOracle
+        .withPixin(DestroyBeforeGreatness)
+        .withCutscene(async () => {
+            await showAll(`I feel very foolish.`,
+                `It was a mistake to put so much trust into the high oracle.`,
+                `I'm sorry if you felt I was disappointed by your work.`,
+                `I think I was mostly just shocked that what we had believed in turned out to be wrong.`,
+                `But in the end, it doesn't really matter who was wrong or right.`);
+            level.HiddenOracle.isDucking = false;
+            await sleep(1000);
+            await showAll(`In truth, we all could benefit from some change.`,
+                `We oracles should probably stop being concerned with being correct.`,
+                `And maybe you should start asking more questions.`,
+                `You can't just go around believing everyone all the time.`,
+                `What if the wizard was a fake after all? What then?`);
+            await sleep(1000);
+            await showAll(`How blasphemous of us... to disgrace the blessing of the last living protector...`)
+        });
+
+    level.HiddenOracle.isDucking = true;
+    level.HiddenOracle.duckUnit = 1;
 }
 
 function enrichGrassyValuable(level: DesertOutskirtsLevel) {

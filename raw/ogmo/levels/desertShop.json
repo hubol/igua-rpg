@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 496,
   "height": 256,
   "offsetX": 0,
@@ -313,6 +313,17 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "Window4", "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 42,
+          "_eid": "26367058",
+          "x": 264,
+          "y": 224,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "CrateStacker", "style": 1, "depth": 0}
         }
       ]
     },
@@ -405,6 +416,18 @@
           "values": {"name": ""}
         }
       ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 62,
+      "gridCellsY": 32,
+      "decals": [],
       "folder": "../../src/images"
     },
     {
