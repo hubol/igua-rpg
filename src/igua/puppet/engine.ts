@@ -50,6 +50,7 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
             y: 0,
         },
         keepOnScreen: true,
+        pauseWalkToCommands: false,
         walkTo(x: number)
         {
             return new Promise<void>((resolve, reject) =>
@@ -68,7 +69,10 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
                     const distance = Math.abs(difference);
                     const isPlayerAndShouldHaveControl = puppet === player && !cutscene.isPlaying;
 
-                    if (distance < 0.1 || (distance < 5 && Math.sign(difference) === Math.sign(puppet.hspeed)) || isPlayerAndShouldHaveControl)
+                    if (this.pauseWalkToCommands) {
+                        puppet.hspeed = 0;
+                    }
+                    else if (distance < 0.1 || (distance < 5 && Math.sign(difference) === Math.sign(puppet.hspeed)) || isPlayerAndShouldHaveControl)
                     {
                         puppet.hspeed = 0;
                         current.resolve();

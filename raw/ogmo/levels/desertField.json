@@ -1,5 +1,5 @@
 {
-  "ogmoVersion": "3.4.0",
+  "ogmoVersion": "3.4.0-hubol",
   "width": 1552,
   "height": 472,
   "offsetX": 0,
@@ -393,6 +393,28 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "Tumbleweed2", "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 34,
+          "_eid": "26367058",
+          "x": 896,
+          "y": 416,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": false,
+          "values": {"name": "LoverFromJungle", "style": 14, "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 35,
+          "_eid": "26367058",
+          "x": 936,
+          "y": 416,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": false,
+          "values": {"name": "LoverFromDesert", "style": 6, "depth": 0}
         }
       ]
     },
@@ -411,6 +433,18 @@
     {
       "name": "TerrainDecals",
       "_eid": "53244458",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 194,
+      "gridCellsY": 59,
+      "decals": [],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
       "offsetX": 0,
       "offsetY": 0,
       "gridCellWidth": 8,

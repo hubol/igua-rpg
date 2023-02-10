@@ -10,6 +10,7 @@ import {GroundSpeckles, JunglePlank} from "../textures";
 import {mirror} from "../gameObjects/mirror";
 import {cigarette} from "../gameObjects/cigarette";
 import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
+import {DestroyAfterGreatness} from "../pixins/destroyByGreatness";
 
 export function JungleBar() {
     jukebox.play(FunTimes);
@@ -17,10 +18,8 @@ export function JungleBar() {
     scene.terrainColor = 0x6D9D64;
     const level = applyOgmoLevel(JungleBarArgs);
 
-    const c = cigarette().at([-14, -11].add(level.Patron)).show();
-    c.scale.x = -1;
-
-    level.Patron.cutscene = async () => {
+    cigarette().at(14, -14).show(level.Patron);
+    level.Patron.withPixin(DestroyAfterGreatness).cutscene = async () => {
         await show(`My man lives in the desert, but I haven't been able to see him since all of the angels showed up.`);
     }
 

@@ -7,10 +7,11 @@ import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {createFollower, player} from "../gameObjects/player";
 import {progress} from "../igua/data/progress";
 import {sleep} from "../cutscene/sleep";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
 import {rng} from "../utils/math/rng";
 import {tumbleweed} from "../gameObjects/tumbleweed";
+import {DestroyBeforeGreatness} from "../pixins/destroyByGreatness";
 
 function getDesertFieldLevel()
 {
@@ -30,8 +31,56 @@ export function DesertField()
     [level.Tumbleweed1, level.Tumbleweed2].forEach(x => rng.bool && tumbleweed().at(x).show());
 
     enrichDigua(level);
+    enrichLovers(level);
 
     return level;
+}
+
+function enrichLovers(level: DesertFieldLevel) {
+    const lovers = [level.LoverFromJungle, level.LoverFromDesert];
+    lovers.forEach(x => {
+        x.withPixin(DestroyBeforeGreatness);
+        x.engine.walkSpeed = 2;
+    });
+
+    async function speak(...messages: string[]) {
+        lovers.forEach(x => x.engine.pauseWalkToCommands = true);
+        await showAll(...messages);
+        lovers.forEach(x => x.engine.pauseWalkToCommands = false);
+    }
+
+    level.LoverFromJungle.withCutscene(async () => await speak(`If it weren't for you, we'd still be separated from each other.`));
+
+    level.LoverFromDesert.withCutscene(async () =>
+        await speak(`I feel a lot better now that we are together again.`,
+            `Thank you for getting rid of the invaders.`));
+
+    async function pauseAndFlip() {
+        await sleep(1000);
+        level.LoverFromDesert.scale.x *= -1;
+        await sleep(100);
+        level.LoverFromJungle.scale.x *= -1;
+        await sleep(500);
+    }
+
+    const dx = level.LoverFromDesert.x - level.LoverFromJungle.x;
+    async function walkTogether(x: number) {
+        const promise = level.LoverFromJungle.walkTo(x);
+        await level.LoverFromDesert.walkTo(x + dx);
+        await promise;
+    }
+
+    level.LoverFromDesert.withAsync(async () => {
+        const x1 = 200;
+        const x2 = level.LoverFromDesert.x + 400;
+
+        while (true) {
+            await walkTogether(x2);
+            await pauseAndFlip();
+            await walkTogether(x1);
+            await pauseAndFlip();
+        }
+    })
 }
 
 function enrichDigua(level: DesertFieldLevel)

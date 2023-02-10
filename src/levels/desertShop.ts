@@ -15,6 +15,7 @@ import {progress} from "../igua/data/progress";
 import {jukebox} from "../igua/jukebox";
 import {Country, Shop} from "../musics";
 import {cutOutWindow} from "../igua/cutOutWindow";
+import {DestroyAfterGreatness} from "../pixins/destroyByGreatness";
 
 export function DesertShop() {
     scene.terrainColor = 0x60669B;
@@ -50,8 +51,8 @@ export function DesertShop() {
 
     [light1, light2].forEach(x => enrichLight(x, level));
 
-    const c = cigarette().at([-16, -11].add(level.BarAttendee)).show();
-    c.scale.x = -1;
+    cigarette().at(16, -13).show(level.BarAttendee);
+    level.BarAttendee.withPixin(DestroyAfterGreatness).withCutscene(() => show('...'));
 
     if (!progress.flags.desert.diguaIsInBar) {
         level.DiguaGlass.destroy();

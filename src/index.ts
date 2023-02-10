@@ -47,6 +47,7 @@ async function initialize()
         if (!environment.isProduction) {
             devMute();
             require("./igua/dev/devPersistence").devPersistence();
+            require("./igua/dev/devMiscCommands").devMiscCommands();
         }
     }
     catch (e) {

@@ -9,7 +9,7 @@ export class AsshatTicker
 {
     doNextUpdate = true;
 
-    private readonly _callbacks: AsshatTickerFn[] = [];
+    readonly _callbacks: AsshatTickerFn[] = [];
 
     add(fn: AsshatTickerFn): this
     {
