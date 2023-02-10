@@ -27,7 +27,6 @@ import {showBlessingEffect} from "../igua/gameplay/templeLevelUtil";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
 import {progress} from "../igua/data/progress";
 import {PermanentDefeatTracker} from "../gameObjects/permanentDefeatTracker";
-import {derivedProgress} from "../igua/gameplay/derivedStats";
 import {showCreditsSequence} from "./credits";
 import {migrateProgressToNewGamePlus} from "../igua/data/migrateProgressToNewGamePlus";
 import {level} from "../igua/level/level";
@@ -66,7 +65,7 @@ function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
         return enrichFirstMeeting(deps);
 
     const deps2 = makeAfterFirstMeetingCutsceneDeps(deps);
-    if (derivedProgress.permanentlyDefeatedRequiredEnemies)
+    if (progress.flags.global.somethingGreatHappened)
         enrichCompleteFinalQuest(deps2);
     else
         enrichIncompleteFinalQuest(deps2);

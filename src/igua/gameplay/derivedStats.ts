@@ -56,12 +56,6 @@ export const derivedStats = {
     }
 }
 
-export const derivedProgress = {
-    get permanentlyDefeatedRequiredEnemies() {
-        return progress.flags.objects.permanentlyDefeatedEnemies.size >= questConstants.requiredEnemiesToPermanentlyDefeat;
-    }
-}
-
 export const questConstants = {
     requiredEnemiesToPermanentlyDefeat: 19,
 }

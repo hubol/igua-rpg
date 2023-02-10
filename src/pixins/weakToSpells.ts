@@ -21,7 +21,7 @@ import {FinalEnemySoul} from "../textures";
 import {animatedSprite} from "../igua/animatedSprite";
 import { DefeatPermanent } from "../sounds";
 import {PermanentDefeatTracker} from "../gameObjects/permanentDefeatTracker";
-import {derivedProgress} from "../igua/gameplay/derivedStats";
+import {questConstants} from "../igua/gameplay/derivedStats";
 import {cutscene} from "../cutscene/cutscene";
 import {permanentDefeatCutscene} from "../gameObjects/permanentDefeatCutscene";
 
@@ -41,7 +41,7 @@ export const WeakToSpells = Pixin<WeakToSpellsArgs>()
 
         if (progress.flags.final.enemiesCanBePermanentlyDefeated) {
             const id = `${progress.levelName}_${WeakToSpellsInstances.value.length}`;
-            if (progress.flags.objects.permanentlyDefeatedEnemies.has(id) || derivedProgress.permanentlyDefeatedRequiredEnemies)
+            if (progress.flags.objects.permanentlyDefeatedEnemies.has(id) || progress.flags.global.somethingGreatHappened)
                 src.withStep(() => src.destroy());
             else {
                 scene.gameObjectStage.withAsync(async () => {
@@ -50,7 +50,7 @@ export const WeakToSpells = Pixin<WeakToSpellsArgs>()
                     await wait(() => src.clownHealth.isDead);
                     PermanentDefeatTracker.value.showFrames = 120;
                     progress.flags.objects.permanentlyDefeatedEnemies.add(id);
-                    if (derivedProgress.permanentlyDefeatedRequiredEnemies)
+                    if (progress.flags.objects.permanentlyDefeatedEnemies.size >= questConstants.requiredEnemiesToPermanentlyDefeat)
                         cutscene.play(permanentDefeatCutscene);
                 });
             }

@@ -120,6 +120,9 @@ export function getInitialFlags()
             oraclesLearnedTruth: false,
             doorOpened: false,
             enemiesCanBePermanentlyDefeated: false,
+        },
+        global: {
+            somethingGreatHappened: false,
         }
     };
 }

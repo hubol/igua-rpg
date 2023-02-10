@@ -8,6 +8,7 @@ import {showAll} from "../cutscene/dialog";
 import {FinalDoorFinish} from "../sounds";
 import {Screenshake} from "./earthquake";
 import {Hemaboss1} from "../musics";
+import {progress} from "../igua/data/progress";
 
 export async function permanentDefeatCutscene() {
     disablePlayerCollision();
@@ -30,6 +31,8 @@ export async function permanentDefeatCutscene() {
         jukebox.fadeIn(0, 1000);
     await showAll('Something great has happened.',
         'Return to the wizard of emotion for your reward.');
+
+    progress.flags.global.somethingGreatHappened = true;
 
     recreatePlayerInPlace();
 }
