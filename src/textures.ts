@@ -219,6 +219,7 @@ export let OrnateClownHair: PIXI.Texture;
 export let OrnateClownMockup: PIXI.Texture;
 export let OrnateClownMouth: PIXI.Texture;
 export let OrnateClownNeckbrace: PIXI.Texture;
+export let OrnateClownNogginFaceMask: PIXI.Texture;
 export let OrnateClownNoggin: PIXI.Texture;
 export let OrnateClownNose: PIXI.Texture;
 export let OrnateClownShoe: PIXI.Texture;
@@ -979,6 +980,9 @@ export function loadTexturesAsync()
     const OrnateClownNeckbracePath = require("./images/ornate clown/neckbrace.png");
     loader.add(OrnateClownNeckbracePath); 
 
+    const OrnateClownNogginFaceMaskPath = require("./images/ornate clown/noggin face mask.png");
+    loader.add(OrnateClownNogginFaceMaskPath); 
+
     const OrnateClownNogginPath = require("./images/ornate clown/noggin.png");
     loader.add(OrnateClownNogginPath); 
 
@@ -1509,6 +1513,7 @@ export function loadTexturesAsync()
             OrnateClownMockup = resources[OrnateClownMockupPath]?.texture as PIXI.Texture;
             OrnateClownMouth = resources[OrnateClownMouthPath]?.texture as PIXI.Texture;
             OrnateClownNeckbrace = resources[OrnateClownNeckbracePath]?.texture as PIXI.Texture;
+            OrnateClownNogginFaceMask = resources[OrnateClownNogginFaceMaskPath]?.texture as PIXI.Texture;
             OrnateClownNoggin = resources[OrnateClownNogginPath]?.texture as PIXI.Texture;
             OrnateClownNose = resources[OrnateClownNosePath]?.texture as PIXI.Texture;
             OrnateClownShoe = resources[OrnateClownShoePath]?.texture as PIXI.Texture;
