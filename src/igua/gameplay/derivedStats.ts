@@ -3,11 +3,15 @@ import {Badges} from "./badges";
 import {player} from "../../gameObjects/player";
 import {cutscene} from "../../cutscene/cutscene";
 
+function computeCurrentNgDamage(ng0Damage: number) {
+    return Math.round(ng0Damage * (1 + progress.newGamePlus * 0.5) + 20 * progress.newGamePlus);
+}
+
 export const derivedStats = {
     computeDamage(ng0Damage: number) {
         if (cutscene.isPlaying)
             return 0;
-        const currentNgDamage = ng0Damage * (1 + progress.newGamePlus);
+        const currentNgDamage = computeCurrentNgDamage(ng0Damage);
         const canPreventDeathIfDucked = progress.health > 1;
         const maximumDamage = player.isDucking && canPreventDeathIfDucked ? progress.health - 1 : Number.MAX_SAFE_INTEGER;
         return Math.max(1, Math.min(Math.floor(currentNgDamage * this.damageTakenScale), maximumDamage));
