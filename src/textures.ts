@@ -210,6 +210,19 @@ export let Obelisk: PIXI.Texture;
 export let OpenDoor: PIXI.Texture;
 export let OrangeValuable: PIXI.Texture;
 export let OrnateCarpet: PIXI.Texture;
+export let OrnateClownBody: PIXI.Texture;
+export let OrnateClownCheek: PIXI.Texture;
+export let OrnateClownEye: PIXI.Texture;
+export let OrnateClownEyebrow: PIXI.Texture;
+export let OrnateClownFists: PIXI.Texture;
+export let OrnateClownHair: PIXI.Texture;
+export let OrnateClownMockup: PIXI.Texture;
+export let OrnateClownMouth: PIXI.Texture;
+export let OrnateClownNeckbrace: PIXI.Texture;
+export let OrnateClownNoggin: PIXI.Texture;
+export let OrnateClownNose: PIXI.Texture;
+export let OrnateClownShoe: PIXI.Texture;
+export let OrnateClownSideburns: PIXI.Texture;
 export let OverheadLampLight: PIXI.Texture;
 export let OverheadLamp: PIXI.Texture;
 export let OversizedAngel: PIXI.Texture;
@@ -939,6 +952,45 @@ export function loadTexturesAsync()
     const OrnateCarpetPath = require("./images/ornate carpet.png");
     loader.add(OrnateCarpetPath); 
 
+    const OrnateClownBodyPath = require("./images/ornate clown/body.png");
+    loader.add(OrnateClownBodyPath); 
+
+    const OrnateClownCheekPath = require("./images/ornate clown/cheek.png");
+    loader.add(OrnateClownCheekPath); 
+
+    const OrnateClownEyePath = require("./images/ornate clown/eye.png");
+    loader.add(OrnateClownEyePath); 
+
+    const OrnateClownEyebrowPath = require("./images/ornate clown/eyebrow.png");
+    loader.add(OrnateClownEyebrowPath); 
+
+    const OrnateClownFistsPath = require("./images/ornate clown/fists.png");
+    loader.add(OrnateClownFistsPath); 
+
+    const OrnateClownHairPath = require("./images/ornate clown/hair.png");
+    loader.add(OrnateClownHairPath); 
+
+    const OrnateClownMockupPath = require("./images/ornate clown/mockup.png");
+    loader.add(OrnateClownMockupPath); 
+
+    const OrnateClownMouthPath = require("./images/ornate clown/mouth.png");
+    loader.add(OrnateClownMouthPath); 
+
+    const OrnateClownNeckbracePath = require("./images/ornate clown/neckbrace.png");
+    loader.add(OrnateClownNeckbracePath); 
+
+    const OrnateClownNogginPath = require("./images/ornate clown/noggin.png");
+    loader.add(OrnateClownNogginPath); 
+
+    const OrnateClownNosePath = require("./images/ornate clown/nose.png");
+    loader.add(OrnateClownNosePath); 
+
+    const OrnateClownShoePath = require("./images/ornate clown/shoe.png");
+    loader.add(OrnateClownShoePath); 
+
+    const OrnateClownSideburnsPath = require("./images/ornate clown/sideburns.png");
+    loader.add(OrnateClownSideburnsPath); 
+
     const OverheadLampLightPath = require("./images/overhead lamp light.png");
     loader.add(OverheadLampLightPath); 
 
@@ -1448,6 +1500,19 @@ export function loadTexturesAsync()
             OpenDoor = resources[OpenDoorPath]?.texture as PIXI.Texture;
             OrangeValuable = resources[OrangeValuablePath]?.texture as PIXI.Texture;
             OrnateCarpet = resources[OrnateCarpetPath]?.texture as PIXI.Texture;
+            OrnateClownBody = resources[OrnateClownBodyPath]?.texture as PIXI.Texture;
+            OrnateClownCheek = resources[OrnateClownCheekPath]?.texture as PIXI.Texture;
+            OrnateClownEye = resources[OrnateClownEyePath]?.texture as PIXI.Texture;
+            OrnateClownEyebrow = resources[OrnateClownEyebrowPath]?.texture as PIXI.Texture;
+            OrnateClownFists = resources[OrnateClownFistsPath]?.texture as PIXI.Texture;
+            OrnateClownHair = resources[OrnateClownHairPath]?.texture as PIXI.Texture;
+            OrnateClownMockup = resources[OrnateClownMockupPath]?.texture as PIXI.Texture;
+            OrnateClownMouth = resources[OrnateClownMouthPath]?.texture as PIXI.Texture;
+            OrnateClownNeckbrace = resources[OrnateClownNeckbracePath]?.texture as PIXI.Texture;
+            OrnateClownNoggin = resources[OrnateClownNogginPath]?.texture as PIXI.Texture;
+            OrnateClownNose = resources[OrnateClownNosePath]?.texture as PIXI.Texture;
+            OrnateClownShoe = resources[OrnateClownShoePath]?.texture as PIXI.Texture;
+            OrnateClownSideburns = resources[OrnateClownSideburnsPath]?.texture as PIXI.Texture;
             OverheadLampLight = resources[OverheadLampLightPath]?.texture as PIXI.Texture;
             OverheadLamp = resources[OverheadLampPath]?.texture as PIXI.Texture;
             OversizedAngel = resources[OversizedAngelPath]?.texture as PIXI.Texture;
