@@ -6,7 +6,7 @@ import {rng} from "../utils/math/rng";
 import {lerp} from "../cutscene/lerp";
 import {approachLinear} from "../utils/math/number";
 
-export const Blinking = Pixin({})
+export const Blinking = Pixin({ blinkLerpMs: 100, blinkEyelidHoldMs: 60, blinkDelayBaseMs: 300 })
     .applies(src => {
         const privateState = {
             blink: 0,
@@ -25,10 +25,10 @@ export const Blinking = Pixin({})
         .withAsync(async () => {
             await sleep(500 + rng.int(500));
             while (true) {
-                await lerp(privateState, 'blink').to(1).over(100);
-                await sleep(60);
-                await lerp(privateState, 'blink').to(0).over(100);
-                await sleep(300 + rng.int(3000));
+                await lerp(privateState, 'blink').to(1).over(src.blinkLerpMs);
+                await sleep(src.blinkEyelidHoldMs);
+                await lerp(privateState, 'blink').to(0).over(src.blinkLerpMs);
+                await sleep(src.blinkDelayBaseMs + rng.int(3000));
             }
         });
 

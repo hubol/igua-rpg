@@ -48,7 +48,7 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
     };
 
     const c = container()
-        .withPixin(Blinking())
+        .withPixin(Blinking({ blinkLerpMs: 150, blinkEyelidHoldMs: 110, blinkDelayBaseMs: 700 }))
         .withStep(() => {
             if (f.eyes.widen || f.eyes.closeLeft || f.eyes.closeRight)
                 c.blinkOverride = 0;
@@ -104,7 +104,7 @@ function mkHead() {
     const nogginFaceMask = Sprite.from(txs.faceShape).at(-2, -16);
     const nogginMask = Sprite.from(txs.noggin);
     const sideburns = Sprite.from(txs.sideburns);
-    sideburns.pivot.set(8, -6);
+    sideburns.pivot.set(8, -2);
     const noggin = Sprite.from(txs.noggin);
     const hair = mkHair();
     hair.pivot.set(8, 23)
