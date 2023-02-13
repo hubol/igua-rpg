@@ -369,7 +369,7 @@ export function clownUnorthodox() {
         v = v.vcpy();
         const w = vnew();
         let isOnGround = false;
-        const p = electricPath(() => player.damage(consts.damage.spark), 2)
+        const p = electricPath(() => p.damagePlayer(consts.damage.spark), 2)
             .show(projectiles)
             .withStep(() => {
                 if (p.isDying && (isOnGround || v.y > scene.height))
@@ -671,7 +671,7 @@ export function clownUnorthodox() {
         })
 
     const legs = newLegs();
-    const projectiles = container();
+    const projectiles = container().damageSource(head);
 
     head.once('added', () => {
         legs.at(head).add(40, 52);
@@ -693,6 +693,7 @@ export function clownUnorthodox() {
 
     const aoe = new AoeHitboxes();
     aoe.visible = debug.aoe;
+    aoe.container.damageSource(head);
 
     const gravity = newGravity(legs, behaviors.legs.speed, [ 0, -6 ], 6);
     legs.withStep(() => {
@@ -725,6 +726,8 @@ export function clownUnorthodox() {
         pounce: tc.new(96, 180).at(-48, -210 + 5).tinted(0x00ff00),
     }
 
+    legs.damageSource(head);
+    head.damageSource(head);
     head.withPixin(WeakToSpells({ spellsHurtbox: [ head.hit ], clownHealth: health }));
 
     return head;

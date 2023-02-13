@@ -193,7 +193,7 @@ export function clownVile() {
                 await sleep(50);
                 prevEndX = pv.end.x;
                 pv.destroy();
-                const s = spikeVile().at(mouthv()).show();
+                const s = spikeVile().damageSource(c).at(mouthv()).show();
                 s.speed.at(speed);
 
                 await sleep(150);
@@ -391,6 +391,8 @@ export function clownVile() {
             c.hostile = true;
         });
 
+    c.damageSource(c);
+
     c.transform.onPositionChanged(onSpawnedWithPosition);
 
     const speed = vnew();
@@ -443,7 +445,7 @@ function arm(left = true) {
                 c.y = approachLinear(c.y, 0, 2);
                 c.speed = approachLinear(c.speed, 0.3, 0.01);
                 if (dangerous && player.collides(hitboxUp)) {
-                    player.damage(clownVileDamage.flailUp);
+                    c.damagePlayer(clownVileDamage.flailUp);
                     bouncePlayerOffDisplayObject(c.parent, 4);
                 }
             }
@@ -455,7 +457,7 @@ function arm(left = true) {
                 c.pivot.x = approachLinear(c.pivot.x, 0, 2);
                 c.speed = approachLinear(c.speed, 0.4, 0.01);
                 if (dangerous && player.collides(hitboxSide)) {
-                    player.damage(clownVileDamage.flailSide);
+                    c.damagePlayer(clownVileDamage.flailSide);
                     player.hspeed = 0;
                     player.engine.knockback.x = (left ? -1 : 1) * 4;
                 }

@@ -21,7 +21,7 @@ export type WaveArgs = {
 export function wave(args: WaveArgs, onDamage?: () => void) {
     const _onDamage = () => {
         onDamage?.();
-        player.damage(args.damage);
+        c.damagePlayer(args.damage);
     }
 
     let i = 0;

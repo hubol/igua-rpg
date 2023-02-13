@@ -16,7 +16,7 @@ export function electricBolt(boltParent: Container, damage: number, speed = 1 / 
         unit += speed;
         if (unit >= 1) {
             const bounds = s.getBounds();
-            electricBoltHostile(bounds.add(6, 6).add(scene.camera), boltParent, damage);
+            electricBoltHostile(bounds.add(6, 6).add(scene.camera), boltParent, damage).damageSource(s.ext.damageSource);
             s.destroy();
         }
     });
@@ -34,11 +34,12 @@ function electricBoltHostile(v: Vector, parent: Container, damage: number) {
     s.withStep(() => {
         s.angle = Math.floor(((now.s * 2) % 1) * 4) * 90;
         if (s.collides(player))
-            player.damage(damage);
+            s.damagePlayer(damage);
         if (life-- <= 0)
             return s.destroy();
         s.add(speed);
     });
     s.anchor.set(0.5);
     parent.addChild(s);
+    return s;
 }

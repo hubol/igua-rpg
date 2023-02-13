@@ -18,7 +18,7 @@ function spikeVileImpl(damage = clownVileDamage.spike) {
     let grounded = false;
     const s = merge(Sprite.from(ClownSpikeBall), { speed: vnew() }).withStep(() => {
         if (mask.collides(player.feet))
-            player.damage(damage);
+            s.damagePlayer(damage);
         const r = gravity(grav);
         if (r.isOnGround) {
             s.speed.x = approachLinear(s.speed.x, 0, 4);

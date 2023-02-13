@@ -43,7 +43,7 @@ function hostile(radius: number, damage: number) {
             const y = origin.y + radius;
             const p = player.getBounds();
             if (inactive-- <= 0 && rectangleCircleOverlap(radius - 8, x, y, p.x, p.y, p.x + p.width, p.y + p.height))
-                player.damage(damage);
+                g.damagePlayer(damage);
         });
 
     g.on('added', () => {

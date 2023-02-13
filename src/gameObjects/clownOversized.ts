@@ -34,7 +34,7 @@ function mace(angleOffset: number, damage: number) {
             if (s.active) {
                 s.alpha = 1;
                 if (player.collides(s))
-                    player.damage(damage);
+                    s.damagePlayer(damage);
             }
             else
                 s.alpha = 0.25;
@@ -64,6 +64,7 @@ function oversizedClownImpl() {
     const physicalFormContainer = container(head, hair, face(faceState))
         .withPixin(WeakToSpells({ spellsHurtbox: [head], clownHealth: health }));
     const c = merge(container(physicalFormContainer, electricContainer), { aggressive: false });
+    c.damageSource(c);
     physicalFormContainer.on('removed', () => !c.destroyed && c.destroy());
     const speed = [0, 0];
 
@@ -260,7 +261,7 @@ function oversizedClownImpl() {
     function shootElectricBolt() {
         if (behavior !== hostile)
             return;
-        electricContainer.addChild(electricBolt(electricBoltContainer, consts.damage.bolt).at(33, 25));
+        electricContainer.addChild(electricBolt(electricBoltContainer, consts.damage.bolt).damageSource(c).at(33, 25));
     }
 
     function abortElectricBolts() {

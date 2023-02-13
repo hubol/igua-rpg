@@ -25,7 +25,7 @@ export class AoeHitboxes {
                     g.destroy();
                 else if (g.damage && player.collides(g)) {
                     this.onDamage?.();
-                    player.damage(g.damage);
+                    g.damagePlayer(g.damage);
                 }
             })
             .show(this._container);
@@ -33,5 +33,9 @@ export class AoeHitboxes {
 
     get hitboxes() {
         return this._container.children as ReturnType<typeof AoeHitboxes.prototype.new>[];
+    }
+
+    get container() {
+        return this._container;
     }
 }
