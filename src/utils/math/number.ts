@@ -20,3 +20,7 @@ export function cyclic(number: number, min: number, max: number)
     if (number<0) number+=(max-min);
     return number+min;
 }
+
+export function nclamp(x: number, max: number) {
+    return Math.sign(x) * Math.min(max, Math.abs(x));
+}

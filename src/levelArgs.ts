@@ -936,14 +936,14 @@ export const DesertTownArgs = {
 };
 
 export const FinalBossArenaArgs = {
-  width: 256,
+  width: 512,
   height: 256,
   gameObjectsSupplier: () => {
     return {
-      Block: resolveBlock({ type: "Block", x: 0, y: 192, width: 256, height: 64, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
+      Block: resolveBlock({ type: "Block", x: 0, y: 192, width: 512, height: 64, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
       Gate: resolveGate({ type: "Gate", x: 0, y: 160, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_1", levelName: "FinalClimb", checkpointName: "FromBossArena", name: "", depth: 0 }),
-      Gate_1: resolveGate({ type: "Gate", x: 224, y: 160, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_2", levelName: "CapitalOutskirts", checkpointName: "FromFinal", name: "", depth: 0 }),
-      Player: { type: "Player", x: 184, y: 192, flippedX: false, flippedY: false, uid: "55988047_3", faceRight: false, name: "", depth: 0 },
+      Gate_1: resolveGate({ type: "Gate", x: 480, y: 160, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_2", levelName: "CapitalOutskirts", checkpointName: "FromFinal", name: "", depth: 0 }),
+      Player: { type: "Player", x: 440, y: 192, flippedX: false, flippedY: false, uid: "55988047_3", faceRight: false, name: "", depth: 0 },
       FromClimb: { type: "Checkpoint", x: 64, y: 192, flippedX: false, flippedY: false, uid: "55940370_4", name: "FromClimb", faceRight: true, depth: 0 },
     };
   },

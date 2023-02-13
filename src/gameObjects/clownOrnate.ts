@@ -10,17 +10,26 @@ import {
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
-import {vnew} from "../utils/math/vector";
+import {moveTowards, vnew} from "../utils/math/vector";
 import {Sprite} from "pixi.js";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {flipH} from "../utils/pixi/flip";
 import {animatedSprite} from "../igua/animatedSprite";
-import {approachLinear} from "../utils/math/number";
+import {approachLinear, nclamp} from "../utils/math/number";
 import {range} from "../utils/range";
 import {scene} from "../igua/scene";
+import {Blinking} from "../pixins/blinking";
+import {getWorldCenter} from "../igua/gameplay/getCenter";
+import {player} from "./player";
+import {Hbox} from "./hbox";
 
 export function clownOrnate() {
     const p = mkPuppet();
+    const auto = mkAutomation(p);
+    auto.head.facePlayer = true;
+    auto.eyes.lookAtPlayer = true;
+    auto.cheeks.alert = true;
+
     return p;
 }
 
@@ -31,11 +40,66 @@ function mkPuppet() {
     return c;
 }
 
+function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
+    const f = {
+        eyes: { closeLeft: false, closeRight: false, widen: false, lookAtPlayer: false },
+        cheeks: { alert: false, },
+        head: { facePlayer: false }
+    };
+
+    const c = container()
+        .withPixin(Blinking())
+        .withStep(() => {
+            if (f.eyes.widen || f.eyes.closeLeft || f.eyes.closeRight)
+                c.blinkOverride = 0;
+            else
+                c.blinkOverride = undefined;
+
+            const b = f.eyes.widen ? 0 : c.blink;
+            puppet.head.face.eyel.closedUnit = approachLinear(puppet.head.face.eyel.closedUnit, f.eyes.closeLeft ? 1 : b, 0.2);
+            puppet.head.face.eyer.closedUnit = approachLinear(puppet.head.face.eyer.closedUnit, f.eyes.closeRight ? 1 : b, 0.2);
+
+            if (f.eyes.lookAtPlayer) {
+                const l = getWorldCenter(puppet.head.face.eyel.children[0]);
+                v.at(nclamp((player.x - l.x) / 32, 4), nclamp((player.y - l.y) / 12, 8));
+                moveTowards(puppet.head.face.eyel.look, v, 0.2);
+
+                const r = getWorldCenter(puppet.head.face.eyer.children[0]);
+                v.at(nclamp((player.x - r.x) / 32, 4), nclamp((player.y - r.y) / 12, 8));
+                moveTowards(puppet.head.face.eyer.look, v, 0.2);
+            }
+
+            if (f.head.facePlayer) {
+                const h = getWorldCenter(puppet.head.hurtbox);
+                v.at(nclamp((player.x - h.x) / 128, 1), nclamp((player.y - h.y) / 32, 1));
+                moveTowards(puppet.head.facingUnit, v, 0.1);
+            }
+
+            if (f.cheeks.alert) {
+                if (scene.ticks % 30 === 0) {
+                    puppet.head.face.cheekl.yellow = !puppet.head.face.cheekl.yellow;
+                    puppet.head.face.cheekr.yellow = !puppet.head.face.cheekr.yellow;
+                }
+            }
+            else {
+                puppet.head.face.cheekl.yellow = false;
+                puppet.head.face.cheekr.yellow = false;
+            }
+        })
+        .show(puppet);
+
+    return f;
+}
+
+const v = vnew();
+
 function mkHead() {
     const face = mkFace();
     face.pivot.set(-12, 1);
 
-    const c = merge(container(), { face });
+    const hurtbox = new Hbox(2, -1, 45, 29);
+
+    const c = merge(container(), { face, facingUnit: vnew(), hurtbox });
 
     const nogginFaceMask = Sprite.from(txs.faceShape).at(-2, -16);
     const nogginMask = Sprite.from(txs.noggin);
@@ -48,7 +112,13 @@ function mkHead() {
     sideburns.filter(alphaMaskFilter(nogginMask));
     face.filter(alphaMaskFilter(nogginFaceMask));
 
-    c.addChild(nogginFaceMask, nogginMask, noggin, sideburns, hair, face);
+    c.withStep(() => {
+        sideburns.x = c.facingUnit.x * 8;
+        face.at(c.facingUnit.x * 12, c.facingUnit.y).vround();
+        hair.facingUnit.at(c.facingUnit);
+    });
+
+    c.addChild(nogginFaceMask, nogginMask, noggin, sideburns, hair, face, hurtbox);
 
     return c;
 }
@@ -75,7 +145,7 @@ function mkCheek(yellow = false) {
     let unit = yellow ? 1 : 0;
     const s = merge(animatedSprite(txs.cheek, 0), { yellow })
         .withStep(() => {
-            unit = approachLinear(unit, yellow ? 1 : 0, 0.05);
+            unit = approachLinear(unit, s.yellow ? 1 : 0, 0.1);
             s.imageIndex = unit * 2;
         });
 
@@ -128,6 +198,8 @@ function mkEye() {
         shapeBackground.texture = shapeMask.texture;
         outline.texture = txs.eyeOutline[c.shape];
         pupil.texture = txs.pupil[c.pupilShape];
+        pupil.at(c.look);
+        pupil.x *= c.scale.x;
         eyelid.pivot.y = (1 - c.closedUnit) * 22;
         brow.pivot.set(-c.brow.offset.x, -c.brow.offset.y);
     });
@@ -136,10 +208,11 @@ function mkEye() {
 }
 
 function mkHair() {
-    const c = container();
+    const c = merge(container(), { facingUnit: vnew() });
 
     Sprite.from(txs.hair[0]).show(c);
     const blobs = range(5).map(i => Sprite.from(txs.hair[i + 1]).show(c));
+    blobs[4].index = 1;
 
     return c.withStep(() => {
         const t = scene.s * 0.67;
@@ -148,6 +221,9 @@ function mkHair() {
         blobs[2].pivot.set(Math.cos(t * Math.PI * 2 + 3) * 1, Math.sin(t * Math.PI * 1 + 8) * 2);
         blobs[3].pivot.set(Math.cos(t * Math.PI * 3 + 4) * 1 - 2, Math.cos(t * Math.PI * 2 + 16) * 1);
         blobs[4].pivot.set(Math.cos(t * Math.PI * 2 + 5) * 1, Math.sin(t * Math.PI * 3 + 32) * 2);
+        blobs[4].pivot.x += c.facingUnit.x * 5;
+        if (c.facingUnit.y < 0)
+            blobs[4].pivot.y += c.facingUnit.y * 3;
     });
 }
 
