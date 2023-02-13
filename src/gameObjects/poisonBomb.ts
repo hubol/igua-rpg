@@ -13,6 +13,7 @@ import {getWorldPos} from "../igua/gameplay/getCenter";
 import {playerCollidesCircle} from "../igua/logic/playerCollidesCircle";
 import {player} from "./player";
 import {PoisonBombBurn, PoisonBombExplode} from "../sounds";
+import {findDamageSource} from "../utils/extensions/pixiIguaExtensions";
 
 const bombTxs = subimageTextures(PoisonBomb, 8);
 const sparkTxs = subimageTextures(BombSparks, 5);
@@ -41,7 +42,7 @@ export function poisonBomb() {
             c.life = Math.max(0, c.life - (1 / 60));
 
         if (c.life <= 0) {
-            poisonBombExplosion().at(c).show(c.parent);
+            poisonBombExplosion().at(c).damageSource(findDamageSource(c)).show(c.parent);
             c.destroy();
         }
         else if (c.lit) {

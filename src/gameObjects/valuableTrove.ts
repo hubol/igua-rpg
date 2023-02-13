@@ -3,9 +3,12 @@ import {sleep} from "../cutscene/sleep";
 import {wait} from "../cutscene/wait";
 import {persistence} from "../igua/data/persistence";
 import {valuable} from "./valuable";
+import {SceneLocal} from "../igua/sceneLocal";
 
 const trh = 15;
 const tcw = 18;
+
+export const ValuableTroveConfig = new SceneLocal(() => ({ dropAll15: false }), `ValuableTroveConfig`);
 
 export function valuableTrove(...rows: number[][]) {
     const c = container()
@@ -15,7 +18,8 @@ export function valuableTrove(...rows: number[][]) {
                 const row = rows[y];
                 const xoff = Math.floor((row.length * tcw) / 2);
                 for (let x = right ? 0 : row.length - 1; (right && x < row.length) || (!right && x >= 0); x += right ? 1 : -1) {
-                    numberToValuable(row[x]).at(x * tcw - xoff, trh * y).show(c).delayCollectible();
+                    const value = ValuableTroveConfig.value.dropAll15 ? 15 : row[x];
+                    numberToValuable(value).at(x * tcw - xoff, trh * y).show(c).delayCollectible();
                     await sleep(67);
                 }
                 right = !right;

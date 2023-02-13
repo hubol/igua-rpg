@@ -114,6 +114,7 @@ export function dassmannBoss() {
         // @ts-ignore
         BookInformationHalt.rate(1).play();
         const b = poisonBomb()
+            .damageSource(d)
             .withStep(() => {
                 if (health.isDead)
                     return b.destroy();

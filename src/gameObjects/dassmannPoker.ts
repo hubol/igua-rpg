@@ -27,6 +27,7 @@ export function dassmannPoker(damage: number) {
                 if (findDamageSource(c)?.destroyed)
                     p.destroy();
             })
+            .damageSource(findDamageSource(c))
             .withAsync(async () => {
                 DassPokeAppear.play();
                 await wait(() => p.hostile);

@@ -48,7 +48,7 @@ import {electricPath} from "./electricPath";
 import {push} from "./walls";
 import {scene} from "../igua/scene";
 import {confetti} from "./confetti";
-import {trove100} from "./valuableTrove";
+import {trove100, ValuableTroveConfig} from "./valuableTrove";
 import {sparkleTell} from "./sparkleTell";
 import {WeakToSpells} from "../pixins/weakToSpells";
 
@@ -629,6 +629,7 @@ export function clownUnorthodox() {
             }
             behaviors.evade += 180;
             if (health.damage()) {
+                ValuableTroveConfig.value.dropAll15 = head.vsPlayerHitCount === 0;
                 const v = consts.drop().at(head).show().add(0, -20);
                 confetti(32, 64).at(v).ahead();
                 UnorthodoxUnscrew.stop();

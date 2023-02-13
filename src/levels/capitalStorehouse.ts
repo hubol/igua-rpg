@@ -23,7 +23,7 @@ import {smallPop} from "../gameObjects/smallPop";
 import {rng} from "../utils/math/rng";
 import {colord} from "colord";
 import {persistence} from "../igua/data/persistence";
-import {keepSavingValuables, trove120} from "../gameObjects/valuableTrove";
+import {keepSavingValuables, trove120, ValuableTroveConfig} from "../gameObjects/valuableTrove";
 import {arenaRegion} from "../gameObjects/region";
 
 export function CapitalStorehouse() {
@@ -111,6 +111,8 @@ function enrichDassmannBoss(level: GameObjectsType<typeof CapitalStorehouseArgs>
         dass.head.agape = 1;
         dass.expression.antenna = 'shock';
         dass.head.wiggle = 1;
+
+        ValuableTroveConfig.value.dropAll15 = boss.vsPlayerHitCount === 0;
         boss.destroy();
 
         progress.flags.capital.defeatedDassmann = true;

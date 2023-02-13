@@ -22,7 +22,7 @@ import {rng} from "../utils/math/rng";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {clownHealth} from "./utils/clownUtils";
 import {newGravity} from "./utils/newGravity";
-import {trove65} from "./valuableTrove";
+import {trove65, ValuableTroveConfig} from "./valuableTrove";
 import {WeakToSpells} from "../pixins/weakToSpells";
 
 const [headTexture, faceTexture, hairTexture, leftBrowTexture, rightBrowTexture, sleepyFaceTexture] =
@@ -241,6 +241,7 @@ function oversizedClownImpl() {
             ClownExplode.play();
             const v = [33, 25].add(c);
             confetti(32, 64).at(v).ahead();
+            ValuableTroveConfig.value.dropAll15 = c.vsPlayerHitCount === 0;
             trove65().at([15, 16].add(v)).show();
             c.destroy();
             return;

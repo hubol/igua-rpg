@@ -14,7 +14,7 @@ import {progress} from "../igua/data/progress";
 import {clownVile} from "../gameObjects/clownVile";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {wait} from "../cutscene/wait";
-import {keepSavingValuables, trove140} from "../gameObjects/valuableTrove";
+import {keepSavingValuables, trove140, ValuableTroveConfig} from "../gameObjects/valuableTrove";
 import {sleep} from "../cutscene/sleep";
 import {persistence} from "../igua/data/persistence";
 import {freezeSceneAndShowMessage} from "../cutscene/freezeSceneAndShowMessage";
@@ -112,6 +112,7 @@ function enrichBoss(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
         progress.flags.volcano.defeatedVileAngel = true;
         progress.status.burn = 0;
         const x = Math.max(level.ValuableSpawnX.x, Math.min(level.ValuableSpawnX.x + level.ValuableSpawnX.width, bossX));
+        ValuableTroveConfig.value.dropAll15 = boss.vsPlayerHitCount === 0;
         trove140().at(x, 168).show();
         progress.checkpointName = "DefeatedBoss";
         await persistence.save();
