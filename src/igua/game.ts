@@ -23,7 +23,7 @@ function createGame(application: AsshatApplication)
     ticker.add(advanceKeyListener);
     ticker.add(advanceInput);
 
-    application.ticker.add(() => {
+    application.animator.add(() => {
         ticker.update();
         scene.ticker.update();
         stepPlayerCamera();
@@ -48,7 +48,8 @@ function createGame(application: AsshatApplication)
         get height() {
             return application.renderer.height;
         },
-        renderer: application.renderer
+        renderer: application.renderer,
+        animator: application.animator,
     };
 }
 

@@ -19,7 +19,7 @@ export function createApplication(options: ApplicationOptions)
         canvasElement: renderer.view,
         renderer: renderer,
         stage: stage,
-        ticker: animator,
+        animator,
         maxFps: options.maxFps
     };
 }
