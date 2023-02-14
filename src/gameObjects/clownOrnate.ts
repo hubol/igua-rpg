@@ -12,7 +12,6 @@ import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {moveTowards, vnew} from "../utils/math/vector";
 import {Sprite} from "pixi.js";
-import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {flipH} from "../utils/pixi/flip";
 import {animatedSprite} from "../igua/animatedSprite";
 import {approachLinear, nclamp} from "../utils/math/number";
@@ -109,8 +108,8 @@ function mkHead() {
     const hair = mkHair();
     hair.pivot.set(8, 23)
 
-    sideburns.filter(alphaMaskFilter(nogginMask));
-    face.filter(alphaMaskFilter(nogginFaceMask));
+    sideburns.mask = nogginMask;
+    face.mask = nogginFaceMask;
 
     c.withStep(() => {
         sideburns.x = c.facingUnit.x * 8;
@@ -185,7 +184,8 @@ function mkEye() {
     const shapeBackground = Sprite.from(txs.eyeShape[0]);
     const pupil = Sprite.from(txs.pupil[0]);
     const eyelid = Sprite.from(txs.eyelid);
-    const maskable = container(pupil, eyelid).filter(alphaMaskFilter(shapeMask));
+    const maskable = container(pupil, eyelid);
+    maskable.mask = shapeMask;
     const outline = Sprite.from(txs.eyeOutline[0]);
 
     const brow = animatedSprite(txs.eyebrow, 0).at(13, -7);
