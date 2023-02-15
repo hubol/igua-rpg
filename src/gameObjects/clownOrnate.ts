@@ -22,6 +22,8 @@ import {getWorldCenter} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {Hbox} from "./hbox";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
+import {sleep} from "../cutscene/sleep";
+import {lerp} from "../cutscene/lerp";
 
 export function clownOrnate() {
     const p = mkPuppet();
@@ -31,6 +33,17 @@ export function clownOrnate() {
     auto.cheeks.alert = true;
     auto.body.facePlayer = true;
 
+    p.withAsync(async () => {
+        while (true) {
+            await lerp(p.body.neck, 'extendingUnit').to(0).over(250);
+            await sleep(1000);
+            await lerp(p.body.neck, 'extendingUnit').to(1).over(250);
+            await sleep(1000);
+        }
+    })
+
+    // p.body.neck.extendingUnit = 0;
+
     return p;
 }
 
@@ -38,24 +51,29 @@ function mkPuppet() {
     const head = mkHead();
     const body = mkBody(head);
     const c = merge(container(body, head), { body, head });
+    c.pivot.set(24, 64);
 
     return c;
 }
 
 function mkBody(head: ReturnType<typeof mkHead>) {
-    const c = merge(container(), { torso: { facingUnit: 0 } });
+    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1 } });
+
+    const neckbraceShadow = Sprite.from(txs.neckbrace[2]);
 
     const torsoSprite = Sprite.from(txs.body[0]);
     const torsoButtonsSprite = Sprite.from(txs.body[1]);
-    const torso = container(torsoSprite, torsoButtonsSprite);
+    const torsoShadedSprite = Sprite.from(txs.body[2]);
+    torsoShadedSprite.mask = neckbraceShadow;
+    const torso = container(torsoSprite, torsoShadedSprite, torsoButtonsSprite);
     torso.pivot.set(-6, -39);
 
-    const neckbrace = container();
+    const neckbrace = container(neckbraceShadow);
     const neckbraceShapeSprite = Sprite.from(txs.neckbrace[0]).show(neckbrace);
     Sprite.from(txs.neckbrace[0]).show(neckbrace);
     const neckbraceOverlapSprite = Sprite.from(txs.neckbrace[1]).show(neckbrace).filter(alphaMaskFilter(neckbraceShapeSprite));
 
-    neckbrace.pivot.set(-9, -26);
+    neckbrace.pivot.set(-7, -26);
 
     const shoeL = Sprite.from(txs.shoe);
     const shoeR = Sprite.from(txs.shoe);
@@ -71,6 +89,9 @@ function mkBody(head: ReturnType<typeof mkHead>) {
         torsoButtonsSprite.y = Math.abs(c.torso.facingUnit) * -1;
         torsoButtonsSprite.vround();
         neckbraceOverlapSprite.x = Math.round(c.torso.facingUnit * (c.torso.facingUnit >= 0 ? 4 : 12));
+        neckbraceShadow.pivot.y = c.neck.extendingUnit > 0.25 ? 0 : 1;
+        neckbrace.y = Math.round((1 - c.neck.extendingUnit) * 4);
+        head.y = Math.round(neckbrace.y * 1.5);
     });
 
     c.addChild(shoeL, shoeR, upperBody);
