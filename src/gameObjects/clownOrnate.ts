@@ -57,6 +57,15 @@ function mkBody(head: ReturnType<typeof mkHead>) {
 
     neckbrace.pivot.set(-9, -26);
 
+    const shoeL = Sprite.from(txs.shoe);
+    const shoeR = Sprite.from(txs.shoe);
+    shoeR.scale.x = -1;
+
+    shoeL.pivot.set(-5, -50);
+    shoeR.pivot.set(44, -50);
+
+    const upperBody = container(torso, neckbrace);
+
     c.withStep(() => {
         torsoButtonsSprite.x = c.torso.facingUnit * 12;
         torsoButtonsSprite.y = Math.abs(c.torso.facingUnit) * -1;
@@ -64,7 +73,7 @@ function mkBody(head: ReturnType<typeof mkHead>) {
         neckbraceOverlapSprite.x = Math.round(c.torso.facingUnit * (c.torso.facingUnit >= 0 ? 4 : 12));
     });
 
-    c.addChild(torso, neckbrace);
+    c.addChild(shoeL, shoeR, upperBody);
 
     return c;
 }
