@@ -28,13 +28,36 @@ export function clownOrnate() {
     auto.head.facePlayer = true;
     auto.eyes.lookAtPlayer = true;
     auto.cheeks.alert = true;
+    auto.body.facePlayer = true;
 
     return p;
 }
 
 function mkPuppet() {
     const head = mkHead();
-    const c = merge(container(head), { head });
+    const body = mkBody(head);
+    const c = merge(container(body, head), { body, head });
+
+    return c;
+}
+
+function mkBody(head: ReturnType<typeof mkHead>) {
+    const c = merge(container(), { torso: { facingUnit: 0 } });
+
+    const torsoSprite = Sprite.from(txs.body[0]);
+    const torsoButtonsSprite = Sprite.from(txs.body[1]);
+    const torso = container(torsoSprite, torsoButtonsSprite);
+    torso.pivot.set(-6, -39);
+    const neckbrace = Sprite.from(txs.neckbrace);
+    neckbrace.pivot.set(-9, -26);
+
+    c.withStep(() => {
+        torsoButtonsSprite.x = c.torso.facingUnit * 12;
+        torsoButtonsSprite.y = Math.abs(c.torso.facingUnit) * -1;
+        torsoButtonsSprite.vround();
+    });
+
+    c.addChild(torso, neckbrace);
 
     return c;
 }
@@ -43,7 +66,8 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
     const f = {
         eyes: { closeLeft: false, closeRight: false, widen: false, lookAtPlayer: false },
         cheeks: { alert: false, },
-        head: { facePlayer: false }
+        head: { facePlayer: false, },
+        body: { facePlayer: false, },
     };
 
     const c = container()
@@ -68,10 +92,15 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
                 moveTowards(puppet.head.face.eyer.look, v, 0.2);
             }
 
+            const h = getWorldCenter(puppet.head.hurtbox);
+
             if (f.head.facePlayer) {
-                const h = getWorldCenter(puppet.head.hurtbox);
                 v.at(nclamp((player.x - h.x) / 128, 1), nclamp((player.y - h.y) / 32, 1));
                 moveTowards(puppet.head.facingUnit, v, 0.1);
+            }
+
+            if (f.body.facePlayer) {
+                puppet.body.torso.facingUnit = approachLinear(puppet.body.torso.facingUnit, nclamp((player.x - h.x) / 128, 1), 0.0175)
             }
 
             if (f.cheeks.alert) {
