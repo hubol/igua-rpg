@@ -21,6 +21,7 @@ import {Blinking} from "../pixins/blinking";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {Hbox} from "./hbox";
+import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 
 export function clownOrnate() {
     const p = mkPuppet();
@@ -48,13 +49,19 @@ function mkBody(head: ReturnType<typeof mkHead>) {
     const torsoButtonsSprite = Sprite.from(txs.body[1]);
     const torso = container(torsoSprite, torsoButtonsSprite);
     torso.pivot.set(-6, -39);
-    const neckbrace = Sprite.from(txs.neckbrace);
+
+    const neckbrace = container();
+    const neckbraceShapeSprite = Sprite.from(txs.neckbrace[0]).show(neckbrace);
+    Sprite.from(txs.neckbrace[0]).show(neckbrace);
+    const neckbraceOverlapSprite = Sprite.from(txs.neckbrace[1]).show(neckbrace).filter(alphaMaskFilter(neckbraceShapeSprite));
+
     neckbrace.pivot.set(-9, -26);
 
     c.withStep(() => {
         torsoButtonsSprite.x = c.torso.facingUnit * 12;
         torsoButtonsSprite.y = Math.abs(c.torso.facingUnit) * -1;
         torsoButtonsSprite.vround();
+        neckbraceOverlapSprite.x = Math.round(c.torso.facingUnit * (c.torso.facingUnit >= 0 ? 4 : 12));
     });
 
     c.addChild(torso, neckbrace);
@@ -272,7 +279,7 @@ function mkTxs() {
         eyebrow: subimageTextures(OrnateClownEyebrow, { width: 16 }),
         sideburns: OrnateClownSideburns,
         shoe: OrnateClownShoe,
-        neckbrace: OrnateClownNeckbrace,
+        neckbrace: subimageTextures(OrnateClownNeckbrace, { width: 32 }),
         body: subimageTextures(OrnateClownBody, { width: 38 }),
     };
 }
