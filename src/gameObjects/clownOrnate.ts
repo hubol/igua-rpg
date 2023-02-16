@@ -41,8 +41,15 @@ export function clownOrnate() {
             await sleep(1000);
         }
     })
-
-    // p.body.neck.extendingUnit = 0;
+        .withAsync(async () => {
+            await sleep(500);
+            while (true) {
+                await lerp(p.body, 'crouchingUnit').to(1).over(250);
+                await sleep(2000);
+                await lerp(p.body, 'crouchingUnit').to(0).over(250);
+                await sleep(2000);
+            }
+        })
 
     return p;
 }
@@ -57,7 +64,7 @@ function mkPuppet() {
 }
 
 function mkBody(head: ReturnType<typeof mkHead>) {
-    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1 } });
+    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1 }, crouchingUnit: 0 });
 
     const neckbraceShadow = Sprite.from(txs.neckbrace[2]);
 
@@ -91,7 +98,9 @@ function mkBody(head: ReturnType<typeof mkHead>) {
         neckbraceOverlapSprite.x = Math.round(c.torso.facingUnit * (c.torso.facingUnit >= 0 ? 4 : 12));
         neckbraceShadow.pivot.y = c.neck.extendingUnit > 0.25 ? 0 : 1;
         neckbrace.y = Math.round((1 - c.neck.extendingUnit) * 4);
-        head.y = Math.round(neckbrace.y * 1.5);
+        upperBody.y = Math.round(c.crouchingUnit * 6);
+
+        head.y = Math.round(neckbrace.y * 1.5) + upperBody.y;
     });
 
     c.addChild(shoeL, shoeR, upperBody);
