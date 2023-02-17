@@ -80,9 +80,13 @@ function enrichIncompleteFinalQuest({ dassmann: d, wizard: e, ...deps }: AfterFi
         `He says he needs you to finish your task before I can get my soda.`,
         `I don't know. He works in mysterious ways.`));
 
-    e.withCutscene(() => showAll(
-        `It looks like my clients are still waiting on the delivery of some units.`,
-        `The quicker you fill the receptacles, the quicker you get your reward!!!`));
+    e.withCutscene(async () => {
+        await showAll(
+            `It looks like my clients are still waiting on the delivery of some units.`,
+            `The quicker you fill the receptacles, the quicker you get your reward!!!`);
+        if (progress.flags.objects.permanentlyDefeatedEnemies.size < 4)
+            await showAll(`You can fill the receptacles using the gift I gave you.`);
+    });
 }
 
 function enrichCompleteFinalQuest({}: AfterFirstMeetingCutsceneDeps) {

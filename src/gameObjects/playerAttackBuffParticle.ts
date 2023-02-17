@@ -27,7 +27,7 @@ function particle() {
     let y = 1;
     const s = animatedSprite(txs, 1 / 5, true)
         .withStep(() => {
-            if (life-- <= 0)
+            if (life-- <= 0 || derivedStats.attackPower <= derivedStats.rawAttackPower)
                 return s.destroy();
             const b = getWorldBounds(player.head.children[1]);
             s.x = b.x + f * b.width + x;
