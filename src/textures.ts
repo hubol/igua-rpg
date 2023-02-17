@@ -82,6 +82,7 @@ export let ConfettiPiece: PIXI.Texture;
 export let CrackSmall: PIXI.Texture;
 export let CracksA: PIXI.Texture;
 export let CrateWooden: PIXI.Texture;
+export let CreditsAdvanceArrow: PIXI.Texture;
 export let CrowbarPotion: PIXI.Texture;
 export let CrudeHouseB: PIXI.Texture;
 export let CrudeHouseC: PIXI.Texture;
@@ -569,6 +570,9 @@ export function loadTexturesAsync()
 
     const CrateWoodenPath = require("./images/crate wooden.png");
     loader.add(CrateWoodenPath); 
+
+    const CreditsAdvanceArrowPath = require("./images/credits/advance arrow.png");
+    loader.add(CreditsAdvanceArrowPath); 
 
     const CrowbarPotionPath = require("./images/crowbar potion.png");
     loader.add(CrowbarPotionPath); 
@@ -1380,6 +1384,7 @@ export function loadTexturesAsync()
             CrackSmall = resources[CrackSmallPath]?.texture as PIXI.Texture;
             CracksA = resources[CracksAPath]?.texture as PIXI.Texture;
             CrateWooden = resources[CrateWoodenPath]?.texture as PIXI.Texture;
+            CreditsAdvanceArrow = resources[CreditsAdvanceArrowPath]?.texture as PIXI.Texture;
             CrowbarPotion = resources[CrowbarPotionPath]?.texture as PIXI.Texture;
             CrudeHouseB = resources[CrudeHouseBPath]?.texture as PIXI.Texture;
             CrudeHouseC = resources[CrudeHouseCPath]?.texture as PIXI.Texture;

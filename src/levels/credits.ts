@@ -9,7 +9,7 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import { CreditsArgs } from "../levelArgs";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
-import {IguaRpgTitle} from "../textures";
+import {CreditsAdvanceArrow, IguaRpgTitle} from "../textures";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
@@ -22,6 +22,7 @@ import {Sleepy} from "../igua/puppet/mods/sleepy";
 import {getCompletionText} from "../igua/data/getCompletion";
 import {waitForInput} from "../cutscene/waitForInput";
 import {wait} from "../cutscene/wait";
+import {now} from "../utils/now";
 
 export function Credits() {
     scene.backgroundColor = 0x002C38;
@@ -166,7 +167,23 @@ async function showFadeOut() {
 function endingMessage(text: string) {
     const t = IguaText.Large(text, { maxWidth: 236 });
     t.at(scene.camera.x + (256 - t.width) / 2, 79 + (177 - t.height) / 2).vround();
-    return t;
+
+    const arrowY = t.y + t.height + 8;
+    const state = { alpha: 0 };
+
+    const arrow = Sprite.from(CreditsAdvanceArrow).hide()
+        .at(scene.camera.x + 113, arrowY)
+        .withStep(() => {
+            arrow.alpha = Math.round(state.alpha * 4) / 4;
+            arrow.pivot.y = Math.sin(now.s * Math.PI);
+        })
+        .withAsync(async () => {
+            await sleep(10_000);
+            arrow.visible = true;
+            await lerp(state, 'alpha').to(1).over(1000);
+        });
+
+    return container(t, arrow);
 }
 
 async function leave(puppet: IguanaPuppet) {
