@@ -206,4 +206,6 @@ char id=255  x=40    y=32    width=3     height=5     xoffset=0     yoffset=4   
 kerning first=89 second=111 amount=-1
 kerning first=102 second=111 amount=-1
 kerning first=102 second=45 amount=-1
+kerning first=102 second=115 amount=-1
+kerning first=102 second=46 amount=-1
 kerning first=84 second=117 amount=-1

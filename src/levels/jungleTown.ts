@@ -6,18 +6,17 @@ import {FunTimes, JungleInn, JungleMusic, Temple} from "../musics";
 import {mirror} from "../gameObjects/mirror";
 import {now} from "../utils/now";
 import {advanceTempleMovingWall} from "./jungleTemple";
-import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {CracksA, GroundSpeckles, JungleLever} from "../textures";
-import {lever, leverOpinionated} from "../gameObjects/lever";
+import {leverOpinionated} from "../gameObjects/lever";
 import {Sprite} from "pixi.js";
 import {progress} from "../igua/data/progress";
-import {ActivateLever} from "../sounds";
+import {ActivateLever, SpiderDown, SpiderUp} from "../sounds";
 import {approachLinear} from "../utils/math/number";
 import {sleep} from "../cutscene/sleep";
 import {decalsOf} from "../gameObjects/decal";
 import {wallpaper} from "../gameObjects/wallpaper";
 import {cutscene} from "../cutscene/cutscene";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
 import {oracleAdviceJungle} from "../igua/oracleAdvice";
 import {npc} from "../gameObjects/npc";
@@ -25,6 +24,10 @@ import {rectangleDistance} from "../utils/math/rectangleDistance";
 import {player} from "../gameObjects/player";
 import {wait} from "../cutscene/wait";
 import {blessingStone} from "../gameObjects/blessingStone";
+import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
+import {JungleOracleLooks} from "../gameObjects/npcLooks";
+import {iguanaHead} from "../igua/puppet/iguanaPuppet";
+import {Blinking} from "../pixins/blinking";
 
 function jungleTownLevel() {
     return applyOgmoLevel(JungleTownArgs);
@@ -39,7 +42,15 @@ export function JungleTown() {
     const level = jungleTownLevel();
     mirror(38, 30, 0xB7B7E2, 0xD2D2EC).at([-9, -2].add(level.SignNeonInn)).behind();
     level.WiggleVine.withStep(() => level.WiggleVine.angle = Math.round(Math.sin(now.s * Math.PI)) * 4);
-    level.JungleOracle.withCutscene(jungleOracleCutscene);
+
+    if (progress.flags.final.oraclesLearnedTruth) {
+        level.JungleOracle.destroy();
+        enrichOracleTentAfterLeaningTruth(level.JungleTent);
+    }
+    else {
+        level.JungleOracle.withCutscene(jungleOracleCutscene);
+    }
+
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0x877856);
     decalsOf(CracksA).forEach(x => x.tint = 0x28340C);
     scene.backgroundGameObjectStage.addChildAt(wallpaper(level.BehindPillar, 0x4B5B1D), 0);
@@ -66,6 +77,56 @@ export function JungleTown() {
         treeSpirit(level);
 }
 
+function enrichOracleTentAfterLeaningTruth(tent: Sprite) {
+    let count = 0;
+    tent.withCutscene(async () => {
+        if (count === 0 || count > 2) {
+            await show('...');
+        }
+        else if (count === 1) {
+            await showAll(`...`,
+                `Please go away.`);
+        }
+        else if (count === 2) {
+            await player.walkTo(tent.x - 48);
+            player.scale.x = 1;
+            await sleep(500);
+            const args = makeIguanaPuppetArgsFromLooks(JungleOracleLooks);
+            SpiderUp.play();
+            const head = iguanaHead(args).at([0, 4].add(tent))
+                .withPixin(Blinking())
+                .withStep(() => {
+                    (args.eyes as any).closedUnit = head.blink;
+                })
+                .show();
+            head.scale.x = -1;
+            await sleep(1000);
+
+            await showAll(`Oh, it's you.`,
+                `Sorry, I don't really want to talk right now.`,
+                `I am angry at myself... I regret listening to the high oracle.`,
+                `I gave away my possessions and ostracized my comrades in the name of our beliefs.`);
+
+            if (progress.flags.global.somethingGreatHappened) {
+                await showAll(`But I'm glad that you could still fix the world, despite our flawed guidance.`);
+            }
+            else {
+                await showAll(`I feel helpless in fixing the world now. I don't know the way forward.`,
+                    `If the great weapon were real, I would know exactly how to proceed, but...`,);
+                await sleep(1000);
+                await showAll(`Anyway, I'm sure the others feel similarly.`,
+                    `I will just have to grieve for a bit.`);
+            }
+
+            await sleep(500);
+            SpiderDown.play();
+            head.destroy();
+        }
+
+        count += 1;
+    })
+}
+
 function jungleTempleLever() {
     const { templeLever } = progress.flags.jungle;
 
@@ -81,7 +142,7 @@ async function jungleOracleCutscene() {
     if (!oracle.lore2) {
         oracle.lore2 = true;
         await show(`I see you are on a mission to fix the world.`);
-        await show(`I have heard rumors of the great weapon, but I don't believe it is here in the jungle.`);
+        await show(`I am aware of the existence of the great weapon, but I don't believe it is here in the jungle.`);
         await show(`A blessing from the jungle guardian might lead the way.`);
     }
 
