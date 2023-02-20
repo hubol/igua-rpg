@@ -29,7 +29,7 @@ export function clownOrnate() {
     const p = mkPuppet();
     const auto = mkAutomation(p);
     auto.head.facePlayer = true;
-    auto.eyes.lookAtPlayer = true;
+    auto.eyes.lookAt = "player";
     auto.cheeks.alert = true;
     auto.body.facePlayer = true;
 
@@ -50,6 +50,21 @@ export function clownOrnate() {
                 await sleep(2000);
             }
         })
+        .withAsync(async () => {
+            await sleep(750);
+            while (true) {
+                auto.eyes.lookAt = 'deadpan';
+                auto.neck.wiggle = true;
+                p.head.face.eyel.twitchOn = true;
+                p.head.face.eyer.twitchOn = true;
+                await sleep(1500);
+                auto.eyes.lookAt = 'player';
+                auto.neck.wiggle = false;
+                p.head.face.eyel.twitchOn = false;
+                p.head.face.eyer.twitchOn = false;
+                await sleep(1500);
+            }
+        })
 
     return p;
 }
@@ -64,7 +79,7 @@ function mkPuppet() {
 }
 
 function mkBody(head: ReturnType<typeof mkHead>) {
-    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1 }, crouchingUnit: 0 });
+    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1, wigglingUnit: 0 }, crouchingUnit: 0 });
 
     const neckbraceShadow = Sprite.from(txs.neckbrace[2]);
 
@@ -101,6 +116,8 @@ function mkBody(head: ReturnType<typeof mkHead>) {
         upperBody.y = Math.round(c.crouchingUnit * 6);
 
         head.y = Math.round(neckbrace.y * 1.5) + upperBody.y;
+        neckbrace.x = Math.round(Math.sin(scene.s * Math.PI * 5) * c.neck.wigglingUnit * 2);
+        head.x = Math.round(Math.sin((scene.s - 0.25) * Math.PI * 5) * c.neck.wigglingUnit * 3);
     });
 
     c.addChild(shoeL, shoeR, upperBody);
@@ -108,12 +125,15 @@ function mkBody(head: ReturnType<typeof mkHead>) {
     return c;
 }
 
+type LookAt = 'player' | 'deadpan' | 'off';
+
 function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
     const f = {
-        eyes: { closeLeft: false, closeRight: false, widen: false, lookAtPlayer: false },
+        eyes: { closeLeft: false, closeRight: false, widen: false, lookAt: <LookAt>'player' },
         cheeks: { alert: false, },
-        head: { facePlayer: false, },
+        head: { facePlayer: false },
         body: { facePlayer: false, },
+        neck: { wiggle: false, },
     };
 
     const c = container()
@@ -128,7 +148,14 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
             puppet.head.face.eyel.closedUnit = approachLinear(puppet.head.face.eyel.closedUnit, f.eyes.closeLeft ? 1 : b, 0.2);
             puppet.head.face.eyer.closedUnit = approachLinear(puppet.head.face.eyer.closedUnit, f.eyes.closeRight ? 1 : b, 0.2);
 
-            if (f.eyes.lookAtPlayer) {
+            puppet.body.neck.wigglingUnit = approachLinear(puppet.body.neck.wigglingUnit, f.neck.wiggle ? 1 : 0, 0.3);
+
+            if (f.eyes.lookAt === 'deadpan') {
+                v.at(0, 0);
+                moveTowards(puppet.head.face.eyel.look, v, 0.2);
+                moveTowards(puppet.head.face.eyer.look, v, 0.2);
+            }
+            else if (f.eyes.lookAt === 'player') {
                 const l = getWorldCenter(puppet.head.face.eyel.children[0]);
                 v.at(nclamp((player.x - l.x) / 32, 4), nclamp((player.y - l.y) / 12, 8));
                 moveTowards(puppet.head.face.eyel.look, v, 0.2);
@@ -253,7 +280,21 @@ enum PupilShape {
 }
 
 function mkEye() {
-    const c = merge(container(),  { shape: EyeShape.Default, pupilShape: PupilShape.Default, look: vnew(), closedUnit: 0, brow: { offset: vnew() } });
+    let twitchOn = false;
+    let twitchSteps = 0;
+
+    const c = merge(container(),  {
+        shape: EyeShape.Default, pupilShape: PupilShape.Default, look: vnew(), closedUnit: 0, brow: { offset: vnew() },
+        get twitchOn() {
+            return twitchOn;
+        },
+        set twitchOn(value) {
+            twitchOn = value;
+            twitchSteps = c.scale.x > 0 ? 0 : 30;
+            if (!value)
+                c.pupilShape = PupilShape.Default;
+        }
+    });
 
     const shapeMask = Sprite.from(txs.eyeShape[0]);
     const shapeBackground = Sprite.from(txs.eyeShape[0]);
@@ -269,6 +310,11 @@ function mkEye() {
     c.addChild(shapeMask, shapeBackground, maskable, outline, brow);
 
     c.withStep(() => {
+        if (twitchOn) {
+            c.pupilShape = twitchSteps > 30 ? PupilShape.Small : PupilShape.Default;
+            twitchSteps = (twitchSteps + 3) % 60;
+        }
+
         shapeMask.texture = txs.eyeShape[c.shape];
         shapeBackground.texture = shapeMask.texture;
         outline.texture = txs.eyeOutline[c.shape];
