@@ -79,7 +79,9 @@ function mkPuppet() {
 }
 
 function mkBody(head: ReturnType<typeof mkHead>) {
-    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1, wigglingUnit: 0 }, crouchingUnit: 0 });
+    const hurtbox = new Hbox(2, 3, 33, 13);
+
+    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1, wigglingUnit: 0 }, crouchingUnit: 0, hurtbox });
 
     const neckbraceShadow = Sprite.from(txs.neckbrace[2]);
 
@@ -87,7 +89,7 @@ function mkBody(head: ReturnType<typeof mkHead>) {
     const torsoButtonsSprite = Sprite.from(txs.body[1]);
     const torsoShadedSprite = Sprite.from(txs.body[2]);
     torsoShadedSprite.mask = neckbraceShadow;
-    const torso = container(torsoSprite, torsoShadedSprite, torsoButtonsSprite);
+    const torso = container(torsoSprite, torsoShadedSprite, torsoButtonsSprite, hurtbox);
     torso.pivot.set(-6, -39);
 
     const neckbrace = container(neckbraceShadow);

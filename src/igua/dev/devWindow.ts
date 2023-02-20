@@ -21,11 +21,11 @@ function createDev() {
         player,
         progress,
         environment,
-        highlight
+        highlight: devHighlight,
     };
 }
 
-function highlight(d: DisplayObject) {
+export function devHighlight(d: DisplayObject) {
     const c = colord({ h: rng.int(360), s: 50, v: 100 }).toPixi();
     const g = new Graphics()
         .withStep(() => {
