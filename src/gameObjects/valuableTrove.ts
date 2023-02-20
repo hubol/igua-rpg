@@ -82,3 +82,14 @@ export function trove140() {
         [5]
     )
 }
+
+export function trove180() {
+    return valuableTrove(
+        [5],
+        [15, 15, 15],
+        [15, 5, 5, 15],
+        [15, 5, 5, 15],
+        [15, 15, 15],
+        [5]
+    )
+}

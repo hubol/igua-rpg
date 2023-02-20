@@ -291,9 +291,15 @@ function mkEye() {
             return twitchOn;
         },
         set twitchOn(value) {
+            if (twitchOn === value)
+                return;
+
             twitchOn = value;
+
             if (!value) {
                 c.pupilShape = PupilShape.Default;
+            }
+            else {
                 twitchSteps = c.scale.x > 0 ? 0 : 30;
             }
         }
