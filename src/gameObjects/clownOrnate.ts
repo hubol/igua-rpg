@@ -292,9 +292,10 @@ function mkEye() {
         },
         set twitchOn(value) {
             twitchOn = value;
-            twitchSteps = c.scale.x > 0 ? 0 : 30;
-            if (!value)
+            if (!value) {
                 c.pupilShape = PupilShape.Default;
+                twitchSteps = c.scale.x > 0 ? 0 : 30;
+            }
         }
     });
 
