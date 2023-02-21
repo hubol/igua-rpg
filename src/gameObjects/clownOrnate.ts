@@ -11,10 +11,10 @@ import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {moveTowards, vnew} from "../utils/math/vector";
-import {Sprite} from "pixi.js";
+import {DisplayObject, Sprite} from "pixi.js";
 import {flipH} from "../utils/pixi/flip";
 import {animatedSprite} from "../igua/animatedSprite";
-import {approachLinear, nclamp} from "../utils/math/number";
+import {approachLinear, nclamp, nsinlerp} from "../utils/math/number";
 import {range} from "../utils/range";
 import {scene} from "../igua/scene";
 import {Blinking} from "../pixins/blinking";
@@ -24,6 +24,7 @@ import {Hbox} from "./hbox";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {sleep} from "../cutscene/sleep";
 import {lerp} from "../cutscene/lerp";
+import {wait} from "../cutscene/wait";
 
 export function clownOrnate() {
     const p = mkPuppet();
@@ -44,12 +45,21 @@ export function clownOrnate() {
         .withAsync(async () => {
             await sleep(500);
             while (true) {
-                await lerp(p.body, 'crouchingUnit').to(1).over(250);
+                await p.body.walkTo(440);
                 await sleep(2000);
-                await lerp(p.body, 'crouchingUnit').to(0).over(250);
+                await p.body.walkTo(64);
                 await sleep(2000);
             }
         })
+        // .withAsync(async () => {
+        //     await sleep(500);
+        //     while (true) {
+        //         await lerp(p.body, 'crouchingUnit').to(1).over(250);
+        //         await sleep(2000);
+        //         await lerp(p.body, 'crouchingUnit').to(0).over(250);
+        //         await sleep(2000);
+        //     }
+        // })
         .withAsync(async () => {
             await sleep(750);
             while (true) {
@@ -69,19 +79,27 @@ export function clownOrnate() {
     return p;
 }
 
-function mkPuppet() {
-    const head = mkHead();
-    const body = mkBody(head);
-    const c = merge(container(body, head), { body, head });
-    c.pivot.set(24, 64);
-
-    return c;
+function mkRoot(...children: DisplayObject[]) {
+    return container(...children).withGravityAndWallResist([0, -10], 10, 0.3);
 }
 
-function mkBody(head: ReturnType<typeof mkHead>) {
+function mkPuppet() {
+    const root = mkRoot();
+    const head = mkHead();
+    const body = mkBody(head, root);
+
+    const puppet = merge(root, { head, body });
+    puppet.addChild(body, head);
+
+    puppet.pivot.set(24, 64);
+
+    return puppet;
+}
+
+function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>) {
     const hurtbox = new Hbox(2, 3, 33, 13);
 
-    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1, wigglingUnit: 0 }, crouchingUnit: 0, hurtbox });
+    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1, wigglingUnit: 0 }, crouchingUnit: 0, hurtbox, pedometer: 0, walkTo });
 
     const neckbraceShadow = Sprite.from(txs.neckbrace[2]);
 
@@ -108,6 +126,26 @@ function mkBody(head: ReturnType<typeof mkHead>) {
 
     const upperBody = container(torso, neckbrace);
 
+    const legExtendX = 5;
+    const legExtendY = -6;
+
+    async function walkTo(x: number, speed = 6) {
+        const diff = x - root.x;
+        if (Math.abs(diff) < 5)
+            return;
+
+        const dirh = Math.sign(diff);
+        const decelerateLengthPixels = speed * (speed + 1) / 2;
+        const decelerateX = x - decelerateLengthPixels * dirh;
+
+        await lerp(root.speed, 'x').to(speed * dirh).over(250);
+        await wait(() => (dirh > 0 && root.x >= decelerateX) || (dirh < 0 && root.x <= decelerateX));
+        await wait(() => {
+            root.speed.x = approachLinear(root.speed.x, 0, 1);
+            return root.speed.x === 0;
+        });
+    }
+
     c.withStep(() => {
         torsoButtonsSprite.x = c.torso.facingUnit * 12;
         torsoButtonsSprite.y = Math.abs(c.torso.facingUnit) * -1;
@@ -120,6 +158,33 @@ function mkBody(head: ReturnType<typeof mkHead>) {
         head.y = Math.round(neckbrace.y * 1.5) + upperBody.y;
         neckbrace.x = Math.round(Math.sin(scene.s * Math.PI * 5) * c.neck.wigglingUnit * 2);
         head.x = Math.round(Math.sin((scene.s - 0.25) * Math.PI * 5) * c.neck.wigglingUnit * 3);
+
+        if (root.speed.x === 0)
+            c.pedometer = 0;
+        else if (root.isOnGround)
+            c.pedometer += Math.min(Math.abs(root.speed.x), 3.5);
+
+        if (c.pedometer === 0) {
+            v.at(0, 0);
+            shoeL.moveTowards(v, 1);
+            shoeR.moveTowards(v, 1);
+        }
+        else {
+            const dirh = Math.sign(root.speed.x);
+
+            const legf = root.speed.x > 0 ? shoeR : shoeL;
+            const legb = root.speed.x > 0 ? shoeL : shoeR;
+
+            const x = c.pedometer * Math.PI * -0.05;
+
+            c.crouchingUnit = nsinlerp(x + Math.PI * 3 / 2, 0, 0.2);
+
+            v.at(nsinlerp(x + Math.PI / 2, 0, dirh * legExtendX), nsinlerp(x, 0, legExtendY));
+            legf.moveTowards(v, 1);
+
+            v.at(nsinlerp(x + Math.PI / 2, 0, -dirh * legExtendX), nsinlerp(x + Math.PI, 0, legExtendY));
+            legb.moveTowards(v, 1);
+        }
     });
 
     c.addChild(shoeL, shoeR, upperBody);

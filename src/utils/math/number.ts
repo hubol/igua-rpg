@@ -24,3 +24,7 @@ export function cyclic(number: number, min: number, max: number)
 export function nclamp(x: number, max: number) {
     return Math.sign(x) * Math.min(max, Math.abs(x));
 }
+
+export function nsinlerp(x: number, min: number, max: number) {
+    return lerp(min, max, (Math.sin(x) + 1) / 2);
+}
