@@ -1,7 +1,7 @@
 import {
     OrnateClownBody,
     OrnateClownCheek,
-    OrnateClownEye, OrnateClownEyebrow,
+    OrnateClownEye, OrnateClownEyebrow, OrnateClownFists,
     OrnateClownHair,
     OrnateClownMouth, OrnateClownNeckbrace,
     OrnateClownNoggin, OrnateClownNogginFaceMask,
@@ -26,6 +26,7 @@ import {sleep} from "../cutscene/sleep";
 import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {forceRenderable} from "../igua/forceRenderable";
+import {ToRad} from "../utils/math/angles";
 
 export function clownOrnate() {
     const p = mkPuppet();
@@ -34,6 +35,11 @@ export function clownOrnate() {
     auto.eyes.lookAt = "player";
     auto.cheeks.alert = true;
     auto.body.facePlayer = true;
+
+    p.body.fistL.offset = 24;
+    p.body.fistL.offsetAngle = 180 + 20;
+    p.body.fistR.offsetAngle = -20;
+    p.body.fistR.offset = 24;
 
     p.withAsync(async () => {
         while (true) {
@@ -102,10 +108,55 @@ function mkPuppet() {
     return puppet;
 }
 
+function mkFist(defaultYellow = false) {
+    let colorAlternatePerSecond = 0;
+    let colorAlternateProgress = 0;
+
+    const fistSprite = animatedSprite(txs.fist, 0);
+
+    const fist = container(fistSprite);
+
+    const c = merge(container(fist), { yellow: defaultYellow,
+        get colorAlternatePerSecond() {
+            return colorAlternatePerSecond;
+        },
+        set colorAlternatePerSecond(value) {
+            colorAlternatePerSecond = value;
+            colorAlternateProgress = 0;
+            if (colorAlternatePerSecond === 0)
+                c.yellow = defaultYellow;
+        },
+        toggleVisible: false,
+        heldBehind: true,
+
+        offset: 0,
+        offsetAngle: 0,
+    })
+        .withStep(() => {
+            colorAlternateProgress += colorAlternatePerSecond;
+            while (colorAlternateProgress >= 60) {
+                c.yellow = !c.yellow;
+                colorAlternateProgress -= 60;
+            }
+            if (c.toggleVisible)
+                c.visible = !c.visible;
+            fistSprite.imageIndex = c.yellow ? 1 : 0;
+
+            fist.at(Math.cos(c.offsetAngle * ToRad) * c.offset, -Math.sin(c.offsetAngle * ToRad) * c.offset);
+        });
+
+    c.pivot.set(-13, -38);
+
+    return c;
+}
+
 function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>) {
     const hurtbox = new Hbox(2, 3, 33, 13);
 
-    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1, wigglingUnit: 0 }, crouchingUnit: 0, hurtbox, pedometer: 0, walkTo });
+    const fistL = mkFist(true);
+    const fistR = mkFist();
+
+    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1, wigglingUnit: 0 }, crouchingUnit: 0, hurtbox, pedometer: 0, walkTo, fistL, fistR });
 
     const neckbraceShadow = Sprite.from(txs.neckbrace[2]);
 
@@ -210,9 +261,12 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
             v.at(nsinlerp(x + Math.PI / 2, 0, -dirh * legExtendX), nsinlerp(x + Math.PI, 0, legExtendY));
             legb.moveTowards(v, 1);
         }
+
+        fistL.index = fistL.heldBehind ? 0 : c.children.length - 1;
+        fistR.index = fistR.heldBehind ? 0 : c.children.length - 1;
     });
 
-    c.addChild(shoeL, shoeR, upperBody);
+    c.addChild(fistL, fistR, shoeL, shoeR, upperBody);
 
     return c;
 }
@@ -465,6 +519,7 @@ function mkTxs() {
         shoe: subimageTextures(OrnateClownShoe, { width: 16 }),
         neckbrace: subimageTextures(OrnateClownNeckbrace, { width: 32 }),
         body: subimageTextures(OrnateClownBody, { width: 38 }),
+        fist: subimageTextures(OrnateClownFists, { width: 24 }),
     };
 }
 
