@@ -25,6 +25,7 @@ import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {sleep} from "../cutscene/sleep";
 import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
+import {forceRenderable} from "../igua/forceRenderable";
 
 export function clownOrnate() {
     const p = mkPuppet();
@@ -112,7 +113,11 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
     const torsoButtonsSprite = Sprite.from(txs.body[1]);
     const torsoShadedSprite = Sprite.from(txs.body[2]);
     torsoShadedSprite.mask = neckbraceShadow;
-    const torso = container(torsoSprite, torsoShadedSprite, torsoButtonsSprite, hurtbox);
+
+    const shoeShadowL = Sprite.from(txs.body[3]);
+    const shoeShadowR = Sprite.from(txs.body[3]);
+
+    const torso = container(shoeShadowL, shoeShadowR, torsoSprite, torsoShadedSprite, torsoButtonsSprite, hurtbox);
     torso.pivot.set(-6, -39);
 
     const neckbrace = container(neckbraceShadow);
@@ -128,6 +133,12 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
 
     shoeL.pivot.set(-5, -50);
     shoeR.pivot.set(44, -50);
+
+    shoeShadowL.mask = shoeL;
+    shoeShadowR.mask = shoeR;
+
+    forceRenderable(shoeL);
+    forceRenderable(shoeR);
 
     const upperBody = container(torso, neckbrace);
 
