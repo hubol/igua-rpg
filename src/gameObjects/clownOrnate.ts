@@ -45,6 +45,11 @@ export function clownOrnate() {
         .withAsync(async () => {
             await sleep(500);
             while (true) {
+                p.speed.y = -5;
+                p.speed.x = 2;
+                await wait(() => p.isOnGround && p.speed.y >= 0);
+                p.speed.x = 0;
+                await sleep(1000);
                 await p.body.walkTo(440);
                 await sleep(2000);
                 await p.body.walkTo(64);
@@ -117,8 +122,8 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
 
     neckbrace.pivot.set(-7, -26);
 
-    const shoeL = Sprite.from(txs.shoe);
-    const shoeR = Sprite.from(txs.shoe);
+    const shoeL = animatedSprite(txs.shoe, 0);
+    const shoeR = animatedSprite(txs.shoe, 0);
     shoeR.scale.x = -1;
 
     shoeL.pivot.set(-5, -50);
@@ -129,7 +134,7 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
     const legExtendX = 5;
     const legExtendY = -6;
 
-    async function walkTo(x: number, speed = 6) {
+    async function walkTo(x: number, speed = 2) {
         const diff = x - root.x;
         if (Math.abs(diff) < 5)
             return;
@@ -163,6 +168,15 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
             c.pedometer = 0;
         else if (root.isOnGround)
             c.pedometer += Math.min(Math.abs(root.speed.x), 3.5);
+
+        let shoeImageIndex = 2;
+        if (root.speed.y < 0)
+            shoeImageIndex = 1;
+        if (root.isOnGround)
+            shoeImageIndex = 0;
+
+        shoeL.imageIndex = shoeImageIndex;
+        shoeR.imageIndex = shoeImageIndex;
 
         if (c.pedometer === 0) {
             v.at(0, 0);
@@ -437,7 +451,7 @@ function mkTxs() {
         hair: subimageTextures(OrnateClownHair, { width: 64 }),
         eyebrow: subimageTextures(OrnateClownEyebrow, { width: 16 }),
         sideburns: OrnateClownSideburns,
-        shoe: OrnateClownShoe,
+        shoe: subimageTextures(OrnateClownShoe, { width: 16 }),
         neckbrace: subimageTextures(OrnateClownNeckbrace, { width: 32 }),
         body: subimageTextures(OrnateClownBody, { width: 38 }),
     };
