@@ -36,11 +36,6 @@ export function clownOrnate() {
     auto.cheeks.alert = true;
     auto.body.facePlayer = true;
 
-    p.body.fistL.offset = 24;
-    p.body.fistL.offsetAngle = 180 + 20;
-    p.body.fistR.offsetAngle = -20;
-    p.body.fistR.offset = 24;
-
     p.withAsync(async () => {
         while (true) {
             await lerp(p.body.neck, 'extendingUnit').to(0).over(250);
@@ -61,6 +56,17 @@ export function clownOrnate() {
                 await sleep(2000);
                 await p.body.walkTo(64);
                 await sleep(2000);
+            }
+        })
+        .withAsync(async () => {
+            while (true) {
+                p.body.fistR.offsetAngle = -15;
+                for (let i = 0; i < 4; i++) {
+                    await p.body.fistR.move(48, 50, 250);
+                    await p.body.fistR.move(48, -15, 100);
+                }
+                p.body.fistR.autoRetract = true;
+                await wait(() => !p.body.fistR.autoRetract);
             }
         })
         // .withAsync(async () => {
@@ -116,6 +122,11 @@ function mkFist(defaultYellow = false) {
 
     const fist = container(fistSprite);
 
+    async function move(offset: number, offsetAngle: number, overMs: number) {
+        lerp(c, 'offset').to(offset).over(overMs);
+        await lerp(c, 'offsetAngle').to(offsetAngle).over(overMs);
+    }
+
     const c = merge(container(fist), { yellow: defaultYellow,
         get colorAlternatePerSecond() {
             return colorAlternatePerSecond;
@@ -129,8 +140,13 @@ function mkFist(defaultYellow = false) {
         toggleVisible: false,
         heldBehind: true,
 
+        autoHeldBehind: true,
+        autoRetract: false,
+
         offset: 0,
         offsetAngle: 0,
+
+        move,
     })
         .withStep(() => {
             colorAlternateProgress += colorAlternatePerSecond;
@@ -142,7 +158,16 @@ function mkFist(defaultYellow = false) {
                 c.visible = !c.visible;
             fistSprite.imageIndex = c.yellow ? 1 : 0;
 
+            if (c.autoRetract) {
+                c.offset *= 0.95;
+                c.offset = approachLinear(c.offset, 0, 1);
+                if (c.offset === 0)
+                    c.autoRetract = false;
+            }
+
             fist.at(Math.cos(c.offsetAngle * ToRad) * c.offset, -Math.sin(c.offsetAngle * ToRad) * c.offset);
+            if (c.autoHeldBehind)
+                c.heldBehind = c.offset < 15;
         });
 
     c.pivot.set(-13, -38);
