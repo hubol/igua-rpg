@@ -1,4 +1,3 @@
-import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
 import {wait} from "../cutscene/wait";
 import {clownOrnatePuppet} from "./clownOrnatePuppet";
@@ -12,10 +11,27 @@ import {ClownExplode, ClownHurt, ClownHurtDefended} from "../sounds";
 import {trove180, ValuableTroveConfig} from "./valuableTrove";
 import {confetti} from "./confetti";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
+import {attack} from "./attacks";
+import {AttackRunner} from "../pixins/attackRunner";
+import {wave, WaveArgs} from "./wave";
+import {container} from "../utils/pixi/container";
+import {approachLinear} from "../utils/math/number";
+import {rng} from "../utils/math/rng";
 
 const Consts = {
     bodyDefense: 0.75,
     recoveryFrames: 15,
+    defaultGravity: 0.3,
+
+    damage: {
+        slamWave: 70,
+    },
+
+    waves: {
+        get slam() {
+            return <WaveArgs>{ dx: 1, life: 30, count: 6, damage: Consts.damage.slamWave, ms: 33, w1: 10, w2: 10, h1: 32, h2: 64 };
+        },
+    }
 }
 
 export function clownOrnate() {
@@ -24,13 +40,54 @@ export function clownOrnate() {
 
     const p = puppet
         .withPixin(WeakToSpells({ clownHealth: health, spellsHurtbox: [ puppet.body.hurtbox, puppet.head.hurtbox ] }))
-        .withPixin(Invulnerable());
+        .withPixin(Invulnerable())
+        .withPixin(AttackRunner)
+        .on('added', () => projectiles.show());
+
+    p.gravity = Consts.defaultGravity;
+
+    const projectiles = container().damageSource(p);
+
+    function createSlamWaves() {
+        wave(Consts.waves.slam).at(p).show(projectiles).add(24, 0);
+        wave({ ...Consts.waves.slam, dx: Consts.waves.slam.dx * -1 }).at(p).show(projectiles).add(-24, 0);
+    }
+
+    const multiSlam = attack()
+        .withAsyncOnce(async () => {
+            for (let i = 0; i < 3; i++) {
+                p.gravity = 0;
+                p.speed.y = -2;
+                await wait(() => p.y < 100);
+                p.speed.y = 0;
+                // TODO tell
+                await sleep(125 + rng.int(250));
+                p.speed.y = 0.5;
+                p.gravity = 0.3;
+                await wait(() => p.isOnGround);
+                createSlamWaves();
+                await sleep(125);
+            }
+            p.gravity = Consts.defaultGravity;
+        })
+        .withStep(() => {
+            if (p.speed.y <= 0 && !p.isOnGround)
+                p.x = approachLinear(p.x, player.x, 1);
+        });
+
+    async function doAs() {
+        while (true) {
+            await p.run(multiSlam());
+        }
+    }
+
+    p.withAsync(doAs);
 
     function takeClawDamage(hurtbox: DisplayObject, defense: number) {
         if (player.collides(hurtbox)) {
             const defended = defense > 0;
             if (!health.damage(Math.round(player.doClawAttack() * (1 - defense))))
-                (defended ? ClownHurtDefended : ClownHurt).play(); // TODO different SFX for defended part
+                (defended ? ClownHurtDefended : ClownHurt).play();
             p.invulnerable = Consts.recoveryFrames;
             bouncePlayerOffDisplayObject(hurtbox, defended ? 4 : 3);
             if (!defended)
@@ -57,70 +114,7 @@ export function clownOrnate() {
 
         if (health.isDead)
             doDeath();
-    })
-
-    auto.head.facePlayer = true;
-    auto.eyes.lookAt = "player";
-    auto.cheeks.alert = true;
-    auto.body.facePlayer = true;
-
-    p.withAsync(async () => {
-        while (true) {
-            await lerp(p.body.neck, 'extendingUnit').to(0).over(250);
-            await sleep(1000);
-            await lerp(p.body.neck, 'extendingUnit').to(1).over(250);
-            await sleep(1000);
-        }
-    })
-        .withAsync(async () => {
-            await sleep(500);
-            while (true) {
-                p.speed.y = -5;
-                p.speed.x = 2;
-                await wait(() => p.isOnGround && p.speed.y >= 0);
-                p.speed.x = 0;
-                await sleep(1000);
-                await p.body.walkTo(440);
-                await sleep(2000);
-                await p.body.walkTo(64);
-                await sleep(2000);
-            }
-        })
-        .withAsync(async () => {
-            while (true) {
-                p.body.fistR.offsetAngle = -15;
-                for (let i = 0; i < 4; i++) {
-                    await p.body.fistR.move(48, 50, 250);
-                    await p.body.fistR.move(48, -15, 100);
-                }
-                p.body.fistR.autoRetract = true;
-                await wait(() => !p.body.fistR.autoRetract);
-            }
-        })
-        // .withAsync(async () => {
-        //     await sleep(500);
-        //     while (true) {
-        //         await lerp(p.body, 'crouchingUnit').to(1).over(250);
-        //         await sleep(2000);
-        //         await lerp(p.body, 'crouchingUnit').to(0).over(250);
-        //         await sleep(2000);
-        //     }
-        // })
-        .withAsync(async () => {
-            await sleep(750);
-            while (true) {
-                auto.eyes.lookAt = 'deadpan';
-                auto.neck.wiggle = true;
-                p.head.face.eyel.twitchOn = true;
-                p.head.face.eyer.twitchOn = true;
-                await sleep(1500);
-                auto.eyes.lookAt = 'player';
-                auto.neck.wiggle = false;
-                p.head.face.eyel.twitchOn = false;
-                p.head.face.eyer.twitchOn = false;
-                await sleep(1500);
-            }
-        })
+    });
 
     return p;
 }
