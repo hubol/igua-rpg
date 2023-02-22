@@ -8,13 +8,13 @@ import {Invulnerable} from "../pixins/invulnerable";
 import {player} from "./player";
 import {DisplayObject} from "pixi.js";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
-import {ClownExplode, ClownHurt} from "../sounds";
+import {ClownExplode, ClownHurt, ClownHurtDefended} from "../sounds";
 import {trove180, ValuableTroveConfig} from "./valuableTrove";
 import {confetti} from "./confetti";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
 
 const Consts = {
-    bodyDefense: 0.5,
+    bodyDefense: 0.75,
     recoveryFrames: 15,
 }
 
@@ -28,11 +28,13 @@ export function clownOrnate() {
 
     function takeClawDamage(hurtbox: DisplayObject, defense: number) {
         if (player.collides(hurtbox)) {
+            const defended = defense > 0;
             if (!health.damage(Math.round(player.doClawAttack() * (1 - defense))))
-                ClownHurt.play(); // TODO different SFX for defended part
+                (defended ? ClownHurtDefended : ClownHurt).play(); // TODO different SFX for defended part
             p.invulnerable = Consts.recoveryFrames;
-            bouncePlayerOffDisplayObject(hurtbox);
-            p.x -= player.engine.knockback.x;
+            bouncePlayerOffDisplayObject(hurtbox, defended ? 4 : 3);
+            if (!defended)
+                p.x -= player.engine.knockback.x;
             return true;
         }
         return false;

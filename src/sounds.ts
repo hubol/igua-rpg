@@ -152,6 +152,11 @@ export const ClownExplode = new Howl({
     
 });
 
+export const ClownHurtDefended = new Howl({
+    src: [require("./sound/clown hurt defended.ogg"), require("./sound/clown hurt defended.mp3")],
+    
+});
+
 export const ClownHurt = new Howl({
     src: [require("./sound/clown hurt.ogg"), require("./sound/clown hurt.mp3")],
     
