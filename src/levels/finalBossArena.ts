@@ -4,7 +4,7 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {jukebox} from "../igua/jukebox";
 import {CapitalMusicPlease, EmoWizard} from "../musics";
 import {applyFinalFilters} from "./finalClimb";
-import {clownOrnate} from "../gameObjects/clownOrnate";
+import {clownOrnatePuppet} from "../gameObjects/clownOrnatePuppet";
 
 export function FinalBossArena() {
     scene.backgroundColor = 0x182840;
@@ -13,5 +13,5 @@ export function FinalBossArena() {
     jukebox.play(EmoWizard).warm(CapitalMusicPlease);
 
     applyFinalFilters();
-    clownOrnate().at(256, 192).show();
+    clownOrnatePuppet().at(256, 192).show();
 }

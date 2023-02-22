@@ -28,7 +28,7 @@ import {wait} from "../cutscene/wait";
 import {forceRenderable} from "../igua/forceRenderable";
 import {ToRad} from "../utils/math/angles";
 
-export function clownOrnate() {
+export function clownOrnatePuppet() {
     const p = mkPuppet();
     const auto = mkAutomation(p);
     auto.head.facePlayer = true;
