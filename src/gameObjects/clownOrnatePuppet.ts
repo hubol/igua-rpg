@@ -22,79 +22,16 @@ import {getWorldCenter} from "../igua/gameplay/getCenter";
 import {player} from "./player";
 import {Hbox} from "./hbox";
 import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
-import {sleep} from "../cutscene/sleep";
 import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {forceRenderable} from "../igua/forceRenderable";
 import {ToRad} from "../utils/math/angles";
 
 export function clownOrnatePuppet() {
-    const p = mkPuppet();
-    const auto = mkAutomation(p);
-    auto.head.facePlayer = true;
-    auto.eyes.lookAt = "player";
-    auto.cheeks.alert = true;
-    auto.body.facePlayer = true;
+    const puppet = mkPuppet();
+    const auto = mkAutomation(puppet);
 
-    p.withAsync(async () => {
-        while (true) {
-            await lerp(p.body.neck, 'extendingUnit').to(0).over(250);
-            await sleep(1000);
-            await lerp(p.body.neck, 'extendingUnit').to(1).over(250);
-            await sleep(1000);
-        }
-    })
-        .withAsync(async () => {
-            await sleep(500);
-            while (true) {
-                p.speed.y = -5;
-                p.speed.x = 2;
-                await wait(() => p.isOnGround && p.speed.y >= 0);
-                p.speed.x = 0;
-                await sleep(1000);
-                await p.body.walkTo(440);
-                await sleep(2000);
-                await p.body.walkTo(64);
-                await sleep(2000);
-            }
-        })
-        .withAsync(async () => {
-            while (true) {
-                p.body.fistR.offsetAngle = -15;
-                for (let i = 0; i < 4; i++) {
-                    await p.body.fistR.move(48, 50, 250);
-                    await p.body.fistR.move(48, -15, 100);
-                }
-                p.body.fistR.autoRetract = true;
-                await wait(() => !p.body.fistR.autoRetract);
-            }
-        })
-        // .withAsync(async () => {
-        //     await sleep(500);
-        //     while (true) {
-        //         await lerp(p.body, 'crouchingUnit').to(1).over(250);
-        //         await sleep(2000);
-        //         await lerp(p.body, 'crouchingUnit').to(0).over(250);
-        //         await sleep(2000);
-        //     }
-        // })
-        .withAsync(async () => {
-            await sleep(750);
-            while (true) {
-                auto.eyes.lookAt = 'deadpan';
-                auto.neck.wiggle = true;
-                p.head.face.eyel.twitchOn = true;
-                p.head.face.eyer.twitchOn = true;
-                await sleep(1500);
-                auto.eyes.lookAt = 'player';
-                auto.neck.wiggle = false;
-                p.head.face.eyel.twitchOn = false;
-                p.head.face.eyer.twitchOn = false;
-                await sleep(1500);
-            }
-        })
-
-    return p;
+    return { puppet, auto };
 }
 
 function mkRoot(...children: DisplayObject[]) {
@@ -424,7 +361,7 @@ function mkCheek(yellow = false) {
     return s;
 }
 
-enum MouthShape {
+export enum MouthShape {
     SmileSmall,
     Smile,
     OpenSmall,
@@ -440,12 +377,12 @@ function mkMouth() {
     return s as Sprite & { imageIndex: MouthShape };
 }
 
-enum EyeShape {
+export enum EyeShape {
     Default,
     Cross
 }
 
-enum PupilShape {
+export enum PupilShape {
     Default,
     Small
 }
