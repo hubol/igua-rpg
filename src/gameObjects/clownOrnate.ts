@@ -2,9 +2,60 @@ import {lerp} from "../cutscene/lerp";
 import {sleep} from "../cutscene/sleep";
 import {wait} from "../cutscene/wait";
 import {clownOrnatePuppet} from "./clownOrnatePuppet";
+import {clownHealth} from "./utils/clownUtils";
+import {WeakToSpells} from "../pixins/weakToSpells";
+import {Invulnerable} from "../pixins/invulnerable";
+import {player} from "./player";
+import {DisplayObject} from "pixi.js";
+import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
+import {ClownExplode, ClownHurt} from "../sounds";
+import {trove180, ValuableTroveConfig} from "./valuableTrove";
+import {confetti} from "./confetti";
+import {getWorldCenter} from "../igua/gameplay/getCenter";
+
+const Consts = {
+    bodyDefense: 0.5,
+    recoveryFrames: 15,
+}
 
 export function clownOrnate() {
-    const { auto, puppet: p } = clownOrnatePuppet();
+    const health = clownHealth(2000);
+    const { auto, puppet } = clownOrnatePuppet();
+
+    const p = puppet
+        .withPixin(WeakToSpells({ clownHealth: health, spellsHurtbox: [ puppet.body.hurtbox, puppet.head.hurtbox ] }))
+        .withPixin(Invulnerable());
+
+    function takeClawDamage(hurtbox: DisplayObject, defense: number) {
+        if (player.collides(hurtbox)) {
+            if (!health.damage(Math.round(player.doClawAttack() * (1 - defense))))
+                ClownHurt.play(); // TODO different SFX for defended part
+            p.invulnerable = Consts.recoveryFrames;
+            bouncePlayerOffDisplayObject(hurtbox);
+            p.x -= player.engine.knockback.x;
+            return true;
+        }
+        return false;
+    }
+
+    function doDeath() {
+        ClownExplode.play();
+        ValuableTroveConfig.value.dropAll15 = p.vsPlayerHitCount === 0;
+        trove180().at(p.x, 144).show();
+        confetti(32, 64).at(getWorldCenter(p.head.hurtbox)).ahead();
+        p.destroy();
+    }
+
+    p.withStep(() => {
+        if (p.invulnerable > 0)
+            return;
+
+        if (!takeClawDamage(p.head.hurtbox, 0))
+            takeClawDamage(p.body.hurtbox, Consts.bodyDefense);
+
+        if (health.isDead)
+            doDeath();
+    })
 
     auto.head.facePlayer = true;
     auto.eyes.lookAt = "player";
