@@ -133,7 +133,8 @@ function shopImpl(resolve: (p: Purchases) => void, types: PotionType[], payment:
             return doPurchaseFail();
 
         (payment.currency === 'intelligence' ? PurchaseIntelligence : Purchase).play();
-        progress.shopPurchases[potion] = (progress.shopPurchases[potion] ?? 0) + 1;
+        if (payment.currency === 'valuables')
+            progress.shopPurchases[potion] = (progress.shopPurchases[potion] ?? 0) + 1;
         inventory.push(potion);
         purchases.push(potion);
     }
