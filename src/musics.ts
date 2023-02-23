@@ -167,6 +167,11 @@ export const TitleScreen = new Howl({
     preload: false
 });
 
+export const TrailerMusic = new Howl({
+    src: [require("./music/trailer-music.ogg"), require("./music/trailer-music.mp3")],
+    preload: false
+});
+
 export const UnbelievableChaos = new Howl({
     src: [require("./music/unbelievable-chaos.ogg"), require("./music/unbelievable-chaos.mp3")],
     preload: false
