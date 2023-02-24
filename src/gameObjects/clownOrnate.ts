@@ -18,6 +18,7 @@ import {container} from "../utils/pixi/container";
 import {approachLinear} from "../utils/math/number";
 import {rng} from "../utils/math/rng";
 import {AoeHitboxes} from "./utils/aoeHitboxes";
+import {lerp} from "../cutscene/lerp";
 
 const Consts = {
     bodyDefense: 0.75,
@@ -27,11 +28,15 @@ const Consts = {
     damage: {
         slamWave: 70,
         slamGround: 90,
+        slamHugeWave: 90,
     },
 
     waves: {
         get slam() {
             return <WaveArgs>{ dx: 1, life: 30, count: 6, damage: Consts.damage.slamWave, ms: 33, w1: 10, w2: 10, h1: 32, h2: 64 };
+        },
+        get hugeSlam() {
+            return <WaveArgs>{ dx: 1, life: 22, count: 8, damage: Consts.damage.slamHugeWave, ms: 17, w1: 12, w2: 12, h1: 96, h2: 128 };
         },
     }
 }
@@ -52,20 +57,32 @@ export function clownOrnate() {
     const aoe = new AoeHitboxes(projectiles);
     // aoe.visible = true;
 
-    function createSlamWaves() {
+    function createSlamWaves(key: keyof typeof Consts['waves']) {
         aoe.new(36, 9, 10, Consts.damage.slamGround).at([-18, -9].add(p));
-        wave(Consts.waves.slam).at(p).show(projectiles).add(24, 0);
-        wave({ ...Consts.waves.slam, dx: Consts.waves.slam.dx * -1 }).at(p).show(projectiles).add(-24, 0);
+        wave(Consts.waves[key]).at(p).show(projectiles).add(24, 2);
+        wave({ ...Consts.waves[key], dx: Consts.waves[key].dx * -1 }).at(p).show(projectiles).add(-24, 2);
     }
 
-    const multiSlam = attack({ _canFollowPlayer: true, _tdx: 0 })
+    const multiSlam = attack({ _canFollowPlayer: true, _tdx: 0, _aggressive: false })
         .withAsyncOnce(async (self) => {
-            for (let i = 0; i < 3; i++) {
+            self._aggressive = health.unit < 0.67;
+
+            for (let i = 3; i > 0; i--) {
+                const isFinal = i === 1;
+
                 p.gravity = 0;
                 p.speed.y = -2;
                 self._canFollowPlayer = true;
                 const startY = p.y;
                 auto.neck.wiggle = true;
+
+                if (isFinal) {
+                    p.body.fistL.offsetAngle = 180 + 45;
+                    p.body.fistR.offsetAngle = -45;
+                    p.body.fistL.move(50, 180 - 45, 500);
+                    p.body.fistR.move(50, 45, 500);
+                }
+
                 await Promise.race([
                     wait(() => p.y < startY - 92),
                     sleep(3000)]);
@@ -76,21 +93,43 @@ export function clownOrnate() {
                 self._canFollowPlayer = false;
                 p.head.face.eyel.shape = EyeShape.Cross;
                 p.head.face.eyer.shape = EyeShape.Cross;
-                await sleep(160);
+                await sleep(isFinal ? 200 : 160);
                 p.head.face.mouth.imageIndex = MouthShape.OpenFrown;
-                p.speed.y = 0.5;
-                p.gravity = 0.75;
+                p.speed.y = isFinal ? 1.5 : 0.5;
+                p.gravity = isFinal ? 0.9 : 0.75;
                 await wait(() => p.isOnGround);
+                p.speed.x = 0;
                 p.head.face.mouth.imageIndex = MouthShape.SmileSmall;
-                createSlamWaves();
+                createSlamWaves(isFinal ? 'hugeSlam' : 'slam');
+
+                if (isFinal) {
+                    await lerp(p.body, 'crouchingUnit').to(1).over(50);
+                }
+
                 await sleep(125);
                 p.head.face.mouth.imageIndex = MouthShape.Smile;
                 p.head.face.eyel.shape = EyeShape.Default;
                 p.head.face.eyer.shape = EyeShape.Default;
+
+                if (isFinal) {
+                    p.body.fistL.autoRetract = true;
+                    p.body.fistR.autoRetract = true;
+                    await sleep(250);
+                    await lerp(p.body, 'crouchingUnit').to(0).over(300);
+
+                    await wait(() => !p.body.fistL.autoRetract && !p.body.fistL.autoRetract);
+                }
             }
             p.gravity = Consts.defaultGravity;
         })
         .withStep((self) => {
+            if (p.speed.y > 2 && p.body.fistL.offset > 40) {
+                p.body.fistL.offset = approachLinear(p.body.fistL.offset, 40, 0.3);
+                p.body.fistR.offset = approachLinear(p.body.fistR.offset, 40, 0.3);
+
+                p.body.fistL.offsetAngle = approachLinear(p.body.fistL.offsetAngle, 180 + 11, 5);
+                p.body.fistR.offsetAngle = approachLinear(p.body.fistR.offsetAngle, -11, 5);
+            }
             const canMoveWhileMidair = self._canFollowPlayer && !p.isOnGround;
             if (!canMoveWhileMidair)
                 return self._tdx = 0;
@@ -98,7 +137,8 @@ export function clownOrnate() {
             const center = getWorldCenter(p.head.hurtbox);
             if (player.y < center.y)
                 tx = player.x + 82 * Math.sign(center.x - player.x + 0.01);
-            const next = approachLinear(p.x, tx, 1);
+            const maxSpeed = self._aggressive ? 3 : 1.33;
+            const next = approachLinear(p.x, tx, maxSpeed);
             self._tdx = next - p.x;
         })
         .withStep((self) => {
