@@ -291,8 +291,8 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
                 }
             }
             else {
-                puppet.head.face.cheekl.yellow = false;
-                puppet.head.face.cheekr.yellow = false;
+                puppet.head.face.cheekl.yellow = puppet.head.face.cheekl.defaultYellow;
+                puppet.head.face.cheekr.yellow = puppet.head.face.cheekr.defaultYellow;
             }
         })
         .show(puppet);
@@ -352,7 +352,7 @@ function mkFace() {
 
 function mkCheek(yellow = false) {
     let unit = yellow ? 1 : 0;
-    const s = merge(animatedSprite(txs.cheek, 0), { yellow })
+    const s = merge(animatedSprite(txs.cheek, 0), { yellow, defaultYellow: yellow })
         .withStep(() => {
             unit = approachLinear(unit, s.yellow ? 1 : 0, 0.1);
             s.imageIndex = unit * 2;

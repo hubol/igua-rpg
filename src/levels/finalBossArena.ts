@@ -13,5 +13,5 @@ export function FinalBossArena() {
     jukebox.play(EmoWizard).warm(CapitalMusicPlease);
 
     applyFinalFilters();
-    clownOrnate().at(256, 192).show();
+    clownOrnate().at(scene.width / 2, 192).show();
 }
