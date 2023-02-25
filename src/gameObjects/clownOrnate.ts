@@ -19,6 +19,9 @@ import {approachLinear} from "../utils/math/number";
 import {rng} from "../utils/math/rng";
 import {AoeHitboxes} from "./utils/aoeHitboxes";
 import {lerp} from "../cutscene/lerp";
+import {merge} from "../utils/object/merge";
+import {waitHold} from "../cutscene/waitHold";
+import {isOnScreen} from "../igua/logic/isOnScreen";
 
 const Consts = {
     bodyDefense: 0.75,
@@ -45,7 +48,7 @@ export function clownOrnate() {
     const health = clownHealth(2000);
     const { auto, puppet } = clownOrnatePuppet();
 
-    const p = puppet
+    const p = merge(puppet, { hostile: false })
         .withPixin(WeakToSpells({ clownHealth: health, spellsHurtbox: [ puppet.body.hurtbox, puppet.head.hurtbox ] }))
         .withPixin(Invulnerable())
         .withPixin(AttackRunner)
@@ -149,6 +152,12 @@ export function clownOrnate() {
         });
 
     async function doAs() {
+        await wait(() => p.isOnGround);
+        await Promise.race([
+            waitHold(() => isOnScreen(p), 30),
+            health.tookDamage(),
+        ]);
+        p.hostile = true;
         while (true) {
             await p.run(multiSlam());
         }

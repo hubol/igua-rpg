@@ -104,7 +104,7 @@ function mkFist(defaultYellow = false) {
 
             fist.at(Math.cos(c.offsetAngle * ToRad) * c.offset, -Math.sin(c.offsetAngle * ToRad) * c.offset);
             if (c.autoHeldBehind)
-                c.heldBehind = c.offset < 15;
+                c.heldBehind = c.offset < 23;
         });
 
     c.pivot.set(-13, -38);
