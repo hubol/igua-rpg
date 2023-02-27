@@ -36,8 +36,8 @@ function mk(args: Partial<Badge>, name = '?', description = '?'): Badge {
 
 export const Badges = {
     None: mk({}, 'Nothing'),
-    Shield: mk({ damageTakenScale: 1.2, duckDamageTakenScale: 0.5, duckedDamageCountsTowardsHitCount: false, duckTemporaryClawAttackPowerScale: 1.33, duckTemporaryClawAttackPowerFrameCount: 10 * 60, duckInvulnerableFrameCount: 100 },
-        'Brilliant Shield', 'Ducking is more effective and grants a temporary Claw attack power boost, but unblocked damage is increased.'),
+    Shield: mk({ duckDamageTakenScale: 0.5, duckedDamageCountsTowardsHitCount: false, duckTemporaryClawAttackPowerScale: 1.33, duckTemporaryClawAttackPowerFrameCount: 10 * 60, duckInvulnerableFrameCount: 100 },
+        'Brilliant Shield', 'Ducking is more effective and grants a temporary Claw attack power boost.'),
     Redirect: mk({ poisonAffectsClawAttackPower: true, poisonAffectsMovementSpeed: false },
         'Redirect Tool', 'Poison increases Claw attack power instead of speed.'),
     Dexterous: mk({ comboClawAttackPowerScale: [0.7, 0.9, 1.5, 1.2, 1.8, 1.4, 1.4, 1.4, 1.4, 2.3, 1.4] },
