@@ -226,6 +226,7 @@ export function clownOrnate() {
         trove180().at(p.x, 144).show();
         confetti(32, 64).at(getWorldCenter(p.head.hurtbox)).ahead();
         p.destroy();
+        projectilesBehind.destroy();
         projectilesAhead.destroy();
     }
 
