@@ -19,6 +19,7 @@ import {CastSpellCast, CastSpellCharge, CastSpellDamage, CastSpellHit} from "../
 import {sleep} from "../cutscene/sleep";
 import {approachLinear} from "../utils/math/number";
 import {IguanaPuppet} from "../igua/puppet/iguanaPuppet";
+import sub = PIXI.groupD8.sub;
 
 export enum PlayerSpellColor {
     Dark = 0x208050,
@@ -34,6 +35,8 @@ export function castPlayerSpell(subject: IguanaPuppet = player) {
         .withAsync(async () => {
             subject.headLiftUnit = 1;
             for (let i = 0; i < 3; i++) {
+                if (subject === player && player.isDead)
+                    return c.destroy();
                 // @ts-ignore
                 const mouth = subject.head.children[1].children[1];
                 const xscale = subject.scale.x * subject.children[0].scale.x;
