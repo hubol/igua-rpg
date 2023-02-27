@@ -5,7 +5,7 @@ import {
     OrnateClownHair,
     OrnateClownMouth, OrnateClownNeckbrace,
     OrnateClownNoggin, OrnateClownNogginFaceMask,
-    OrnateClownNose, OrnateClownShoe, OrnateClownSideburns
+    OrnateClownNose, OrnateClownShoe, OrnateClownSideburns, OrnateClownSpark
 } from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {container} from "../utils/pixi/container";
@@ -26,6 +26,8 @@ import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {forceRenderable} from "../igua/forceRenderable";
 import {ToRad} from "../utils/math/angles";
+import {rng} from "../utils/math/rng";
+import {sleep} from "../cutscene/sleep";
 
 export function clownOrnatePuppet() {
     const puppet = mkPuppet();
@@ -110,6 +112,29 @@ function mkFist(defaultYellow = false) {
     c.pivot.set(-13, -38);
 
     return c;
+}
+
+function mkSpark() {
+    const s = animatedSprite(txs.spark, 0.1 + rng() * 0.3)
+        .centerAnchor()
+        .withAsync(async () => {
+            while (true) {
+                await sleep(50 + rng.int(150));
+                const i = rng.int(3);
+                if (i === 0) {
+                    s.scale.x = rng.bool ? 1 : -1;
+                    s.scale.y = rng.bool ? 1 : -1;
+                }
+                else if (i === 1) {
+                    s.angle = rng() * 360;
+                }
+                else if (i === 2) {
+                    s.imageSpeed = 0.1 + rng() * 0.3;
+                }
+            }
+        });
+
+    return s;
 }
 
 function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>) {
@@ -233,11 +258,11 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
     return c;
 }
 
-type LookAt = 'player' | 'deadpan' | 'off';
+type LookAt = 'player' | 'deadpan' | 'unit' | 'off';
 
 function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
     const f = {
-        eyes: { closeLeft: false, closeRight: false, widen: false, lookAt: <LookAt>'player' },
+        eyes: { closeLeft: false, closeRight: false, widen: false, lookAt: <LookAt>'player', lookAtUnit: vnew() },
         cheeks: { alert: false, },
         head: { facePlayer: false },
         body: { facePlayer: false, },
@@ -258,19 +283,28 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
 
             puppet.body.neck.wigglingUnit = approachLinear(puppet.body.neck.wigglingUnit, f.neck.wiggle ? 1 : 0, 0.3);
 
+            const lt = v;
+            const rt = v2;
+
             if (f.eyes.lookAt === 'deadpan') {
-                v.at(0, 0);
-                moveTowards(puppet.head.face.eyel.look, v, 0.2);
-                moveTowards(puppet.head.face.eyer.look, v, 0.2);
+                lt.at(0, 0);
+                rt.at(0, 0);
             }
             else if (f.eyes.lookAt === 'player') {
                 const l = getWorldCenter(puppet.head.face.eyel.children[0]);
-                v.at(nclamp((player.x - l.x) / 32, 4), nclamp((player.y - l.y) / 12, 8));
-                moveTowards(puppet.head.face.eyel.look, v, 0.2);
+                lt.at(nclamp((player.x - l.x) / 32, 4), nclamp((player.y - l.y) / 12, 8));
 
                 const r = getWorldCenter(puppet.head.face.eyer.children[0]);
-                v.at(nclamp((player.x - r.x) / 32, 4), nclamp((player.y - r.y) / 12, 8));
-                moveTowards(puppet.head.face.eyer.look, v, 0.2);
+                rt.at(nclamp((player.x - r.x) / 32, 4), nclamp((player.y - r.y) / 12, 8));
+            }
+            else if (f.eyes.lookAt === 'unit') {
+                lt.at(f.eyes.lookAtUnit);
+                rt.at(f.eyes.lookAtUnit);
+            }
+
+            if (f.eyes.lookAt !== 'off') {
+                moveTowards(puppet.head.face.eyel.look, lt, 0.2);
+                moveTowards(puppet.head.face.eyer.look, rt, 0.2);
             }
 
             const h = getWorldCenter(puppet.head.hurtbox);
@@ -285,7 +319,7 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
             }
 
             if (f.cheeks.alert) {
-                if (scene.ticks % 30 === 0) {
+                if (scene.ticks % 15 === 0) {
                     puppet.head.face.cheekl.yellow = !puppet.head.face.cheekl.yellow;
                     puppet.head.face.cheekr.yellow = !puppet.head.face.cheekr.yellow;
                 }
@@ -301,14 +335,16 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
 }
 
 const v = vnew();
+const v2 = vnew();
 
 function mkHead() {
     const face = mkFace();
     face.pivot.set(-12, 1);
 
     const hurtbox = new Hbox(2, -1, 45, 29);
+    const hairSparks = mkHairSparks();
 
-    const c = merge(container(), { face, facingUnit: vnew(), hurtbox });
+    const c = merge(container(), { face, facingUnit: vnew(), hurtbox, hair: { sparks: hairSparks } });
 
     const nogginFaceMask = Sprite.from(txs.faceShape).at(-2, -16);
     const nogginMask = Sprite.from(txs.noggin);
@@ -327,7 +363,29 @@ function mkHead() {
         hair.facingUnit.at(c.facingUnit);
     });
 
-    c.addChild(nogginFaceMask, nogginMask, noggin, sideburns, hair, face, hurtbox);
+    c.addChild(nogginFaceMask, nogginMask, noggin, sideburns, hair, face, hurtbox, hairSparks);
+
+    return c;
+}
+
+function mkHairSparks() {
+    const c = merge(container(), { active: false, });
+
+    [[0, 0], [10, -4], [20, 2], [23, -8], [31, -16], [30, -1], [40, -2], [50, 3]]
+        .forEach(v => mkSpark().at(v).hide().show(c));
+
+    c.withAsync(async () => {
+        while (true) {
+            await wait(() => c.active);
+            while (c.active) {
+                for (const child of c.children)
+                    child.visible = rng.bool;
+                await sleep(66);
+            }
+            for (const child of c.children)
+                child.visible = false;
+        }
+    })
 
     return c;
 }
@@ -482,6 +540,7 @@ function mkTxs() {
         neckbrace: subimageTextures(OrnateClownNeckbrace, { width: 32 }),
         body: subimageTextures(OrnateClownBody, { width: 38 }),
         fist: subimageTextures(OrnateClownFists, { width: 24 }),
+        spark: subimageTextures(OrnateClownSpark, { width: 14 }),
     };
 }
 

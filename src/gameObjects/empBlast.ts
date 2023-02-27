@@ -8,14 +8,14 @@ import {player} from "./player";
 import {EmpPulse, EmpPulseFinal, EmpPulseFire} from "../sounds";
 import {merge} from "../utils/object/merge";
 
-export function empBlast(radius: number, hintsCount: number, damage: number, hostileMs: number) {
+export function empBlast(radius: number, hintsCount: number, damage: number, hostileMs: number, hintMs = 1000) {
     const c = merge(container(), { wentHostile: false })
         .withAsync(async () => {
             const initialHintsCount = hintsCount;
             while (hintsCount > 0) {
                 hintsCount--;
                 c.addChild(hint(radius, hintsCount / initialHintsCount));
-                await sleep(1000);
+                await sleep(hintMs);
             }
             c.addChild(hostile(radius, damage));
             c.wentHostile = true;

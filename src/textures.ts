@@ -226,6 +226,7 @@ export let OrnateClownNoggin: PIXI.Texture;
 export let OrnateClownNose: PIXI.Texture;
 export let OrnateClownShoe: PIXI.Texture;
 export let OrnateClownSideburns: PIXI.Texture;
+export let OrnateClownSpark: PIXI.Texture;
 export let OverheadLampLight: PIXI.Texture;
 export let OverheadLamp: PIXI.Texture;
 export let OversizedAngel: PIXI.Texture;
@@ -1003,6 +1004,9 @@ export function loadTexturesAsync()
     const OrnateClownSideburnsPath = require("./images/ornate clown/sideburns.png");
     loader.add(OrnateClownSideburnsPath); 
 
+    const OrnateClownSparkPath = require("./images/ornate clown/spark.png");
+    loader.add(OrnateClownSparkPath); 
+
     const OverheadLampLightPath = require("./images/overhead lamp light.png");
     loader.add(OverheadLampLightPath); 
 
@@ -1528,6 +1532,7 @@ export function loadTexturesAsync()
             OrnateClownNose = resources[OrnateClownNosePath]?.texture as PIXI.Texture;
             OrnateClownShoe = resources[OrnateClownShoePath]?.texture as PIXI.Texture;
             OrnateClownSideburns = resources[OrnateClownSideburnsPath]?.texture as PIXI.Texture;
+            OrnateClownSpark = resources[OrnateClownSparkPath]?.texture as PIXI.Texture;
             OverheadLampLight = resources[OverheadLampLightPath]?.texture as PIXI.Texture;
             OverheadLamp = resources[OverheadLampPath]?.texture as PIXI.Texture;
             OversizedAngel = resources[OversizedAngelPath]?.texture as PIXI.Texture;

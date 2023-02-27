@@ -22,6 +22,7 @@ import {lerp} from "../cutscene/lerp";
 import {merge} from "../utils/object/merge";
 import {waitHold} from "../cutscene/waitHold";
 import {isOnScreen} from "../igua/logic/isOnScreen";
+import {empBlast} from "./empBlast";
 
 const Consts = {
     bodyDefense: 0.75,
@@ -32,6 +33,7 @@ const Consts = {
         slamWave: 70,
         slamGround: 90,
         slamHugeWave: 90,
+        hairEmpBlast: 100,
     },
 
     waves: {
@@ -52,24 +54,26 @@ export function clownOrnate() {
         .withPixin(WeakToSpells({ clownHealth: health, spellsHurtbox: [ puppet.body.hurtbox, puppet.head.hurtbox ] }))
         .withPixin(Invulnerable())
         .withPixin(AttackRunner)
-        .on('added', () => projectiles.show());
+        .on('added', () => {
+            projectilesBehind.show(p.parent, p.index);
+            projectilesAhead.show();
+        });
 
     p.gravity = Consts.defaultGravity;
 
-    const projectiles = container().damageSource(p);
-    const aoe = new AoeHitboxes(projectiles);
+    const projectilesAhead = container().damageSource(p);
+    const projectilesBehind = container().damageSource(p);
+    const aoe = new AoeHitboxes(projectilesAhead);
     // aoe.visible = true;
 
     function createSlamWaves(key: keyof typeof Consts['waves']) {
         aoe.new(36, 9, 10, Consts.damage.slamGround).at([-18, -9].add(p));
-        wave(Consts.waves[key]).at(p).show(projectiles).add(24, 2);
-        wave({ ...Consts.waves[key], dx: Consts.waves[key].dx * -1 }).at(p).show(projectiles).add(-24, 2);
+        wave(Consts.waves[key]).at(p).show(projectilesAhead).add(24, 2);
+        wave({ ...Consts.waves[key], dx: Consts.waves[key].dx * -1 }).at(p).show(projectilesAhead).add(-24, 2);
     }
 
-    const multiSlam = attack({ _canFollowPlayer: true, _tdx: 0, _aggressive: false })
+    const multiSlam = attack({ _canFollowPlayer: true, _tdx: 0, _aggressive: health.unit < 0.67 })
         .withAsyncOnce(async (self) => {
-            self._aggressive = health.unit < 0.67;
-
             for (let i = 3; i > 0; i--) {
                 const isFinal = i === 1;
 
@@ -151,6 +155,31 @@ export function clownOrnate() {
             p.speed.x = 0;
         });
 
+    const shockHeadArea = attack({ _aggressive: health.unit < 0.67 })
+        .withAsyncOnce(async (self) => {
+            // TODO sfx
+            auto.cheeks.alert = true;
+            p.head.hair.sparks.active = true;
+            p.head.face.eyel.twitchOn = true;
+            p.head.face.eyer.twitchOn = true;
+            await sleep(self._aggressive ? 333 : 500);
+            auto.eyes.lookAt = 'deadpan';
+            const blast = empBlast(64, 1, Consts.damage.hairEmpBlast, 1000, self._aggressive ? 500 : 750)
+                .at([0, -48].add(getWorldCenter(p.head.hurtbox)))
+                .show(projectilesBehind);
+            await wait(() => blast.wentHostile);
+            auto.cheeks.alert = false;
+            auto.eyes.lookAt = 'player';
+            p.head.hair.sparks.active = false;
+            p.head.face.mouth.imageIndex = MouthShape.OpenFrown;
+            await lerp(p.body, 'crouchingUnit').to(1).over(50);
+            await sleep(150);
+            p.head.face.eyel.twitchOn = false;
+            p.head.face.eyer.twitchOn = false;
+            p.head.face.mouth.imageIndex = MouthShape.Smile;
+            await lerp(p.body, 'crouchingUnit').to(0).over(100);
+        });
+
     async function doAs() {
         await wait(() => p.isOnGround);
         await Promise.race([
@@ -160,6 +189,7 @@ export function clownOrnate() {
         p.hostile = true;
         while (true) {
             await p.run(multiSlam());
+            await p.run(shockHeadArea());
         }
     }
 
@@ -192,7 +222,7 @@ export function clownOrnate() {
         trove180().at(p.x, 144).show();
         confetti(32, 64).at(getWorldCenter(p.head.hurtbox)).ahead();
         p.destroy();
-        projectiles.destroy();
+        projectilesAhead.destroy();
     }
 
     p.withStep(() => {
