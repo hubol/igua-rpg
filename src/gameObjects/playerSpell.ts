@@ -19,7 +19,6 @@ import {CastSpellCast, CastSpellCharge, CastSpellDamage, CastSpellHit} from "../
 import {sleep} from "../cutscene/sleep";
 import {approachLinear} from "../utils/math/number";
 import {IguanaPuppet} from "../igua/puppet/iguanaPuppet";
-import sub = PIXI.groupD8.sub;
 
 export enum PlayerSpellColor {
     Dark = 0x208050,
