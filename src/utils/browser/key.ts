@@ -38,7 +38,8 @@ function previouslyUp(key: KeyCode) {
 
 let previousKeysState: KeysState = {};
 let currentKeysState: KeysState = {};
-let workingKeysState: KeysState = {};
+const workingKeysState: KeysState = {};
+
 function handleKeyDown(event) {
     workingKeysState[event.code] = true;
 }
@@ -61,6 +62,10 @@ export function startKeyListener() {
 export function advanceKeyListener() {
     if (!startedKeyListener)
         return console.error("Key listener must be started to advance!");
+    const p = previousKeysState;
+    for (const key in p)
+        delete p[key];
+
     previousKeysState = currentKeysState;
-    currentKeysState = Object.assign({}, workingKeysState);
+    currentKeysState = Object.assign(p, workingKeysState);
 }
