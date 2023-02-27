@@ -72,13 +72,14 @@ export function clownOrnate() {
         wave({ ...Consts.waves[key], dx: Consts.waves[key].dx * -1 }).at(p).show(projectilesAhead).add(-24, 2);
     }
 
-    const multiSlam = attack({ _canFollowPlayer: true, _tdx: 0, _aggressive: health.unit < 0.67 })
+    const multiSlam = attack({ _canFollowPlayer: true, _tdx: 0, _aggressive: false })
         .withAsyncOnce(async (self) => {
+            self._aggressive = health.unit < 0.67;
             for (let i = 3; i > 0; i--) {
                 const isFinal = i === 1;
 
                 p.gravity = 0;
-                p.speed.y = -2;
+                p.speed.y = self._aggressive ? -3 : -2;
                 self._canFollowPlayer = true;
                 const startY = p.y;
                 auto.neck.wiggle = true;
@@ -155,8 +156,9 @@ export function clownOrnate() {
             p.speed.x = 0;
         });
 
-    const shockHeadArea = attack({ _aggressive: health.unit < 0.67 })
+    const shockHeadArea = attack({ _aggressive: false })
         .withAsyncOnce(async (self) => {
+            self._aggressive = health.unit < 0.67;
             // TODO sfx
             auto.cheeks.alert = true;
             p.head.hair.sparks.active = true;
@@ -164,7 +166,7 @@ export function clownOrnate() {
             p.head.face.eyer.twitchOn = true;
             await sleep(self._aggressive ? 333 : 500);
             auto.eyes.lookAt = 'deadpan';
-            const blast = empBlast(64, 1, Consts.damage.hairEmpBlast, 1000, self._aggressive ? 500 : 750)
+            const blast = empBlast(self._aggressive ? 72 : 64, 1, Consts.damage.hairEmpBlast, 1000, self._aggressive ? 500 : 750)
                 .at([0, -48].add(getWorldCenter(p.head.hurtbox)))
                 .show(projectilesBehind);
             await wait(() => blast.wentHostile);
@@ -172,11 +174,13 @@ export function clownOrnate() {
             auto.eyes.lookAt = 'player';
             p.head.hair.sparks.active = false;
             p.head.face.mouth.imageIndex = MouthShape.OpenFrown;
+            lerp(p.body.neck, 'extendingUnit').to(0).over(100);
             await lerp(p.body, 'crouchingUnit').to(1).over(50);
             await sleep(150);
             p.head.face.eyel.twitchOn = false;
             p.head.face.eyer.twitchOn = false;
             p.head.face.mouth.imageIndex = MouthShape.Smile;
+            lerp(p.body.neck, 'extendingUnit').to(1).over(100);
             await lerp(p.body, 'crouchingUnit').to(0).over(100);
         });
 
