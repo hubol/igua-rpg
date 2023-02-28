@@ -23,6 +23,8 @@ import {merge} from "../utils/object/merge";
 import {waitHold} from "../cutscene/waitHold";
 import {isOnScreen} from "../igua/logic/isOnScreen";
 import {empBlast} from "./empBlast";
+import {ornateProjectile} from "./clownOrnateProjectiles";
+import {FreeSpace} from "../pixins/freeSpace";
 
 const Consts = {
     bodyDefense: 0.75,
@@ -34,6 +36,7 @@ const Consts = {
         slamGround: 90,
         slamHugeWave: 90,
         hairEmpBlast: 100,
+        slamFist: 70,
     },
 
     waves: {
@@ -54,6 +57,7 @@ export function clownOrnate() {
         .withPixin(WeakToSpells({ clownHealth: health, spellsHurtbox: [ puppet.body.hurtbox, puppet.head.hurtbox ] }))
         .withPixin(Invulnerable())
         .withPixin(AttackRunner)
+        .withPixin(FreeSpace({ offsets: [[0, -8]] }))
         .on('added', () => {
             projectilesBehind.show(p.parent, p.index);
             projectilesAhead.show();
@@ -221,10 +225,14 @@ export function clownOrnate() {
             const fist = dir > 0 ? p.body.fistL : p.body.fistR;
             const startAngle = fist === p.body.fistL ? 180 : 0;
             const raisedAngle = fist === p.body.fistL ? 135 : 45;
+            const windUpAngle = fist === p.body.fistL ? 150 : 30;
             const slammedAngle = fist === p.body.fistL ? -20 : 200;
 
             fist.offsetAngle = startAngle;
             const raiseFist = fist.move(64, raisedAngle, 200);
+            const spike = ornateProjectile.spikeBall(Consts.damage.slamFist, fist).show(projectilesAhead);
+            spike.framesUntilDangerous = 1000000;
+            spike.knockback.x = dir * 2.5;
 
             _tdx = dir * 3;
 
@@ -233,8 +241,9 @@ export function clownOrnate() {
             else
                 p.head.face.eyer.shape = EyeShape.Cross;
 
+            const freeSpaceFn = dir > 0 ? p.freeSpaceOnRight : p.freeSpaceOnLeft;
             await Promise.all([
-                wait(() => Math.abs(player.x - p.x) < 64),
+                wait(() => Math.abs(player.x - p.x) < 64 || freeSpaceFn() < 90),
                 sleep(250),]);
 
             auto.head.face = 'off';
@@ -250,19 +259,22 @@ export function clownOrnate() {
             p.head.face.mouth.imageIndex = MouthShape.OpenSmall;
 
             lerp(p.body.neck, 'extendingUnit').to(0).over(250);
-            await lerp(p.body, 'crouchingUnit').to(1).over(150);
+            lerp(p.body, 'crouchingUnit').to(1).over(150);
+            await fist.move(64, windUpAngle, 150);
 
+            spike.framesUntilDangerous = 0;
             await fist.move(46, slammedAngle, 250);
             lerp(p.body.neck, 'extendingUnit').to(1).over(250);
             lerp(p.body, 'crouchingUnit').to(0).over(150);
             p.speed.y = -3;
-            _tdx = -dir;
+            _tdx = -dir * 2;
             p.head.face.mouth.imageIndex = MouthShape.SmileSmall;
             await sleep(250);
+            spike.destroy();
             _tdx = 0;
 
             fist.autoRetract = true;
-            await sleep(300);
+            await sleep(400);
             p.head.face.mouth.imageIndex = MouthShape.Smile;
             await wait(() => !fist.autoRetract && p.isOnGround);
             p.speed.x = 0;
@@ -288,9 +300,13 @@ export function clownOrnate() {
         ]);
         p.hostile = true;
         while (true) {
-            // await run(multiSlam());
-            // await run(shockHeadArea());
-            await run(runTowardsAndFistSlam());
+            await run(multiSlam());
+            if (Math.abs(player.x - p.x) < 130)
+                await run(shockHeadArea());
+            if (p.freeSpaceTowardsPlayer() > 100)
+                await run(runTowardsAndFistSlam());
+            if (p.freeSpaceTowardsPlayer() > 120 && health.unit < 0.5 && rng() < 0.67)
+                await run(runTowardsAndFistSlam());
         }
     }
 

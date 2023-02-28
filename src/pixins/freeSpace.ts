@@ -2,6 +2,7 @@ import {Pixin} from "../utils/pixi/pixin";
 import {Vector, vnew} from "../utils/math/vector";
 import {rayIntersectsWallDistance} from "../igua/logic/rayIntersectsWall";
 import {merge} from "../utils/object/merge";
+import {player} from "../gameObjects/player";
 
 const unitv = {
     left: vnew().at(-1, 0),
@@ -25,9 +26,13 @@ export const FreeSpace = Pixin({ offsets: <Vector[]>[] })
             return freeSpaceOn(src, src.offsets, unitv.right);
         }
 
+        function freeSpaceTowardsPlayer() {
+            return player.x > src.x ? freeSpaceOnRight() : freeSpaceOnLeft();
+        }
+
         function freeSpaceMin() {
             return Math.min(freeSpaceOnLeft(), freeSpaceOnRight());
         }
 
-        return merge(src, { freeSpaceOnLeft, freeSpaceOnRight, freeSpaceMin });
+        return merge(src, { freeSpaceOnLeft, freeSpaceOnRight, freeSpaceTowardsPlayer, freeSpaceMin });
     });
