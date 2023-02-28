@@ -7,6 +7,9 @@ import {applyFinalFilters} from "./finalClimb";
 import {clownOrnate} from "../gameObjects/clownOrnate";
 import {wait} from "../cutscene/wait";
 import {sleep} from "../cutscene/sleep";
+import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
+import { slidingDoor } from "../gameObjects/slidingDoor";
+import {SceneLocal} from "../igua/sceneLocal";
 
 export function FinalBossArena() {
     scene.backgroundColor = 0x182840;
@@ -14,16 +17,42 @@ export function FinalBossArena() {
     const level = applyOgmoLevel(FinalBossArenaArgs);
     jukebox.play(EmoWizard).warm(CapitalMusicPlease, Hemaboss1);
 
-    applyFinalFilters();
+    applyFinalFilters(38.1269);
+
+    mkBossDoors(level);
     scene.gameObjectStage.withAsync(beginBossBattle)
+}
+
+function mkBossDoors(level: GameObjectsType<typeof FinalBossArenaArgs>) {
+    const left = slidingDoor(level.BossWallLeft, true);
+    const right = slidingDoor(level.BossWallRight, true);
+
+    const doors = [left, right];
+
+    for (const door of doors) {
+        door.index = 0;
+        (door as any).tint = 0xF0B020;
+        door.openInstantly();
+    }
+
+    scene.gameObjectStage.withAsync(async () => {
+        await wait(() => FinalBossBattle.value.active);
+        doors.forEach(x => x.startClosing(100));
+        await wait(() => !FinalBossBattle.value.active);
+        doors.forEach(x => x.startOpening(1));
+    })
 }
 
 async function beginBossBattle() {
     const boss = clownOrnate().at(scene.width / 2, 32).show();
     await wait(() => boss.hostile);
+    FinalBossBattle.value.active = true;
     jukebox.play(Hemaboss1);
     await wait(() => boss.destroyed);
+    FinalBossBattle.value.active = false;
     jukebox.fadeOut(0, 1000);
     await sleep(1000);
     jukebox.play(EmoWizard);
 }
+
+const FinalBossBattle = new SceneLocal(() => ({ active: false }), `FinalBossBattle`);
