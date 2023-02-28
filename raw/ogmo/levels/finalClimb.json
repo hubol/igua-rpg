@@ -522,6 +522,66 @@
           "originX": 15,
           "originY": 30,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 45,
+          "_eid": "55991906",
+          "x": 647,
+          "y": 136,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 46,
+          "_eid": "55991906",
+          "x": 671,
+          "y": 86,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 47,
+          "_eid": "55991906",
+          "x": 695,
+          "y": 118,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 48,
+          "_eid": "55991906",
+          "x": 719,
+          "y": 86,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 49,
+          "_eid": "55991906",
+          "x": 743,
+          "y": 142,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "ValuableBlue",
+          "id": 50,
+          "_eid": "55991906",
+          "x": 767,
+          "y": 86,
+          "originX": 8,
+          "originY": 14,
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -624,7 +684,39 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
-        }
+        },
+        {
+          "x": 696,
+          "y": 56,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "volcano/chain.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 720, "y": 48, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {"x": 696, "y": 80, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {"x": 744, "y": 56, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {"x": 744, "y": 104, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {"x": 768, "y": 48, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {"x": 672, "y": 48, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {"x": 648, "y": 98, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {"x": 648, "y": 56, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "volcano/chain.png", "originX": 0.5, "originY": 0.5},
+        {
+          "x": 610,
+          "y": 577,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crack small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 478, "y": 449, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "crack small.png", "originX": 0.5, "originY": 0.5},
+        {"x": 304, "y": 276, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "crack small.png", "originX": 0.5, "originY": 0.5}
       ],
       "folder": "../../src/images"
     },
@@ -649,7 +741,23 @@
       "gridCellHeight": 8,
       "gridCellsX": 99,
       "gridCellsY": 89,
-      "decals": [],
+      "decals": [
+        {
+          "x": 232,
+          "y": 8,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/stalactite.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 392, "y": 48, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/stalactite.png", "originX": 0.5, "originY": 0.5},
+        {"x": 505, "y": 64, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "final/stalactite.png", "originX": 0.5, "originY": 0.5},
+        {"x": 635, "y": 88, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/stalactite.png", "originX": 0.5, "originY": 0.5},
+        {"x": 711, "y": 81, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "final/stalactite.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "../../src/images"
     }
   ]

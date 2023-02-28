@@ -198,6 +198,50 @@
           "originX": 0.5,
           "originY": 0.5,
           "values": {"name": ""}
+        },
+        {
+          "x": 55.48274020757498,
+          "y": 133.53105185893511,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/stalag spike.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 42.006984837114274,
+          "y": 130.40275150507816,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/stalag spike.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 608,
+          "y": 116,
+          "scaleX": 1,
+          "scaleY": -1,
+          "rotation": 0,
+          "texture": "ground speckles.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 606.3187988691535,
+          "y": 136,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/stalag spike.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
         }
       ],
       "folder": "../../src/images"
@@ -211,7 +255,9 @@
       "gridCellHeight": 8,
       "gridCellsX": 80,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {"x": 601, "y": 133, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/stalag spike.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "..\\..\\src\\images"
     },
     {
@@ -235,9 +281,39 @@
           "originY": 0.5,
           "values": {"name": ""}
         },
-        {"x": 266.3036954834637, "y": 30.46646491637553, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "final/stalactite.png", "originX": 0.5, "originY": 0.5},
-        {"x": 386.3036954834637, "y": -3.5335350836244857, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/stalactite.png", "originX": 0.5, "originY": 0.5},
-        {"x": 505.3036954834637, "y": 25.466464916375514, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "final/stalactite.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 266.3036954834637,
+          "y": 30.46646491637553,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/stalactite.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 386.3036954834637,
+          "y": -3.5335350836244857,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/stalactite.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 505.3036954834637,
+          "y": 25.466464916375514,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/stalactite.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     }
