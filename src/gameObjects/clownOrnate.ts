@@ -47,7 +47,7 @@ const Consts = {
 }
 
 export function clownOrnate() {
-    const health = clownHealth(2000);
+    const health = clownHealth(2400);
     const { auto, puppet } = clownOrnatePuppet();
 
     const p = merge(puppet, { hostile: false })
