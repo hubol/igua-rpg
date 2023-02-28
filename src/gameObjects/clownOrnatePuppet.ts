@@ -143,7 +143,7 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
     const fistL = mkFist(true);
     const fistR = mkFist();
 
-    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1, wigglingUnit: 0 }, crouchingUnit: 0, hurtbox, pedometer: 0, walkTo, fistL, fistR });
+    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1, wigglingUnit: 0 }, crouchingUnit: 0, hurtbox, pedometer: 0, autoPedometer: true, walkTo, fistL, fistR });
 
     const neckbraceShadow = Sprite.from(txs.neckbrace[2]);
 
@@ -213,10 +213,12 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
         neckbrace.x = Math.round(Math.sin(scene.s * Math.PI * 5) * c.neck.wigglingUnit * 2);
         head.x = Math.round(Math.sin((scene.s - 0.25) * Math.PI * 5) * c.neck.wigglingUnit * 3);
 
-        if (root.speed.x === 0)
-            c.pedometer = 0;
-        else if (root.isOnGround)
-            c.pedometer += Math.min(Math.abs(root.speed.x), 3.5);
+        if (c.autoPedometer) {
+            if (root.speed.x === 0)
+                c.pedometer = 0;
+            else if (root.isOnGround)
+                c.pedometer += Math.min(Math.abs(root.speed.x), 3.5);
+        }
 
         let shoeImageIndex = 2;
         if (root.speed.y < 0)

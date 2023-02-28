@@ -164,12 +164,29 @@ export function clownOrnate() {
             p.head.hair.sparks.active = true;
             p.head.face.eyel.twitchOn = true;
             p.head.face.eyer.twitchOn = true;
+
+            let _pedometerAccel = 0.4;
+            let _pedometer = 0;
+            p.body.autoPedometer = false;
+            const excitedFeet = container()
+                .withStep(() => {
+                    _pedometer += Math.min(5, _pedometerAccel);
+                    _pedometerAccel += 0.2;
+                    p.body.pedometer = Math.round(_pedometer);
+                })
+                .on('removed', () => {
+                    p.body.pedometer = 0;
+                    p.body.autoPedometer = true;
+                })
+                .show(self);
+
             await sleep(self._aggressive ? 333 : 500);
             auto.eyes.lookAt = 'deadpan';
             const blast = empBlast(self._aggressive ? 72 : 64, 1, Consts.damage.hairEmpBlast, 1000, self._aggressive ? 500 : 750)
                 .at([0, -48].add(getWorldCenter(p.head.hurtbox)))
                 .show(projectilesBehind);
             await wait(() => blast.wentHostile);
+            excitedFeet.destroy();
             auto.cheeks.alert = false;
             auto.eyes.lookAt = 'player';
             p.head.hair.sparks.active = false;
