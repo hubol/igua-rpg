@@ -10,6 +10,8 @@ import {sleep} from "../cutscene/sleep";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import { slidingDoor } from "../gameObjects/slidingDoor";
 import {SceneLocal} from "../igua/sceneLocal";
+import {Dithered} from "../pixins/dithered";
+import {lerp} from "../cutscene/lerp";
 
 export function FinalBossArena() {
     scene.backgroundColor = 0x182840;
@@ -33,11 +35,15 @@ function mkBossDoors(level: GameObjectsType<typeof FinalBossArenaArgs>) {
         door.index = 0;
         (door as any).tint = 0xF0B020;
         door.openInstantly();
+        door.withPixin(Dithered({ dither: 0 }))
     }
 
     scene.gameObjectStage.withAsync(async () => {
         await wait(() => FinalBossBattle.value.active);
-        doors.forEach(x => x.startClosing(100));
+        doors.forEach(x => {
+            x.startClosing(100);
+            x.withAsync(() => lerp(x as any, 'dither').to(1).over(500));
+        });
         await wait(() => !FinalBossBattle.value.active);
         doors.forEach(x => x.startOpening(1));
     })
