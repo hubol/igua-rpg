@@ -261,7 +261,7 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
 }
 
 type LookAt = 'player' | 'deadpan' | 'unit' | 'off';
-type Face = 'player' | 'middle' | 'off';
+type Face = 'player' | 'middle' | 'hspeed' | 'off';
 
 function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
     const f = {
@@ -316,17 +316,24 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
                 v.at(nclamp((player.x - h.x) / 128, 1), nclamp((player.y - h.y) / 32, 1));
             else if (f.head.face === 'middle')
                 v.at(0, 0);
+            else if (f.head.face === 'hspeed')
+                v.at(nclamp(puppet.speed.x / 3, 1), 0);
 
             if (f.head.face !== 'off')
                 moveTowards(puppet.head.facingUnit, v, 0.1);
 
             let torsoFacingUnit = 0;
+            let torsoInterp = 0.0175;
 
             if (f.body.face === 'player')
                 torsoFacingUnit = nclamp((player.x - h.x) / 128, 1);
+            else if (f.body.face === 'hspeed') {
+                torsoFacingUnit = Math.sign(puppet.speed.x);
+                torsoInterp = 0.1;
+            }
 
             if (f.body.face !== 'off')
-                puppet.body.torso.facingUnit = approachLinear(puppet.body.torso.facingUnit, torsoFacingUnit, 0.0175)
+                puppet.body.torso.facingUnit = approachLinear(puppet.body.torso.facingUnit, torsoFacingUnit, torsoInterp)
 
             if (f.cheeks.alert) {
                 if (scene.ticks % 15 === 0) {

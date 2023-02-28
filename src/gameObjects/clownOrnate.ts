@@ -1,6 +1,6 @@
 import {sleep} from "../cutscene/sleep";
 import {wait} from "../cutscene/wait";
-import {clownOrnatePuppet, EyeShape, MouthShape} from "./clownOrnatePuppet";
+import {clownOrnatePuppet, EyeShape, MouthShape, PupilShape} from "./clownOrnatePuppet";
 import {clownHealth} from "./utils/clownUtils";
 import {WeakToSpells} from "../pixins/weakToSpells";
 import {Invulnerable} from "../pixins/invulnerable";
@@ -206,10 +206,77 @@ export function clownOrnate() {
             await lerp(p.body, 'crouchingUnit').to(0).over(100);
         });
 
+    const runTowardsAndFistSlam = attack({ _aggressive: false })
+        .withAsyncOnce(async (self) => {
+            let _tdx = 0;
+
+            self.withStep(() => p.speed.x = approachLinear(p.speed.x, _tdx, 0.5));
+
+            self._aggressive = health.unit < 0.67;
+
+            const dir = Math.sign(player.x - p.x) || 1;
+            auto.head.face = 'hspeed';
+            auto.body.face = 'hspeed';
+
+            const fist = dir > 0 ? p.body.fistL : p.body.fistR;
+            const startAngle = fist === p.body.fistL ? 180 : 0;
+            const raisedAngle = fist === p.body.fistL ? 135 : 45;
+            const slammedAngle = fist === p.body.fistL ? -20 : 200;
+
+            fist.offsetAngle = startAngle;
+            const raiseFist = fist.move(64, raisedAngle, 200);
+
+            _tdx = dir * 3;
+
+            if (dir > 0)
+                p.head.face.eyel.shape = EyeShape.Cross;
+            else
+                p.head.face.eyer.shape = EyeShape.Cross;
+
+            await Promise.all([
+                wait(() => Math.abs(player.x - p.x) < 64),
+                sleep(250),]);
+
+            auto.head.face = 'off';
+            auto.body.face = 'off';
+
+            _tdx = 0;
+
+            await raiseFist;
+
+            p.head.face.eyel.shape = EyeShape.Default;
+            p.head.face.eyer.shape = EyeShape.Default;
+
+            p.head.face.mouth.imageIndex = MouthShape.OpenSmall;
+
+            lerp(p.body.neck, 'extendingUnit').to(0).over(250);
+            await lerp(p.body, 'crouchingUnit').to(1).over(150);
+
+            await fist.move(46, slammedAngle, 250);
+            lerp(p.body.neck, 'extendingUnit').to(1).over(250);
+            lerp(p.body, 'crouchingUnit').to(0).over(150);
+            p.speed.y = -3;
+            _tdx = -dir;
+            p.head.face.mouth.imageIndex = MouthShape.SmileSmall;
+            await sleep(250);
+            _tdx = 0;
+
+            fist.autoRetract = true;
+            await sleep(300);
+            p.head.face.mouth.imageIndex = MouthShape.Smile;
+            await wait(() => !fist.autoRetract && p.isOnGround);
+            p.speed.x = 0;
+        })
+
     async function run(d: DisplayObject) {
         await p.run(d);
         auto.head.face = 'off';
         auto.body.face = 'off';
+        p.head.face.eyel.shape = EyeShape.Default;
+        p.head.face.eyer.shape = EyeShape.Default;
+        p.head.face.eyel.pupilShape = PupilShape.Default;
+        p.head.face.eyer.pupilShape = PupilShape.Default;
+        p.head.face.mouth.imageIndex = MouthShape.Smile;
         p.gravity = Consts.defaultGravity;
     }
 
@@ -221,8 +288,9 @@ export function clownOrnate() {
         ]);
         p.hostile = true;
         while (true) {
-            await run(multiSlam());
-            await run(shockHeadArea());
+            // await run(multiSlam());
+            // await run(shockHeadArea());
+            await run(runTowardsAndFistSlam());
         }
     }
 
