@@ -8,13 +8,13 @@ import {player} from "./player";
 import {EmpPulse, EmpPulseFinal, EmpPulseFire} from "../sounds";
 import {merge} from "../utils/object/merge";
 
-export function empBlast(radius: number, hintsCount: number, damage: number, hostileMs: number, hintMs = 1000) {
+export function empBlast(radius: number, hintsCount: number, damage: number, hostileMs: number, hintMs = 1000, hintShowFrames = 45) {
     const c = merge(container(), { wentHostile: false })
         .withAsync(async () => {
             const initialHintsCount = hintsCount;
             while (hintsCount > 0) {
                 hintsCount--;
-                c.addChild(hint(radius, hintsCount / initialHintsCount));
+                c.addChild(hint(radius, hintsCount / initialHintsCount, hintShowFrames));
                 await sleep(hintMs);
             }
             c.addChild(hostile(radius, damage));
@@ -57,7 +57,7 @@ function hostile(radius: number, damage: number) {
     return g;
 }
 
-function hint(radius: number, safe: number) {
+function hint(radius: number, safe: number, initialLife = 45) {
     const isFinal = safe < 0.01;
 
     const pulse = EmpPulse.play();
@@ -65,8 +65,7 @@ function hint(radius: number, safe: number) {
     if (isFinal)
         EmpPulseFinal.play();
 
-    let life = 45;
-    const initialLife = life;
+    let life = initialLife;
     const g = new Graphics()
         .withStep(() => {
             if (life-- <= 0)

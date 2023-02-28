@@ -182,7 +182,7 @@ export function clownOrnate() {
 
             await sleep(self._aggressive ? 333 : 500);
             auto.eyes.lookAt = 'deadpan';
-            const blast = empBlast(self._aggressive ? 72 : 64, 1, Consts.damage.hairEmpBlast, 1000, self._aggressive ? 500 : 750)
+            const blast = empBlast(self._aggressive ? 72 : 64, 1, Consts.damage.hairEmpBlast, 1000, self._aggressive ? 500 : 750, self._aggressive ? 30 : 45)
                 .at([0, -48].add(getWorldCenter(p.head.hurtbox)))
                 .show(projectilesBehind);
             await wait(() => blast.wentHostile);
