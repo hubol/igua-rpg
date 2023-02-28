@@ -261,13 +261,14 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
 }
 
 type LookAt = 'player' | 'deadpan' | 'unit' | 'off';
+type Face = 'player' | 'middle' | 'off';
 
 function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
     const f = {
         eyes: { closeLeft: false, closeRight: false, widen: false, lookAt: <LookAt>'player', lookAtUnit: vnew() },
         cheeks: { alert: false, },
-        head: { facePlayer: false },
-        body: { facePlayer: false, },
+        head: { face: <Face>'off' },
+        body: { face: <Face>'off', },
         neck: { wiggle: false, },
     };
 
@@ -311,14 +312,21 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
 
             const h = getWorldCenter(puppet.head.hurtbox);
 
-            if (f.head.facePlayer) {
+            if (f.head.face === 'player')
                 v.at(nclamp((player.x - h.x) / 128, 1), nclamp((player.y - h.y) / 32, 1));
-                moveTowards(puppet.head.facingUnit, v, 0.1);
-            }
+            else if (f.head.face === 'middle')
+                v.at(0, 0);
 
-            if (f.body.facePlayer) {
-                puppet.body.torso.facingUnit = approachLinear(puppet.body.torso.facingUnit, nclamp((player.x - h.x) / 128, 1), 0.0175)
-            }
+            if (f.head.face !== 'off')
+                moveTowards(puppet.head.facingUnit, v, 0.1);
+
+            let torsoFacingUnit = 0;
+
+            if (f.body.face === 'player')
+                torsoFacingUnit = nclamp((player.x - h.x) / 128, 1);
+
+            if (f.body.face !== 'off')
+                puppet.body.torso.facingUnit = approachLinear(puppet.body.torso.facingUnit, torsoFacingUnit, 0.0175)
 
             if (f.cheeks.alert) {
                 if (scene.ticks % 15 === 0) {

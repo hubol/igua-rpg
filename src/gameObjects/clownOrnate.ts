@@ -75,6 +75,8 @@ export function clownOrnate() {
     const multiSlam = attack({ _canFollowPlayer: true, _tdx: 0, _aggressive: false })
         .withAsyncOnce(async (self) => {
             self._aggressive = health.unit < 0.67;
+            auto.head.face = 'player';
+            auto.body.face = 'player';
             for (let i = 3; i > 0; i--) {
                 const isFinal = i === 1;
 
@@ -128,7 +130,6 @@ export function clownOrnate() {
                     await wait(() => !p.body.fistL.autoRetract && !p.body.fistL.autoRetract);
                 }
             }
-            p.gravity = Consts.defaultGravity;
         })
         .withStep((self) => {
             if (p.speed.y > 2 && p.body.fistL.offset > 40) {
@@ -159,6 +160,10 @@ export function clownOrnate() {
     const shockHeadArea = attack({ _aggressive: false })
         .withAsyncOnce(async (self) => {
             self._aggressive = health.unit < 0.67;
+
+            auto.head.face = 'middle';
+            auto.body.face = 'middle';
+
             // TODO sfx
             auto.cheeks.alert = true;
             p.head.hair.sparks.active = true;
@@ -201,6 +206,13 @@ export function clownOrnate() {
             await lerp(p.body, 'crouchingUnit').to(0).over(100);
         });
 
+    async function run(d: DisplayObject) {
+        await p.run(d);
+        auto.head.face = 'off';
+        auto.body.face = 'off';
+        p.gravity = Consts.defaultGravity;
+    }
+
     async function doAs() {
         await wait(() => p.isOnGround);
         await Promise.race([
@@ -209,8 +221,8 @@ export function clownOrnate() {
         ]);
         p.hostile = true;
         while (true) {
-            await p.run(multiSlam());
-            await p.run(shockHeadArea());
+            await run(multiSlam());
+            await run(shockHeadArea());
         }
     }
 
