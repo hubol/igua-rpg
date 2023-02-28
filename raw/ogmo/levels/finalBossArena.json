@@ -154,7 +154,52 @@
       "gridCellHeight": 8,
       "gridCellsX": 80,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 584,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crack small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 60,
+          "y": 96,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crack small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 256,
+          "y": 201,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crack small.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {
+          "x": 408,
+          "y": 218,
+          "scaleX": -1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cracks a.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
+      ],
       "folder": "../../src/images"
     },
     {
@@ -178,7 +223,22 @@
       "gridCellHeight": 8,
       "gridCellsX": 80,
       "gridCellsY": 32,
-      "decals": [],
+      "decals": [
+        {
+          "x": 116.30369548346371,
+          "y": 18.46646491637553,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/stalactite.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        },
+        {"x": 266.3036954834637, "y": 30.46646491637553, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "final/stalactite.png", "originX": 0.5, "originY": 0.5},
+        {"x": 386.3036954834637, "y": -3.5335350836244857, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/stalactite.png", "originX": 0.5, "originY": 0.5},
+        {"x": 505.3036954834637, "y": 25.466464916375514, "scaleX": -1, "scaleY": 1, "rotation": 0, "texture": "final/stalactite.png", "originX": 0.5, "originY": 0.5}
+      ],
       "folder": "../../src/images"
     }
   ]

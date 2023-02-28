@@ -4,7 +4,7 @@ import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {progress} from "../igua/data/progress";
 import {Sprite} from "pixi.js";
-import {CapitalBrickWall, GroundSpeckles} from "../textures";
+import {CapitalBrickWall, CracksA, CrackSmall, GroundSpeckles} from "../textures";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
 import {decalsOf} from "../gameObjects/decal";
 import {cracks} from "../gameObjects/cracks";
@@ -25,6 +25,8 @@ export function FinalClimb() {
 
 export function applyFinalFilters(seed = 38.1269 * (scene.name?.length ?? 1)) {
     decalsOf(GroundSpeckles).forEach(x => x.tinted(0x304888));
+    decalsOf(CrackSmall).forEach(x => x.tinted(0x304888));
+    decalsOf(CracksA).forEach(x => x.tinted(0x304888));
 
     const cc = cracks(seed, 0x304888);
     // Putting a mask on the cc Graphics object seems to not look correct sometimes
