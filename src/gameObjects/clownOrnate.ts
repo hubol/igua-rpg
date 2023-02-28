@@ -243,7 +243,7 @@ export function clownOrnate() {
 
             const freeSpaceFn = dir > 0 ? p.freeSpaceOnRight : p.freeSpaceOnLeft;
             await Promise.all([
-                wait(() => Math.abs(player.x - p.x) < 64 || freeSpaceFn() < 90),
+                wait(() => (Math.abs(player.x - p.x) < 64 && Math.abs(player.y - p.y) < 100 ) || freeSpaceFn() < 90),
                 sleep(250),]);
 
             auto.head.face = 'off';
