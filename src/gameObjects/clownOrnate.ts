@@ -39,7 +39,7 @@ const Consts = {
         slamHugeWave: 90,
         hairEmpBlast: 100,
         slamFist: 70,
-        bowledSpikeBall: 80,
+        bowledSpikeBall: 100,
     },
 
     waves: {
@@ -397,7 +397,7 @@ export function clownOrnate() {
 
         while (true) {
             await run(multiSlam());
-            if (Math.abs(player.x - p.x) < 130)
+            if (Math.abs(player.x - p.x) < 130 && (health.unit > 0.5 || framesSinceHeadClawDamage < 40))
                 await run(shockHeadArea());
             if (p.freeSpaceTowardsPlayer() > 100 && groundMoves.next() === 0) {
                 await run(runTowardsAndFistSlam());
