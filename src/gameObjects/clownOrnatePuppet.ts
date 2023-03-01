@@ -10,7 +10,7 @@ import {
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
-import {moveTowards, vdir, vnew} from "../utils/math/vector";
+import {moveTowards, vnew} from "../utils/math/vector";
 import {DisplayObject, Sprite} from "pixi.js";
 import {flipH} from "../utils/pixi/flip";
 import {animatedSprite} from "../igua/animatedSprite";
@@ -25,7 +25,7 @@ import {alphaMaskFilter} from "../utils/pixi/alphaMaskFilter";
 import {lerp} from "../cutscene/lerp";
 import {wait} from "../cutscene/wait";
 import {forceRenderable} from "../igua/forceRenderable";
-import {ToDeg, ToRad} from "../utils/math/angles";
+import {ToRad} from "../utils/math/angles";
 import {rng} from "../utils/math/rng";
 import {sleep} from "../cutscene/sleep";
 
@@ -81,7 +81,6 @@ function mkFist(defaultYellow = false) {
 
         autoHeldBehind: true,
         autoRetract: false,
-        autoPosition: true,
 
         offset: 0,
         offsetAngle: 0,
@@ -105,12 +104,7 @@ function mkFist(defaultYellow = false) {
                     c.autoRetract = false;
             }
 
-            if (c.autoPosition)
-                fist.at(Math.cos(c.offsetAngle * ToRad) * c.offset, -Math.sin(c.offsetAngle * ToRad) * c.offset);
-            else {
-                c.offset = c.vlength;
-                c.offsetAngle = vdir(c) * ToDeg;
-            }
+            fist.at(Math.cos(c.offsetAngle * ToRad) * c.offset, -Math.sin(c.offsetAngle * ToRad) * c.offset);
 
             if (c.autoHeldBehind)
                 c.heldBehind = c.offset < 23;

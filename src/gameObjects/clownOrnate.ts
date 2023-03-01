@@ -15,7 +15,7 @@ import {attack} from "./attacks";
 import {AttackRunner} from "../pixins/attackRunner";
 import {wave, WaveArgs} from "./wave";
 import {container} from "../utils/pixi/container";
-import {approachLinear, nlerp} from "../utils/math/number";
+import {approachLinear} from "../utils/math/number";
 import {rng} from "../utils/math/rng";
 import {AoeHitboxes} from "./utils/aoeHitboxes";
 import {lerp} from "../cutscene/lerp";
@@ -25,6 +25,7 @@ import {isOnScreen} from "../igua/logic/isOnScreen";
 import {empBlast} from "./empBlast";
 import {ornateProjectile} from "./clownOrnateProjectiles";
 import {FreeSpace} from "../pixins/freeSpace";
+import {vnew} from "../utils/math/vector";
 
 const Consts = {
     bodyDefense: 0.75,
@@ -298,31 +299,10 @@ export function clownOrnate() {
             let _release = false;
 
             async function moveFistAcrossSouth(toOffset: number, toAngle: number, ms: number) {
-                const fromAngle = fist.offsetAngle;
-                const fromOffset = fist.offset;
-                const state = { z: 0 };
-                const c = container().withStep(() => {
-                    fist.offsetAngle = nlerp(fromAngle, toAngle, state.z);
-                    if (Math.abs(-90 - fist.offsetAngle) < 30)
-                        fist.offset = approachLinear(fist.offset, 10, 10);
-                    else
-                        fist.offset = approachLinear(fist.offset, toOffset, 5);
-
-                    // if (state.z < 0.5) {
-                    //     fist.offsetAngle = nlerp(fromAngle, -90, state.z * 2);
-                    //     fist.offset = nlerp(fromOffset, 10, Math.sin(state.z * Math.PI));
-                    // }
-                    // else {
-                    //     fist.offsetAngle = nlerp(-90, toAngle, (state.z - 0.5) * 2);
-                    //     fist.offset = nlerp(10, toOffset, (state.z - 0.5) * 2);
-                    // }
-                })
-                    .show(self);
-
-                // fist.autoPosition = false;
-                await lerp(state, 'z').to(1).over(ms);
-                c.destroy();
-                // fist.autoPosition = true;
+                const offsets = lerp(fist, 'offset').to(18).over(ms / 2)
+                    .then(() => lerp(fist, 'offset').to(toOffset).over(ms / 2));
+                await lerp(fist, 'offsetAngle').to(toAngle).over(ms);
+                await offsets;
             }
 
             self.withAsync(async () => {
@@ -332,7 +312,7 @@ export function clownOrnate() {
                 await wait(() => _release);
                 const bowled = ornateProjectile.bowledSpikeBall(Consts.damage.bowledSpikeBall).at(temporaryBall).show(temporaryBall.parent);
                 bowled.speed.x = dir * 6;
-                bowled.speed.y = -5;
+                bowled.speed.y = -2;
                 temporaryBall.destroy();
             });
 
@@ -438,3 +418,5 @@ export function clownOrnate() {
 
     return p;
 }
+
+const v = vnew();
