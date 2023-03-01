@@ -15,7 +15,7 @@ import {attack} from "./attacks";
 import {AttackRunner} from "../pixins/attackRunner";
 import {wave, WaveArgs} from "./wave";
 import {container} from "../utils/pixi/container";
-import {approachLinear} from "../utils/math/number";
+import {approachLinear, nlerp} from "../utils/math/number";
 import {rng} from "../utils/math/rng";
 import {AoeHitboxes} from "./utils/aoeHitboxes";
 import {lerp} from "../cutscene/lerp";
@@ -37,6 +37,7 @@ const Consts = {
         slamHugeWave: 90,
         hairEmpBlast: 100,
         slamFist: 70,
+        bowledSpikeBall: 80,
     },
 
     waves: {
@@ -278,6 +279,86 @@ export function clownOrnate() {
             p.head.face.mouth.imageIndex = MouthShape.Smile;
             await wait(() => !fist.autoRetract && p.isOnGround);
             p.speed.x = 0;
+        });
+
+    const bowlPoisonSpikeBall = attack()
+        .withAsyncOnce(async (self) => {
+            const dir = Math.sign(player.x - p.x) || 1;
+
+            const fist = dir > 0 ? p.body.fistL : p.body.fistR;
+            const startAngle = fist === p.body.fistL ? 0 : -180;
+            const raisedAngle = fist === p.body.fistL ? -200 : 20;
+            const windUpAngle = fist === p.body.fistL ? -210 : 30;
+            const releaseAngle = fist === p.body.fistL ? 10 : -190;
+
+            auto.head.face = 'hspeed';
+            auto.body.face = 'hspeed';
+            p.speed.x = dir;
+
+            let _release = false;
+
+            async function moveFistAcrossSouth(toOffset: number, toAngle: number, ms: number) {
+                const fromAngle = fist.offsetAngle;
+                const fromOffset = fist.offset;
+                const state = { z: 0 };
+                const c = container().withStep(() => {
+                    fist.offsetAngle = nlerp(fromAngle, toAngle, state.z);
+                    if (Math.abs(-90 - fist.offsetAngle) < 30)
+                        fist.offset = approachLinear(fist.offset, 10, 10);
+                    else
+                        fist.offset = approachLinear(fist.offset, toOffset, 5);
+
+                    // if (state.z < 0.5) {
+                    //     fist.offsetAngle = nlerp(fromAngle, -90, state.z * 2);
+                    //     fist.offset = nlerp(fromOffset, 10, Math.sin(state.z * Math.PI));
+                    // }
+                    // else {
+                    //     fist.offsetAngle = nlerp(-90, toAngle, (state.z - 0.5) * 2);
+                    //     fist.offset = nlerp(10, toOffset, (state.z - 0.5) * 2);
+                    // }
+                })
+                    .show(self);
+
+                // fist.autoPosition = false;
+                await lerp(state, 'z').to(1).over(ms);
+                c.destroy();
+                // fist.autoPosition = true;
+            }
+
+            self.withAsync(async () => {
+                await wait(() => fist.offset > 24);
+                const temporaryBall = ornateProjectile.spikeBall(0, fist).show(projectilesAhead);
+                temporaryBall.framesUntilDangerous = 100000;
+                await wait(() => _release);
+                const bowled = ornateProjectile.bowledSpikeBall(Consts.damage.bowledSpikeBall).at(temporaryBall).show(temporaryBall.parent);
+                bowled.speed.x = dir * 6;
+                bowled.speed.y = -5;
+                temporaryBall.destroy();
+            });
+
+            fist.offsetAngle = startAngle;
+            await fist.move(32, startAngle, 250);
+            await moveFistAcrossSouth(44, raisedAngle, 350);
+
+            auto.head.face = 'off';
+            auto.body.face = 'off';
+
+            p.speed.x = 0;
+
+            await sleep(150);
+            await fist.move(44, windUpAngle, 80);
+            await moveFistAcrossSouth(44, releaseAngle, 140);
+            _release = true;
+
+            // p.speed.x = -dir;
+            // p.speed.y = -4;
+            //
+            // self.withStep(() => p.speed.x = approachLinear(p.speed.x, 0, 0.075));
+
+            await sleep(200);
+            fist.autoRetract = true;
+            await sleep(500);
+            await wait(() => !fist.autoRetract);
         })
 
     async function run(d: DisplayObject) {
@@ -300,13 +381,14 @@ export function clownOrnate() {
         ]);
         p.hostile = true;
         while (true) {
-            await run(multiSlam());
-            if (Math.abs(player.x - p.x) < 130)
-                await run(shockHeadArea());
-            if (p.freeSpaceTowardsPlayer() > 100)
-                await run(runTowardsAndFistSlam());
-            if (p.freeSpaceTowardsPlayer() > 120 && health.unit < 0.5 && rng() < 0.67)
-                await run(runTowardsAndFistSlam());
+            await run(bowlPoisonSpikeBall());
+            // await run(multiSlam());
+            // if (Math.abs(player.x - p.x) < 130)
+            //     await run(shockHeadArea());
+            // if (p.freeSpaceTowardsPlayer() > 100)
+            //     await run(runTowardsAndFistSlam());
+            // if (p.freeSpaceTowardsPlayer() > 120 && health.unit < 0.5 && rng() < 0.67)
+            //     await run(runTowardsAndFistSlam());
         }
     }
 
