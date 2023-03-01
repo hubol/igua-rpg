@@ -287,6 +287,8 @@ export function clownOrnate() {
             const dir = Math.sign(player.x - p.x) || 1;
 
             const fist = dir > 0 ? p.body.fistL : p.body.fistR;
+            const leg = dir > 0 ? p.body.shoeL : p.body.shoeR;
+
             const startAngle = fist === p.body.fistL ? 0 : -180;
             const raisedAngle = fist === p.body.fistL ? -200 : 20;
             const windUpAngle = fist === p.body.fistL ? -210 : 30;
@@ -338,6 +340,7 @@ export function clownOrnate() {
             p.speed.x = 0;
             _doCrouch = false;
 
+            lerp(leg.offset, 'y').to(-6).over(120);
             await fistReady;
 
             await sleep(150);
@@ -350,6 +353,7 @@ export function clownOrnate() {
 
             auto.neck.lean = 'hspeed';
 
+            lerp(leg.offset, 'y').to(0).over(80);
             p.speed.x = -dir;
             p.speed.y = -1;
             p.gravity = 0.1;

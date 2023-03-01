@@ -144,10 +144,14 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
     const fistL = mkFist(true);
     const fistR = mkFist();
 
+    const shoeL = mkShoe();
+    const shoeR = mkShoe(true);
+
     const c = merge(container(), {
         torso: { facingUnit: 0 },
         neck: { extendingUnit: 1, wigglingUnit: 0, leaningUnit: 0 },
         crouchingUnit: 0, hurtbox, pedometer: 0, autoPedometer: true, walkTo, fistL, fistR,
+        shoeL, shoeR
     });
 
     const neckbraceShadow = Sprite.from(txs.neckbrace[2]);
@@ -169,13 +173,6 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
     const neckbraceOverlapSprite = Sprite.from(txs.neckbrace[1]).show(neckbrace).filter(alphaMaskFilter(neckbraceShapeSprite));
 
     neckbrace.pivot.set(-7, -26);
-
-    const shoeL = animatedSprite(txs.shoe, 0);
-    const shoeR = animatedSprite(txs.shoe, 0);
-    shoeR.scale.x = -1;
-
-    shoeL.pivot.set(-5, -50);
-    shoeR.pivot.set(44, -50);
 
     shoeShadowL.mask = shoeL;
     shoeShadowR.mask = shoeR;
@@ -215,8 +212,8 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
         upperBody.y = Math.round(c.crouchingUnit * 6);
 
         head.y = Math.round(neckbrace.y * 1.5) + upperBody.y;
-        neckbrace.x = Math.round(Math.sin(scene.s * Math.PI * 5) * c.neck.wigglingUnit * 2) + c.neck.leaningUnit * 3;
-        head.x = Math.round(Math.sin((scene.s - 0.25) * Math.PI * 5) * c.neck.wigglingUnit * 3) + c.neck.leaningUnit * 5;
+        neckbrace.x = Math.round(Math.sin(scene.s * Math.PI * 5) * c.neck.wigglingUnit * 2) + c.neck.leaningUnit * 4;
+        head.x = Math.round(Math.sin((scene.s - 0.25) * Math.PI * 5) * c.neck.wigglingUnit * 3) + c.neck.leaningUnit * 6;
 
         if (c.autoPedometer) {
             if (root.speed.x === 0)
@@ -263,6 +260,20 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
     c.addChild(fistL, fistR, shoeL, shoeR, upperBody);
 
     return c;
+}
+
+function mkShoe(right = false) {
+    const s = merge(animatedSprite(txs.shoe, 0), { offset: vnew() })
+        .withStep(() => {
+            s.pivot.x = right ? 44 : -5;
+            s.pivot.x -= s.offset.x * s.scale.x;
+            s.pivot.y = -50 - s.offset.y;
+        });
+
+    if (right)
+        s.scale.x = -1;
+
+    return s;
 }
 
 type LookAt = 'player' | 'deadpan' | 'unit' | 'off';
