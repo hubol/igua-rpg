@@ -26,6 +26,7 @@ import {empBlast} from "./empBlast";
 import {ornateProjectile} from "./clownOrnateProjectiles";
 import {FreeSpace} from "../pixins/freeSpace";
 import {vnew} from "../utils/math/vector";
+import {reducedRepetitionRng} from "../utils/math/reducedRepetitionRng";
 
 const Consts = {
     bodyDefense: 0.75,
@@ -52,6 +53,7 @@ const Consts = {
 }
 
 export function clownOrnate() {
+    let framesSinceHeadClawDamage = 100000;
     const health = clownHealth(2400);
     const { auto, puppet } = clownOrnatePuppet();
 
@@ -163,9 +165,9 @@ export function clownOrnate() {
             p.speed.x = 0;
         });
 
-    const shockHeadArea = attack({ _aggressive: false })
+    const shockHeadArea = attack({ _aggressive: false, punish: false })
         .withAsyncOnce(async (self) => {
-            self._aggressive = health.unit < 0.67;
+            self._aggressive = self.punish || health.unit < 0.67;
 
             auto.head.face = 'middle';
             auto.body.face = 'middle';
@@ -191,7 +193,7 @@ export function clownOrnate() {
                 })
                 .show(self);
 
-            await sleep(self._aggressive ? 333 : 500);
+            await sleep(self._aggressive ? (self.punish ? 150 : 333) : 500);
             auto.eyes.lookAt = 'deadpan';
             const blast = empBlast(self._aggressive ? 72 : 64, 1, Consts.damage.hairEmpBlast, 1000, self._aggressive ? 500 : 750, self._aggressive ? 30 : 45)
                 .at([0, -48].add(getWorldCenter(p.head.hurtbox)))
@@ -390,17 +392,25 @@ export function clownOrnate() {
             health.tookDamage(),
         ]);
         p.hostile = true;
+
+        const groundMoves = reducedRepetitionRng(2, 2);
+
         while (true) {
             await run(multiSlam());
             if (Math.abs(player.x - p.x) < 130)
                 await run(shockHeadArea());
-            if (p.freeSpaceTowardsPlayer() > 100 && rng() < 0.4) {
+            if (p.freeSpaceTowardsPlayer() > 100 && groundMoves.next() === 0) {
                 await run(runTowardsAndFistSlam());
                 if (p.freeSpaceTowardsPlayer() > 120 && health.unit < 0.5 && rng() < 0.67)
                     await run(runTowardsAndFistSlam());
             }
-            else
+            else {
                 await run(bowlPoisonSpikeBall());
+                if (framesSinceHeadClawDamage < 40 && rng() < 0.9 && Math.abs(player.x - p.x) < 130)
+                    await run(shockHeadArea({ punish: true }));
+                else if (p.freeSpaceTowardsPlayer() > 120 && health.unit < 0.5 && rng() < 0.67)
+                    await run(bowlPoisonSpikeBall());
+            }
         }
     }
 
@@ -441,8 +451,13 @@ export function clownOrnate() {
         if (p.invulnerable > 0)
             return;
 
+        framesSinceHeadClawDamage += 1;
+
         if (!takeClawDamage(p.head.hurtbox, 0))
             takeClawDamage(p.body.hurtbox, Consts.bodyDefense);
+        else
+            framesSinceHeadClawDamage = 0;
+
         if (health.isDead)
             doDeath();
     });
