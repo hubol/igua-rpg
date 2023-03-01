@@ -284,6 +284,8 @@ export function clownOrnate() {
 
     const bowlPoisonSpikeBall = attack()
         .withAsyncOnce(async (self) => {
+            let _aggressive = health.unit < 0.67;
+
             const dir = Math.sign(player.x - p.x) || 1;
 
             const fist = dir > 0 ? p.body.fistL : p.body.fistR;
@@ -325,10 +327,10 @@ export function clownOrnate() {
             }).show(self);
 
             fist.offsetAngle = startAngle;
-            const fistReady = fist.move(32, startAngle, 250)
-                .then(() => moveFistAcrossSouth(44, raisedAngle, 350));
+            const fistReady = fist.move(32, startAngle, _aggressive ? 180 : 250)
+                .then(() => moveFistAcrossSouth(44, raisedAngle, _aggressive ? 250 : 350));
 
-            await sleep(250);
+            await sleep(_aggressive ? 100 : 250);
             await Promise.race([
                 wait(() => Math.abs(p.x - player.x) < 90),
                 fistReady.then(() => sleep(200)),
@@ -343,11 +345,11 @@ export function clownOrnate() {
             lerp(leg.offset, 'y').to(-6).over(120);
             await fistReady;
 
-            await sleep(150);
+            await sleep(_aggressive ? 100 : 150);
             p.head.face.mouth.imageIndex = MouthShape.OpenSmall;
-            await fist.move(44, windUpAngle, 80);
+            await fist.move(44, windUpAngle, _aggressive ? 60 : 80);
             p.head.face.mouth.imageIndex = MouthShape.Open;
-            await moveFistAcrossSouth(44, releaseAngle, 140);
+            await moveFistAcrossSouth(44, releaseAngle, _aggressive ? 100 : 140);
             p.head.face.mouth.imageIndex = MouthShape.OpenWide;
             _release = true;
 
@@ -355,15 +357,15 @@ export function clownOrnate() {
 
             lerp(leg.offset, 'y').to(0).over(80);
             p.speed.x = -dir;
-            p.speed.y = -1;
+            p.speed.y = -1.3;
             p.gravity = 0.1;
-            //
+
             self.withStep(() => p.speed.x = approachLinear(p.speed.x, 0, 0.075));
 
-            await sleep(200);
+            await sleep(_aggressive ? 160 : 200);
             p.head.face.mouth.imageIndex = MouthShape.SmileSmall;
             fist.autoRetract = true;
-            await sleep(500);
+            await sleep(_aggressive ? 300 : 500);
             await wait(() => !fist.autoRetract);
 
             auto.neck.lean = 'zero';
@@ -389,14 +391,16 @@ export function clownOrnate() {
         ]);
         p.hostile = true;
         while (true) {
-            await run(bowlPoisonSpikeBall());
-            // await run(multiSlam());
-            // if (Math.abs(player.x - p.x) < 130)
-            //     await run(shockHeadArea());
-            // if (p.freeSpaceTowardsPlayer() > 100)
-            //     await run(runTowardsAndFistSlam());
-            // if (p.freeSpaceTowardsPlayer() > 120 && health.unit < 0.5 && rng() < 0.67)
-            //     await run(runTowardsAndFistSlam());
+            await run(multiSlam());
+            if (Math.abs(player.x - p.x) < 130)
+                await run(shockHeadArea());
+            if (p.freeSpaceTowardsPlayer() > 100 && rng() < 0.4) {
+                await run(runTowardsAndFistSlam());
+                if (p.freeSpaceTowardsPlayer() > 120 && health.unit < 0.5 && rng() < 0.67)
+                    await run(runTowardsAndFistSlam());
+            }
+            else
+                await run(bowlPoisonSpikeBall());
         }
     }
 
