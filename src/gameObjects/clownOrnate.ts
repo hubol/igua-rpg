@@ -294,7 +294,7 @@ export function clownOrnate() {
 
             auto.head.face = 'hspeed';
             auto.body.face = 'hspeed';
-            p.speed.x = dir;
+            p.speed.x = dir * 2;
 
             let _release = false;
 
@@ -316,26 +316,46 @@ export function clownOrnate() {
                 temporaryBall.destroy();
             });
 
+            let _doCrouch = true;
+            container().withStep(() => {
+                p.body.crouchingUnit = approachLinear(p.body.crouchingUnit, _doCrouch ? 1 : 0, 0.1);
+                p.body.neck.extendingUnit = approachLinear(p.body.neck.extendingUnit, _doCrouch ? 0 : 1, 0.05);
+            }).show(self);
+
             fist.offsetAngle = startAngle;
-            await fist.move(32, startAngle, 250);
-            await moveFistAcrossSouth(44, raisedAngle, 350);
+            const fistReady = fist.move(32, startAngle, 250)
+                .then(() => moveFistAcrossSouth(44, raisedAngle, 350));
+
+            await sleep(250);
+            await Promise.race([
+                wait(() => Math.abs(p.x - player.x) < 90),
+                fistReady.then(() => sleep(200)),
+            ]);
 
             auto.head.face = 'off';
             auto.body.face = 'off';
 
             p.speed.x = 0;
+            _doCrouch = false;
+
+            await fistReady;
 
             await sleep(150);
+            p.head.face.mouth.imageIndex = MouthShape.OpenSmall;
             await fist.move(44, windUpAngle, 80);
+            p.head.face.mouth.imageIndex = MouthShape.Open;
             await moveFistAcrossSouth(44, releaseAngle, 140);
+            p.head.face.mouth.imageIndex = MouthShape.OpenWide;
             _release = true;
 
-            // p.speed.x = -dir;
-            // p.speed.y = -4;
+            p.speed.x = -dir;
+            p.speed.y = -1;
+            p.gravity = 0.1;
             //
-            // self.withStep(() => p.speed.x = approachLinear(p.speed.x, 0, 0.075));
+            self.withStep(() => p.speed.x = approachLinear(p.speed.x, 0, 0.075));
 
             await sleep(200);
+            p.head.face.mouth.imageIndex = MouthShape.SmileSmall;
             fist.autoRetract = true;
             await sleep(500);
             await wait(() => !fist.autoRetract);
