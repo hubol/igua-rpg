@@ -348,6 +348,8 @@ export function clownOrnate() {
             p.head.face.mouth.imageIndex = MouthShape.OpenWide;
             _release = true;
 
+            auto.neck.lean = 'hspeed';
+
             p.speed.x = -dir;
             p.speed.y = -1;
             p.gravity = 0.1;
@@ -359,6 +361,8 @@ export function clownOrnate() {
             fist.autoRetract = true;
             await sleep(500);
             await wait(() => !fist.autoRetract);
+
+            auto.neck.lean = 'zero';
         })
 
     async function run(d: DisplayObject) {

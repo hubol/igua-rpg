@@ -144,7 +144,11 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
     const fistL = mkFist(true);
     const fistR = mkFist();
 
-    const c = merge(container(), { torso: { facingUnit: 0 }, neck: { extendingUnit: 1, wigglingUnit: 0 }, crouchingUnit: 0, hurtbox, pedometer: 0, autoPedometer: true, walkTo, fistL, fistR });
+    const c = merge(container(), {
+        torso: { facingUnit: 0 },
+        neck: { extendingUnit: 1, wigglingUnit: 0, leaningUnit: 0 },
+        crouchingUnit: 0, hurtbox, pedometer: 0, autoPedometer: true, walkTo, fistL, fistR,
+    });
 
     const neckbraceShadow = Sprite.from(txs.neckbrace[2]);
 
@@ -211,8 +215,8 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
         upperBody.y = Math.round(c.crouchingUnit * 6);
 
         head.y = Math.round(neckbrace.y * 1.5) + upperBody.y;
-        neckbrace.x = Math.round(Math.sin(scene.s * Math.PI * 5) * c.neck.wigglingUnit * 2);
-        head.x = Math.round(Math.sin((scene.s - 0.25) * Math.PI * 5) * c.neck.wigglingUnit * 3);
+        neckbrace.x = Math.round(Math.sin(scene.s * Math.PI * 5) * c.neck.wigglingUnit * 2) + c.neck.leaningUnit * 3;
+        head.x = Math.round(Math.sin((scene.s - 0.25) * Math.PI * 5) * c.neck.wigglingUnit * 3) + c.neck.leaningUnit * 5;
 
         if (c.autoPedometer) {
             if (root.speed.x === 0)
@@ -263,6 +267,7 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
 
 type LookAt = 'player' | 'deadpan' | 'unit' | 'off';
 type Face = 'player' | 'middle' | 'hspeed' | 'off';
+type Lean = 'hspeed' | 'zero' | 'off';
 
 function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
     const f = {
@@ -270,7 +275,7 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
         cheeks: { alert: false, },
         head: { face: <Face>'off' },
         body: { face: <Face>'off', },
-        neck: { wiggle: false, },
+        neck: { wiggle: false, lean: <Lean>'zero' },
     };
 
     const c = container()
@@ -310,6 +315,14 @@ function mkAutomation(puppet: ReturnType<typeof mkPuppet>) {
                 moveTowards(puppet.head.face.eyel.look, lt, 0.2);
                 moveTowards(puppet.head.face.eyer.look, rt, 0.2);
             }
+
+            let leanTarget = 0;
+
+            if (f.neck.lean === 'hspeed')
+                leanTarget = -Math.sign(puppet.speed.x);
+
+            if (f.neck.lean !== 'off')
+                puppet.body.neck.leaningUnit = approachLinear(puppet.body.neck.leaningUnit, leanTarget, 0.3);
 
             const h = getWorldCenter(puppet.head.hurtbox);
 
