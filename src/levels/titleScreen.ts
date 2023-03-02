@@ -25,12 +25,14 @@ export async function TitleScreen() {
     jukebox.play(Music);
     scene.backgroundColor = 0x002C38;
     const t = title().at(0, 80).show();
+
+    const peek = await persistence.peek();
+
     const c = character().show().at(138, t.getBounds().y - 10);
     const info = saveFileInfo().show();
 
     showDemoText();
 
-    const peek = await persistence.peek();
     const noExistingFiles = !peek || (!peek.file1 && !peek.file2 && !peek.file3);
 
     const root = pageRoot().show().at(20, 123);

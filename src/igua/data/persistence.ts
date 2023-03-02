@@ -1,4 +1,4 @@
-import {getInitialProgress, progress, setProgress} from "./progress";
+import {getInitialProgress, Progress, progress, setProgress} from "./progress";
 import {show} from "../../cutscene/dialog";
 import {localStorageEntry} from "../../utils/browser/localStorageEntry";
 import {level} from "../level/level";
@@ -26,13 +26,27 @@ function saveLastPlayedSaveFile() {
     lastPlayedSaveFileEntry.write(currentSaveFile);
 }
 
+function readLastPlayedSaveFile() {
+    try {
+        return lastPlayedSaveFileEntry.read();
+    }
+    catch (e) {
+        console.error(`Something went wrong while reading the lastLoadedSaveFile:`);
+        console.error(e);
+        return undefined;
+    }
+}
+
 export const persistence = {
     async peek() {
         try {
-            const file1 = await readAndConvertProgressFile(SaveFile.Slot1);
-            const file2 = await readAndConvertProgressFile(SaveFile.Slot2);
-            const file3 = await readAndConvertProgressFile(SaveFile.Slot3);
-            const lastPlayedSaveFile = lastPlayedSaveFileEntry.read() ?? (file1 && SaveFile.Slot1);
+            const { file1, file2, file3, errors } = await peekAtFilesOrGracefulError();
+
+            for (const error of errors) {
+                await show(error!);
+            }
+
+            const lastPlayedSaveFile = errors.length === 0 ? readLastPlayedSaveFile() : undefined;
             return {
                 file1,
                 file2,
@@ -82,6 +96,35 @@ ${truncate(stringify(e), 60)}`);
             await show(`A fatal error occurred while loading:
 ${truncate(stringify(e), 60)}`);
         }
+    }
+}
+
+async function peekAtFilesOrGracefulError() {
+    const file1 = await readOrConvertOrError(SaveFile.Slot1);
+    const file2 = await readOrConvertOrError(SaveFile.Slot2);
+    const file3 = await readOrConvertOrError(SaveFile.Slot3);
+
+    return {
+        file1: file1.progress,
+        file2: file2.progress,
+        file3: file3.progress,
+        errors: [file1, file2, file3].map(x => x.error).filter(x => !!x),
+    }
+}
+
+type OkRead = { status: 'ok', progress?: Progress, error: undefined };
+type BadRead = { status: 'error', error: string, progress: undefined };
+type ReadResult = OkRead | BadRead;
+
+async function readOrConvertOrError(file: string): Promise<ReadResult> {
+    try {
+        return { status: 'ok', progress: await readAndConvertProgressFile(file), error: undefined };
+    }
+    catch (e) {
+        console.error(`File ${file} is damaged!`);
+        console.error(e);
+        return { status: 'error', progress: undefined, error: `File ${file} is damaged:
+${truncate(stringify(e), 60)}` };
     }
 }
 
