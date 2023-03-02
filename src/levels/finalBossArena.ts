@@ -51,6 +51,9 @@ function mkBossDoors(level: GameObjectsType<typeof FinalBossArenaArgs>) {
 
 async function beginBossBattle() {
     const boss = clownOrnate().at(scene.width / 2, 32).show();
+    await wait(() => !boss.awake);
+    await wait(() => boss.awake);
+    jukebox.fadeOut(0, 500);
     await wait(() => boss.hostile);
     FinalBossBattle.value.active = true;
     jukebox.play(Hemaboss1);

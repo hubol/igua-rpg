@@ -19,6 +19,7 @@ import {CastSpellCast, CastSpellCharge, CastSpellDamage, CastSpellHit} from "../
 import {sleep} from "../cutscene/sleep";
 import {approachLinear} from "../utils/math/number";
 import {IguanaPuppet} from "../igua/puppet/iguanaPuppet";
+import {progress} from "../igua/data/progress";
 
 export enum PlayerSpellColor {
     Dark = 0x208050,
@@ -133,9 +134,14 @@ function playerSpell(subject: IguanaPuppet) {
 
 function doOneSpellCollision(instance: WeakToSpellsInstance) {
     CastSpellDamage.play();
-    const min = Math.max(0, instance.clownHealth.health - 1);
-    instance.clownHealth.damage(Math.min(derivedStats.spellPower, min));
-    instance.clownHealth.spellDamageTaken += derivedStats.spellPower;
+    if (instance.requiresPermanentDefeatAbilityForDamage && !progress.flags.final.enemiesCanBePermanentlyDefeated) {
+        instance.clownHealth.damage(0);
+    }
+    else {
+        const min = Math.max(0, instance.clownHealth.health - 1);
+        instance.clownHealth.damage(Math.min(derivedStats.spellPower, min));
+        instance.clownHealth.spellDamageTaken += derivedStats.spellPower;
+    }
     instance.showSpellEffectTimeFrames = 3;
 }
 

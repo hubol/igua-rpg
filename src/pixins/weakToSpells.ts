@@ -29,7 +29,7 @@ const filter = new OutlineFilter(1, PlayerSpellColor.Dark);
 
 export const WeakToSpellsInstances = new SceneLocal(() => <WeakToSpellsInstance[]>[], 'WeakToSpellsInstances');
 
-type WeakToSpellsArgs = { spellsHurtbox: DisplayObject[], clownHealth: ClownHealth };
+type WeakToSpellsArgs = { spellsHurtbox: DisplayObject[], clownHealth: ClownHealth, requiresPermanentDefeatAbilityForDamage?: boolean, preventGreenSparkles?: boolean };
 export type WeakToSpellsInstance = DisplayObject & WeakToSpellsArgs & { showSpellEffectTimeFrames: number };
 
 export const WeakToSpells = Pixin<WeakToSpellsArgs>()
@@ -111,7 +111,8 @@ function readyToBePermanentlyDefeated(instance: WeakToSpellsInstance) {
                         return;
                     }
                     const r = getWorldBounds(box);
-                    sparkle(1 / 4, 11).at(r.x + rng.int(r.width), r.y + rng.int(r.height)).tinted(getSparkleColor()).show(c);
+                    if (!instance.preventGreenSparkles)
+                        sparkle(1 / 4, 11).at(r.x + rng.int(r.width), r.y + rng.int(r.height)).tinted(getSparkleColor()).show(c);
                     await sleep(50 + rng.int(50));
                 }
             }

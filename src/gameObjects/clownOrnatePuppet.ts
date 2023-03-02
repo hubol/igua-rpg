@@ -557,7 +557,9 @@ function mkEye() {
         pupil.texture = txs.pupil[c.pupilShape];
         pupil.at(c.look);
         pupil.x *= c.scale.x;
-        eyelid.pivot.y = (1 - c.closedUnit) * 22;
+
+        eyelid.pivot.y = (1 - c.closedUnit) * 22 + 6;
+        pupil.visible = c.closedUnit < 0.8;
         brow.pivot.set(-c.brow.offset.x, -c.brow.offset.y);
     });
 

@@ -452,6 +452,11 @@ export const OracleUnlockDoor = new Howl({
     
 });
 
+export const OrnateAwaken = new Howl({
+    src: [require("./sound/ornate awaken.ogg"), require("./sound/ornate awaken.mp3")],
+    
+});
+
 export const OrnateBowling = new Howl({
     src: [require("./sound/ornate bowling.ogg"), require("./sound/ornate bowling.mp3")],
     

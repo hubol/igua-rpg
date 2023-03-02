@@ -10,10 +10,18 @@ import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
 import {
     ClownExplode,
     ClownHurt,
-    ClownHurtDefended, OrnateSwipe1, OrnateSwipe2,
-    SharpSlamReady, SnowmanLand, SpiderDown, SpiderUp,
+    ClownHurtDefended,
+    OrnateAwaken,
+    OrnateSwipe1,
+    OrnateSwipe2,
+    SharpSlamReady,
+    SnowmanLand,
+    SpiderDown,
+    SpiderUp,
     UnorthodoxCharge,
-    UnorthodoxLand, UnorthodoxStomp, VileSpikeLand
+    UnorthodoxLand,
+    UnorthodoxStomp,
+    VileSpikeLand
 } from "../sounds";
 import {trove180, ValuableTroveConfig} from "./valuableTrove";
 import {confetti} from "./confetti";
@@ -27,13 +35,13 @@ import {rng} from "../utils/math/rng";
 import {AoeHitboxes} from "./utils/aoeHitboxes";
 import {lerp} from "../cutscene/lerp";
 import {merge} from "../utils/object/merge";
-import {waitHold} from "../cutscene/waitHold";
-import {isOnScreen} from "../igua/logic/isOnScreen";
 import {empBlast} from "./empBlast";
 import {ornateProjectile} from "./clownOrnateProjectiles";
 import {FreeSpace} from "../pixins/freeSpace";
 import {vnew} from "../utils/math/vector";
 import {reducedRepetitionRng} from "../utils/math/reducedRepetitionRng";
+import {scene} from "../igua/scene";
+import {Sleepy} from "../igua/puppet/mods/sleepy";
 
 const Consts = {
     bodyDefense: 0.75,
@@ -64,7 +72,7 @@ export function clownOrnate() {
     const health = clownHealth(2400);
     const { auto, puppet } = clownOrnatePuppet();
 
-    const p = merge(puppet, { hostile: false })
+    const p = merge(puppet, { hostile: false, awake: true, })
         .withPixin(WeakToSpells({ clownHealth: health, spellsHurtbox: [ puppet.body.hurtbox, puppet.head.hurtbox ] }))
         .withPixin(Invulnerable())
         .withPixin(AttackRunner)
@@ -395,12 +403,108 @@ export function clownOrnate() {
             await wait(() => !fist.autoRetract);
 
             auto.neck.lean = 'zero';
-        })
+        });
+
+    const restUntilTakenEnoughSpellDamage = attack()
+        .withAsyncOnce(async () => {
+            p.awake = false;
+            p.requiresPermanentDefeatAbilityForDamage = true;
+            canTakeClawDamage = false;
+
+            p.body.crouchingUnit = 1;
+            p.body.neck.extendingUnit = 0;
+            p.body.torso.facingUnit = -0.5;
+            p.head.facingUnit.at(-0.7, 0.5);
+            auto.eyes.closeLeft = true;
+            auto.eyes.closeRight = true;
+
+            auto.neck.lean = 'off';
+
+            let _twitchEyebrow = false;
+
+            const sleepy = container()
+                .withStep(() => {
+                    const f = scene.ticks / 60;
+                    p.body.crouchingUnit = ((Math.sin(f * Math.PI) + 1) / 2) * 0.15 + 0.85;
+                    p.body.neck.extendingUnit = ((Math.sin(f * Math.PI + 1) + 1) / 2) * 0.3;
+                    if (_twitchEyebrow && scene.ticks % 4 === 0)
+                        p.head.face.eyer.brow.offset.y = rng.polar;
+                    sleepy.at(getWorldCenter(p.head).add(-10, -10));
+                })
+                .withAsync(async () => {
+                    while (true) {
+                        await sleep(1000 + rng.int(4000));
+                        _twitchEyebrow = true;
+                        await sleep(333 + rng.int(667));
+                        p.head.face.eyer.brow.offset.y = 0;
+                        _twitchEyebrow = false;
+                    }
+                })
+                .withAsync(async () => {
+                    while (true) {
+                        await sleep(1000 + rng.int(4000));
+                        await lerp(p.body.neck, 'leaningUnit').to(rng.polar * 0.4).over(750);
+                    }
+                })
+                .withAsync(async () => {
+                    while (true) {
+                        await sleep(1000 + rng.int(4000));
+                        p.head.face.nose.imageIndex = 1;
+                        await sleep(300);
+                        p.head.face.nose.imageIndex = 0;
+                        await sleep(400);
+                    }
+                })
+                .on('removed', () => {
+                    p.head.face.eyer.brow.offset.y = 0;
+                    p.head.face.nose.imageIndex = 0;
+                })
+                .show();
+
+            sleepy.ext.zColor = scene.terrainColor;
+            const sleepyZs = Sleepy(sleepy as any).show();
+
+            await wait(() => health.hasTakenEnoughSpellDamageToBePermanentlyDefeated);
+
+            p.awake = true;
+            auto.eyes.closeLeft = false;
+            auto.eyes.closeRight = false;
+
+            p.head.face.mouth.imageIndex = MouthShape.OpenSmall;
+
+            sleepy.destroy();
+            sleepyZs.destroy();
+
+            await sleep(250);
+
+            OrnateAwaken.play();
+
+            p.head.face.mouth.imageIndex = MouthShape.OpenWide;
+            auto.head.face = 'player';
+            auto.body.face = 'middle';
+
+            await sleep(250);
+
+            p.head.face.mouth.imageIndex = MouthShape.Open;
+
+            canTakeClawDamage = true;
+
+
+            sleep(330).then(() => p.head.face.mouth.imageIndex = MouthShape.SmileSmall);
+
+            lerp(p.body.neck, 'extendingUnit').to(1).over(300);
+            lerp(p.body.neck, 'leaningUnit').to(0).over(350);
+            await lerp(p.body, 'crouchingUnit').to(0).over(400);
+            await sleep(250);
+
+            p.preventGreenSparkles = true;
+        });
 
     async function run(d: DisplayObject) {
         await p.run(d);
         auto.head.face = 'off';
         auto.body.face = 'off';
+        auto.neck.lean = 'zero';
         p.head.face.eyel.shape = EyeShape.Default;
         p.head.face.eyer.shape = EyeShape.Default;
         p.head.face.eyel.pupilShape = PupilShape.Default;
@@ -410,11 +514,7 @@ export function clownOrnate() {
     }
 
     async function doAs() {
-        await wait(() => p.isOnGround);
-        await Promise.race([
-            waitHold(() => isOnScreen(p), 30),
-            health.tookDamage(),
-        ]);
+        await run(restUntilTakenEnoughSpellDamage());
         p.hostile = true;
 
         const groundMoves = reducedRepetitionRng(2, 2);
@@ -445,7 +545,11 @@ export function clownOrnate() {
             player.y += p.speed.y;
     }
 
+    let canTakeClawDamage = true;
+
     function takeClawDamage(hurtbox: DisplayObject, defense: number) {
+        if (!canTakeClawDamage)
+            return false;
         if (player.collides(aoe.hitboxes) || (player.hspeed === 0 && player.vspeed === 0))
             return false;
         if (player.collides(hurtbox)) {
