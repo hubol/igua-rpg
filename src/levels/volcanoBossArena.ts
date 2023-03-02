@@ -104,6 +104,8 @@ function enrichBoss(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
     scene.gameObjectStage.withAsync(async () => {
         await wait(() => boss.hostile);
         jukebox.play(Hemaboss1);
+    });
+    scene.gameObjectStage.withAsync(async () => {
         let bossX = 0;
         boss.withStep(() => bossX = boss.x);
         await wait(() => boss.destroyed);

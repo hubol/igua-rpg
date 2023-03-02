@@ -6,7 +6,6 @@ import {CapitalMusicPlease, EmoWizard, Hemaboss1} from "../musics";
 import {applyFinalFilters} from "./finalClimb";
 import {clownOrnate} from "../gameObjects/clownOrnate";
 import {wait} from "../cutscene/wait";
-import {sleep} from "../cutscene/sleep";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import { slidingDoor } from "../gameObjects/slidingDoor";
 import {SceneLocal} from "../igua/sceneLocal";
@@ -15,6 +14,8 @@ import {lerp} from "../cutscene/lerp";
 import {progress} from "../igua/data/progress";
 import {persistence} from "../igua/data/persistence";
 import {keepSavingValuables} from "../gameObjects/valuableTrove";
+import {waitHold} from "../cutscene/waitHold";
+import {cutscene} from "../cutscene/cutscene";
 
 export function FinalBossArena() {
     scene.backgroundColor = 0x182840;
@@ -58,9 +59,11 @@ async function beginBossBattle() {
     await wait(() => !boss.awake);
     await wait(() => boss.awake);
     jukebox.fadeOut(0, 500);
-    await wait(() => boss.hostile);
-    FinalBossBattle.value.active = true;
-    jukebox.play(Hemaboss1);
+    scene.gameObjectStage.withAsync(async () => {
+        await wait(() => boss.hostile);
+        FinalBossBattle.value.active = true;
+        jukebox.play(Hemaboss1);
+    });
     await wait(() => boss.destroyed);
 
     FinalBossBattle.value.active = false;
@@ -71,7 +74,7 @@ async function beginBossBattle() {
     scene.gameObjectStage.withAsync(keepSavingValuables);
 
     jukebox.fadeOut(0, 1000);
-    await sleep(1000);
+    await waitHold(() => !cutscene.isPlaying, 60);
     jukebox.play(EmoWizard);
 }
 
