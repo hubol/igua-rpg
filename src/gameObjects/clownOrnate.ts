@@ -425,7 +425,10 @@ export function clownOrnate() {
                     await wait(() => p.isOnGround);
                     const b = getWorldBounds(p);
                     const block = resolveBlock({ x: b.x + 15, y: b.y + 23, width: b.width - 30, height: b.height, visible: false });
-                    solid.on('removed', () => block.destroy());
+                    solid.on('removed', () => {
+                        if (!block.destroyed)
+                            block.destroy();
+                    });
                 })
                 .show();
 
