@@ -25,7 +25,8 @@ export function FinalBossArena() {
     applyFinalFilters(38.1269);
 
     mkBossDoors(level);
-    scene.gameObjectStage.withAsync(beginBossBattle)
+    if (!progress.flags.final.defeatedOrnateAngel)
+        scene.gameObjectStage.withAsync(beginBossBattle)
 }
 
 function mkBossDoors(level: GameObjectsType<typeof FinalBossArenaArgs>) {
