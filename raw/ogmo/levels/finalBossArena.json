@@ -142,6 +142,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "BossWallRight", "depth": 0}
+        },
+        {
+          "name": "Checkpoint",
+          "id": 13,
+          "_eid": "55940370",
+          "x": 360,
+          "y": 192,
+          "originX": 6,
+          "originY": 12,
+          "values": {"name": "DefeatedBoss", "faceRight": true, "depth": 0}
         }
       ]
     },

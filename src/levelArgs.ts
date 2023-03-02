@@ -964,6 +964,7 @@ export const FinalBossArenaArgs = {
       Block_4: resolveBlock({ type: "Block", x: 616, y: 0, width: 104, height: 128, flippedX: false, flippedY: false, uid: "55823268_8", name: "", depth: 0 }),
       BossWallLeft: resolveBlock({ type: "Block", x: 88, y: 128, width: 16, height: 64, flippedX: false, flippedY: false, uid: "55823268_11", name: "BossWallLeft", depth: 0 }),
       BossWallRight: resolveBlock({ type: "Block", x: 616, y: 128, width: 16, height: 64, flippedX: false, flippedY: false, uid: "55823268_12", name: "BossWallRight", depth: 0 }),
+      DefeatedBoss: { type: "Checkpoint", x: 360, y: 192, flippedX: false, flippedY: false, uid: "55940370_13", name: "DefeatedBoss", faceRight: true, depth: 0 },
     };
   },
 };

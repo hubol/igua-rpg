@@ -12,6 +12,9 @@ import { slidingDoor } from "../gameObjects/slidingDoor";
 import {SceneLocal} from "../igua/sceneLocal";
 import {Dithered} from "../pixins/dithered";
 import {lerp} from "../cutscene/lerp";
+import {progress} from "../igua/data/progress";
+import {persistence} from "../igua/data/persistence";
+import {keepSavingValuables} from "../gameObjects/valuableTrove";
 
 export function FinalBossArena() {
     scene.backgroundColor = 0x182840;
@@ -58,7 +61,14 @@ async function beginBossBattle() {
     FinalBossBattle.value.active = true;
     jukebox.play(Hemaboss1);
     await wait(() => boss.destroyed);
+
     FinalBossBattle.value.active = false;
+
+    progress.flags.final.defeatedOrnateAngel = true;
+    progress.checkpointName = "DefeatedBoss";
+    await persistence.save();
+    scene.gameObjectStage.withAsync(keepSavingValuables);
+
     jukebox.fadeOut(0, 1000);
     await sleep(1000);
     jukebox.play(EmoWizard);
