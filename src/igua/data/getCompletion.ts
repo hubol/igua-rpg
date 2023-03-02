@@ -24,7 +24,7 @@ export function getCompletion(progress: Progress) {
         return n(big.piece1) + n(big.piece2) + n(big.piece3) + n(big.reward);
     }
 
-    const { desert, jungle, volcano, capital, final } = progress.flags;
+    const { desert, jungle, volcano, capital, final, global } = progress.flags;
     const { bigKey: desertBigKey, costumeMirror } = desert;
     const { bigKey: jungleBigKey } = jungle;
     const { bigKey: volcanoBigKey } = volcano;
@@ -49,8 +49,9 @@ export function getCompletion(progress: Progress) {
         n(capital.solvedImpossiblePuzzle) +
 
         n(final.playerMetEmoWizard) +
+        n(final.defeatedOrnateAngel) +
         n(progress.flags.objects.permanentlyDefeatedEnemies.size > questConstants.requiredEnemiesToPermanentlyDefeat / 2) +
-        n(progress.flags.objects.permanentlyDefeatedEnemies.size >= questConstants.requiredEnemiesToPermanentlyDefeat)) / numbers;
+        n(global.somethingGreatHappened)) / numbers;
 }
 
 export function getCompletionText(p = progress) {

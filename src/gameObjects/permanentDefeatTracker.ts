@@ -3,12 +3,11 @@ import {merge} from "../utils/object/merge";
 import {container} from "../utils/pixi/container";
 import {game} from "../igua/game";
 import {scene} from "../igua/scene";
-import {progress} from "../igua/data/progress";
 import {Dithered} from "../pixins/dithered";
 import {approachLinear} from "../utils/math/number";
 import {Graphics} from "pixi.js";
 import {PlayerSpellColor} from "./playerSpell";
-import {questConstants} from "../igua/gameplay/derivedStats";
+import {derivedFlags, questConstants} from "../igua/gameplay/derivedStats";
 import {emoWizardHead} from "./emoWizard";
 import {rng} from "../utils/math/rng";
 import {UseMenuState} from "../igua/inventory/showUseMenu";
@@ -18,7 +17,7 @@ import {waitHold} from "../cutscene/waitHold";
 const light = 0x00ff00;
 
 export const PermanentDefeatTracker = new SceneLocal(() => {
-    let value = progress.flags.objects.permanentlyDefeatedEnemies.size;
+    let value = derivedFlags.enemiesPermanentlyDefeatedScoreX1000;
     let maxDitheredFrames = 0;
 
     const c = merge(container(), { showFrames: 0 })
@@ -37,16 +36,18 @@ export const PermanentDefeatTracker = new SceneLocal(() => {
                 c.dither = 1;
             }
 
-            const n = Math.round(value);
-            numerator.text = n.toString().padStart(2, '0');
-            numerator.tint = n > 0 ? light : PlayerSpellColor.Dark;
-            denominator.tint = n >= questConstants.requiredEnemiesToPermanentlyDefeat ? light : PlayerSpellColor.Dark;
-            bar.tint = denominator.tint;
+            if (value === derivedFlags.enemiesPermanentlyDefeatedScoreX1000) {
+                const n = Math.round(value);
+                numerator.text = (n / 1000).toString().padStart(2, '0');
+                numerator.tint = n > 0 ? light : PlayerSpellColor.Dark;
+                denominator.tint = n >= (questConstants.requiredEnemiesToPermanentlyDefeat * 1000) ? light : PlayerSpellColor.Dark;
+                bar.tint = denominator.tint;
+            }
 
             if (c.dither >= 1) {
                 maxDitheredFrames += 1;
                 if (maxDitheredFrames >= 6)
-                    value = approachLinear(value, progress.flags.objects.permanentlyDefeatedEnemies.size, 0.05);
+                    value = approachLinear(value, derivedFlags.enemiesPermanentlyDefeatedScoreX1000, 0.05 * 1000);
             }
             else
                 maxDitheredFrames = 0;
@@ -55,9 +56,10 @@ export const PermanentDefeatTracker = new SceneLocal(() => {
 
     const g = new Graphics()
         .withStep(() => {
+            const max = derivedFlags.defeatedRequiredEnemies ? 1 : (1 + 1 / g.scale.y);
             g.clear()
                 .beginFill(PlayerSpellColor.Dark).drawRect(-0.5, 0, 1, 1)
-                .beginFill(light).drawRect(-0.5, 0, 1, Math.min(1, value / questConstants.requiredEnemiesToPermanentlyDefeat));
+                .beginFill(light).drawRect(-0.5, 0, 1, Math.min(max, value / (questConstants.requiredEnemiesToPermanentlyDefeat * 1000)));
         })
         .show(c);
 

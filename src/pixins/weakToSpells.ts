@@ -21,7 +21,7 @@ import {FinalEnemySoul} from "../textures";
 import {animatedSprite} from "../igua/animatedSprite";
 import { DefeatPermanent } from "../sounds";
 import {PermanentDefeatTracker} from "../gameObjects/permanentDefeatTracker";
-import {questConstants} from "../igua/gameplay/derivedStats";
+import {derivedFlags} from "../igua/gameplay/derivedStats";
 import {cutscene} from "../cutscene/cutscene";
 import {permanentDefeatCutscene} from "../gameObjects/permanentDefeatCutscene";
 
@@ -29,7 +29,7 @@ const filter = new OutlineFilter(1, PlayerSpellColor.Dark);
 
 export const WeakToSpellsInstances = new SceneLocal(() => <WeakToSpellsInstance[]>[], 'WeakToSpellsInstances');
 
-type WeakToSpellsArgs = { spellsHurtbox: DisplayObject[], clownHealth: ClownHealth, requiresPermanentDefeatAbilityForDamage?: boolean, preventGreenSparkles?: boolean };
+type WeakToSpellsArgs = { spellsHurtbox: DisplayObject[], clownHealth: ClownHealth, requiresPermanentDefeatAbilityForDamage?: boolean, preventGreenSparkles?: boolean, preventAddToPermanentlyDefeatedEnemies?: boolean };
 export type WeakToSpellsInstance = DisplayObject & WeakToSpellsArgs & { showSpellEffectTimeFrames: number };
 
 export const WeakToSpells = Pixin<WeakToSpellsArgs>()
@@ -49,9 +49,15 @@ export const WeakToSpells = Pixin<WeakToSpellsArgs>()
                     readyToBePermanentlyDefeated(src);
                     await wait(() => src.clownHealth.isDead);
                     PermanentDefeatTracker.value.showFrames = 120;
-                    progress.flags.objects.permanentlyDefeatedEnemies.add(id);
-                    if (progress.flags.objects.permanentlyDefeatedEnemies.size >= questConstants.requiredEnemiesToPermanentlyDefeat)
-                        cutscene.play(permanentDefeatCutscene);
+                    if (!_src.preventAddToPermanentlyDefeatedEnemies)
+                        progress.flags.objects.permanentlyDefeatedEnemies.add(id);
+                    for (let i = 0; i < 2; i++) {
+                        if (derivedFlags.defeatedRequiredEnemies) {
+                            cutscene.play(permanentDefeatCutscene);
+                            break;
+                        }
+                        await sleep(17);
+                    }
                 });
             }
         }

@@ -63,3 +63,37 @@ export const derivedStats = {
 export const questConstants = {
     requiredEnemiesToPermanentlyDefeat: 19,
 }
+
+export const derivedFlags = {
+    get defeatedRequiredEnemies() {
+        return progress.flags.final.defeatedOrnateAngel && progress.flags.objects.permanentlyDefeatedEnemies.size >= questConstants.requiredEnemiesToPermanentlyDefeat;
+    },
+    get enemiesPermanentlyDefeatedScoreX1000() {
+        return computeEnemiesPermanentlyDefeatedAsInteger(progress.flags.objects.permanentlyDefeatedEnemies.size, progress.flags.final.defeatedOrnateAngel);
+    }
+}
+
+const defeatScoreCacheKey = { permanentlyDefeatedEnemiesSize: -1, defeatedOrnateAngel: false, };
+let cachedDefeatInteger = -1;
+
+function computeEnemiesPermanentlyDefeatedAsInteger(defeatCount: number, defeatFinalBoss: boolean) {
+    if (defeatScoreCacheKey.permanentlyDefeatedEnemiesSize === progress.flags.objects.permanentlyDefeatedEnemies.size
+        && defeatScoreCacheKey.defeatedOrnateAngel === progress.flags.final.defeatedOrnateAngel)
+        return cachedDefeatInteger;
+
+    const scale = 1000;
+    let excludingOrnateAngelScore = 0;
+    let remainingDefeatCount = defeatCount;
+    let increment = scale;
+    while (remainingDefeatCount > 0) {
+        const nextScore = excludingOrnateAngelScore + increment;
+        if (nextScore >= questConstants.requiredEnemiesToPermanentlyDefeat * scale) {
+            increment /= 10;
+        }
+        else {
+            excludingOrnateAngelScore = nextScore;
+            remainingDefeatCount -= 1;
+        }
+    }
+    return cachedDefeatInteger = Math.min((defeatFinalBoss ? scale : 0) + excludingOrnateAngelScore, questConstants.requiredEnemiesToPermanentlyDefeat * scale);
+}
