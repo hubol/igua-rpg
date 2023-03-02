@@ -25,7 +25,7 @@ import {
 } from "../sounds";
 import {trove180, ValuableTroveConfig} from "./valuableTrove";
 import {confetti} from "./confetti";
-import {getWorldCenter} from "../igua/gameplay/getCenter";
+import {getWorldBounds, getWorldCenter} from "../igua/gameplay/getCenter";
 import {attack} from "./attacks";
 import {AttackRunner} from "../pixins/attackRunner";
 import {wave, WaveArgs} from "./wave";
@@ -38,10 +38,10 @@ import {merge} from "../utils/object/merge";
 import {empBlast} from "./empBlast";
 import {ornateProjectile} from "./clownOrnateProjectiles";
 import {FreeSpace} from "../pixins/freeSpace";
-import {vnew} from "../utils/math/vector";
 import {reducedRepetitionRng} from "../utils/math/reducedRepetitionRng";
 import {scene} from "../igua/scene";
 import {Sleepy} from "../igua/puppet/mods/sleepy";
+import {resolveBlock} from "./walls";
 
 const Consts = {
     bodyDefense: 0.75,
@@ -87,7 +87,6 @@ export function clownOrnate() {
     const projectilesAhead = container().damageSource(p);
     const projectilesBehind = container().damageSource(p);
     const aoe = new AoeHitboxes(projectilesAhead);
-    // aoe.visible = true;
 
     function createSlamWaves(key: keyof typeof Consts['waves']) {
         aoe.new(36, 9, 10, Consts.damage.slamGround).at([-18, -9].add(p));
@@ -121,7 +120,6 @@ export function clownOrnate() {
                     wait(() => p.y < startY - 92),
                     sleep(3000)]);
                 p.speed.y = 0;
-                // TODO tell
                 await sleep(25 + rng.int(250));
                 auto.neck.wiggle = false;
                 self._canFollowPlayer = false;
@@ -422,6 +420,15 @@ export function clownOrnate() {
 
             let _twitchEyebrow = false;
 
+            const solid = container()
+                .withAsync(async () => {
+                    await wait(() => p.isOnGround);
+                    const b = getWorldBounds(p);
+                    const block = resolveBlock({ x: b.x + 15, y: b.y + 23, width: b.width - 30, height: b.height, visible: false });
+                    solid.on('removed', () => block.destroy());
+                })
+                .show();
+
             const sleepy = container()
                 .withStep(() => {
                     const f = scene.ticks / 60;
@@ -488,7 +495,7 @@ export function clownOrnate() {
             p.head.face.mouth.imageIndex = MouthShape.Open;
 
             canTakeClawDamage = true;
-
+            solid.destroy();
 
             sleep(330).then(() => p.head.face.mouth.imageIndex = MouthShape.SmileSmall);
 
@@ -593,5 +600,3 @@ export function clownOrnate() {
 
     return p;
 }
-
-const v = vnew();

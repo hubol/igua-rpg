@@ -55,7 +55,7 @@
           "name": "Player",
           "id": 3,
           "_eid": "55988047",
-          "x": 600,
+          "x": 648,
           "y": 192,
           "originX": 11,
           "originY": 27,
@@ -280,7 +280,17 @@
       "gridCellsX": 90,
       "gridCellsY": 32,
       "decals": [
-        {"x": 641, "y": 133, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "final/stalag spike.png", "originX": 0.5, "originY": 0.5}
+        {
+          "x": 641,
+          "y": 133,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "final/stalag spike.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": ""}
+        }
       ],
       "folder": "..\\..\\src\\images"
     },
