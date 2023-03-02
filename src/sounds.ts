@@ -457,6 +457,16 @@ export const OrnateBowling = new Howl({
     
 });
 
+export const OrnateStepL = new Howl({
+    src: [require("./sound/ornate step l.ogg"), require("./sound/ornate step l.mp3")],
+    
+});
+
+export const OrnateStepR = new Howl({
+    src: [require("./sound/ornate step r.ogg"), require("./sound/ornate step r.mp3")],
+    
+});
+
 export const OrnateSwipe1 = new Howl({
     src: [require("./sound/ornate swipe1.ogg"), require("./sound/ornate swipe1.mp3")],
     

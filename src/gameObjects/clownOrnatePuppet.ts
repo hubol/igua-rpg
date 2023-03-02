@@ -28,6 +28,8 @@ import {forceRenderable} from "../igua/forceRenderable";
 import {ToRad} from "../utils/math/angles";
 import {rng} from "../utils/math/rng";
 import {sleep} from "../cutscene/sleep";
+import {Undefined} from "../utils/types/undefined";
+import {OrnateStepL, OrnateStepR} from "../sounds";
 
 export function clownOrnatePuppet() {
     const puppet = mkPuppet();
@@ -202,6 +204,9 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
         });
     }
 
+    let lastShoeLDY = Undefined<number>();
+    let lastShoeRDY = Undefined<number>();
+
     c.withStep(() => {
         torsoButtonsSprite.x = c.torso.facingUnit * 12;
         torsoButtonsSprite.y = Math.abs(c.torso.facingUnit) * -1;
@@ -235,6 +240,8 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
             v.at(0, 0);
             shoeL.moveTowards(v, 1);
             shoeR.moveTowards(v, 1);
+            lastShoeLDY = undefined;
+            lastShoeRDY = undefined;
         }
         else {
             const dirh = Math.sign(root.speed.x);
@@ -246,11 +253,25 @@ function mkBody(head: ReturnType<typeof mkHead>, root: ReturnType<typeof mkRoot>
 
             c.crouchingUnit = nsinlerp(x + Math.PI * 3 / 2, 0, 0.2);
 
+            const shoeLY = shoeL.y;
+            const shoeRY = shoeR.y;
+
             v.at(nsinlerp(x + Math.PI / 2, 0, dirh * legExtendX), nsinlerp(x, 0, legExtendY));
             legf.moveTowards(v, 1);
 
             v.at(nsinlerp(x + Math.PI / 2, 0, -dirh * legExtendX), nsinlerp(x + Math.PI, 0, legExtendY));
             legb.moveTowards(v, 1);
+
+            const shoeLDY = shoeL.y - shoeLY;
+            const shoeRDY = shoeR.y - shoeRY;
+
+            if (Math.sign(shoeLDY) === -1 && Math.sign(lastShoeLDY as number) !== -1)
+                OrnateStepL.play();
+            if (Math.sign(shoeRDY) === -1 && Math.sign(lastShoeRDY as number) !== -1)
+                OrnateStepR.play();
+
+            lastShoeLDY = shoeLDY;
+            lastShoeRDY = shoeRDY;
         }
 
         fistL.index = fistL.heldBehind ? 0 : c.children.length - 1;
