@@ -66,7 +66,7 @@ export const questConstants = {
 
 export const derivedFlags = {
     get defeatedRequiredEnemies() {
-        return progress.flags.final.defeatedOrnateAngel && progress.flags.objects.permanentlyDefeatedEnemies.size >= questConstants.requiredEnemiesToPermanentlyDefeat;
+        return progress.flags.final.defeatedOrnateAngel && progress.flags.objects.permanentlyDefeatedEnemies.size >= questConstants.requiredEnemiesToPermanentlyDefeat - 1;
     },
     get enemiesPermanentlyDefeatedScoreX1000() {
         return computeEnemiesPermanentlyDefeatedAsInteger(progress.flags.objects.permanentlyDefeatedEnemies.size, progress.flags.final.defeatedOrnateAngel);
