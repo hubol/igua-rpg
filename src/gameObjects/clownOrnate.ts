@@ -165,9 +165,9 @@ export function clownOrnate() {
             p.speed.x = 0;
         });
 
-    const shockHeadArea = attack({ _aggressive: false, punish: false })
+    const shockHeadArea = attack({ _aggressive: false })
         .withAsyncOnce(async (self) => {
-            self._aggressive = self.punish || health.unit < 0.67;
+            self._aggressive = self._aggressive || health.unit < 0.67;
 
             auto.head.face = 'middle';
             auto.body.face = 'middle';
@@ -193,7 +193,7 @@ export function clownOrnate() {
                 })
                 .show(self);
 
-            await sleep(self._aggressive ? (self.punish ? 150 : 333) : 500);
+            await sleep(self._aggressive ? 333 : 500);
             auto.eyes.lookAt = 'deadpan';
             const blast = empBlast(self._aggressive ? 72 : 64, 1, Consts.damage.hairEmpBlast, 1000, self._aggressive ? 500 : 750, self._aggressive ? 30 : 45)
                 .at([0, -48].add(getWorldCenter(p.head.hurtbox)))
@@ -367,7 +367,11 @@ export function clownOrnate() {
             await sleep(_aggressive ? 160 : 200);
             p.head.face.mouth.imageIndex = MouthShape.SmileSmall;
             fist.autoRetract = true;
-            await sleep(_aggressive ? 300 : 500);
+            await Promise.race([
+                sleep(_aggressive ? 300 : 500),
+                wait(() => framesSinceHeadClawDamage < 3),
+            ]);
+
             await wait(() => !fist.autoRetract);
 
             auto.neck.lean = 'zero';
@@ -407,8 +411,8 @@ export function clownOrnate() {
             else {
                 await run(bowlPoisonSpikeBall());
                 if (framesSinceHeadClawDamage < 40 && rng() < 0.9 && Math.abs(player.x - p.x) < 130)
-                    await run(shockHeadArea({ punish: true }));
-                else if (p.freeSpaceTowardsPlayer() > 120 && health.unit < 0.5 && rng() < 0.67)
+                    await run(shockHeadArea({ _aggressive: true }));
+                else if (Math.abs(player.x - p.x) > 65 && health.unit < 0.5 && rng() < 0.67)
                     await run(bowlPoisonSpikeBall());
             }
         }
