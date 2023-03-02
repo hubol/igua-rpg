@@ -7,7 +7,14 @@ import {Invulnerable} from "../pixins/invulnerable";
 import {player} from "./player";
 import {DisplayObject} from "pixi.js";
 import {bouncePlayerOffDisplayObject} from "../igua/bouncePlayer";
-import {ClownExplode, ClownHurt, ClownHurtDefended} from "../sounds";
+import {
+    ClownExplode,
+    ClownHurt,
+    ClownHurtDefended, OrnateSwipe1, OrnateSwipe2,
+    SharpSlamReady, SnowmanLand, SpiderDown, SpiderUp,
+    UnorthodoxCharge,
+    UnorthodoxLand, UnorthodoxStomp, VileSpikeLand
+} from "../sounds";
 import {trove180, ValuableTroveConfig} from "./valuableTrove";
 import {confetti} from "./confetti";
 import {getWorldCenter} from "../igua/gameplay/getCenter";
@@ -88,6 +95,7 @@ export function clownOrnate() {
             for (let i = 3; i > 0; i--) {
                 const isFinal = i === 1;
 
+                UnorthodoxCharge.play();
                 p.gravity = 0;
                 p.speed.y = self._aggressive ? -3 : -2;
                 self._canFollowPlayer = true;
@@ -112,12 +120,14 @@ export function clownOrnate() {
                 p.head.face.eyel.shape = EyeShape.Cross;
                 p.head.face.eyer.shape = EyeShape.Cross;
                 await sleep(isFinal ? 200 : 160);
+                SharpSlamReady.play();
                 p.head.face.mouth.imageIndex = MouthShape.OpenFrown;
                 p.speed.y = isFinal ? 1.5 : 0.5;
                 p.gravity = isFinal ? 0.9 : 0.75;
                 await wait(() => p.isOnGround);
                 p.speed.x = 0;
                 p.head.face.mouth.imageIndex = MouthShape.SmileSmall;
+                (isFinal ? UnorthodoxStomp : UnorthodoxLand).play();
                 createSlamWaves(isFinal ? 'hugeSlam' : 'slam');
 
                 if (isFinal) {
@@ -172,7 +182,7 @@ export function clownOrnate() {
             auto.head.face = 'middle';
             auto.body.face = 'middle';
 
-            // TODO sfx
+            UnorthodoxCharge.play();
             auto.cheeks.alert = true;
             p.head.hair.sparks.active = true;
             p.head.face.eyel.twitchOn = true;
@@ -264,10 +274,14 @@ export function clownOrnate() {
 
             lerp(p.body.neck, 'extendingUnit').to(0).over(250);
             lerp(p.body, 'crouchingUnit').to(1).over(150);
+            SpiderUp.play();
             await fist.move(64, windUpAngle, 150);
 
             spike.framesUntilDangerous = 0;
+            OrnateSwipe1.play();
             await fist.move(46, slammedAngle, 250);
+            VileSpikeLand.play();
+            SnowmanLand.play();
             lerp(p.body.neck, 'extendingUnit').to(1).over(250);
             lerp(p.body, 'crouchingUnit').to(0).over(150);
             p.speed.y = -3;
@@ -329,8 +343,12 @@ export function clownOrnate() {
             }).show(self);
 
             fist.offsetAngle = startAngle;
+            SpiderDown.play();
             const fistReady = fist.move(32, startAngle, _aggressive ? 180 : 250)
-                .then(() => moveFistAcrossSouth(44, raisedAngle, _aggressive ? 250 : 350));
+                .then(() => {
+                    SpiderDown.play();
+                    return moveFistAcrossSouth(44, raisedAngle, _aggressive ? 250 : 350);
+                });
 
             await sleep(_aggressive ? 100 : 250);
             await Promise.race([
@@ -349,8 +367,10 @@ export function clownOrnate() {
 
             await sleep(_aggressive ? 100 : 150);
             p.head.face.mouth.imageIndex = MouthShape.OpenSmall;
+            SpiderUp.play();
             await fist.move(44, windUpAngle, _aggressive ? 60 : 80);
             p.head.face.mouth.imageIndex = MouthShape.Open;
+            OrnateSwipe2.play();
             await moveFistAcrossSouth(44, releaseAngle, _aggressive ? 100 : 140);
             p.head.face.mouth.imageIndex = MouthShape.OpenWide;
             _release = true;

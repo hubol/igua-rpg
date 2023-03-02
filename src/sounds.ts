@@ -452,6 +452,21 @@ export const OracleUnlockDoor = new Howl({
     
 });
 
+export const OrnateBowling = new Howl({
+    src: [require("./sound/ornate bowling.ogg"), require("./sound/ornate bowling.mp3")],
+    
+});
+
+export const OrnateSwipe1 = new Howl({
+    src: [require("./sound/ornate swipe1.ogg"), require("./sound/ornate swipe1.mp3")],
+    
+});
+
+export const OrnateSwipe2 = new Howl({
+    src: [require("./sound/ornate swipe2.ogg"), require("./sound/ornate swipe2.mp3")],
+    
+});
+
 export const PageFlip = new Howl({
     src: [require("./sound/page flip.ogg"), require("./sound/page flip.mp3")],
     

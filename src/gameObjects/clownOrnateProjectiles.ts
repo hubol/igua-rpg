@@ -12,6 +12,7 @@ import {whiten} from "../utils/pixi/whiten";
 import {lerp} from "../cutscene/lerp";
 import {poisonBombExplosion} from "./poisonBomb";
 import {wait} from "../cutscene/wait";
+import {DassPokeReady, OrnateBowling, VileSpikeLand} from "../sounds";
 
 function spikeBall(damageValue: number, follow = Undefined<DisplayObject>()) {
     const hitbox = new Hbox(5, 4, 15, 17);
@@ -55,12 +56,16 @@ function bowledSpikeBall(damageValue: number) {
         })
         .withAsync(async () => {
             await wait(() => c.isOnGround);
-            // TODO SFX thud
+            VileSpikeLand.play();
+            const sfx = OrnateBowling.play();
+            c.on('removed', () => OrnateBowling.stop(sfx));
+            await wait(() => c.speed.x === 0);
+            OrnateBowling.stop(sfx);
         })
         .withAsync(async () => {
             await waitHold(() => c.speed.x === 0, 2);
             const w = whiten(s);
-            // TODO sfx charge?
+            DassPokeReady.play();
             await lerp(w, 'factor').to(1).over(250);
             poisonBombExplosion().at(c).show(c.parent);
             c.destroy();
