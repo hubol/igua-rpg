@@ -515,11 +515,11 @@ export const DesertFieldArgs = {
       PipeHorizontal_1: resolvePipeHorizontal({ type: "PipeHorizontal", x: 460, y: 162, width: 32, flippedX: false, flippedY: false, uid: "55841307_28", visible: false, name: "", depth: 0 }),
       ValuableOrange: resolveValuableOrange({ type: "ValuableOrange", x: 472, y: 56, flippedX: false, flippedY: false, uid: "56004563_29", name: "", depth: 0 }),
       ValuableOrange_1: resolveValuableOrange({ type: "ValuableOrange", x: 496, y: 40, flippedX: false, flippedY: false, uid: "56004563_30", name: "", depth: 0 }),
-      ValuableBlue: resolveValuableBlue({ type: "ValuableBlue", x: 472, y: 24, flippedX: false, flippedY: false, uid: "55991906_31", name: "", depth: 0 }),
       Tumbleweed1: { type: "Anchor", x: 272, y: 288, flippedX: false, flippedY: false, uid: "25979726_32", name: "Tumbleweed1", depth: 0 },
       Tumbleweed2: { type: "Anchor", x: 920, y: 376, flippedX: false, flippedY: false, uid: "25979726_33", name: "Tumbleweed2", depth: 0 },
       LoverFromJungle: resolveNpc({ type: "NpcIguana", x: 896, y: 416, flippedX: false, flippedY: false, uid: "26367058_34", name: "LoverFromJungle", style: 14, depth: 0 }),
       LoverFromDesert: resolveNpc({ type: "NpcIguana", x: 936, y: 416, flippedX: false, flippedY: false, uid: "26367058_35", name: "LoverFromDesert", style: 6, depth: 0 }),
+      ValuableBlue: resolveValuableBlue({ type: "ValuableBlue", x: 472, y: 24, flippedX: false, flippedY: false, uid: "55991906_1111", name: "", depth: 0 }),
     };
   },
 };
