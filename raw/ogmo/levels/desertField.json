@@ -385,28 +385,6 @@
           "values": {"name": "Tumbleweed2", "depth": 0}
         },
         {
-          "name": "NpcIguana",
-          "id": 34,
-          "_eid": "26367058",
-          "x": 896,
-          "y": 416,
-          "originX": 11,
-          "originY": 27,
-          "flippedX": false,
-          "values": {"name": "LoverFromJungle", "style": 14, "depth": 0}
-        },
-        {
-          "name": "NpcIguana",
-          "id": 35,
-          "_eid": "26367058",
-          "x": 936,
-          "y": 416,
-          "originX": 11,
-          "originY": 27,
-          "flippedX": false,
-          "values": {"name": "LoverFromDesert", "style": 6, "depth": 0}
-        },
-        {
           "name": "ValuableBlue",
           "id": 1111,
           "_eid": "55991906",
@@ -415,6 +393,26 @@
           "originX": 8,
           "originY": 14,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 1112,
+          "_eid": "25979726",
+          "x": 896,
+          "y": 416,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "LoverFromJungle", "depth": 0}
+        },
+        {
+          "name": "Anchor",
+          "id": 1113,
+          "_eid": "25979726",
+          "x": 936,
+          "y": 416,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "LoverFromDesert", "depth": 0}
         }
       ]
     },

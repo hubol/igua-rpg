@@ -11,7 +11,8 @@ import {show, showAll} from "../cutscene/dialog";
 import {ask} from "../cutscene/ask";
 import {rng} from "../utils/math/rng";
 import {tumbleweed} from "../gameObjects/tumbleweed";
-import {DestroyBeforeGreatness} from "../pixins/destroyByGreatness";
+import {HideBeforeGreatness} from "../pixins/destroyByGreatness";
+import {npc} from "../gameObjects/npc";
 
 function getDesertFieldLevel()
 {
@@ -37,11 +38,14 @@ export function DesertField()
 }
 
 function enrichLovers(level: DesertFieldLevel) {
-    const lovers = [level.LoverFromJungle, level.LoverFromDesert];
-    lovers.forEach(x => {
-        x.withPixin(DestroyBeforeGreatness);
-        x.engine.walkSpeed = 1.5;
-    });
+    const lovers = [{ v: level.LoverFromJungle, style: 14}, { v: level.LoverFromDesert, style: 6}]
+        .map(({ v, style }) => {
+            const n = npc(v.x, v.y, style).withPixin(HideBeforeGreatness).show();
+            n.engine.walkSpeed = 1.5;
+            return n;
+        });
+
+    const [ loverFromJungle, loverFromDesert ] = lovers;
 
     async function speak(...messages: string[]) {
         lovers.forEach(x => x.engine.pauseWalkToCommands = true);
@@ -49,30 +53,30 @@ function enrichLovers(level: DesertFieldLevel) {
         lovers.forEach(x => x.engine.pauseWalkToCommands = false);
     }
 
-    level.LoverFromJungle.withCutscene(async () => await speak(`If it weren't for you, we'd still be separated from each other.`));
+    loverFromJungle.withCutscene(async () => await speak(`If it weren't for you, we'd still be separated from each other.`));
 
-    level.LoverFromDesert.withCutscene(async () =>
+    loverFromDesert.withCutscene(async () =>
         await speak(`I feel a lot better now that we are together again.`,
             `Thank you for getting rid of the invaders.`));
 
     async function pauseAndFlip() {
         await sleep(2000);
-        level.LoverFromDesert.scale.x *= -1;
+        loverFromDesert.scale.x *= -1;
         await sleep(300);
-        level.LoverFromJungle.scale.x *= -1;
+        loverFromJungle.scale.x *= -1;
         await sleep(500);
     }
 
-    const dx = level.LoverFromDesert.x - level.LoverFromJungle.x;
+    const dx = loverFromDesert.x - loverFromJungle.x;
     async function walkTogether(x: number) {
-        const promise = level.LoverFromJungle.walkTo(x);
-        await level.LoverFromDesert.walkTo(x + dx);
+        const promise = loverFromJungle.walkTo(x);
+        await loverFromDesert.walkTo(x + dx);
         await promise;
     }
 
-    level.LoverFromDesert.withAsync(async () => {
+    loverFromDesert.withAsync(async () => {
         const x1 = 200;
-        const x2 = level.LoverFromDesert.x + 400;
+        const x2 = loverFromDesert.x + 400;
 
         while (true) {
             await walkTogether(x2);
