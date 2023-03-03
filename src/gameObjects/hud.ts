@@ -144,7 +144,7 @@ function clownHealthBar() {
             if (!clownHealth)
                 return;
 
-            t.text = damageTaken <= 0 ? '' : '' + damageTaken;
+            t.text = damageTaken < 0 ? '' : '' + damageTaken;
 
             g.clear();
 
