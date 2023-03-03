@@ -56,6 +56,8 @@ function mkBossDoors(level: GameObjectsType<typeof FinalBossArenaArgs>) {
 
 async function beginBossBattle() {
     const boss = clownOrnate().at(scene.width / 2, 192).show();
+    boss.preventAddToPermanentlyDefeatedEnemies = true;
+
     await wait(() => !boss.awake);
     await wait(() => boss.awake);
     jukebox.fadeOut(0, 500);
