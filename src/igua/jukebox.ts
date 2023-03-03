@@ -5,6 +5,7 @@ import {Howl} from "howler";
 class Jukebox
 {
     private _currentHowl?: Howl;
+    playVolumeZero = false;
 
     constructor(private readonly _howlsWarmer: HowlsWarmer) { }
 
@@ -88,7 +89,7 @@ class Jukebox
             this._currentHowl = howl;
             const volume = getMusicVolume(howl);
             // @ts-ignore
-            howl.volume(volume).loop(true).play();
+            howl.volume(this.playVolumeZero ? 0 : volume).loop(true).play();
         }
         catch (e)
         {

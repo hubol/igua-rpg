@@ -14,8 +14,7 @@ import {lerp} from "../cutscene/lerp";
 import {progress} from "../igua/data/progress";
 import {persistence} from "../igua/data/persistence";
 import {keepSavingValuables} from "../gameObjects/valuableTrove";
-import {waitHold} from "../cutscene/waitHold";
-import {cutscene} from "../cutscene/cutscene";
+import {sleep} from "../cutscene/sleep";
 
 export function FinalBossArena() {
     scene.backgroundColor = 0x182840;
@@ -76,7 +75,7 @@ async function beginBossBattle() {
     scene.gameObjectStage.withAsync(keepSavingValuables);
 
     jukebox.fadeOut(0, 1000);
-    await waitHold(() => !cutscene.isPlaying, 60);
+    await sleep(1000);
     jukebox.play(EmoWizard);
 }
 

@@ -11,6 +11,7 @@ import {Hemaboss1} from "../musics";
 import {progress} from "../igua/data/progress";
 
 export async function permanentDefeatCutscene() {
+    jukebox.playVolumeZero = true;
     disablePlayerCollision();
     jukebox.fadeOut(0, 500);
     await sleep(1500);
@@ -23,6 +24,7 @@ export async function permanentDefeatCutscene() {
     while (WeakToSpellsInstances.value.length > 0) {
         WeakToSpellsInstances.value.pop()!.destroy();
     }
+    progress.flags.global.somethingGreatHappened = true;
     await sleep(500)
     await lerp(f, 'alpha').to(0).over(1000);
 
@@ -32,7 +34,6 @@ export async function permanentDefeatCutscene() {
     await showAll('Something great has happened.',
         'Return to the wizard of emotion for your reward.');
 
-    progress.flags.global.somethingGreatHappened = true;
-
     recreatePlayerInPlace();
+    jukebox.playVolumeZero = false;
 }
