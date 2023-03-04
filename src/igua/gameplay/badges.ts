@@ -42,8 +42,8 @@ export const Badges = {
         'Redirect Tool', 'Poison increases Claw attack power instead of speed.'),
     Dexterous: mk({ comboClawAttackPowerScale: [0.7, 0.9, 1.5, 1.2, 1.8, 1.4, 1.4, 1.4, 1.4, 2.3, 1.4] },
         'Dexterous Twig', 'Claw attack power is reduced, but temporarily increases with consecutive attacks.'),
-    Cigarette: mk({ lungCastDistanceScale: 36 / 90, lungCastTimeScale: 0.925, lungAttackPowerScale: 1.67 },
-        'Cigarette Charm', 'Lung cast distance is reduced, but Lung attack power is increased.'),
+    Cigarette: mk({ lungAttackPowerScale: 1.67 },
+        'Cigarette Charm', 'Lung attack power is increased.'),
 
     // TODO These are pretty boring...
     Heavy: mk({ movementSpeedScale: 0.625, baseAttackPowerScale: 1.5 }),
