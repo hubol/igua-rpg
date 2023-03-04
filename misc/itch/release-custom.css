@@ -2,12 +2,67 @@
 	overflow: initial;
 }
 
+.view_game_page .donate_btn, .view_game_page .buy_btn,
+.html_embed_widget .button.load_iframe_btn, .html_embed_widget .button.restore_btn {
+	border: none;
+	font-size: 125%;
+	line-height: 0.1;
+	padding: 1em 0.8em;
+	border-radius: 5px;
+	border-bottom: solid 1px #dcbbed;
+	box-shadow: 0 5px 0 #cd9ce7;
+	text-shadow: 0 -1px #7b3381 !important;
+}
+
+.view_game_page .donate_btn:hover, .view_game_page .buy_btn:hover,
+.html_embed_widget .button.load_iframe_btn:hover, .html_embed_widget .button.restore_btn:hover {
+	transform: translateY(-2px);
+	filter: brightness(1.04);
+	box-shadow: 0 7px 0 #cd9ce7;
+}
+
+.view_game_page .donate_btn:active, .view_game_page .buy_btn:active,
+.html_embed_widget .button.load_iframe_btn:active, .html_embed_widget .button.restore_btn:active {
+	transform: translateY(5px);
+	filter: brightness(0.98);
+	box-shadow: none;
+}
+
 .html_embed_widget.base_widget.embed_wrapper {
 	overflow: hidden;
 }
 
 .responsive .view_game_page .columns {
 	max-width: initial;
+}
+
+.html_embed_widget .button.load_iframe_btn, .html_embed_widget .button.restore_btn {
+	font-family: var(--itchio_font_family);
+	font-size: 0;
+	padding: 22px 16px;
+}
+
+.button.load_iframe_btn svg, .restore_btn.button svg {
+	display: none;
+}
+
+.button.load_iframe_btn::before {
+	font-size: 1.33rem;
+	display: inline;
+	content: 'Play Demo';
+}
+
+.restore_btn.button::before {
+	font-size: 1.33rem;
+	display: inline;
+	content: 'Resume Demo';
+}
+
+.button.load_iframe_btn::after, .restore_btn.button::after {
+	font-size: 1.67rem;
+	margin-left: 0.3em;
+	display: inline;
+	content: '\25B6';
 }
 
 .build_row {
