@@ -23,7 +23,6 @@ img {
 }
 
 .formatted_description a {
-	margin: 0 0 1em;
 	border-radius: 2px;
 	text-decoration: none;
 	text-underline-offset: 2px;
@@ -38,39 +37,35 @@ img {
 }
 
 .formatted_description a::after {
-	font-family: sans-serif;	
 	padding-left: 0.2em;
 	position: relative;
 	display: inline-block;
-	content: '\1F865';
+	content: '\2197';
 	font-size: 133%;
 	line-height: 0.67;
-	top: 0.1em;
+	top: 0.075em;
 }
 
 .formatted_description > div:first-child > div {
 	display: flex;
 	align-items: center;
 	gap: 1em;
+	margin-bottom: 2em;
 }
 
-@media only screen and (max-width: 700px) {
+.formatted_description > div:first-child > div > div {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+}
+
+.formatted_description > div:first-child > div div > * {
+	margin-top: 0;
+}
+
+@media only screen and (max-width: 600px) {
 	.formatted_description > div:first-child > div {
 		flex-direction: column;
-	}
-
-	.formatted_description > div:first-child > div > div {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 2em;
-	}
-
-	.formatted_description > div:first-child > div > div > * {
-		margin-bottom: 0;
-	}
-
-	.formatted_description > div:first-child > div a {
-		margin-top: 1.5em;
 	}
 
 	.formatted_description > div:first-child > div a, .formatted_description > div:first-child > div h2 {
@@ -78,7 +73,7 @@ img {
 	}
 }
 
-@media only screen and (min-width: 701px) {
+@media only screen and (min-width: 601px) {
 	.formatted_description > div:first-child > div:nth-child(even) {
 		flex-direction: row-reverse;
 	}
