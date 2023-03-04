@@ -4,28 +4,23 @@
 
 .view_game_page .donate_btn, .view_game_page .buy_btn,
 .html_embed_widget .button.load_iframe_btn, .html_embed_widget .button.restore_btn {
-	border: none;
+	border: solid 4px #80808000;
 	font-size: 125%;
 	line-height: 0.1;
 	padding: 1em 0.8em;
-	border-radius: 5px;
-	border-bottom: solid 1px #dcbbed;
-	box-shadow: 0 5px 0 #cd9ce7;
-	text-shadow: 0 -1px #7b3381 !important;
+	border-radius: 3px;
+	text-shadow: 0 -1.5px #7b3381 !important;
+	transition: border 0.1s, text-shadow 0.1s, color 0.1s, background 0.1s;
 }
+
+
 
 .view_game_page .donate_btn:hover, .view_game_page .buy_btn:hover,
 .html_embed_widget .button.load_iframe_btn:hover, .html_embed_widget .button.restore_btn:hover {
-	transform: translateY(-2px);
-	filter: brightness(1.04);
-	box-shadow: 0 7px 0 #cd9ce7;
-}
-
-.view_game_page .donate_btn:active, .view_game_page .buy_btn:active,
-.html_embed_widget .button.load_iframe_btn:active, .html_embed_widget .button.restore_btn:active {
-	transform: translateY(5px);
-	filter: brightness(0.98);
-	box-shadow: none;
+	border: solid 4px var(--itchio_link_color);
+	text-shadow: initial !important;
+	color: var(--itchio_link_color);
+	background: none;
 }
 
 .html_embed_widget.base_widget.embed_wrapper {
@@ -131,6 +126,13 @@ img {
 @media only screen and (min-width: 601px) {
 	.formatted_description > div:first-child > div:nth-child(even) {
 		flex-direction: row-reverse;
+	}
+}
+
+@media only screen and (min-width: 601px) and (hover: hover) {
+	.html_embed_widget .game_frame {
+		width: initial !important;
+		height: 240px !important;
 	}
 }
 
