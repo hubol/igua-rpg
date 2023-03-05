@@ -4,20 +4,20 @@
 
 .view_game_page .donate_btn, .view_game_page .buy_btn,
 .html_embed_widget .button.load_iframe_btn, .html_embed_widget .button.restore_btn {
-	border: solid 4px #80808000;
+	border: solid 4px var(--itchio_link_color);
 	font-size: 125%;
 	line-height: 0.1;
 	padding: 1em 0.8em;
 	border-radius: 3px;
 	text-shadow: 0 -1.5px #7b3381 !important;
-	transition: border 0.1s, text-shadow 0.1s, color 0.1s, background 0.1s;
+	transition: text-shadow 0.1s, color 0.1s, background 0.1s;
+	box-shadow: none;
 }
 
 
 
 .view_game_page .donate_btn:hover, .view_game_page .buy_btn:hover,
 .html_embed_widget .button.load_iframe_btn:hover, .html_embed_widget .button.restore_btn:hover {
-	border: solid 4px var(--itchio_link_color);
 	text-shadow: initial !important;
 	color: var(--itchio_link_color);
 	background: none;
@@ -57,7 +57,7 @@
 	font-size: 1.67rem;
 	margin-left: 0.3em;
 	display: inline;
-	content: '\25B6';
+	content: '\25B6 \FE0E';
 }
 
 .build_row {
