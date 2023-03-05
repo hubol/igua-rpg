@@ -75,15 +75,17 @@ img {
 .formatted_description a {
 	border-radius: 2px;
 	text-decoration: none;
-	text-underline-offset: 2px;
 	padding: 0.2em 0.5em;
 	display: inline-block;
 	background-color: var(--itchio_text_color);
+	border: solid 3px var(--itchio_text_color);
 	color: white;
+	transition: background-color 0.1s, color 0.1s;
 }
 
 .formatted_description a:hover {
-	text-decoration: underline;
+	background: none;
+	color: var(--itchio_text_color);
 }
 
 .formatted_description a::after {
