@@ -160,8 +160,10 @@ kbd {
    font-family: inherit;
    display: inline-block;
    border: solid 1px #006060;
+   border-top: none;
    background-color: #007f7f;
    box-shadow: 0 5px #006060;
+   text-shadow: 0 -1.5px 0 #006060;
    color: white;
    border-radius: 0.2em;
    padding: 0.2em 0.4em;
@@ -169,37 +171,42 @@ kbd {
    text-align: center;
 }
 
-.formatted_description > div:first-child > div:first-child > div {
-	width: 100%;
+.formatted_description > div > div:first-child {
+	justify-content: center;
+	margin-bottom: 20px;
 }
 
-.formatted_description div:first-child h2 + div {
+.formatted_description figure {
+	margin: 0;
+	align-self: center;
+}
+
+.formatted_description figure > div {
     display: flex;
     flex-direction: column;
     max-width: 500px;
     width: 100%;
-    align-self: center;
     background-color: #ebebeb;
     padding: 1em;
     box-sizing: border-box;
     border-radius: 3px;
 }
 
-.formatted_description div:first-child h2 + div > * {
+.formatted_description figure > div > * {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.formatted_description div:first-child h2 + div > * > * {
+.formatted_description figure > div > * > * {
 	text-align: center;
 }
 
-.formatted_description div:first-child h2 + div > *:first-child > * {
+.formatted_description figure > div > *:first-child > * {
 	align-self: flex-end;
 	justify-self: center;
 }
 
-.formatted_description div:first-child h2 + div > *:nth-child(2) > * {
+.formatted_description figure > div > *:nth-child(2) > * {
 	align-self: flex-start;
 	font-size: 80%;
 	font-style: italic;
@@ -220,7 +227,7 @@ div:first-child h2 + div > * {
    justify-self: center;
 }
 */ 
-.formatted_description div:first-child h2 + div div:first-child span:first-child {
+.formatted_description figure > div > div:first-child span:first-child {
    font-size: 0.67em;
    display: inline-grid;
    grid-template-columns: 1fr 1fr 1fr;
@@ -228,23 +235,23 @@ div:first-child h2 + div > * {
    margin-bottom: 0.75em;
 }
 
-.formatted_description div:first-child h2 + div div:first-child span:first-child > * {
+.formatted_description figure > div > div:first-child span:first-child > * {
    margin: 0.1em;
 }
 
-.formatted_description div:first-child h2 + div div:first-child span:first-child > kbd:nth-child(1) {
+.formatted_description figure > div > div:first-child span:first-child > kbd:nth-child(1) {
    grid-area: 2 / 1;
 }
 
-.formatted_description div:first-child h2 + div div:first-child span:first-child > kbd:nth-child(2) {
+.formatted_description figure > div > div:first-child span:first-child > kbd:nth-child(2) {
    grid-area: 1 / 2;
 }
 
-.formatted_description div:first-child h2 + div div:first-child span:first-child > kbd:nth-child(3) {
+.formatted_description figure > div > div:first-child span:first-child > kbd:nth-child(3) {
    grid-area: 2 / 2;
 }
 
-.formatted_description div:first-child h2 + div div:first-child span:first-child > kbd:nth-child(4) {
+.formatted_description figure > div > div:first-child span:first-child > kbd:nth-child(4) {
    grid-area: 2 / 3;
 }
 
