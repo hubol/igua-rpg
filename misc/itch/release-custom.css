@@ -143,10 +143,64 @@ img {
 	}
 }
 
-@media only screen and (min-width: 601px) and (hover: hover) {
-	.html_embed_widget .game_frame {
-		width: initial !important;
-		height: 240px !important;
+@media only screen and (hover: hover) {
+	.html_embed_widget .button.load_iframe_btn, .html_embed_widget .button.restore_btn {
+		padding: 17px 16px 12px;
+	}
+
+	div[itemtype="http://schema.org/Product"] {
+		text-align: center;
+	}
+
+	div[itemtype="http://schema.org/Product"] .html_embed_widget.base_widget.embed_wrapper,
+	div[itemtype="http://schema.org/Product"] .html_embed_widget.base_widget.embed_wrapper div {
+		margin: 0;
+		padding: 0;
+		width: initial;
+		height: initial;
+		background: none;
+	}
+	
+	div[itemtype="http://schema.org/Product"] .html_embed_widget.base_widget.embed_wrapper div:not(.restore_wrapper),
+	div[itemtype="http://schema.org/Product"] .html_embed_widget.base_widget.embed_wrapper {
+		display: inline;
+	}
+
+	div:not(.maximized) > .restore_wrapper {
+		display: inline;
+	}
+	
+	div[itemtype="http://schema.org/Product"] button {
+		display: inline-block !important;
+	}
+
+	div[itemtype="http://schema.org/Product"] .donate {
+		display: inline !important;
+	}
+
+	div[itemtype="http://schema.org/Product"] button, .donate a {
+		margin: 0 5px;
+	}
+
+	.header {
+		margin-bottom: 10px;
+	}
+
+	div[itemtype="http://schema.org/Product"] .donate a {
+		display: inline-block !important;
+		background-color: #CCAE0A;
+		border: solid 4px #CCAE0A;
+		text-shadow: 0 -1.5px #ad662a !important;
+	}
+
+	div[itemtype="http://schema.org/Product"] .donate a:hover {
+		text-shadow: initial !important;
+		color: #CCAE0A;
+		background: none;
+	}
+
+	div[itemtype="http://schema.org/Product"] .columns {
+		text-align: initial;
 	}
 }
 
