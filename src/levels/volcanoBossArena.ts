@@ -50,7 +50,7 @@ export function VolcanoBossArena() {
         })
         .asCollectible(progress.flags.volcano.key, "fromLava", () => freezeSceneAndShowMessage('Found temple key.'));
 
-    if (!progress.flags.volcano.defeatedVileAngel)
+    if (!progress.flags.volcano.defeatedVileAngel && !progress.flags.global.somethingGreatHappened)
         enrichBoss(level);
 
     enrichBossDoor(level);

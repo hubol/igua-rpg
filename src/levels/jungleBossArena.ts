@@ -35,7 +35,7 @@ export function JungleBossArena() {
     const bossMinX = level.BossCamera.x;
     const bossMaxX = bossMinX + 256;
 
-    if (!progress.flags.jungle.defeatedUnorthodoxAngel) {
+    if (!progress.flags.jungle.defeatedUnorthodoxAngel && !progress.flags.global.somethingGreatHappened) {
         for (let x = bossMinX; x < bossMaxX; x += 16)
             spike(35).at(x, 64).show();
 
