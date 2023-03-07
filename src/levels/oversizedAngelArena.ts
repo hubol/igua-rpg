@@ -20,6 +20,7 @@ import {sparkly} from "../gameObjects/sparkleSmall";
 import {CollectGeneric} from "../sounds";
 import {persistence} from "../igua/data/persistence";
 import {keepSavingValuables} from "../gameObjects/valuableTrove";
+import {cracks} from "../gameObjects/cracks";
 
 export function OversizedAngelArena() {
     scene.backgroundColor = 0x2F4B5E;
@@ -33,6 +34,7 @@ export function OversizedAngelArena() {
         return slidingDoor(x, false).openInstantly();
     });
 
+    cracks(66.876 * 13, 0x213E51).behind(0);
     decal.instances.filter(x => x.texture === CracksA).forEach(x => x.tint = 0x213E51);
 
     const box = level.PoppingRocksBox;
