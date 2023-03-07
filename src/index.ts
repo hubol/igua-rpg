@@ -35,7 +35,6 @@ async function initialize()
         const [ready, loadingScreenPromise] = showLoadingScreen(application);
         const howls = Object.values(require("./sounds")) as Howl[];
         await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
-        // howls.forEach(x => x.mute(false));
         ready.ready();
         await loadingScreenPromise;
         useDynamicsCompressor();
@@ -63,10 +62,7 @@ function showFatalError(error) {
 <h2>${message}</h2>`;
 }
 
-// if (environment.isProduction && !environment.isElectron)
-//     addStartGameElements();
-// else
-    window.onload = initialize;
+window.onload = initialize;
 
 window.addEventListener("unhandledrejection", handleIguaPromiseRejection);
 window.addEventListener("unhandledrejection", handlePromiseCancellation);
@@ -77,19 +73,6 @@ function discoverAndPublishGameObjectResolvers()
         modules: require("./gameObjects/**/*.*"),
         path: "src/gameObjects"
     }]));
-}
-
-function addStartGameElements()
-{
-    const buttonElement = document.createElement("button");
-    buttonElement.id = "startButton";
-    buttonElement.textContent = "Start game";
-    buttonElement.onclick = () => {
-        document.body.removeChild(buttonElement);
-        setTimeout(initialize);
-    };
-
-    document.body.appendChild(buttonElement);
 }
 
 function addGameCanvasToDocument(element: HTMLCanvasElement)
