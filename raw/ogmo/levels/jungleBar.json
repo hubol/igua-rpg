@@ -175,6 +175,28 @@
           "originY": 27,
           "flippedX": true,
           "values": {"name": "Patron", "style": 14, "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 17,
+          "_eid": "26367058",
+          "x": 212,
+          "y": 127,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "HealedPatron", "style": 8, "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 18,
+          "_eid": "26367058",
+          "x": 136,
+          "y": 127,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": false,
+          "values": {"name": "OutcastPatron", "style": 19, "depth": 0}
         }
       ]
     },
@@ -278,7 +300,7 @@
           "values": {"name": ""}
         },
         {
-          "x": 192,
+          "x": 176,
           "y": 129,
           "scaleX": 1,
           "scaleY": 1,
@@ -363,9 +385,43 @@
           "texture": "cocktail glass.png",
           "originX": 0.5,
           "originY": 0.5,
-          "values": {"name": ""}
+          "values": {"name": "DrinkBefore"}
+        },
+        {
+          "x": 184,
+          "y": 118,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cocktail glass.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "DrinkAfter2"}
+        },
+        {
+          "x": 168,
+          "y": 118,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "cocktail glass.png",
+          "originX": 0.5,
+          "originY": 0.5,
+          "values": {"name": "DrinkAfter1"}
         }
       ],
+      "folder": "../../src/images"
+    },
+    {
+      "name": "CloseTerrainDecals",
+      "_eid": "96969420",
+      "offsetX": 0,
+      "offsetY": 0,
+      "gridCellWidth": 8,
+      "gridCellHeight": 8,
+      "gridCellsX": 32,
+      "gridCellsY": 32,
+      "decals": [],
       "folder": "../../src/images"
     },
     {

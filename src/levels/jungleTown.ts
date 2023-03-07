@@ -28,6 +28,9 @@ import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsF
 import {JungleOracleLooks} from "../gameObjects/npcLooks";
 import {iguanaHead} from "../igua/puppet/iguanaPuppet";
 import {Blinking} from "../pixins/blinking";
+import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
+import {DestroyBeforeGreatness} from "../pixins/destroyByGreatness";
+import {biguaInJungle} from "../gameObjects/biguaInJungle";
 
 function jungleTownLevel() {
     return applyOgmoLevel(JungleTownArgs);
@@ -75,6 +78,12 @@ export function JungleTown() {
 
     if (!progress.flags.jungle.usedBlessing && progress.flags.jungle.bigKey.reward)
         treeSpirit(level);
+
+    enrichBigua(level);
+}
+
+function enrichBigua(level: GameObjectsType<typeof JungleTownArgs>) {
+    const b = biguaInJungle().at(level.Bigua).withPixin(DestroyBeforeGreatness).show();
 }
 
 function enrichOracleTentAfterLeaningTruth(tent: Sprite) {

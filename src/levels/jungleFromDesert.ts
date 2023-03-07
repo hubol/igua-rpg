@@ -17,6 +17,7 @@ import {progress} from "../igua/data/progress";
 import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {environment} from "../igua/environment";
 import {Dithered} from "../pixins/dithered";
+import {DestroyAfterGreatness} from "../pixins/destroyByGreatness";
 
 export function JungleFromDesert() {
     jukebox.play(JungleMusic).warm(TickingTime, ForestDeepMusic);
@@ -34,10 +35,14 @@ export function JungleFromDesert() {
     decalsOf(GroundSpeckles).forEach(x => x.tint = 0x877856);
     if (level.SpiderValuable)
         spider(level.SpiderValuable, [-1, -160], { downUnit: 0.05 }).show();
-    const b = biguaInJungle().at(level.BiguaSpawn).show();
+    const b = biguaInJungle().at(level.BiguaSpawn)
+        .withPixin(DestroyAfterGreatness)
+        .show();
     b.scale.x = -1;
     decalsOf(CloudLong).forEach(secretCloud);
     level.DeepGlow.tint = 0x29444E;
+
+    level.Door.withStep(() => level.Door.locked = progress.flags.global.somethingGreatHappened);
 
     enrichDemo(level);
 }

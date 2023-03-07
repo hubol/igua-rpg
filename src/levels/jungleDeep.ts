@@ -37,6 +37,9 @@ export function JungleDeep() {
 }
 
 function enrichOutcast(level: GameObjectsType<typeof JungleDeepArgs>) {
+    if (progress.flags.global.somethingGreatHappened)
+        level.Outcast.destroy();
+
     level.Outcast.cutscene = async () => {
         await player.walkTo(level.Outcast.x - 48);
         await sleep(66);
@@ -48,6 +51,14 @@ function enrichOutcast(level: GameObjectsType<typeof JungleDeepArgs>) {
             "The oracles act like the protectors were perfect and just mysteriously vanished, when their failures and demise are clearly documented.",
             "Honestly, I don't even think the great weapon exists. It's just an idea that the oracles cling to."
         );
+
+        if (progress.flags.final.playerMetEmoWizard) {
+            await showAll(`Oh? You don't say?`,
+                `So it doesn't exist after all...`,
+                `Interesting. I'm sure the oracles were surprised to find that out.`,
+                `Still, I hope that you can fix the world without the great weapon.`);
+        }
+
         if (progress.flags.jungle.spokeWithOutcast)
             return;
 

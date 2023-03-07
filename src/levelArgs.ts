@@ -1347,14 +1347,16 @@ export const JungleBarArgs = {
       JunglePlank_4: resolveDecalGameObject({ x: 16, y: 184, originX: 0, originY: 0, scaleX: 5, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: JunglePlank }),
       JunglePlank_5: resolveDecalGameObject({ x: 40, y: 184, originX: 0, originY: 0, scaleX: 5, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: JunglePlank }),
       DinerTable: resolveDecalGameObject({ x: 152, y: 73, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: DinerTable }),
-      DinerTable_1: resolveDecalGameObject({ x: 192, y: 129, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: DinerTable }),
+      DinerTable_1: resolveDecalGameObject({ x: 176, y: 129, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: DinerTable }),
       DinerTable_2: resolveDecalGameObject({ x: 96, y: 129, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: DinerTable }),
       DinerTable_3: resolveDecalGameObject({ x: 176, y: 241, originX: 0.5, originY: 1, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: DinerTable }),
       Cobweb: resolveDecalGameObject({ x: 233, y: 148, originX: 0.5, originY: 0.5, scaleX: -1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: Cobweb }),
       SmallDecorativeRock: resolveDecalGameObject({ x: 25, y: 236, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: SmallDecorativeRock }),
       Bottle1: resolveDecalGameObject({ x: 24, y: 225, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: Bottle1 }),
       SmallDecorativeRock_1: resolveDecalGameObject({ x: 28, y: 237, originX: 0.5, originY: 0.5, scaleX: -0.3, scaleY: -0.5, rotation: 0, layerName: "TerrainDecals", texture: SmallDecorativeRock }),
-      CocktailGlass: resolveDecalGameObject({ x: 104, y: 118, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: CocktailGlass }),
+      DrinkBefore: resolveDecalGameObject({ x: 104, y: 118, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: CocktailGlass }),
+      DrinkAfter2: resolveDecalGameObject({ x: 184, y: 118, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: CocktailGlass }),
+      DrinkAfter1: resolveDecalGameObject({ x: 168, y: 118, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "TerrainDecals", texture: CocktailGlass }),
       GroundSpeckles: resolveDecalGameObject({ x: 208, y: 112, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: GroundSpeckles }),
       GroundSpeckles_1: resolveDecalGameObject({ x: 153, y: 101, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: GroundSpeckles }),
       GroundSpeckles_2: resolveDecalGameObject({ x: 104, y: 112, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "BackgroundDecals", texture: GroundSpeckles }),
@@ -1381,6 +1383,8 @@ export const JungleBarArgs = {
       SlopeRight: resolveSlopeRight({ type: "SlopeRight", x: 224, y: 16, width: 32, height: 32, flippedX: false, flippedY: true, uid: "55824435_14", name: "", depth: 0 }),
       SlopeLeft: resolveSlopeLeft({ type: "SlopeLeft", x: 0, y: 16, width: 32, height: 32, flippedX: false, flippedY: true, uid: "55845599_15", name: "", depth: 0 }),
       Patron: resolveNpc({ type: "NpcIguana", x: 128, y: 127, flippedX: true, flippedY: false, uid: "26367058_16", name: "Patron", style: 14, depth: 0 }),
+      HealedPatron: resolveNpc({ type: "NpcIguana", x: 212, y: 127, flippedX: true, flippedY: false, uid: "26367058_17", name: "HealedPatron", style: 8, depth: 0 }),
+      OutcastPatron: resolveNpc({ type: "NpcIguana", x: 136, y: 127, flippedX: false, flippedY: false, uid: "26367058_18", name: "OutcastPatron", style: 19, depth: 0 }),
     };
   },
 };
@@ -1805,6 +1809,7 @@ export const JungleTownArgs = {
       FromGiants: { type: "Checkpoint", x: 1024, y: 24, flippedX: false, flippedY: false, uid: "55940370_90", name: "FromGiants", faceRight: false, depth: 0 },
       Block_13: resolveBlock({ type: "Block", x: 0, y: 0, width: 32, height: 448, flippedX: false, flippedY: false, uid: "55823268_91", name: "", depth: 0 }),
       FromBlessing: { type: "Checkpoint", x: 748, y: 104, flippedX: false, flippedY: false, uid: "55940370_92", name: "FromBlessing", faceRight: true, depth: 0 },
+      Bigua: { type: "Anchor", x: 528, y: 385, flippedX: false, flippedY: false, uid: "25979726_94", name: "Bigua", depth: 0 },
     };
   },
 };

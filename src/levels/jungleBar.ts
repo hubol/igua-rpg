@@ -4,13 +4,13 @@ import {jukebox} from "../igua/jukebox";
 import {JungleBarArgs} from "../levelArgs";
 import {applyOgmoLevel} from "../igua/level/applyOgmoLevel";
 import {shop} from "../igua/inventory/shop";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {decalsOf} from "../gameObjects/decal";
 import {GroundSpeckles, JunglePlank} from "../textures";
 import {mirror} from "../gameObjects/mirror";
 import {cigarette} from "../gameObjects/cigarette";
 import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
-import {DestroyAfterGreatness} from "../pixins/destroyByGreatness";
+import {DestroyAfterGreatness, DestroyBeforeGreatness} from "../pixins/destroyByGreatness";
 
 export function JungleBar() {
     jukebox.play(FunTimes);
@@ -36,4 +36,15 @@ export function JungleBar() {
 
     level.Barkeeper.withStep(() => level.Barkeeper.isDucking = rayToPlayerIntersectsWall(level.Barkeeper));
     level.Barkeeper.duckImmediately();
+
+    level.HealedPatron.withPixin(DestroyBeforeGreatness).withCutscene(() => showAll(
+        `I was sick for a while before you came along! I thought I would never feel better.`,
+        `Thank you for getting the medicine for me.`));
+    level.OutcastPatron.withPixin(DestroyBeforeGreatness).withCutscene(() => showAll(
+        `So the invaders are gone, and without the help of the great weapon.`,
+        `Maybe I'll move back into town now that the oracles are subdued.`
+    ));
+
+    level.DrinkBefore.withPixin(DestroyAfterGreatness);
+    [level.DrinkAfter1, level.DrinkAfter2].forEach(x => x.withPixin(DestroyBeforeGreatness));
 }
