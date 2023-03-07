@@ -35,6 +35,7 @@ async function initialize()
         const [ready, loadingScreenPromise] = showLoadingScreen(application);
         const howls = Object.values(require("./sounds")) as Howl[];
         await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
+        // howls.forEach(x => x.mute(false));
         ready.ready();
         await loadingScreenPromise;
         useDynamicsCompressor();
@@ -62,9 +63,9 @@ function showFatalError(error) {
 <h2>${message}</h2>`;
 }
 
-if (environment.isProduction && !environment.isElectron)
-    addStartGameElements();
-else
+// if (environment.isProduction && !environment.isElectron)
+//     addStartGameElements();
+// else
     window.onload = initialize;
 
 window.addEventListener("unhandledrejection", handleIguaPromiseRejection);
