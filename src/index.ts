@@ -29,6 +29,8 @@ const application = createApplication({width: 256, height: 256, maxFps: 60, show
 async function initialize()
 {
     try {
+        performance.setResourceTimingBufferSize(500);
+
         upscaleGameCanvas(addGameCanvasToDocument(application.canvasElement));
         application.animator.start();
 
@@ -37,6 +39,9 @@ async function initialize()
         await Promise.all([loadFontsAsync(), loadTexturesAsync(), loadHowlsAsync(howls)]);
         ready.ready();
         await loadingScreenPromise;
+
+        performance.clearResourceTimings();
+
         useDynamicsCompressor();
         require("./utils/extensions/**/*.*");
         if (publishGameObjectResolversIsRequested())

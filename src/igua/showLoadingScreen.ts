@@ -4,9 +4,9 @@ import {now} from "../utils/now";
 import {approachLinear} from "../utils/math/number";
 import {environment} from "./environment";
 
-const ExpectedResourceLength = 250;
+const ExpectedResourceLength = 480;
 const MaxUnitUntilReady = 0.9;
-const LoadingBarInterpolationFactor = 0.02;
+const LoadingBarInterpolationFactor = 0.05;
 const LoadingBarColor = 0xCCAE0A;
 const LoadingBarY = 256 - 32;
 const MinimumLoadingScreenTimeS = 0.2;
