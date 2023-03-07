@@ -59,23 +59,35 @@ export function VolcanoTown() {
         level.OracleDoor.locked = true;
     }
 
+    let checkedAlteredSign = false;
+
     if (progress.flags.global.somethingGreatHappened) {
         level.OracleDoor.locked = true;
         level.OracleDoor.ext.showClosedMessage = false;
 
         level.VolcanoTownSign.title = 'Brown';
-        level.VolcanoTownSign.cutscene = () => show(`The sign has been adjusted to read:
-"This sign is brown."`);
+        level.VolcanoTownSign.cutscene = async () => {
+            await show(`This is the volcano brown.`);
+            if (promptedToCheckSign)
+                checkedAlteredSign = true;
+        };
     }
 
     let talkedToPranksterOnce = false;
+    let promptedToCheckSign = false;
 
     level.Prankster
         .withPixin(DestroyBeforeGreatness)
         .withCutscene(async () => {
             if (talkedToPranksterOnce) {
+                if (checkedAlteredSign) {
+                    return await showAll(`Pretty good, huh?`,
+`It used to say "Town"!`);
+                }
+
+                promptedToCheckSign = true;
                 return await showAll(`By the way, did you see what I did to the sign?`,
-`I thought that was pretty cool.`);
+`I thought that was pretty good.`);
             }
 
             talkedToPranksterOnce = true;

@@ -2356,6 +2356,7 @@ export const VolcanoAboveArgs = {
       PipeHorizontal_7: resolvePipeHorizontal({ type: "PipeHorizontal", x: 596, y: 168, width: 18, flippedX: false, flippedY: false, uid: "55841307_23", visible: false, name: "", depth: 0 }),
       FromGiants: { type: "Checkpoint", x: 192, y: 16, flippedX: false, flippedY: false, uid: "55940370_25", name: "FromGiants", faceRight: false, depth: 0 },
       LibraryBook: resolveLibraryBook({ type: "LibraryBook", x: 663, y: 161, flippedX: false, flippedY: false, uid: "09731745_26", name: "", depth: 0 }),
+      SadOracle: resolveNpc({ type: "NpcIguana", x: 292, y: 159, flippedX: true, flippedY: false, uid: "26367058_27", name: "SadOracle", style: 10, depth: 0 }),
     };
   },
 };

@@ -300,6 +300,17 @@
           "originX": 9,
           "originY": 11,
           "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 27,
+          "_eid": "26367058",
+          "x": 292,
+          "y": 159,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": true,
+          "values": {"name": "SadOracle", "style": 10, "depth": 0}
         }
       ]
     },

@@ -13,7 +13,9 @@ import {wait} from "../cutscene/wait";
 import {decalsOf} from "../gameObjects/decal";
 import {CloudLong, GroundSpeckles, SkylightTriangle} from "../textures";
 import {cameraLock} from "../gameObjects/cameraLock";
-import {DestroyAfterGreatness} from "../pixins/destroyByGreatness";
+import {DestroyAfterGreatness, DestroyBeforeGreatness} from "../pixins/destroyByGreatness";
+import {showAll} from "../cutscene/dialog";
+import {sleep} from "../cutscene/sleep";
 
 export function VolcanoAbove() {
     scene.backgroundColor = 0x98C0E0;
@@ -40,4 +42,25 @@ export function VolcanoAbove() {
     prankster().withPixin(DestroyAfterGreatness).at([0, -3].add(level.Prankster));
     const triangle = Sprite.from(SkylightTriangle).at(level.LibraryBook.x + 2, 0).ahead();
     triangle.anchor.x = 0.5;
+
+    let talkedToSadOracle = false;
+
+    level.SadOracle
+        .withPixin(DestroyBeforeGreatness)
+        .withCutscene(async () => {
+            if (talkedToSadOracle) {
+                await showAll(`I hope that I find my calling with some new task.`);
+                return;
+            }
+            await showAll(`I see that you completed your work, after all.`,
+                `I'm sorry that we led you astray.`,);
+            await sleep(1000);
+            await showAll(`I think some of us, deep down, knew that at least some of what we believed in was phony.`,
+                `But we had an image to uphold...`,);
+            await sleep(1000);
+            await showAll(
+                `I think that now might be a very convenient time for me to leave the oracle group.`,
+                `Maybe I will find my calling with some new task.`);
+            talkedToSadOracle = true;
+        });
 }
