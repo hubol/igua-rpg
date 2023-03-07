@@ -194,7 +194,7 @@
           "y": 288,
           "originX": 14,
           "originY": 18,
-          "values": {"title": "Town", "message": "This is the volcano town.", "name": "", "depth": 0}
+          "values": {"title": "Town", "message": "This is the volcano town.", "name": "VolcanoTownSign", "depth": 0}
         },
         {
           "name": "SlopeLeft",
@@ -652,7 +652,7 @@
           "y": 248,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "VolcanoOracle", "checkpointName": "FromTown", "name": "", "depth": 0}
+          "values": {"levelName": "VolcanoOracle", "checkpointName": "FromTown", "name": "OracleDoor", "depth": 0}
         },
         {
           "name": "Block",
@@ -710,6 +710,17 @@
           "originY": 27,
           "flippedX": true,
           "values": {"name": "Iguard", "style": 21, "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 64,
+          "_eid": "26367058",
+          "x": 620,
+          "y": 280,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": false,
+          "values": {"name": "Prankster", "style": 18, "depth": 0}
         }
       ]
     },

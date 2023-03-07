@@ -18,6 +18,10 @@ import {decalsOf} from "../gameObjects/decal";
 import {CrackSmall, GroundSpeckles} from "../textures";
 import {show, showAll} from "../cutscene/dialog";
 import {progress} from "../igua/data/progress";
+import {DestroyBeforeGreatness} from "../pixins/destroyByGreatness";
+import {giftValuables, playValuableCollectSounds} from "../cutscene/giftValuables";
+import {sleep} from "../cutscene/sleep";
+import {player} from "../gameObjects/player";
 
 export function VolcanoTown() {
     scene.backgroundColor = 0x78917D;
@@ -37,6 +41,11 @@ export function VolcanoTown() {
     frontWaves.scale.y = 1.4;
 
     level.Iguard.cutscene = async () => {
+        if (progress.flags.global.somethingGreatHappened) {
+            await showAll(`You got rid of the invaders!`,
+                'But as the knight of the volcano clan, my work is never done.');
+            return;
+        }
         await showAll('I am Iguard, the knight of the volcano clan.',
             `It's my job to keep the invaders out of the town.`);
         if (!progress.flags.volcano.defeatedVileAngel) {
@@ -45,4 +54,60 @@ export function VolcanoTown() {
                 await show(`The lava will give you problems for now, since you don't have the calloused feet of the volcano clan.`);
         }
     };
+
+    if (progress.flags.final.doorOpened) {
+        level.OracleDoor.locked = true;
+    }
+
+    if (progress.flags.global.somethingGreatHappened) {
+        level.OracleDoor.locked = true;
+        level.OracleDoor.ext.showClosedMessage = false;
+
+        level.VolcanoTownSign.title = 'Brown';
+        level.VolcanoTownSign.cutscene = () => show(`The sign has been adjusted to read:
+"This sign is brown."`);
+    }
+
+    let talkedToPranksterOnce = false;
+
+    level.Prankster
+        .withPixin(DestroyBeforeGreatness)
+        .withCutscene(async () => {
+            if (talkedToPranksterOnce) {
+                return await showAll(`By the way, did you see what I did to the sign?`,
+`I thought that was pretty cool.`);
+            }
+
+            talkedToPranksterOnce = true;
+
+            await showAll(`Hey! It's me! The great prankster of the volcano clan.`,
+                `Since you fixed the world, I've been back in business.`,
+                `Check it out!`);
+
+            const stolen = progress.valuables;
+
+            if (stolen < 2) {
+                await sleep(500);
+
+                player.effect('poison');
+                player.vspeed = -2;
+
+                await sleep(1000);
+                await show(`Pretty good right?!`);
+                return;
+            }
+
+            await playValuableCollectSounds(stolen);
+
+            progress.valuables = 0;
+            await show(`Lost ${stolen} valuables!`);
+
+            await sleep(500);
+
+            await showAll(`What? Not a fan?`,
+                `...`,
+                `Fine.`);
+
+            await giftValuables(stolen - 1);
+        });
 }
