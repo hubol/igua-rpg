@@ -55,7 +55,7 @@ export function VolcanoAbove() {
             await showAll(`I see that you completed your work, after all.`,
                 `I'm sorry that we led you astray.`,);
             await sleep(1000);
-            await showAll(`I think some of us, deep down, knew that at least some of what we believed in was phony.`,
+            await showAll(`I think some of us, deep down, knew that at least some of what we believed was phony.`,
                 `But we had an image to uphold...`,);
             await sleep(1000);
             await showAll(

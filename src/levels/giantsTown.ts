@@ -14,11 +14,13 @@ import {
     GiantsNimbusMusic,
     JungleMusic
 } from "../musics";
-import {show} from "../cutscene/dialog";
+import {show, showAll} from "../cutscene/dialog";
 import {region} from "../gameObjects/region";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {gate} from "../gameObjects/gate";
 import {getWorldBounds} from "../igua/gameplay/getCenter";
+import {progress} from "../igua/data/progress";
+import {sleep} from "../cutscene/sleep";
 
 export function GiantsTown() {
     scene.backgroundColor = 0x98C0E0;
@@ -32,14 +34,23 @@ export function GiantsTown() {
     level.GreeterBigua.withCutscene(async () => {
         await show("Oh, you must be from down below.");
         await show("Welcome to the nimbus of the giants.");
-        await show("When the protectors abandoned our world, we came to the skies to create our fortress.");
-        await show("From here, we can carefully watch the angel infestation.");
+        await show("Before the protectors abandoned our world, we were brought to the skies to create our fortress.");
+        if (progress.flags.final.playerMetEmoWizard) {
+            await sleep(500);
+            await showAll("Oh? One of the protectors lives?",
+                `This is fantastic news.`);
+            if (!progress.flags.global.somethingGreatHappened)
+                await show(`The angels don't stand a chance.`);
+        }
+        else
+            await show("From here, we can carefully watch the angel infestation.");
     });
 
     level.FarBigua.withCutscene(async () => {
         await show("We sent our associate to the jungle from here.");
         await show("He might appreciate some of our cuisine, if you feel like making a delivery.");
-        await show("If you wait at the jungle sign, a path to our associate will be revealed.");
+        if (!progress.flags.global.somethingGreatHappened)
+            await show("If you wait at the jungle sign, a path to our associate will be revealed.");
     });
 
     const transitions = region.instances;
