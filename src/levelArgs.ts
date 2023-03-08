@@ -375,7 +375,7 @@ export const CapitalTownArgs = {
       FromShop: { type: "Checkpoint", x: 496, y: 320, flippedX: false, flippedY: false, uid: "55940370_33", name: "FromShop", faceRight: true, depth: 0 },
       FromStorehouse: { type: "Checkpoint", x: 432, y: 392, flippedX: false, flippedY: false, uid: "55940370_34", name: "FromStorehouse", faceRight: false, depth: 0 },
       Block_16: resolveBlock({ type: "Block", x: 144, y: 352, width: 160, height: 88, flippedX: false, flippedY: false, uid: "55823268_35", name: "", depth: 0 }),
-      Door_3: resolveDoor({ type: "Door", x: 208, y: 320, flippedX: false, flippedY: false, uid: "55913988_36", levelName: "CapitalOracle", checkpointName: "", name: "", depth: 0 }),
+      OracleDoor: resolveDoor({ type: "Door", x: 208, y: 320, flippedX: false, flippedY: false, uid: "55913988_36", levelName: "CapitalOracle", checkpointName: "", name: "OracleDoor", depth: 0 }),
       ExhaustBubble1: resolveCapitalBubble({ type: "CapitalBubble", x: 144, y: 264, flippedX: false, flippedY: false, uid: "37271132_37", obscurity: 0, name: "ExhaustBubble1", depth: 0 }),
       ExhaustBubble2: resolveCapitalBubble({ type: "CapitalBubble", x: 176, y: 216, flippedX: false, flippedY: false, uid: "37271132_38", obscurity: 0, name: "ExhaustBubble2", depth: 0 }),
       ExhaustBubble3: resolveCapitalBubble({ type: "CapitalBubble", x: 152, y: 160, flippedX: false, flippedY: false, uid: "37271132_39", obscurity: 0, name: "ExhaustBubble3", depth: 0 }),
@@ -385,6 +385,7 @@ export const CapitalTownArgs = {
       Block_17: resolveBlock({ type: "Block", x: 0, y: 368, width: 144, height: 72, flippedX: false, flippedY: false, uid: "55823268_43", name: "", depth: 0 }),
       Gate_1: resolveGate({ type: "Gate", x: 0, y: 336, width: 32, height: 32, flippedX: false, flippedY: false, uid: "55920197_44", levelName: "CapitalOutskirts", checkpointName: "FromTown", name: "", depth: 0 }),
       FromOutskirts: { type: "Checkpoint", x: 72, y: 368, flippedX: false, flippedY: false, uid: "55940370_45", name: "FromOutskirts", faceRight: true, depth: 0 },
+      SadOracle: resolveNpc({ type: "NpcIguana", x: 976, y: 136, flippedX: false, flippedY: false, uid: "26367058_46", name: "SadOracle", style: 2, depth: 0 }),
     };
   },
 };

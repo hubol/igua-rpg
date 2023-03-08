@@ -403,7 +403,7 @@
           "y": 320,
           "originX": 0,
           "originY": 0,
-          "values": {"levelName": "CapitalOracle", "checkpointName": "", "name": "", "depth": 0}
+          "values": {"levelName": "CapitalOracle", "checkpointName": "", "name": "OracleDoor", "depth": 0}
         },
         {
           "name": "CapitalBubble",
@@ -490,6 +490,17 @@
           "originX": 6,
           "originY": 12,
           "values": {"name": "FromOutskirts", "faceRight": true, "depth": 0}
+        },
+        {
+          "name": "NpcIguana",
+          "id": 46,
+          "_eid": "26367058",
+          "x": 976,
+          "y": 136,
+          "originX": 11,
+          "originY": 27,
+          "flippedX": false,
+          "values": {"name": "SadOracle", "style": 2, "depth": 0}
         }
       ]
     },

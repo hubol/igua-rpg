@@ -66,6 +66,53 @@ function enrichOracle(level: GameObjectsType<typeof CapitalTownArgs>) {
     capitalBubble.instances.forEach(x => x.tinted(0xf0f0f8));
     if (!progress.flags.capital.turnedFireplaceOn)
         capitalBubble.destroyAll();
+
+    function lockOracleDoor() {
+        level.OracleDoor.locked = true;
+        level.OracleDoor.ext.showClosedMessage = false;
+
+        let triedToOpen = false;
+
+        level.OracleDoor.withCutscene(async () => {
+            if (triedToOpen)
+                return await show(`Go away!`);
+
+            await showAll(`I'm not going to open this door.`,
+                `Not for you, nor any of my traitorous cohorts.`);
+            triedToOpen = true;
+        });
+    }
+
+    if (progress.flags.capital.oracle.pestered)
+        lockOracleDoor();
+
+    level.SadOracle.withCutscene(async () => {
+        const playerY = player.y;
+        const antiGravity = container().withStep(() => {
+            player.vspeed = 0;
+            player.y = playerY;
+        }).show();
+
+        await showAll(`I don't want anything to do with you.`,
+            `You ruined everything.`,
+            `You did something wrong, and I should have known better than to let you proceed alone.`);
+
+        sleep(250).then(() => player.scale.x = -1);
+
+        await Promise.race([
+            level.SadOracle.walkTo(764),
+            sleep(5000),
+        ]);
+
+        level.SadOracle.destroy();
+        progress.flags.capital.oracle.pestered = true;
+        lockOracleDoor();
+
+        antiGravity.destroy();
+    });
+
+    if (progress.flags.capital.oracle.pestered || !progress.flags.final.oraclesLearnedTruth)
+        level.SadOracle.destroy();
 }
 
 const adviceSignTxs = subimageTextures(CapitalAdviceSign, 2);

@@ -27,6 +27,9 @@ export function CapitalOracle() {
     jukebox.play(UnbelievableChaos).warm(CapitalMusicPlease);
     enrichFireplace();
     level.Oracle.cutscene = oracleCutscene;
+
+    if (progress.flags.final.oraclesLearnedTruth)
+        level.Oracle.destroy();
 }
 
 async function oracleCutscene() {

@@ -104,6 +104,7 @@ function enrichAmbush(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
         await sleep(250);
         await leave(npc0);
         progress.flags.final.oraclesLearnedTruth = true;
+        progress.flags.capital.turnedFireplaceOn = false;
         await persistence.save();
     }
 
