@@ -18,6 +18,7 @@ import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {environment} from "../igua/environment";
 import {Dithered} from "../pixins/dithered";
 import {DestroyAfterGreatness} from "../pixins/destroyByGreatness";
+import {showAll} from "../cutscene/dialog";
 
 export function JungleFromDesert() {
     jukebox.play(JungleMusic).warm(TickingTime, ForestDeepMusic);
@@ -42,7 +43,14 @@ export function JungleFromDesert() {
     decalsOf(CloudLong).forEach(secretCloud);
     level.DeepGlow.tint = 0x29444E;
 
-    level.Door.withStep(() => level.Door.locked = progress.flags.global.somethingGreatHappened);
+    level.Door.withStep(() => {
+        const previouslyLocked = level.Door.locked;
+        level.Door.locked = progress.flags.global.somethingGreatHappened;
+        if (!previouslyLocked && level.Door.locked) {
+            level.Door.ext.showClosedMessage = false;
+            level.Door.withCutscene(() => showAll(`I'm at the bar celebrating!`))
+        }
+    });
 
     enrichDemo(level);
 }

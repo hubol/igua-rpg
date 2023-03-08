@@ -11,6 +11,8 @@ import {mirror} from "../gameObjects/mirror";
 import {cigarette} from "../gameObjects/cigarette";
 import {rayToPlayerIntersectsWall} from "../igua/logic/rayIntersectsWall";
 import {DestroyAfterGreatness, DestroyBeforeGreatness} from "../pixins/destroyByGreatness";
+import {move} from "../cutscene/move";
+import {sleep} from "../cutscene/sleep";
 
 export function JungleBar() {
     jukebox.play(FunTimes);
@@ -37,9 +39,16 @@ export function JungleBar() {
     level.Barkeeper.withStep(() => level.Barkeeper.isDucking = rayToPlayerIntersectsWall(level.Barkeeper));
     level.Barkeeper.duckImmediately();
 
-    level.HealedPatron.withPixin(DestroyBeforeGreatness).withCutscene(() => showAll(
-        `I was sick for a while before you came along! I thought I would never feel better.`,
-        `Thank you for getting the medicine for me.`));
+    level.HealedPatron.withPixin(DestroyBeforeGreatness).withCutscene(async () => {
+        await showAll(
+            `I was sick for a while before you came along! I thought I would never feel better.`,
+            `Thank you for getting the medicine for me.`);
+
+        await move(level.DrinkAfter2).off(0, -4).over(250);
+        await sleep(500)
+        await show(`Cheers!`);
+        await move(level.DrinkAfter2).off(0, 4).over(250);
+    });
     level.OutcastPatron.withPixin(DestroyBeforeGreatness).withCutscene(() => showAll(
         `So the invaders are gone, and without the help of the great weapon.`,
         `Maybe I'll move back into town now that the oracles are subdued.`
