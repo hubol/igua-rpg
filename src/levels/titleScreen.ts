@@ -20,6 +20,7 @@ import {jukebox} from "../igua/jukebox";
 import {TitleScreen as Music} from "../musics";
 import {Vibratey} from "../igua/puppet/mods/vibratey";
 import {environment} from "../igua/environment";
+import {getWorldBounds} from "../igua/gameplay/getCenter";
 
 export async function TitleScreen() {
     jukebox.play(Music);
@@ -166,11 +167,13 @@ function saveFileInfo() {
     const level = IguaText.Large('');
     const valuableIcon = Sprite.from(ValuableIcon).at(26, 13);
     const valuables = IguaText.Large('').at(valuableIcon.x + 11, 10);
-    const headContainer = container().at(85, 5);
+    const headContainer = container();
     const completion = IguaText.Large('').at(0, 10);
-    const newGamePlus = newGamePlusMarker().at(94, 0);
+    const newGamePlus = newGamePlusMarker().at(9, -5);
+    const text = container(level, valuables);
+    const right = container(headContainer, newGamePlus).at(85, 5);
     headContainer.scale.x = -1;
-    const c = merge(container(headContainer, level, valuableIcon, valuables, completion, newGamePlus), {
+    const c = merge(container(text, valuableIcon, completion, right), {
         clear() {
             c.visible = false;
         },
@@ -182,6 +185,7 @@ function saveFileInfo() {
             completion.text = getCompletionText(progress);
             valuables.text = progress.valuables.toString();
             newGamePlus.text = getNewGamePlusText(progress.newGamePlus);
+            right.x = getWorldBounds(text).width + 24;
             return c;
         }
     });
