@@ -131,7 +131,10 @@ function enrichStatue(level: GameObjectsType<typeof CapitalTownArgs>) {
         c.canBlink = false;
         c.isClosingEyes = false;
         await sleep(500);
-        await show(`Anyway, thanks for checking in. Good luck on your task! I'm going to get back to mine.`);
+        if (progress.flags.global.somethingGreatHappened)
+            await show(`Anyway, thanks for checking in. Great work on your task! I'm going to get back to mine.`);
+        else
+            await show(`Anyway, thanks for checking in. Good luck on your task! I'm going to get back to mine.`);
         await move;
     }
 
