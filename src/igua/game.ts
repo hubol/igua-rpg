@@ -10,8 +10,8 @@ import {environment} from "./environment";
 import {devProgress} from "./dev/devProgress";
 import {scene, sceneStack} from "./scene";
 import {devWindow} from "./dev/devWindow";
-import {TitleScreen} from "../levels/titleScreen";
 import {advanceInput, startInput} from "./io/input";
+import {SplashScreen} from "../levels/splashScreen";
 
 export let game: ReturnType<typeof createGame>;
 function createGame(application: AsshatApplication)
@@ -62,7 +62,7 @@ export function startGame(application: AsshatApplication)
     devWindow();
 
     if (environment.isProduction) {
-        sceneStack.replace(TitleScreen);
+        sceneStack.replace(SplashScreen);
     }
     else {
         loadDevProgress();
