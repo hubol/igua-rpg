@@ -76,7 +76,7 @@ jobs:
       BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
     steps:
       - uses: actions/download-artifact@v2
-      - run: echo "Thank you for downloading IguaRPG. Be sure to extract the contents of this archive before running the IguaRPG executable. I do not know anything about Linux, so I'm sorry if this doesn't work." > build-linux/readme.txt
+      - run: echo "Thank you for downloading IguaRPG. Be sure to extract the contents of this archive before running the `iguarpg` executable. I do not know anything about Linux, so I'm sorry if this doesn't work." > build-linux/readme.txt
       - run: butler push "build" hubol/igua-rpg:html5
       - run: butler push "build-win" hubol/igua-rpg:win
       - run: butler push "build-linux" hubol/igua-rpg:linux
