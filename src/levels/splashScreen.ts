@@ -47,9 +47,10 @@ export function SplashScreen() {
     const websiteMask2 = new Hbox(0, 0, 140, 1, true);
     websiteMask2.scale.y = 0;
 
-    const websiteFull = Sprite.from(SplashWebsite).tinted(Color.Yellow);
-    const websiteHalf = Sprite.from(SplashWebsite).tinted(Color.Yellow).withPixin(Dithered({ dither: 0.6 }));
+    const websiteFull = Sprite.from(SplashWebsite);
+    const websiteHalf = Sprite.from(SplashWebsite).withPixin(Dithered({ dither: 0.6 }));
     const website = container(websiteFull, websiteHalf, websiteMask, websiteMask2).at(58, 24).show();
+    website.opaqueTint = Color.Yellow;
 
     websiteFull.mask = websiteMask;
     websiteHalf.mask = websiteMask2;
@@ -78,8 +79,6 @@ export function SplashScreen() {
             await sleep(100);
         }
 
-        iguana.canBlink = true;
-
         await sleep(400);
 
         const v = iguana.vcpy();
@@ -93,8 +92,7 @@ export function SplashScreen() {
         CheckerLooksGood.play();
         iguana.vspeed = -2.5;
         scene.backgroundColor = 0x002C38;
-        websiteFull.tinted(0xCCAE0A);
-        websiteHalf.tinted(0xCCAE0A);
+        website.filters = [];
         await agape;
         await wait(() => iguana.engine.isOnGround);
         iguana.hspeed = iguana.engine.walkSpeed;
