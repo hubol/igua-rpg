@@ -272,6 +272,8 @@ export let SpicedNectarPotion: PIXI.Texture;
 export let Spider: PIXI.Texture;
 export let SpikyBrushA: PIXI.Texture;
 export let SpikyBrushB: PIXI.Texture;
+export let SplashDrummer: PIXI.Texture;
+export let SplashWebsite: PIXI.Texture;
 export let SweetBerryPotion: PIXI.Texture;
 export let Torch: PIXI.Texture;
 export let Tumbleweed: PIXI.Texture;
@@ -1144,6 +1146,12 @@ export function loadTexturesAsync()
     const SpikyBrushBPath = require("./images/spiky brush b.png");
     loader.add(SpikyBrushBPath); 
 
+    const SplashDrummerPath = require("./images/splash/drummer.png");
+    loader.add(SplashDrummerPath); 
+
+    const SplashWebsitePath = require("./images/splash/website.png");
+    loader.add(SplashWebsitePath); 
+
     const SweetBerryPotionPath = require("./images/sweet berry potion.png");
     loader.add(SweetBerryPotionPath); 
 
@@ -1586,6 +1594,8 @@ export function loadTexturesAsync()
             Spider = resources[SpiderPath]?.texture as PIXI.Texture;
             SpikyBrushA = resources[SpikyBrushAPath]?.texture as PIXI.Texture;
             SpikyBrushB = resources[SpikyBrushBPath]?.texture as PIXI.Texture;
+            SplashDrummer = resources[SplashDrummerPath]?.texture as PIXI.Texture;
+            SplashWebsite = resources[SplashWebsitePath]?.texture as PIXI.Texture;
             SweetBerryPotion = resources[SweetBerryPotionPath]?.texture as PIXI.Texture;
             Torch = resources[TorchPath]?.texture as PIXI.Texture;
             Tumbleweed = resources[TumbleweedPath]?.texture as PIXI.Texture;

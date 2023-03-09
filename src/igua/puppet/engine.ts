@@ -51,6 +51,7 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
         },
         keepOnScreen: true,
         pauseWalkToCommands: false,
+        playSounds: true,
         walkTo(x: number)
         {
             return new Promise<void>((resolve, reject) =>
@@ -116,7 +117,7 @@ export function makeIguanaPuppetEngine(puppet: IguanaPuppetNoEngine)
 
             const vspeedBeforePush = puppet.vspeed;
 
-            const canPlaySounds = isOnScreen(puppet);
+            const canPlaySounds = isOnScreen(puppet) && engine.playSounds;
 
             if (!(Math.abs(hsp) > 0 || Math.abs(vsp) > 0))
                 this.isOnGround = isOnGround(puppet, radius);
