@@ -1,3 +1,15 @@
+#demo {
+	font-size: 0;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+}
+
+#demo::after {
+	content: 'Free download for unsupported systems';
+	display: inline;
+	font-size: 1.5rem;
+}
+
 .responsive .view_game_page .columns .right_col {
 	display: none;
 }
@@ -7,7 +19,8 @@
 }
 
 .view_game_page .donate_btn, .view_game_page .buy_btn,
-.html_embed_widget .button.load_iframe_btn, .html_embed_widget .button.restore_btn {
+.html_embed_widget .button.load_iframe_btn, .html_embed_widget .button.restore_btn,
+.for_demo .upload_list_widget .upload .button {
 	border: solid 4px var(--itchio_link_color);
 	font-size: 125%;
 	line-height: 0.1;
@@ -21,7 +34,8 @@
 
 
 .view_game_page .donate_btn:hover, .view_game_page .buy_btn:hover,
-.html_embed_widget .button.load_iframe_btn:hover, .html_embed_widget .button.restore_btn:hover {
+.html_embed_widget .button.load_iframe_btn:hover, .html_embed_widget .button.restore_btn:hover,
+.for_demo .upload_list_widget .upload .button:hover {
 	text-shadow: initial !important;
 	color: var(--itchio_link_color);
 	background: none;
