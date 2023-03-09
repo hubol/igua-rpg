@@ -7,7 +7,7 @@ import {environment} from "./environment";
 const ExpectedResourceLength = 480;
 const MaxUnitUntilReady = 0.9;
 const LoadingBarInterpolationFactor = 0.05;
-const LoadingBarColor = 0xCCAE0A;
+const LoadingBarColor = 0xFFC800;
 const LoadingBarY = 256 - 32;
 const MinimumLoadingScreenTimeS = 0.2;
 
@@ -39,7 +39,7 @@ function getLoadingScreenPromiseForEnvironment(app: AsshatApplication, ready: Re
 function makeStage(app: AsshatApplication, doneFn: () => boolean, animateFn = () => { }) {
     const stage = new Container();
     app.stage.addChild(stage);
-    const bg = new Graphics().beginFill(0x002C38).drawRect(0, 0, 256, 256);
+    const bg = new Graphics().beginFill(0xB04030).drawRect(0, 0, 256, 256);
     stage.addChild(bg);
 
     const promise = new Promise<void>(r => {

@@ -1,4 +1,4 @@
-import {Dither, SplashDrummer, SplashWebsite} from "../textures";
+import {SplashDrummer, SplashWebsite} from "../textures";
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
 import {scene} from "../igua/scene";
 import {container} from "../utils/pixi/container";
@@ -14,26 +14,33 @@ import {iguanaPuppet} from "../igua/puppet/iguanaPuppet";
 import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
 import {OutlineFilter} from "pixi-filters";
 import {wait} from "../cutscene/wait";
-import {CharacterLandOnGround, ImpossiblePuzzleNotch, SharpNotice} from "../sounds";
+import {
+    BallBounce,
+    CheckerLooksGood
+} from "../sounds";
 import {Dithered} from "../pixins/dithered";
+import {isOnScreen} from "../igua/logic/isOnScreen";
+import {jukebox} from "../igua/jukebox";
+import { TitleScreen } from "../musics";
+import {level} from "../igua/level/level";
+import {waitHold} from "../cutscene/waitHold";
 
 const drummerTxs = subimageTextures(SplashDrummer,  { width: 32 });
 
 enum Color {
     Red = 0xB04030,
-    Orange = 0xD88018,
     Yellow = 0xFFC800,
-    White = 0xFFFFFF,
 }
 
 export function SplashScreen() {
     scene.backgroundColor = Color.Red;
     scene.terrainStage.visible = false;
+    jukebox.warm(TitleScreen);
 
-    scene.width = 256;
+    scene.width = 512;
     scene.height = 256;
 
-    resolveBlock({ x: 0, y: 240, width: 256, height: 32 });
+    resolveBlock({ x: 0, y: 240 - 8, width: 256, height: 32 });
 
     const websiteMask = new Hbox(0, 0, 140, 1, true);
     websiteMask.scale.y = 0;
@@ -41,40 +48,33 @@ export function SplashScreen() {
     const websiteMask2 = new Hbox(0, 0, 140, 1, true);
     websiteMask2.scale.y = 0;
 
-    const websiteFront = Sprite.from(SplashWebsite);
-    const websiteBack = Sprite.from(SplashWebsite).withPixin(Dithered({ dither: 0.6 }));
-    const website = container(websiteBack, websiteFront, websiteMask, websiteMask2).at(4, 4).show();
+    const websiteFull = Sprite.from(SplashWebsite).tinted(Color.Yellow);
+    const websiteHalf = Sprite.from(SplashWebsite).tinted(Color.Yellow).withPixin(Dithered({ dither: 0.6 }));
+    const website = container(websiteFull, websiteHalf, websiteMask, websiteMask2).at(58, 24).show();
 
-    websiteFront.mask = websiteMask;
-    websiteBack.mask = websiteMask2;
+    websiteFull.mask = websiteMask;
+    websiteHalf.mask = websiteMask2;
 
-    const iguana = mkIguana().at(186, 200).show();
+    let iguana = mkIguana().at(186 - 64, 200).show();
     iguana.canBlink = false;
     iguana.visible = false;
     iguana.isDucking = true;
 
     scene.gameObjectStage.withAsync(async () => {
-        // const heights = [43, 86, 129, 152];
-        // for (const height of heights) {
-        //     await sleep(200);
-        //     await lerp(websiteMask.scale, 'y').to(height).over(333);
-        // }
-
         await sleep(250);
 
-        const drummer = mkDrummer().at(192, -32).show();
+        const drummer = mkDrummer().at(192 - 64, -32).show();
 
         const heightTracker = container().withStep(() => {
-            websiteMask.scale.y = drummer.y - website.y;
-            websiteMask2.scale.y = (drummer.y + 6) - website.y;
+            websiteMask.scale.y = (drummer.y - 32 ) - website.y;
+            websiteMask2.scale.y = (drummer.y - 26) - website.y;
         }).show();
 
         await wait(() => drummer.isOnGround);
-        CharacterLandOnGround.play();
 
         await sleep(250);
         for (let i = 0; i < 7; i++) {
-            ImpossiblePuzzleNotch.play();
+            BallBounce.play();
             drummer.visible = !drummer.visible;
             iguana.visible = !drummer.visible;
             await sleep(100);
@@ -85,34 +85,56 @@ export function SplashScreen() {
 
         await wait(() => iguana.duckUnit <= 0.1);
         await sleep(100);
+
+        const v = iguana.vcpy();
+        iguana.destroy();
+        iguana = mkIguana(false).show().at(v);
+
         const agape = lerp(iguana, 'agapeUnit').to(1).over(100)
             .then(() => sleep(200))
             .then(() => lerp(iguana, 'agapeUnit').to(0).over(100));
 
-        SharpNotice.play();
+        CheckerLooksGood.play();
         iguana.vspeed = -2;
+        scene.backgroundColor = 0x002C38;
+        websiteFull.tinted(0xCCAE0A);
+        websiteHalf.tinted(0xCCAE0A);
         await agape;
+        await wait(() => iguana.engine.isOnGround);
+        iguana.hspeed = iguana.engine.walkSpeed;
+
+        const websiteExit = container().withStep(() => {
+            website.x -= iguana.hspeed;
+        }).show();
+
+        await waitHold(() => !isOnScreen(iguana) && !isOnScreen(website), 10);
+        scene.gameObjectStage.withStep(() => level.goto('TitleScreen'));
     });
 }
 
-function mkIguana() {
+function mkIguana(specialColors = true) {
     const looks = getDefaultLooks();
-    looks.head.color = Color.Yellow;
-    looks.head.crest.color = Color.Red;
-    looks.head.eyes.pupils.color = Color.Red;
-    looks.head.mouth.color = Color.Red;
-    looks.body.color = Color.Red;
-    looks.body.tail.color = Color.Red;
-    looks.feet.color = Color.Yellow;
-    looks.feet.clawColor = Color.Red;
+    if (specialColors) {
+        looks.head.color = Color.Yellow;
+        looks.head.crest.color = Color.Red;
+        looks.head.eyes.pupils.color = Color.Red;
+        looks.head.mouth.color = Color.Red;
+        looks.body.color = Color.Red;
+        looks.body.tail.color = Color.Red;
+        looks.feet.color = Color.Yellow;
+        looks.feet.clawColor = Color.Red;
+    }
+
     const puppet = iguanaPuppet(makeIguanaPuppetArgsFromLooks(looks))
         .withStep(() => puppet.engine.step())
-        .filter(new OutlineFilter(1, Color.Yellow));
 
     puppet.engine.playSounds = false;
 
-    const box = new Hbox(-40, -40, 80, 80, true).show(puppet);
-    box.alpha = 0;
+    if (specialColors) {
+        puppet.filter(new OutlineFilter(1, Color.Yellow));
+        const box = new Hbox(-40, -40, 80, 80, true).show(puppet);
+        box.alpha = 0;
+    }
 
     return puppet;
 }
