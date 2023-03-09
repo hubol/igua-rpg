@@ -12,7 +12,6 @@ import {resolveBlock} from "../gameObjects/walls";
 import {getDefaultLooks} from "../igua/looks/getDefaultLooks";
 import {iguanaPuppet} from "../igua/puppet/iguanaPuppet";
 import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
-import {OutlineFilter} from "pixi-filters";
 import {wait} from "../cutscene/wait";
 import {
     BallBounce,
@@ -58,10 +57,9 @@ export function SplashScreen() {
     let iguana = mkIguana().at(186 - 64, 200).show();
     iguana.canBlink = false;
     iguana.visible = false;
-    iguana.isDucking = true;
 
     scene.gameObjectStage.withAsync(async () => {
-        await sleep(250);
+        await sleep(100);
 
         const drummer = mkDrummer().at(192 - 64, -32).show();
 
@@ -81,10 +79,8 @@ export function SplashScreen() {
         }
 
         iguana.canBlink = true;
-        iguana.isDucking = false;
 
-        await wait(() => iguana.duckUnit <= 0.1);
-        await sleep(100);
+        await sleep(400);
 
         const v = iguana.vcpy();
         iguana.destroy();
@@ -95,7 +91,7 @@ export function SplashScreen() {
             .then(() => lerp(iguana, 'agapeUnit').to(0).over(100));
 
         CheckerLooksGood.play();
-        iguana.vspeed = -2;
+        iguana.vspeed = -2.5;
         scene.backgroundColor = 0x002C38;
         websiteFull.tinted(0xCCAE0A);
         websiteHalf.tinted(0xCCAE0A);
@@ -116,11 +112,11 @@ function mkIguana(specialColors = true) {
     const looks = getDefaultLooks();
     if (specialColors) {
         looks.head.color = Color.Yellow;
-        looks.head.crest.color = Color.Red;
+        looks.head.crest.color = Color.Yellow;
         looks.head.eyes.pupils.color = Color.Red;
         looks.head.mouth.color = Color.Red;
-        looks.body.color = Color.Red;
-        looks.body.tail.color = Color.Red;
+        looks.body.color = Color.Yellow;
+        looks.body.tail.color = Color.Yellow;
         looks.feet.color = Color.Yellow;
         looks.feet.clawColor = Color.Red;
     }
@@ -129,12 +125,6 @@ function mkIguana(specialColors = true) {
         .withStep(() => puppet.engine.step())
 
     puppet.engine.playSounds = false;
-
-    if (specialColors) {
-        puppet.filter(new OutlineFilter(1, Color.Yellow));
-        const box = new Hbox(-40, -40, 80, 80, true).show(puppet);
-        box.alpha = 0;
-    }
 
     return puppet;
 }
