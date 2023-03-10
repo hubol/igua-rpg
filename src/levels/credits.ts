@@ -141,7 +141,7 @@ async function showCredits(level: GameObjectsType<typeof CreditsArgs>) {
 async function showEndingMessages() {
     const messages = [
         `Until recently, I had a delusion that I would someday become a person worthy of a Wikipedia article. I truly believed that with my many talents and output, success and attention were inevitable. But I got old and realized that these things were not coming to me. It still stings.`,
-        `I love IguaRPG. It has a soul. It breaks my heart that it probably won't have much of an impact on the world. Worse, I can imagine that the wrong audience would say things about it that would really hurt me. But I do hope that its naive charm will leave a long-lasting impression on a few of its players. In fact, I hope it will inspire people to create their own games, much like Oddwarg Animal RPG did for me back in the mid-2000s.`,
+        `I love IguaRPG. It is silly, but it has a soul. It breaks my heart that it probably won't have much of an impact on the world. Worse, I can imagine that the wrong audience would say things about it that would really hurt me. But I do hope that its naive charm will leave a long-lasting impression on a few of its players. In fact, I hope it will inspire people to create their own games, much like Oddwarg Animal RPG did for me back in the mid-2000s.`,
         `At times, I feel powerless in my life. I find I am often dealing with things I do not understand or agree with. Creation has given me agency and an escape for the past 15 years. If you haven't tried it, you should.
 
 Thank you.`,

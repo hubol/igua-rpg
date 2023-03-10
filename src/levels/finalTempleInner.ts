@@ -16,7 +16,7 @@ import {sleep} from "../cutscene/sleep";
 import {cutscene} from "../cutscene/cutscene";
 import {DialogSpeaker, show, showAll} from "../cutscene/dialog";
 import {player} from "../gameObjects/player";
-import {BallBounce, CheckerLooksGood, DassMoveUp, Gate} from "../sounds";
+import {BallBounce, CheckerLooksGood, DassMoveUp, Gate, SharpNotice} from "../sounds";
 import {move} from "../cutscene/move";
 import {jukebox} from "../igua/jukebox";
 import {simpleWallSwitch} from "../gameObjects/simpleWallSwitch";
@@ -38,6 +38,9 @@ import {CrateWooden, EndingSodaBottle, EndingStairs} from "../textures";
 import {decalsOf} from "../gameObjects/decal";
 import {resolvePipeHorizontal} from "../gameObjects/walls";
 import {Hbox} from "../gameObjects/hbox";
+import {wait} from "../cutscene/wait";
+import {ask} from "../cutscene/ask";
+
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
@@ -59,13 +62,13 @@ export function FinalTempleInner() {
 
     level.Couch.on('removed', () => !level.CouchPipe.destroyed && level.CouchPipe.destroy());
 
-    hideDeliveredBoxesUntilSomethingGreatHappened();
+    hideDeliveredBoxesUntilSomethingGreatHappened(false);
     enrichCutscene(level);
 
     game.hudStage.ticker.update();
 }
 
-export function hideDeliveredBoxesUntilSomethingGreatHappened() {
+export function hideDeliveredBoxesUntilSomethingGreatHappened(createPipes = true) {
     const someBoxesFilter = new filters.ColorMatrixFilter();
     someBoxesFilter.brightness(0.8, true);
     someBoxesFilter.saturate(0.2, true);
@@ -74,7 +77,8 @@ export function hideDeliveredBoxesUntilSomethingGreatHappened() {
         if (!progress.flags.global.somethingGreatHappened)
             return crate.hide();
 
-        resolvePipeHorizontal({ x: crate.x, y: crate.y, width: crate.width, visible: false });
+        if (createPipes)
+            resolvePipeHorizontal({ x: crate.x, y: crate.y, width: crate.width, visible: false });
         if (i % 2 === 0)
             crate.filter(someBoxesFilter);
     });
@@ -119,12 +123,11 @@ function enrichCompleteFinalQuest({ level: lvl, wizard, ball, dassmann }: AfterF
     lvl.Couch.destroy();
     wizard.at(174, 144);
     wizard.head.chefHat.visible = true;
-    wizard.gravity = 0;
 
     const bottle = Sprite.from(EndingSodaBottle).withStep(() => bottle.at(dassmann.armr.fistWorldPos)).show();
     bottle.anchor.set(0.5, 0.8);
 
-    resolvePipeHorizontal({ x: wizard.x - 10, y: wizard.y, width: 20, visible: false });
+    const wizardPlatform = resolvePipeHorizontal({ x: wizard.x - 10, y: wizard.y, width: 20, visible: false });
     ball.destroy();
 
     const fadeState = { unit: 0 };
@@ -139,11 +142,90 @@ function enrichCompleteFinalQuest({ level: lvl, wizard, ball, dassmann }: AfterF
         await lerp(fadeState, 'unit').to(1).over(ms);
     }
 
+    async function speak(speaker: DisplayObject, message: string, ...additionalMessages: string[]) {
+        if (speaker === dassmann)
+            dassmann.head.agape = 1;
+        DialogSpeaker.value.speaker = speaker;
+        await showAll(message, ...additionalMessages);
+        DialogSpeaker.value.speaker = undefined;
+        if (speaker === dassmann)
+            dassmann.head.agape = 0;
+    }
+
     cutscene.play(async () => {
+        player.x -= 32;
+        player.walkTo(player.x + 32);
+
+        const e = wizard;
+        e.autoFacing = 'off';
+        e.facing = 1;
+        const d = dassmann;
+        d.armr.pose = ArmTx.Raise;
+
         await sleep(500);
+
+        await speak(d, `This is without a doubt your best batch yet.`);
+        d.armr.rest().over(250);
+        await speak(e, `Aw shucks, thank you!`);
+
+        await sleep(250);
+        e.autoFacing = 'player';
+        await sleep(250);
+        SharpNotice.play();
+        e.speed.y = -1;
+        await wait(() => e.speed.y === 0 && e.isOnGround);
+        e.arms.raise().over(250);
+        await speak(e, `Look who's here!`);
+        e.arms.lower().over(250);
+        wizardPlatform.destroy();
+
+        await wait(() => e.speed.y > 0);
+        await wait(() => e.isOnGround);
+        await sleep(150);
+
+        await move(e).off(-48, 0).over(750);
+
+        await speak(e,
+            `You did it!`,
+            `And in exchange for your exceptional work, I am willing to offer you a position as my apprentice.`);
+
+        e.arms.raise().over(250);
+
+        await speak(e, `In this world, you will always need some kind of task.`,
+            `So why not create delicious beverages that inspire emotion in others?!`);
+
+        dassmann.gravity = 0.2;
+        const bounceDassmann = merge(container(), { go: true }).withAsync(async () => {
+            while (true) {
+                await wait(() => bounceDassmann.go && d.speed.y === 0 && d.isOnGround);
+                d.speed.y = -1;
+            }
+        })
+        bounceDassmann.show();
+
+        d.armr.raise().over(250);
+        await speak(d, `Emotion is an understatement!`);
+        d.armr.rest().over(250);
+        bounceDassmann.go = false;
+
+        DialogSpeaker.value.speaker = e;
+        await ask(`What do you say?`, [`Yes`, `Yes`]);
+        DialogSpeaker.value.speaker = undefined;
+
+        e.arms.lower().over(250);
+        e.isCrouching = true;
+        await wait(() => e.dress.crouchUnit >= 1);
+        e.isCrouching = false;
+        await sleep(100);
+        e.arms.raise().over(250);
+        e.speed.y = -3;
+        await wait(() => e.speed.y > 0);
+        await speak(e, `Yahoo!`);
+
         await fadeOut(5000);
         await sleep(500);
         await showCreditsSequence();
+        await sleep(1000);
         migrateProgressToNewGamePlus();
         level.goto(progress.levelName);
     });
