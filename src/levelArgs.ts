@@ -1097,6 +1097,12 @@ export const FinalTempleInnerArgs = {
     return {
       Couch: resolveDecalGameObject({ x: 183, y: 165, originX: 0.5, originY: 0.5, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: FinalEmoCouch }),
       FinalEmoTrinkets: resolveDecalGameObject({ x: 32, y: 80, originX: 0, originY: 0, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: FinalEmoTrinkets }),
+      CrateWooden: resolveDecalGameObject({ x: 104, y: 154, originX: 0, originY: 0, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CrateWooden }),
+      CrateWooden_1: resolveDecalGameObject({ x: 76, y: 154, originX: 0, originY: 0, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CrateWooden }),
+      CrateWooden_2: resolveDecalGameObject({ x: 88, y: 130, originX: 0, originY: 0, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CrateWooden }),
+      CrateWooden_3: resolveDecalGameObject({ x: 92, y: 106, originX: 0, originY: 0, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CrateWooden }),
+      CrateWooden_4: resolveDecalGameObject({ x: 198, y: 154, originX: 0, originY: 0, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CrateWooden }),
+      CrateWooden_5: resolveDecalGameObject({ x: 200, y: 130, originX: 0, originY: 0, scaleX: 1, scaleY: 1, rotation: 0, layerName: "CloseTerrainDecals", texture: CrateWooden }),
       Block: resolveBlock({ type: "Block", x: 0, y: 0, width: 32, height: 256, flippedX: false, flippedY: false, uid: "55823268_0", name: "", depth: 0 }),
       Block_1: resolveBlock({ type: "Block", x: 224, y: 0, width: 32, height: 256, flippedX: false, flippedY: false, uid: "55823268_1", name: "", depth: 0 }),
       Block_2: resolveBlock({ type: "Block", x: 32, y: 0, width: 192, height: 80, flippedX: false, flippedY: false, uid: "55823268_2", name: "", depth: 0 }),
@@ -1105,9 +1111,9 @@ export const FinalTempleInnerArgs = {
       Player: { type: "Player", x: 88, y: 176, flippedX: false, flippedY: false, uid: "55988047_5", faceRight: true, name: "", depth: 0 },
       EmoWizardInitial: { type: "Anchor", x: 200, y: 176, flippedX: false, flippedY: false, uid: "25979726_6", name: "EmoWizardInitial", depth: 0 },
       Shadow: resolveRegion({ type: "Region", x: 16, y: 64, width: 224, height: 144, flippedX: false, flippedY: false, uid: "25971607_7", name: "Shadow", depth: 0 }),
-      PipeHorizontal: resolvePipeHorizontal({ type: "PipeHorizontal", x: 159, y: 166, width: 49, flippedX: false, flippedY: false, uid: "55841307_8", visible: false, name: "", depth: 0 }),
-      PipeHorizontal_1: resolvePipeHorizontal({ type: "PipeHorizontal", x: 48, y: 106, width: 32, flippedX: false, flippedY: false, uid: "55841307_9", visible: false, name: "", depth: 0 }),
-      PipeHorizontal_2: resolvePipeHorizontal({ type: "PipeHorizontal", x: 168, y: 114, width: 32, flippedX: false, flippedY: false, uid: "55841307_10", visible: false, name: "", depth: 0 }),
+      CouchPipe: resolvePipeHorizontal({ type: "PipeHorizontal", x: 159, y: 166, width: 49, flippedX: false, flippedY: false, uid: "55841307_8", visible: false, name: "CouchPipe", depth: 0 }),
+      PipeHorizontal: resolvePipeHorizontal({ type: "PipeHorizontal", x: 48, y: 106, width: 32, flippedX: false, flippedY: false, uid: "55841307_9", visible: false, name: "", depth: 0 }),
+      PipeHorizontal_1: resolvePipeHorizontal({ type: "PipeHorizontal", x: 168, y: 114, width: 32, flippedX: false, flippedY: false, uid: "55841307_10", visible: false, name: "", depth: 0 }),
     };
   },
 };

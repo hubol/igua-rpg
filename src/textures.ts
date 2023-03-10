@@ -100,6 +100,11 @@ export let Dither: PIXI.Texture;
 export let DontPoster: PIXI.Texture;
 export let DuckGiant: PIXI.Texture;
 export let ElectricBolt: PIXI.Texture;
+export let EndingSodaBottle: PIXI.Texture;
+export let EndingSodaBubble: PIXI.Texture;
+export let EndingSodaPotAndBurner: PIXI.Texture;
+export let EndingStairs: PIXI.Texture;
+export let FinalEmoChef: PIXI.Texture;
 export let FinalEmoClock: PIXI.Texture;
 export let FinalEmoCouch: PIXI.Texture;
 export let FinalEmoTrinkets: PIXI.Texture;
@@ -629,6 +634,21 @@ export function loadTexturesAsync()
 
     const ElectricBoltPath = require("./images/electric bolt.png");
     loader.add(ElectricBoltPath); 
+
+    const EndingSodaBottlePath = require("./images/ending/soda bottle.png");
+    loader.add(EndingSodaBottlePath); 
+
+    const EndingSodaBubblePath = require("./images/ending/soda bubble.png");
+    loader.add(EndingSodaBubblePath); 
+
+    const EndingSodaPotAndBurnerPath = require("./images/ending/soda pot and burner.png");
+    loader.add(EndingSodaPotAndBurnerPath); 
+
+    const EndingStairsPath = require("./images/ending/stairs.png");
+    loader.add(EndingStairsPath); 
+
+    const FinalEmoChefPath = require("./images/final/emo chef.png");
+    loader.add(FinalEmoChefPath); 
 
     const FinalEmoClockPath = require("./images/final/emo clock.png");
     loader.add(FinalEmoClockPath); 
@@ -1422,6 +1442,11 @@ export function loadTexturesAsync()
             DontPoster = resources[DontPosterPath]?.texture as PIXI.Texture;
             DuckGiant = resources[DuckGiantPath]?.texture as PIXI.Texture;
             ElectricBolt = resources[ElectricBoltPath]?.texture as PIXI.Texture;
+            EndingSodaBottle = resources[EndingSodaBottlePath]?.texture as PIXI.Texture;
+            EndingSodaBubble = resources[EndingSodaBubblePath]?.texture as PIXI.Texture;
+            EndingSodaPotAndBurner = resources[EndingSodaPotAndBurnerPath]?.texture as PIXI.Texture;
+            EndingStairs = resources[EndingStairsPath]?.texture as PIXI.Texture;
+            FinalEmoChef = resources[FinalEmoChefPath]?.texture as PIXI.Texture;
             FinalEmoClock = resources[FinalEmoClockPath]?.texture as PIXI.Texture;
             FinalEmoCouch = resources[FinalEmoCouchPath]?.texture as PIXI.Texture;
             FinalEmoTrinkets = resources[FinalEmoTrinketsPath]?.texture as PIXI.Texture;

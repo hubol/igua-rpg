@@ -8,7 +8,7 @@ import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {game} from "../igua/game";
 import {cracks} from "../gameObjects/cracks";
-import {DisplayObject, Graphics} from "pixi.js";
+import {DisplayObject, filters, Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {approachLinear} from "../utils/math/number";
@@ -31,13 +31,18 @@ import {showCreditsSequence} from "./credits";
 import {migrateProgressToNewGamePlus} from "../igua/data/migrateProgressToNewGamePlus";
 import {level} from "../igua/level/level";
 import {emoClock} from "../gameObjects/emoClock";
-import {TheOfficialEmoWizardSong} from "../musics";
+import {EmoWizard, FinalTempleMusic, TheOfficialEmoWizardSong} from "../musics";
 import {lerp} from "../cutscene/lerp";
+import {sodaPotAndBurner} from "../gameObjects/sodaPotAndBurner";
+import {CrateWooden, EndingSodaBottle, EndingStairs} from "../textures";
+import {decalsOf} from "../gameObjects/decal";
+import {resolvePipeHorizontal} from "../gameObjects/walls";
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
     scene.terrainColor = 0x000820;
     const level = applyOgmoLevel(FinalTempleInnerArgs);
+    jukebox.warm(TheOfficialEmoWizardSong, EmoWizard, FinalTempleMusic);
 
     capitalBricksWall(level.Shadow.width, level.Shadow.height, makePseudo(2369.1452))
         .at(level.Shadow.x, level.Shadow.y + 20)
@@ -51,8 +56,18 @@ export function FinalTempleInner() {
 
     cracks(38425.74, 0x405080).behind();
 
-    emoClock().at(128, 114).behind();
+    level.Couch.on('removed', () => !level.CouchPipe.destroyed && level.CouchPipe.destroy());
 
+    const someBoxesFilter = new filters.ColorMatrixFilter();
+    someBoxesFilter.brightness(0.8, true);
+    someBoxesFilter.saturate(0.2, true);
+
+    decalsOf(CrateWooden).forEach((x, i) => {
+        x.hide();
+        if (i % 2 === 0) {
+            x.filter(someBoxesFilter);
+        }
+    });
     enrichCutscene(level);
 
     game.hudStage.ticker.update();
@@ -89,12 +104,30 @@ function enrichIncompleteFinalQuest({ dassmann: d, wizard: e, ...deps }: AfterFi
     });
 }
 
-function enrichCompleteFinalQuest({}: AfterFirstMeetingCutsceneDeps) {
+function enrichCompleteFinalQuest({ clock, level, wizard, ball, dassmann }: AfterFirstMeetingCutsceneDeps) {
+    Sprite.from(EndingStairs).at(164, 142).show(scene.gameObjectStage, 0);
+    sodaPotAndBurner().at(120, 120).show(scene.gameObjectStage, 0);
+    level.Couch.destroy();
+    wizard.at(174, 144);
+    wizard.gravity = 0;
+    decalsOf(CrateWooden).forEach(x => {
+        x.visible = true;
+        resolvePipeHorizontal({ x: x.x, y: x.y, width: x.width, visible: false });
+    });
+
+    const bottle = Sprite.from(EndingSodaBottle).withStep(() => bottle.at(dassmann.armr.fistWorldPos)).show();
+    bottle.anchor.set(0.5, 0.8);
+
+    resolvePipeHorizontal({ x: wizard.x - 10, y: wizard.y, width: 20, visible: false });
+    // clock.add(-18, 47);
+    // clock.skew.x = -0.2;
+    ball.destroy();
+
     cutscene.play(async () => {
-        await sleep(500);
-        await showCreditsSequence();
-        migrateProgressToNewGamePlus();
-        level.goto(progress.levelName);
+        // await sleep(500);
+        // await showCreditsSequence();
+        // migrateProgressToNewGamePlus();
+        // level.goto(progress.levelName);
     });
 }
 
@@ -270,6 +303,7 @@ async function seatDassmannOnCouch(deps: Pick<CutsceneDeps, 'sitOnCouch'>, d: Re
 }
 
 function makeCutsceneDeps(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
+    const clock = emoClock().at(128, 114).behind();
     const wizard = emoWizard().at(level.EmoWizardInitial).show();
     const light = enrichLight(level).show();
 
@@ -296,6 +330,7 @@ function makeCutsceneDeps(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
     }
 
     return {
+        clock,
         level,
         wizard,
         light,
