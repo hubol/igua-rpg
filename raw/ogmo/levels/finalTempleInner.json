@@ -137,6 +137,47 @@
           "originX": 0,
           "originY": 0,
           "values": {"visible": false, "name": "", "depth": 0}
+        },
+        {
+          "name": "SodaStink",
+          "id": 12,
+          "_eid": "46769187",
+          "x": 144,
+          "y": 124,
+          "originX": 0,
+          "originY": 0,
+          "nodes": [
+            {"x": 128, "y": 116},
+            {"x": 120, "y": 100},
+            {"x": 128, "y": 68},
+            {"x": 152, "y": 60},
+            {"x": 168, "y": 52},
+            {"x": 176, "y": 44},
+            {"x": 184, "y": 28},
+            {"x": 184, "y": 12},
+            {"x": 176, "y": -12},
+            {"x": 184, "y": -56}
+          ],
+          "values": {"name": "", "depth": 0}
+        },
+        {
+          "name": "SodaStink",
+          "id": 13,
+          "_eid": "46769187",
+          "x": 152,
+          "y": 136,
+          "originX": 0,
+          "originY": 0,
+          "nodes": [
+            {"x": 168, "y": 120},
+            {"x": 176, "y": 96},
+            {"x": 176, "y": 64},
+            {"x": 168, "y": 32},
+            {"x": 144, "y": 0},
+            {"x": 136, "y": -24},
+            {"x": 144, "y": -64}
+          ],
+          "values": {"name": "", "depth": 0}
         }
       ]
     },
@@ -207,11 +248,61 @@
           "originY": 0,
           "values": {"name": ""}
         },
-        {"x": 76, "y": 154, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0},
-        {"x": 88, "y": 130, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0},
-        {"x": 92, "y": 106, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0},
-        {"x": 198, "y": 154, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0},
-        {"x": 200, "y": 130, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0}
+        {
+          "x": 76,
+          "y": 154,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 88,
+          "y": 130,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 92,
+          "y": 106,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 198,
+          "y": 154,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        },
+        {
+          "x": 200,
+          "y": 130,
+          "scaleX": 1,
+          "scaleY": 1,
+          "rotation": 0,
+          "texture": "crate wooden.png",
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": ""}
+        }
       ],
       "folder": "../../src/images"
     },

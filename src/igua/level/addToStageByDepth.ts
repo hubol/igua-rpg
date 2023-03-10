@@ -5,6 +5,8 @@ export function addToStageByDepth(o: DisplayObject, depth = 0) {
     if (o.parent)
         return o;
     switch (depth) {
+        case 7:
+            return o.ahead();
         case 6:
             return scene.terrainDecalsStage.addChild(o);
         case 5:

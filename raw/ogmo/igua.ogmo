@@ -1564,6 +1564,45 @@
       ],
       "texture": "preview-images/library book.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAMAAAAYGszCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAASUExURRhAcPLv66STg9LJv5B9bAAAAHkI6FYAAAAGdFJOU///////ALO/pL8AAAAJcEhZcwAADsMAAA7DAcdvqGQAAABWSURBVChTlYxRCoAwDMX6Xt39r2xWO4WhHwa2lhAa44VfMlSsUTLktFOHbKWnjQ6EbOhCSUJRpXklm63kpKrkOt93ycHZUjJ8SUaxSk+ZzbMgF/ca4wTdmAKVSRJyowAAAABJRU5ErkJggg=="
+    },
+    {
+      "exportID": "46769187",
+      "name": "SodaStink",
+      "limit": -1,
+      "size": {"x": 8, "y": 8},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#dca6ffff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 8, "y": 8},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": true,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": false,
+      "tags": [],
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "depth", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": -100, "max": 100}
+      ]
     }
   ],
   "tilesets": []
