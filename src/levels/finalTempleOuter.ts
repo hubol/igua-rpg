@@ -41,6 +41,7 @@ import {waitForInput} from "../cutscene/waitForInput";
 import {castPlayerSpell} from "../gameObjects/playerSpell";
 import {persistence} from "../igua/data/persistence";
 import {hideDeliveredBoxesUntilSomethingGreatHappened} from "./finalTempleInner";
+import {ask} from "../cutscene/ask";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
@@ -58,10 +59,24 @@ export function FinalTempleOuter() {
     enrichOutside(level);
     showLightRays(level);
     enrichDoor(level);
+    enrichEndGameWarning(level);
 
     enrichAmbush(level);
 
     game.hudStage.ticker.update();
+}
+
+function enrichEndGameWarning(level: GameObjectsType<typeof FinalTempleOuterArgs>) {
+    if (!progress.flags.global.somethingGreatHappened)
+        return;
+
+    level.FinalDoor.playerCanInteract = false;
+    level.FinalDoor.withCutscene(async () => {
+        await showAll(`The wizard's reward is inside.`,
+            `Make sure all of your work is done before entering.`);
+        if (await ask('Enter?'))
+            level.FinalDoor.enter();
+    });
 }
 
 function enrichAmbush(level: GameObjectsType<typeof FinalTempleOuterArgs>) {

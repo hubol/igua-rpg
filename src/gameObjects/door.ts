@@ -14,17 +14,18 @@ export const resolveDoor =
 
 function door(levelName: string, checkpointName: string)
 {
-    const sprite = merge(Sprite.from(OpenDoor), { locked: false, levelName, checkpointName })
+    function enter() {
+        progress.checkpointName = sprite.checkpointName;
+        level.goto(sprite.levelName);
+    }
+
+    const sprite = merge(Sprite.from(OpenDoor), { locked: false, levelName, checkpointName, enter, playerCanInteract: true })
         .withStep(() => {
             sprite.texture = sprite.locked ? LockedDoor : OpenDoor;
-            if (isPlayerInteractingWith(sprite))
+            if (sprite.playerCanInteract && isPlayerInteractingWith(sprite))
             {
                 if (!sprite.locked)
-                    throw new EscapeTickerAndExecute(
-                        () => {
-                            progress.checkpointName = sprite.checkpointName;
-                            level.goto(sprite.levelName);
-                        });
+                    throw new EscapeTickerAndExecute(enter);
 
                 if (sprite.ext.showClosedMessage !== false)
                     cutscene.play(async () => await show("Closed."));
