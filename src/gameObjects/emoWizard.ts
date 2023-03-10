@@ -1,5 +1,11 @@
 import {subimageTextures} from "../utils/pixi/simpleSpritesheet";
-import {FinalEmoWizardBody, FinalEmoWizardDress, FinalEmoWizardDressFringe, FinalEmoWizardFace} from "../textures";
+import {
+    FinalEmoChef,
+    FinalEmoWizardBody,
+    FinalEmoWizardDress,
+    FinalEmoWizardDressFringe,
+    FinalEmoWizardFace
+} from "../textures";
 import {DisplayObject, Graphics, Sprite, Texture, TilingSprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {scene} from "../igua/scene";
@@ -210,13 +216,19 @@ function dress() {
 }
 
 function head() {
+    const chefHat = Sprite.from(FinalEmoChef);
+    chefHat.pivot.set(-9, 9);
+    chefHat.visible = false;
+
     const backHair = hair(bodyTxs[0], 12, 22);
     const noggin = Sprite.from(bodyTxs[1]);
     const myFace = face().at(6, 4);
     const earring = Sprite.from(bodyTxs[5]);
     const frontHair = hair(bodyTxs[3]);
 
-    const c = merge(container(backHair, noggin, myFace, earring, frontHair), { facing: 0, face: myFace, away: false });
+    const main = container(backHair, noggin, myFace, earring, frontHair);
+
+    const c = merge(container(chefHat, main), { chefHat, facing: 0, face: myFace, away: false });
 
     c.withStep(() => {
         backHair.index = c.away ? 4 : 0;
@@ -234,6 +246,7 @@ function head() {
             earring.index = c.facing < 0 && earring.pivot.x < -1 ? 1 : 3;
             earring.x = 0;
             earring.pivot.x = approachLinear(earring.pivot.x, Math.abs(c.facing) * -2, 0.25);
+            chefHat.x = approachLinear(chefHat.x, c.facing * -1, 0.2);
         }
     });
 

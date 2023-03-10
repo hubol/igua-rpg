@@ -104,11 +104,12 @@ function enrichIncompleteFinalQuest({ dassmann: d, wizard: e, ...deps }: AfterFi
     });
 }
 
-function enrichCompleteFinalQuest({ clock, level, wizard, ball, dassmann }: AfterFirstMeetingCutsceneDeps) {
+function enrichCompleteFinalQuest({ level, wizard, ball, dassmann }: AfterFirstMeetingCutsceneDeps) {
     Sprite.from(EndingStairs).at(164, 142).show(scene.gameObjectStage, 0);
     sodaPotAndBurner().at(120, 120).show(scene.gameObjectStage, 0);
     level.Couch.destroy();
     wizard.at(174, 144);
+    wizard.head.chefHat.visible = true;
     wizard.gravity = 0;
     decalsOf(CrateWooden).forEach(x => {
         x.visible = true;
