@@ -204,6 +204,7 @@ function enrichCompleteFinalQuest({ level: lvl, wizard, ball, dassmann }: AfterF
         bounceDassmann.show();
 
         d.armr.raise().over(250);
+        DassMoveUp.play();
         await speak(d, `Emotion is an understatement!`);
         d.armr.rest().over(250);
         bounceDassmann.go = false;
