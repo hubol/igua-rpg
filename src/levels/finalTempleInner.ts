@@ -8,7 +8,7 @@ import {GameObjectsType} from "../igua/level/applyOgmoLevelArgs";
 import {terrainGradient} from "../gameObjects/outerGradient";
 import {game} from "../igua/game";
 import {cracks} from "../gameObjects/cracks";
-import {DisplayObject, filters, Graphics, Sprite} from "pixi.js";
+import {BLEND_MODES, DisplayObject, filters, Graphics, Sprite} from "pixi.js";
 import {container} from "../utils/pixi/container";
 import {merge} from "../utils/object/merge";
 import {approachLinear} from "../utils/math/number";
@@ -31,12 +31,13 @@ import {showCreditsSequence} from "./credits";
 import {migrateProgressToNewGamePlus} from "../igua/data/migrateProgressToNewGamePlus";
 import {level} from "../igua/level/level";
 import {emoClock} from "../gameObjects/emoClock";
-import {EmoWizard, FinalTempleMusic, TheOfficialEmoWizardSong} from "../musics";
+import {CreditsMusic, EmoWizard, FinalTempleMusic, TheOfficialEmoWizardSong} from "../musics";
 import {lerp} from "../cutscene/lerp";
 import {sodaPotAndBurner} from "../gameObjects/sodaPotAndBurner";
 import {CrateWooden, EndingSodaBottle, EndingStairs} from "../textures";
 import {decalsOf} from "../gameObjects/decal";
 import {resolvePipeHorizontal} from "../gameObjects/walls";
+import {Hbox} from "../gameObjects/hbox";
 
 export function FinalTempleInner() {
     scene.backgroundColor = 0x536087;
@@ -110,10 +111,12 @@ function enrichIncompleteFinalQuest({ dassmann: d, wizard: e, ...deps }: AfterFi
     });
 }
 
-function enrichCompleteFinalQuest({ level, wizard, ball, dassmann }: AfterFirstMeetingCutsceneDeps) {
+function enrichCompleteFinalQuest({ level: lvl, wizard, ball, dassmann }: AfterFirstMeetingCutsceneDeps) {
+    jukebox.play(TheOfficialEmoWizardSong).warm(CreditsMusic);
+
     Sprite.from(EndingStairs).at(164, 142).show(scene.gameObjectStage, 0);
     sodaPotAndBurner().at(120, 120).show(scene.gameObjectStage, 0);
-    level.Couch.destroy();
+    lvl.Couch.destroy();
     wizard.at(174, 144);
     wizard.head.chefHat.visible = true;
     wizard.gravity = 0;
@@ -122,15 +125,27 @@ function enrichCompleteFinalQuest({ level, wizard, ball, dassmann }: AfterFirstM
     bottle.anchor.set(0.5, 0.8);
 
     resolvePipeHorizontal({ x: wizard.x - 10, y: wizard.y, width: 20, visible: false });
-    // clock.add(-18, 47);
-    // clock.skew.x = -0.2;
     ball.destroy();
 
+    const fadeState = { unit: 0 };
+    const dissolve = new Hbox(0, 0, 256, 256, true, 0xffffff)
+        .withStep(() => dissolve.alpha = Math.round(fadeState.unit * 10) / 10)
+        .show(game.hudStage);
+    scene.gameObjectStage.on('removed', () => !dissolve.destroyed && dissolve.destroy());
+    dissolve.blendMode = BLEND_MODES.SUBTRACT;
+
+    async function fadeOut(ms: number) {
+        jukebox.fadeOut(0, ms);
+        await lerp(fadeState, 'unit').to(1).over(ms);
+    }
+
     cutscene.play(async () => {
-        // await sleep(500);
-        // await showCreditsSequence();
-        // migrateProgressToNewGamePlus();
-        // level.goto(progress.levelName);
+        await sleep(500);
+        await fadeOut(5000);
+        await sleep(500);
+        await showCreditsSequence();
+        migrateProgressToNewGamePlus();
+        level.goto(progress.levelName);
     });
 }
 
