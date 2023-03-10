@@ -1,6 +1,6 @@
 {
   "name": "igua-rpg",
-  "version": "0.5.0",
+  "version": "0.9.0",
   "description": "A fangame of Oddwarg Animal RPG.",
   "browserslist": "Chrome 54",
   "scripts": {
