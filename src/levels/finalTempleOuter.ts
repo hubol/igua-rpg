@@ -40,6 +40,7 @@ import {flipV} from "../utils/pixi/flip";
 import {waitForInput} from "../cutscene/waitForInput";
 import {castPlayerSpell} from "../gameObjects/playerSpell";
 import {persistence} from "../igua/data/persistence";
+import {hideDeliveredBoxesUntilSomethingGreatHappened} from "./finalTempleInner";
 
 export function FinalTempleOuter() {
     scene.backgroundColor = 0x536087;
@@ -51,6 +52,8 @@ export function FinalTempleOuter() {
     [level.Sparkles1, level.Sparkles2].map(sparkly);
 
     capitalBricksWall(scene.width, scene.height, makePseudo(169.452)).behind(0).opaqueTint = 0x405080;
+
+    hideDeliveredBoxesUntilSomethingGreatHappened();
 
     enrichOutside(level);
     showLightRays(level);

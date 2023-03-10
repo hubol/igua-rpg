@@ -12,6 +12,7 @@ import {jukebox} from "../igua/jukebox";
 import {EmoWizard, FinalTempleMusic} from "../musics";
 import {decalsOf} from "../gameObjects/decal";
 import {Boulder} from "../textures";
+import {hideDeliveredBoxesUntilSomethingGreatHappened} from "./finalTempleInner";
 
 export function FinalDeep() {
     scene.backgroundColor = 0x182840;
@@ -26,6 +27,8 @@ export function FinalDeep() {
     container(...[level.Light1, level.Light2].map(lightColumn)).filter(makeShadowCastFilter()).ahead(player.index + 1);
 
     decalsOf(Boulder).forEach(x => x.opaqueTint = scene.terrainColor);
+
+    hideDeliveredBoxesUntilSomethingGreatHappened();
 
     if (player.y < 160)
         player.vspeed = -2;

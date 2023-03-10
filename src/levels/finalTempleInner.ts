@@ -58,19 +58,25 @@ export function FinalTempleInner() {
 
     level.Couch.on('removed', () => !level.CouchPipe.destroyed && level.CouchPipe.destroy());
 
+    hideDeliveredBoxesUntilSomethingGreatHappened();
+    enrichCutscene(level);
+
+    game.hudStage.ticker.update();
+}
+
+export function hideDeliveredBoxesUntilSomethingGreatHappened() {
     const someBoxesFilter = new filters.ColorMatrixFilter();
     someBoxesFilter.brightness(0.8, true);
     someBoxesFilter.saturate(0.2, true);
 
-    decalsOf(CrateWooden).forEach((x, i) => {
-        x.hide();
-        if (i % 2 === 0) {
-            x.filter(someBoxesFilter);
-        }
-    });
-    enrichCutscene(level);
+    decalsOf(CrateWooden).forEach((crate, i) => {
+        if (!progress.flags.global.somethingGreatHappened)
+            return crate.hide();
 
-    game.hudStage.ticker.update();
+        resolvePipeHorizontal({ x: crate.x, y: crate.y, width: crate.width, visible: false });
+        if (i % 2 === 0)
+            crate.filter(someBoxesFilter);
+    });
 }
 
 function enrichCutscene(level: GameObjectsType<typeof FinalTempleInnerArgs>) {
@@ -111,10 +117,6 @@ function enrichCompleteFinalQuest({ level, wizard, ball, dassmann }: AfterFirstM
     wizard.at(174, 144);
     wizard.head.chefHat.visible = true;
     wizard.gravity = 0;
-    decalsOf(CrateWooden).forEach(x => {
-        x.visible = true;
-        resolvePipeHorizontal({ x: x.x, y: x.y, width: x.width, visible: false });
-    });
 
     const bottle = Sprite.from(EndingSodaBottle).withStep(() => bottle.at(dassmann.armr.fistWorldPos)).show();
     bottle.anchor.set(0.5, 0.8);

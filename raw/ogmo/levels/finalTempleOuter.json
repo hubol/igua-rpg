@@ -577,7 +577,14 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": ""}
-        }
+        },
+        {"x": 149, "y": 178, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0},
+        {"x": 152, "y": 202, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0},
+        {"x": 296, "y": 177, "scaleX": 1, "scaleY": 1, "rotation": 0.10471975511965978, "texture": "crate wooden.png", "originX": 0, "originY": 0},
+        {"x": 262, "y": 154, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0},
+        {"x": 264, "y": 178, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0},
+        {"x": 280, "y": 202, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0},
+        {"x": 248, "y": 202, "scaleX": 1, "scaleY": 1, "rotation": 0, "texture": "crate wooden.png", "originX": 0, "originY": 0}
       ],
       "folder": "../../src/images"
     },
