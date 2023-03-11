@@ -24,6 +24,8 @@ export function consumePotion(index: number) {
 
 function consumePotionImpl(potion: PotionType) {
     if (potion in Badges) {
+        if (progress.equipment.badge !== 'None')
+            progress.levels.intelligence += 1;
         progress.equipment.badge = potion as any;
         ConsumeEquip.play();
         return;
@@ -55,6 +57,8 @@ function consumePotionImpl(potion: PotionType) {
             progress.levels.strength += 1;
             break;
         case "RemovingDevice":
+            if (progress.equipment.badge !== 'None')
+                progress.levels.intelligence += 1;
             progress.equipment.badge = 'None';
             ConsumeRemover.play();
             break;
