@@ -2,8 +2,6 @@
 ### A computer game of the ages
 This is a fangame of [Oddwarg Animal RPG](http://oddwarg.com/index.php?id=OARPG), a Game Maker game from 2003.
 
-At this point, the game is maybe 97% finished.
-
 [You can play the current build here.](https://igua-rpg.herokuapp.com/)
 
 ## Using the source code

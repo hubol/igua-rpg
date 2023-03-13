@@ -145,15 +145,21 @@ export async function TitleScreen() {
     goto(rootPage(), noExistingFiles ? 2 : 0);
 }
 
-function character() {
+export const TitleScreenGameObjects = {
+    character,
+    title,
+}
+
+function character(duck = false) {
     const c = merge(container(), {
         showLooks(looks: Looks, scared = false) {
             c.removeAllChildren();
             const puppet = iguanaPuppet(makeIguanaPuppetArgsFromLooks(looks));
-            if (scared) {
+            if (scared || duck)
                 puppet.duckImmediately();
+            if (scared)
                 puppet.mods.add(Vibratey);
-            }
+
             c.addChild(puppet);
         }
     });
@@ -213,12 +219,14 @@ function newGamePlusMarker() {
     return c;
 }
 
-function title() {
+function title(dropShadow = true) {
     const c = container();
-    for (let i = 1; i < 5; i++) {
-        const b = Sprite.from(IguaRpgTitle).at(128 + i, i).centerAnchor();
-        c.addChild(b);
-        b.opaqueTint = 0x001A22;
+    if (dropShadow) {
+        for (let i = 1; i < 5; i++) {
+            const b = Sprite.from(IguaRpgTitle).at(128 + i, i).centerAnchor();
+            c.addChild(b);
+            b.opaqueTint = 0x001A22;
+        }
     }
 
     c.addChild(Sprite.from(IguaRpgTitle).at(128, 0).centerAnchor());
@@ -229,7 +237,7 @@ function title() {
 function getVersionText() {
     if (environment.isDemo)
         return 'Demo Ver.'
-    return `Dev Ver. ${environment.version}`;
+    return `Ver. ${environment.version}`;
 }
 
 function showDemoText() {
