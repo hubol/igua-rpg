@@ -12,6 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: jozsefsallai/node-package-version@v1
       - run: sudo apt-get install -y sox libsox-fmt-mp3
       - uses: nschloe/action-cached-lfs-checkout@v1
       - uses: actions/setup-node@v2
@@ -28,6 +29,7 @@ jobs:
     runs-on: windows-2019
     needs: build
     steps:
+      - run: echo "env.PACKAGE_VERSION ${{ env.PACKAGE_VERSION }}"
       - uses: hubol/electric-lizard@v1
         with:
           src-artifact: build
