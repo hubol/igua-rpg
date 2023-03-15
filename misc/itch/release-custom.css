@@ -184,7 +184,7 @@ img {
 		display: inline;
 	}
 	
-	div[itemtype="http://schema.org/Product"] button {
+	div[itemtype="http://schema.org/Product"] button:not(.vote_btn) {
 		display: inline-block !important;
 	}
 
@@ -192,7 +192,7 @@ img {
 		display: inline !important;
 	}
 
-	div[itemtype="http://schema.org/Product"] button, .donate a {
+	div[itemtype="http://schema.org/Product"] button:not(.vote_btn), .donate a {
 		margin: 0 5px;
 	}
 

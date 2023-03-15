@@ -136,7 +136,7 @@ export function biguaInJungle() {
     const v = () => [96 * b.scale.x, -64].add(b);
 
     if (jungle.bigua.repairedKey) {
-        const k = repairedKey().withStep(() => k.at(v()));
+        const k = repairedKey().withStep(() => k.at(v())).show();
     }
 
     return b;
