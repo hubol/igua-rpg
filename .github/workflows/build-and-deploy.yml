@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: jozsefsallai/node-package-version@v1
+      - uses: jozsefsallai/node-package-version@v1.0.4
       - run: sudo apt-get install -y sox libsox-fmt-mp3
       - uses: nschloe/action-cached-lfs-checkout@v1
       - uses: actions/setup-node@v2
