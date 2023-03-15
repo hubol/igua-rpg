@@ -12,19 +12,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: jozsefsallai/node-package-version@v1.0.4
-      - run: sudo apt-get install -y sox libsox-fmt-mp3
+#      - run: sudo apt-get install -y sox libsox-fmt-mp3
       - uses: nschloe/action-cached-lfs-checkout@v1
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-          cache: 'npm'
-      - run: npm install
-      - run: npm run build
-      - uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: dist
+      - uses: jozsefsallai/node-package-version@v1.0.4
+#      - uses: actions/setup-node@v2
+#        with:
+#          node-version: '12'
+#          cache: 'npm'
+#      - run: npm install
+#      - run: npm run build
+#      - uses: actions/upload-artifact@v2
+#        with:
+#          name: build
+#          path: dist
   build-win:
     runs-on: windows-2019
     needs: build
