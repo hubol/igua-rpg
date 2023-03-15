@@ -11,11 +11,13 @@ jobs:
           access_token: ${{ github.token }}
   build:
     runs-on: ubuntu-latest
+    outputs: ${{ steps.publish_version.outputs.version }}
     steps:
 #      - run: sudo apt-get install -y sox libsox-fmt-mp3
       - uses: nschloe/action-cached-lfs-checkout@v1
       - uses: jozsefsallai/node-package-version@v1.0.4
-      - run: echo "env.PACKAGE_VERSION ${{ env.PACKAGE_VERSION }}"
+      - id: publish_version
+        run: echo "version='${{ env.PACKAGE_VERSION }}'" >> $GITHUB_OUTPUT
 #      - uses: actions/setup-node@v2
 #        with:
 #          node-version: '12'
@@ -30,7 +32,7 @@ jobs:
     runs-on: windows-2019
     needs: build
     steps:
-      - run: echo "env.PACKAGE_VERSION ${{ env.PACKAGE_VERSION }}"
+      - run: echo "env.PACKAGE_VERSION  --userversion ${{ needs.build.outputs.version }}"
       - uses: hubol/electric-lizard@v1
         with:
           src-artifact: build
@@ -70,7 +72,7 @@ jobs:
           curl -L -o butler.zip https://broth.itch.ovh/butler/darwin-amd64/LATEST/archive/default &&
           unzip butler.zip &&
           chmod +x butler &&
-          ./butler push "dist/mac" hubol/igua-rpg:mac
+          ./butler push "dist/mac" hubol/igua-rpg:mac --userversion ${{ needs.build.outputs.version }}
   deploy-itch:
     needs: [build, build-win, build-linux]
     runs-on: ubuntu-latest
@@ -80,9 +82,9 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
       - run: echo "Thank you for downloading IguaRPG. Be sure to extract the contents of this archive before running the `iguarpg` executable. I do not know anything about Linux, so I'm sorry if this doesn't work." > build-linux/readme.txt
-      - run: butler push "build" hubol/igua-rpg:html5
-      - run: butler push "build-win" hubol/igua-rpg:win
-      - run: butler push "build-linux" hubol/igua-rpg:linux
+      - run: butler push "build" hubol/igua-rpg:html5 --userversion ${{ needs.build.outputs.version }}
+      - run: butler push "build-win" hubol/igua-rpg:win --userversion ${{ needs.build.outputs.version }}
+      - run: butler push "build-linux" hubol/igua-rpg:linux --userversion ${{ needs.build.outputs.version }}
   deploy-heroku:
     needs: build
     runs-on: ubuntu-latest
