@@ -11,7 +11,8 @@ jobs:
           access_token: ${{ github.token }}
   build:
     runs-on: ubuntu-latest
-    outputs: ${{ steps.publish_version.outputs.version }}
+    outputs: 
+      version: ${{ steps.publish_version.outputs.version }}
     steps:
 #      - run: sudo apt-get install -y sox libsox-fmt-mp3
       - uses: nschloe/action-cached-lfs-checkout@v1
