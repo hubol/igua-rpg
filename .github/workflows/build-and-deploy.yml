@@ -14,26 +14,25 @@ jobs:
     outputs: 
       version: ${{ steps.publish_version.outputs.version }}
     steps:
-#      - run: sudo apt-get install -y sox libsox-fmt-mp3
+      - run: sudo apt-get install -y sox libsox-fmt-mp3
       - uses: nschloe/action-cached-lfs-checkout@v1
       - uses: jozsefsallai/node-package-version@v1.0.4
       - id: publish_version
-        run: echo "version='${{ env.PACKAGE_VERSION }}'" >> $GITHUB_OUTPUT
-#      - uses: actions/setup-node@v2
-#        with:
-#          node-version: '12'
-#          cache: 'npm'
-#      - run: npm install
-#      - run: npm run build
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: build
-#          path: dist
+        run: echo "version=${{ env.PACKAGE_VERSION }}" >> $GITHUB_OUTPUT
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: dist
   build-win:
     runs-on: windows-2019
     needs: build
     steps:
-      - run: echo "env.PACKAGE_VERSION  --userversion ${{ needs.build.outputs.version }}"
       - uses: hubol/electric-lizard@v1
         with:
           src-artifact: build
