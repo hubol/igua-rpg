@@ -78,10 +78,6 @@
 	content: '\25B6 \FE0E';
 }
 
-.build_row {
-	display: none;
-}
-
 .more_information_toggle {
 	display: none;
 }
@@ -337,4 +333,12 @@ kbd {
 
 #inner_column {
    box-shadow: 0 0 48px #006060;
+}
+
+.responsive .view_game_page .uploads .upload .button {
+	display: inline-block;
+}
+
+.game_page_primary_column {
+	width: 100%;
 }
