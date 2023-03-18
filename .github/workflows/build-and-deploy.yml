@@ -125,3 +125,4 @@ jobs:
           name: |
             build
             build-win
+            build-linux
