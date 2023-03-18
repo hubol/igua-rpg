@@ -174,7 +174,7 @@ function enhanceCrateStacker(level: DesertTownLevel)
                 await show("I hope the ballon I gave you was useful.");
                 await show("Before the invaders came, we used ballons all the time.");
                 await show("Once, someone I knew told me of a city in the sky.");
-                await show("I think it would take a lot of ballons to get there.");
+                await show("But I don't think ballons alone could get you there.");
             }
         }
         else if (tiredOfWorking)
