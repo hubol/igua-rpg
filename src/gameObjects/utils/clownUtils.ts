@@ -83,7 +83,13 @@ export function clownHealth(maxHealth: number) {
 }
 
 export function clownDrop(initialRate: number, deltaRate: number, minRate: number) {
-    return (count: number) => rng() <= Math.max(minRate, initialRate - Math.abs(deltaRate) * count);
+    return (count: number) => {
+        if (progress.flags.global.forceNextDrop) {
+            progress.flags.global.forceNextDrop = false;
+            return true;
+        }
+        return rng() <= Math.max(minRate, initialRate - Math.abs(deltaRate) * count);
+    };
 }
 
 export type ClownHealth = ReturnType<typeof clownHealth>;

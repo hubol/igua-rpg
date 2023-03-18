@@ -128,6 +128,7 @@ export function getInitialFlags()
         },
         global: {
             somethingGreatHappened: false,
+            forceNextDrop: true,
         }
     };
 }
