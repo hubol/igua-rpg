@@ -9,7 +9,7 @@ import {KeyYellow, KeyYellowShrunken} from "../textures";
 import {DisplayObject, Graphics, Sprite} from "pixi.js";
 import {sleep} from "../cutscene/sleep";
 import {wait} from "../cutscene/wait";
-import {BiguaEating, BiguaGiveItem, BiguaMagic, BiguaSniff, ClownExplode, ClownSniffle} from "../sounds";
+import {BiguaEating, BiguaGiveItem, BiguaMagic, BiguaSniff, ClownExplode} from "../sounds";
 import {confetti} from "./confetti";
 import {rng} from "../utils/math/rng";
 import {jukebox} from "../igua/jukebox";
@@ -100,7 +100,8 @@ export function biguaInJungle() {
                 if (progress.flags.global.somethingGreatHappened) {
                     await showAll(`I'm glad I got to contribute to your mission, even in a small way.`,
                         `You did great on your task. The world thanks you.`,
-                        `Now that things are settled here, maybe I can return to the nimbus of the giants soon.`);
+                        `Now that things are settled here, maybe I can return to the nimbus of the giants soon...`,
+                        `But the nearest access point is in the eastmost desert, and that's rather far...`,);
                 }
                 else {
                     await show(`I'm glad I got to help your mission.`);

@@ -83,7 +83,7 @@ export function JungleTown() {
 }
 
 function enrichBigua(level: GameObjectsType<typeof JungleTownArgs>) {
-    const b = biguaInJungle().at(level.Bigua).withPixin(DestroyBeforeGreatness).show();
+    biguaInJungle().at([0, -1].add(level.Bigua)).withPixin(DestroyBeforeGreatness).show();
 }
 
 function enrichOracleTentAfterLeaningTruth(tent: Sprite) {
