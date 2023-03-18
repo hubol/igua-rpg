@@ -1,5 +1,7 @@
 import {progress} from "./data/progress";
 import {show} from "../cutscene/dialog";
+import {desertKeys} from "../levels/desertTemple";
+import {jungleKeys} from "../levels/jungleTemple";
 
 export async function oracleAdviceDesert() {
     const { oracle, desert } = progress.flags;
@@ -25,7 +27,7 @@ export async function oracleAdviceDesert() {
             await show(`You must go to the temple in the east desert, but alas, it is locked.`);
             return await show(`There is a mechanism to open the temple in the grassy outskirts of the desert.`);
         }
-        else if (desert.bigKey.reward) {
+        else if (desertKeys.foundAllBigKeyPieces && desertKeys.reward) {
             await show(`You repaired the big key and received the blessing of earth!`);
             return await show(`Hurry to the jungle through the west tunnel!`);
         }
@@ -70,11 +72,12 @@ export async function oracleAdviceDesert() {
 }
 
 export async function oracleAdviceJungle() {
-    const { jungle } = progress.flags;
-    if (jungle.bigKey.reward) {
+    if (jungleKeys.foundAllBigKeyPieces && jungleKeys.reward) {
         await show(`You repaired the big key and received the blessing of jungle!`);
         return await show(`Follow the jungle spirit to continue your task.`);
     }
+
+    const { jungle } = progress.flags;
 
     const allKeys = jungle.key.fromSickIguana && jungle.key.fromBiguaRepair && jungle.key.fromSpider;
     if (allKeys) {
