@@ -53,7 +53,8 @@ export function DesertShop() {
 
     [light1, light2].forEach(x => enrichLight(x, level));
 
-    cigarette().at(16, -13).show(level.BarAttendee);
+    const c = cigarette().at([-16, -11].add(level.BarAttendee)).withPixin(DestroyAfterGreatness).show();
+    c.scale.x = -1;
     level.BarAttendee.withPixin(DestroyAfterGreatness).withCutscene(() => show('...'));
 
     level.CrateStacker.withPixin(DestroyBeforeGreatness).withCutscene(async () => {
