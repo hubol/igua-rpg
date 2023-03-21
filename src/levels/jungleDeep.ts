@@ -47,7 +47,7 @@ function enrichOutcast(level: GameObjectsType<typeof JungleDeepArgs>) {
         await showAll(
             "Welcome to my home.",
             "I moved here when I got annoyed with the oracles. They said my interpretations of ancient texts were blasphemous.",
-            "Did you know that the protectors were all slain by the claws of an Igua? Or that the guardian of flame nourished that Igua?",
+            "Did you know that the protectors were all slain by the claws of an iguana? Or that the guardian of flame nourished that iguana?",
             "The oracles act like the protectors were perfect and just mysteriously vanished, when their failures and demise are clearly documented.",
             "Honestly, I don't even think the great weapon exists. It's just an idea that the oracles cling to."
         );
