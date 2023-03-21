@@ -14,6 +14,7 @@ jobs:
     outputs: 
       version: ${{ steps.publish_version.outputs.version }}
     steps:
+      - uses: lhotari/action-upterm@v1
       - run: sudo apt-get install -y sox libsox-fmt-mp3
       - uses: nschloe/action-cached-lfs-checkout@v1
       - uses: jozsefsallai/node-package-version@v1.0.4
