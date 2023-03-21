@@ -1,6 +1,6 @@
 {
   "name": "igua-rpg",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Be an iguana and save the world from evil.",
   "browserslist": "Chrome 54",
   "scripts": {
