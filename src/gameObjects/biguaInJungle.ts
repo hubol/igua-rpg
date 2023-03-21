@@ -18,6 +18,7 @@ import {moveCameraToPlayerTarget} from "../igua/camera";
 import {shrunkenSaladTextures} from "./shrunkenSalad";
 import {ask} from "../cutscene/ask";
 import {giftValuables} from "../cutscene/giftValuables";
+import {JungleFromDesert} from "../levels/jungleFromDesert";
 
 export function biguaInJungle() {
     const { jungle } = progress.flags;
@@ -136,7 +137,7 @@ export function biguaInJungle() {
 
     const v = () => [96 * b.scale.x, -64].add(b);
 
-    if (jungle.bigua.repairedKey) {
+    if (scene.source === JungleFromDesert && jungle.bigua.repairedKey) {
         const k = repairedKey().withStep(() => k.at(v())).show();
     }
 
