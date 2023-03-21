@@ -21,9 +21,6 @@ import {FinalEnemySoul} from "../textures";
 import {animatedSprite} from "../igua/animatedSprite";
 import { DefeatPermanent } from "../sounds";
 import {PermanentDefeatTracker} from "../gameObjects/permanentDefeatTracker";
-import {derivedFlags} from "../igua/gameplay/derivedStats";
-import {cutscene} from "../cutscene/cutscene";
-import {permanentDefeatCutscene} from "../gameObjects/permanentDefeatCutscene";
 
 const filter = new OutlineFilter(1, PlayerSpellColor.Dark);
 
@@ -51,13 +48,6 @@ export const WeakToSpells = Pixin<WeakToSpellsArgs>()
                     PermanentDefeatTracker.value.showFrames = 120;
                     if (!_src.preventAddToPermanentlyDefeatedEnemies)
                         progress.flags.objects.permanentlyDefeatedEnemies.add(id);
-                    for (let i = 0; i < 2; i++) {
-                        if (derivedFlags.defeatedRequiredEnemies) {
-                            cutscene.play(permanentDefeatCutscene);
-                            break;
-                        }
-                        await sleep(17);
-                    }
                 });
             }
         }

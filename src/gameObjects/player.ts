@@ -14,7 +14,7 @@ import {ballons, DisplayState} from "./ballons";
 import {game} from "../igua/game";
 import {makeIguanaPuppetArgsFromLooks} from "../igua/looks/makeIguanaPuppetArgsFromLooks";
 import {showQuitMenu} from "../igua/inventory/showQuitMenu";
-import {derivedStats} from "../igua/gameplay/derivedStats";
+import {derivedFlags, derivedStats} from "../igua/gameplay/derivedStats";
 import {lava} from "./lava";
 import {damageStatusConsts} from "../igua/gameplay/damageStatusConsts";
 import {PlayerBurningEffect} from "./playerBurningEffect";
@@ -23,6 +23,8 @@ import {DamageTakenHud} from "./hud";
 import {PermanentDefeatTracker} from "./permanentDefeatTracker";
 import {showPlayerAttackBuffParticleStep} from "./playerAttackBuffParticle";
 import {Rectangle} from "pixi.js";
+import {cutscene} from "../cutscene/cutscene";
+import {permanentDefeatCutscene} from "./permanentDefeatCutscene";
 
 export function playerPuppetArgs() {
     return makeIguanaPuppetArgsFromLooks(progress.looks);
@@ -162,6 +164,7 @@ function createPlayer(behavior = true)
     let ballonLifeTick = 0;
 
     const step = () => {
+        tryStartPermanentDefeatCutscene();
         showPlayerAttackBuffParticleStep();
 
         progress.status.comboTimer = Math.max(progress.status.comboTimer - 1, 0);
@@ -240,7 +243,6 @@ function createPlayer(behavior = true)
             progress.status.burn = 0;
         }
 
-        // TODO need a charging animation probably!
         if (derivedStats.canCastSpell && playerKey.justWentDown('CastSpell'))
             bufferedCast = 5;
 
@@ -306,6 +308,11 @@ function createPlayer(behavior = true)
     ballons({ target: player, state: progress.status.ballons, offset, string: 24, ticker: game.hudStage.ticker, displayState });
 
     return player;
+}
+
+function tryStartPermanentDefeatCutscene() {
+    if (!cutscene.isPlaying && !progress.flags.global.somethingGreatHappened && derivedFlags.defeatedRequiredEnemies)
+        cutscene.play(permanentDefeatCutscene);
 }
 
 let displayState: DisplayState = [];
