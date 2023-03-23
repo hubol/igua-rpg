@@ -19,6 +19,7 @@ import {valuable} from "../gameObjects/valuable";
 import {cracks} from "../gameObjects/cracks";
 import {Undefined} from "../utils/types/undefined";
 import {Container} from "pixi.js";
+import {GameEvent} from "../igua/data/gameEvent";
 
 export function JungleBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -66,6 +67,8 @@ export function JungleBossArena() {
             player.invulnerableFrameCount += 120;
             player.withStep(() => player.visible = true);
             await sleep(1);
+
+            GameEvent.broadcast('defeatJungleBoss');
             progress.checkpointName = 'DefeatedBoss';
             progress.flags.jungle.defeatedUnorthodoxAngel = true;
             await persistence.save();

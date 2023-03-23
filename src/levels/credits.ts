@@ -23,6 +23,7 @@ import {getCompletionText} from "../igua/data/getCompletion";
 import {waitForInput} from "../cutscene/waitForInput";
 import {wait} from "../cutscene/wait";
 import {now} from "../utils/now";
+import {GameEvent} from "../igua/data/gameEvent";
 
 export function Credits() {
     scene.backgroundColor = 0x002C38;
@@ -31,6 +32,7 @@ export function Credits() {
     scene.terrainStage.hide();
     scene.gameObjectStage.withAsync(async () => {
         await showCredits(level);
+        GameEvent.broadcast('completeGame');
         scene.gameObjectStage.ext.finishedCredits = true;
     });
 }

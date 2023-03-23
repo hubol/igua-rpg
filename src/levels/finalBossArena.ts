@@ -15,6 +15,7 @@ import {progress} from "../igua/data/progress";
 import {persistence} from "../igua/data/persistence";
 import {keepSavingValuables} from "../gameObjects/valuableTrove";
 import {sleep} from "../cutscene/sleep";
+import {GameEvent} from "../igua/data/gameEvent";
 
 export function FinalBossArena() {
     scene.backgroundColor = 0x182840;
@@ -70,6 +71,7 @@ async function beginBossBattle() {
     FinalBossBattle.value.active = false;
 
     progress.flags.final.defeatedOrnateAngel = true;
+    GameEvent.broadcast('defeatFinalBoss');
     progress.checkpointName = "DefeatedBoss";
     await persistence.save();
     scene.gameObjectStage.withAsync(keepSavingValuables);

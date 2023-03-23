@@ -21,6 +21,7 @@ import {CollectGeneric} from "../sounds";
 import {persistence} from "../igua/data/persistence";
 import {keepSavingValuables} from "../gameObjects/valuableTrove";
 import {cracks} from "../gameObjects/cracks";
+import {GameEvent} from "../igua/data/gameEvent";
 
 export function OversizedAngelArena() {
     scene.backgroundColor = 0x2F4B5E;
@@ -56,6 +57,7 @@ export function OversizedAngelArena() {
             progress.flags.desert.defeatedOversizedAngel = true;
             jukebox.currentSong?.fade(1, 0, 1000);
 
+            GameEvent.broadcast('defeatDesertBoss');
             progress.checkpointName = 'DefeatedBoss';
             await persistence.save();
             scene.gameObjectStage.withAsync(keepSavingValuables);

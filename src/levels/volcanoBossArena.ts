@@ -28,6 +28,7 @@ import {cutscene} from "../cutscene/cutscene";
 import {show} from "../cutscene/dialog";
 import {automaticDoorWithSfx} from "../gameObjects/automaticDoorWithSfx";
 import {waitHold} from "../cutscene/waitHold";
+import {GameEvent} from "../igua/data/gameEvent";
 
 export function VolcanoBossArena() {
     scene.backgroundColor = 0x78917D;
@@ -116,6 +117,8 @@ function enrichBoss(level: GameObjectsType<typeof VolcanoBossArenaArgs>) {
         const x = Math.max(level.ValuableSpawnX.x, Math.min(level.ValuableSpawnX.x + level.ValuableSpawnX.width, bossX));
         ValuableTroveConfig.value.dropAll15 = boss.vsPlayerHitCount === 0;
         trove140().at(x, 168).show();
+
+        GameEvent.broadcast('defeatVolcanoBoss');
         progress.checkpointName = "DefeatedBoss";
         await persistence.save();
         scene.gameObjectStage.withAsync(async () => {
