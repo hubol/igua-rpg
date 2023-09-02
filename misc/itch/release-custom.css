@@ -111,13 +111,24 @@ img {
 }
 
 .formatted_description a::after {
-	padding-left: 0.2em;
-	position: relative;
-	display: inline-block;
-	content: '\2197';
-	font-size: 133%;
-	line-height: 0.67;
-	top: 0.075em;
+	font-family: unset !important;
+	white-space: unset !important;
+	font-weight: unset !important;
+	pointer-events: unset !important;
+	left: unset !important;
+	background-color: unset !important;
+	color: unset !important;
+	padding: unset !important;
+	border-radius: unset !important;
+	margin-top: unset !important;
+	z-index: unset !important;
+	padding-left: 0.2em !important;
+	position: relative !important;
+	display: inline-block !important;
+	content: '\2197' !important;
+	font-size: 133% !important;
+	line-height: 0.67 !important;
+	top: 0.075em !important;
 }
 
 .formatted_description > div:first-child > div {
@@ -341,4 +352,16 @@ kbd {
 
 .game_page_primary_column {
 	width: 100%;
+}
+
+.community_post_list_widget .community_post_replies.top_level_replies {
+    margin-left: 30px;
+}
+
+.community_post_list_widget .community_post_replies {
+    margin-left: 0px;
+}
+
+.is_deleted {
+    display: none;
 }
