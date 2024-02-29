@@ -19,6 +19,6 @@ export const environment = {
         return packageJson.version;
     },
     get isDemo() {
-        return window.location.href.includes('hwcdn');
+        return window.location.href.includes('itch');
     }
 };

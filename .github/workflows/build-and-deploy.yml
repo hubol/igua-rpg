@@ -90,17 +90,19 @@ jobs:
           chmod +x butler &&
           ./butler push "dist/mac" hubol/igua-rpg:mac --userversion ${{ needs.build.outputs.version }}
   deploy-itch:
-    needs: [build, build-win, build-linux]
+    # Hacks to re-deploy itch demo
+    # needs: [build, build-win, build-linux]
+    needs: [build]
     runs-on: ubuntu-latest
     container: itchio/butler
     env:
       BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
     steps:
       - uses: actions/download-artifact@v2
-      - run: echo "Thank you for downloading IguaRPG. Be sure to extract the contents of this archive before running the `iguarpg` executable. I do not know anything about Linux, so I'm sorry if this doesn't work. One user reported having to run the executable with the --no-sandbox flag. But I do not understand what this does." > build-linux/readme.txt
+      # - run: echo "Thank you for downloading IguaRPG. Be sure to extract the contents of this archive before running the `iguarpg` executable. I do not know anything about Linux, so I'm sorry if this doesn't work. One user reported having to run the executable with the --no-sandbox flag. But I do not understand what this does." > build-linux/readme.txt
       - run: butler push "build" hubol/igua-rpg:html5 --userversion ${{ needs.build.outputs.version }}
-      - run: butler push "build-win" hubol/igua-rpg:win --userversion ${{ needs.build.outputs.version }}
-      - run: butler push "build-linux" hubol/igua-rpg:linux --userversion ${{ needs.build.outputs.version }}
+      # - run: butler push "build-win" hubol/igua-rpg:win --userversion ${{ needs.build.outputs.version }}
+      # - run: butler push "build-linux" hubol/igua-rpg:linux --userversion ${{ needs.build.outputs.version }}
   deploy-heroku:
     needs: build
     runs-on: ubuntu-latest
